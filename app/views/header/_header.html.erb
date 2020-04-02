@@ -43,18 +43,14 @@
 		<%# Log in button %>
 		<div class="login-container">
 			<form action="/action_page.php">
-			<%# <input type="text" placeholder="Username" name="username">
-			<input type="text" placeholder="Password" name="psw"> %>
-			<button type="submit">Sign in</button>
+			<%= link_to '<button type="submit">Sign in</button>'.html_safe, sessions_new_path %>
 			</form>
 		</div>
 		
 		<%# Signup button %>
 		<div class="signup-container">
 			<form action="/action_page.php">
-			<%# <input type="text" placeholder="Username" name="username">
-			<input type="text" placeholder="Password" name="psw"> %>
-			<button type="submit">Sign up</button>
+			<%= link_to '<button type="submit">Sign up</button>'.html_safe, new_user_path %>
 			</form>
 		</div>
 
