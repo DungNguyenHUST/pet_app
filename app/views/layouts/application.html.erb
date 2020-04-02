@@ -10,7 +10,17 @@
   </head>
 
   <body>
-    <%= render 'header' %> 
+    <%= render 'header/header' %> 
+    <%# alert key of user %>
+    <section class="content" style="min-height: auto;">
+      <% flash.each do |key, value| %>
+        <div class="row">
+          <div class="alert alert-<%= key %>">
+            <%= value %>
+          </div>
+        </div>
+      <% end %>
+    </section>
     <%= yield %>
     <%# <%= render 'footer/footer' %> 
   </body>

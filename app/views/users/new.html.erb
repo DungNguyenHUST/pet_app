@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+    <div class="row">
+        <div class="col-lg-offset-2">
+            <%= form_for @user, html: {class: "form-horizontal"} do |f| %>
+
+                <div class="form-group">
+                    <%= f.label :name, "Name", class: "col-md-2 control-label" %>
+                    <div class="col-md-6">
+                    <%= f.text_field :name, class: "form-control", placeholder: "Enter user name" %>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <%= f.label :password, "Password", class: "col-md-2 control-label" %>
+                    <div class="col-md-6">
+                    <%= f.password_field :password, class: "form-control", placeholder: "Enter password" %>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <%= f.label :password_confirmation, "Password Confirmation", class: "col-md-2 control-label" %>
+                    <div class="col-md-6">
+                    <%= f.password_field :password_confirmation, class: "form-control", placeholder: "Enter password confirmation" %>
+                    </div>
+                </div>
+                
+                <div class="form-group">
+                    <div class="col-lg-offset-4">
+                    <%= f.submit "Register", class: "btn btn-success" %>
+                    </div>
+                </div>
+            <% end %>
+        </div>
+    </div>
+</html>
