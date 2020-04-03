@@ -7,56 +7,60 @@
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 
-	<title>User Dropdown Header</title>
+	<title>Main Header</title>
 
-	<link rel="stylesheet" href="assets/header.css">
-	<link href='https://fonts.googleapis.com/css?family=Lato:300,400,400italic,700,700italic,900,900italic' rel='stylesheet' type='text/css'>
+	<!-- Font Icon -->
+	<link href='https://fonts.googleapis.com/css?family=Roboto' rel='stylesheet' type='text/css'>
 
+    <!-- Main css -->
+    <link rel="stylesheet" href="assets/stylesheets/header.css">
 
 </head>
 
 <body>
 
-<header class="header-user-dropdown">
+	<header class="header-user-dropdown">
 
-	<div class="header-limiter">
-		<h1><a href="#">Crazy<span>Code</span></a></h1>
+		<div class="header-limiter">
+			<h1><a href="#"><span>Code <\></span></a></h1>
 
-		<nav>
-			<a href="#">Review</a>
-			<a href="#">Study</a>
-			<a href="#">Find Job</a>
-			<a href="#">Sharing <span class="header-new-feature">new</span></a>
-		</nav>
+			<nav>
+				<a href="#">Đánh giá</a>
+				<a href="#">Training</a>
+				<a href="#">Tìm kiếm</a>
+				<a href="#">Chia sẻ kinh nghiệm <span class="header-new-feature">new</span></a>
+			</nav>
 
-		<%# User login icon %>
-		<%# <div class="header-user-menu">
-			<img src="assets/images/2.jpg" alt="User Image"/>
+			<%# User login icon %>
+			<%# <div class="header-user-menu">
+				<img src="assets/images/2.jpg" alt="User Image"/>
 
-			<ul>
-				<li><a href="#">Settings</a></li>
-				<li><a href="#">Payments</a></li>
-				<li><a href="#" class="highlight">Logout</a></li>
-			</ul>
-		</div> %>
+				<ul>
+					<li><a href="#">Settings</a></li>
+					<li><a href="#">Payments</a></li>
+					<li><a href="#" class="highlight">Logout</a></li>
+				</ul>
+			</div> %>
 
-		<%# Log in button %>
-		<div class="login-container">
-			<form action="/action_page.php">
-			<%= link_to '<button type="submit">Sign in</button>'.html_safe, sessions_new_path %>
-			</form>
+			<%= form_for :session, url: login_path do |f| %>
+				<%# Log in button %>
+				<div class="login-container">
+					<form action="/action_page.php">
+					<%= link_to '<button type="submit">Đăng nhập</button>'.html_safe, sessions_new_path %>
+					</form>
+				</div>
+				
+				<%# Signup button %>
+				<div class="signup-container">
+					<form action="/action_page.php">
+					<%= link_to '<button type="submit">Đăng kí</button>'.html_safe, new_user_path %>
+					</form>
+				</div>
+			<% end %>
+
 		</div>
-		
-		<%# Signup button %>
-		<div class="signup-container">
-			<form action="/action_page.php">
-			<%= link_to '<button type="submit">Sign up</button>'.html_safe, new_user_path %>
-			</form>
-		</div>
 
-	</div>
-
-</header>
+	</header>
 
 </body>
 
