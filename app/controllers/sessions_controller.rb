@@ -5,18 +5,18 @@ class SessionsController < ApplicationController
   def create
     user = User.find_by name: params[:session][:name].downcase
     if user && user.authenticate(params[:session][:password])
-      flash[:success] = "Login success"
+      flash[:success] = "Đăng nhập thành công"
       log_in user
       redirect_to user
     else
-      flash[:danger] = "Invalid email/password combination"
+      flash[:danger] = "Tên tài khoản và mật khẩu email không chính xác"
       render :new
     end
   end
 
   def destroy
     log_out
-    flash[:success] = "You are logged out"
+    flash[:success] = "Bạn đã thoát"
     redirect_to login_path
   end
 end

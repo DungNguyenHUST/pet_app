@@ -1,29 +1,40 @@
 <div class="container">
-    <div class="row">
-    <h1 class="title">Login</h1>
+    <div class="sessions">
     </div>
-        <div class="row">
-            <div class="col-lg-offset-3 col-lg-6">
-                <%= form_for :session, url: login_path do |f| %>
-                    <div class="form-group">
-                        <%= f.label :name %>
-                        <%= f.text_field :name, placeholder: "Enter your name", class: "form-control" %>
-                    </div>
+        <section class="signup">
+            <div class="container">
+                <div class="signup-content">
 
-                    <div class="form-group">
-                        <%= f.label :password %>
-                        <%= f.password_field :password, placeholder: "Enter your password", class: "form-control" %>
-                    </div>
+                    <%= form_for :session, url: login_path do |f| %>
+                        <h2 class="form-title">Đăng nhập</h2>
 
-                    <div class="text-center">
-                    <%= f.submit "Login", class: "btn btn-info col-lg-12" %>
-                    </div>
-                    
-                    <div class="text-right">
-                    <%= link_to "Register", new_user_path %>
-                    </div>
-                <% end %>
+                        <div class="form-group">
+                            <%= f.label :name, "Tên hoặc địa chỉ email", class: "col-md-2 control-label" %>
+                            <div class="col-md-6">
+                            <%= f.text_field :name, class: "form-input", placeholder: "Nhập tên hoặc địa chỉ email của bạn" %>
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <%= f.label :password, "Mật khẩu", class: "col-md-2 control-label" %>
+                            <div class="col-md-6">
+                            <%= f.password_field :password, class: "form-input", placeholder: "Nhập mật khẩu của bạn" %>
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <div class="col-lg-offset-4">
+                            <%= f.submit "Đăng nhập", class: "form-submit" %>
+                            </div>
+                        </div>
+
+                        <p class="loginhere">
+                            Chưa có tài khoản, đăng ký tại <%= link_to 'đây', new_user_path %>
+                        </p>
+                    <%end%>
+
+                </div>
             </div>
-        </div>
+        </section>
     </div>
 </div>
