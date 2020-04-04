@@ -6,5 +6,15 @@ Rails.application.routes.draw do
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
   resources :users
   resources :pages
+  resources :posts
+  # New post
+  get 'posts/new' => 'posts#new'
+
+  # list các posts
+  get 'posts' => 'posts#index'
+
+  # show single post
+  # get 'post/post' => 'posts#show'
+
   root "pages#index"
 end
