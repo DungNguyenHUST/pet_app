@@ -58,3 +58,7 @@ gem "bcrypt"
 
 # add bootstrap
 gem "bootstrap-sass", "~> 3.3.6"
+
+# For editor in post
+gem 'ckeditor_rails'
+gem "twitter-bootstrap-rails"
