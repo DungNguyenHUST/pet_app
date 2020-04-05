@@ -11,8 +11,10 @@ Rails.application.routes.draw do
     resources :comments
   end
 
-  resources :companies
-  
+  resources :companies do
+    resources :company_reviews
+  end
+
   # New post
   get 'posts/new' => 'posts#new'
 
