@@ -10,6 +10,9 @@ Rails.application.routes.draw do
   resources :posts do
     resources :comments
   end
+
+  resources :companies
+  
   # New post
   get 'posts/new' => 'posts#new'
 
