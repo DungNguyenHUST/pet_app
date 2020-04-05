@@ -12,6 +12,19 @@
   <dd><%= @post.title %></dd>
 </dl>
 
+<section class="section comments">
+    <div class="container">
+        <div class="comment-content">
+          <h2 class="subtitle is-5"><strong><%= @post.comments.count %></strong> Nhận xét</h2>
+          <%= render @post.comments %>
+         </div>
+        
+        <div class="comment-form">
+          <%= render 'comments/form' %>
+        </div>
+    </div>
+</section>
+
 <%= link_to t('.back', :default => t("helpers.links.back")),
               posts_path, :class => 'btn btn-default'  %>
 <%= link_to t('.edit', :default => t("helpers.links.edit")),
