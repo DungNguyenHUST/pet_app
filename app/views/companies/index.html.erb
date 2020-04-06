@@ -1,49 +1,36 @@
 <%- model_class = Company -%>
-<div class="page-header">
-  <h1><%=t '.title', :default => model_class.model_name.human.pluralize.titleize %></h1>
-</div>
-    <table class="table table-striped">
-    <thead>
-        <tr>
-        <th><%= model_class.human_attribute_name(:id) %></th>
-        <th><%= model_class.human_attribute_name(:name) %></th>
-        <th><%= model_class.human_attribute_name(:image) %></th>
-        <th><%= model_class.human_attribute_name(:location) %></th>
-        <th><%= model_class.human_attribute_name(:website) %></th>
-        <th><%= model_class.human_attribute_name(:created_at) %></th>
-        <th><%=t '.actions', :default => t("helpers.actions") %></th>
-        </tr>
-    </thead>
-    <tbody>
+
+<div class="top_companies_area">
+    <div class="container">
+        
+        <div class="row align-items-center mb-40">
+            <div class="col-lg-6 col-md-6">
+                <div class="section_title">
+                    <h3>Top Companies</h3>
+                </div>
+            </div>
+        </div>
+
         <% @companies.each do |company| %>
-        <tr>
-            <td><%= link_to company.id, company_path(company) %></td>
-            <td><%= company.name %></td>
-            <td><%= company.image %></td>
-            <td><%= company.location %></td>
-            <td><%= company.website %></td>
-            <td><%=l company.created_at %></td>
-            <td>
+            <div class="row">
+                <div class="col-lg-4 col-xl-3 col-md-6">
+                    <div class="single_company">
+                        <div class="thumb">
+                            <%= link_to (image_tag("1.svg")), image_path("1.svg"), rel: "gallery" %>
+                        </div>
+                        <%= link_to company.name, company_path(company) %>
+                    </div>
+                </div>
+            </div>
+        <%end%>
 
-            <%= link_to t('.edit', :default => t("helpers.links.edit")),
-                        edit_company_path(company), :class => 'btn btn-default btn-xs' %>
-
-            <%= link_to t('.destroy', :default => t("helpers.links.destroy")),
-                        company_path(company),
-                        :method => :delete,
-                        :data => { :confirm => t('.confirm', :default => t("helpers.links.confirm", :default => 'Are you sure?')) },
-                        :class => 'btn btn-xs btn-danger' %>
-            </td>
-        </tr>
-        <% end %>
-    </tbody>
-    </table>
-
-    <%# New button %>
-    <div class="new-thread-container">
-        <form action="/action_page.php">
-        <%= link_to '<button type="submit">Tạo thông tin công ty mới</button>'.html_safe, new_company_path %>
-        </form>
+        <%# New button %>
+        <div class="new-company">
+            <form action="/action_page.php">
+            <%= link_to '<button type="submit">Tạo thông tin công ty mới</button>'.html_safe, new_company_path %>
+            </form>
+        </div>
+        
     </div>
-
 </div>
+
