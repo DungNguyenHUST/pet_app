@@ -13,7 +13,6 @@ class CommentsController < ApplicationController
         @post = Post.find(params[:post_id])
 
         @comment = @post.comments.build(commment_param)
-        # @comment = Comment.new(commment_param)
 
         @comment.username = @current_user.name
 
