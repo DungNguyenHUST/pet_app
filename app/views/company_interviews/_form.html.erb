@@ -1,0 +1,33 @@
+<%= form_for [@company, CompanyInterview.new] do |f| %>
+    <div class="container">
+        <div class="sessions">
+            <section class="signup">
+                <div class="container">
+                    <div class="signup-content">
+                        <h2 class="form-title">Chia sẻ kinh nghiệm phỏng vấn công ty</h2>
+
+                        <div class="form-group">
+                            <%= f.label :position, "Vị trí ưng tuyển", class: "col-md-2 control-label" %>
+                            <div class="col-md-6">
+                                <%= f.text_field :position, class: "form-input-content", placeholder: "Nhập vị trí mà bạn ứng tuyển" %>
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <%= f.label :content, "Nhập nội dung bạn muốn chia sẻ về công ty", class: "col-md-2 control-label" %>
+                            <div class="col-md-6">
+                                <%= f.text_field :content, class: "form-input-content", placeholder: "Hãy viết nhận xét của bạn" %>
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <div class="col-lg-offset-4">
+                                <%= f.submit "Submit", class: "form-submit" %>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </div>
+    </div>
+<% end %>

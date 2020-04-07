@@ -5,7 +5,7 @@ class CompanyReviewsController < ApplicationController
     end
 
     def new
-        @company_review = Comment.new
+        @company_review = CompanyReview.new
     end
 
     def create
