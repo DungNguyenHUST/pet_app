@@ -1,16 +1,17 @@
 // Place all the styles related to the Header controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: https://sass-lang.com/
-.header-user-dropdown {
+.header_area {
 	background-color:#292c2f;
 	box-shadow:0 1px 1px #ccc;
+	padding-top: 0px;
 	padding: 20px 40px;
 	height: 80px;
 	color: #ffffff;
 	box-sizing: border-box;
 }
 
-.header-user-dropdown .header-limiter {
+.header_area .header_content {
 	max-width: 1200px;
 	text-align: center;
 	margin: 0 auto;
@@ -18,25 +19,25 @@
 
 /* Logo */
 
-.header-user-dropdown .header-limiter h1{
+.header_area .header_content h1{
 	float: left;
 	// font: normal 28px Cookie, Arial, Helvetica, sans-serif;
 	line-height: 40px;
 	margin:0;
 }
 
-.header-user-dropdown .header-limiter h1 span {
+.header_area .header_content h1 span {
 	color: #ffffff;
 }
 
 /* The header links */
 
-.header-user-dropdown .header-limiter a {
+.header_area .header_content a {
 	color: #ffffff;
 	text-decoration: none;
 }
 
-.header-user-dropdown .header-limiter nav{
+.header_area .header_content nav{
 	// font:16px Arial, Helvetica, sans-serif;
 	line-height: 40px;
 	float: left;
@@ -44,7 +45,7 @@
 	padding: 0;
 }
 
-.header-user-dropdown .header-limiter nav a{
+.header_area .header_content nav a{
 	font-size: 17px;
 	display: inline-block;
 	padding: 0 13px;
@@ -54,13 +55,13 @@
 	line-height: 1;
 }
 
-.header-user-dropdown .header-limiter nav a:hover {
+.header_area .header_content nav a:hover {
 	opacity: 1;
 }
 
 /* The "new" badge */
 
-.header-user-dropdown .header-limiter nav a span {
+.header_area .header_content nav a span {
 	position: absolute;
 	top: -12px;
 	border-radius: 2px;
@@ -74,7 +75,7 @@
 
 /* The user menu */
 
-.header-user-dropdown .header-limiter .header-user-menu{
+.header_area .header_content .header-user-menu{
 	position: relative;
 	float:right;
 	background-color:#3a3c3e;
@@ -83,7 +84,7 @@
 	border-radius:2px;
 }
 
-.header-user-dropdown .header-limiter .header-user-menu:before{
+.header_area .header_content .header-user-menu:before{
 	content:'';
 	width:0;
 	height:0;
@@ -94,7 +95,7 @@
 	border-top-color:#fff;
 }
 
-.header-user-dropdown .header-limiter .header-user-menu ul{
+.header_area .header_content .header-user-menu ul{
 	display: none;
 	// font:bold 13px Arial, Helvetica, sans-serif;
 	background-color: inherit;
@@ -110,25 +111,25 @@
 	box-sizing: border-box;
 }
 
-.header-user-dropdown .header-user-menu:active ul,
-.header-user-dropdown .header-user-menu:hover ul,
-.header-user-dropdown .header-user-menu.show ul{
+.header_area .header-user-menu:active ul,
+.header_area .header-user-menu:hover ul,
+.header_area .header-user-menu.show ul{
 	display:block;
 }
 
-.header-user-dropdown .header-user-menu ul li{
+.header_area .header-user-menu ul li{
 	padding:5px;
 }
 
-.header-user-dropdown .header-user-menu ul li a:hover{
+.header_area .header-user-menu ul li a:hover{
 	opacity:0.9;
 }
 
-.header-user-dropdown .header-user-menu ul li a.highlight{
+.header_area .header-user-menu ul li a.highlight{
 	color:#e9ac09;
 }
 
-.header-user-dropdown .header-user-menu img{
+.header_area .header-user-menu img{
 	border-radius:50%;
 	position:absolute;
 	top:6px;
@@ -139,15 +140,15 @@
 
 @media all and (max-width: 800px) {
 
-	.header-user-dropdown .header-limiter h1 {
+	.header_area .header_content h1 {
 		font-size: 24px;
 	}
 
-	.header-user-dropdown .header-limiter nav a {
+	.header_area .header_content nav a {
 		padding: 0 5px;
 	}
 
-	.header-user-dropdown .header-limiter nav {
+	.header_area .header_content nav {
 		margin-left: 20px;
 	}
 
@@ -155,7 +156,7 @@
 
 @media all and (max-width: 600px) {
 
-	.header-user-dropdown .header-limiter nav {
+	.header_area .header_content nav {
 		display: none;
 	}
 
@@ -163,13 +164,13 @@
 
 // Login
 /* Style the input container */
-.header-user-dropdown .login-container {
+.header_area .login-container {
     float: right;
     // text-align: center;
 }
 
 /* Style the input field inside the navbar */
-.header-user-dropdown input[type=text] {
+.header_area input[type=text] {
     padding: 6px;
     margin-top: 8px;
     font-size: 17px;
@@ -179,7 +180,7 @@
 }
 
 /* Style the button inside the input container */
-.header-user-dropdown .login-container button {
+.header_area .login-container button {
     float: right;
     padding: 6px;
     margin-top: 8px;
@@ -193,19 +194,19 @@
     border-radius: 5px;
 }
 
-.header-user-dropdown .login-container button:hover {
+.header_area .login-container button:hover {
     background: #4CAF50;
 }
 
 // Sign up
 /* Style the input container */
-.header-user-dropdown .signup-container {
+.header_area .signup-container {
     float: right;
     text-align: center;
 }
 
 /* Style the button inside the input container */
-.header-user-dropdown .signup-container button {
+.header_area .signup-container button {
     float: right;
     padding: 6px;
     margin-top: 8px;
@@ -219,6 +220,6 @@
     color: #ffffff;
 }
 
-.header-user-dropdown .signup-container button:hover {
+.header_area .signup-container button:hover {
     background: #4CAF50;
 }

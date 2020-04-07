@@ -1,36 +1,64 @@
 <%- model_class = Company -%>
 
-<div class="top_companies_area">
-    <div class="container">
+<div class="companies_area">
         
-        <div class="row align-items-center mb-40">
-            <div class="col-lg-6 col-md-6">
-                <div class="section_title">
-                    <h3>Top Companies</h3>
-                </div>
-            </div>
+    <div class="category">
+        <div class="section_title">
+            <h3>Danh sách các công ty</h3>
         </div>
+    </div>
 
-        <% @companies.each do |company| %>
-            <div class="row">
-                <div class="col-lg-4 col-xl-3 col-md-6">
-                    <div class="single_company">
-                        <div class="thumb">
-                            <%= link_to (image_tag("1.svg")), image_path("1.svg"), rel: "gallery" %>
-                        </div>
+    <% @companies.each do |company| %>
+        <div class="row">
+            <div class="single_company">
+                <div class="company_thumb">
+                    <%= link_to (image_tag("1.svg")), image_path("1.svg"), rel: "gallery" %>
+                
+                    <div class="company_name">
                         <%= link_to company.name, company_path(company) %>
                     </div>
+
+                    <div class="company_rating">
+                        Rating: <%= link_to company.website, company_path(company) %>
+                    </div>
+
+                    <div class="company_website">
+                        Website: <%= link_to company.website, company_path(company) %>
+                    </div>
+
+                    <div class="company_location">
+                        Địa chỉ: <%= link_to company.location, company_path(company) %>
+                    </div>
+
+                    <div class="company_score">
+                        Đánh giá: <%= company.company_reviews.count %>
+                    </div>
+
+                    <div class="company_review">
+                        Nhận xét: <%= company.company_interviews.count %>
+                    </div>
+
+                    <div class="new-review">
+                        <form action="/action_page.php">
+                            <%= link_to '<button type="submit">Viết đánh giá</button>'.html_safe, company_path(company) %>
+                        </form>
+                    </div>
+
                 </div>
             </div>
-        <%end%>
-
-        <%# New button %>
-        <div class="new-company">
-            <form action="/action_page.php">
-            <%= link_to '<button type="submit">Tạo thông tin công ty mới</button>'.html_safe, new_company_path %>
-            </form>
         </div>
-        
+    <%end%>
+
+    <%# add new template%>
+    <div class="single_company">
+        <div class="company_thumb">
+            <div class="new-company">
+                <form action="/action_page.php">
+                    <%= link_to '<button type="submit">Tạo thông tin công ty mới</button>'.html_safe, new_company_path %>
+                </form>
+            </div>
+        </div>
     </div>
+
 </div>
 
