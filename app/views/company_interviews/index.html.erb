@@ -1,0 +1,26 @@
+<div class="box">
+<article class="media">
+    <div class="media-content">
+
+    <nav>
+    <a href="<%=companies_path %>">| Profile công ty | </a>
+    <a href="<%=company_company_interviews_path(@company) %>">| Đánh giá, nhận xét | </a>
+    <a href="#">| Job |</a>
+    <a href="<%=posts_path %>">| Chia sẻ kinh nghiệm |</a>
+    </nav>
+
+    <section class="section company_interviews">
+    <div class="container">
+        <div class="company_interview-content">
+          <h2 class="subtitle is-5"><strong><%= @company.company_interviews.count %></strong> Đánh giá</h2>
+          <%= render @company.company_interviews %>
+         </div>
+        
+        <div class="company_interview-form">
+          <%= render 'company_interviews/form' %>
+        </div>
+    </div>
+    </section>
+
+</article>
+</div>

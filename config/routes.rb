@@ -13,6 +13,7 @@ Rails.application.routes.draw do
 
   resources :companies do
     resources :company_reviews
+    resources :company_interviews
   end
 
   # New post
