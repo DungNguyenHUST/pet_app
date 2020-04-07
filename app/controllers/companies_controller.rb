@@ -1,6 +1,7 @@
 class CompaniesController < ApplicationController
     def index
         @companies = Company.all
+        @company_reviews = CompanyReview.all
     end
 
     def new
@@ -20,6 +21,7 @@ class CompaniesController < ApplicationController
 
     def show
         @company = Company.find params[:id]
+        @company_review = CompanyReview.new
     end
 
     def edit
