@@ -1,66 +1,46 @@
 <!DOCTYPE html>
 <html>
+	<head>
+		<meta charset="utf-8">
+		<meta http-equiv="X-UA-Compatible" content="IE=edge">
+		<meta name="viewport" content="width=device-width, initial-scale=1">
 
-<head>
+		<title>Main Header</title>
 
-	<meta charset="utf-8">
-	<meta http-equiv="X-UA-Compatible" content="IE=edge">
-	<meta name="viewport" content="width=device-width, initial-scale=1">
+		<!-- Font Icon -->
+		<link href='https://fonts.googleapis.com/css?family=Roboto' rel='stylesheet' type='text/css'>
 
-	<title>Main Header</title>
+		<!-- Main css -->
+		<link rel="stylesheet" href="assets/stylesheets/header.css">
+	</head>
 
-	<!-- Font Icon -->
-	<link href='https://fonts.googleapis.com/css?family=Roboto' rel='stylesheet' type='text/css'>
+	<body>
+		<header class="header_area">
+			<div class="header_content">
+				<h1><a href="<%=pages_path %>"><span>Code <\></span></a></h1>
 
-    <!-- Main css -->
-    <link rel="stylesheet" href="assets/stylesheets/header.css">
+				<nav>
+					<a href="<%=companies_path %>">Đánh giá công ty <span class="header-new-feature">new</span></a>
+					<a href="<%=problems_path %>">Solve Problem <span class="header-new-feature">new</span></a>
+					<a href="<%=posts_path %>">Blog</a>
+				</nav>
 
-</head>
-
-<body>
-
-	<header class="header-user-dropdown">
-
-		<div class="header-limiter">
-			<h1><a href="<%=pages_path %>"><span>Code <\></span></a></h1>
-
-			<nav>
-				<a href="<%=companies_path %>">Đánh giá công ty <span class="header-new-feature">new</span></a>
-				<a href="<%=problems_path %>">Solve Problem <span class="header-new-feature">new</span></a>
-				<a href="<%=posts_path %>">Blog</a>
-			</nav>
-
-			<%# User login icon %>
-			<%# <div class="header-user-menu">
-				<img src="assets/images/2.jpg" alt="User Image"/>
-
-				<ul>
-					<li><a href="#">Settings</a></li>
-					<li><a href="#">Payments</a></li>
-					<li><a href="#" class="highlight">Logout</a></li>
-				</ul>
-			</div> %>
-
-			<%= form_for :session, url: login_path do |f| %>
-				<%# Log in button %>
-				<div class="login-container">
-					<form action="/action_page.php">
-					<%= link_to '<button type="submit">Đăng nhập</button>'.html_safe, sessions_new_path %>
-					</form>
-				</div>
-				
-				<%# Signup button %>
-				<div class="signup-container">
-					<form action="/action_page.php">
-					<%= link_to '<button type="submit">Đăng kí</button>'.html_safe, new_user_path %>
-					</form>
-				</div>
-			<% end %>
-
-		</div>
-
-	</header>
-
-</body>
-
+				<%= form_for :session, url: login_path do |f| %>
+					<%# Log in button %>
+					<div class="login-container">
+						<form action="/action_page.php">
+							<%= link_to '<button type="submit">Đăng nhập</button>'.html_safe, sessions_new_path %>
+						</form>
+					</div>
+					
+					<%# Signup button %>
+					<div class="signup-container">
+						<form action="/action_page.php">
+							<%= link_to '<button type="submit">Đăng kí</button>'.html_safe, new_user_path %>
+						</form>
+					</div>
+				<% end %>
+			</div>
+		</header>
+	</body>
 </html>

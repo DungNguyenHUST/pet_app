@@ -1,24 +1,29 @@
 // Place all the styles related to the Companys controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: https://sass-lang.com/
-.top_companies_area{
-    background: #F5F7FA;
+
+//////////////////index//////////////////
+.companies_area{
+    background: #ffffff;
     padding-bottom: 20px;
-    padding-left: -100px;
+    padding-left: 20%;
+    padding-right: 20%;
     .section_title
     {
+        margin-top: 120px;
         font-size: 20px;
+        text-align: center;
     }
 
     .single_company{
         float: left;
-        background: #fff;
+        background: #ffffff;
         padding: 25px;
-        width: 25%;
-        margin-bottom: 30px;
-        .thumb{
+        width: 220px;
+        margin-bottom: 10px;
+        .company_thumb{
             width: 80%;
-            height: 120px;
+            height: 320px;
             -webkit-border-radius: 5px;
             -moz-border-radius: 5px;
             border-radius: 5px;
@@ -28,35 +33,67 @@
             border: 1px solid #F0F0F0;
             margin-top: 12px;
         }
-        h3{
-            font-size: 15px;
-            font-weight: 400;
-            margin-bottom: 18px;
-            margin-top: 20px;
+
+        .company_thumb .company_name
+        {
+            font-size: 20px;
+            // font-style: initial;
+            font-weight: 200;
+            padding-left: 0;
+            margin-bottom: 10px;
         }
-        p{
-            font-size: 16px;
-            color:#AAB1B7;
-            margin-bottom: 0;
-            font-weight: 400;
-            span{
-                background:#E6F3FF;
-                color:#0A8CFF;
-                font-size: 16px;
-                font-weight: 400;
-                padding: 6px 17px;
-                -webkit-border-radius: 5px;
-                -moz-border-radius: 5px;
-                border-radius: 5px;
-                margin-right: 10px;
-            }
+
+        .company_thumb .company_rating
+        {
+            font-size: 14px;
+            // font-style: initial;
+            font-weight: 200;
+            padding-left: 0;
+            margin-bottom: 10px;
+        }
+
+        .company_thumb .company_website
+        {
+            font-size: 14px;
+            // font-style: initial;
+            font-weight: 200;
+            padding-left: 0;
+            margin-bottom: 10px;
+        }
+
+        .company_thumb .company_location
+        {
+            font-size: 14px;
+            // font-style: initial;
+            font-weight: 200;
+            padding-left: 0;
+            margin-bottom: 10px;
+        }
+
+        .company_thumb .company_score
+        {
+            font-size: 14px;
+            // font-style: initial;
+            font-weight: 200;
+            padding-left: 0;
+            margin-bottom: 10px;
+        }
+
+        .company_thumb .company_review
+        {
+            font-size: 14px;
+            // font-style: initial;
+            font-weight: 200;
+            padding-left: 0;
+            margin-bottom: 10px;
         }
     }
     .new-company button {
-        // float: right;
+        float: left;
         padding: 6px;
-        margin-top: 8px;
+        margin-top: 120px;
         margin-right: 16px;
+        margin-left: 16px;
         background: #4CAF50;
         font-size: 15px;
         border: 0px;
@@ -68,5 +105,80 @@
     
     .new-company button:hover {
         background: #4CAF50;
+    }
+
+    .new-review button {
+        float: left;
+        padding: 6px;
+        margin-top: 5px;
+        margin-right: 16px;
+        margin-left: 0px;
+        background: #4CAF50;
+        font-size: 15px;
+        border: 0px;
+        cursor: pointer;
+        text-align: center;
+        color: #ffffff;
+        border-radius: 5px;
+    }
+    
+    .new-review button:hover {
+        background: #4CAF50;
+    }
+}
+
+//////////////////show//////////////////
+
+.company_area{
+    background: #ffffff;
+    padding-bottom: 20px;
+    padding-left: 20%;
+    padding-right: 20%;
+
+    .section_company_name
+    {
+        margin-top: 80px;
+        font-size: 14px;
+        text-align: center;
+        margin-bottom: 50px;
+    }
+
+    /* Style the tab */
+    .tab {
+        overflow: hidden;
+        border: 0px solid #ccc;
+        // float: left;
+        background: #ffffff;
+        padding: 25px;
+        margin-bottom: 10px;
+    }
+
+    /* Style the buttons that are used to open the tab content */
+    .tab button {
+        background-color: inherit;
+        float: left;
+        border: none;
+        outline: none;
+        cursor: pointer;
+        padding: 14px 16px;
+        transition: 0.3s;
+    }
+
+    /* Change background color of buttons on hover */
+    .tab button:hover {
+        background-color: #ddd;
+    }
+
+    /* Create an active/current tablink class */
+    .tab button.active {
+        background-color: #ccc;
+    }
+
+    /* Style the tab content */
+    .tabcontent {
+        display: none;
+        padding: 6px 12px;
+        border: 1px solid #ccc;
+        border-top: none;
     }
 }
