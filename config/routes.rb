@@ -16,6 +16,10 @@ Rails.application.routes.draw do
     resources :company_interviews
   end
 
+  resources :problems do
+    resources :problem_solutions
+  end
+
   # New post
   get 'posts/new' => 'posts#new'
 

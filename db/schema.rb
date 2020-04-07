@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_04_07_095824) do
+ActiveRecord::Schema.define(version: 2020_04_07_110657) do
 
   create_table "comments", force: :cascade do |t|
     t.string "username"
@@ -60,6 +60,24 @@ ActiveRecord::Schema.define(version: 2020_04_07_095824) do
     t.string "username"
     t.text "content"
     t.string "title"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+  end
+
+  create_table "problem_solutions", force: :cascade do |t|
+    t.string "user_name"
+    t.string "title"
+    t.text "content"
+    t.integer "vote"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.integer "problem_id"
+  end
+
+  create_table "problems", force: :cascade do |t|
+    t.string "user_name"
+    t.string "title"
+    t.text "content"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
   end
