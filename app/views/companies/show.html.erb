@@ -7,25 +7,31 @@
 
   <!-- Tab links -->
   <div class="tab">
-    <button class="tablinks" onclick="openContent(event, 'Company')">Company</button>
-    <button class="tablinks" onclick="openContent(event, 'CompanyReviews')">CompanyReviews</button>
-    <button class="tablinks" onclick="openContent(event, 'CompanyInterviews')">CompanyInterviews</button>
+    <button class="tablinks" onclick="openContent(event, 'Company')"><h3>Công ty</h3></button>
+    <button class="tablinks" onclick="openContent(event, 'CompanyReviews')"><h3>Đánh giá công ty</h3></button>
+    <button class="tablinks" onclick="openContent(event, 'CompanyInterviews')"><h3>Kinh nghiệm phỏng vấn</h3></button>
+    <button class="tablinks" onclick="openContent(event, 'CompanyJobs')"><h3>Tuyển dụng</h3></button>
   </div>
 
   <!-- Tab content -->
   <div id="Company" class="tabcontent">
-    <h3>Profile</h3>
-    <%= render @company.company_reviews %>
+    <h3>Profile Công ty</h3>
+    <%= render :partial => 'companies/profile' %>
   </div>
 
   <div id="CompanyReviews" class="tabcontent">
     <h3>Company Review</h3>
+    <%= render :partial => 'companies/review' %>
     <%= render @company.company_reviews %>
   </div>
 
   <div id="CompanyInterviews" class="tabcontent">
     <h3>Company Interview</h3>
     <%= render @company.company_interviews %>
+  </div>
+
+  <div id="CompanyJobs" class="tabcontent">
+    <h3>Company Job</h3>
   </div>
 
   <script>
