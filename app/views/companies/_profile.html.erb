@@ -1,0 +1,48 @@
+<!doctype html>
+<html>
+    <head>
+    <!-- Place your kit's code here -->
+    <script src="https://kit.fontawesome.com/afb6e3c4cc.js" crossorigin="anonymous"></script>
+    </head>
+
+    <body>
+        <div class="company_profile">
+            
+            <div class="company_profile_category">
+                <div class="company_profile_icon">
+                    <span class="company_profile__icon"><i class="fas fa-house-user fa-2x"></i></span>
+                </div>
+
+                <div class="company_profile_content">
+                    <p> <%= @company.website %> </p>
+                </div>
+            </div>
+
+            <div class="company_profile_category">
+                <div class="company_profile_icon">
+                    <span class="company_profile__icon"><i class="fas fa-location-arrow fa-2x"></i></span>
+                </div>
+
+                <div class="company_profile_content">
+                    <%= @company.location %>
+                </div>
+            </div>
+            
+            <div class="company_profile_category">
+                <div class="company_profile_icon">
+                    <span class="company_profile__icon"><i class="fas fa-user-friends fa-2x"></i></span>
+                </div>
+
+                <div class="company_profile_content">
+                    <%= @company.size %>
+                </div>
+            </div>
+
+            <h3>Mô tả chung:</h3>
+            <div class="company_profile_overview">
+                <p><%= @company.overview %></p>
+            </div>
+        </div>
+    </body>
+
+</html>
