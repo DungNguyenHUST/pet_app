@@ -1,15 +1,56 @@
-<div class="box">
-<article class="media">
-    <div class="media-content">
-    <div class="content">
-        <p>
-        <strong><%= company_review.user_name %>:</strong>
-        <%= company_review.score %>
-        <%= company_review.review %>
-        </p>
+<!-- comments container -->
+<div class="comment_block">
+
+    <!-- used by #{user} to create a new comment -->
+    <div class="create_new_comment">
+
+    <!-- current #{user} avatar -->
+    <div class="user_avatar">
+        <%# <%= link_to (image_tag("1.svg")), image_path("1.svg"), rel: "gallery" %>
+    </div><!-- the input field --><div class="input_comment">
+        <%# <input type="text" placeholder="Join the conversation.."> %>
     </div>
+
     </div>
-    <%= link_to 'Delete', [company_review.company, company_review],
-                method: :delete, class: "button is-danger", data: { confirm: 'Are you sure?' } %>
-</article>
+
+
+    <!-- new comment -->
+    <div class="new_comment">
+
+    <!-- build comment -->
+    <ul class="user_comment">
+
+        <div class="user_comment_title">
+            <h3> <%= company_review.review %> </h3>
+        </div>
+        <!-- current #{user} avatar -->
+        <div class="user_avatar">
+            <%= link_to (image_tag("1.svg")), image_path("1.svg"), rel: "gallery" %>
+        </div><!-- the comment body --><div class="comment_body">
+            <p><%= company_review.review %></p>
+        </div>
+
+        <!-- comments toolbar -->
+        <div class="comment_toolbar">
+
+            <!-- inc. date and time -->
+            <div class="comment_details">
+                <ul>
+                    <li><i class="fa fa-clock-o"></i> <%= company_review.created_at %></li>
+                    <li><i class="fa fa-pencil"></i> <span class="user"><%= company_review.user_name %></span></li>
+                </ul>
+            </div><!-- inc. share/reply and love --><div class="comment_tools">
+                <ul>
+                    <li><i class="fa fa-share-alt"></i></li>
+                    <li><i class="fa fa-reply"></i></li>
+                    <li><i class="fa fa-heart love"></i></li>
+                </ul>
+            </div>
+
+        </div>
+
+    </ul>
+
+    </div>
+
 </div>
