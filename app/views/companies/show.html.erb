@@ -20,8 +20,8 @@
   </div>
 
   <div id="CompanyReviews" class="tabcontent">
-    <h3>Company Review</h3>
-    <%= render :partial => 'companies/review' %>
+    <%= render :partial => 'companies/review_score' %>
+    <h3><%= @company.company_reviews.count %> người đã đánh giá về công ty này</h3>
     <%= render @company.company_reviews %>
   </div>
 

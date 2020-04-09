@@ -10,6 +10,7 @@ class CompaniesController < ApplicationController
 
     def create
         @company = Company.new(company_param)
+        @company_review = CompanyReview.new
 
         if @company.save
             redirect_to companies_path
@@ -21,7 +22,7 @@ class CompaniesController < ApplicationController
 
     def show
         @company = Company.find params[:id]
-        @company_review = CompanyReview.new
+        @company_review = CompanyReview.new(company_id: params[:company_id])
     end
 
     def edit
