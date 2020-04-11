@@ -5,6 +5,7 @@ class CompanyReviewsController < ApplicationController
     end
 
     def new
+        @company = Company.find(params[:company_id])
         @company_review = CompanyReview.new
     end
 

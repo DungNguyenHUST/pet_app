@@ -11,9 +11,12 @@
     <% @companies.each do |company| %>
         <div class="row">
             <div class="single_company">
-                <div class="company_thumb">
-                    <%= link_to (image_tag("1.svg")), image_path("1.svg"), rel: "gallery" %>
-                
+                <div class="company_contents">
+
+                    <div class="company_thumbnail">
+                        <%= link_to (image_tag("1.svg")), image_path("1.svg"), rel: "gallery" %>
+                    </div>
+
                     <div class="company_name">
                         <%= link_to company.name, company_path(company) %>
                     </div>
@@ -51,7 +54,7 @@
 
     <%# add new template%>
     <div class="single_company">
-        <div class="company_thumb">
+        <div class="company_contents">
             <div class="new-company">
                 <form action="/action_page.php">
                     <%= link_to '<button type="submit">Tạo thông tin công ty mới</button>'.html_safe, new_company_path %>

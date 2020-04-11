@@ -42,6 +42,11 @@
             <div class="company_profile_overview">
                 <p><%= @company.overview %></p>
             </div>
+
+            <h3>Đánh giá tiêu biểu:</h3>
+            <%= render :partial => 'company_reviews/review_score' %>
+            <span class="user_comment_heading"> Tất cả <%= @company.company_reviews.count%> Đánh giá về công ty </span>
+            <%= render @company.company_reviews %>
         </div>
     </body>
 
