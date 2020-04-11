@@ -4,88 +4,113 @@
 
 //////////////////index//////////////////
 .companies_area{
-    background: #ffffff;
-    padding-bottom: 20px;
-    padding-left: 20%;
-    padding-right: 20%;
+    padding-top: 15px;
+    padding-bottom: 15px;
     .section_title
     {
         margin-top: 120px;
         font-size: 20px;
-        text-align: center;
+        text-align: left;
     }
 
     .single_company{
         float: left;
-        background: #ffffff;
-        padding: 25px;
-        width: 220px;
-        margin-bottom: 10px;
-        .company_thumb{
-            width: 80%;
-            height: 320px;
-            -webkit-border-radius: 5px;
-            -moz-border-radius: 5px;
-            border-radius: 5px;
+        width: 24%;
+        height: 440px;
+        margin-top: 5px;
+        margin-bottom: 5px;
+        margin-right: 11px;
+        margin-left: 0px;
+
+        .company_contents{
+            width: 100%;
+            height: 93%;
+            padding-left: 20px;
+            -webkit-border-radius: 0px;
+            -moz-border-radius: 0px;
+            border-radius: 0px;
             padding: 15px;
-            background:#F5F7FA;
-            margin-right: 25px;
-            border: 1px solid #F0F0F0;
-            margin-top: 12px;
+            background:#ffffff;
+            border: 1.5px solid #f0f0f1;
+            margin-left: 0px;
+            margin-top: 10px;
         }
 
-        .company_thumb .company_name
+        .company_contents .company_thumbnail
         {
-            font-size: 20px;
-            // font-style: initial;
-            font-weight: 200;
+            padding: 15px;
+        }
+
+        .company_contents .company_name
+        {
+            font-size: 25px;
+            font-weight: 500;
             padding-left: 0;
             margin-bottom: 10px;
+            display: block;
+            overflow: hidden;
+            white-space: nowrap;
+            text-overflow: ellipsis;
         }
 
-        .company_thumb .company_rating
-        {
-            font-size: 14px;
-            // font-style: initial;
-            font-weight: 200;
-            padding-left: 0;
-            margin-bottom: 10px;
-        }
-
-        .company_thumb .company_website
-        {
-            font-size: 14px;
-            // font-style: initial;
-            font-weight: 200;
-            padding-left: 0;
-            margin-bottom: 10px;
-        }
-
-        .company_thumb .company_location
+        .company_contents .company_rating
         {
             font-size: 14px;
-            // font-style: initial;
             font-weight: 200;
             padding-left: 0;
             margin-bottom: 10px;
+            display: block;
+            overflow: hidden;
+            white-space: nowrap;
+            text-overflow: ellipsis;
         }
 
-        .company_thumb .company_score
+        .company_contents .company_website
         {
             font-size: 14px;
-            // font-style: initial;
             font-weight: 200;
             padding-left: 0;
             margin-bottom: 10px;
+            display: block;
+            overflow: hidden;
+            white-space: nowrap;
+            text-overflow: ellipsis;
         }
 
-        .company_thumb .company_review
+        .company_contents .company_location
         {
             font-size: 14px;
-            // font-style: initial;
             font-weight: 200;
             padding-left: 0;
             margin-bottom: 10px;
+            display: block;
+            overflow: hidden;
+            white-space: nowrap;
+            text-overflow: ellipsis;
+        }
+
+        .company_contents .company_score
+        {
+            font-size: 14px;
+            font-weight: 200;
+            padding-left: 0;
+            margin-bottom: 10px;
+            display: block;
+            overflow: hidden;
+            white-space: nowrap;
+            text-overflow: ellipsis;
+        }
+
+        .company_contents .company_review
+        {
+            font-size: 14px;
+            font-weight: 200;
+            padding-left: 0;
+            margin-bottom: 10px;
+            display: block;
+            overflow: hidden;
+            white-space: nowrap;
+            text-overflow: ellipsis;
         }
     }
     .new-company button {
@@ -130,31 +155,26 @@
 //////////////////show//////////////////
 
 .company_area{
-    background: #ffffff;
     padding-bottom: 20px;
-    padding-left: 20%;
-    padding-right: 20%;
 
     .section_company_name
     {
         margin-top: 80px;
-        font-size: 14px;
+        font-size: 15px;
         text-align: center;
         margin-bottom: 50px;
     }
 
     /* Style the tab */
-    .tab {
+    .company_tab {
         overflow: hidden;
-        border: 0px solid #ccc;
-        // float: left;
-        background: #ffffff;
-        padding: 25px;
-        margin-bottom: 10px;
+        border: 1px solid #f0f0f1;
+        padding: 10px;
+        margin-bottom: 20px;
     }
 
     /* Style the buttons that are used to open the tab content */
-    .tab button {
+    .company_tab button {
         background-color: inherit;
         float: left;
         border: none;
@@ -165,332 +185,20 @@
     }
 
     /* Change background color of buttons on hover */
-    .tab button:hover {
+    .company_tab button:hover {
         background-color: #ddd;
     }
 
     /* Create an active/current tablink class */
-    .tab button.active {
-        background-color: #ccc;
+    .company_tab button.active {
+        background-color: #f0f0f1;
     }
 
     /* Style the tab content */
-    .tabcontent {
+    .company_tabcontent {
         display: none;
         padding: 6px 12px;
-        border: 1px solid #ccc;
+        border: 1px solid #f0f0f1;
         border-top: none;
     }
-}
-
-//////////////////profile//////////////////
-.company_profile
-{
-    width: 100%;
-}
-
-.company_profile_content {
-    font-size: 1px;
-    margin-bottom: 0;
-    font-size: 16px;
-    color: #2a2a2a;
-    white-space: nowrap;
-}
-
-.h3 {
-    margin-top: 20px;
-}
-
-.p{
-    text-align: left;
-    color: #080808;
-}
-
-.company_profile_category
-{
-    display: flex;
-    margin-bottom: 10px;
-}
-
-.company_profile__icon{
-    margin-left: 0px;
-    margin-right: 50px;
-}
-
-.company_profile_content h3 a:hover {
-    color: #ff5e13;
-}
-
-//////////////////review//////////////////
-*{
-    box-sizing: border-box;
-}
-
-// body {
-//     font-family: Arial;
-//     margin: 0 auto; /* Center website */
-//     max-width: 100%; /* Max width */
-//     padding: 20px;
-// }
-
-.review_heading {
-    font-size: 20px;
-    margin-right: 25px;
-    padding-bottom: 20px;
-}
-
-.p{
-    font-size: 25px;
-}
-
-.review_row{
-    padding-bottom: 20px;
-}
-
-.fa {
-    font-size: 25px;
-}
-
-.checked {
-    color: orange;
-}
-
-/* Three column layout */
-.side {
-    float: left;
-    width: 15%;
-    margin-top: 10px;
-}
-
-.middle {
-    float: left;
-    width: 70%;
-    margin-top: 10px;
-}
-
-/* Place text to the right */
-.right {
-    text-align: right;
-}
-
-/* Clear floats after the columns */
-.row:after {
-    content: "";
-    display: table;
-    clear: both;
-}
-
-/* The bar container */
-.bar-container {
-    width: 100%;
-    background-color: #f1f1f1;
-    text-align: center;
-    color: white;
-}
-
-/* Individual bars */
-.bar-5 {width: 60%; height: 18px; background-color: #4CAF50;}
-.bar-4 {width: 30%; height: 18px; background-color: #2196F3;}
-.bar-3 {width: 10%; height: 18px; background-color: #00bcd4;}
-.bar-2 {width: 4%; height: 18px; background-color: #ff9800;}
-.bar-1 {width: 15%; height: 18px; background-color: #f44336;}
-
-/* Responsive layout - make the columns stack on top of each other instead of next to each other */
-@media (max-width: 400px) {
-    .side, .middle {
-    width: 100%;
-    }
-    /* Hide the right column on small screens */
-    .right {
-    display: none;
-    }
-}
-
-//////////////////comment//////////////////
-@import url(https://fonts.googleapis.com/css?family=Roboto:300,400);
-@import url(https://maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css);
-
-$LATO: 'Lato', sans-serif;
-
-$GREY: #CCC;
-$BACKGROUND_GREY: lighten(#EEEDED, 2.5%);
-$SUBTLE_GREY: #F2F2F2;
-$MURKY_GREY: #384148;
-$DARK_GREY: #333;
-
-$WHITE: #FFF;
-$SUBTLE_WHITE: #F9F9F9;
-
-$BLUE: #6495ED;
-$RED: #FF6347;
-
-*,
-*:before,
-*:after {
-	margin: 0;
-	padding: 0;
-	-webkit-box-sizing: border-box;
-  transition: all 0.2s ease;
-}
-
-body, html {
-	height: 100%;
-	width: 100%;
-}
-
-body {
-	font-family: $LATO;
-	font-size: 1rem;
-
-	color: $DARK-GREY;
-	background-color: $BACKGROUND_GREY;
-
-}
-
-.user_avatar {
-    width: 65px;
-    height: 65px;
-
-    display: inline-block;
-    vertical-align: middle;
-
-    img {
-        width: 100%;
-        height: 100%;
-        border-radius: 50%;
-    }
-}
-
-.comment_block {
-    width: 65%;
-    height: 100%;
-
-    margin: 0 auto;
-    padding: 10px;
-
-    .create_new_comment {
-        width: 100%;
-        padding: 20px 0;
-
-        .input_comment {
-            display: inline-block;
-            vertical-align: middle;
-
-            margin-left: 10px;
-            width: calc(100% - 75px);
-
-            input[type="text"] {
-                width: 100%;
-
-                font-family: $LATO;
-                font-weight: 300;
-                font-size: 1.3rem;
-
-                padding: 10px;
-
-                border: none;
-                border-bottom: 2px solid lighten($GREY, 15%);
-
-                &:focus {
-                    outline: none;
-                    border-bottom: 2px solid lighten($GREY, 10%);
-                }
-            }
-        }
-    }
-
-    .new_comment {
-        width: 100%;
-        height: auto;
-        padding: 20px 0;
-        border-top: 1px solid lighten($GREY, 10%);
-
-        .user_comment {
-            list-style-type: none;
-        }
-
-        .comment_body {
-            display: inline-block;
-            vertical-align: middle;
-
-            width: calc(100% - 75px);
-        min-height: 65px;
-            margin-left: 10px;
-            padding: 5px 10px;
-            font-size: .9rem;
-            color: #555;
-            background-color: $WHITE;
-            border-bottom: 2px solid lighten($GREY, 15%);
-            
-            .replied_to {
-                margin: 5px 0px;
-                background-color: lighten($GREY, 18%);
-                border-bottom: 2px solid lighten($GREY, 15%);
-                border-radius: 5px;
-                p {
-                    padding: 5px;
-                }
-                span {
-                    color: $BLUE;
-                    margin-right: 2px;
-                }
-            }
-        }
-
-        .comment_toolbar {
-            width: 100%;
-
-            ul {
-                list-style-type: none;
-                padding-left: 75px;
-                font-size: 0;
-
-                li {
-                    display: inline-block;
-                    padding: 5px;
-                    font-size: .7rem;
-                    color: lighten($GREY, 5%);
-                    &:hover {
-                        cursor: pointer; 
-                    }
-                }
-            }
-
-            .comment_details {
-                display: inline-block;
-                vertical-align: middle;
-                width: 70%;
-                text-align: left;
-            }
-
-            .comment_tools {
-                display: inline-block;
-                vertical-align: middle;
-                width: 30%;
-                text-align: right;
-                li {
-                    &:hover {
-                        color: $GREY;
-                    }
-                }
-            }
-
-            // replies
-
-        }
-
-        .user {
-            &:hover {
-                color: $BLUE;
-                text-decoration: underline;
-                }
-            }
-
-        .love {
-            &:hover {
-                color: $RED;
-            }
-        }
-    }
-
 }
