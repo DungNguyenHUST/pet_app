@@ -1,67 +1,69 @@
 <%- model_class = Company -%>
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <!-- Add icon library -->
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    </head>
 
-<div class="companies_area">
-        
-    <div class="category">
-        <div class="section_title">
-            <h3>Danh sách các công ty</h3>
-        </div>
-    </div>
+    <body>
+        <div class="companies_area">
+                
+            <div class="section_title">
+                <h3>Danh sách các công ty</h3>
+            </div>
 
-    <% @companies.each do |company| %>
-        <div class="row">
-            <div class="single_company">
-                <div class="company_contents">
-
+            <% @companies.each do |company| %>
+                <div class="single_company">
+                
                     <div class="company_thumbnail">
-                        <%= link_to (image_tag("1.svg")), image_path("1.svg"), rel: "gallery" %>
+                        <%= link_to (image_tag("fpt-software-logo.png")), image_path("fpt-software-logo.png"), rel: "gallery" , :href => company_path(company)%>
                     </div>
 
                     <div class="company_name">
-                        <%= link_to company.name, company_path(company) %>
+                        <p><font size="4"><%= company.name%></font></p>
+                    </div>
+                    
+                    <div class="company_summary">
+                        <div class="company_rating">
+                            <div class="review_score_star">
+                                <span class="fa fa-star checked"></span>
+                                <span class="fa fa-star checked"></span>
+                                <span class="fa fa-star checked"></span>
+                                <span class="fa fa-star checked"></span>
+                                <span class="fa fa-star"></span>
+                            </div>
+                        </div>
+
+                        <div class="review_point">
+                            <p><i class="fa fa-edit"></i> <%= company.company_reviews.count %> đánh giá (4.1/5 điểm)</p>
+                        </div>
+
+                        <div class="company_location">
+                            <p><i class="fa fa-location-arrow"></i> <%= company.location %></p>
+                        </div>
                     </div>
 
-                    <div class="company_rating">
-                        Rating: <%= link_to company.website, company_path(company) %>
-                    </div>
-
-                    <div class="company_website">
-                        Website: <%= link_to company.website, company_path(company) %>
-                    </div>
-
-                    <div class="company_location">
-                        Địa chỉ: <%= link_to company.location, company_path(company) %>
-                    </div>
-
-                    <div class="company_score">
-                        Đánh giá: <%= company.company_reviews.count %>
-                    </div>
-
-                    <div class="company_review">
-                        Nhận xét: <%= company.company_interviews.count %>
-                    </div>
-
-                    <div class="new-review">
-                        <form action="/action_page.php">
-                            <%= link_to '<button type="submit">Viết đánh giá</button>'.html_safe, company_path(company) %>
-                        </form>
+                    <div class="company_new_review">
+                        <%= link_to '<button type="button">Viết đánh giá </button>'.html_safe, company_path(company) %>
                     </div>
 
                 </div>
-            </div>
-        </div>
-    <%end%>
+            <%end%>
 
-    <%# add new template%>
-    <div class="single_company">
-        <div class="company_contents">
-            <div class="new-company">
-                <form action="/action_page.php">
-                    <%= link_to '<button type="submit">Tạo thông tin công ty mới</button>'.html_safe, new_company_path %>
-                </form>
+            <%# add new template%>
+            <div class="single_company">
+                <div class="company_contents">
+                    <div class="new-company">
+                        <form action="/action_page.php">
+                            <%= link_to '<button type="submit">Tạo thông tin công ty mới</button>'.html_safe, new_company_path %>
+                        </form>
+                    </div>
+                </div>
             </div>
-        </div>
-    </div>
 
-</div>
+        </div>
+    </body>
+</html>
 

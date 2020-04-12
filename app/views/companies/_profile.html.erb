@@ -2,51 +2,60 @@
 <html>
     <head>
     <!-- Place your kit's code here -->
-    <%# <script src="https://kit.fontawesome.com/afb6e3c4cc.js" crossorigin="anonymous"></script> %>
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     </head>
 
     <body>
         <div class="company_profile">
-            
-            <div class="company_profile_category">
-                <div class="company_profile_icon">
-                    <span class="company_profile__icon"><i class="fas fa-house-user fa-2x"></i></span>
-                </div>
 
-                <div class="company_profile_content">
-                    <p> <%= @company.website %> </p>
-                </div>
-            </div>
-
-            <div class="company_profile_category">
-                <div class="company_profile_icon">
-                    <span class="company_profile__icon"><i class="fas fa-location-arrow fa-2x"></i></span>
-                </div>
-
-                <div class="company_profile_content">
-                    <%= @company.location %>
-                </div>
-            </div>
-            
-            <div class="company_profile_category">
-                <div class="company_profile_icon">
-                    <span class="company_profile__icon"><i class="fas fa-user-friends fa-2x"></i></span>
-                </div>
-
-                <div class="company_profile_content">
-                    <%= @company.size %>
-                </div>
-            </div>
-
-            <h3>Mô tả chung:</h3>
             <div class="company_profile_overview">
-                <p><%= @company.overview %></p>
+                <div class="company_profile_title">
+                    <h3> Mô tả chung về <%= @company.name %> </h3>
+                </div>
+
+                <div class="company_profile_detail">
+                    <div class="company_profile_section">
+                        <ul>
+                            <li> Địa chỉ công ty </li>
+                            <li> Địa chỉ website </li>
+                            <li> Quy mô công ty </li>
+                            <li> Năm thành lập </li>
+                            <li> Quốc gia </li>
+                            <li> Lĩnh vực chính </li>
+                            <li> Thời gian làm việc </li>
+                        </ul>
+                    </div>
+
+                    <div class="company_profile_content">
+                        <ul>
+                            <li> <%= @company.location %> </li>
+                            <li> <%= @company.website %> </li>
+                            <li> <%= @company.website %> </li>
+                            <li> <%= @company.website %> </li>
+                            <li> <%= @company.website %> </li>
+                            <li> <%= @company.website %> </li>
+                            <li> <%= @company.website %> </li>
+                        </ul>
+                    </div>
+
+                    <div class="company_profile_summary">
+                        <t><%= @company.overview %></t>
+                    </div>
+                </div>
             </div>
 
-            <h3>Đánh giá tiêu biểu:</h3>
-            <%= render :partial => 'company_reviews/review_score' %>
-            <span class="user_comment_heading"> Tất cả <%= @company.company_reviews.count%> Đánh giá về công ty </span>
-            <%= render @company.company_reviews %>
+            <div class="company_profile_review">
+                <div class="company_profile_review_title">
+                    <h3> Đánh giá nổi bật về <%= @company.name %> </h3>
+                </div>
+            </div>
+
+            <div class="company_profile_interview">
+                <div class="company_profile_interview_title">
+                    <h3> Top kinh nghiệm phỏng vấn tại <%= @company.name %> </h3>
+                </div>
+            </div>
         </div>
     </body>
 
