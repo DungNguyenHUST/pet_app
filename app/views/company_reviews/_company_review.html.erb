@@ -1,41 +1,43 @@
 <!-- comments container -->
-<div class="comment_block">
-    <ul class="user_comment">
-        
-        <div class="user_avatar">
-            <%= link_to (image_tag("1.svg")), image_path("1.svg"), rel: "gallery" %>
-        </div>
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <!-- Add icon library -->
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    </head>
 
-        <div class="user_comment_cotent">
-            <div class="user_comment_title">
-                 <h3> <%= company_review.user_name %> </h3>
-            </div>
-
-            <div class="user_comment_body">
-                <p><%= company_review.review %></p>
-            </div>
-
-            <!-- comments toolbar -->
-            <div class="comment_toolbar">
-
-                <div class="comment_details">
-                    <ul>
-                        <li><i class="fa fa-clock-o"></i> <%= company_review.created_at %></li>
-                    </ul>
+    <body>
+        <div class="user_comment_block">
+            <div class="user_comment_left">
+                <div class="user_avatar">
+                    <%= link_to (image_tag("fpt-software-logo.png")), image_path("fpt-software-logo.png"), rel: "gallery" %>
                 </div>
-                
-                <div class="comment_tools">
-                    <ul>
-                        <li><i class="fa fa-share-alt"></i></li>
-                        <li><i class="fa fa-reply"></i></li>
-                        <li><i class="fa fa-heart love"></i></li>
-                    </ul>
+
+                <div class="user_name">
+                    <t> <%= company_review.user_name %> </t>
+                </div>
+
+                <div class="user_date_time">
+                    <t> <%= company_review.created_at %> </t>
+                </div>
+
+            </div>
+
+            <div class="user_comment_cotent">
+
+                <div class="user_comment_body">
+                    <t><%= company_review.review %></t>
+                </div>
+
+                <div class="comment_toolbar">
+                    <div class="comment_action">
+                        <span class="fa fa-reply fa-lg checked"></span>
+                        <span class="fa fa-thumbs-up fa-lg checked1"></span>
+                        <span class="fa fa-thumbs-down fa-lg checked2"></span>
+                    </div>
                 </div>
             </div>
-        
         </div>
-
-    </ul>
-
-
-</div>
+    </body>
+</html>
