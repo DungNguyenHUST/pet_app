@@ -12,34 +12,43 @@
 	</head>
 
 	<body>
-		<header class="header_area">
-			<div class="header_content">
-				<div class="header_logo">
-					<h1><a href="<%=pages_path %>"><span>Code <\></span></a></h1>
-				</div>
-				
-				<nav>
-					<a href="<%=companies_path %>">Đánh giá công ty <span class="header-new-feature">new</span></a>
-					<a href="<%=problems_path %>">Solve Problem <span class="header-new-feature">new</span></a>
-					<a href="<%=posts_path %>">Blog</a>
-				</nav>
-
-				<%= form_for :session, url: login_path do |f| %>
-					<%# Log in button %>
-					<div class="login-container">
-						<form action="/action_page.php">
-							<%= link_to '<button type="submit">Đăng nhập</button>'.html_safe, sessions_new_path %>
-						</form>
+		<div class="body_content_header">
+			<header class="header_area">
+				<div class="header_content">
+					<div class="header_logo">
+						<a href="<%=pages_path %>"><span>Code <\></span></a>
 					</div>
 					
-					<%# Signup button %>
-					<div class="signup-container">
-						<form action="/action_page.php">
-							<%= link_to '<button type="submit">Đăng kí</button>'.html_safe, new_user_path %>
-						</form>
+					<div class="header_navigation">
+						<nav>
+							<a href="<%=companies_path %>">Đánh giá công ty <span class="header-new-feature">new</span></a>
+							<a href="<%=problems_path %>">Solve Problem <span class="header-new-feature">new</span></a>
+							<a href="<%=posts_path %>">Blog</a>
+						</nav>
 					</div>
-				<% end %>
-			</div>
-		</header>
-	</body>
+
+					<div class="header_search_button">
+						<div class= "form-input-search">
+							<input type="text" name="fname" placeholder="  Tìm kiếm">
+						</div>
+						<a href="#">
+							<i class="fa fa-search"></i>
+						</a>
+					</div>
+
+					<div class="header_button">
+						<%= form_for :session, url: login_path do |f| %>
+							<div class="login_button">
+								<%= link_to '<button type="submit">Đăng nhập</button>'.html_safe, sessions_new_path %>
+							</div>
+
+							<div class="signup_button">
+								<%= link_to '<button type="submit">Đăng kí</button>'.html_safe, new_user_path %>
+							</div>
+						<% end %>
+					</div>
+				</div>
+			</header>
+		</body>
+	</div>
 </html>

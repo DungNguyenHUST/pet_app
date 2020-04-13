@@ -1,226 +1,171 @@
 // Place all the styles related to the Header controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: https://sass-lang.com/
-.header_area {
-	background-color:#292c2f;
-	box-shadow:0 1px 1px #ccc;
-	padding-top: 0px;
-	padding: 20px 40px;
-	height: 80px;
-	color: #ffffff;
-	box-sizing: border-box;
-}
+.body_content_header{
+    padding-left: 0%;
+    padding-right: 0%;
+    background-color:#292c2f;
+	.header_area {
+		background-color:#292c2f;
+		padding: 15px 20px;
+		height: 40px;
+		margin-left: 18%;
+		margin-right: 18%;
+		.header_content
+		{
+			width: 100%;
+			height: 100%;
+			display: block;
+			margin-top: 0px;
+			padding-top: 0px;
+			.header_logo{
+				float: left;
+				a{
+					font-size: 30px;
+					display: block;
+					text-decoration:none;
+					line-height: 1;
+					text-align: center;
+					color: white ;
+				}
+				span{
+					&:hover{
+						// text-decoration: underline;
+					}
+				}
+				
+			}
 
-.header_area .header_content {
-	max-width: 1200px;
-	text-align: center;
-	margin: 0 auto;
-}
+			.header_navigation{
+				margin-top: 6px;
+				margin-left: 15%;
+				nav{
+					float: left;
+					a{
+						color: white ;
+						font-size: 17px;
+						display: inline-block;
+						padding: 0 13px;
+						opacity: 0.9;
+						position: relative;
+						text-decoration:none;
+						line-height: 1;
+						span{
+							position: absolute;
+							top: -12px;
+							border-radius: 2px;
+							background-color: #2A6A92;
+							box-shadow: 0 1px 1px 0 rgba(0, 0, 0, 0.12);
+							height: 12px;
+							font-size: 6px;
+							right: -15px;
+							padding: 1px 4px 0;
+						}
+						&:hover{
+							text-decoration: underline;
+						}
+					}
+				}
+			}
 
-/* Logo */
+			.header_search_button
+			{
+				background-color: #00D363;
+				display: block;
+				padding-top: 0px;
+				margin-top: 0px;
+				.form-input-search
+				{
+					float: left;
+					margin-left: 18%;
+					background: transparent;
+					::placeholder {
+						color: #fafbfc;
+						margin-left: 10px;
+					}
+					input{
+						height: 30px;
+						width: 200px;
+						border: none;
+						border-radius: 4px;
+						background-color: #404448;
+						color: #ffffff;
+					}
+				}
 
-.header_area .header_content h1{
-	float: left;
-	// font: normal 28px Cookie, Arial, Helvetica, sans-serif;
-	line-height: 40px;
-	margin: 0;
-	margin-top: 0;
-}
+				a{
+					float: left;
+					font-size: 15px;
+					width: 30px;
+					height: 35px;
+					display: inline-block;
+					text-align: center;
+					background: transparent;
+					line-height: 40px !important;
+					margin-right: 7px;
+					color: #fafbfc !important;
+					line-height: 40px !important;
+					i{
+						font-size: 15px;
+						line-height: 40px;
+						position: relative;
+						top: -1px;
+					}
+					
+				}
+				&:hover a{
+					color: #00D363 !important;
+				}
+			}
 
-.header_area .header_content h1 span {
-	color: #ffffff;
-}
+			.header_button{
+				margin-left: 10px;
+				.login_button{
+					float: left;
+					button{
+						padding: 6px;
+						height: 32px;
+						width: 93px;
+						margin-top: 0px;
+						margin-right: 5px;
+						background: #292c2f;
+						font-size: 16px;
+						border: none;
+						border-radius: 4px;
+						cursor: pointer;
+						text-align: center;
+						color: #ffffff;
+						
+						&:hover{
+							background-color: #4CAF50;
+						}
+					}
 
-/* The header links */
+				}
 
-.header_area .header_content a {
-	color: #ffffff;
-	text-decoration: none;
-}
+				.signup_button{
+					float: right;
+					button{
+						padding: 6px;
+						height: 32px;
+						width: 93px;
+						margin-top: 0px;
+						margin-right: 0px;
+						background: #292c2f;
+						font-size: 16px;
+						border: 1px solid #ffffff;
+						border-radius: 4px;
+						cursor: pointer;
+						text-align: center;
+						color: #ffffff;
 
-.header_area .header_content nav{
-	// font:16px Arial, Helvetica, sans-serif;
-	line-height: 40px;
-	float: left;
-	margin: 0 0 0 60px;
-	padding: 0;
-}
-
-.header_area .header_content nav a{
-	font-size: 17px;
-	display: inline-block;
-	padding: 0 13px;
-	opacity: 0.9;
-	position: relative;
-	text-decoration:none;
-	line-height: 1;
-}
-
-.header_area .header_content nav a:hover {
-	opacity: 1;
-}
-
-/* The "new" badge */
-
-.header_area .header_content nav a span {
-	position: absolute;
-	top: -12px;
-	border-radius: 2px;
-	background-color: #2A6A92;
-	box-shadow: 0 1px 1px 0 rgba(0, 0, 0, 0.12);
-	height: 13px;
-	font-size: 11px;
-	right: -15px;
-	padding: 1px 4px 0;
-}
-
-/* The user menu */
-
-.header_area .header_content .header-user-menu{
-	position: relative;
-	float:right;
-	background-color:#3a3c3e;
-	width:75px;
-	height:40px;
-	border-radius:2px;
-}
-
-.header_area .header_content .header-user-menu:before{
-	content:'';
-	width:0;
-	height:0;
-	top: 18px;
-	left: 15px;
-	position:absolute;
-	border:5px solid transparent;
-	border-top-color:#fff;
-}
-
-.header_area .header_content .header-user-menu ul{
-	display: none;
-	// font:bold 13px Arial, Helvetica, sans-serif;
-	background-color: inherit;
-	list-style: none;
-	position: absolute;
-	text-align: center;
-	width: 125px;
-	top: 25px;
-	right: 0;
-	padding: 10px;
-	border-radius: 2px;
-	box-shadow: 0 2px 2px rgba(0, 0, 0, 0.1);
-	box-sizing: border-box;
-}
-
-.header_area .header-user-menu:active ul,
-.header_area .header-user-menu:hover ul,
-.header_area .header-user-menu.show ul{
-	display:block;
-}
-
-.header_area .header-user-menu ul li{
-	padding:5px;
-}
-
-.header_area .header-user-menu ul li a:hover{
-	opacity:0.9;
-}
-
-.header_area .header-user-menu ul li a.highlight{
-	color:#e9ac09;
-}
-
-.header_area .header-user-menu img{
-	border-radius:50%;
-	position:absolute;
-	top:6px;
-	max-width: 28px;
-	right:10px;
-}
-
-
-@media all and (max-width: 800px) {
-
-	.header_area .header_content h1 {
-		font-size: 24px;
+						&:hover{
+							background-color: #4CAF50;
+						}
+					}
+				}
+			}
+		}
+		clear: both;
 	}
-
-	.header_area .header_content nav a {
-		padding: 0 5px;
-	}
-
-	.header_area .header_content nav {
-		margin-left: 20px;
-	}
-
-}
-
-@media all and (max-width: 600px) {
-
-	.header_area .header_content nav {
-		display: none;
-	}
-
-}
-
-// Login
-/* Style the input container */
-.header_area .login-container {
-    float: right;
-    // text-align: center;
-}
-
-/* Style the input field inside the navbar */
-.header_area input[type=text] {
-    padding: 6px;
-    margin-top: 8px;
-    font-size: 17px;
-    border: none;
-    width: 150px; /* adjust as needed (as long as it doesn't break the topnav) */
-    text-align: center;
-}
-
-/* Style the button inside the input container */
-.header_area .login-container button {
-    float: right;
-    padding: 6px;
-    margin-top: 8px;
-    margin-right: 16px;
-    background: #292c2f;
-    font-size: 17px;
-    border: 1;
-    cursor: pointer;
-    text-align: center;
-    color: #ffffff;
-    border-radius: 5px;
-}
-
-.header_area .login-container button:hover {
-    background: #4CAF50;
-}
-
-// Sign up
-/* Style the input container */
-.header_area .signup-container {
-    float: right;
-    text-align: center;
-}
-
-/* Style the button inside the input container */
-.header_area .signup-container button {
-    float: right;
-    padding: 6px;
-    margin-top: 8px;
-    margin-right: 16px;
-    background: #292c2f;
-    font-size: 17px;
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
-    text-align: center;
-    color: #ffffff;
-}
-
-.header_area .signup-container button:hover {
-    background: #4CAF50;
 }
