@@ -12,8 +12,7 @@ class UsersController < ApplicationController
     def create
         @user = User.new user_params
         if @user.save
-            flash[:success] = "Đăng ký thành công"
-            redirect_to users_path
+            redirect_to sessions_new_path
         else
             flash[:success] = "Tên tài khoản hoặc mật khẩu không chính xác"
             render :new

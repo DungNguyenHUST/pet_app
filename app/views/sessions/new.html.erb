@@ -1,40 +1,50 @@
-<div class="container">
-    <div class="sessions">
-    </div>
-        <section class="signup">
-            <div class="container">
-                <div class="signup-content">
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta name='viewport' content='width=device-width, initial-scale=1'>
+        <!-- Add icon library -->
+        <link rel='stylesheet' href='https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css'>
+    </head>
 
-                    <%= form_for :session, url: login_path do |f| %>
-                        <h2 class="form-title">Đăng nhập</h2>
+    <body>
+        <div class='body_content'>
+            <div class="user_signin_form">
+                <%= form_for :session, url: login_path do |f| %>
 
-                        <div class="form-group">
-                            <%= f.label :name, "Tên hoặc địa chỉ email", class: "col-md-2 control-label" %>
-                            <div class="col-md-6">
-                            <%= f.text_field :name, class: "form-input", placeholder: "Nhập tên hoặc địa chỉ email của bạn" %>
-                            </div>
+                    <div class="user_signin_title">
+                        <t>Đăng nhập</t>
+                    </div>
+
+                    <div class="user_signin_content">
+                        <div class="user_signin_label">
+                            <t><%= f.label :name, "Tên hoặc địa chỉ email", class: "user_signin_label_name" %></t>
                         </div>
 
-                        <div class="form-group">
-                            <%= f.label :password, "Mật khẩu", class: "col-md-2 control-label" %>
-                            <div class="col-md-6">
-                            <%= f.password_field :password, class: "form-input", placeholder: "Nhập mật khẩu của bạn" %>
-                            </div>
+                        <div class="user_signin_input">
+                            <%= f.text_field :name, class: "user_signin_form_input", placeholder: "  Nhập tên hoặc email của bạn" %>
                         </div>
+                    </div>
 
-                        <div class="form-group">
-                            <div class="col-lg-offset-4">
-                            <%= f.submit "Đăng nhập", class: "form-submit" %>
-                            </div>
+                    <div class="user_signin_content">
+                        <div class="user_signin_label">
+                            <t><%= f.label :password, "Mật khẩu", class: "user_signin_label" %></t>
                         </div>
+                        
+                        <div class="user_signin_input">
+                            <%= f.password_field :password, class: "user_signin_form_input", placeholder: "  Nhập mật khẩu của bạn" %>
+                        </div>
+                    </div>
 
-                        <p class="loginhere">
-                            Chưa có tài khoản? <%= link_to 'Tạo tài khoản mới', new_user_path %>
-                        </p>
-                    <%end%>
+                    <div class="user_signin_submit">
+                        <%= f.submit "Đăng nhập", class: "user_signin_form_submit" %>
+                    </div>
 
-                </div>
+                    <p class="user_signin_loginhere">
+                        Chưa có tài khoản? <%= link_to " Đăng ký", new_user_path %>
+                    </p>
+
+                <%end%>
             </div>
-        </section>
-    </div>
-</div>
+        </div>
+    </body>
+</html>
