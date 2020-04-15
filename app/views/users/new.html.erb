@@ -1,72 +1,65 @@
 <!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+<html>
+    <head>
+        <meta name='viewport' content='width=device-width, initial-scale=1'>
+        <!-- Add icon library -->
+        <link rel='stylesheet' href='https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css'>
+    </head>
 
-    <title>Sign Up</title>
+    <body>
+        <div class='body_content'>
+            <div class="user_add_new_form">
+                <%= form_for @user, html: {class: "form-horizontal"} do |f| %>
 
-    <!-- Font Icon -->
-	<link href='https://fonts.googleapis.com/css?family=Roboto' rel='stylesheet' type='text/css'>
+                    <div class="user_add_new_title">
+                        <t>Đăng ký tài khoản mới</t>
+                    </div>
 
-    <!-- Main css -->
-    <link rel="stylesheet" href="assets/stylesheets/users.css">
-
-</head>
-<body>
-
-    <div class="main">
-
-        <section class="signup">
-            <div class="container">
-                <div class="signup-content">
-
-                    <%= form_for @user, html: {class: "form-horizontal"} do |f| %>
-                        <h2 class="form-title">Đăng ký tài khoản mới</h2>
-
-                        <div class="form-group">
-                            <%= f.label :name, "Tên hoặc địa chỉ email", class: "col-md-2 control-label" %>
-                            <div class="col-md-6">
-                            <%= f.text_field :name, class: "form-input", placeholder: "Nhập tên hoặc email của bạn" %>
-                            </div>
+                    <div class="user_add_new_content">
+                        <div class="user_add_new_label">
+                            <t><%= f.label :name, "Tên hoặc địa chỉ email", class: "user_add_new_label_name" %></t>
                         </div>
 
-                        <div class="form-group">
-                            <%= f.label :password, "Mật khẩu", class: "col-md-2 control-label" %>
-                            <div class="col-md-6">
-                            <%= f.password_field :password, class: "form-input", placeholder: "Nhập mật khẩu của bạn" %>
-                            </div>
+                        <div class="user_add_new_input">
+                            <%= f.text_field :name, class: "user_add_new_form_input", placeholder: "  Nhập tên hoặc email của bạn" %>
+                        </div>
+                    </div>
+
+                    <div class="user_add_new_content">
+                        <div class="user_add_new_label">
+                            <t><%= f.label :password, "Mật khẩu", class: "user_add_new_label" %></t>
+                        </div>
+                        
+                        <div class="user_add_new_input">
+                            <%= f.password_field :password, class: "user_add_new_form_input", placeholder: "  Nhập mật khẩu của bạn" %>
+                        </div>
+                    </div>
+
+                    <div class="user_add_new_content">
+                        <div class="user_add_new_label">
+                            <t><%= f.label :password_confirmation, "Xác nhận mật khẩu", class: "user_add_new_label" %></t>
                         </div>
 
-                        <div class="form-group">
-                            <%= f.label :password_confirmation, "Xác nhận mật khẩu", class: "col-md-2 control-label" %>
-                            <div class="col-md-6">
-                            <%= f.password_field :password_confirmation, class: "form-input", placeholder: "Nhập lại mật khẩu" %>
-                            </div>
+                        <div class="user_add_new_input">
+                            <%= f.password_field :password_confirmation, class: "user_add_new_form_input", placeholder: "  Nhập lại mật khẩu" %>
                         </div>
+                    </div>
 
-                        <div class="form-group">
-                            <input type="checkbox" name="agree-term" id="agree-term" class="agree-term" />
-                            <label for="agree-term" class="label-agree-term"><span><span></span></span>Tôi đồng ý với các điều khoản và điều kiện trong  <a href="#" class="term-service">Điều khoản và điều kiện</a></label>
-                        </div>
+                    <div class="user_add_new_content_checkbox">
+                        <input type="checkbox" name="agree-term" id="agree-term" class="agree-term" />
+                        <label for="agree-term" class="label-agree-term"><span><span></span></span> Gửi cho tôi những thông tin mới nhất từ trang web</label>
+                    </div>
 
-                        <div class="form-group">
-                            <div class="col-lg-offset-4">
-                            <%= f.submit "Đăng ký tài khoản", class: "form-submit" %>
-                            </div>
-                        </div>
+                    <div class="user_add_new_submit">
+                        <%= f.submit "Đăng ký tài khoản", class: "user_add_new_form_submit" %>
+                    </div>
 
-                        <p class="loginhere">
-                            Đã có tài khoản? <%= link_to 'Đăng nhập', sessions_new_path %>
-                        </p>
-                    <%end%>
+                    <p class="user_add_new_loginhere">
+                        Đã có tài khoản? <%= link_to " Đăng nhập", sessions_new_path %>
+                    </p>
 
-                </div>
+                <%end%>
             </div>
-        </section>
-
-    </div>
-
-</body>
+        </div>
+    </body>
 </html>

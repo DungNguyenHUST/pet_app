@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<meta http-equiv="X-UA-Compatible" content="IE=edge">
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+
+		<title>Main Header</title>
+
+		<!-- Font Icon -->
+		<link href='https://fonts.googleapis.com/css?family=Roboto' rel='stylesheet' type='text/css'>
+	</head>
+
+	<body>
+		<div class="body_content_header_user">
+			<header class="header_user_area">
+				<div class="header_user_content">
+					<div class="header_user_logo">
+						<a href="<%=pages_path %>"><span>Code <\></span></a>
+					</div>
+					
+					<div class="header_user_navigation">
+						<nav>
+							<a href="<%=companies_path %>">Đánh giá công ty <span class="header-new-feature">new</span></a>
+							<a href="<%=problems_path %>">Solve Problem <span class="header-new-feature">new</span></a>
+							<a href="<%=posts_path %>">Blog</a>
+						</nav>
+					</div>
+
+					<div class="header_user_search_button">
+						<div class= "form-input-search">
+							<input type="text" name="fname" placeholder="  Tìm kiếm">
+						</div>
+						<a href="#">
+							<i class="fa fa-search"></i>
+						</a>
+					</div>
+
+					<div class="header_user_button">
+						<%= form_for :session, url: login_path do |f| %>
+							<div class="user_icon_button">
+								<a href="#">
+									<i class="fa fa-user fa-2x"></i>
+								</a>
+							</div>
+
+							<div class="sign_out_button">
+								<%= link_to '<button type="submit">Thoát</button>'.html_safe, logout_path %>
+							</div>
+						<% end %>
+					</div>
+				</div>
+			</header>
+		</body>
+	</div>
+</html>
