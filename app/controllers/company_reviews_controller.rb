@@ -19,10 +19,9 @@ class CompanyReviewsController < ApplicationController
         @company_review.companyName = @company.name
 
         if @company_review.save
-            flash[:success] = "Đã lưu lại nhận xét"
-            redirect_to company_company_reviews_path(@company)
+            redirect_to company_path(@company)
         else
-            flash[:danger] = "Comment lỗi?"
+            flash[:danger] = "Lỗi, hay điền đủ nội dung có dấu *?"
             # render :new
         end
     end
@@ -42,6 +41,6 @@ class CompanyReviewsController < ApplicationController
     private
 
     def company_review_param
-        params.require(:company_review).permit(:companyName, :score , :review)
+        params.require(:company_review).permit(:start_date, :end_date , :position, :score, :pros, :cons, :review_title, :review)
     end
 end

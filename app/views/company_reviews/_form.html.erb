@@ -1,30 +1,117 @@
-<%= form_for [@company, CompanyReview.new] do |f| %>
-    <div class="new_review">
-        <div class="new_review_content">
-        
-            <div class="new_review_title">
-                <h2 class="form-title">Hãy đánh giá về công ty này</h2>
-            </div>
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta name='viewport' content='width=device-width, initial-scale=1'>
+        <!-- Add icon library -->
+        <link rel='stylesheet' href='https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css'>
+    </head>
 
-            <div class="new_review_form-group">
-                <%= f.label :score, "Cho điểm cty này", class: "col-md-2 control-label" %>
-                <div class="new_review_input">
-                    <%= f.text_field :score, class: "form-input-content", placeholder: "Hãy cho điểm từ 1->5" %>
-                </div>
-            </div>
+    <body>
+        <div class='body_content'>
+            <div class="new_review_form">
+                <%= form_for [@company, CompanyReview.new] do |f| %>
+                    <div class="new_review_title">
+                        <t>Tạo một bản đánh giá của bạn<%@company.name%></t>
+                    </div>
 
-            <div class="new_review_form-group">
-                <%= f.label :review, "Nhập đánh giá về công ty", class: "col-md-2 control-label" %>
-                <div class="new_review_input">
-                    <%= f.text_field :review, class: "form-input-content", placeholder: "Hãy viết nhận xét của bạn" %>
-                </div>
-            </div>
+                    <div class="new_review_section">
+                        <div class="new_review_content">
+                            <div class="new_review_label">
+                                <t><%= f.label :start_date, "Thời gian bắt đầu*", class: "new_review_label_name" %></t>
+                            </div>
 
-            <div class="new_review_form-group">
-                <div class="new_review_submit">
-                    <%= f.submit "Submit", class: "form-submit" %>
-                </div>
+                            <div class="new_review_input_time">
+                                <%= f.date_field :start_date, class: "new_review_form_input", placeholder: "  Nhập tên hoặc email của bạn" %>
+                            </div>
+
+                        </div>
+
+                        <div class="new_review_content">
+                            <div class="new_review_label">
+                                <t><%= f.label :end_date, "Thời gian kết thúc*", class: "new_review_label_name" %></t>
+                            </div>
+
+                            <div class="new_review_input_time">
+                                <%= f.date_field :end_date, class: "new_review_form_input", placeholder: "  Nhập tên hoặc email của bạn" %>
+                            </div>
+
+                        </div>
+
+                        <div class="new_review_content">
+                            <div class="new_review_label">
+                                <t><%= f.label :position, "Vị trí làm việc của bạn", class: "new_review_label_name" %></t>
+                            </div>
+
+                            <div class="new_review_input">
+                                <%= f.select(:score, ['Project Manager','Sennior','Junnior', 'Fresher' ], {include_blank: true}, { :class => 'my_style_class' }) %>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="new_review_section">
+                        <div class="new_review_content">
+                            <div class="new_review_label">
+                                <t><%= f.label :score, "Cho điểm công ty này*", class: "new_review_label_name" %></t>
+                            </div>
+
+                            <div class="new_review_input">
+                                <%= f.select(:score, ['1','2', '3', '4', '5'], {include_blank: true}, { :class => 'my_style_class' }) %>
+                            </div>
+                        </div>
+
+                        <div class="new_review_content">
+                            <div class="new_review_label">
+                                <t><%= f.label :pros, "Ưu điểm*", class: "new_review_label_name" %></t>
+                            </div>
+
+                            <div class="new_review_input">
+                                <%= f.text_field :pros, class: "new_review_form_input", placeholder: "  Nhập tên hoặc email của bạn" %>
+                            </div>
+                        </div>
+
+                        <div class="new_review_content">
+                            <div class="new_review_label">
+                                <t><%= f.label :cons, "Nhược điểm*", class: "new_review_label_name" %></t>
+                            </div>
+
+                            <div class="new_review_input">
+                                <%= f.text_field :cons, class: "new_review_form_input", placeholder: "  Nhập tên hoặc email của bạn" %>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="new_review_section">
+                        <div class="new_review_content">
+                            <div class="new_review_label">
+                                <t><%= f.label :review_title, "Title", class: "new_review_label" %></t>
+                            </div>
+                            
+                            <div class="new_review_input">
+                                <%= f.text_field :review_title, class: "new_review_form_input", placeholder: "  Nhập mật khẩu của bạn" %>
+                            </div>
+                        </div>
+
+                        <div class="new_review_content">
+                            <div class="new_review_label">
+                                <t><%= f.label :review, "Nội dung", class: "new_review_label" %></t>
+                            </div>
+                            
+                            <div class="new_review_input_review">
+                                <%= f.text_field :review, class: "new_review_form_input_review", placeholder: "  Nhập mật khẩu của bạn" %>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="new_review_content_checkbox">
+                        <input type="checkbox" name="agree-term" id="agree-term" class="agree-term" />
+                        <label for="agree-term" class="label-agree-term"><span><span></span></span> Đồng ý với điều khoản điều kiện</label>
+                    </div>
+
+                    <div class="new_review_submit">
+                        <%= f.submit "Gửi đánh giá", class: "new_review_form_submit" %>
+                    </div>
+                <%end%>
             </div>
         </div>
-    </div>
-<% end %>
+    </body>
+</html>

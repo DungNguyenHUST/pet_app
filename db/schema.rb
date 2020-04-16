@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_04_08_155324) do
+ActiveRecord::Schema.define(version: 2020_04_16_162039) do
 
   create_table "comments", force: :cascade do |t|
     t.string "username"
@@ -29,6 +29,10 @@ ActiveRecord::Schema.define(version: 2020_04_08_155324) do
     t.datetime "updated_at", precision: 6, null: false
     t.integer "size"
     t.text "overview"
+    t.datetime "time_establish"
+    t.string "field_operetion"
+    t.datetime "time_start"
+    t.datetime "time_end"
   end
 
   create_table "company_interviews", force: :cascade do |t|
@@ -48,6 +52,12 @@ ActiveRecord::Schema.define(version: 2020_04_08_155324) do
     t.integer "company_id"
     t.string "user_name"
     t.string "review"
+    t.datetime "start_date"
+    t.datetime "end_date"
+    t.string "position"
+    t.text "pros"
+    t.text "cons"
+    t.text "review_title"
   end
 
   create_table "headers", force: :cascade do |t|

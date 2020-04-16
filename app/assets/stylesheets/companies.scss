@@ -17,7 +17,7 @@
         float: left;
         display: block;
         width: 23%;
-        height: 400px;
+        height: 440px;
         margin-top: 5px;
         margin-bottom: 20px;
         margin-right: 22px;
@@ -25,16 +25,19 @@
         background:#ffffff;
         border: 1px solid #f0f0f1;
         border-radius: 5px;
+        &:hover{
+            // background: #f0f0f1;
+        }
 
         .company_thumbnail
         {
             width: 80px;
             height: 80px;
             display: block;
-            margin-left: auto;
+            margin-left: 20%;
             margin-right: auto;
             margin-top: 40px;
-            margin-bottom: 40px;
+            margin-bottom: 60px;
             width: 50%;
         }
 
@@ -82,7 +85,7 @@
             }
         }
 
-        .company_new_review
+        .company_new_company
         {
             display: block;
             margin-left: 30%;
@@ -130,22 +133,83 @@
 //////////////////show//////////////////
 
 .company_area{
-    padding-bottom: 20px;
+    padding:0 !important;
+    clear: both;
 
-    .section_company_name
-    {
-        margin-top: 80px;
-        font-size: 15px;
-        text-align: center;
-        margin-bottom: 50px;
+    .company_title{
+        width: 100%;
+        height: 50px;
+        padding-top: 100px;
+        padding-bottom: 100px;
+
+        .company_title_image{
+            top: 30%;
+            width: 120px;
+            height: 120px;
+            border: 1px solid #f0f0f1;
+            float: left;
+        }
+
+        .company_title_summary
+        {
+            border: 1px black;
+            margin-top: 10px;
+            .company_title_name
+            {
+                border-bottom: 1px solid #f0f0f1;
+                font-size: 30px;
+                text-align: left;
+                margin-left: 150px;
+            }
+            .company_title_short_des
+            {
+                width: 100%;
+                margin-left: 150px;
+                margin-top: 25px;
+                .company_title_short_des_group1{
+                    float: left;
+                    text-align: left;
+                    font-size: 16px;
+                    .fa {
+                        position: relative;
+                        margin-right: 10px;
+                        // margin-left: 30px;
+                        float: left;
+                    }
+
+                    .checked {
+                        color: #959da5;
+                    }
+                }
+                .company_title_short_des_group{
+                    float: left;
+                    text-align: left;
+                    font-size: 16px;
+                    .fa {
+                        position: relative;
+                        margin-right: 10px;
+                        margin-left: 30px;
+                        float: left;
+                    }
+
+                    .checked {
+                        color: #959da5;
+                    }
+                }
+            }
+        }
     }
-
+    
     /* Style the tab */
     .company_tab {
+        clear: left;
         overflow: hidden;
         border: 1px solid #f0f0f1;
-        padding: 10px;
-        margin-bottom: 20px;
+    }
+
+    .company_tablinks
+    {
+        // border: 1px solid #f0f0f1;
     }
 
     /* Style the buttons that are used to open the tab content */
@@ -175,5 +239,119 @@
         padding: 6px 12px;
         border: 1px solid #f0f0f1;
         border-top: none;
+    }
+}
+
+
+//////////////////new///////////////////////
+.new_company_form
+{
+    margin-left: 20%;
+    margin-right: 20%;
+    margin-bottom: 50px;
+    .new_company_title{
+        font-size: 25px;
+        color: black;
+        text-align: center;
+        margin-top: 50px;
+        margin-bottom: 30px;
+    }
+
+    .new_company_section
+    {
+        // border-bottom: 1px solid rgb(190, 185, 185);
+        // margin-top: 30px;
+        // background-color: black;
+        .new_company_content{
+            .new_company_label{
+                font-weight: 600;
+                font-size: 16px;
+                color: black;
+                text-align: left;
+            }
+
+            .new_company_input{
+                left: 0px;
+                margin-top: 5px;
+                margin-bottom: 20px;
+                width: 750px;
+                height: auto;
+                .new_company_form_input{
+                    margin-left: 0px;
+                    height: 40px;
+                    width: 100%;
+                    border: 1px solid rgb(190, 185, 185);
+                    border-radius: 5px;
+                }
+            }
+            .new_company_input_time{
+                left: 0px;
+                margin-top: 5px;
+                margin-bottom: 20px;
+                width: 300px;
+                .new_company_form_input{
+                    margin-left: 0px;
+                    height: 40px;
+                    width: 100%;
+                    border: 1px solid rgb(190, 185, 185);
+                    border-radius: 5px;
+                }
+            }
+
+            .new_company_input_review{
+                left: 0px;
+                margin-top: 5px;
+                margin-bottom: 20px;
+                width: 750px;
+                height: 50px;
+                .new_company_form_input_review{
+                    word-wrap: break-word;
+                    white-space: pre-wrap; 
+                    margin-left: 0px;
+                    height: 80px;
+                    width: 100%;
+                    border: 1px solid rgb(190, 185, 185);
+                    border-radius: 5px;
+                }
+            }
+        }
+    }
+
+    .new_company_content_checkbox
+    {
+        margin-top: 50px;
+        .label-agree-term
+        {
+           font-size: 14px; 
+        }
+    }
+
+    .new_company_submit{
+        width: 750px;
+        margin-top: 20px;
+        .new_company_form_submit{
+            height: 50px;
+            width: 100%;
+            border-radius: 5px;
+            padding: 6px;
+            background: #64bd4f;
+            font-size: 16px;
+            border: none;
+            cursor: pointer;
+            text-align: center;
+            color: #ffffff;
+            
+            &:hover{
+                background-color: #4CAF50;
+            }
+        }
+    }
+
+    .my_style_class{
+        padding: 10px;
+        width: 300px;
+        font-size: 16px;
+        border-radius: 5px;
+        background: #ffffff;
     }
 }
