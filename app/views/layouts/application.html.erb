@@ -3,7 +3,11 @@
   <head>
     <title>PetApp</title>
     
-    <%= render 'pages/header_user'%>
+    <% if $is_user_login %>
+      <%= render 'pages/header_user'%>
+    <% else %>
+      <%= render 'pages/header'%>
+    <%end%>
 
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
