@@ -2,6 +2,7 @@ class CompaniesController < ApplicationController
     def index
         @companies = Company.all
         @company_reviews = CompanyReview.all
+        @company_reply_review = CompanyReplyReview.all
     end
 
     def new
@@ -23,6 +24,7 @@ class CompaniesController < ApplicationController
     def show
         @company = Company.find params[:id]
         @company_review = CompanyReview.new(company_id: params[:company_id])
+        @company_reply_review = CompanyReplyReview.new(company_review_id: params[:company_review_id])
     end
 
     def edit
