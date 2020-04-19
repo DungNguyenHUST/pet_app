@@ -12,83 +12,115 @@
     width: 100%;
     height: 100%;
     margin-top: 30px;
-    margin-bottom: 120px;
-    border-top: 1px solid #f0f0f1;
+    margin-bottom: 30px;
     background-color: #ffffff;
+    border-top: 1px solid #f0f0f1;
     .user_comment_left
     {
-        width: 20%;
-        height: 100%;
+        width: auto;
+        height: auto;
+        margin-top: 30px;
         display: block;
         position: relative;
         float: left;
         .user_avatar {
             display: block;
-            margin-left: auto;
+            margin-left: 25%;
             margin-right: auto;
-            width: 50%;
             img {
                 width: 80px;
                 height: 80px;
             }
-        }
-        .user_name{
-            text-align: center;
-            font-size: 15px;
-        }
-
-        .user_date_time{
-            text-align: center;
         }
     }
     
     .user_comment_cotent
     {
         display: block;
-        .user_comment_body {
-            width: 100%;
-            font-size: 20;
-            color: #555;
+        width: auto;
+        height: auto;
+        margin-left: 12%;
+        margin-top: 30px;
+
+        .user_comment_title{
+            font-size: 25px;
+            font-weight: 400;
         }
-        .comment_toolbar {
-            display: block;
-            width: 100%;
-            padding-top: 20px;
-    
-            ul {
-                list-style-type: none;
-                padding-left: 0px;
-                font-size: 0;
-    
-                li {
-                    // padding: 5px;
-                    font-size: .7rem;
-                    &:hover {
-                        cursor: pointer; 
-                    }
-                }
-            }
-    
-            .comment_action {
-                width: 100%;
-                text-align: left;
+
+        .user_comment_pros
+        {
+            margin-top: 20px;
+            .user_comment_pros_label{
                 .fa {
                     position: relative;
-                    margin-right: 20px;
+                    margin-right: 10px;
                     float: left;
                 }
 
                 .checked {
-                    color: orange;
+                    color: green;
+                }
+                font-size: 20px;
+                font-weight: 400;
+            }
+
+            .user_comment_pros_content{
+                font-size: 18px;
+                margin-left: 30px;
+                margin-top: 10px;
+            }
+        }
+
+        .user_comment_cons{
+            margin-top: 20px;
+            .user_comment_cons_label{
+                font-size: 20px;
+                font-weight: 400;
+                .fa {
+                    position: relative;
+                    margin-right: 10px;
+                    float: left;
                 }
 
-                .checked1 {
-                    color: rgb(29, 161, 242);
-                }
-
-                .checked2 {
+                .checked {
                     color: red;
                 }
+            }
+
+            .user_comment_cons_content{
+                font-size: 18px;
+                margin-left: 30px;
+                margin-top: 10px;
+            }
+        }
+
+        .user_comment_body {
+            margin-top: 30px;
+            font-size: 18px;
+            margin-bottom: 15px;
+        }
+
+        .comment_info{
+            margin-top: 30px;
+            .comment_toolbar {
+                display: block;
+                float: left;
+                font-size: 18px;
+                .fa {
+                    position: relative;
+                    margin-right: 20px;
+                }
+    
+                .checked {
+                    color: #a8a3a3;
+                }
+            }
+
+            .user_comment_time{
+                margin-left: 66%;
+                display: block;
+                font-size: 15px;
+                color: #6b6c6d;
             }
         }
     }

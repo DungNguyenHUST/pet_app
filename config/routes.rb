@@ -12,9 +12,13 @@ Rails.application.routes.draw do
   end
 
   resources :companies do
-    resources :company_reviews
+    resources :company_reviews do
+      resources :company_reply_reviews
+    end
     resources :company_interviews
   end
+
+  get '/company_reply_reviews/new/(:company_id, :company_review_id)', to: 'company_reply_reviews#new', as: :new_company_reply_review
 
   resources :problems do
     resources :problem_solutions
