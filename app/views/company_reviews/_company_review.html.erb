@@ -1,4 +1,4 @@
-<!-- comments container -->
+<!-- reviews container -->
 <!DOCTYPE html>
 <html>
     <head>
@@ -8,45 +8,45 @@
     </head>
 
     <body>
-        <div class="user_comment_block">
-            <div class="user_comment_left">
+        <div class="user_review_block">
+            <div class="user_review_left">
                 <div class="user_avatar">
                     <%= link_to (image_tag("fpt-software-logo.png")), image_path("fpt-software-logo.png"), rel: "gallery" %>
                 </div>
             </div>
 
-            <div class="user_comment_cotent">
+            <div class="user_review_cotent">
                 
-                <div class="user_comment_title">
+                <div class="user_review_title">
                     <t><%= company_review.review_title %></t>
                 </div>
 
-                <div class="user_comment_pros">
-                    <div class="user_comment_pros_label">
+                <div class="user_review_pros">
+                    <div class="user_review_pros_label">
                         <span class="fa fa-check-square fa checked"></span>
                         <t>Ưu điểm</t>
                     </div>
-                    <div class="user_comment_pros_content">
+                    <div class="user_review_pros_content">
                         <t><%= company_review.pros %></t>
                     </div>
                 </div>
 
-                <div class="user_comment_cons">
-                    <div class="user_comment_cons_label">
+                <div class="user_review_cons">
+                    <div class="user_review_cons_label">
                         <span class="fa fa-times-circle fa checked"></span>
                         <t>Nhược điểm </t>
                     </div>
-                    <div class="user_comment_cons_content">
+                    <div class="user_review_cons_content">
                         <t><%= company_review.cons %></t>
                     </div>
                 </div>
 
-                <div class="user_comment_body">
+                <div class="user_review_body">
                     <t><%= company_review.review %></t>
                 </div>
 
-                <div class="comment_info">
-                    <div class="comment_toolbar">
+                <div class="review_info">
+                    <div class="review_toolbar">
                         <t><%= company_review.company_reply_reviews.count%></t>
                         <%= link_to '<i class="fa fa-reply fa checked"></i>'.html_safe, new_company_reply_review_path(@company.id, company_review.id)%>
                         <t><%= company_review.company_reply_reviews.count%></t>
@@ -55,7 +55,7 @@
                         <%= link_to '<i class="fa fa-thumbs-down fa checked"></i>'.html_safe, new_company_reply_review_path(@company.id, company_review.id)%>
                     </div>
 
-                    <div class="user_comment_time">
+                    <div class="user_review_time">
                         <t><%= company_review.user_name %> lúc <%= company_review.created_at %></t>
                     </div>
                 </div>

@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta name='viewport' content='width=device-width, initial-scale=1'>
+        <!-- Add icon library -->
+        <link rel='stylesheet' href='https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css'>
+    </head>
+
+    <body>
+        <div class='body_content'>
+            <div class="new_reply_interview_form">
+                <%= form_for [@company, @company_interview, CompanyReplyInterview.new] do |f| %>
+
+                    <div class="new_reply_interview_content">
+                        <div class="new_reply_interview_label">
+                            <t><%= f.label :reply_content, "Nội dung", class: "new_reply_interview_label_content" %></t>
+                        </div>
+                        
+                        <div class="new_reply_interview_input_interview">
+                            <%= f.text_field :reply_content, class: "new_reply_interview_form_input_interview", placeholder: "  Nhập nội dung" %>
+                        </div>
+                    </div>
+
+                    <div class="new_reply_interview_submit">
+                        <%= f.submit "Gửi trả lời", class: "new_reply_interview_form_submit" %>
+                    </div>
+                <%end%>
+            </div>
+        </div>
+    </body>
+</html>

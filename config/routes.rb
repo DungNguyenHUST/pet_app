@@ -15,10 +15,14 @@ Rails.application.routes.draw do
     resources :company_reviews do
       resources :company_reply_reviews
     end
-    resources :company_interviews
+    resources :company_interviews do
+      resources :company_reply_interviews
+    end
   end
 
   get '/company_reply_reviews/new/(:company_id, :company_review_id)', to: 'company_reply_reviews#new', as: :new_company_reply_review
+
+  get '/company_reply_interviews/new/(:company_id, :company_interview_id)', to: 'company_reply_interviews#new', as: :new_company_reply_interview
 
   resources :problems do
     resources :problem_solutions

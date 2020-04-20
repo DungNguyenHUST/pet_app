@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_04_19_032404) do
+ActiveRecord::Schema.define(version: 2020_04_20_083123) do
 
   create_table "comments", force: :cascade do |t|
     t.string "username"
@@ -35,13 +35,15 @@ ActiveRecord::Schema.define(version: 2020_04_19_032404) do
     t.datetime "time_end"
   end
 
-  create_table "company_interviews", force: :cascade do |t|
+# Could not dump table "company_interviews" because of following StandardError
+#   Unknown type 'bool' for column 'offer'
+
+  create_table "company_reply_interviews", force: :cascade do |t|
     t.string "user_name"
-    t.string "position"
-    t.string "content"
+    t.string "reply_content"
+    t.integer "company_interview_id"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
-    t.integer "company_id"
   end
 
   create_table "company_reply_reviews", force: :cascade do |t|
