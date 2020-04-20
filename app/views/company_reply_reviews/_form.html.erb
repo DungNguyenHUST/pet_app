@@ -11,15 +11,13 @@
             <div class="new_reply_review_form">
                 <%= form_for [@company, @company_review, CompanyReplyReview.new] do |f| %>
 
-                    <div class="new_reply_review_section">
-                        <div class="new_reply_review_content">
-                            <div class="new_reply_review_label">
-                                <t><%= f.label :reply_content, "Nội dung", class: "new_reply_review_label" %></t>
-                            </div>
-                            
-                            <div class="new_reply_review_input_review">
-                                <%= f.text_field :reply_content, class: "new_reply_review_form_input_review", placeholder: "  Nhập nội dung" %>
-                            </div>
+                    <div class="new_reply_review_content">
+                        <div class="new_reply_review_label">
+                            <t><%= f.label :reply_content, "Nội dung", class: "new_reply_review_label_content" %></t>
+                        </div>
+                        
+                        <div class="new_reply_review_input_review">
+                            <%= f.text_field :reply_content, class: "new_reply_review_form_input_review", placeholder: "  Nhập nội dung" %>
                         </div>
                     </div>
 

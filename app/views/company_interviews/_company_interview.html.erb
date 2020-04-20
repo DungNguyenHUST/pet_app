@@ -1,15 +1,80 @@
-<div class="box">
-<article class="media">
-    <div class="media-content">
-    <div class="content">
-        <p>
-        <strong><%= company_interview.user_name %>:</strong>
-        <%= company_interview.position %>
-        <%= company_interview.content %>
-        </p>
-    </div>
-    </div>
-    <%= link_to 'Delete', [company_interview.company, company_interview],
-                method: :delete, class: "button is-danger", data: { confirm: 'Are you sure?' } %>
-</article>
-</div>
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta name='viewport' content='width=device-width, initial-scale=1'>
+        <!-- Add icon library -->
+        <link rel='stylesheet' href='https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css'>
+    </head>
+
+    <body>
+        <div class="company_interview_block">
+            <div class="company_interview_left">
+                <div class="company_avatar">
+                    <%= link_to (image_tag("fpt-software-logo.png")), image_path("fpt-software-logo.png"), rel: "gallery" %>
+                </div>
+            </div>
+
+            <div class="company_interview_right">
+                
+                <div class="company_interview_title">
+                    <t><%= company_interview.position %></t>
+                </div>
+
+                <div class="company_interview_section">
+                    <div class="company_interview_section_title">
+                        <ul>
+                            <li> Số vòng phỏng vấn </li>
+                            <li> Độ khó </li>
+                            <li> Mức độ hài lòng </li>
+                            <li> Có chấp nhận offer không </li>
+                        </ul>
+                    </div>
+
+                    <div class="company_interview_content">
+                        <ul>
+                            <li> <%= company_interview.process %> </li>
+                            <%# <li> <%= company_interview.difficultly %>
+                            <div class="interview_score_star">
+                                <span class="fa fa-star checked"></span>
+                                <span class="fa fa-star checked"></span>
+                                <span class="fa fa-star checked"></span>
+                                <span class="fa fa-star checked"></span>
+                                <span class="fa fa-star"></span>
+                            </div>
+                            <%# <li> <%= company_interview.satisfied %>
+                            <div class="interview_score_star">
+                                <span class="fa fa-star checked"></span>
+                                <span class="fa fa-star checked"></span>
+                                <span class="fa fa-star checked"></span>
+                                <span class="fa fa-star checked"></span>
+                                <span class="fa fa-star"></span>
+                            </div>
+                            <li> <%= company_interview.offer %> </li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="company_interview_body">
+                    <t><%= company_interview.content %></t>
+                </div>
+
+                <div class="interview_info">
+                    <div class="interview_toolbar">
+                        <t><%= company_interview.company_reply_interviews.count%></t>
+                        <%= link_to '<i class="fa fa-reply fa checked"></i>'.html_safe, new_company_reply_interview_path(@company.id, company_interview.id)%>
+                        <t><%= company_interview.company_reply_interviews.count%></t>
+                        <%= link_to '<i class="fa fa-thumbs-up fa checked"></i>'.html_safe, new_company_reply_interview_path(@company.id, company_interview.id)%>
+                        <t><%= company_interview.company_reply_interviews.count%></t>
+                        <%= link_to '<i class="fa fa-thumbs-down fa checked"></i>'.html_safe, new_company_reply_interview_path(@company.id, company_interview.id)%>
+                    </div>
+
+                    <div class="user_interview_time">
+                        <t><%= company_interview.user_name %> lúc <%= company_interview.created_at %></t>
+                    </div>
+                </div>
+
+                <%= render company_interview.company_reply_interviews %>
+            </div>
+        </div>
+    </body>
+</html>

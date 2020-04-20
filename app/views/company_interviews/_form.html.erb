@@ -1,33 +1,91 @@
-<%= form_for [@company, CompanyInterview.new] do |f| %>
-    <div class="container">
-        <div class="sessions">
-            <section class="signup">
-                <div class="container">
-                    <div class="signup-content">
-                        <h2 class="form-title">Chia sẻ kinh nghiệm phỏng vấn công ty</h2>
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta name='viewport' content='width=device-width, initial-scale=1'>
+        <!-- Add icon library -->
+        <link rel='stylesheet' href='https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css'>
+    </head>
 
-                        <div class="form-group">
-                            <%= f.label :position, "Vị trí ưng tuyển", class: "col-md-2 control-label" %>
-                            <div class="col-md-6">
-                                <%= f.text_field :position, class: "form-input-content", placeholder: "Nhập vị trí mà bạn ứng tuyển" %>
+    <body>
+        <div class='body_content'>
+            <div class="new_interview_form">
+                <%= form_for [@company, CompanyInterview.new] do |f| %>
+                    <div class="new_interview_title">
+                        <t>Kinh nghiệm phỏng vấn của bạn tại<%@company.name%></t>
+                    </div>
+
+                    <div class="new_interview_section">
+                        <div class="new_interview_content">
+                            <div class="new_interview_label">
+                                <t><%= f.label :position, "Vị trí phỏng vấn*", class: "new_interview_label_name" %></t>
+                            </div>
+
+                            <div class="new_interview_input">
+                                <%= f.text_field :position, class: "new_interview_form_input", placeholder: "  Nhập tên hoặc email của bạn" %>
                             </div>
                         </div>
 
-                        <div class="form-group">
-                            <%= f.label :content, "Nhập nội dung bạn muốn chia sẻ về công ty", class: "col-md-2 control-label" %>
-                            <div class="col-md-6">
-                                <%= f.text_field :content, class: "form-input-content", placeholder: "Hãy viết nhận xét của bạn" %>
+                        <div class="new_interview_content">
+                            <div class="new_interview_label">
+                                <t><%= f.label :process, "Số vòng phỏng vấn*", class: "new_interview_label_name" %></t>
+                            </div>
+
+                            <div class="new_interview_input">
+                                <%= f.select(:process, ['1','2', '3', '4', '5'], {include_blank: true}, { :class => 'my_style_class' }) %>
                             </div>
                         </div>
 
-                        <div class="form-group">
-                            <div class="col-lg-offset-4">
-                                <%= f.submit "Submit", class: "form-submit" %>
+                        <div class="new_interview_content">
+                            <div class="new_interview_label">
+                                <t><%= f.label :content, "Nội dung phỏng vấn*", class: "new_interview_label_name" %></t>
+                            </div>
+
+                            <div class="new_interview_input">
+                                <%= f.text_field :content, class: "new_interview_form_input", placeholder: "  Nhập tên hoặc email của bạn" %>
+                            </div>
+                        </div>
+
+                        <div class="new_interview_content">
+                            <div class="new_interview_label">
+                                <t><%= f.label :difficultly, "Độ khó*", class: "new_interview_label_name" %></t>
+                            </div>
+
+                            <div class="new_interview_input">
+                                <%= f.select(:difficultly, ['1','2', '3', '4', '5'], {include_blank: true}, { :class => 'my_style_class' }) %>
+                            </div>
+                        </div>
+
+                        <div class="new_interview_content">
+                            <div class="new_interview_label">
+                                <t><%= f.label :difficultly, "Mức độ hài lòng*", class: "new_interview_label_name" %></t>
+                            </div>
+
+                            <div class="new_interview_input">
+                                <%= f.select(:difficultly, ['1','2', '3', '4', '5'], {include_blank: true}, { :class => 'my_style_class' }) %>
+                            </div>
+                        </div>
+
+                        <div class="new_interview_content">
+                            <div class="new_interview_label">
+                                <t><%= f.label :offer, "Bạn có chấp nhận offer không*", class: "new_interview_label_name" %></t>
+                            </div>
+
+                            <div class="new_interview_input">
+                                <%= f.select(:offer, ['Yes','No'], {include_blank: true}, { :class => 'my_style_class' }) %>
                             </div>
                         </div>
                     </div>
-                </div>
-            </section>
+
+                    <div class="new_interview_content_checkbox">
+                        <input type="checkbox" name="agree-term" id="agree-term" class="agree-term" />
+                        <label for="agree-term" class="label-agree-term"><span><span></span></span> Đồng ý với điều khoản điều kiện</label>
+                    </div>
+
+                    <div class="new_interview_submit">
+                        <%= f.submit "Gửi phản hồi", class: "new_interview_form_submit" %>
+                    </div>
+                <%end%>
+            </div>
         </div>
-    </div>
-<% end %>
+    </body>
+</html>

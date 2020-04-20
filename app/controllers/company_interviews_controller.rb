@@ -5,7 +5,8 @@ class CompanyInterviewsController < ApplicationController
     end
 
     def new
-        @company_interview = Companyinterview.new
+        @company = Company.find(params[:company_id])
+        @company_interview = CompanyInterview.new
     end
 
     def create
@@ -16,8 +17,7 @@ class CompanyInterviewsController < ApplicationController
         @company_interview.user_name = @current_user.name
 
         if @company_interview.save
-            flash[:success] = "Đã lưu lại nhận xét"
-            redirect_to company_company_interviews_path(@company)
+            redirect_to company_path(@company)
         else
             flash[:danger] = "Comment lỗi?"
             # render :new
@@ -39,6 +39,6 @@ class CompanyInterviewsController < ApplicationController
     private
 
     def company_interview_param
-        params.require(:company_interview).permit(:user_name, :position , :content)
+        params.require(:company_interview).permit(:position, :process , :content, :difficultly, :satisfied , :offer)
     end
 end

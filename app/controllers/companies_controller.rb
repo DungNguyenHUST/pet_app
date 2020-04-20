@@ -2,7 +2,9 @@ class CompaniesController < ApplicationController
     def index
         @companies = Company.all
         @company_reviews = CompanyReview.all
-        @company_reply_review = CompanyReplyReview.all
+        @company_interviews = CompanyInterview.all
+        @company_reply_reviews = CompanyReplyReview.all
+        @company_reply_interviews = CompanyReplyInterview.all
     end
 
     def new
@@ -12,6 +14,7 @@ class CompaniesController < ApplicationController
     def create
         @company = Company.new(company_param)
         @company_review = CompanyReview.new
+        @company_interview = CompanyInterview.new
 
         if @company.save
             redirect_to companies_path
@@ -25,6 +28,8 @@ class CompaniesController < ApplicationController
         @company = Company.find params[:id]
         @company_review = CompanyReview.new(company_id: params[:company_id])
         @company_reply_review = CompanyReplyReview.new(company_review_id: params[:company_review_id])
+        @company_interview = CompanyInterview.new(company_id: params[:company_id])
+        @company_reply_interview = CompanyReplyInterview.new(company_interview_id: params[:company_interview_id])
     end
 
     def edit
