@@ -11,11 +11,13 @@ class ProblemsController < ApplicationController
     def create
         @problem = Problem.new(problem_param)
 
+        @problem.user_name = @current_user.name
+
         if @problem.save
             redirect_to problems_path
         else
             flash[:danger] = "Hãy lưu lại thông tin của công ty"
-            # render :new
+            render :new
         end
     end
 
@@ -41,6 +43,6 @@ class ProblemsController < ApplicationController
     private
     # define param for each problem
     def problem_param
-        params.require(:problem).permit(:user_name, :title, :content)
+        params.require(:problem).permit(:title, :content, :difficult)
     end
 end

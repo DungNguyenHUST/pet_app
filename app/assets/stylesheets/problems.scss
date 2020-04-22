@@ -1,3 +1,201 @@
-// Place all the styles related to the Problems controller here.
-// They will automatically be included in application.css.
-// You can use Sass (SCSS) here: https://sass-lang.com/
+///////////////////index//////////////////
+.problem_container{
+    .problem_header{
+        margin-top: 50px;
+        font-size: 30px;
+        font-weight: 500;
+    }
+
+    .problem_table{
+        margin-top: 50px;
+        border-collapse: collapse;
+        width: 100%;
+        height: auto;
+        text-decoration: none;
+        
+        tr:nth-child(even){background-color: #f2f2f2;}
+        
+        tr:hover {background-color: #ddd;}
+        
+        tr th {
+            padding-top: 10px;
+            padding-bottom: 10px;
+            font-size: 16px;
+            text-align: center;
+            background-color: #4CAF50;
+            color: white;
+            text-decoration: none;
+            // .table_th_no{
+            //     margin-left: 20px;
+            // }
+            // .table_th_title{
+            //     margin-left: 30px;
+            // }
+            // .table_th_difficult{
+            //     margin-left: 100px;
+            // }
+            // .table_th_user{
+            //     margin-left: 20px;
+
+            // }
+            // .table_th_date{
+
+            // }
+        }
+
+        tr td {
+            border: 0px solid #ddd;
+            padding: 0px;
+            text-align: left;
+            padding-top: 10px;
+            padding-bottom: 10px;
+            font-size: 15px;
+            text-decoration: none;
+            // .table_td_no{
+            //     margin-left: 20px;
+            // }
+            // .table_td_title{
+            //     margin-left: 30px;
+            // }
+            // .table_td_difficult{
+            //     margin-left: 150px;
+            // }
+            // .table_td_user{
+
+            // }
+            // .table_td_date{
+
+            // }
+        }
+    }
+
+    .new_problem button {
+        // float: right;
+        padding: 8px;
+        margin-top: 25px;
+        margin-bottom: 25px;
+        background: #4CAF50;
+        font-size: 15px;
+        border: 0px;
+        cursor: pointer;
+        text-align: center;
+        color: #ffffff;
+        border-radius: 5px;
+    }
+    
+    .new_problem button:hover {
+        background: #4CAF50;
+    }
+
+}
+
+////////////////show/////////////////////////
+.problem_area{
+    padding:0 !important;
+    clear: both;
+
+    .problem_title{
+        width: 100%;
+        height: 50px;
+        padding-top: 100px;
+        padding-bottom: 100px;
+
+        .problem_title_image{
+            top: 30%;
+            width: 120px;
+            height: 120px;
+            border: 1px solid #f0f0f1;
+            float: left;
+        }
+
+        .problem_title_summary
+        {
+            border: 1px black;
+            margin-top: 10px;
+            .problem_title_name
+            {
+                border-bottom: 1px solid #f0f0f1;
+                font-size: 30px;
+                text-align: left;
+                margin-left: 150px;
+            }
+            .problem_title_short_des
+            {
+                width: 100%;
+                margin-left: 150px;
+                margin-top: 25px;
+                .problem_title_short_des_group1{
+                    float: left;
+                    text-align: left;
+                    font-size: 16px;
+                    .fa {
+                        position: relative;
+                        margin-right: 10px;
+                        // margin-left: 30px;
+                        float: left;
+                    }
+
+                    .checked {
+                        color: #959da5;
+                    }
+                }
+                .problem_title_short_des_group{
+                    float: left;
+                    text-align: left;
+                    font-size: 16px;
+                    .fa {
+                        position: relative;
+                        margin-right: 10px;
+                        margin-left: 30px;
+                        float: left;
+                    }
+
+                    .checked {
+                        color: #959da5;
+                    }
+                }
+            }
+        }
+    }
+    
+    /* Style the tab */
+    .problem_tab {
+        clear: left;
+        overflow: hidden;
+        // border: 1px solid #f0f0f1;
+    }
+
+    .problem_tablinks
+    {
+        // border: 1px solid #f0f0f1;
+    }
+
+    /* Style the buttons that are used to open the tab content */
+    .problem_tab button {
+        background-color: inherit;
+        float: left;
+        border: none;
+        outline: none;
+        cursor: pointer;
+        padding: 14px 16px;
+        transition: 0.3s;
+    }
+
+    /* Change background color of buttons on hover */
+    .problem_tab button:hover {
+        background-color: #ddd;
+    }
+
+    /* Create an active/current tablink class */
+    .problem_tab button.active {
+        background-color: #f0f0f1;
+    }
+
+    /* Style the tab content */
+    .problem_tabcontent {
+        display: none;
+        padding: 6px 12px;
+        // border: 1px solid #f0f0f1;
+        border-top: none;
+    }
+}

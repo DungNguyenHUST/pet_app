@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_04_20_083123) do
+ActiveRecord::Schema.define(version: 2020_04_22_045546) do
 
   create_table "comments", force: :cascade do |t|
     t.string "username"
@@ -86,6 +86,14 @@ ActiveRecord::Schema.define(version: 2020_04_20_083123) do
     t.datetime "updated_at", precision: 6, null: false
   end
 
+  create_table "problem_reply_solutions", force: :cascade do |t|
+    t.string "user_name"
+    t.string "reply_content"
+    t.integer "problem_solution_id"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+  end
+
   create_table "problem_solutions", force: :cascade do |t|
     t.string "user_name"
     t.string "title"
@@ -102,6 +110,7 @@ ActiveRecord::Schema.define(version: 2020_04_20_083123) do
     t.text "content"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.string "difficult"
   end
 
   create_table "users", force: :cascade do |t|

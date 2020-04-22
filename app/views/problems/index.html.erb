@@ -1,36 +1,51 @@
-<%- model_class = Problem -%>
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta name='viewport' content='width=device-width, initial-scale=1'>
+        <!-- Add icon library -->
+        <link rel='stylesheet' href='https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css'>
+    </head>
 
-<div class="top_problem_area">
-    <div class="container">
-        
-        <div class="row align-items-center mb-40">
-            <div class="col-lg-6 col-md-6">
-                <div class="section_title">
-                    <h3>Top problem</h3>
-                </div>
-            </div>
-        </div>
+    <body>
+        <div class='body_content'>
+            <%- model_class = Problem -%>
+                <div class="problem_container">
+                    <div class="problem_header">
+                        <t><%=t '.title', :default => model_class.model_name.human.pluralize.titleize %></t>
+                    </div>
 
-        <% @problems.each do |problem| %>
-            <div class="row">
-                <div class="col-lg-4 col-xl-3 col-md-6">
-                    <div class="single_problem">
-                        <div class="thumb">
-                            <%= link_to (image_tag("1.svg")), image_path("1.svg"), rel: "gallery" %>
-                        </div>
-                        <%= link_to problem.title, problem_path(problem) %>
+                    <table class="table problem_table">
+                        <thead>
+                            <tr>
+                                <th><div class="table_th_no">No</th>
+                                <th><div class="table_th_title">Tiêu đề</th>
+                                <th><div class="table_th_difficult">Độ khó</th>
+                                <th><div class="table_th_user">Người đăng</th>
+                                <th><div class="table_th_date">Ngày tạo</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <% @problems.each do |problem| %>
+                                <tr>
+                                    <td><div class="table_td_no"><%= link_to problem.id, problem_path(problem) %></td>
+                                    <td><div class="table_td_no"><%= link_to problem.title, problem_path(problem) %></td>
+                                    <td><div class="table_td_no"><%= problem.difficult %></td>
+                                    <td><div class="table_td_no"><%= problem.user_name %></td>
+                                    <td><div class="table_td_no"><%= problem.created_at %></td>
+                                    <td>
+                                </tr>
+                            <% end %>
+                        </tbody>
+                    </table>
+
+                    <%# New button %>
+                    <div class="new_problem">
+                        <form action="/action_page.php">
+                            <%= link_to '<button type="submit">Tạo một problem mới</button>'.html_safe, new_problem_path %>
+                        </form>
                     </div>
                 </div>
             </div>
-        <%end%>
-
-        <%# New button %>
-        <div class="new-problem">
-            <form action="/action_page.php">
-            <%= link_to '<button type="submit">Tao Q&A moi</button>'.html_safe, new_problem_path %>
-            </form>
         </div>
-        
-    </div>
-</div>
-
+    </body>
+</html>

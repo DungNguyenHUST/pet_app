@@ -1,15 +1,49 @@
-<div class="box">
-<article class="media">
-    <div class="media-content">
-    <div class="content">
-        <p>
-        <strong><%= company_review.user_name %>:</strong>
-        <%= company_review.score %>
-        <%= company_review.review %>
-        </p>
-    </div>
-    </div>
-    <%= link_to 'Delete', [company_review.company, company_review],
-                method: :delete, class: "button is-danger", data: { confirm: 'Are you sure?' } %>
-</article>
-</div>
+<!-- problem_solutions container -->
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <!-- Add icon library -->
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    </head>
+
+    <body>
+        <div class="user_problem_solution_block">
+            <div class="user_problem_solution_left">
+                <div class="user_avatar">
+                    <%= link_to (image_tag("fpt-software-logo.png")), image_path("fpt-software-logo.png"), rel: "gallery" %>
+                </div>
+            </div>
+
+            <div class="user_problem_solution_cotent">
+                
+                <div class="user_problem_solution_title">
+                    <t><%= problem_solution.title %></t>
+                </div>
+
+                <div class="user_problem_solution_body">
+                    <t><%= problem_solution.content %></t>
+                </div>
+
+                <div class="problem_solution_info">
+                    <div class="problem_solution_toolbar">
+                        <t><%= problem_solution.problem_reply_solutions.count%></t>
+                        <%= link_to '<i class="fa fa-reply fa checked"></i>'.html_safe, new_problem_reply_solution_path(@problem.id, problem_solution.id)%>
+                        <t><%= problem_solution.problem_reply_solutions.count%></t>
+                        <%= link_to '<i class="fa fa-thumbs-up fa checked"></i>'.html_safe, new_problem_reply_solution_path(@problem.id, problem_solution.id)%>
+                        <t><%= problem_solution.problem_reply_solutions.count%></t>
+                        <%= link_to '<i class="fa fa-thumbs-down fa checked"></i>'.html_safe, new_problem_reply_solution_path(@problem.id, problem_solution.id)%>
+                    </div>
+
+                    <div class="user_problem_solution_time">
+                        <t><%= problem_solution.user_name %> lúc <%= problem_solution.created_at %></t>
+                    </div>
+                </div>
+
+                <%= render problem_solution.problem_reply_solutions %>
+                
+            </div>
+            
+        </div>
+    </body>
+</html>
