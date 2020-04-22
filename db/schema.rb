@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_04_22_045546) do
+ActiveRecord::Schema.define(version: 2020_04_22_094721) do
 
   create_table "comments", force: :cascade do |t|
     t.string "username"
@@ -74,6 +74,22 @@ ActiveRecord::Schema.define(version: 2020_04_22_045546) do
     t.string "logoImage"
     t.string "buttonName"
     t.text "searchIcon"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+  end
+
+  create_table "post_comments", force: :cascade do |t|
+    t.string "user_name"
+    t.text "comment_content"
+    t.integer "post_id"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+  end
+
+  create_table "post_reply_comments", force: :cascade do |t|
+    t.string "user_name"
+    t.text "reply_content"
+    t.integer "post_comment_id"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
   end

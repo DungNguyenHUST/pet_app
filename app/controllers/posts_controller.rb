@@ -1,7 +1,7 @@
 class PostsController < ApplicationController
     def index
         @posts = Post.all
-        @comment = Comment.all
+        @post_comments = PostComment.all
     end
 
     def new
@@ -11,24 +11,19 @@ class PostsController < ApplicationController
     def create
         @post = Post.new(post_param)
 
-        @post.username = @current_user.name
+        @post.user_name = @current_user.name
 
         if @post.save
-            redirect_to post_path(@post)
+            redirect_to posts_path
         else
-            flash[:danger] = "Bạn có muốn lưu lại bài viết không?"
+            flash[:danger] = "Hãy lưu lại thông tin của công ty"
             render :new
         end
     end
 
-    # get current user ID
-    def current_user
-        @current_user ||= User.find_by id: session[:user_id]
-    end
-
     def show
         @post = Post.find params[:id]
-        @comment = Comment.new
+        @post_comment = PostComment.new
     end
 
     def edit
@@ -42,12 +37,12 @@ class PostsController < ApplicationController
     def destroy
         @post = Post.find params[:id]
         @post.destroy
-        redirect_to posts_path
+        redirect_to post_path
     end
 
     private
     # define param for each post
     def post_param
-        params.require(:post).permit(:username, :content, :title)
+        params.require(:post).permit(:title, :content)
     end
 end

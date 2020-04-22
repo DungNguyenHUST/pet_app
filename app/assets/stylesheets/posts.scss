@@ -2,59 +2,204 @@
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: https://sass-lang.com/
 
-.table-striped {
-    font-family: "Roboto", sans-serif;
-    border-collapse: collapse;
-    width: 100%;
+///////////////////index//////////////////
+.post_container{
+    .post_header{
+        margin-top: 50px;
+        font-size: 30px;
+        font-weight: 500;
+    }
+
+    .post_table{
+        margin-top: 50px;
+        border-collapse: collapse;
+        width: 100%;
+        height: auto;
+        text-decoration: none;
+        
+        tr:nth-child(even){background-color: #f2f2f2;}
+        
+        tr:hover {background-color: #ddd;}
+        
+        tr th {
+            padding-top: 10px;
+            padding-bottom: 10px;
+            font-size: 16px;
+            text-align: center;
+            background-color: #4CAF50;
+            color: white;
+            text-decoration: none;
+            // .table_th_no{
+            //     margin-left: 20px;
+            // }
+            // .table_th_title{
+            //     margin-left: 30px;
+            // }
+            // .table_th_difficult{
+            //     margin-left: 100px;
+            // }
+            // .table_th_user{
+            //     margin-left: 20px;
+
+            // }
+            // .table_th_date{
+
+            // }
+        }
+
+        tr td {
+            border: 0px solid #ddd;
+            padding: 0px;
+            text-align: left;
+            padding-top: 10px;
+            padding-bottom: 10px;
+            font-size: 15px;
+            text-decoration: none;
+            // .table_td_no{
+            //     margin-left: 20px;
+            // }
+            // .table_td_title{
+            //     margin-left: 30px;
+            // }
+            // .table_td_difficult{
+            //     margin-left: 150px;
+            // }
+            // .table_td_user{
+
+            // }
+            // .table_td_date{
+
+            // }
+        }
+    }
+
+    .new_post button {
+        // float: right;
+        padding: 8px;
+        margin-top: 25px;
+        margin-bottom: 25px;
+        background: #4CAF50;
+        font-size: 15px;
+        border: 0px;
+        cursor: pointer;
+        text-align: center;
+        color: #ffffff;
+        border-radius: 5px;
+    }
+    
+    .new_post button:hover {
+        background: #4CAF50;
+    }
+
 }
 
-.table-striped td, .table-striped th {
-    border: 0px solid #ddd;
-    padding: 8px;
-}
+////////////////show/////////////////////////
+.post_area{
+    padding:0 !important;
+    clear: both;
 
-.table-striped tr:nth-child(even){background-color: #f2f2f2;}
+    .post_title{
+        width: 100%;
+        height: 50px;
+        padding-top: 100px;
+        padding-bottom: 100px;
 
-.table-striped tr:hover {background-color: #ddd;}
+        .post_title_image{
+            top: 30%;
+            width: 120px;
+            height: 120px;
+            border: 1px solid #f0f0f1;
+            float: left;
+        }
 
-.table-striped th {
-    padding-top: 12px;
-    padding-bottom: 12px;
-    text-align: left;
-    background-color: #4CAF50;
-    color: white;
-}
+        .post_title_summary
+        {
+            border: 1px black;
+            margin-top: 10px;
+            .post_title_name
+            {
+                border-bottom: 1px solid #f0f0f1;
+                font-size: 30px;
+                text-align: left;
+                margin-left: 150px;
+            }
+            .post_title_short_des
+            {
+                width: 100%;
+                margin-left: 150px;
+                margin-top: 25px;
+                .post_title_short_des_group1{
+                    float: left;
+                    text-align: left;
+                    font-size: 16px;
+                    .fa {
+                        position: relative;
+                        margin-right: 10px;
+                        // margin-left: 30px;
+                        float: left;
+                    }
 
-.new-thread-container button {
-    // float: right;
-    padding: 6px;
-    margin-top: 8px;
-    margin-right: 16px;
-    background: #4CAF50;
-    font-size: 15px;
-    border: 0px;
-    cursor: pointer;
-    text-align: center;
-    color: #ffffff;
-    border-radius: 5px;
-}
+                    .checked {
+                        color: #959da5;
+                    }
+                }
+                .post_title_short_des_group{
+                    float: left;
+                    text-align: left;
+                    font-size: 16px;
+                    .fa {
+                        position: relative;
+                        margin-right: 10px;
+                        margin-left: 30px;
+                        float: left;
+                    }
 
-.new-thread-container button:hover {
-    background: #4CAF50;
-}
+                    .checked {
+                        color: #959da5;
+                    }
+                }
+            }
+        }
+    }
+    
+    /* Style the tab */
+    .post_tab {
+        clear: left;
+        overflow: hidden;
+        // border: 1px solid #f0f0f1;
+    }
 
-.dl-horizontal
-{
-    width: 100%;
-    border: 1px solid #ebebeb;
-    border-radius: 5px;
-    -moz-border-radius: 5px;
-    -webkit-border-radius: 5px;
-    -o-border-radius: 5px;
-    -ms-border-radius: 5px;
-    padding: 17px 20px;
-    box-sizing: border-box;
-    font-size: 14px;
-    font-weight: 500;
-    color: #222; 
+    .post_tablinks
+    {
+        // border: 1px solid #f0f0f1;
+    }
+
+    /* Style the buttons that are used to open the tab content */
+    .post_tab button {
+        background-color: inherit;
+        float: left;
+        border: none;
+        outline: none;
+        cursor: pointer;
+        padding: 14px 16px;
+        transition: 0.3s;
+    }
+
+    /* Change background color of buttons on hover */
+    .post_tab button:hover {
+        background-color: #ddd;
+    }
+
+    /* Create an active/current tablink class */
+    .post_tab button.active {
+        background-color: #f0f0f1;
+    }
+
+    /* Style the tab content */
+    .post_tabcontent {
+        display: none;
+        padding: 6px 12px;
+        // border: 1px solid #f0f0f1;
+        border-top: none;
+    }
 }
