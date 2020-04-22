@@ -25,8 +25,12 @@ Rails.application.routes.draw do
   get '/company_reply_interviews/new/(:company_id, :company_interview_id)', to: 'company_reply_interviews#new', as: :new_company_reply_interview
 
   resources :problems do
-    resources :problem_solutions
+    resources :problem_solutions do
+      resources :problem_reply_solutions
+    end
   end
+
+  get '/problem_reply_solutions/new/(:problem_id, :problem_solution_id)', to: 'problem_reply_solutions#new', as: :new_problem_reply_solution
 
   # New post
   get 'posts/new' => 'posts#new'

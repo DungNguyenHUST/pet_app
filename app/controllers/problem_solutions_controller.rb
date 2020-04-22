@@ -5,6 +5,7 @@ class ProblemSolutionsController < ApplicationController
     end
 
     def new
+        @problem = Problem.find(params[:problem_id])
         @problem_solution = ProblemSolution.new
     end
 
@@ -16,11 +17,10 @@ class ProblemSolutionsController < ApplicationController
         @problem_solution.user_name = @current_user.name
 
         if @problem_solution.save
-            flash[:success] = "Đã lưu lại nhận xét"
-            redirect_to problem_problem_solutions_path(@problem)
+            redirect_to problem_path(@problem)
         else
             flash[:danger] = "Comment lỗi?"
-            # render :new
+            render :new
         end
     end
     
