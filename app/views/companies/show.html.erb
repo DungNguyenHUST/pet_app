@@ -12,7 +12,9 @@
                 <div class="company_area">
                     <div class="company_title">
                         <div class="company_title_image">
-                            <img src="<%= "/assets/fpt-software-logo.png" %>" alt="Snow" style="width:100%;">
+                            <%if @company.avatar.attached?%>
+                                <%= image_tag @company.avatar.variant(resize: "100x100") %>
+                            <%end%>
                         </div>
 
                         <div class="company_title_summary">
