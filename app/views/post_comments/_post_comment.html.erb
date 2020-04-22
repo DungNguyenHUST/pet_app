@@ -1,0 +1,49 @@
+<!-- post_comments container -->
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <!-- Add icon library -->
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    </head>
+
+    <body>
+        <div class="user_post_comment_block">
+            <div class="user_post_comment_left">
+                <div class="user_avatar">
+                    <%= link_to (image_tag("fpt-software-logo.png")), image_path("fpt-software-logo.png"), rel: "gallery" %>
+                </div>
+            </div>
+
+            <div class="user_post_comment_cotent">
+                
+                <div class="user_post_comment_title">
+                     <t>Title here</t>
+                </div>
+
+                <div class="user_post_comment_body">
+                    <t><%= post_comment.comment_content %></t>
+                </div>
+
+                <div class="post_comment_info">
+                    <div class="post_comment_toolbar">
+                        <t><%= post_comment.post_reply_comments.count%></t>
+                        <%= link_to '<i class="fa fa-reply fa checked"></i>'.html_safe, new_post_reply_comment_path(@post.id, post_comment.id)%>
+                        <t><%= post_comment.post_reply_comments.count%></t>
+                        <%= link_to '<i class="fa fa-thumbs-up fa checked"></i>'.html_safe, new_post_reply_comment_path(@post.id, post_comment.id)%>
+                        <t><%= post_comment.post_reply_comments.count%></t>
+                        <%= link_to '<i class="fa fa-thumbs-down fa checked"></i>'.html_safe, new_post_reply_comment_path(@post.id, post_comment.id)%>
+                    </div>
+
+                    <div class="user_post_comment_time">
+                        <t><%= post_comment.user_name %> lúc <%= post_comment.created_at %></t>
+                    </div>
+                </div>
+
+                <%= render post_comment.post_reply_comments %>
+                
+            </div>
+            
+        </div>
+    </body>
+</html>

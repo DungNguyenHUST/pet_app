@@ -1,36 +1,80 @@
-<%- model_class = Post -%>
-<div class="page-header">
-  <h1><%=t '.title', :default => model_class.model_name.human.titleize %></h1>
-</div>
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta name='viewport' content='width=device-width, initial-scale=1'>
+        <!-- Add icon library -->
+        <link rel='stylesheet' href='https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css'>
+    </head>
 
-<dl class="dl-horizontal">
-  <dt><strong><%= model_class.human_attribute_name(:username) %>:</strong></dt>
-  <dd><%= @post.username %></dd>
-  <dt><strong><%= model_class.human_attribute_name(:content) %>:</strong></dt>
-  <dd><%= @post.content %></dd>
-  <dt><strong><%= model_class.human_attribute_name(:title) %>:</strong></dt>
-  <dd><%= @post.title %></dd>
-</dl>
+    <body>
+        <div class='body_content'>
+            <%- model_class = Post -%>
+                <div class="post_area">
+                    <div class="post_title">
+                        <div class="post_title_image">
+                            <img src="<%= "/assets/fpt-software-logo.png" %>" alt="Snow" style="width:100%;">
+                        </div>
 
-<section class="section comments">
-    <div class="container">
-        <div class="comment-content">
-          <h2 class="subtitle is-5"><strong><%= @post.comments.count %></strong> Nhận xét</h2>
-          <%= render @post.comments %>
-         </div>
-        
-        <div class="comment-form">
-          <%= render 'comments/form' %>
+                        <div class="post_title_summary">
+                            <div class="post_title_name">
+                                <t><%= @post.title %></t>
+                            </div>
+
+                            <div class="post_title_short_des">
+                                <div class="post_title_short_des_group1">
+                                    <span class="fa fa-map-marker fa-2x checked"></span>
+                                    <t><%= @post.username %></t>
+                                </div>
+
+                                <div class="post_title_short_des_group">
+                                    <span class="fa fa-history fa-2x checked"></span>
+                                    <t><%= @post.created_at %></t>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Tab links -->
+                    <div class="post_tab">
+                        <button class="post_tablinks active" onclick="openContent(event, 'post')"><h3>Mô tả chính</h3></button>
+                        <button class="post_tablinks" onclick="openContent(event, 'Solvepost')"><h3>Giải pháp</h3></button>
+                    </div>
+
+                    <!-- Tab content -->
+                    <div id="post" class="post_tabcontent" style="display:block;">
+                        <%= @post.content %>
+                        <%# New comment button %>
+                        <div class="new_comment_button">
+                            <form action="/action_page.php">
+                                <%= link_to '<button type="submit"> <i class="fa fa-edit"></i> Comment </button>'.html_safe, new_post_post_comment_path(@post) %>
+                            </form>
+                        </div>
+                    </div>
+
+                    <div id="Solvepost" class="post_tabcontent">
+                        <%= render @post.post_comments %>
+                    </div>
+
+                    <script>
+                        function openContent(evt, cityName) {
+                            var i, post_tabcontent, post_tablinks;
+                            post_tabcontent = document.getElementsByClassName("post_tabcontent");
+                            for (i = 0; i < post_tabcontent.length; i++) {
+                                post_tabcontent[i].style.display = "none";
+                            }
+
+                            post_tablinks = document.getElementsByClassName("post_tablinks");
+                            for (i = 0; i < post_tablinks.length; i++) {
+                                post_tablinks[i].className = post_tablinks[i].className.replace(" active", "");
+                            }
+
+                            document.getElementById(cityName).style.display = "block";
+                            evt.currentTarget.className += " active";
+                        }
+                    </script>
+
+                </div>
+            </div>
         </div>
-    </div>
-</section>
-
-<%= link_to t('.back', :default => t("helpers.links.back")),
-              posts_path, :class => 'btn btn-default'  %>
-<%= link_to t('.edit', :default => t("helpers.links.edit")),
-              edit_post_path(@post), :class => 'btn btn-default' %>
-<%= link_to t('.destroy', :default => t("helpers.links.destroy")),
-              post_path(@post),
-              :method => 'delete',
-              :data => { :confirm => t('.confirm', :default => t("helpers.links.confirm", :default => 'Are you sure?')) },
-              :class => 'btn btn-danger' %>
+    </body>
+</html>
