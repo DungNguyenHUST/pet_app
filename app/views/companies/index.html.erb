@@ -12,7 +12,7 @@
             <div class="companies_area">
                     
                 <div class="section_title">
-                    <h3>Danh sách các công ty</h3>
+                    <t>Danh sách công ty</t>
                 </div>
 
                 <% @companies.each do |company| %>
@@ -25,7 +25,7 @@
                         </div>
 
                         <div class="company_name">
-                            <p><font size="4"><%= company.name%></font></p>
+                            <t><%= company.name%></t>
                         </div>
                         
                         <div class="company_summary">
@@ -40,15 +40,15 @@
                             </div>
 
                             <div class="review_point">
-                                <p><i class="fa fa-edit"></i> <%= company.company_reviews.count %> đánh giá (4.1/5 điểm)</p>
+                                <t><i class="fa fa-edit"></i> <%= company.company_reviews.count %> đánh giá (4.1/5 điểm)</t>
                             </div>
 
                             <div class="company_location">
-                                <p><i class="fa fa-location-arrow"></i> <%= company.location %></p>
+                                <p><i class="fa fa-map-marker"></i> <%= company.location %></p>
                             </div>
                         </div>
 
-                        <div class="company_new_review">
+                        <div class="company_new_company">
                             <%= link_to '<button type="button">Viết đánh giá </button>'.html_safe, new_company_company_review_path(company) %>
                         </div>
 
