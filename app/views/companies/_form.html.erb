@@ -27,11 +27,41 @@
 
                         <div class="new_company_content">
                             <div class="new_company_label">
+                                <t><%= f.label :location, "Địa điểm", class: "new_company_label_name" %></t>
+                            </div>
+
+                            <div class="new_company_input">
+                                <%= f.select(:location, ['Hà Nội','Đà Nẵng','TP Hồ Chí Minh', 'Other' ], {include_blank: true}, { :class => 'my_style_class' }) %>
+                            </div>
+                        </div>
+
+                        <div class="new_company_content">
+                            <div class="new_company_label">
+                                <t><%= f.label :country, "Quốc gia", class: "new_company_label_name" %></t>
+                            </div>
+
+                            <div class="new_company_input">
+                                <%= f.text_field :country, class: "new_company_form_input", placeholder: "  Nhập quốc gia" %>
+                            </div>
+                        </div>
+
+                        <div class="new_company_content">
+                            <div class="new_company_label">
+                                <t><%= f.label :website, "Địa chỉ website*", class: "new_company_label_name" %></t>
+                            </div>
+
+                            <div class="new_company_input">
+                                <%= f.text_field :website, class: "new_company_form_input", placeholder: "  Nhập địa chỉ website" %>
+                            </div>
+                        </div>
+
+                        <div class="new_company_content">
+                            <div class="new_company_label">
                                 <t><%= f.label :time_establish, "Năm thành lập*", class: "new_company_label_name" %></t>
                             </div>
 
                             <div class="new_company_input_time">
-                                <%= f.date_field :time_establish, class: "new_company_form_input", placeholder: "  Nhập tên hoặc email của bạn" %>
+                                <%= f.date_field :time_establish, class: "new_company_form_input" %>
                             </div>
 
                         </div>
@@ -42,7 +72,7 @@
                             </div>
 
                             <div class="new_company_input_time">
-                                <%= f.date_field :time_start, class: "new_company_form_input", placeholder: "  Nhập tên hoặc email của bạn" %>
+                                <%= f.time_field :time_start, class: "new_company_form_input"%>
                             </div>
                         </div>
 
@@ -52,17 +82,7 @@
                             </div>
 
                             <div class="new_company_input_time">
-                                <%= f.date_field :time_end, class: "new_company_form_input", placeholder: "  Nhập tên hoặc email của bạn" %>
-                            </div>
-                        </div>
-
-                        <div class="new_company_content">
-                            <div class="new_company_label">
-                                <t><%= f.label :location, "Địa điểm", class: "new_company_label_name" %></t>
-                            </div>
-
-                            <div class="new_company_input">
-                                <%= f.select(:location, ['Hà Nội','Đà Nẵng','TP Hồ Chí Minh', 'Other' ], {include_blank: true}, { :class => 'my_style_class' }) %>
+                                <%= f.time_field :time_end, class: "new_company_form_input" %>
                             </div>
                         </div>
                     </div>
@@ -74,17 +94,17 @@
                             </div>
 
                             <div class="new_company_input">
-                                <%= f.select(:size, ['1 - 100','100 - 1000', '>1000'], {include_blank: true}, { :class => 'my_style_class' }) %>
+                                <%= f.select(:size, ['1-100','100-1000', '>1000'], {include_blank: true}, { :class => 'my_style_class' }) %>
                             </div>
                         </div>
 
                         <div class="new_company_content">
                             <div class="new_company_label">
-                                <t><%= f.label :field_operetion, "Lĩnh vực chính*", class: "new_company_label_name" %></t>
+                                <t><%= f.label :field_operetion, "Lĩnh vực hoạt động chính*", class: "new_company_label_name" %></t>
                             </div>
 
                             <div class="new_company_input">
-                                <%= f.select(:field_operetion, ['IT','100 - 1000', '>1000'], {include_blank: true}, { :class => 'my_style_class' }) %>
+                                <%= f.select(:field_operetion, ['IT', 'Automotive', 'Web', 'Embeeded', 'Other'], {include_blank: true}, { :class => 'my_style_class' }) %>
                             </div>
                         </div>
                     </div>
@@ -92,11 +112,23 @@
                     <div class="new_company_section">
                         <div class="new_company_content">
                             <div class="new_company_label">
-                                <t><%= f.label :overview, "Title", class: "new_company_label" %></t>
+                                <t><%= f.label :content, "Mô tả chung", class: "new_company_label" %></t>
                             </div>
                             
                             <div class="new_company_input">
-                                <%= f.text_field :overview, class: "new_company_form_input", placeholder: "  Nhập mật khẩu của bạn" %>
+                                <%= f.rich_text_area :content, class: "new_company_form_input", placeholder: "  Nhập mô tả chính" %>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="new_company_section">
+                        <div class="new_company_content">
+                            <div class="new_company_label">
+                                <t><%= f.label :policy, "Chính sách nổi bật", class: "new_company_label" %></t>
+                            </div>
+                            
+                            <div class="new_company_input">
+                                <%= f.rich_text_area :policy, class: "new_company_form_input", placeholder: "  Nhập nội dung" %>
                             </div>
                         </div>
                     </div>
@@ -113,13 +145,8 @@
                         </div>
                     </div>
 
-                    <div class="new_company_content_checkbox">
-                        <input type="checkbox" name="agree-term" id="agree-term" class="agree-term" />
-                        <label for="agree-term" class="label-agree-term"><span><span></span></span> Đồng ý với điều khoản điều kiện</label>
-                    </div>
-
                     <div class="new_company_submit">
-                        <%= f.submit "Gửi đánh giá", class: "new_company_form_submit" %>
+                        <%= f.submit "Thêm công ty mới", class: "new_company_form_submit" %>
                     </div>
                 <%end%>
             </div>

@@ -11,7 +11,9 @@
         <div class="user_review_block">
             <div class="user_review_left">
                 <div class="user_avatar">
-                    <%= link_to (image_tag("fpt-software-logo.png")), image_path("fpt-software-logo.png"), rel: "gallery" %>
+                    <%if @company.avatar.attached?%>
+                        <img> <%= image_tag @company.avatar.variant(resize: "120x120") %></img>
+                    <%end%>
                 </div>
             </div>
 

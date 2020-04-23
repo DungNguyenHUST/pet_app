@@ -10,10 +10,20 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_04_22_105345) do
+ActiveRecord::Schema.define(version: 2020_04_23_105302) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "action_text_rich_texts", force: :cascade do |t|
+    t.string "name", null: false
+    t.text "body"
+    t.string "record_type", null: false
+    t.bigint "record_id", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["record_type", "record_id", "name"], name: "index_action_text_rich_texts_uniqueness", unique: true
+  end
 
   create_table "active_storage_attachments", force: :cascade do |t|
     t.string "name", null: false
@@ -49,6 +59,7 @@ ActiveRecord::Schema.define(version: 2020_04_22_105345) do
     t.string "field_operetion"
     t.datetime "time_start"
     t.datetime "time_end"
+    t.string "country"
   end
 
   create_table "company_interviews", force: :cascade do |t|
@@ -94,6 +105,12 @@ ActiveRecord::Schema.define(version: 2020_04_22_105345) do
     t.text "pros"
     t.text "cons"
     t.text "review_title"
+    t.integer "career_score"
+    t.integer "manager_score"
+    t.integer "ot_score"
+    t.integer "salary_score"
+    t.integer "work_env_score"
+    t.boolean "working_status"
   end
 
   create_table "post_comments", force: :cascade do |t|

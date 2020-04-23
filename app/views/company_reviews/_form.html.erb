@@ -15,6 +15,17 @@
                     </div>
 
                     <div class="new_review_section">
+
+                        <div class="new_review_content">
+                            <div class="new_review_label">
+                                <t><%= f.label :working_status, "Bạn có còn làm việc ở đây không", class: "new_review_label_name" %></t>
+                            </div>
+
+                            <div class="new_review_input">
+                                <%= f.select(:working_status, ['Có','Không'], {include_blank: true}, { :class => 'my_style_class' }) %>
+                            </div>
+                        </div>
+
                         <div class="new_review_content">
                             <div class="new_review_label">
                                 <t><%= f.label :start_date, "Thời gian bắt đầu*", class: "new_review_label_name" %></t>
@@ -43,12 +54,62 @@
                             </div>
 
                             <div class="new_review_input">
-                                <%= f.select(:score, ['Project Manager','Sennior','Junnior', 'Fresher' ], {include_blank: true}, { :class => 'my_style_class' }) %>
+                                <%= f.select(:position, ['Project Manager','Sennior','Junnior', 'Fresher' ], {include_blank: true}, { :class => 'my_style_class' }) %>
                             </div>
                         </div>
                     </div>
 
                     <div class="new_review_section">
+                        <div class="new_review_content">
+                            <div class="new_review_label">
+                                <t><%= f.label :work_env_score, "Môi trường làm việc*", class: "new_review_label_name" %></t>
+                            </div>
+
+                            <div class="new_review_input">
+                                <%= f.select(:work_env_score, ['1','2', '3', '4', '5'], {include_blank: true}, { :class => 'my_style_class' }) %>
+                            </div>
+                        </div>
+
+                        <div class="new_review_content">
+                            <div class="new_review_label">
+                                <t><%= f.label :salary_score, "Lương bổng*", class: "new_review_label_name" %></t>
+                            </div>
+
+                            <div class="new_review_input">
+                                <%= f.select(:salary_score, ['1','2', '3', '4', '5'], {include_blank: true}, { :class => 'my_style_class' }) %>
+                            </div>
+                        </div>
+
+                        <div class="new_review_content">
+                            <div class="new_review_label">
+                                <t><%= f.label :ot_score, "Chế độ làm thêm giờ*", class: "new_review_label_name" %></t>
+                            </div>
+
+                            <div class="new_review_input">
+                                <%= f.select(:ot_score, ['1','2', '3', '4', '5'], {include_blank: true}, { :class => 'my_style_class' }) %>
+                            </div>
+                        </div>
+
+                        <div class="new_review_content">
+                            <div class="new_review_label">
+                                <t><%= f.label :manager_score, "Quản lý, cấp trên*", class: "new_review_label_name" %></t>
+                            </div>
+
+                            <div class="new_review_input">
+                                <%= f.select(:manager_score, ['1','2', '3', '4', '5'], {include_blank: true}, { :class => 'my_style_class' }) %>
+                            </div>
+                        </div>
+
+                        <div class="new_review_content">
+                            <div class="new_review_label">
+                                <t><%= f.label :career_score, "Cơ hội thăng tiến*", class: "new_review_label_name" %></t>
+                            </div>
+
+                            <div class="new_review_input">
+                                <%= f.select(:career_score, ['1','2', '3', '4', '5'], {include_blank: true}, { :class => 'my_style_class' }) %>
+                            </div>
+                        </div>
+
                         <div class="new_review_content">
                             <div class="new_review_label">
                                 <t><%= f.label :score, "Cho điểm công ty này*", class: "new_review_label_name" %></t>

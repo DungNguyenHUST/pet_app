@@ -13,7 +13,7 @@
                     <div class="company_title">
                         <div class="company_title_image">
                             <%if @company.avatar.attached?%>
-                                <%= image_tag @company.avatar.variant(resize: "100x100") %>
+                                <img> <%= image_tag @company.avatar.variant(resize: "120x120") %></img>
                             <%end%>
                         </div>
 
@@ -24,23 +24,23 @@
 
                             <div class="company_title_short_des">
                                 <div class="company_title_short_des_group1">
-                                    <span class="fa fa-map-marker fa-2x checked"></span>
-                                    <t>Hà Nội - Việt Nam</t>
+                                    <span class="fa fa-map-marker fa checked"></span>
+                                    <t><%= @company.location %></t>
                                 </div>
 
                                 <div class="company_title_short_des_group">
-                                    <span class="fa fa-flag fa-2x checked"></span>
-                                    <t>Korea</t>
+                                    <span class="fa fa-flag fa checked"></span>
+                                    <t><%= @company.country %></t>
                                 </div>
 
                                 <div class="company_title_short_des_group">
-                                    <span class="fa fa-users fa-2x checked"></span>
-                                    <t>100 - 1000</t>
+                                    <span class="fa fa-users fa checked"></span>
+                                    <t><%= @company.size %></t>
                                 </div>
 
                                 <div class="company_title_short_des_group">
-                                    <span class="fa fa-calendar fa-2x checked"></span>
-                                    <t>9AM - 6PM (Mon - Fri)</t>
+                                    <span class="fa fa-calendar fa checked"></span>
+                                    <t><%= @company.time_start %> - <%= @company.time_end %></t>
                                 </div>
                             </div>
                         </div>
@@ -49,7 +49,8 @@
                     <!-- Tab links -->
                     <div class="company_tab">
                         <button class="company_tablinks active" onclick="openContent(event, 'Company')"><h3>Công ty</h3></button>
-                        <button class="company_tablinks" onclick="openContent(event, 'CompanyReviews')"><h3>Đánh giá công ty</h3></button>
+                        <button class="company_tablinks" onclick="openContent(event, 'CompanyJoins')"><h3>Tại sao nên làm việc ở đây</h3></button>
+                        <button class="company_tablinks" onclick="openContent(event, 'CompanyReviews')"><h3>Đánh về giá công ty</h3></button>
                         <button class="company_tablinks" onclick="openContent(event, 'CompanyInterviews')"><h3>Kinh nghiệm phỏng vấn</h3></button>
                         <button class="company_tablinks" onclick="openContent(event, 'CompanyJobs')"><h3>Tuyển dụng</h3></button>
                     </div>
@@ -59,9 +60,13 @@
                         <%= render :partial => 'companies/profile' %>
                     </div>
 
+                    <div id="CompanyJoins" class="company_tabcontent">
+                        <%= render :partial => 'companies/why_join' %>
+                    </div>
+
                     <div id="CompanyReviews" class="company_tabcontent">
                         <%= render :partial => 'company_reviews/review_score' %>
-                        <span class="user_comment_heading"> Tất cả <%= @company.company_reviews.count%> Đánh giá về công ty </span>
+                        <span class="user_comment_heading"> Tất cả <%= @company.company_reviews.count%> đánh giá về công ty này </span>
                         <%= render @company.company_reviews %>
                     </div>
 
