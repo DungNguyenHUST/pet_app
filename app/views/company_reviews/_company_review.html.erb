@@ -51,10 +51,12 @@
                     <div class="review_toolbar">
                         <t><%= company_review.company_reply_reviews.count%></t>
                         <%= link_to '<i class="fa fa-reply fa checked"></i>'.html_safe, new_company_reply_review_path(@company.id, company_review.id)%>
-                        <t><%= company_review.company_reply_reviews.count%></t>
-                        <%= link_to '<i class="fa fa-thumbs-up fa checked"></i>'.html_safe, new_company_reply_review_path(@company.id, company_review.id)%>
-                        <t><%= company_review.company_reply_reviews.count%></t>
-                        <%= link_to '<i class="fa fa-thumbs-down fa checked"></i>'.html_safe, new_company_reply_review_path(@company.id, company_review.id)%>
+                        
+                        <t><%= company_review.company_like_reviews.count%></t>
+                        <%= link_to '<i class="fa fa-thumbs-up fa checked"></i>'.html_safe, company_company_review_company_like_reviews_path(@company, company_review), method: :post%>
+                        
+                        <t><%= company_review.company_dislike_reviews.count%></t>
+                        <%= link_to '<i class="fa fa-thumbs-down fa checked"></i>'.html_safe, company_company_review_company_dislike_reviews_path(@company, company_review), method: :post%>
                     </div>
 
                     <div class="user_review_time">

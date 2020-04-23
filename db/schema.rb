@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_04_23_105302) do
+ActiveRecord::Schema.define(version: 2020_04_23_163025) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -62,6 +62,15 @@ ActiveRecord::Schema.define(version: 2020_04_23_105302) do
     t.string "country"
   end
 
+  create_table "company_dislike_reviews", force: :cascade do |t|
+    t.bigint "company_review_id", null: false
+    t.bigint "user_id", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["company_review_id"], name: "index_company_dislike_reviews_on_company_review_id"
+    t.index ["user_id"], name: "index_company_dislike_reviews_on_user_id"
+  end
+
   create_table "company_interviews", force: :cascade do |t|
     t.string "user_name"
     t.string "position"
@@ -73,6 +82,15 @@ ActiveRecord::Schema.define(version: 2020_04_23_105302) do
     t.integer "satisfied"
     t.integer "process"
     t.boolean "offer"
+  end
+
+  create_table "company_like_reviews", force: :cascade do |t|
+    t.bigint "company_review_id", null: false
+    t.bigint "user_id", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["company_review_id"], name: "index_company_like_reviews_on_company_review_id"
+    t.index ["user_id"], name: "index_company_like_reviews_on_user_id"
   end
 
   create_table "company_reply_interviews", force: :cascade do |t|
@@ -89,6 +107,15 @@ ActiveRecord::Schema.define(version: 2020_04_23_105302) do
     t.integer "company_review_id"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+  end
+
+  create_table "company_review_likes", force: :cascade do |t|
+    t.bigint "company_review_id", null: false
+    t.bigint "user_id", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["company_review_id"], name: "index_company_review_likes_on_company_review_id"
+    t.index ["user_id"], name: "index_company_review_likes_on_user_id"
   end
 
   create_table "company_reviews", force: :cascade do |t|
@@ -174,4 +201,10 @@ ActiveRecord::Schema.define(version: 2020_04_23_105302) do
   end
 
   add_foreign_key "active_storage_attachments", "active_storage_blobs", column: "blob_id"
+  add_foreign_key "company_dislike_reviews", "company_reviews"
+  add_foreign_key "company_dislike_reviews", "users"
+  add_foreign_key "company_like_reviews", "company_reviews"
+  add_foreign_key "company_like_reviews", "users"
+  add_foreign_key "company_review_likes", "company_reviews"
+  add_foreign_key "company_review_likes", "users"
 end
