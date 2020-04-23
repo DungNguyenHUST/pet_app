@@ -2,6 +2,8 @@ class Company < ApplicationRecord
     has_many :company_reviews, dependent: :destroy
     has_many :company_interviews, dependent: :destroy
     has_one_attached :avatar
+    has_rich_text :content
+    has_rich_text :policy
 
     validate :image_type
 

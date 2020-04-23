@@ -49,6 +49,6 @@ class CompaniesController < ApplicationController
     private
     # define param for each company
     def company_param
-        params.require(:company).permit(:name, :time_establish, :time_start, :time_end, :location, :size, :field_operetion, :overview, :avatar)
+        params.require(:company).permit(:name, :location, :country, :website, :time_establish, :time_start, :time_end, :size, :field_operetion, :content, :policy, :avatar)
     end
 end
