@@ -1,0 +1,2 @@
+module CompanyDislikeReviewsHelper
+end

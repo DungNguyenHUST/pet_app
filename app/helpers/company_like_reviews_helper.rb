@@ -1,0 +1,2 @@
+module CompanyLikeReviewsHelper
+end

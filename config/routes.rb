@@ -14,6 +14,8 @@ Rails.application.routes.draw do
   resources :companies do
     resources :company_reviews do
       resources :company_reply_reviews
+      resources :company_like_reviews
+      resources :company_dislike_reviews
     end
     resources :company_interviews do
       resources :company_reply_interviews
