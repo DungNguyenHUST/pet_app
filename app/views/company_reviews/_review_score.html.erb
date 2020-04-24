@@ -26,14 +26,15 @@
                     <t>Môi trường làm việc</t>
                 </div>
                 <div class="review_score_star">
-                    <span class="fa fa-star checked"></span>
-                    <span class="fa fa-star checked"></span>
-                    <span class="fa fa-star checked"></span>
-                    <span class="fa fa-star checked"></span>
-                    <span class="fa fa-star"></span>
+                    <%rating_work_env_score.to_i.times do%>
+                        <span class="fa fa-star checked"></span>
+                    <%end%>
+                    <%(5 - rating_work_env_score.to_i).to_i.times do%>
+                        <span class="fa fa-star checked_black"></span>
+                    <%end%>
                 </div>
                 <div class="review_point">
-                    <t>4.1/5 điểm</t>
+                    <t><%=rating_work_env_score%></t>/5 điểm</t>
                 </div>
             </div>
 
@@ -42,14 +43,15 @@
                     <t>Chế độ đãi ngộ</t>
                 </div>
                 <div class="review_score_star">
-                    <span class="fa fa-star checked"></span>
-                    <span class="fa fa-star checked"></span>
-                    <span class="fa fa-star checked"></span>
-                    <span class="fa fa-star checked"></span>
-                    <span class="fa fa-star"></span>
+                    <%rating_salary_score.to_i.times do%>
+                        <span class="fa fa-star checked"></span>
+                    <%end%>
+                    <%(5 - rating_salary_score.to_i).to_i.times do%>
+                        <span class="fa fa-star checked_black"></span>
+                    <%end%>
                 </div>
                 <div class="review_point">
-                    <t>4.1/5 điểm</t>
+                    <t><%=rating_salary_score%></t>/5 điểm</t>
                 </div>
             </div>
 
@@ -58,14 +60,15 @@
                     <t>Làm thêm, OT</t>
                 </div>
                 <div class="review_score_star">
-                    <span class="fa fa-star checked"></span>
-                    <span class="fa fa-star checked"></span>
-                    <span class="fa fa-star checked"></span>
-                    <span class="fa fa-star checked"></span>
-                    <span class="fa fa-star"></span>
+                    <%(rating_ot_score).to_i.times do%>
+                        <span class="fa fa-star checked"></span>
+                    <%end%>
+                    <%(5 - (rating_ot_score).to_i).to_i.times do%>
+                        <span class="fa fa-star checked_black"></span>
+                    <%end%>
                 </div>
                 <div class="review_point">
-                    <t>4.1/5 điểm</t>
+                    <t><%=rating_ot_score%></t>/5 điểm</t>
                 </div>
             </div>
 
@@ -74,14 +77,15 @@
                     <t>Quản lý, cấp trên</t>
                 </div>
                 <div class="review_score_star">
-                    <span class="fa fa-star checked"></span>
-                    <span class="fa fa-star checked"></span>
-                    <span class="fa fa-star checked"></span>
-                    <span class="fa fa-star checked"></span>
-                    <span class="fa fa-star"></span>
+                    <%(rating_manager_score).to_i.times do%>
+                        <span class="fa fa-star checked"></span>
+                    <%end%>
+                    <%(5 - (rating_manager_score).to_i).to_i.times do%>
+                        <span class="fa fa-star checked_black"></span>
+                    <%end%>
                 </div>
                 <div class="review_point">
-                    <t>4.1/5 điểm</t>
+                    <t><%=rating_manager_score%></t>/5 điểm</t>
                 </div>
             </div>
 
@@ -90,14 +94,15 @@
                     <t>Cơ hội thăng tiến</t>
                 </div>
                 <div class="review_score_star">
-                    <span class="fa fa-star checked"></span>
-                    <span class="fa fa-star checked"></span>
-                    <span class="fa fa-star checked"></span>
-                    <span class="fa fa-star checked"></span>
-                    <span class="fa fa-star"></span>
+                    <%(rating_career_score).to_i.times do%>
+                        <span class="fa fa-star checked"></span>
+                    <%end%>
+                    <%(5 - (rating_career_score).to_i).to_i.times do%>
+                        <span class="fa fa-star checked_black"></span>
+                    <%end%>
                 </div>
                 <div class="review_point">
-                    <t>4.1/5 điểm</t>
+                    <t><%=rating_career_score%></t>/5 điểm</t>
                 </div>
             </div>
 
@@ -106,14 +111,15 @@
                     <t>Tổng điểm</t>
                 </div>
                 <div class="review_score_star">
-                    <span class="fa fa-star checked"></span>
-                    <span class="fa fa-star checked"></span>
-                    <span class="fa fa-star checked"></span>
-                    <span class="fa fa-star checked"></span>
-                    <span class="fa fa-star"></span>
+                    <%(rating_total_score).to_i.times do%>
+                        <span class="fa fa-star checked"></span>
+                    <%end%>
+                    <%(5 - (rating_total_score).to_i).to_i.times do%>
+                        <span class="fa fa-star checked_black"></span>
+                    <%end%>
                 </div>
                 <div class="review_point">
-                    <t>4.1/5 điểm</t>
+                    <t><%=rating_total_score%>/5 điểm</t>
                 </div>
             </div>
         </div>
