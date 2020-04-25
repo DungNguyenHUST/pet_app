@@ -7,6 +7,19 @@ class Company < ApplicationRecord
 
     validate :image_type
 
+    def self.search(search)
+        if search
+            company_type = Company.find_by(name: search)
+            if(company_type)
+                self.where(id: company_type)
+            else
+                @companies = Company.all
+            end
+        else
+            @companies = Company.all
+        end
+    end
+
     private
 
     def image_type

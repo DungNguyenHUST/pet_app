@@ -7,7 +7,8 @@ class CompaniesController < ApplicationController
     helper_method :rating_career_score
 
     def index
-        @companies = Company.all
+        @companies = Company.search(params[:search])
+        @companies_all = Company.all
         @company_reviews = CompanyReview.all
         @company_interviews = CompanyInterview.all
         @company_reply_reviews = CompanyReplyReview.all
@@ -86,6 +87,6 @@ class CompaniesController < ApplicationController
     private
     # define param for each company
     def company_param
-        params.require(:company).permit(:name, :location, :country, :website, :time_establish, :time_start, :time_end, :size, :field_operetion, :content, :policy, :avatar)
+        params.require(:company).permit(:name, :location, :country, :website, :time_establish, :time_start, :time_end, :size, :field_operetion, :content, :policy, :avatar, :search)
     end
 end

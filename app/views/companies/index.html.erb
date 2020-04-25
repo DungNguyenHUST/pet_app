@@ -10,10 +10,27 @@
     <body>
         <div class="body_content">
             <div class="companies_area">
-                    
-                <div class="section_title">
-                    <t>Danh sách công ty</t>
+
+                <div class="company_search_bar">
+                    <%=form_tag companies_path, :method => "get" do%>
+                        <div class="company_search_form">
+                            <%= text_field_tag :search, params[:search], class: 'company_search_input'%>
+                        </div>
+                        <div class="company_search_button">
+                            <%= submit_tag "Tìm kiếm", :name => nil, class: 'search_button'%>
+                        </div>
+                    <%end%>
                 </div>
+
+                <%if (@companies.count < @companies_all.count)%>
+                    <div class="section_title">
+                        <t>Tìm thấy <%=@companies.count%> kết quả</t>
+                    </div>
+                <% else %>
+                    <div class="section_title">
+                        <t>Tất cả các công ty</t>
+                    </div>
+                <%end%>
 
                 <% @companies.each do |company| %>
                     <div class="single_company">
