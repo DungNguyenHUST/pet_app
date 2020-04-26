@@ -1,7 +1,6 @@
 class SessionsController < ApplicationController
 
     skip_before_action :require_login, only: [:new, :create]
-    $is_user_login = false
     
     def new
     end
@@ -9,7 +8,6 @@ class SessionsController < ApplicationController
     def create
         user = User.find_by name: params[:session][:name].downcase
         if user && user.authenticate(params[:session][:password])
-            $is_user_login = true
             log_in user
             redirect_to pages_path(user)
         else
