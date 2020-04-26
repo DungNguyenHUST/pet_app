@@ -18,31 +18,16 @@
 					
 					<div class="header_user_navigation">
 						<nav>
-							<a href="<%=companies_path %>">Đánh giá công ty <span class="header-new-feature">new</span></a>
-							<a href="<%=problems_path %>">Solve Problem <span class="header-new-feature">new</span></a>
+							<a href="<%=companies_path %>">Đánh giá công ty </a>
+							<a href="<%=problems_path %>">Câu hỏi phỏng vấn </a>
 							<a href="<%=posts_path %>">Blog</a>
 						</nav>
-					</div>
-
-					<div class="header_user_search_button">
-						<div class= "form-input-search">
-							<input type="text" name="fname" placeholder="  Tìm kiếm">
-						</div>
-						<a href="#">
-							<i class="fa fa-search"></i>
-						</a>
 					</div>
 
 					<div class="header_user_button">
 						<%= form_for :session, url: login_path do |f| %>
 							<div class="user_icon_button">
-								<a href="#">
-									<i class="fa fa-user fa-2x"></i>
-								</a>
-							</div>
-
-							<div class="sign_out_button">
-								<%= link_to '<button type="submit">Thoát</button>'.html_safe, logout_path(@user) %>
+								<%= link_to '<button <i class="fa fa-user-circle fa-2x"></i> </button>'.html_safe, logout_path(@user) %>
 							</div>
 						<% end %>
 					</div>
