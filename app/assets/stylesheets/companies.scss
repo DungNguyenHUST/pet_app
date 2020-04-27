@@ -8,6 +8,7 @@
     padding-bottom: 15px;
 
     .company_search_bar{
+        // background-color: #f8f9fa;
         display: block;
         margin-top: 50px;
         margin-bottom: 80px;
@@ -15,18 +16,25 @@
         margin-right: auto;
         .company_search_bar_label
         {
-            font-size: 28px;
-            margin-bottom: 10px;
+            h3{
+                font-size: 30px;
+                margin-bottom: 8px;
+            }
+            h4{
+                font-size: 20px;
+            }
+
+            margin-bottom: 40px;
         }
         .company_search_form{
             float: left;
             .company_search_input{
                 font-size: 16px;
                 // margin-left: 100px;
-                width: 750px;
+                width: 990px;
                 height: 44px;
                 border-radius: 5px;
-                border: 2px solid #b4b9be;
+                border: 2px solid #dadce0;
             }
 
         }
@@ -56,13 +64,13 @@
         float: left;
         display: block;
         width: 282px;
-        height: 360px;
+        height: 400px;
         margin-top: 5px;
         margin-bottom: 20px;
         margin-right: 20px;
         margin-left: 0px;
         background:#ffffff;
-        border: 1.2px solid #f0f0f1;
+        border: 1px solid #dadce0;
         border-radius: 5px;
         &:hover{
             background: #f0f0f1;
@@ -80,9 +88,13 @@
         .company_name
         {
             text-align: center;
-            color: #000;
+            color: #161e2e;
             font-size: 22px;
             height: 50px;
+            .company_name_label{
+                color: #161e2e;
+                text-decoration: none !important;
+            }
         }
 
         .company_summary
@@ -91,12 +103,18 @@
             margin-left: auto;
             margin-right: auto;
             width: 100%;
+            .company_location
+            {
+                text-align: center;
+                font-size: 16px;
+                color: #635f5f;
+            }
             .company_rating
             {
                 float: left;
                 width: 100%;
                 height: 100%;
-                margin-top: 10px;
+                margin-top: 5px;
                 margin-left: 70px;
                 .review_score_star
                 {
@@ -105,28 +123,40 @@
                     }
         
                     .checked {
-                        color: orange;
+                        color: #feb100;
+                    }
+
+                    .checked_out {
+                        color: #c8c8c8;
                     }
                 }
             }
 
             .review_point
             {
-                .fa{
+                clear: both;
+                color: #161e2e;
+                .review_point_review_content{
+                    font-size: 18px;
+                    font-weight: 600;
+                    float: left;
                     margin-top: 10px;
+                    margin-left: 50px;
+                    margin-right: 20px;
                 }
                 clear: both;
-                margin-top: 20px;
-                font-size: 8px;
-                text-align: center;
-                color: #635f5f;
-            }
-
-            .company_location
-            {
-                text-align: center;
-                font-size: 15px;
-                color: #635f5f;
+                .review_point_label
+                {
+                    float: left;
+                    font-size: 15px;
+                    margin-left: 13px;
+                    margin-right: 10px;
+                    text-align: center;
+                    .review_point_review_label{
+                        text-decoration: none !important;
+                        color: #505050; 
+                    }
+                }
             }
         }
 
@@ -380,7 +410,7 @@
             width: 100%;
             border-radius: 5px;
             padding: 6px;
-            background: #64bd4f;
+            background: #5850ec;
             font-size: 16px;
             border: none;
             cursor: pointer;
