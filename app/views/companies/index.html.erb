@@ -10,11 +10,11 @@
     <body>
         <div class="body_content">
             <div class="companies_area">
-
                 <div class="company_search_bar">
 
                     <div class="company_search_bar_label">
                         <h3>Tìm kiếm nơi làm việc lý tưởng</h3>
+                        <t>Cùng chia sẻ, đánh giá về nơi mà bạn đang làm việc</t>
                     </div>
 
                     <%=form_tag companies_path, :method => "get" do%>
@@ -22,7 +22,7 @@
                             <%= text_field_tag :search, params[:search], class: 'company_search_input'%>
                         </div>
                         <div class="company_search_button">
-                            <%= submit_tag "Tìm kiếm", :name => nil, class: 'search_button'%>
+                            <%= submit_tag "Tìm kiếm ", :name => nil, class: 'search_button'%>
                         </div>
                     <%end%>
                 </div>
@@ -31,7 +31,7 @@
                     <div class="section_title">
                         <t>Tìm thấy <%=@companies.count%> kết quả</t>
                     </div>
-                <% else %>
+                <%else%>
                     <div class="section_title">
                         <t>Tất cả các công ty</t>
                     </div>
@@ -47,32 +47,70 @@
                         </div>
 
                         <div class="company_name">
-                            <t><%= company.name%></t>
+                            <t> <%= link_to company.name, company_path(company), class: "company_name_label" %></t>
                         </div>
                         
                         <div class="company_summary">
-                            <div class="company_rating">
-                                <div class="review_score_star">
-                                    <span class="fa fa-star checked"></span>
-                                    <span class="fa fa-star checked"></span>
-                                    <span class="fa fa-star checked"></span>
-                                    <span class="fa fa-star checked"></span>
-                                    <span class="fa fa-star"></span>
-                                </div>
-                            </div>
-
-                            <div class="review_point">
-                                <t><i class="fa fa-edit"></i> <%= company.company_reviews.count %> đánh giá (4.1/5 điểm)</t>
-                            </div>
+                            <%# Cal culate rating score %>
+                            <%if(company.company_reviews.count > 0)%>
+                                <%rate_work_env = company.company_reviews.sum('work_env_score').to_f / company.company_reviews.count%>
+                                <%rate_salary = company.company_reviews.sum('salary_score').to_f / company.company_reviews.count%>
+                                <%rate_ot = company.company_reviews.sum('ot_score').to_f / company.company_reviews.count%>
+                                <%rate_manager = company.company_reviews.sum('manager_score').to_f / company.company_reviews.count%>
+                                <%rate_career = company.company_reviews.sum('career_score').to_f / company.company_reviews.count%>
+                                <%total_rate = (rate_work_env + rate_salary + rate_ot + rate_manager + rate_career)/5%>
+                            <%else%>
+                                <%total_rate = 0%>
+                            <%end%>
 
                             <div class="company_location">
                                 <p><i class="fa fa-map-marker"></i> <%= company.location %></p>
                             </div>
-                        </div>
 
-                        <%# <div class="company_new_company">
-                            <%= link_to '<button type="button">Viết đánh giá </button>'.html_safe, new_company_company_review_path(company) %>
-                        <%# </div> %> 
+                            <div class="company_rating">
+                                <div class="review_score_star">
+                                    <%if total_rate > 0%>
+                                        <%total_rate.to_i.times do%>
+                                            <span class="fa fa-star checked"></span>
+                                        <%end%>
+                                        <%(5 - total_rate.to_i).to_i.times do%>
+                                            <span class="fa fa-star checked_out"></span>
+                                        <%end%>
+                                    <%else%>
+                                        <%5.times do%>
+                                            <span class="fa fa-star checked_out"></span>
+                                        <%end%>
+                                    <%end%>
+                                </div>
+                            </div>
+
+                            <div class="review_point">
+
+                                <div class="review_point_review_content">
+                                    <t><%= company.company_reviews.count%></t>
+                                </div>
+
+                                <div class="review_point_review_content">
+                                    <t><%= company.company_interviews.count %></t>
+                                </div>
+
+                                <div class="review_point_review_content">
+                                    <t><%= company.company_interviews.count %></t>
+                                </div>
+
+                                <div class="review_point_label">
+                                    <t> <%= link_to " Đánh giá", company_path(company), class: "review_point_review_label" %></t>
+                                </div>
+
+                                <div class="review_point_label">
+                                    <t> <%= link_to " Phỏng vấn", company_path(company), class: "review_point_review_label" %></t>
+                                </div>
+
+                                <div class="review_point_label">
+                                    <t> <%= link_to " Việc làm", company_path(company), class: "review_point_review_label" %></t>
+                                </div>
+                            </div>
+                        </div>
 
                     </div>
                 <%end%>
