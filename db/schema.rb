@@ -109,15 +109,6 @@ ActiveRecord::Schema.define(version: 2020_04_23_163025) do
     t.datetime "updated_at", precision: 6, null: false
   end
 
-  create_table "company_review_likes", force: :cascade do |t|
-    t.bigint "company_review_id", null: false
-    t.bigint "user_id", null: false
-    t.datetime "created_at", precision: 6, null: false
-    t.datetime "updated_at", precision: 6, null: false
-    t.index ["company_review_id"], name: "index_company_review_likes_on_company_review_id"
-    t.index ["user_id"], name: "index_company_review_likes_on_user_id"
-  end
-
   create_table "company_reviews", force: :cascade do |t|
     t.string "companyName"
     t.integer "score"
@@ -205,6 +196,4 @@ ActiveRecord::Schema.define(version: 2020_04_23_163025) do
   add_foreign_key "company_dislike_reviews", "users"
   add_foreign_key "company_like_reviews", "company_reviews"
   add_foreign_key "company_like_reviews", "users"
-  add_foreign_key "company_review_likes", "company_reviews"
-  add_foreign_key "company_review_likes", "users"
 end
