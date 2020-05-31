@@ -41,7 +41,7 @@
                             </div>
 
                             <div class="new_company_input">
-                                <%= f.text_field :country, class: "new_company_form_input", placeholder: "  Nhập quốc gia" %>
+                                <%= f.select(:country, ['Việt Nam','Japan', 'Korea' , 'Singapore', 'Other'], {include_blank: true}, { :class => 'my_style_class' }) %>
                             </div>
                         </div>
 
@@ -94,7 +94,7 @@
                             </div>
 
                             <div class="new_company_input">
-                                <%= f.select(:size, ['1-100','100-1000', '>1000'], {include_blank: true}, { :class => 'my_style_class' }) %>
+                                <%= f.select(:size, ['1-100','100-1000', '1000+'], {include_blank: true}, { :class => 'my_style_class' }) %>
                             </div>
                         </div>
 
@@ -116,7 +116,7 @@
                             </div>
                             
                             <div class="new_company_input">
-                                <%= f.text_field :content, class: "new_company_form_input", placeholder: "  Nhập mô tả chính" %>
+                                <%= f.rich_text_area :content, class: "new_company_form_input", placeholder: "  Nhập mô tả chính" %>
                             </div>
                         </div>
                     </div>
@@ -128,7 +128,7 @@
                             </div>
                             
                             <div class="new_company_input">
-                                <%= f.text_field :policy, class: "new_company_form_input", placeholder: "  Nhập nội dung" %>
+                                <%= f.rich_text_area :policy, class: "new_company_form_input", placeholder: "  Nhập nội dung" %>
                             </div>
                         </div>
                     </div>
