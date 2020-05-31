@@ -9,7 +9,7 @@
     <body>
         <div class="review_score">
             <div class="review_score_title">
-                <t>Tổng quan chung</t>
+                <t>Tất cả đánh giá</t>
             </div>
             
             <%# Review in button %>
@@ -21,124 +21,79 @@
                 </div>
             </div>
 
-            <div class="review_score_overview1">
-                <div class="review_score_label">
-                    <t>Môi trường làm việc</t>
-                </div>
-                <div class="review_score_star">
-                    <%if rating_work_env_score > 0%>
-                        <%rating_work_env_score.to_i.times do%>
-                            <span class="fa fa-star checked"></span>
-                        <%end%>
-                        <%(5 - rating_work_env_score.to_i).to_i.times do%>
-                            <span class="fa fa-star checked_out"></span>
-                        <%end%>
-                    <%else%>
-                        <%5.times do%>
-                            <span class="fa fa-star checked_out"></span>
-                        <%end%>
-                    <%end%>
-                </div>
-                <div class="review_point">
-                    <t><%=rating_work_env_score.round(1)%></t>/5 điểm</t>
+            <div class="review_score_overview">
+                <div class="review_content">
+                    <div class="review_point">
+                        <t><%=rating_work_env_score.round(1)%></t>
+                    </div>
+                    <div class="review_score_star">
+                        <span class="fa fa-star checked"></span>
+                    </div>
+                    <div class="review_score_label">
+                        <t>Môi trường làm việc</t>
+                    </div>
                 </div>
             </div>
 
             <div class="review_score_overview">
-                <div class="review_score_label">
-                    <t>Chế độ đãi ngộ</t>
-                </div>
-                <div class="review_score_star">
-                    <%if rating_salary_score > 0%>
-                        <%rating_salary_score.to_i.times do%>
-                            <span class="fa fa-star checked"></span>
-                        <%end%>
-                        <%(5 - rating_salary_score.to_i).to_i.times do%>
-                            <span class="fa fa-star checked_out"></span>
-                        <%end%>
-                    <%else%>
-                        <%5.times do%>
-                            <span class="fa fa-star checked_out"></span>
-                        <%end%>
-                    <%end%>
-                </div>
-                <div class="review_point">
-                    <t><%=rating_salary_score.round(1)%></t>/5 điểm</t>
+                <div class="review_content">
+                    <div class="review_point">
+                        <t><%=rating_salary_score.round(1)%></t>
+                    </div>
+                    <div class="review_score_star">
+                        <span class="fa fa-star checked"></span>
+                    </div>
+                    <div class="review_score_label">
+                        <t>Chế độ đãi ngộ</t>
+                    </div>
                 </div>
             </div>
 
             <div class="review_score_overview">
-                <div class="review_score_label">
-                    <t>Làm thêm, OT</t>
-                </div>
-                <div class="review_score_star">
-                    <%if rating_ot_score > 0%>
-                        <%rating_ot_score.to_i.times do%>
-                            <span class="fa fa-star checked"></span>
-                        <%end%>
-                        <%(5 - rating_ot_score.to_i).to_i.times do%>
-                            <span class="fa fa-star checked_out"></span>
-                        <%end%>
-                    <%else%>
-                        <%5.times do%>
-                            <span class="fa fa-star checked_out"></span>
-                        <%end%>
-                    <%end%>
-                </div>
-                <div class="review_point">
-                    <t><%=rating_ot_score.round(1)%></t>/5 điểm</t>
+                <div class="review_content">
+                    <div class="review_point">
+                        <t><%=rating_ot_score.round(1)%></t>
+                    </div>
+                    <div class="review_score_star">
+                        <span class="fa fa-star checked"></span>
+                    </div>
+                    <div class="review_score_label">
+                        <t>Làm thêm, OT</t>
+                    </div>
                 </div>
             </div>
 
             <div class="review_score_overview">
-                <div class="review_score_label">
-                    <t>Quản lý, cấp trên</t>
-                </div>
-                <div class="review_score_star">
-                    <%if rating_manager_score > 0%>
-                        <%rating_manager_score.to_i.times do%>
-                            <span class="fa fa-star checked"></span>
-                        <%end%>
-                        <%(5 - rating_manager_score.to_i).to_i.times do%>
-                            <span class="fa fa-star checked_out"></span>
-                        <%end%>
-                    <%else%>
-                        <%5.times do%>
-                            <span class="fa fa-star checked_out"></span>
-                        <%end%>
-                    <%end%>
-                </div>
-                <div class="review_point">
-                    <t><%=rating_manager_score.round(1)%></t>/5 điểm</t>
+                <div class="review_content">
+                    <div class="review_point">
+                        <t><%=rating_manager_score.round(1)%></t>
+                    </div>
+                    <div class="review_score_star">
+                        <span class="fa fa-star checked"></span>
+                    </div>
+                    <div class="review_score_label">
+                        <t>Quản lý, cấp trên</t>
+                    </div>
                 </div>
             </div>
 
             <div class="review_score_overview">
-                <div class="review_score_label">
-                    <t>Cơ hội thăng tiến</t>
-                </div>
-                <div class="review_score_star">
-                    <%if rating_career_score > 0%>
-                        <%rating_career_score.to_i.times do%>
-                            <span class="fa fa-star checked"></span>
-                        <%end%>
-                        <%(5 - rating_career_score.to_i).to_i.times do%>
-                            <span class="fa fa-star checked_out"></span>
-                        <%end%>
-                    <%else%>
-                        <%5.times do%>
-                            <span class="fa fa-star checked_out"></span>
-                        <%end%>
-                    <%end%>
-                </div>
-                <div class="review_point">
-                    <t><%=rating_career_score.round(1)%></t>/5 điểm</t>
+                <div class="review_content">
+                    <div class="review_point">
+                        <t><%=rating_career_score.round(1)%></t>
+                    </div>
+                    <div class="review_score_star">
+                        <span class="fa fa-star checked"></span>
+                    </div>
+                    <div class="review_score_label">
+                        <t>Cơ hội thăng tiến</t>
+                    </div>
                 </div>
             </div>
 
             <div class="review_score_total">
                 <div class="review_score_label">
-                    <t>Tổng điểm</t>
+                    <t>Tổng kết chung</t>
                 </div>
                 <div class="review_score_star">
                     <%if rating_total_score > 0%>
@@ -155,7 +110,7 @@
                     <%end%>
                 </div>
                 <div class="review_point">
-                    <t><%=rating_total_score.round(1)%>/5 điểm</t>
+                    <t><%=rating_total_score.round(1)%> 
                 </div>
             </div>
         </div>
