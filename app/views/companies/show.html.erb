@@ -50,9 +50,9 @@
                     <div class="company_tab">
                         <button class="company_tablinks active" onclick="openContent(event, 'Company')"><h3>Công ty</h3></button>
                         <button class="company_tablinks" onclick="openContent(event, 'CompanyJoins')"><h3>Tại sao nên làm việc ở đây</h3></button>
-                        <button class="company_tablinks" onclick="openContent(event, 'CompanyReviews')"><h3>Đánh về giá công ty</h3></button>
-                        <button class="company_tablinks" onclick="openContent(event, 'CompanyInterviews')"><h3>Kinh nghiệm phỏng vấn</h3></button>
-                        <button class="company_tablinks" onclick="openContent(event, 'CompanyJobs')"><h3>Tuyển dụng</h3></button>
+                        <button class="company_tablinks" onclick="openContent(event, 'CompanyReviews')"><h3>Đánh về giá công ty(<%= @company.company_reviews.count%>)</h3></button>
+                        <button class="company_tablinks" onclick="openContent(event, 'CompanyInterviews')"><h3>Kinh nghiệm phỏng vấn(<%= @company.company_interviews.count%>)</h3></button>
+                        <button class="company_tablinks" onclick="openContent(event, 'CompanyJobs')"><h3>Tin tuyển dụng</h3></button>
                     </div>
 
                     <!-- Tab content -->
