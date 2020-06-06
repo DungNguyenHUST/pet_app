@@ -11,7 +11,7 @@
 
             <div class="company_profile_overview">
                 <div class="company_profile_title">
-                    <t> Giới thiệu</t>
+                    <t> Giới thiệu về <%= @company.name %></t>
                 </div>
 
                 <div class="company_profile_detail">
@@ -38,15 +38,28 @@
                             <li> <%= @company.time_start %> - <%= @company.time_end %> </li>
                         </ul>
                     </div>
-
-                    <div class="company_profile_title">
-                        <t> Mô tả chung</t>
-                    </div>
-
-                    <div class="company_profile_summary">
-                        <t><%= @company.content %></t>
-                    </div>
                 </div>
+
+                <div class="company_profile_title">
+                    <t> Định hướng phát triển</t>
+                </div>
+
+                <div class="company_profile_summary">
+                    <t><%= @company.content %></t>
+                </div>
+
+                <div class="company_profile_title">
+                    <t> Mọi người đánh giá thế nào về <%= @company.name %></t>
+                </div>
+
+                <%= render :partial => 'company_reviews/review_score' %>
+
+                <div class="company_profile_title">
+                    <t> Những chia sẻ về kinh nghiệm phỏng vấn tại <%= @company.name %></t>
+                </div>
+
+                <%= render :partial => 'company_interviews/interview_score' %>
+
             </div>
 
         </div>

@@ -3,116 +3,23 @@
 // You can use Sass (SCSS) here: https://sass-lang.com/
 
 //////////////////interview//////////////////
-
-.interview_heading {
-    font-size: 25px;
-    padding-bottom: 20px;
-}
-
-.interview_score
-{
-    width: 100%;
-    height: 100%;
+.interview_score_content{
     background-color: #ffffff;
-    margin-top: 20px;
-    margin-bottom: 150px;
-    display: block;
-    margin-left: auto;
-    margin-right: auto;
-
-    .interview_score_overview{
-        // display: inline-block;
-        float: left;
-        width: 20%;
-        height: 100%;
-        margin-top: 5%;
-        margin-left: 10%;
-        border-right: 1px solid #f0f0f1;
-        display: block;
-        margin-right: auto;
-        .interview_score_star
-        {
-            .fa {
-                font-size: 25px;
-            }
-
-            .checked {
-                color: #feb100;
-            }
-        }
-        .interview_point
-        {
-            margin-left: 18%;
-            .p{
-                font-size: 25px;
-                text-align: center;
-            }
-        }
-    }
-
-    .interview_row{
-        float: left;
-        padding-bottom: 10px;
-        border-right: 1px solid #f0f0f1;
-        width: 40%;
-        height: 90%;
-        margin-left: 25px;
-        margin-right: 20px;
-        .interview_row_content{
-            .side {
-                float: left;
-                width: 18%;
-                margin-top: 10px;
-                /* Place text to the right */
-                .right {
-                    text-align: right;
-                }
-            }
-
-            .middle {
-                float: left;
-                width: 70%;
-                margin-top: 15px;
-                /* The bar container */
-                .bar-container {
-                    width: 100%;
-                    background-color: #f1f1f1;
-                    text-align: center;
-                    color: white;
-                }
-                /* Individual bars */
-                .bar-5 {width: 60%; height: 15px; background-color: #5850ec; border-radius: 5px;}
-                .bar-4 {width: 30%; height: 15px; background-color: #2196F3; border-radius: 5px;}
-                .bar-3 {width: 10%; height: 15px; background-color: #00bcd4; border-radius: 5px;}
-                .bar-2 {width: 4%; height: 15px; background-color: #ff9800; border-radius: 5px;}
-                .bar-1 {width: 18%; height: 15px; background-color: #f44336; border-radius: 5px;}
-            }
-        }
-
-        /* Responsive layout - make the columns stack on top of each other instead of next to each other */
-        @media (max-width: 100%) {
-            .side, .middle {
-            width: 100%;
-            }
-            /* Hide the right column on small screens */
-            .right {
-            display: none;
-            }
-        }
-    }
-
-    .interview_new_button_side{
-        width: 10%;
-        height: 100%;
+    margin-top: 50px;
+    .interview_score_title{
         display: inline-block;
-        margin-top: 5%;
-        margin-left: 5%;
+        margin-top: 10px;
+        font-size: 25px;
+        font-weight: 550;
+        width: 750px;
+        float: left;
+    }
+    .interview_new_button_side{
         .interview_new_button button {
-            // float: right;
-            padding: 2%;
+            padding: 15px;
             background: #5850ec;
             font-size: 14px;
-            border: 1;
+            border: 1px solid #5850ec;
             cursor: pointer;
             text-align: center;
             color: #ffffff;
@@ -120,8 +27,116 @@
         }
     
         .interview_new_button button:hover {
-            background: #5850ec;
+            background: #4284f4;
         }
     }
-    
+
+    .interview_score
+    {
+        width: 100%;
+        height: 300px;
+        background-color: #f5f5f5;
+        margin-top: 30px;
+        margin-bottom: 50px;
+        display: block;
+        margin-left: auto;
+        margin-right: auto;
+
+        .interview_score_overview{
+            // float: left;
+            display: block;
+            margin-top: 50px;
+            float: left;
+            margin-left: 10px;
+            margin-right: 5px;
+            .interview_content
+            {
+                width: 220px;
+                height: 40px;
+                border: 2px solid #c8c8c8;
+                border-radius: 20px;
+                .interview_point
+                {
+                    float: left;
+                    font-size: 15px;
+                    font-weight: 600px;
+                    text-align: center;
+                    color: rgb(75, 71, 71);
+                    margin-right: 3px;
+                    margin-top: 10px;
+                    margin-left: 10px;
+                }
+        
+                .interview_score_star
+                {
+                    float: left;
+                    margin-right: 10px;
+                    margin-top: 10px;
+                    .fa {
+                        font-size: 16px;
+                    }
+        
+                    .checked {
+                        color: #feb100;
+                    }
+        
+                    .checked_out {
+                        color: #c8c8c8;
+                    }
+                }
+
+                .interview_score_label{
+                    font-size: 14px;
+                    margin-top: 10px;
+                }
+            }
+        }
+        .interview_score_total{
+            clear: both;
+            text-align: center;
+            display: block;
+            .interview_score_label{
+                padding-top: 60px;
+                font-size: 18px;
+                font-weight: 600;
+            }
+
+            .interview_point
+            {
+                float: left;
+                font-size: 22px;
+                text-align: center;
+                color: rgb(75, 71, 71);
+                margin-right: 15px;
+                margin-left: 400px;
+            }
+
+            .interview_score_star
+            {
+                float: left;
+                margin-right: 10px;
+                margin-top: 10px;
+                font-size: 22px;
+                margin-left: 400px;
+                .fa {
+                    font-size: 22px;
+                }
+
+                .checked {
+                    color: #feb100;
+                }
+
+                .checked_out {
+                    color: #c8c8c8;
+                }
+            }
+
+            .interview_total_des{
+                margin-top: 8px;
+                clear: both;
+                font-size: 13px;
+            }
+        }
+        
+    }
 }

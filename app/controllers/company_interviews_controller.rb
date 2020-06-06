@@ -16,10 +16,12 @@ class CompanyInterviewsController < ApplicationController
 
         @company_interview.user_name = @current_user.name
 
+        @company_interview.companyName = @company.name
+
         if @company_interview.save
             redirect_to company_path(@company)
         else
-            flash[:danger] = "Comment lỗi?"
+            flash[:danger] = "Lỗi, hay điền đủ nội dung có dấu *?"
             # render :new
         end
     end
@@ -39,6 +41,6 @@ class CompanyInterviewsController < ApplicationController
     private
 
     def company_interview_param
-        params.require(:company_interview).permit(:position, :process , :content, :difficultly, :satisfied , :offer)
+        params.require(:company_interview).permit(:position, :get_interview, :process , :difficultly, :satisfied , :offer, :content)
     end
 end

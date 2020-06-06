@@ -20,37 +20,28 @@
                     <t><%= company_interview.position %></t>
                 </div>
 
-                <div class="company_interview_section">
-                    <div class="company_interview_section_title">
-                        <ul>
-                            <li> Số vòng phỏng vấn </li>
-                            <li> Độ khó </li>
-                            <li> Mức độ hài lòng </li>
-                            <li> Có chấp nhận offer không </li>
-                        </ul>
+                <div class="interview_satisfied_overview">
+                    <div class="interview_content">
+                        <div class="interview_point">
+                            <strong><%=company_interview.satisfied%></strong>
+                        </div>
+                        <div class="interview_satisfied_star">
+                            <span class="fa fa-star checked"></span>
+                        </div>
+                        <div class="interview_satisfied_label">
+                            <t>Hài lòng với buổi phỏng vấn</t>
+                        </div>
                     </div>
+                </div>
 
-                    <div class="company_interview_content">
-                        <ul>
-                            <li> <%= company_interview.process %> </li>
-                            <%# <li> <%= company_interview.difficultly %>
-                            <div class="interview_score_star">
-                                <span class="fa fa-star checked"></span>
-                                <span class="fa fa-star checked"></span>
-                                <span class="fa fa-star checked"></span>
-                                <span class="fa fa-star checked"></span>
-                                <span class="fa fa-star"></span>
-                            </div>
-                            <%# <li> <%= company_interview.satisfied %>
-                            <div class="interview_score_star">
-                                <span class="fa fa-star checked"></span>
-                                <span class="fa fa-star checked"></span>
-                                <span class="fa fa-star checked"></span>
-                                <span class="fa fa-star checked"></span>
-                                <span class="fa fa-star"></span>
-                            </div>
-                            <li> <%= company_interview.offer %> </li>
-                        </ul>
+                <div class="user_interview_offer">
+                    <div class="user_interview_offer_label">
+                        <%if company_interview.satisfied%>
+                            <span class="fa fa-check-square fa checked"></span>
+                        <% else %>
+                            <span class="fa fa-times-circle fa checked"></span>
+                        <%end%>    
+                        <t>Chấp nhận offer </t>
                     </div>
                 </div>
 

@@ -1,5 +1,5 @@
 module CompaniesHelper
-    def rating_total_score
+    def rating_review_total_score
         if(@company.company_reviews.count > 0)
             rate_work_env = @company.company_reviews.sum('work_env_score').to_f / @company.company_reviews.count
             rate_salary = @company.company_reviews.sum('salary_score').to_f / @company.company_reviews.count
@@ -13,7 +13,18 @@ module CompaniesHelper
         end
     end
 
-    def rating_work_env_score
+    def rating_interview_total_score
+        if(@company.company_interviews.count > 0)
+            rate_difficultly = @company.company_interviews.sum('difficultly').to_f / @company.company_interviews.count
+            rate_satisfied = @company.company_interviews.sum('satisfied').to_f / @company.company_interviews.count
+
+            total_rate = (rate_difficultly + rate_satisfied)/2
+        else
+            total_rate = 0
+        end
+    end
+
+    def rating_review_work_env_score
         if(@company.company_reviews.count > 0)
             rate_work_env = @company.company_reviews.sum('work_env_score').to_f / @company.company_reviews.count
         else
@@ -21,7 +32,7 @@ module CompaniesHelper
         end
     end
 
-    def rating_salary_score
+    def rating_review_salary_score
         if(@company.company_reviews.count > 0)
             rate_salary = @company.company_reviews.sum('salary_score').to_f / @company.company_reviews.count
         else
@@ -29,7 +40,7 @@ module CompaniesHelper
         end
     end
 
-    def rating_ot_score
+    def rating_review_ot_score
         if(@company.company_reviews.count > 0)
             rate_ot = @company.company_reviews.sum('ot_score').to_f / @company.company_reviews.count
         else
@@ -37,7 +48,7 @@ module CompaniesHelper
         end
     end
 
-    def rating_manager_score
+    def rating_review_manager_score
         if(@company.company_reviews.count > 0)
             rate_manager = @company.company_reviews.sum('manager_score').to_f / @company.company_reviews.count
         else
@@ -45,11 +56,43 @@ module CompaniesHelper
         end
     end
 
-    def rating_career_score
+    def rating_review_career_score
         if(@company.company_reviews.count > 0)
             rate_career = @company.company_reviews.sum('career_score').to_f / @company.company_reviews.count
         else
             rate_career = 0
+        end
+    end
+
+    def rating_interview_difficultly_score
+        if(@company.company_interviews.count > 0)
+            rate_difficultly = @company.company_interviews.sum('difficultly').to_f / @company.company_interviews.count
+        else
+            rate_difficultly = 0
+        end
+    end
+
+    def rating_interview_satisfied_score
+        if(@company.company_interviews.count > 0)
+            rate_satisfied = @company.company_interviews.sum('satisfied').to_f / @company.company_interviews.count
+        else
+            rate_satisfied = 0
+        end
+    end
+
+    def rating_interview_process_score
+        if(@company.company_interviews.count > 0)
+            rate_process = @company.company_interviews.sum('process').to_f / @company.company_interviews.count
+        else
+            rate_process = 0
+        end
+    end
+
+    def rating_interview_offer_score
+        if(@company.company_interviews.count > 0)
+            rate_offer = @company.company_interviews.sum('process').to_f / @company.company_interviews.count
+        else
+            rate_offer = 0
         end
     end
 end
