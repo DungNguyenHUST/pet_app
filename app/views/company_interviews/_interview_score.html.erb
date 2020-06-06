@@ -7,112 +7,97 @@
     </head>
 
     <body>
-        <div class="interview_score">
-
-            <div class="interview_score_overview">
-                <div class="interview_score_star">
-                    <span class="fa fa-star checked"></span>
-                    <span class="fa fa-star checked"></span>
-                    <span class="fa fa-star checked"></span>
-                    <span class="fa fa-star checked"></span>
-                    <span class="fa fa-star"></span>
-                </div>
-                <div class="interview_point">
-                    <p>4.1/5 điểm</p>
-                </div>
+        <div class="interview_score_content">
+            <div class="interview_score_title">
+                <t>Tổng quan chung</t>
             </div>
-
-            <div class="interview_row">
-                <div class="interview_row_content">
-                    <div class="side">
-                        <div>5 star</div>
-                    </div>
-
-                    <div class="middle">
-                        <div class="bar-container">
-                        <div class="bar-5"></div>
-                        </div>
-                    </div>
-
-                    <div class="side right">
-                        <div>150</div>
-                    </div>
-                </div>
-
-                <div class="interview_row_content">
-                    <div class="side">
-                        <div>4 star</div>
-                    </div>
-
-                    <div class="middle">
-                        <div class="bar-container">
-                        <div class="bar-4"></div>
-                        </div>
-                    </div>
-
-                    <div class="side right">
-                        <div>63</div>
-                    </div>
-                </div>
-
-                <div class="interview_row_content">
-                    <div class="side">
-                        <div>3 star</div>
-                    </div>
-
-                    <div class="middle">
-                        <div class="bar-container">
-                        <div class="bar-3"></div>
-                        </div>
-                    </div>
-
-                    <div class="side right">
-                        <div>15</div>
-                    </div>
-                </div>
-                
-                <div class="interview_row_content">
-                    <div class="side">
-                        <div>2 star</div>
-                    </div>
-
-                    <div class="middle">
-                        <div class="bar-container">
-                        <div class="bar-2"></div>
-                        </div>
-                    </div>
-
-                    <div class="side right">
-                        <div>6</div>
-                    </div>
-                </div>
-
-                <div class="interview_row_content">
-                    <div class="side">
-                        <div>1 star</div>
-                    </div>
-
-                    <div class="middle">
-                        <div class="bar-container">
-                        <div class="bar-1"></div>
-                        </div>
-                    </div>
-
-                    <div class="side right">
-                        <div>20</div>
-                    </div>
-                </div>
-            </div>
-
             <%# interview in button %>
             <div class="interview_new_button_side">
                 <div class="interview_new_button">
                     <form action="/action_page.php">
-                        <%= link_to '<button type="submit"> <i class="fa fa-edit"></i> Chia sẻ kinh nghiệm của bạn</button>'.html_safe, new_company_company_interview_path(@company) %>
+                        <%= link_to '<button type="submit"> <i class="fa fa-edit"></i> Chia sẻ kinh nghiệm </button>'.html_safe, new_company_company_interview_path(@company) %>
                     </form>
                 </div>
             </div>
 
+            <div class="interview_score">
+                <div class="interview_score_overview">
+                    <div class="interview_content">
+                        <div class="interview_point">
+                            <strong><%=rating_interview_difficultly_score.round(1)%></strong>
+                        </div>
+                        <div class="interview_score_star">
+                            <span class="fa fa-star checked"></span>
+                        </div>
+                        <div class="interview_score_label">
+                            <t>Độ khó bài phỏng vấn</t>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="interview_score_overview">
+                    <div class="interview_content">
+                        <div class="interview_point">
+                            <strong><%=rating_interview_satisfied_score.round(1)%></strong>
+                        </div>
+                        <div class="interview_score_star">
+                            <span class="fa fa-star checked"></span>
+                        </div>
+                        <div class="interview_score_label">
+                            <t>Mức độ hài lòng</t>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="interview_score_overview">
+                    <div class="interview_content">
+                        <div class="interview_point">
+                            <strong><%=rating_interview_process_score.round(1)%></strong>
+                        </div>
+                        <div class="interview_score_label">
+                            <t>Vòng phỏng vấn trung bình</t>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="interview_score_overview">
+                    <div class="interview_content">
+                        <div class="interview_point">
+                            <strong><%=rating_interview_offer_score.round(1) * 100%> %</strong>
+                        </div>
+                        <div class="interview_score_label">
+                            <t>Chấp nhận offer</t>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="interview_score_total">
+                    <div class="interview_score_label">
+                        <t>Đánh giá tổng quát</t>
+                    </div>
+
+                    <div class="interview_score_star">
+                        <strong><%=rating_interview_total_score.round(1)%> </strong>
+                        <%if rating_interview_total_score > 0%>
+                            <%rating_interview_total_score.to_i.times do%>
+                                <span class="fa fa-star checked"></span>
+                            <%end%>
+                            <%(5 - rating_interview_total_score.to_i).to_i.times do%>
+                                <span class="fa fa-star checked_out"></span>
+                            <%end%>
+                        <%else%>
+                            <%5.times do%>
+                                <span class="fa fa-star checked_out"></span>
+                            <%end%>
+                        <%end%>
+                    </div>
+
+                    <div class="interview_total_des">
+                        <t>Dựa trên <%= @company.company_interviews.count%> chia sẻ từ người dùng</t>
+                    </div>
+
+                </div>
+            </div>
         </div>
     <body>
 </html>

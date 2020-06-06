@@ -13,7 +13,7 @@
                     <div class="company_title">
                         <div class="company_title_image">
                             <%if @company.avatar.attached?%>
-                                <img> <%= image_tag @company.avatar.variant(resize: "120x120") %></img>
+                                <img> <%= image_tag @company.avatar.variant(resize: "100x100") %></img>
                             <%end%>
                         </div>
 
@@ -49,9 +49,10 @@
                     <!-- Tab links -->
                     <div class="company_tab">
                         <button class="company_tablinks active" onclick="openContent(event, 'Company')"><h3>Công ty</h3></button>
-                        <button class="company_tablinks" onclick="openContent(event, 'CompanyJoins')"><h3>Tại sao nên làm việc ở đây</h3></button>
-                        <button class="company_tablinks" onclick="openContent(event, 'CompanyReviews')"><h3>Đánh về giá công ty(<%= @company.company_reviews.count%>)</h3></button>
-                        <button class="company_tablinks" onclick="openContent(event, 'CompanyInterviews')"><h3>Kinh nghiệm phỏng vấn(<%= @company.company_interviews.count%>)</h3></button>
+                        <button class="company_tablinks" onclick="openContent(event, 'CompanyJoins')"><h3>Chính sách công ty</h3></button>
+                        <button class="company_tablinks" onclick="openContent(event, 'CompanyReviews')"><h3>Đánh về giá công ty (<%= @company.company_reviews.count%>)</h3></button>
+                        <button class="company_tablinks" onclick="openContent(event, 'CompanyInterviews')"><h3>Kinh nghiệm phỏng vấn (<%= @company.company_interviews.count%>)</h3></button>
+                        <button class="company_tablinks" onclick="openContent(event, 'CompanySalarys')"><h3>Lương</h3></button>
                         <button class="company_tablinks" onclick="openContent(event, 'CompanyJobs')"><h3>Tin tuyển dụng</h3></button>
                     </div>
 
@@ -66,18 +67,26 @@
 
                     <div id="CompanyReviews" class="company_tabcontent">
                         <%= render :partial => 'company_reviews/review_score' %>
-                        <span class="user_comment_heading"> Tất cả <%= @company.company_reviews.count%> đánh giá về công ty này </span>
-                        <%= render @company.company_reviews %>
+                        <div class="company_tab_des">
+                            <strong class="user_comment_heading"> Tất cả <%= @company.company_reviews.count%> đánh giá về <%= @company.name %> </strong>
+                            <%= render @company.company_reviews %>
+                        </div>
                     </div>
 
                     <div id="CompanyInterviews" class="company_tabcontent">
                         <%= render :partial => 'company_interviews/interview_score' %>
-                        <span class="user_comment_heading"> Tất cả <%= @company.company_interviews.count%> Kinh nghiệm phỏng vấn về công ty </span>
-                        <%= render @company.company_interviews %>
+                        <div class="company_tab_des">
+                            <strong class="user_comment_heading"> Tất cả <%= @company.company_interviews.count%> kinh nghiệm phỏng vấn tại <%= @company.name %></strong>
+                            <%= render @company.company_interviews %>
+                        </div>
+                    </div>
+
+                    <div id="CompanySalarys" class="company_tabcontent">
+                        <h3>Comming soon ...</h3>
                     </div>
 
                     <div id="CompanyJobs" class="company_tabcontent">
-                        <h3>Company Job</h3>
+                        <h3>Comming soon ...</h3>
                     </div>
 
                     <script>

@@ -11,7 +11,7 @@
             <div class="new_interview_form">
                 <%= form_for [@company, CompanyInterview.new] do |f| %>
                     <div class="new_interview_title">
-                        <t>Kinh nghiệm phỏng vấn của bạn tại<%@company.name%></t>
+                        <strong>Chia sẻ kinh nghiệm phỏng vấn của bạn </strong>
                     </div>
 
                     <div class="new_interview_section">
@@ -21,7 +21,17 @@
                             </div>
 
                             <div class="new_interview_input">
-                                <%= f.text_field :position, class: "new_interview_form_input", placeholder: "  Nhập tên hoặc email của bạn" %>
+                                <%= f.text_field :position, class: "new_interview_form_input", placeholder: "  Nhập vị trí mà bạn phỏng vấn" %>
+                            </div>
+                        </div>
+
+                        <div class="new_interview_content">
+                            <div class="new_interview_label">
+                                <t><%= f.label :get_interview, "Bạn tìm đến công ty từ đâu*", class: "new_interview_label_name" %></t>
+                            </div>
+
+                            <div class="new_interview_input">
+                                <%= f.text_field :get_interview, class: "new_interview_form_input", placeholder: "  Ex: Người quen, mạng xã hội, internet" %>
                             </div>
                         </div>
 
@@ -32,16 +42,6 @@
 
                             <div class="new_interview_input">
                                 <%= f.select(:process, ['1','2', '3', '4', '5'], {include_blank: true}, { :class => 'my_style_class' }) %>
-                            </div>
-                        </div>
-
-                        <div class="new_interview_content">
-                            <div class="new_interview_label">
-                                <t><%= f.label :content, "Nội dung phỏng vấn*", class: "new_interview_label_name" %></t>
-                            </div>
-
-                            <div class="new_interview_input">
-                                <%= f.text_field :content, class: "new_interview_form_input", placeholder: "  Nhập tên hoặc email của bạn" %>
                             </div>
                         </div>
 
@@ -71,7 +71,17 @@
                             </div>
 
                             <div class="new_interview_input">
-                                <%= f.select(:offer, ['Yes','No'], {include_blank: true}, { :class => 'my_style_class' }) %>
+                                <%= f.select(:offer, ['1','0'], {include_blank: true}, { :class => 'my_style_class' }) %>
+                            </div>
+                        </div>
+
+                        <div class="new_interview_content">
+                            <div class="new_interview_label">
+                                <t><%= f.label :content, "Nội dung phỏng vấn*", class: "new_interview_label_name" %></t>
+                            </div>
+
+                            <div class="new_interview_input">
+                                <%= f.text_field :content, class: "new_interview_form_input", placeholder: "  Chia sẻ nội dung phỏng vấn, câu hỏi hay cho mọi người nào" %>
                             </div>
                         </div>
                     </div>
