@@ -1,10 +1,102 @@
-<div class="container">
-    <div class="row">
-        <div class="col-lg-offset-3 col-lg-6">
-        <div class="text-left">
-            <label><%= @user.name %></label>
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta name='viewport' content='width=device-width, initial-scale=1'>
+        <!-- Add icon library -->
+        <link rel='stylesheet' href='https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css'>
+    </head>
+
+    <body>
+        <div class='body_content'>
+            <div class="user_info">
+                <div class="user_info_wellcome_label">
+                    <strong>Xin chào, <%= @user.name %></strong>
+                </div> 
+
+                <div class="user_info_about">
+                    <div class="user_info_des_label">
+                        <strong>Cài đặt tài khoản</strong>
+                    </div>
+
+                    <div class="user_info_label">
+                        <strong>Tên tài khoản:</strong>
+                    </div>
+
+                    <div class="user_info_des">
+                        <%= @user.name %>
+                    </div>
+
+                    <div class="user_info_edit_button">
+                        <i class="fa fa-edit"></i> <%= link_to " Thay đổi tên đăng nhập", edit_user_path(current_user), class: "user_info_edit_link_to" %>
+                    </div>
+
+                    <div class="user_info_label">
+                        <strong>Địa chỉ email:</strong>
+                    </div>
+
+                    <div class="user_info_des">
+                        <%= @user.email %>
+                    </div>
+
+                    <div class="user_info_edit_button">
+                        <i class="fa fa-edit"></i><%= link_to " Thay đổi địa chỉ email", edit_user_path(current_user), class: "user_info_edit_link_to"  %>
+                    </div>
+
+                    <div class="user_info_label">
+                        <strong>Mật khẩu:</strong>
+                    </div>
+
+                    <div class="user_info_des">
+                        <%= @user.password_digest %>
+                    </div>
+
+                    <div class="user_info_edit_button">
+                        <i class="fa fa-edit"></i><%= link_to " Thay đổi mật khẩu", edit_user_path(current_user), class: "user_info_edit_link_to"  %>
+                    </div>
+
+                    <div class="user_info_label">
+                        <strong>Số điện thoại liên lạc:</strong>
+                    </div>
+
+                    <div class="user_info_des">
+                        <%= @user.phone %>
+                    </div>
+
+                    <div class="user_info_edit_button">
+                        <i class="fa fa-edit"></i><%= link_to " Thay đổi số điện thoại", edit_user_path(current_user), class: "user_info_edit_link_to"  %>
+                    </div>
+
+                    <div class="user_info_label">
+                        <strong>Địa chỉ liên hệ:</strong>
+                    </div>
+
+                    <div class="user_info_des">
+                        <%= @user.address %>
+                    </div>
+
+                    <div class="user_info_edit_button">
+                        <i class="fa fa-edit"></i><%= link_to " Thay đổi địa chỉ", edit_user_path(current_user), class: "user_info_edit_link_to"  %>
+                    </div>
+                </div>
+
+                <div class="user_cover_letter">
+                    <div class="user_cover_letter_label">
+                        <strong>Giới thiệu bản thân</strong>
+                    </div>
+
+                    <div class="user_cv_des">
+                        <%= @user.cover_letter %>
+                    </div>
+
+                    <div class="user_info_edit_button">
+                        <i class="fa fa-upload"></i><%= link_to " Tải CV lên", edit_user_path(current_user), class: "user_info_edit_link_to"  %>
+                    </div>
+                </div>
+
+                <div class="user_log_out">
+                    <%= link_to '<button type="submit">Đăng xuất</button>'.html_safe, logout_path(current_user) %>
+                </div>
+            </div>
         </div>
-        <%= link_to "Logout", logout_path, method: :delete %> 
-        </div>
-    </div>
-</div>
+    </body>
+</html>

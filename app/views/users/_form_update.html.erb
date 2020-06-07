@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta name='viewport' content='width=device-width, initial-scale=1'>
+        <!-- Add icon library -->
+        <link rel='stylesheet' href='https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css'>
+    </head>
+
+    <body>
+        <div class='body_content'>
+            <div class="user_add_new_form">
+                <%= form_for @user, html: {class: "form-horizontal"} do |f| %>
+
+                    <div class="user_add_new_title">
+                        <t>Thay đổi thông tin tài khoản</t>
+                    </div>
+
+                    <div class="user_add_new_content">
+                        <div class="user_add_new_label">
+                            <t><%= f.label :name, "Tên đăng nhập", class: "user_add_new_label_name" %></t>
+                        </div>
+
+                        <div class="user_add_new_input">
+                            <%= f.text_field :name, class: "user_add_new_form_input", placeholder: "  Nhập tên hoặc email của bạn" %>
+                        </div>
+                    </div>
+
+                    <div class="user_add_new_content">
+                        <div class="user_add_new_label">
+                            <t><%= f.label :email, "Địa chỉ email", class: "user_add_new_label_name" %></t>
+                        </div>
+
+                        <div class="user_add_new_input">
+                            <%= f.text_field :email, class: "user_add_new_form_input", placeholder: "  Nhập tên hoặc email của bạn" %>
+                        </div>
+                    </div>
+
+                    <div class="user_add_new_content">
+                        <div class="user_add_new_label">
+                            <t><%= f.label :password, "Mật khẩu", class: "user_add_new_label" %></t>
+                        </div>
+                        
+                        <div class="user_add_new_input">
+                            <%= f.password_field :password, class: "user_add_new_form_input", placeholder: "  Nhập mật khẩu của bạn" %>
+                        </div>
+                    </div>
+
+                    <div class="user_add_new_content">
+                        <div class="user_add_new_label">
+                            <t><%= f.label :password_confirmation, "Xác nhận mật khẩu", class: "user_add_new_label" %></t>
+                        </div>
+
+                        <div class="user_add_new_input">
+                            <%= f.password_field :password_confirmation, class: "user_add_new_form_input", placeholder: "  Nhập lại mật khẩu" %>
+                        </div>
+                    </div>
+
+                    <div class="user_add_new_content">
+                        <div class="user_add_new_label">
+                            <t><%= f.label :phone, "Số điện thoại", class: "user_add_new_label_name" %></t>
+                        </div>
+
+                        <div class="user_add_new_input">
+                            <%= f.text_field :phone, class: "user_add_new_form_input", placeholder: "  Nhập số điện thoại của bạn" %>
+                        </div>
+                    </div>
+
+                    <div class="user_add_new_content">
+                        <div class="user_add_new_label">
+                            <t><%= f.label :address, "Địa chỉ liên hệ", class: "user_add_new_label_name" %></t>
+                        </div>
+
+                        <div class="user_add_new_input">
+                            <%= f.text_field :address, class: "user_add_new_form_input", placeholder: "  Nhập địa chỉ liên hệ của bạn" %>
+                        </div>
+                    </div>
+
+                    <div class="user_add_new_content">
+                        <div class="user_add_new_label">
+                            <t><%= f.label :cover_letter, "Giới thiệu ngắn về bản thân", class: "user_add_new_label_name" %></t>
+                        </div>
+
+                        <div class="user_add_new_input">
+                            <%= f.text_field :cover_letter, class: "user_add_new_form_input", placeholder: "  Viết một đoạn giới thiệu ngắn về bản thân" %>
+                        </div>
+                    </div>
+
+                    <div class="user_add_new_content">
+                        <div class="user_add_new_label">
+                            <t><%= f.label :cover_letter_attach, "Upload CV", class: "user_add_new_label" %></t>
+                        </div>
+
+                        <div class="user_add_new_input">
+                            <%= f.file_field :cover_letter_attach, class: "user_add_new_form_input"%>
+                        </div>
+                    </div>
+
+                    <div class="user_add_new_content">
+                        <div class="user_add_new_label">
+                            <t><%= f.label :avatar, "Ảnh đại diện", class: "user_add_new_label" %></t>
+                        </div>
+
+                        <div class="user_add_new_input">
+                            <%= f.file_field :avatar, class: "user_add_new_form_input"%>
+                        </div>
+                    </div>
+
+                    <div class="user_add_new_submit">
+                        <%= f.submit "Lưu thay đổi", class: "user_add_new_form_submit" %>
+                    </div>
+
+                <%end%>
+            </div>
+        </div>
+    </body>
+</html>

@@ -22,9 +22,18 @@ class UsersController < ApplicationController
     def show
         @user = User.find_by id: params[:id]
     end
+
+    def edit
+        @user = User.find params[:id]
+    end
+
+    def update
+        @user = User.update user_params
+        redirect_to user_path(current_user)
+    end
     
     private
     def user_params
-        params.require(:user).permit :name, :password, :password_confirmation, :avatar
+        params.require(:user).permit :name, :email, :password, :password_confirmation, :phone, :address, :cover_letter , :cover_letter_attach, :avatar
     end
 end
