@@ -11,9 +11,15 @@
             <%- model_class = Company -%>
                 <div class="company_area">
                     <div class="company_title">
+                        <div class="company_wall_image">
+                            <%if @company.wall_picture.attached?%>
+                                <img> <%= image_tag @company.wall_picture %></img>
+                            <%end%>
+                        </div>
+
                         <div class="company_title_image">
                             <%if @company.avatar.attached?%>
-                                <img> <%= image_tag @company.avatar.variant(resize: "100x100") %></img>
+                                <img> <%= image_tag @company.avatar %></img>
                             <%end%>
                         </div>
 
