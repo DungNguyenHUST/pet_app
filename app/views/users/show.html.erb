@@ -12,11 +12,12 @@
                 <div class="user_info_wellcome_label">
                     <strong>Xin chào, <%= @user.name %></strong>
                 </div> 
+                
+                <div class="user_info_des_label">
+                    <strong>Cài đặt tài khoản</strong>
+                </div>
 
                 <div class="user_info_about">
-                    <div class="user_info_des_label">
-                        <strong>Cài đặt tài khoản</strong>
-                    </div>
 
                     <div class="user_info_label">
                         <strong>Tên tài khoản:</strong>
@@ -47,7 +48,7 @@
                     </div>
 
                     <div class="user_info_des">
-                        <%= @user.password_digest %>
+                        <%= @user.password_digest, type="********"%> 
                     </div>
 
                     <div class="user_info_edit_button">
@@ -79,10 +80,12 @@
                     </div>
                 </div>
 
+                
+                <div class="user_cover_letter_label">
+                    <strong>Giới thiệu bản thân</strong>
+                </div>
+
                 <div class="user_cover_letter">
-                    <div class="user_cover_letter_label">
-                        <strong>Giới thiệu bản thân</strong>
-                    </div>
 
                     <div class="user_cv_des">
                         <%= @user.cover_letter %>
