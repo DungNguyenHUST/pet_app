@@ -10,38 +10,55 @@
         <div class="company_interview_block">
             <div class="company_interview_left">
                 <div class="company_avatar">
-                    <%= link_to (image_tag("fpt-software-logo.png")), image_path("fpt-software-logo.png"), rel: "gallery" %>
+                    <%if @company.avatar.attached?%>
+                        <%= link_to (image_tag(@company.avatar)), image_path(url_for(@company.avatar)), rel: "gallery" , :href => company_path(@company)%>
+                    <%end%>
                 </div>
             </div>
 
             <div class="company_interview_right">
-                
                 <div class="company_interview_title">
-                    <t><%= company_interview.position %></t>
+                    <strong><%= company_interview.position %></strong>
+                </div>
+
+                <div class="user_interview_status">
+                    <t>Phỏng vấn qua <%= company_interview.get_interview %> - </t>
+                    <t><%= company_interview.process %> vòng - </t>
+                    <t> lúc <%= company_interview.created_at %></t>
                 </div>
 
                 <div class="interview_satisfied_overview">
                     <div class="interview_content">
-                        <div class="interview_point">
-                            <strong><%=company_interview.satisfied%></strong>
-                        </div>
-                        <div class="interview_satisfied_star">
-                            <span class="fa fa-star checked"></span>
-                        </div>
                         <div class="interview_satisfied_label">
-                            <t>Hài lòng với buổi phỏng vấn</t>
+                            <strong>Hài lòng:</strong>
+                        </div>
+                        <div class="interview_score_star">
+                            <%if company_interview.satisfied.to_i > 0%>
+                                <%company_interview.satisfied.to_i.times do%>
+                                    <span class="fa fa-star checked"></span>
+                                <%end%>
+                                <%(5 - company_interview.satisfied.to_i).to_i.times do%>
+                                    <span class="fa fa-star checked_out"></span>
+                                <%end%>
+                            <%else%>
+                                <%5.times do%>
+                                    <span class="fa fa-star checked_out"></span>
+                                <%end%>
+                            <%end%>
                         </div>
                     </div>
                 </div>
 
                 <div class="user_interview_offer">
                     <div class="user_interview_offer_label">
-                        <%if company_interview.satisfied%>
+                        <strong>Chấp nhận offer: </strong>
+                        <%if company_interview.satisfied.to_i >0%>
                             <span class="fa fa-check-square fa checked"></span>
+                            <t> Yes </t>
                         <% else %>
-                            <span class="fa fa-times-circle fa checked"></span>
-                        <%end%>    
-                        <t>Chấp nhận offer </t>
+                            <span class="fa fa-times-circle fa checked_out"></span>
+                            <t> No </t>
+                        <%end%>
                     </div>
                 </div>
 
@@ -58,9 +75,15 @@
                         <t><%= company_interview.company_reply_interviews.count%></t>
                         <%= link_to '<i class="fa fa-thumbs-down fa checked"></i>'.html_safe, new_company_reply_interview_path(@company.id, company_interview.id)%>
                     </div>
+                </div>
 
-                    <div class="user_interview_time">
-                        <t><%= company_interview.user_name %> lúc <%= company_interview.created_at %></t>
+                <div class="interview_feedback">
+                    <div class="report_button">
+                        <%= link_to '<button type="submit"><i class="fa fa-flag fa checked"></i> Báo cáo vi phạm</button>'.html_safe, sessions_new_path %>
+                    </div>
+
+                    <div class="share_button">
+                        <%= link_to '<button type="submit"><i class="fa fa-share-alt fa checked"></i> Chia sẻ</button>'.html_safe, new_user_path %>
                     </div>
                 </div>
 

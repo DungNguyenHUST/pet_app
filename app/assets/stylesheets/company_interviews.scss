@@ -7,23 +7,19 @@
     height: auto;
     margin-top: 30px;
     margin-bottom: 30px;
-    // background-color: #242121;
     border-top: 1px solid #f0f0f1;
     .company_interview_left
     {
-        width: auto;
-        height: auto;
-        margin-top: 30px;
         display: block;
         position: relative;
         float: left;
+        margin-top: 20px;
         .company_avatar {
-            display: block;
-            margin-left: 25%;
-            margin-right: auto;
+            border: 0.5px solid #eaeaea;
+            border-radius: 2px;
             img {
-                width: 80px;
-                height: 80px;
+                max-width: 100px;
+                max-height: 100px;
             }
         }
     }
@@ -36,8 +32,14 @@
         margin-top: 20px;
 
         .company_interview_title{
-            font-size: 18px;
+            font-size: 20px;
             font-weight: 600;
+        }
+
+        .user_interview_status{
+            margin-top: 5px;
+            font-size: 14px;
+            color: #6b6c6d;
         }
 
         .interview_satisfied_overview{
@@ -45,21 +47,27 @@
             {
                 margin-top: 20px;
                 font-size: 18px;
+                .interview_satisfied_label{
+                    float: left;
+                }
+
                 .interview_point
                 {
+                    margin-left: 100px;
+                    margin-right: 10px;
                     float: left;
                     font-size: 18px;
                     font-weight: 600px;
                     color: rgb(75, 71, 71);
                 }
         
-                .interview_satisfied_star
+                .interview_score_star
                 {
-                    float: left;
                     display: block;
                     margin-right: 10px;
+                    margin-left: 200px;
                     .fa {
-                        font-size: 18px;
+                        font-size: 20px;
                     }
         
                     .checked {
@@ -79,12 +87,13 @@
 
         .user_interview_offer{
             clear: both;
-            padding-bottom: 20px;
+            margin-top: 10px;
             .user_interview_offer_label
             {
                 .fa {
                     font-size: 18px;
                     margin-right: 10px;
+                    margin-left: 66px;
                 }
     
                 .checked {
@@ -99,16 +108,17 @@
 
         .company_interview_body{
             clear: both;
+            margin-top: 20px;
             margin-left: 0px;
             font-size: 14px;   
         }
 
         .interview_info{
-            margin-top: 10px;
+            margin-top: 20px;
             .interview_toolbar {
                 display: block;
                 float: left;
-                font-size: 14px;
+                font-size: 18px;
                 .fa {
                     position: relative;
                     margin-right: 20px;
@@ -124,6 +134,42 @@
                 display: block;
                 font-size: 14px;
                 color: #6b6c6d;
+            }
+        }
+        .interview_feedback{
+            padding-bottom: 10px;
+            font-size: 16px;
+            .report_button{
+                margin-left: 55%;
+                float: left;
+                button{
+                    background-color: #ffffff;
+                    border: none;
+                    .fa {
+                        position: relative;
+                        font-size: 18px;
+                        margin-right: 2px;
+                    }
+        
+                    .checked {
+                        color: #feb100;
+                    }
+                }
+            }
+            .share_button{
+                float: right;
+                button{
+                    background-color: #ffffff;
+                    border: none;
+                    .fa {
+                        position: relative;
+                        font-size: 18px;
+                    }
+        
+                    .checked {
+                        color: #feb100;
+                    }
+                }
             }
         }
     }

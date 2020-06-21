@@ -11,111 +11,119 @@
             <div class="review_score_title">
                 <t>Tổng quan chung</t>
             </div>
-            <%# Review in button %>
-            <div class="review_new_button_side">
-                <div class="review_new_button">
-                    <form action="/action_page.php">
-                        <%= link_to '<button type="submit"> <i class="fa fa-edit"></i> Viết đánh giá của bạn</button>'.html_safe, new_company_company_review_path(@company) %>
-                    </form>
-                </div>
-            </div>
 
             <div class="review_score">
-                <div class="review_score_overview">
-                    <div class="review_content">
-                        <div class="review_point">
-                            <strong><%=rating_review_work_env_score.round(1)%></strong>
-                        </div>
-                        <div class="review_score_star">
-                            <span class="fa fa-star checked"></span>
-                        </div>
-                        <div class="review_score_label">
-                            <t>Văn hóa công ty</t>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="review_score_overview">
-                    <div class="review_content">
-                        <div class="review_point">
-                            <strong><%=rating_review_salary_score.round(1)%></strong>
-                        </div>
-                        <div class="review_score_star">
-                            <span class="fa fa-star checked"></span>
-                        </div>
-                        <div class="review_score_label">
-                            <t>Chế độ đãi ngộ</t>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="review_score_overview">
-                    <div class="review_content">
-                        <div class="review_point">
-                            <strong><%=rating_review_ot_score.round(1)%></strong>
-                        </div>
-                        <div class="review_score_star">
-                            <span class="fa fa-star checked"></span>
-                        </div>
-                        <div class="review_score_label">
-                            <t>Làm thêm giờ</t>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="review_score_overview">
-                    <div class="review_content">
-                        <div class="review_point">
-                            <strong><%=rating_review_manager_score.round(1)%></strong>
-                        </div>
-                        <div class="review_score_star">
-                            <span class="fa fa-star checked"></span>
-                        </div>
-                        <div class="review_score_label">
-                            <t>Quản lý cấp trên</t>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="review_score_overview">
-                    <div class="review_content">
-                        <div class="review_point">
-                            <strong><%=rating_review_career_score.round(1)%></strong>
-                        </div>
-                        <div class="review_score_star">
-                            <span class="fa fa-star checked"></span>
-                        </div>
-                        <div class="review_score_label">
-                            <t>Cơ hội thăng tiến</t>
-                        </div>
-                    </div>
-                </div>
-
+                <%# total score %>
                 <div class="review_score_total">
                     <div class="review_score_label">
                         <t>Đánh giá tổng quát</t>
                     </div>
 
                     <div class="review_score_star">
-                        <strong><%=rating_review_total_score.round(1)%> </strong>
-                        <%if rating_review_total_score > 0%>
-                            <%rating_review_total_score.to_i.times do%>
-                                <span class="fa fa-star checked"></span>
+                        <div class="review_point">
+                            <strong><%=rating_review_total_score.round(1)%> </strong>
+                        </div>
+                        <div class="review_score_star">
+                            <%if rating_review_total_score > 0%>
+                                <%rating_review_total_score.to_i.times do%>
+                                    <span class="fa fa-star checked"></span>
+                                <%end%>
+                                <%(5 - rating_review_total_score.to_i).to_i.times do%>
+                                    <span class="fa fa-star checked_out"></span>
+                                <%end%>
+                            <%else%>
+                                <%5.times do%>
+                                    <span class="fa fa-star checked_out"></span>
+                                <%end%>
                             <%end%>
-                            <%(5 - rating_review_total_score.to_i).to_i.times do%>
-                                <span class="fa fa-star checked_out"></span>
-                            <%end%>
-                        <%else%>
-                            <%5.times do%>
-                                <span class="fa fa-star checked_out"></span>
-                            <%end%>
-                        <%end%>
+                        </div>
                     </div>
 
                     <div class="review_total_des">
                         <t>Dựa trên <%= @company.company_reviews.count%> đánh giá từ nhân viên cũ</t>
                     </div>
+                </div>
 
+                <%# detail %>
+                <div class="review_score_detail">
+                    <div class="review_score_overview">
+                        <div class="review_content">
+                            <div class="review_point">
+                                <strong><%=rating_review_work_env_score.round(1)%></strong>
+                            </div>
+                            <div class="review_score_star">
+                                <span class="fa fa-star checked"></span>
+                            </div>
+                            <div class="review_score_label">
+                                <t>Văn hóa công ty</t>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="review_score_overview">
+                        <div class="review_content">
+                            <div class="review_point">
+                                <strong><%=rating_review_salary_score.round(1)%></strong>
+                            </div>
+                            <div class="review_score_star">
+                                <span class="fa fa-star checked"></span>
+                            </div>
+                            <div class="review_score_label">
+                                <t>Chế độ đãi ngộ</t>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="review_score_overview">
+                        <div class="review_content">
+                            <div class="review_point">
+                                <strong><%=rating_review_ot_score.round(1)%></strong>
+                            </div>
+                            <div class="review_score_star">
+                                <span class="fa fa-star checked"></span>
+                            </div>
+                            <div class="review_score_label">
+                                <t>Làm thêm giờ</t>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="review_score_overview">
+                        <div class="review_content">
+                            <div class="review_point">
+                                <strong><%=rating_review_manager_score.round(1)%></strong>
+                            </div>
+                            <div class="review_score_star">
+                                <span class="fa fa-star checked"></span>
+                            </div>
+                            <div class="review_score_label">
+                                <t>Quản lý cấp trên</t>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="review_score_overview">
+                        <div class="review_content">
+                            <div class="review_point">
+                                <strong><%=rating_review_career_score.round(1)%></strong>
+                            </div>
+                            <div class="review_score_star">
+                                <span class="fa fa-star checked"></span>
+                            </div>
+                            <div class="review_score_label">
+                                <t>Cơ hội thăng tiến</t>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <%# Review in button %>
+                <div class="review_new_button_side">
+                    <div class="review_new_button">
+                        <form action="/action_page.php">
+                            <%= link_to '<button type="submit"> <i class="fa fa-edit"></i> Viết đánh giá của bạn</button>'.html_safe, new_company_company_review_path(@company) %>
+                        </form>
+                    </div>
                 </div>
             </div>
         </div>

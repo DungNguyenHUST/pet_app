@@ -126,7 +126,7 @@
                             </div>
 
                             <div class="new_review_input">
-                                <%= f.text_field :pros, class: "new_review_form_input", placeholder: "  Nhập tên hoặc email của bạn" %>
+                                <%= f.rich_text_area :pros, class: "new_review_form_input_rich_text", placeholder: "  Ưu điểm của công ty này" %>
                             </div>
                         </div>
 
@@ -136,7 +136,7 @@
                             </div>
 
                             <div class="new_review_input">
-                                <%= f.text_field :cons, class: "new_review_form_input", placeholder: "  Nhập tên hoặc email của bạn" %>
+                                <%= f.rich_text_area :cons, class: "new_review_form_input_rich_text", placeholder: "  Nhược điểm của công ty" %>
                             </div>
                         </div>
                     </div>
@@ -148,7 +148,7 @@
                             </div>
                             
                             <div class="new_review_input">
-                                <%= f.text_field :review_title, class: "new_review_form_input", placeholder: "  Nhập mật khẩu của bạn" %>
+                                <%= f.text_field :review_title, class: "new_review_form_input", placeholder: "  Nhập tiêu đề" %>
                             </div>
                         </div>
 
@@ -158,14 +158,9 @@
                             </div>
                             
                             <div class="new_review_input_review">
-                                <%= f.text_field :review, class: "new_review_form_input_review", placeholder: "  Nhập mật khẩu của bạn" %>
+                                <%= f.rich_text_area :review, class: "new_review_form_input_rich_text", placeholder: "  Nhập nội dung review của bạn" %>
                             </div>
                         </div>
-                    </div>
-
-                    <div class="new_review_content_checkbox">
-                        <input type="checkbox" name="agree-term" id="agree-term" class="agree-term" />
-                        <label for="agree-term" class="label-agree-term"><span><span></span></span> Đồng ý với điều khoản điều kiện</label>
                     </div>
 
                     <div class="new_review_submit">

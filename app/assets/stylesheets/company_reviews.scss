@@ -6,7 +6,7 @@
     width: 100%;
     height: 100%;
     margin-top: 50px;
-    margin-bottom: 30px;
+    margin-bottom: 50px;
     background-color: #ffffff;
     border-top: 1px solid #f0f0f1;
     .user_review_left
@@ -18,13 +18,14 @@
         position: relative;
         float: left;
         .user_avatar {
-            width: 120px;
-            height: 120px;
-            border: 1px solid #c8c8c8;
+            border: 0.5px solid #eaeaea;
+            // border-radius: 50%;
             float: left;
-            border-radius: 5px;
-            img{
-                
+            border-radius: 2px;
+            // border-style: ridge;
+            img{ 
+                max-width: 100px;
+                max-height: 100px;
             }
         }
     }
@@ -36,19 +37,57 @@
         height: auto;
         margin-left: 150px;
         margin-top: 20px;
+        margin-bottom: 20px;
 
         .user_review_title{
-            font-size: 16px;;
+            font-size: 20px;;
             font-weight: 600;
+        }
+
+        .user_review_score_star
+        {
+            font-size: 20px;
+            margin-top: 10px;
+            margin-bottom: 5px;
+            .review_point{
+                float: left;
+                margin-right: 8px;
+            }
+            
+            .review_score_star
+            {
+                .fa {
+                    float: left;
+                    margin-top: 4px;
+                    margin-right: 6px;
+                }
+
+                .checked {
+                    color: #feb100;
+                }
+
+                .checked_out {
+                    color: #c8c8c8;
+                }
+            }
+        }
+        
+        .user_review_status{
+            font-size: 16px;
+            margin-left: 180px;
+            color: #3c3d3d;
+            padding-top: 6px;
         }
 
         .user_review_pros
         {
+            clear: both;
             margin-top: 20px;
             .user_review_pros_label{
                 .fa {
                     position: relative;
                     margin-right: 10px;
+                    padding-top: 3px;
                     float: left;
                 }
 
@@ -64,6 +103,7 @@
                 font-size: 14px;
                 margin-left: 30px;
                 margin-top: 10px;
+                color: #3c3d3d;
             }
         }
 
@@ -75,6 +115,7 @@
                 .fa {
                     position: relative;
                     margin-right: 10px;
+                    padding-top: 3px;
                     float: left;
                 }
 
@@ -88,36 +129,70 @@
                 font-size: 14px;
                 margin-left: 30px;
                 margin-top: 10px;
+                color: #3c3d3d;
             }
         }
 
         .user_review_body {
-            margin-top: 30px;
+            margin-top: 20px;
             font-size: 14px;
-            margin-bottom: 15px;
+            margin-bottom: 30px;
+            display: block;
+            color: black;
         }
 
         .review_info{
-            margin-top: 30px;
+            margin-top: 20px;
+            margin-bottom: 20px;
             .review_toolbar {
                 display: block;
                 float: left;
-                font-size: 14px;
+                font-size: 16px;
                 .fa {
                     position: relative;
                     margin-right: 20px;
+                    font-size: 18px;
                 }
     
                 .checked {
                     color: #a8a3a3;
                 }
             }
+        }
 
-            .user_review_time{
-                margin-left: 66%;
-                display: block;
-                font-size: 14px;
-                color: #6b6c6d;
+        .review_feedback{
+            font-size: 16px;
+            .report_button{
+                margin-left: 55%;
+                float: left;
+                button{
+                    background-color: #ffffff;
+                    border: none;
+                    .fa {
+                        position: relative;
+                        font-size: 18px;
+                        margin-right: 2px;
+                    }
+        
+                    .checked {
+                        color: #feb100;
+                    }
+                }
+            }
+            .share_button{
+                float: right;
+                button{
+                    background-color: #ffffff;
+                    border: none;
+                    .fa {
+                        position: relative;
+                        font-size: 18px;
+                    }
+        
+                    .checked {
+                        color: #feb100;
+                    }
+                }
             }
         }
     }

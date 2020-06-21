@@ -11,7 +11,7 @@
         // background-color: #f8f9fa;
         display: block;
         margin-top: 50px;
-        margin-bottom: 100px;
+        margin-bottom: 50px;
         margin-left: auto;
         margin-right: auto;
         .company_search_bar_label
@@ -39,7 +39,7 @@
         }
         .company_search_button{
             .search_button{
-                margin-top: 10px;
+                margin-top: 15px;
                 width: 200px;
                 height: 50px;
                 border-radius: 5px;
@@ -49,18 +49,43 @@
                 color: #ffffff;
             }
         }
+    }
 
+    .company_current_review{
+        .company_current_review_title{
+            margin-top: 20px;
+            font-size: 25px;
+            float: left;
+        }
+
+        .company_current_review_rating{
+            margin-top: 10px;
+            float: right;
+            background-color: #fffbde;
+            border-radius: 10px;
+            .fa {
+                font-size: 30px;
+                margin: 8px;
+                color: #eaeaea;
+            }
+
+            .fa:hover{
+                color: #feb100;
+            }
+        }
+        
+        clear: both;
     }
 
     .section_title
     {
-        margin-top: 50px;
+        margin-top: 100px;
         font-size: 25px;
         font-weight: 550;
         text-align: left;
         margin-bottom: 20px;
     }
-
+    
     .single_company{
         float: left;
         display: block;
@@ -74,7 +99,7 @@
         border: 1px solid #dadce0;
         border-radius: 5px;
         &:hover{
-            background: #f0f0f1;
+            // background: #f0f0f1;
         }
 
         .company_thumbnail
@@ -84,10 +109,36 @@
             display: block;
             margin: 50px;
             margin-top: 30px;
+            float: left;
+        }
+
+        .company_love_button{
+            padding-right: 15px;
+            padding-top: 15px;
+            float: right;
+            button{
+                border: none;
+                background-color: #ffffff;
+                .fa {
+                    font-size: 25px;
+                }
+    
+                .checked {
+                    color: #eaeaea;
+                }
+            }
+
+            button:hover{
+                background: #ffffff;
+                .checked {
+                    color: #feb100;
+                }
+            }
         }
 
         .company_name
         {
+            clear: both;
             text-align: center;
             color: #161e2e;
             font-size: 20px;
@@ -211,12 +262,12 @@
 //////////////////show//////////////////
 
 .company_area{
-    padding:0 !important;
     clear: both;
+    padding:0 !important;
 
-    .company_title{
+    .company_overview{
         width: 100%;
-        height: 50px;
+        height: 60px;
         padding-bottom: 100px;
 
         .company_wall_image{
@@ -225,46 +276,92 @@
                 max-height: 330px;
             }
             padding-top: 0px;
-            padding-bottom: 10px;
         }
 
         .company_title_image{
-            padding-top: 20px;
             img{
                 max-width: 120px;
                 max-height: 120px;
-                border: 1px solid #c8c8c8;
-                border-radius: 5px;
+                border: 1px solid #eaeaea;
+                border-radius: 2px;
             }
             float: left;
         }
 
         .company_title_summary
         {
-            border: 1px #161e2e;
-            margin-top: 10px;
+            margin-top: 15px;
             .company_title_name
             {
-                border-bottom: 1px solid #f0f0f1;
                 font-size: 25px;
                 font-weight: 600;
                 text-align: left;
-                margin-left: 150px;
+                margin-left: 10px;
+                float: left;
             }
+            
+            .company_follow{
+                float: right;
+                padding-top: 8px;
+                button{
+                    height: 36px;
+                    width: 150px;
+                    margin-right: 10px;
+                    background: #5850ec;
+                    font-size: 14px;
+                    border: none;
+                    cursor: pointer;
+                    text-align: center;
+                    color: #ffffff;
+                    border-radius: 15px;
+                    
+                    &:hover{
+                        background-color: #4284f4;
+                    }
+                }
+            }
+
+            
+            .company_score_star_overview{
+                clear: right;
+                float: left;
+                margin-left: 10px;
+                margin-right: 50px;
+                padding-top: 5px;
+                .company_rating{
+                    font-size: 18px;
+                    .fa{
+                        margin-right: 3px;
+                        font-size: 20px;
+                    }
+
+                    .checked_out
+                    {
+                        color: #959da5;
+                    }
+
+                    .checked{
+                        color: #feb100;
+                    }
+                    
+                }
+            }
+
             .company_title_short_des
             {
+                display: block;
                 width: 100%;
-                margin-left: 150px;
-                margin-top: 25px;
                 .company_title_short_des_group1{
                     float: left;
                     text-align: left;
                     font-size: 14px;
+                    margin-left: 10px;
+                    padding-top: 5px;
                     .fa {
                         position: relative;
                         margin-right: 10px;
-                        // margin-left: 30px;
                         float: left;
+                        font-size: 18px;
                     }
 
                     .checked {
@@ -275,11 +372,13 @@
                     float: left;
                     text-align: left;
                     font-size: 14px;
+                    padding-top: 5px;
                     .fa {
                         position: relative;
                         margin-right: 10px;
                         margin-left: 30px;
                         float: left;
+                        font-size: 18px;
                     }
 
                     .checked {
@@ -294,7 +393,7 @@
     .company_tab {
         clear: left;
         overflow: hidden;
-        padding-top: 25px;
+        padding-top: 20px;
         border-bottom: 2px solid #f0f0f1;
     }
 
@@ -383,6 +482,14 @@
                 .new_company_form_input{
                     margin-left: 0px;
                     height: 40px;
+                    width: 100%;
+                    border: 1px solid #c8c8c8;
+                    border-radius: 5px;
+                }
+                .new_company_form_input_rich_text{
+                    margin-left: 0px;
+                    height: 200px;
+                    overflow: scroll;
                     width: 100%;
                     border: 1px solid #c8c8c8;
                     border-radius: 5px;

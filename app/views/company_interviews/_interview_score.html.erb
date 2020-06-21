@@ -21,68 +21,39 @@
             </div>
 
             <div class="interview_score">
-                <div class="interview_score_overview">
-                    <div class="interview_content">
-                        <div class="interview_point">
-                            <strong><%=rating_interview_difficultly_score.round(1)%></strong>
-                        </div>
-                        <div class="interview_score_star">
-                            <span class="fa fa-star checked"></span>
-                        </div>
-                        <div class="interview_score_label">
-                            <t>Độ khó bài phỏng vấn</t>
-                        </div>
+                <div class="interview_score_difficult">
+                    <div class="interview_point">
+                        <strong><%=rating_interview_difficultly_score.round(1)%></strong>
                     </div>
-                </div>
-
-                <div class="interview_score_overview">
-                    <div class="interview_content">
-                        <div class="interview_point">
-                            <strong><%=rating_interview_satisfied_score.round(1)%></strong>
-                        </div>
-                        <div class="interview_score_star">
-                            <span class="fa fa-star checked"></span>
-                        </div>
-                        <div class="interview_score_label">
-                            <t>Mức độ hài lòng</t>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="interview_score_overview">
-                    <div class="interview_content">
-                        <div class="interview_point">
-                            <strong><%=rating_interview_process_score.round(1)%></strong>
-                        </div>
-                        <div class="interview_score_label">
-                            <t>Vòng phỏng vấn trung bình</t>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="interview_score_overview">
-                    <div class="interview_content">
-                        <div class="interview_point">
-                            <strong><%=rating_interview_offer_score.round(1) * 100%> %</strong>
-                        </div>
-                        <div class="interview_score_label">
-                            <t>Chấp nhận offer</t>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="interview_score_total">
-                    <div class="interview_score_label">
-                        <t>Đánh giá tổng quát</t>
-                    </div>
-
                     <div class="interview_score_star">
-                        <strong><%=rating_interview_total_score.round(1)%> </strong>
-                        <%if rating_interview_total_score > 0%>
-                            <%rating_interview_total_score.to_i.times do%>
+                        <%if rating_interview_difficultly_score > 0%>
+                            <%rating_interview_difficultly_score.to_i.times do%>
+                                <span class="fa fa-circle checked"></span>
+                            <%end%>
+                            <%(5 - rating_interview_difficultly_score.to_i).to_i.times do%>
+                                <span class="fa fa-circle checked_out"></span>
+                            <%end%>
+                        <%else%>
+                            <%5.times do%>
+                                <span class="fa fa-circle checked_out"></span>
+                            <%end%>
+                        <%end%>
+                    </div>
+                    <div class="interview_score_label">
+                        <t>Độ khó bài phỏng vấn</t>
+                    </div>
+                </div>
+
+                <div class="interview_score_satisfied">
+                    <div class="interview_point">
+                        <strong><%=rating_interview_satisfied_score.round(1)%></strong>
+                    </div>
+                    <div class="interview_score_star">
+                        <%if rating_interview_satisfied_score > 0%>
+                            <%rating_interview_satisfied_score.to_i.times do%>
                                 <span class="fa fa-star checked"></span>
                             <%end%>
-                            <%(5 - rating_interview_total_score.to_i).to_i.times do%>
+                            <%(5 - rating_interview_satisfied_score.to_i).to_i.times do%>
                                 <span class="fa fa-star checked_out"></span>
                             <%end%>
                         <%else%>
@@ -91,11 +62,37 @@
                             <%end%>
                         <%end%>
                     </div>
-
-                    <div class="interview_total_des">
-                        <t>Dựa trên <%= @company.company_interviews.count%> chia sẻ từ người dùng</t>
+                    <div class="interview_score_label">
+                        <t>Mức độ hài lòng</t>
                     </div>
+                </div>
 
+                <div class="interview_score_process">
+                    <div class="interview_content">
+                        <div class="interview_point">
+                            <strong><%=rating_interview_process_score.round(1)%></strong>
+                        </div>
+                        <div class="interview_score_star">
+                            <span class="fa fa-users checked"></span>
+                        </div>
+                        <div class="interview_score_label">
+                            <t>Vòng phỏng vấn trung bình</t>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="interview_score_interview">
+                    <div class="interview_content">
+                        <div class="interview_point">
+                            <strong><%=rating_interview_offer_score.round(1) * 100%> %</strong>
+                        </div>
+                        <div class="interview_score_star">
+                            <span class="fa fa-briefcase checked"></span>
+                        </div>
+                        <div class="interview_score_label">
+                            <t>Chấp nhận offer</t>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
