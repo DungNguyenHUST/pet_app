@@ -10,7 +10,7 @@
         <div class='body_content'>
             <%- model_class = Company -%>
                 <div class="company_area">
-                    <div class="company_title">
+                    <div class="company_overview">
                         <div class="company_wall_image">
                             <%if @company.wall_picture.attached?%>
                                 <img> <%= image_tag @company.wall_picture %></img>
@@ -27,6 +27,40 @@
                             <div class="company_title_name">
                                 <t><%= @company.name %></t>
                             </div>
+                            
+                            <div class="company_follow">
+                                <%= link_to '<button type="button"><i class="fa fa-heart fa checked"></i> Yêu thích </button>'.html_safe, company_path(@company) %>
+                            </div>
+
+                            <div class="company_score_star_overview">
+                                <%# Cal culate rating score %>
+                                <%if(@company.company_reviews.count > 0)%>
+                                    <%rate_work_env = @company.company_reviews.sum('work_env_score').to_f / @company.company_reviews.count%>
+                                    <%rate_salary = @company.company_reviews.sum('salary_score').to_f / @company.company_reviews.count%>
+                                    <%rate_ot = @company.company_reviews.sum('ot_score').to_f / @company.company_reviews.count%>
+                                    <%rate_manager = @company.company_reviews.sum('manager_score').to_f / @company.company_reviews.count%>
+                                    <%rate_career = @company.company_reviews.sum('career_score').to_f / @company.company_reviews.count%>
+                                    <%total_rate = (rate_work_env + rate_salary + rate_ot + rate_manager + rate_career)/5%>
+                                <%else%>
+                                    <%total_rate = 0%>
+                                <%end%>
+
+                                <div class="company_rating">
+                                    <strong><%=total_rate.to_i%>.0</strong>
+                                    <%if total_rate > 0%>
+                                        <%total_rate.to_i.times do%>
+                                            <span class="fa fa-star checked"></span>
+                                        <%end%>
+                                        <%(5 - total_rate.to_i).to_i.times do%>
+                                            <span class="fa fa-star checked_out"></span>
+                                        <%end%>
+                                    <%else%>
+                                        <%5.times do%>
+                                            <span class="fa fa-star checked_out"></span>
+                                        <%end%>
+                                    <%end%>
+                                </div>
+                            </div>
 
                             <div class="company_title_short_des">
                                 <div class="company_title_short_des_group1">
@@ -35,18 +69,8 @@
                                 </div>
 
                                 <div class="company_title_short_des_group">
-                                    <span class="fa fa-flag fa checked"></span>
-                                    <t><%= @company.country %></t>
-                                </div>
-
-                                <div class="company_title_short_des_group">
                                     <span class="fa fa-users fa checked"></span>
-                                    <t><%= @company.size %></t>
-                                </div>
-
-                                <div class="company_title_short_des_group">
-                                    <span class="fa fa-calendar fa checked"></span>
-                                    <t><%= @company.time_start %> - <%= @company.time_end %></t>
+                                    <t><%= @company.field_operetion %></t>
                                 </div>
                             </div>
                         </div>

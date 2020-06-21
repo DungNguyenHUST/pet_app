@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_06_07_093427) do
+ActiveRecord::Schema.define(version: 2020_06_20_043511) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -131,6 +131,7 @@ ActiveRecord::Schema.define(version: 2020_06_07_093427) do
     t.integer "salary_score"
     t.integer "work_env_score"
     t.boolean "working_status"
+    t.integer "average_score"
   end
 
   create_table "post_comments", force: :cascade do |t|

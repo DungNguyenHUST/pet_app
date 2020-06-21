@@ -12,21 +12,45 @@
             <div class="user_review_left">
                 <div class="user_avatar">
                     <%if @company.avatar.attached?%>
-                        <img> <%= image_tag @company.avatar.variant(resize: "120x120") %></img>
+                        <%= link_to (image_tag(@company.avatar)), image_path(url_for(@company.avatar)), rel: "gallery" , :href => company_path(@company)%>
                     <%end%>
                 </div>
             </div>
 
             <div class="user_review_cotent">
-                
                 <div class="user_review_title">
                     <t><%= company_review.review_title %></t>
+                </div>
+
+                <div class="user_review_score_star">
+                    <div class="review_point">
+                        <strong><%=company_review.average_score.to_i%>.0 </strong>
+                    </div>
+                    <div class="review_score_star">
+                            <%company_review.average_score.to_i.times do%>
+                                <span class="fa fa-star checked"></span>
+                            <%end%>
+                            <%(5 - company_review.average_score.to_i).to_i.times do%>
+                                <span class="fa fa-star checked_out"></span>
+                            <%end%>
+                    </div>
+                </div>
+
+                <div class="user_review_status">
+                    
+                        <t><%= company_review.position %></t>
+                        <%if company_review.working_status%>
+                            <t> - Nhân viên đang làm việc - </t>
+                        <%else%>
+                            <t> - Đã nghỉ việc - </t>
+                        <%end%>
+                        <t><%= company_review.created_at %></t>
                 </div>
 
                 <div class="user_review_pros">
                     <div class="user_review_pros_label">
                         <span class="fa fa-check-square fa checked"></span>
-                        <t>Ưu điểm</t>
+                        <strong>Ưu điểm</strong>
                     </div>
                     <div class="user_review_pros_content">
                         <t><%= company_review.pros %></t>
@@ -36,7 +60,7 @@
                 <div class="user_review_cons">
                     <div class="user_review_cons_label">
                         <span class="fa fa-times-circle fa checked"></span>
-                        <t>Nhược điểm </t>
+                        <strong>Nhược điểm </strong>
                     </div>
                     <div class="user_review_cons_content">
                         <t><%= company_review.cons %></t>
@@ -58,9 +82,15 @@
                         <t><%= company_review.company_dislike_reviews.count%></t>
                         <%= link_to '<i class="fa fa-thumbs-down fa checked"></i>'.html_safe, company_company_review_company_dislike_reviews_path(@company, company_review), method: :post%>
                     </div>
+                </div>
 
-                    <div class="user_review_time">
-                        <t><%= company_review.user_name %> lúc <%= company_review.created_at %></t>
+                <div class="review_feedback">
+                    <div class="report_button">
+                        <%= link_to '<button type="submit"><i class="fa fa-flag fa checked"></i> Báo cáo vi phạm</button>'.html_safe, sessions_new_path %>
+                    </div>
+
+                    <div class="share_button">
+                        <%= link_to '<button type="submit"><i class="fa fa-share-alt fa checked"></i> Chia sẻ</button>'.html_safe, new_user_path %>
                     </div>
                 </div>
 

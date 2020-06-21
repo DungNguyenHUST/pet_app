@@ -11,7 +11,9 @@
         <div class="user_reply_interview_block">
             <div class="user_reply_interview_left">
                 <div class="user_avatar">
-                    <%= link_to (image_tag("fpt-software-logo.png")), image_path("fpt-software-logo.png"), rel: "gallery" %>
+                    <%if @company.avatar.attached?%>
+                        <%= link_to (image_tag(@company.avatar)), image_path(url_for(@company.avatar)), rel: "gallery" , :href => company_path(@company)%>
+                    <%end%>
                 </div>
             </div>
 
