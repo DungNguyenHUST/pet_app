@@ -7,33 +7,9 @@
     </head>
 
     <body>
-        <div class='body_content'>
+        <div class='body_content_full'>
             <%- model_class = Problem -%>
-                <div class="problem_area">
-                    <div class="problem_title">
-                        <div class="problem_title_image">
-                            <img src="<%= "/assets/fpt-software-logo.png" %>" alt="Snow" style="width:100%;">
-                        </div>
-
-                        <div class="problem_title_summary">
-                            <div class="problem_title_name">
-                                <t><%= @problem.title %></t>
-                            </div>
-
-                            <div class="problem_title_short_des">
-                                <div class="problem_title_short_des_group1">
-                                    <span class="fa fa-map-marker fa-2x checked"></span>
-                                    <t><%= @problem.user_name %></t>
-                                </div>
-
-                                <div class="problem_title_short_des_group">
-                                    <span class="fa fa-history fa-2x checked"></span>
-                                    <t><%= @problem.created_at %></t>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
+                <div class="problem_area_left">
                     <!-- Tab links -->
                     <div class="problem_tab">
                         <button class="problem_tablinks active" onclick="openContent(event, 'Problem')"><h3>Mô tả chính</h3></button>
@@ -66,7 +42,44 @@
                             evt.currentTarget.className += " active";
                         }
                     </script>
+                </div>
 
+                <div class="problem_area_right">
+                    <div class="problem_submit">
+                        <div class="new_problem_solution_form">
+                            <%= form_for [@problem, ProblemSolution.new] do |f| %>
+                                <div class="new_problem_solution_title">
+                                    <t>Hãy cho mọi người biết giải pháp của bạn</t>
+                                </div>
+
+                                <div class="new_problem_solution_section">
+                                    <div class="new_problem_solution_content">
+                                        <div class="new_problem_solution_label">
+                                            <t><%= f.label :title, "Tiêu đề*", class: "new_problem_solution_label_name" %></t>
+                                        </div>
+
+                                        <div class="new_problem_solution_input_review">
+                                            <%= f.text_field :title, class: "new_problem_solution_form_input", placeholder: "  Nhập tiêu đề" %>
+                                        </div>
+                                    </div>
+
+                                    <div class="new_problem_solution_content">
+                                        <div class="new_problem_solution_label">
+                                            <t><%= f.label :content, "Giải pháp chính*", class: "new_problem_solution_label_name" %></t>
+                                        </div>
+
+                                        <div class="new_problem_solution_input_review">
+                                            <%= f.text_field :content, class: "new_problem_solution_form_input", placeholder: "  Nhập nội dung trả lời" %>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="new_problem_solution_submit_button">
+                                    <%= f.submit "Gửi đánh giá", class: "new_problem_solution_form_submit" %>
+                                </div>
+                            <%end%>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>

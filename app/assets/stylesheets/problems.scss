@@ -4,76 +4,15 @@
         margin-top: 50px;
         font-size: 30px;
         font-weight: 500;
-    }
-
-    .problem_table{
-        margin-top: 50px;
-        border-collapse: collapse;
-        width: 100%;
-        height: auto;
-        text-decoration: none;
-        
-        tr:nth-child(even){background-color: #f2f2f2;}
-        
-        tr:hover {background-color: #ddd;}
-        
-        tr th {
-            padding-top: 10px;
-            padding-bottom: 10px;
-            font-size: 14px;
-            text-align: center;
-            background-color: #5850ec;
-            color: white;
-            text-decoration: none;
-            // .table_th_no{
-            //     margin-left: 20px;
-            // }
-            // .table_th_title{
-            //     margin-left: 30px;
-            // }
-            // .table_th_difficult{
-            //     margin-left: 100px;
-            // }
-            // .table_th_user{
-            //     margin-left: 20px;
-
-            // }
-            // .table_th_date{
-
-            // }
-        }
-
-        tr td {
-            border: 0px solid #ddd;
-            padding: 0px;
-            text-align: left;
-            padding-top: 10px;
-            padding-bottom: 10px;
-            font-size: 14px;
-            text-decoration: none;
-            // .table_td_no{
-            //     margin-left: 20px;
-            // }
-            // .table_td_title{
-            //     margin-left: 30px;
-            // }
-            // .table_td_difficult{
-            //     margin-left: 150px;
-            // }
-            // .table_td_user{
-
-            // }
-            // .table_td_date{
-
-            // }
-        }
+        float: left;
     }
 
     .new_problem button {
-        // float: right;
-        padding: 8px;
-        margin-top: 25px;
-        margin-bottom: 25px;
+        float: right;
+        height: 40px;
+        width: 200px;
+        margin-top: 50px;
+        margin-bottom: 50px;
         background: #5850ec;
         font-size: 14px;
         border: 0px;
@@ -87,87 +26,100 @@
         background: #5850ec;
     }
 
-}
-
-////////////////show/////////////////////////
-.problem_area{
-    padding:0 !important;
-    clear: both;
-
-    .problem_title{
+    .problem_table{
+        margin-top: 50px;
+        margin-bottom: 50px;
+        border-collapse: collapse;
         width: 100%;
-        height: 50px;
-        padding-top: 100px;
-        padding-bottom: 100px;
-
-        .problem_title_image{
-            top: 30%;
-            width: 120px;
-            height: 120px;
-            border: 1px solid #c8c8c8;
-            float: left;
+        height: auto;
+        text-decoration: none;
+        
+        tr:nth-child(even){background-color: #fafafa;}
+        
+        tr:hover {background-color: #dddd;}
+        
+        tr th {
+            border-bottom: 1px solid #c8c8c8;
+            padding-top: 10px;
+            padding-bottom: 10px;
+            font-size: 16px;
+            text-align: left;
+            text-decoration: none;
+            width: 100%;
+            .table_th_no{
+                width: 20px;
+                margin-left: 10px;
+            }
+            .table_th_title{
+                width: 600px;
+            }
+            .table_th_difficult{
+                padding-left: 30px;
+                width: 100px;
+            }
+            .table_th_user{
+                width: 100px;
+                padding-left: 10px;
+            }
+            .table_th_date{
+                width: 74px;
+            }
         }
 
-        .problem_title_summary
-        {
-            border: 1px #161e2e;
-            margin-top: 10px;
-            .problem_title_name
-            {
-                border-bottom: 1px solid #f0f0f1;
-                font-size: 30px;
-                text-align: left;
-                margin-left: 150px;
+        tr td {  
+            text-align: left;
+            padding-top: 10px;
+            padding-bottom: 10px;
+            font-size: 14px;
+            a:link{
+                text-decoration: none;
             }
-            .problem_title_short_des
-            {
-                width: 100%;
-                margin-left: 150px;
-                margin-top: 25px;
-                .problem_title_short_des_group1{
-                    float: left;
-                    text-align: left;
-                    font-size: 14px;
-                    .fa {
-                        position: relative;
-                        margin-right: 10px;
-                        // margin-left: 30px;
-                        float: left;
-                    }
-
-                    .checked {
-                        color: #959da5;
-                    }
-                }
-                .problem_title_short_des_group{
-                    float: left;
-                    text-align: left;
-                    font-size: 14px;
-                    .fa {
-                        position: relative;
-                        margin-right: 10px;
-                        margin-left: 30px;
-                        float: left;
-                    }
-
-                    .checked {
-                        color: #959da5;
-                    }
-                }
+            white-space: pre;
+            overflow: hidden;
+            height: 30px;
+            text-overflow: ellipsis; 
+            width: 100%;
+            .table_td_no{
+                width: 20px;
+                margin-left: 10px;
+            }
+            .table_td_title{
+                width: 600px;
+            }
+            .table_td_difficult{
+                padding-left: 30px;
+                width: 100px;
+            }
+            .table_td_user{
+                width: 100px;
+                padding-left: 10px;
+            }
+            .table_td_date{
+                width: 74px;
             }
         }
     }
+
+}
+
+////////////////show/////////////////////////
+.problem_area_left{
+    min-height: 720px;
+    width: 50%;
+    float: left;
+    border-right: 1px solid #c8c8c8;
+    padding-top: 0px !important;
     
     /* Style the tab */
     .problem_tab {
-        clear: left;
         overflow: hidden;
-        // border: 1px solid #c8c8c8;
+        width: 100%;
+        border: 1px solid #c8c8c8;
     }
 
     .problem_tablinks
     {
-        // border: 1px solid #c8c8c8;
+        width: 50%;
     }
 
     /* Style the buttons that are used to open the tab content */
@@ -197,5 +149,111 @@
         padding: 6px 12px;
         // border: 1px solid #c8c8c8;
         border-top: none;
+        border-bottom: 1px solid #ffffff;
+    }
+}
+
+.problem_area_right
+{
+    .problem_submit{
+        display: block;
+        .new_problem_solution_form
+        {
+            margin-left: 20%;
+            margin-right: 20%;
+            margin-bottom: 50px;
+            .new_problem_solution_title{
+                font-size: 25px;
+                color: #161e2e;
+                text-align: center;
+                margin-top: 50px;
+                margin-bottom: 30px;
+            }
+
+            .new_problem_solution_section
+            {
+                .new_problem_solution_content{
+                    .new_problem_solution_label{
+                        font-weight: 600;
+                        font-size: 14px;
+                        color: #161e2e;
+                        // text-align: left;
+                    }
+
+                    .new_problem_solution_input{
+                        left: 0px;
+                        margin-top: 5px;
+                        margin-bottom: 20px;
+                        width: 750px;
+                        height: auto;
+                        .new_problem_solution_form_input{
+                            margin-left: 0px;
+                            height: 40px;
+                            width: 100%;
+                            border: 1px solid #c8c8c8;
+                            border-radius: 5px;
+                        }
+                    }
+                    .new_problem_solution_input_time{
+                        left: 0px;
+                        margin-top: 5px;
+                        margin-bottom: 20px;
+                        width: 300px;
+                        .new_problem_solution_form_input{
+                            margin-left: 0px;
+                            height: 40px;
+                            width: 100%;
+                            border: 1px solid #c8c8c8;
+                            border-radius: 5px;
+                        }
+                    }
+
+                    .new_problem_solution_input_review{
+                        left: 0px;
+                        margin-top: 5px;
+                        margin-bottom: 20px;
+                        width: 750px;
+                        height: 50px;
+                        .new_problem_solution_form_input_review{
+                            word-wrap: break-word;
+                            white-space: pre-wrap; 
+                            margin-left: 0px;
+                            height: 80px;
+                            width: 100%;
+                            border: 1px solid #c8c8c8;
+                            border-radius: 5px;
+                        }
+                    }
+                }
+            }
+
+            .new_problem_solution_submit{
+                margin-top: 20px;
+                .new_problem_solution_form_submit{
+                    height: 50px;
+                    width: 100%;
+                    border-radius: 5px;
+                    padding: 6px;
+                    background: #5850ec;
+                    font-size: 14px;
+                    border: none;
+                    cursor: pointer;
+                    text-align: center;
+                    color: #ffffff;
+                    
+                    &:hover{
+                        background-color: #4284f4;
+                    }
+                }
+            }
+
+            .my_style_class{
+                padding: 10px;
+                width: 300px;
+                font-size: 14px;
+                border-radius: 5px;
+                background: #ffffff;
+            }
+        }
     }
 }

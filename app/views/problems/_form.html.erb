@@ -15,6 +15,17 @@
                     </div>
 
                     <div class="new_problem_section">
+
+                        <div class="new_problem_content">
+                            <div class="new_problem_label">
+                                <t><%= f.label :difficult, "Mức độ, độ khó", class: "new_problem_label_name" %></t>
+                            </div>
+
+                            <div class="new_problem_input">
+                                <%= f.select(:difficult, ['Dễ','Trung bình','Khó'], {include_blank: true}, { :class => 'my_style_class' }) %>
+                            </div>
+                        </div>
+
                         <div class="new_problem_content">
                             <div class="new_problem_label">
                                 <t><%= f.label :title, "Tiêu đề*", class: "new_problem_label_name" %></t>
@@ -27,21 +38,11 @@
 
                         <div class="new_problem_content">
                             <div class="new_problem_label">
-                                <t><%= f.label :content, "Nội dung*", class: "new_problem_label_name" %></t>
+                                <t><%= f.label :problem_content, "Nội dung*", class: "new_problem_label_name" %></t>
                             </div>
 
-                            <div class="new_problem_input">
-                                <%= f.text_field :content, class: "new_problem_form_input", placeholder: "  Mô tả nội dung" %>
-                            </div>
-                        </div>
-
-                        <div class="new_problem_content">
-                            <div class="new_problem_label">
-                                <t><%= f.label :difficult, "Mức độ, độ khó", class: "new_problem_label_name" %></t>
-                            </div>
-
-                            <div class="new_problem_input">
-                                <%= f.select(:difficult, ['Dễ','Trung bình','Khó'], {include_blank: true}, { :class => 'my_style_class' }) %>
+                            <div class="new_problem_input_rich_text">
+                                <%= f.rich_text_area :problem_content, class: "new_problem_form_input", placeholder: "  Mô tả nội dung" %>
                             </div>
                         </div>
                     </div>

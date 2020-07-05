@@ -11,16 +11,23 @@
             <%- model_class = Problem -%>
                 <div class="problem_container">
                     <div class="problem_header">
-                        <t><%=t '.title', :default => model_class.model_name.human.pluralize.titleize %></t>
+                        <strong> Danh sách câu hỏi</strong>
+                    </div>
+                    
+                    <%# New button %>
+                    <div class="new_problem">
+                        <form action="/action_page.php">
+                            <%= link_to '<button type="submit">Tạo một problem mới</button>'.html_safe, new_problem_path %>
+                        </form>
                     </div>
 
                     <table class="table problem_table">
                         <thead>
                             <tr>
-                                <th><div class="table_th_no">No</th>
+                                <th><div class="table_th_no">#</th>
                                 <th><div class="table_th_title">Tiêu đề</th>
                                 <th><div class="table_th_difficult">Độ khó</th>
-                                <th><div class="table_th_user">Người đăng</th>
+                                <th><div class="table_th_user">Trả lời</th>
                                 <th><div class="table_th_date">Ngày tạo</th>
                             </tr>
                         </thead>
@@ -28,22 +35,14 @@
                             <% @problems.each do |problem| %>
                                 <tr>
                                     <td><div class="table_td_no"><%= link_to problem.id, problem_path(problem) %></td>
-                                    <td><div class="table_td_no"><%= link_to problem.title, problem_path(problem) %></td>
-                                    <td><div class="table_td_no"><%= problem.difficult %></td>
-                                    <td><div class="table_td_no"><%= problem.user_name %></td>
-                                    <td><div class="table_td_no"><%= problem.created_at %></td>
-                                    <td>
+                                    <td><div class="table_td_title"><%= link_to problem.title, problem_path(problem) %></td>
+                                    <td><div class="table_td_difficult"><%= problem.difficult %></td>
+                                    <td><div class="table_td_user"><%= problem.problem_solutions.count %></td>
+                                    <td><div class="table_td_date"><%= problem.created_at %></td>                                
                                 </tr>
                             <% end %>
                         </tbody>
                     </table>
-
-                    <%# New button %>
-                    <div class="new_problem">
-                        <form action="/action_page.php">
-                            <%= link_to '<button type="submit">Tạo một problem mới</button>'.html_safe, new_problem_path %>
-                        </form>
-                    </div>
                 </div>
             </div>
         </div>
