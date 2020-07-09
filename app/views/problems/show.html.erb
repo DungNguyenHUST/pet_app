@@ -46,36 +46,34 @@
 
                 <div class="problem_area_right">
                     <div class="problem_submit">
-                        <div class="new_problem_solution_form">
+                        <div class="new_problem_solution_right_form">
                             <%= form_for [@problem, ProblemSolution.new] do |f| %>
-                                <div class="new_problem_solution_title">
+                                <div class="new_problem_solution_right_title">
                                     <t>Hãy cho mọi người biết giải pháp của bạn</t>
                                 </div>
 
-                                <div class="new_problem_solution_section">
-                                    <div class="new_problem_solution_content">
-                                        <div class="new_problem_solution_label">
-                                            <t><%= f.label :title, "Tiêu đề*", class: "new_problem_solution_label_name" %></t>
+                                <div class="new_problem_solution_right_section">
+                                    <div class="new_problem_solution_right_content">
+                                        <div class="new_problem_solution_right_label_title">
+                                            <t><%= f.label :title, "Tiêu đề: *", class: "new_problem_solution_right_label_name" %></t>
                                         </div>
 
-                                        <div class="new_problem_solution_input_review">
-                                            <%= f.text_field :title, class: "new_problem_solution_form_input", placeholder: "  Nhập tiêu đề" %>
-                                        </div>
-                                    </div>
-
-                                    <div class="new_problem_solution_content">
-                                        <div class="new_problem_solution_label">
-                                            <t><%= f.label :content, "Giải pháp chính*", class: "new_problem_solution_label_name" %></t>
+                                        <div class="new_problem_solution_right_input_review_title">
+                                            <%= f.text_field :title, class: "new_problem_solution_right_form_input", placeholder: "  Nhập tiêu đề" %>
                                         </div>
 
-                                        <div class="new_problem_solution_input_review">
-                                            <%= f.text_field :content, class: "new_problem_solution_form_input", placeholder: "  Nhập nội dung trả lời" %>
+                                        <div class="new_problem_solution_right_label">
+                                            <t><%= f.label :content, "Giải pháp chính :*", class: "new_problem_solution_right_label_name" %></t>
+                                        </div>
+
+                                        <div class="new_problem_solution_right_input_review">
+                                            <%= f.text_field :content, class: "new_problem_solution_right_form_input", placeholder: "  Nhập nội dung trả lời" %>
                                         </div>
                                     </div>
                                 </div>
 
-                                <div class="new_problem_solution_submit_button">
-                                    <%= f.submit "Gửi đánh giá", class: "new_problem_solution_form_submit" %>
+                                <div class="new_problem_solution_right_submit_button">
+                                    <%= f.submit "Gửi trả lời", class: "new_problem_solution_right_form_submit" %>
                                 </div>
                             <%end%>
                         </div>

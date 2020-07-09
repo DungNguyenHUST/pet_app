@@ -107,14 +107,14 @@
     min-height: 720px;
     width: 50%;
     float: left;
-    border-right: 1px solid #c8c8c8;
     padding-top: 0px !important;
+    border-right: 1px solid #eeeeee;
     
     /* Style the tab */
     .problem_tab {
         overflow: hidden;
         width: 100%;
-        border: 1px solid #c8c8c8;
+        background-color: #f0f0f1;
     }
 
     .problem_tablinks
@@ -126,11 +126,10 @@
     .problem_tab button {
         background-color: inherit;
         float: left;
-        border: none;
         outline: none;
         cursor: pointer;
-        padding: 14px 16px;
-        transition: 0.3s;
+        transition: 0.5s;
+        border: 1px solid #eeeeee;
     }
 
     /* Change background color of buttons on hover */
@@ -140,66 +139,53 @@
 
     /* Create an active/current tablink class */
     .problem_tab button.active {
-        background-color: #f0f0f1;
+        border-bottom: 1px solid #ffffff;
+        background-color: #ffffff;
     }
 
     /* Style the tab content */
     .problem_tabcontent {
         display: none;
-        padding: 6px 12px;
-        // border: 1px solid #c8c8c8;
-        border-top: none;
-        border-bottom: 1px solid #ffffff;
+        padding: 50px;
     }
 }
 
 .problem_area_right
 {
+    border-top: 1px solid #eeeeee;
     .problem_submit{
         display: block;
-        .new_problem_solution_form
+        .new_problem_solution_right_form
         {
             margin-left: 20%;
-            margin-right: 20%;
             margin-bottom: 50px;
-            .new_problem_solution_title{
+            .new_problem_solution_right_title{
                 font-size: 25px;
                 color: #161e2e;
                 text-align: center;
-                margin-top: 50px;
+                margin-top: 40px;
                 margin-bottom: 30px;
             }
 
-            .new_problem_solution_section
+            .new_problem_solution_right_section
             {
-                .new_problem_solution_content{
-                    .new_problem_solution_label{
+                padding-left: 500px;
+                .new_problem_solution_right_content{
+                    .new_problem_solution_right_label_title{
                         font-weight: 600;
                         font-size: 14px;
                         color: #161e2e;
-                        // text-align: left;
+                        text-align: left;
                     }
 
-                    .new_problem_solution_input{
+                    .new_problem_solution_right_input_review_title{
                         left: 0px;
                         margin-top: 5px;
                         margin-bottom: 20px;
-                        width: 750px;
+                        margin-right: 20px;
+                        width: 90%;
                         height: auto;
-                        .new_problem_solution_form_input{
-                            margin-left: 0px;
-                            height: 40px;
-                            width: 100%;
-                            border: 1px solid #c8c8c8;
-                            border-radius: 5px;
-                        }
-                    }
-                    .new_problem_solution_input_time{
-                        left: 0px;
-                        margin-top: 5px;
-                        margin-bottom: 20px;
-                        width: 300px;
-                        .new_problem_solution_form_input{
+                        .new_problem_solution_right_form_input{
                             margin-left: 0px;
                             height: 40px;
                             width: 100%;
@@ -208,30 +194,37 @@
                         }
                     }
 
-                    .new_problem_solution_input_review{
+                    .new_problem_solution_right_label{
+                        font-weight: 600;
+                        font-size: 14px;
+                        color: #161e2e;
+                        text-align: left;
+                    }
+
+                    .new_problem_solution_right_input_review{
                         left: 0px;
                         margin-top: 5px;
                         margin-bottom: 20px;
-                        width: 750px;
-                        height: 50px;
-                        .new_problem_solution_form_input_review{
-                            word-wrap: break-word;
-                            white-space: pre-wrap; 
+                        margin-right: 20px;
+                        width: 90%;
+                        .new_problem_solution_right_form_input{
+                            min-height: 360px;
                             margin-left: 0px;
-                            height: 80px;
                             width: 100%;
                             border: 1px solid #c8c8c8;
                             border-radius: 5px;
                         }
                     }
+                    
                 }
             }
 
-            .new_problem_solution_submit{
+            .new_problem_solution_right_submit_button{
                 margin-top: 20px;
-                .new_problem_solution_form_submit{
+                padding-left: 500px;
+                .new_problem_solution_right_form_submit{
                     height: 50px;
-                    width: 100%;
+                    width: 90%;
                     border-radius: 5px;
                     padding: 6px;
                     background: #5850ec;
