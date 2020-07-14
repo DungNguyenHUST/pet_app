@@ -83,7 +83,7 @@
                         <button class="company_tablinks" onclick="openContent(event, 'CompanyReviews')"><h3>Đánh về giá công ty (<%= @company.company_reviews.count%>)</h3></button>
                         <button class="company_tablinks" onclick="openContent(event, 'CompanyInterviews')"><h3>Kinh nghiệm phỏng vấn (<%= @company.company_interviews.count%>)</h3></button>
                         <button class="company_tablinks" onclick="openContent(event, 'CompanySalarys')"><h3>Lương</h3></button>
-                        <button class="company_tablinks" onclick="openContent(event, 'CompanyJobs')"><h3>Tin tuyển dụng</h3></button>
+                        <button class="company_tablinks" onclick="openContent(event, 'CompanyJobs')"><h3>Tin tuyển dụng(<%= @company.company_jobs.count%>)</h3></button>
                     </div>
 
                     <!-- Tab content -->
@@ -116,11 +116,14 @@
                     </div>
 
                     <div id="CompanyJobs" class="company_tabcontent">
-                        <h3>Comming soon ...</h3>
+                        <div class="company_tab_des">
+                            <strong class="user_comment_heading"> Tất cả <%= @company.company_jobs.count%> đánh giá về <%= @company.name %> </strong>
+                            <%= render @company.company_jobs %>
+                        </div>
                     </div>
 
                     <script>
-                        function openContent(evt, cityName) {
+                        function openContent(evt, companyTag) {
                             var i, company_tabcontent, company_tablinks;
                             company_tabcontent = document.getElementsByClassName("company_tabcontent");
                             for (i = 0; i < company_tabcontent.length; i++) {
@@ -132,7 +135,7 @@
                                 company_tablinks[i].className = company_tablinks[i].className.replace(" active", "");
                             }
 
-                            document.getElementById(cityName).style.display = "block";
+                            document.getElementById(companyTag).style.display = "block";
                             evt.currentTarget.className += " active";
                         }
                     </script>

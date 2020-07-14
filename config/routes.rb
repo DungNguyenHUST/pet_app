@@ -18,14 +18,21 @@ Rails.application.routes.draw do
       resources :company_like_reviews
       resources :company_dislike_reviews
     end
+
     resources :company_interviews do
       resources :company_reply_interviews
+    end
+
+    resources :company_jobs do
+      resources :company_apply_jobs
     end
   end
 
   get '/company_reply_reviews/new/(:company_id, :company_review_id)', to: 'company_reply_reviews#new', as: :new_company_reply_review
 
   get '/company_reply_interviews/new/(:company_id, :company_interview_id)', to: 'company_reply_interviews#new', as: :new_company_reply_interview
+
+  get '/company_apply_jobs/new/(:company_id, :company_job_id)', to: 'company_apply_jobs#new', as: :new_company_apply_job
 
   resources :problems do
     resources :problem_solutions do

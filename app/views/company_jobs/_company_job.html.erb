@@ -1,0 +1,37 @@
+<!-- jobs container -->
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <!-- Add icon library -->
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    </head>
+
+    <body>
+        <div class="user_job_block">
+            <div class="user_job_left">
+                <div class="user_avatar">
+                    <%if @company.avatar.attached?%>
+                        <%= link_to (image_tag(@company.avatar)), image_path(url_for(@company.avatar)), rel: "gallery" , :href => company_path(@company)%>
+                    <%end%>
+                </div>
+            </div>
+
+            <div class="user_job_right">
+                <div class="user_job_title">
+                    <t><%= company_job.title %></t>
+                </div>
+                <div class="user_job_description">
+                    <t><%= company_job.description %></t>
+                </div>
+            </div>
+            <div class="new_job">
+                <%= link_to '<button type="submit">Đăng tin tuyển dụng</button>'.html_safe, new_company_company_job_path(@company) %>
+            </div>
+
+            <div class="apply_job">
+                <%= link_to '<button type="submit">Ứng tuyển</button>'.html_safe, new_company_apply_job_path(@company.id, company_job.id)%>
+            </div>
+        </div>
+    </body>
+</html>

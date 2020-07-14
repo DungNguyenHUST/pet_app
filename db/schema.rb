@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_06_20_043511) do
+ActiveRecord::Schema.define(version: 2020_07_14_164746) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -62,6 +62,14 @@ ActiveRecord::Schema.define(version: 2020_06_20_043511) do
     t.string "country"
   end
 
+  create_table "company_apply_jobs", force: :cascade do |t|
+    t.text "name"
+    t.text "email"
+    t.integer "company_job_id"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+  end
+
   create_table "company_dislike_reviews", force: :cascade do |t|
     t.bigint "company_review_id", null: false
     t.bigint "user_id", null: false
@@ -84,6 +92,19 @@ ActiveRecord::Schema.define(version: 2020_06_20_043511) do
     t.boolean "offer"
     t.string "get_interview"
     t.string "companyName"
+  end
+
+  create_table "company_jobs", force: :cascade do |t|
+    t.string "title"
+    t.text "description"
+    t.text "requirement"
+    t.text "benefit"
+    t.integer "salary"
+    t.string "quantity"
+    t.string "category"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.integer "company_id"
   end
 
   create_table "company_like_reviews", force: :cascade do |t|

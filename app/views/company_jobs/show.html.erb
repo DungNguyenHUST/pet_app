@@ -1,0 +1,16 @@
+<div class="box">
+<article class="media">
+    <div class="media-content">
+        <div class="content">
+            <p>
+            <strong><%= @company_job.user_name %>:</strong>
+            <%= @company_job.score %>
+            <%= @company_job.job %>
+            </p>
+        </div>
+        </div>
+        <%= link_to 'Delete', [@company_job.company, @company_job],
+                    method: :delete, class: "button is-danger", data: { confirm: 'Are you sure?' } %>
+        
+</article>
+</div>

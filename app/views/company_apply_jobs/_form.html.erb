@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta name='viewport' content='width=device-width, initial-scale=1'>
+        <!-- Add icon library -->
+        <link rel='stylesheet' href='https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css'>
+    </head>
+
+    <body>
+        <div class='body_content'>
+            <div class="new_apply_job_form">
+                <%= form_for [@company, @company_job, CompanyApplyJob.new] do |f| %>
+
+                    <div class="new_apply_job_content">
+                        <div class="new_apply_job_label">
+                            <t><%= f.label :name, "Tên của bạn", class: "new_apply_job_label_content" %></t>
+                        </div>
+                        
+                        <div class="new_apply_job_input_job">
+                            <%= f.text_field :name, class: "new_apply_job_form_input_job", placeholder: "  Nhập nội dung" %>
+                        </div>
+                    </div>
+
+                    <div class="new_apply_job_content">
+                        <div class="new_apply_job_label">
+                            <t><%= f.label :email, "Email của bạn", class: "new_apply_job_label_content" %></t>
+                        </div>
+                        
+                        <div class="new_apply_job_input_job">
+                            <%= f.text_field :email, class: "new_apply_job_form_input_job", placeholder: "  Nhập nội dung" %>
+                        </div>
+                    </div>
+
+                    <div class="new_apply_job_submit">
+                        <%= f.submit "Submit", class: "new_apply_job_form_submit" %>
+                    </div>
+                <%end%>
+            </div>
+        </div>
+    </body>
+</html>
