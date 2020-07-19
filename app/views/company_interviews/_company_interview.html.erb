@@ -4,6 +4,8 @@
         <meta name='viewport' content='width=device-width, initial-scale=1'>
         <!-- Add icon library -->
         <link rel='stylesheet' href='https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css'>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+
     </head>
 
     <body>
@@ -24,7 +26,7 @@
                 <div class="user_interview_status">
                     <t>Phỏng vấn qua <%= company_interview.get_interview %> - </t>
                     <t><%= company_interview.process %> vòng - </t>
-                    <t> lúc <%= company_interview.created_at %></t>
+                    <t> lúc <%= time_ago_in_words(company_interview.created_at) %></t>
                 </div>
 
                 <div class="interview_satisfied_overview">
@@ -69,11 +71,11 @@
                 <div class="interview_info">
                     <div class="interview_toolbar">
                         <t><%= company_interview.company_reply_interviews.count%></t>
-                        <%= link_to '<i class="fa fa-reply fa checked"></i>'.html_safe, new_company_reply_interview_path(@company.id, company_interview.id)%>
+                        <%= link_to '<i class="material-icons">question_answer</i>'.html_safe, new_company_reply_interview_path(@company.id, company_interview.id)%>
                         <t><%= company_interview.company_reply_interviews.count%></t>
-                        <%= link_to '<i class="fa fa-thumbs-up fa checked"></i>'.html_safe, new_company_reply_interview_path(@company.id, company_interview.id)%>
+                        <%= link_to '<i class="material-icons">thumb_up</i>'.html_safe, new_company_reply_interview_path(@company.id, company_interview.id)%>
                         <t><%= company_interview.company_reply_interviews.count%></t>
-                        <%= link_to '<i class="fa fa-thumbs-down fa checked"></i>'.html_safe, new_company_reply_interview_path(@company.id, company_interview.id)%>
+                        <%= link_to '<i class="material-icons">thumb_down</i>'.html_safe, new_company_reply_interview_path(@company.id, company_interview.id)%>
                     </div>
                 </div>
 
@@ -86,9 +88,8 @@
                         <%= link_to '<button type="submit"><i class="fa fa-share-alt fa checked"></i> Chia sẻ</button>'.html_safe, new_user_path %>
                     </div>
                 </div>
-
-                <%= render company_interview.company_reply_interviews %>
             </div>
         </div>
+        <%= render company_interview.company_reply_interviews %>
     </body>
 </html>

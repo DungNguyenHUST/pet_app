@@ -4,6 +4,7 @@
         <meta name='viewport' content='width=device-width, initial-scale=1'>
         <!-- Add icon library -->
         <link rel='stylesheet' href='https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css'>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
     </head>
 
     <body>
@@ -26,10 +27,6 @@
                         <div class="company_title_summary">
                             <div class="company_title_name">
                                 <t><%= @company.name %></t>
-                            </div>
-                            
-                            <div class="company_follow">
-                                <%= link_to '<button type="button"><i class="fa fa-heart fa checked"></i> Yêu thích </button>'.html_safe, company_path(@company) %>
                             </div>
 
                             <div class="company_score_star_overview">
@@ -63,27 +60,22 @@
                             </div>
 
                             <div class="company_title_short_des">
-                                <div class="company_title_short_des_group1">
-                                    <span class="fa fa-map-marker fa checked"></span>
-                                    <t><%= @company.location %></t>
-                                </div>
-
-                                <div class="company_title_short_des_group">
-                                    <span class="fa fa-users fa checked"></span>
-                                    <t><%= @company.field_operetion %></t>
-                                </div>
+                                <t><%= @company.company_reviews.count %> đánh giá & <%= @company.company_interviews.count %> nhận xét</t>
                             </div>
+                        </div>
+                        <div class="company_follow">
+                            <%= link_to '<button type="button"><i class="fa fa-heart fa checked"></i> Theo dõi </button>'.html_safe, company_path(@company) %>
                         </div>
                     </div>
 
                     <!-- Tab links -->
                     <div class="company_tab">
-                        <button class="company_tablinks active" onclick="openContent(event, 'Company')"><h3>Công ty</h3></button>
-                        <button class="company_tablinks" onclick="openContent(event, 'CompanyJoins')"><h3>Chính sách công ty</h3></button>
-                        <button class="company_tablinks" onclick="openContent(event, 'CompanyReviews')"><h3>Đánh về giá công ty (<%= @company.company_reviews.count%>)</h3></button>
-                        <button class="company_tablinks" onclick="openContent(event, 'CompanyInterviews')"><h3>Kinh nghiệm phỏng vấn (<%= @company.company_interviews.count%>)</h3></button>
-                        <button class="company_tablinks" onclick="openContent(event, 'CompanySalarys')"><h3>Lương</h3></button>
-                        <button class="company_tablinks" onclick="openContent(event, 'CompanyJobs')"><h3>Tin tuyển dụng(<%= @company.company_jobs.count%>)</h3></button>
+                        <button class="company_tablinks active" onclick="openContent(event, 'Company')"><h3><i class="material-icons">business</i> Công ty</h3></button>
+                        <button class="company_tablinks" onclick="openContent(event, 'CompanyJoins')"><h3><i class="material-icons">favorite_border</i>Chính sách</h3></button>
+                        <button class="company_tablinks" onclick="openContent(event, 'CompanyReviews')"><h3><i class="material-icons">rate_review</i>Đánh giá(<%= @company.company_reviews.count%>)</h3></button>
+                        <button class="company_tablinks" onclick="openContent(event, 'CompanyInterviews')"><h3><i class="material-icons">group</i>Phỏng vấn (<%= @company.company_interviews.count%>)</h3></button>
+                        <button class="company_tablinks" onclick="openContent(event, 'CompanySalarys')"><h3><i class="material-icons">local_offer</i>Lương</h3></button>
+                        <button class="company_tablinks" onclick="openContent(event, 'CompanyJobs')"><h3><i class="material-icons">contact_mail</i>Tuyển dụng(<%= @company.company_jobs.count%>)</h3></button>
                     </div>
 
                     <!-- Tab content -->
@@ -117,7 +109,15 @@
 
                     <div id="CompanyJobs" class="company_tabcontent">
                         <div class="company_tab_des">
-                            <strong class="user_comment_heading"> Tất cả <%= @company.company_jobs.count%> đánh giá về <%= @company.name %> </strong>
+                            <div class="company_tab_job">
+                                <strong class="user_comment_heading"> Tìm thấy <%= @company.company_jobs.count%> việc làm tại <%= @company.name %> </strong>
+                                <div class="new_job">
+                                    <div class="new_job_title">
+                                        <strong>Bạn là nhà tuyển dụng</strong>
+                                    </div>
+                                    <%= link_to '<button type="submit">Đăng tin tuyển dụng miễn phí</button>'.html_safe, new_company_company_job_path(@company) %>
+                                </div>
+                            </div>
                             <%= render @company.company_jobs %>
                         </div>
                     </div>

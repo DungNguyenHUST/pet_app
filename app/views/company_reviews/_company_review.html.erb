@@ -5,6 +5,7 @@
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <!-- Add icon library -->
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+        <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
     </head>
 
     <body>
@@ -44,7 +45,7 @@
                         <%else%>
                             <t> - Đã nghỉ việc - </t>
                         <%end%>
-                        <t><%= company_review.created_at %></t>
+                        <t><%= time_ago_in_words(company_review.created_at) %></t>
                 </div>
 
                 <div class="user_review_pros">
@@ -74,23 +75,23 @@
                 <div class="review_info">
                     <div class="review_toolbar">
                         <t><%= company_review.company_reply_reviews.count%></t>
-                        <%= link_to '<i class="fa fa-reply fa checked"></i>'.html_safe, new_company_reply_review_path(@company.id, company_review.id)%>
+                        <%= link_to '<i class="material-icons">question_answer</i>'.html_safe, new_company_reply_review_path(@company.id, company_review.id)%>
                         
                         <t><%= company_review.company_like_reviews.count%></t>
-                        <%= link_to '<i class="fa fa-thumbs-up fa checked"></i>'.html_safe, company_company_review_company_like_reviews_path(@company, company_review), method: :post%>
+                        <%= link_to '<i class="material-icons">thumb_up</i>'.html_safe, company_company_review_company_like_reviews_path(@company, company_review), method: :post%>
                         
                         <t><%= company_review.company_dislike_reviews.count%></t>
-                        <%= link_to '<i class="fa fa-thumbs-down fa checked"></i>'.html_safe, company_company_review_company_dislike_reviews_path(@company, company_review), method: :post%>
+                        <%= link_to '<i class="material-icons">thumb_down</i>'.html_safe, company_company_review_company_dislike_reviews_path(@company, company_review), method: :post%>
                     </div>
                 </div>
 
                 <div class="review_feedback">
                     <div class="report_button">
-                        <%= link_to '<button type="submit"><i class="fa fa-flag fa checked"></i> Báo cáo vi phạm</button>'.html_safe, sessions_new_path %>
+                        <%= link_to '<button type="submit"><i class="material-icons">flag</i> Báo cáo vi phạm</button>'.html_safe, sessions_new_path %>
                     </div>
 
                     <div class="share_button">
-                        <%= link_to '<button type="submit"><i class="fa fa-share-alt fa checked"></i> Chia sẻ</button>'.html_safe, new_user_path %>
+                        <%= link_to '<button type="submit"><i class="material-icons">share</i> Chia sẻ</button>'.html_safe, new_user_path %>
                     </div>
                 </div>
             </div>

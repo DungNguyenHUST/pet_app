@@ -38,7 +38,7 @@
                                     <td><div class="table_td_title"><%= link_to problem.title, problem_path(problem) %></td>
                                     <td><div class="table_td_difficult"><%= problem.difficult %></td>
                                     <td><div class="table_td_user"><%= problem.problem_solutions.count %></td>
-                                    <td><div class="table_td_date"><%= problem.created_at %></td>                                
+                                    <td><div class="table_td_date"><%= time_ago_in_words(problem.created_at) %></td>                                
                                 </tr>
                             <% end %>
                         </tbody>

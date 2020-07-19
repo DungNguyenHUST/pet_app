@@ -95,4 +95,5 @@ module CompaniesHelper
             rate_offer = 0
         end
     end
+
 end

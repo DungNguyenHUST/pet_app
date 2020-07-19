@@ -21,9 +21,6 @@
                             <li> Trang web </li>
                             <li> Quy mô công ty </li>
                             <li> Năm thành lập </li>
-                            <li> Quốc gia </li>
-                            <li> Lĩnh vực chính </li>
-                            <li> Thời gian làm việc </li>
                         </ul>
                     </div>
 
@@ -33,35 +30,49 @@
                             <li> <%= @company.website %> </li>
                             <li> <%= @company.size %> </li>
                             <li> <%= @company.time_establish %> </li>
-                            <li> <%= @company.country %> </li>
-                            <li> <%= @company.field_operetion %> </li>
-                            <li> <%= @company.time_start %> - <%= @company.time_end %> </li>
-                        </ul>
                     </div>
                 </div>
 
-                <div class="company_profile_title">
-                    <t> Định hướng phát triển</t>
+                <div class="company_profile_detail">
+                    <div class="company_profile_section">
+                        <ul>
+                            <li> Quốc gia </li>
+                            <li> Lĩnh vực chính </li>
+                            <li> Thời gian làm việc </li>
+                            <li> Doanh thu </li>
+                        </ul>
+                    </div>
+
+                    <div class="company_profile_content">
+                        <ul>
+                            <li> <%= @company.country %> </li>
+                            <li> <%= @company.field_operetion %> </li>
+                            <li> <%= @company.size %> </li>
+                            <li> <%= @company.size %> </li>
+                        </ul>
+                    </div>
                 </div>
 
                 <div class="company_profile_summary">
                     <t><%= @company.content %></t>
                 </div>
 
+            </div>
+
+            <div class="company_profile_review">
                 <div class="company_profile_title">
                     <t> Mọi người đánh giá thế nào về <%= @company.name %></t>
                 </div>
-
                 <%= render :partial => 'company_reviews/review_score' %>
+            </div>    
 
+            <div class="company_profile_interview">
                 <div class="company_profile_title">
                     <t> Những chia sẻ về kinh nghiệm phỏng vấn tại <%= @company.name %></t>
                 </div>
 
                 <%= render :partial => 'company_interviews/interview_score' %>
-
-            </div>
-
+            </div>  
         </div>
     </body>
 

@@ -5,6 +5,7 @@
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <!-- Add icon library -->
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+        <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
     </head>
 
     <body>
@@ -17,20 +18,31 @@
                 </div>
             </div>
 
-            <div class="user_job_right">
+            <div class="user_job_middle">
                 <div class="user_job_title">
-                    <t><%= company_job.title %></t>
+                    <strong><%= link_to (company_job.title), company_company_job_path(@company, company_job) %></strong>
                 </div>
+
                 <div class="user_job_description">
                     <t><%= company_job.description %></t>
                 </div>
-            </div>
-            <div class="new_job">
-                <%= link_to '<button type="submit">Đăng tin tuyển dụng</button>'.html_safe, new_company_company_job_path(@company) %>
+
+                <div class="user_job_location">
+                    <t><i class="material-icons">room</i><%= company_job.location %></t>
+                </div>
+
+                <div class="user_job_salary">
+                    <t><i class="material-icons">local_offer</i><%= company_job.salary %></t>
+                </div>
             </div>
 
-            <div class="apply_job">
-                <%= link_to '<button type="submit">Ứng tuyển</button>'.html_safe, new_company_apply_job_path(@company.id, company_job.id)%>
+            <div class="user_job_right">
+                <div class="apply_job_button">
+                    <%= link_to '<button type="submit">Ứng tuyển</button>'.html_safe, new_company_apply_job_path(@company.id, company_job.id)%>
+                </div>
+                <div class="user_job_date">
+                    <t><%= time_ago_in_words(company_job.created_at) %></t>
+                </div>
             </div>
         </div>
     </body>

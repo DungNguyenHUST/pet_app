@@ -1,0 +1,29 @@
+<%- model_class = job -%>
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <!-- Add icon library -->
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    </head>
+
+    <body>
+        <div class="body_content">
+            <div class="job_search_bar">
+                <div class="job_search_bar_label">
+                    <h3>Tìm kiếm nơi làm việc lý tưởng</h3>
+                    <t>Cùng chia sẻ, đánh giá về nơi mà bạn đang làm việc</t>
+                </div>
+
+                <%=form_tag companies_path, :method => "get" do%>
+                    <div class="job_search_form">
+                        <%= text_field_tag :search, params[:search], class: 'job_search_input'%>
+                    </div>
+                    <div class="job_search_button">
+                        <%= submit_tag "Tìm kiếm ", :name => nil, class: 'search_button'%>
+                    </div>
+                <%end%>
+            <div>
+        <div>
+    </body>
+</html>

@@ -1,19 +1,26 @@
 //////////////////job//////////////////
 @import url(https://maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css);
 
+//////////////////////index/////////////////////
 .user_job_block {
     clear: left;
     width: 100%;
-    height: auto;
-    margin-top: 50px;
-    margin-bottom: 50px;
+    height: 180px;
     background-color: #ffffff;
-    border: 1px solid #f0f0f1;
+    border-top: 1px solid #ece9e9;
+    border-bottom: 1px solid #ece9e9;
+    padding: 0px !important;
+    &:hover{
+        box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+        border: 1px solid #629fdb;
+    }
+
     .user_job_left
     {
-        width: auto;
+        width: 8%;
         height: auto;
-        margin-top: 30px;
+        margin: 12px;
+        padding-top: 20px;
         display: block;
         position: relative;
         float: left;
@@ -28,173 +35,191 @@
             }
         }
     }
-    
-    .user_job_cotent
-    {
-        display: block;
-        width: auto;
-        height: auto;
-        margin-left: 150px;
-        margin-top: 20px;
-        margin-bottom: 20px;
+
+    .user_job_middle{
+        width: 70%;
+        float: left;
+        padding: 10px;
+        margin-left: 20px;
+        padding-top: 25px;
 
         .user_job_title{
-            font-size: 20px;;
-            font-weight: 600;
-        }
-
-        .user_job_score_star
-        {
+            a:link{
+                text-decoration: none !important ;
+            }
             font-size: 20px;
-            margin-top: 10px;
-            margin-bottom: 5px;
-            .job_point{
-                float: left;
-                margin-right: 8px;
-            }
-            
-            .job_score_star
-            {
-                .fa {
-                    float: left;
-                    margin-top: 4px;
-                    margin-right: 6px;
-                }
-
-                .checked {
-                    color: #feb100;
-                }
-
-                .checked_out {
-                    color: #c8c8c8;
-                }
-            }
-        }
-        
-        .user_job_status{
-            font-size: 16px;
-            margin-left: 180px;
-            color: #3c3d3d;
-            padding-top: 6px;
-        }
-
-        .user_job_pros
-        {
-            clear: both;
-            margin-top: 20px;
-            .user_job_pros_label{
-                .fa {
-                    position: relative;
-                    margin-right: 10px;
-                    padding-top: 3px;
-                    float: left;
-                }
-
-                .checked {
-                    color: green;
-                    font-size: 16px;;
-                }
-                font-size: 16px;;
-                font-weight: 400;
-            }
-
-            .user_job_pros_content{
-                font-size: 14px;
-                margin-left: 30px;
-                margin-top: 10px;
-                color: #3c3d3d;
-            }
-        }
-
-        .user_job_cons{
-            margin-top: 20px;
-            .user_job_cons_label{
-                font-size: 16px;;
-                font-weight: 400;
-                .fa {
-                    position: relative;
-                    margin-right: 10px;
-                    padding-top: 3px;
-                    float: left;
-                }
-
-                .checked {
-                    color: red;
-                    font-size: 16px;;
-                }
-            }
-
-            .user_job_cons_content{
-                font-size: 14px;
-                margin-left: 30px;
-                margin-top: 10px;
-                color: #3c3d3d;
-            }
-        }
-
-        .user_job_body {
-            margin-top: 20px;
-            font-size: 14px;
-            margin-bottom: 30px;
-            display: block;
-            color: black;
-        }
-
-        .job_info{
-            margin-top: 20px;
             margin-bottom: 20px;
-            .job_toolbar {
-                display: block;
-                float: left;
-                font-size: 16px;
-                .fa {
-                    position: relative;
-                    margin-right: 20px;
-                    font-size: 18px;
-                }
-    
-                .checked {
-                    color: #a8a3a3;
-                }
+            overflow: hidden;
+            text-overflow: ellipsis;
+            display: -webkit-box;
+            -webkit-line-clamp: 1; /* number of lines to show */
+            -webkit-box-orient: vertical;
+        }
+
+        .user_job_description{
+            overflow: hidden;
+            text-overflow: ellipsis;
+            display: -webkit-box;
+            -webkit-line-clamp: 2; /* number of lines to show */
+            -webkit-box-orient: vertical;
+            font-size: 14px;
+        }
+        .user_job_location{
+            margin-top: 20px;
+            float: left;
+            font-size: 15px;
+            i{
+                font-size: 20px;
+                margin-right: 5px;
+                color: #8a8888;
             }
         }
 
-        .job_feedback{
-            font-size: 16px;
-            .report_button{
-                margin-left: 55%;
-                float: left;
-                button{
-                    background-color: #ffffff;
-                    border: none;
-                    .fa {
-                        position: relative;
-                        font-size: 18px;
-                        margin-right: 2px;
-                    }
+        .user_job_salary{
+            margin-top: 20px;
+            font-size: 15px;
+            color: #4fb87b;
+            float: left;
+            i{
+                margin-left: 20px;
+                margin-right: 5px;
+                font-size: 20px;
+                color: #8a8888;
+            }
+        }
         
-                    .checked {
-                        color: #feb100;
-                    }
+    }
+
+    .user_job_right{
+        width: 20%;
+        padding-top: 10px;
+        background-color: green($color: #000000);
+        .apply_job_button{
+            padding: 10px;
+            padding-top: 11px;
+            margin-left: 300px;
+            button{
+                padding: 6px;
+                height: 33px;
+                width: 140px;
+                margin-right: 10px;
+                background: #5850ec;
+                font-size: 14px;
+                border: none;
+                border-radius: 5px;
+                cursor: pointer;
+                text-align: center;
+                color: #ffffff;
+                
+                &:hover{
+                    background-color: #4284f4;
                 }
             }
-            .share_button{
-                float: right;
-                button{
-                    background-color: #ffffff;
-                    border: none;
-                    .fa {
-                        position: relative;
-                        font-size: 18px;
-                    }
+        }
         
-                    .checked {
-                        color: #feb100;
-                    }
-                }
-            }
+        .user_job_date{
+            font-size: 15px;
+            color: #8a8888;
+            display: inline;
+            position: absolute;
+            padding-top: 55px;
         }
     }
     clear: left;
     clear: right;
+}
+
+//////////////////////show/////////////////////
+.job_block{
+    padding: 10px;
+    padding-top: 20px;
+    .job_title
+    {
+        font-size: 24px;
+    }
+    .job_block_info{
+        padding-top: 10px;
+        .job_shoft_info{
+            i{
+                font-size: 20px;
+                margin-top: 10px;
+                margin-right: 10px;
+            }
+        }
+    }
+    
+    .job_description{
+        margin-top: 30px;
+        padding-top: 10px;
+        border-radius: 5px;
+        border-top: 1px solid #ece9e9;
+        .job_section{
+            font-size: 22px;
+        }
+        .job_content{
+            margin-top: 20px;
+
+        }
+    }
+
+    .job_requirement{
+        margin-top: 30px;
+        padding-top: 10px;
+        border-radius: 5px;
+        border-top: 1px solid #ece9e9;
+        .job_section{
+            font-size: 22px;
+        }
+        .job_content{
+            margin-top: 20px;
+
+        }
+    }
+    .job_benefit{
+        margin-top: 30px;
+        padding-top: 10px;
+        border-radius: 5px;
+        border-top: 1px solid #ece9e9;
+        .job_section{
+            font-size: 22px;
+        }
+        .job_content{
+            margin-top: 20px;
+
+        }
+    }
+
+    .apply_job_button{
+        margin-top: 50px;
+        margin-bottom: 50px;
+        button {
+            padding: 15px;
+            width: 100%;
+            background: #5850ec;
+            font-size: 14px;
+            border: 1px solid #5850ec;
+            cursor: pointer;
+            text-align: center;
+            color: #ffffff;
+            border-radius: 5px;
+        }
+    
+        button:hover {
+            background: #4284f4;
+        }
+    }
+
+    .job_recommend{
+        margin-top: 30px;
+        padding-top: 10px;
+        margin-bottom: 30px;
+        border-radius: 5px;
+        .job_section{
+            font-size: 22px;
+            margin-bottom: 30px;
+        }
+        .job_content{
+            margin-top: 20px;
+        }
+    }
 }

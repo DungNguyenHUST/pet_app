@@ -4,93 +4,72 @@
 
 ///////////////////index//////////////////
 .post_container{
+    margin-top: 30px;
+    border-bottom: 2px solid #f0f0f1;
+    padding-bottom: 30px;
     .post_header{
-        margin-top: 50px;
-        font-size: 30px;
+        font-size: 22px;
         font-weight: 500;
     }
+    .post_info{
+        padding-top: 10px;
+        padding-bottom: 20px;
+        .post_username{
+            i{
+                font-size: 40px;
+            }
 
-    .post_table{
-        margin-top: 50px;
-        border-collapse: collapse;
-        width: 100%;
-        height: auto;
-        text-decoration: none;
-        
-        tr:nth-child(even){background-color: #f2f2f2;}
-        
-        tr:hover {background-color: #ddd;}
-        
-        tr th {
-            padding-top: 10px;
-            padding-bottom: 10px;
+        }
+
+        .post_date{
             font-size: 14px;
+
+        }
+    }
+    .post_content{
+        font-size: 16px; 
+        overflow: hidden;
+        text-overflow: ellipsis;
+        display: -webkit-box;
+        -webkit-line-clamp: 10; /* number of lines to show */
+        -webkit-box-orient: vertical;
+    }
+
+    .post_view{
+        button {
+            width: 100%;
+            height: 40px;
+            margin-top: 25px;
+            background: #5850ec;
+            font-size: 14px;
+            border: 0px;
+            cursor: pointer;
             text-align: center;
-            background-color: #5850ec;
-            color: white;
-            text-decoration: none;
-            // .table_th_no{
-            //     margin-left: 20px;
-            // }
-            // .table_th_title{
-            //     margin-left: 30px;
-            // }
-            // .table_th_difficult{
-            //     margin-left: 100px;
-            // }
-            // .table_th_user{
-            //     margin-left: 20px;
-
-            // }
-            // .table_th_date{
-
-            // }
+            color: #ffffff;
+            border-radius: 5px;
         }
-
-        tr td {
-            border: 0px solid #ddd;
-            padding: 0px;
-            text-align: left;
-            padding-top: 10px;
-            padding-bottom: 10px;
-            font-size: 14px;
-            text-decoration: none;
-            // .table_td_no{
-            //     margin-left: 20px;
-            // }
-            // .table_td_title{
-            //     margin-left: 30px;
-            // }
-            // .table_td_difficult{
-            //     margin-left: 150px;
-            // }
-            // .table_td_user{
-
-            // }
-            // .table_td_date{
-
-            // }
+        button:hover {
+            background: #6f68ec;
         }
     }
+}
 
-    .new_post button {
-        // float: right;
-        padding: 8px;
-        margin-top: 25px;
-        margin-bottom: 25px;
-        background: #5850ec;
-        font-size: 14px;
-        border: 0px;
-        cursor: pointer;
-        text-align: center;
-        color: #ffffff;
-        border-radius: 5px;
-    }
-    
-    .new_post button:hover {
-        background: #5850ec;
-    }
+.new_post button {
+    // float: right;
+    padding: 8px;
+    margin-top: 25px;
+    margin-bottom: 25px;
+    background: #5850ec;
+    font-size: 14px;
+    border: 0px;
+    cursor: pointer;
+    text-align: center;
+    color: #ffffff;
+    border-radius: 5px;
+}
 
+.new_post button:hover {
+    background: #5850ec;
 }
 
 ////////////////show/////////////////////////

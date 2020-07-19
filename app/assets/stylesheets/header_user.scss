@@ -9,11 +9,19 @@
 		margin-left: 18%;
 		margin-right: 18%;
 		padding-top: 20px;
+		@media screen and (max-width: 600px) {
+			height: 80px;
+			margin-left: 5%;
+			margin-right: 5%;
+		}
 		.header_user_content
 		{
 			display: block;
 			.header_user_logo{
 				float: left;
+				@media screen and (max-width: 600px){
+					margin-left: 36%;
+				}
 				a{
 					font-size: 30px;
 					display: block;
@@ -28,7 +36,6 @@
 						color: #4284f4;
 					}
 				}
-				
 			}
 
 			.header_user_navigation{
@@ -49,11 +56,35 @@
 						}
 					}
 				}
+				
+				@media screen and (max-width: 600px) {
+					margin-left: 0px;
+					nav{
+						float: left;
+						margin-top: 10px;
+						a{
+							color: #161e2e;
+							font-size: 16px;
+							display: inline-block;
+							padding: 10px 3px;
+							position: relative;
+							text-decoration: none;
+							line-height: 1;
+							text-align: center;
+							&:hover{
+								color: #4284f4;
+							}
+						}
+					}
+				}
 			}
 
 			.header_user_button{
 				.user_icon_button{
 					margin-left: 800px;
+					@media screen and (max-width: 600px){
+						display: none;
+					}
 					.fa{
                         color: #5850ec !important;
 					}

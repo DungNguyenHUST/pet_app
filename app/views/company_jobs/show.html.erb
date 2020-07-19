@@ -1,16 +1,75 @@
-<div class="box">
-<article class="media">
-    <div class="media-content">
-        <div class="content">
-            <p>
-            <strong><%= @company_job.user_name %>:</strong>
-            <%= @company_job.score %>
-            <%= @company_job.job %>
-            </p>
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta name='viewport' content='width=device-width, initial-scale=1'>
+        <!-- Add icon library -->
+        <link rel='stylesheet' href='https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css'>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+    </head>
+
+    <body>
+        <div class='body_content'>
+            <div class='job_block'>
+                <div class="job_title">
+                    <strong><%= @company_job.title %></strong>
+                </div>
+                <div class='job_block_info'>
+                    <div class="job_shoft_info">
+                        <span><i class="material-icons">location_on</i><%= @company_job.location %></span>
+                    </div>
+                    <div class="job_shoft_info">
+                        <span><i class="material-icons">euro_symbol</i><%= @company_job.salary %></span>
+                    </div>
+                    <div class="job_shoft_info">
+                        <span><i class="material-icons">people</i><%= @company_job.quantity %></span>
+                    </div>
+                    <div class="job_shoft_info">
+                        <span><i class="material-icons">work</i><%= @company_job.category %></span>
+                    </div>
+                    <div class="job_shoft_info">
+                        <span><i class="material-icons">watch_later</i><%= time_ago_in_words(@company_job.created_at) %></span>
+                    </div>
+                </div>
+                <div class="job_description">
+                    <div class="job_section">
+                        <strong>Mô tả công việc</strong>
+                    </div>
+                    <div class="job_content">
+                        <%= @company_job.description %>
+                    </div>
+                </div>
+
+                <div class="job_requirement">
+                    <div class="job_section">
+                        <strong>Yêu cầu công việc</strong>
+                    </div>
+                    <div class="job_content">
+                        <%= @company_job.requirement %>
+                    </div>
+                </div>
+
+                <div class="job_benefit">
+                    <div class="job_section">
+                        <strong>Lý do để bạn gia nhập công ty</strong>
+                    </div>
+                    <div class="job_content">
+                        <%= @company_job.benefit %>
+                    </div>
+                </div>
+                
+                <div class="apply_job_button">
+                    <%= link_to '<button type="submit">Ứng tuyển</button>'.html_safe, new_company_apply_job_path(@company.id, @company_job.id)%>
+                </div>
+
+                <div class="job_recommend">
+                    <div class="job_section">
+                        <strong>Có thể bạn sẽ thích</strong>
+                    </div>
+                    <div class="job_content">
+                        <%= render @company.company_jobs %>
+                    </div>
+                </div>
+            </div>
         </div>
-        </div>
-        <%= link_to 'Delete', [@company_job.company, @company_job],
-                    method: :delete, class: "button is-danger", data: { confirm: 'Are you sure?' } %>
-        
-</article>
-</div>
+    <body>
+<html>

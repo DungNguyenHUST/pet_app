@@ -4,44 +4,40 @@
         <meta name='viewport' content='width=device-width, initial-scale=1'>
         <!-- Add icon library -->
         <link rel='stylesheet' href='https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css'>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
     </head>
 
     <body>
         <div class='body_content'>
             <%- model_class = Post -%>
-                <div class="post_container">
-                    <div class="post_header">
-                        <t><%=t '.title', :default => model_class.model_name.human.pluralize.titleize %></t>
-                    </div>
+                <% @posts.each do |post| %>
+                    <div class="post_container">
+                        <div class="post_header">
+                            <strong><%=post.title%></strong>
+                        </div>
 
-                    <table class="table post_table">
-                        <thead>
-                            <tr>
-                                <th><div class="table_th_no">No</th>
-                                <th><div class="table_th_title">Tiêu đề</th>
-                                <th><div class="table_th_user">Người đăng</th>
-                                <th><div class="table_th_date">Ngày tạo</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <% @posts.each do |post| %>
-                                <tr>
-                                    <td><div class="table_td_no"><%= link_to post.id, post_path(post) %></td>
-                                    <td><div class="table_td_no"><%= link_to post.title, post_path(post) %></td>
-                                    <td><div class="table_td_no"><%= post.username %></td>
-                                    <td><div class="table_td_no"><%= post.created_at %></td>
-                                    <td>
-                                </tr>
-                            <% end %>
-                        </tbody>
-                    </table>
+                        <div class="post_info">
+                            <div class="post_username">
+                                <i class="material-icons">face</i><strong><%=post.username%></strong>
+                            </div>
+                            <div class="post_date">
+                                <t><%=time_ago_in_words(post.created_at)%></t>
+                            </div>
+                        </div>
 
-                    <%# New button %>
-                    <div class="new_post">
-                        <form action="/action_page.php">
-                            <%= link_to '<button type="submit">Tạo một post mới</button>'.html_safe, new_post_path %>
-                        </form>
+                        <div class="post_content">
+                            <t><%=post.content%></t>
+                        </div>
+
+                        <div class="post_view">
+                            <%= link_to '<button type="submit">Xem tiếp</button>'.html_safe, post_path(post) %>
+                        </div>
                     </div>
+                <% end %>
+
+                <%# New button %>
+                <div class="new_post">
+                    <%= link_to '<button type="submit">Tạo một post mới</button>'.html_safe, new_post_path %>
                 </div>
             </div>
         </div>
