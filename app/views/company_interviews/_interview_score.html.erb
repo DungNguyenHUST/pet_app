@@ -28,14 +28,14 @@
                     <div class="interview_score_star">
                         <%if rating_interview_difficultly_score > 0%>
                             <%rating_interview_difficultly_score.to_i.times do%>
-                                <span class="fa fa-circle checked"></span>
+                                <i class="material-icons checked">circle</i>
                             <%end%>
                             <%(5 - rating_interview_difficultly_score.to_i).to_i.times do%>
-                                <span class="fa fa-circle checked_out"></span>
+                                <i class="material-icons checked_out">panorama_fish_eye</i>
                             <%end%>
                         <%else%>
                             <%5.times do%>
-                                <span class="fa fa-circle checked_out"></span>
+                                <i class="material-icons checked_out">panorama_fish_eye</i>
                             <%end%>
                         <%end%>
                     </div>
@@ -51,14 +51,14 @@
                     <div class="interview_score_star">
                         <%if rating_interview_satisfied_score > 0%>
                             <%rating_interview_satisfied_score.to_i.times do%>
-                                <span class="fa fa-star checked"></span>
+                                <i class="material-icons checked">star</i>
                             <%end%>
                             <%(5 - rating_interview_satisfied_score.to_i).to_i.times do%>
-                                <span class="fa fa-star checked_out"></span>
+                                <i class="material-icons checked_out">star_outline</i>
                             <%end%>
                         <%else%>
                             <%5.times do%>
-                                <span class="fa fa-star checked_out"></span>
+                                <i class="material-icons checked_out">star_outline</i>
                             <%end%>
                         <%end%>
                     </div>
@@ -73,7 +73,7 @@
                             <strong><%=rating_interview_process_score.round(1)%></strong>
                         </div>
                         <div class="interview_score_star">
-                            <span class="fa fa-users checked"></span>
+                            <i class="material-icons checked">people_outline</i>
                         </div>
                         <div class="interview_score_label">
                             <t>Vòng phỏng vấn trung bình</t>
@@ -87,7 +87,7 @@
                             <strong><%=rating_interview_offer_score.round(1) * 100%> %</strong>
                         </div>
                         <div class="interview_score_star">
-                            <span class="fa fa-briefcase checked"></span>
+                            <i class="material-icons checked">work_outline</i>
                         </div>
                         <div class="interview_score_label">
                             <t>Chấp nhận offer</t>

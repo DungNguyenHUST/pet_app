@@ -1,118 +1,343 @@
-
-.home_slider_area1
+.home_page
 {
-    position: relative;
-    text-align: center;
-    background-color: #ffffff;
-    .home_banner_image{
-        padding:0 !important;
-        img{
-            width: 100%;
-            height: 900px;
+    min-height: 1080px;
+    .home_search_bar{
+        border: 1px solid #f8f9fa;
+        background-color: #f8f9fa;
+        padding-top: 60px;
+        padding-left: 15%;
+        height: 300px;
+        .home_search_bar_label{
+            font-size: 25px;
+            color: #494949;
         }
-    }
-
-    .slider_text_title {
-        position: absolute;
-        top: 30%;
-        left: 18%;
-        font-size: 40px;
-        color: #161e2e;
-    }
-
-    .slider_text_content {
-        position: absolute;
-        top: 38%;
-        width: 500px;
-        height: 800px;
-        left: 18%;
-        font-size: 20px;
-        text-align: left;
-        color: #aaacaf;
-    }
-
-    .home_slider_area_right
-    {
-        position: absolute;
-        top: 18%;
-        width: 500px;
-        height: 600px;
-        right: 18%;
-        background-color: #ffffff;
-        border-radius: 5px;
-        border: 1px solid #c8c8c8;
-
-        .user_new_title{
-            font-size: 22px;
-            color: #161e2e;
-            text-align: center;
-            margin-top: 40px;
-            margin-bottom: 30px;
-        }
-
-        .user_new_content{
-            margin-left: 25px;
-            .user_new_label{
-                font-weight: 400;
-                font-size: 14px;
-                color: #161e2e;
-                text-align: left;
-            }
-
-            .user_new_input{
-                left: 0px;
-                margin-top: 5px;
-                margin-bottom: 20px;
+        .home_search_form_text{
+            .home_search_input{
                 width: 450px;
-                .user_new_form_input{
-                    margin-left: 0px;
-                    height: 40px;
-                    width: 100%;
-                    border: 1px solid #c8c8c8;
-                    border-radius: 5px;
-                }
+                height: 40px;
+                border: 1px solid #cccdcf;
+                border-radius: 5px;
             }
-        }
-        .user_new_content_checkbox
-        {
-            margin-top: 30px;
-            margin-bottom: 20px ;
-            .label-agree-term
-            {
-                font-size: 14px; 
-            }
+            float: left;
         }
 
-        .user_new_submit{
-            width: 450px;
-            .user_new_form_submit{
-                height: 50px;
-                width: 100%;
-                margin-left: 25px;
+        .home_search_form_address{
+            .home_search_input{
+                margin-left: 5px;
+                width: 450px;
+                height: 40px;
+                border: 1px solid #cccdcf;
                 border-radius: 5px;
-                padding: 6px;
-                background: #5850ec;
-                font-size: 14px;
-                border: none;
-                cursor: pointer;
-                text-align: center;
-                color: #ffffff;
-                
-                &:hover{
-                    background-color: #4284f4;
-                }
             }
+            float: left;
         }
-        .user_new_loginhere
-        {
-            text-align: center;
-            margin-top: 30px;
-            font-size: 14px;
+
+        .home_search_button{
+            .search_button{
+                margin-left: 10px;
+                width: 100px;
+                height: 44px;
+                border-radius: 5px;
+                border: none;
+                background-color: #5850ec;
+                color: #ffffff;
+            }
         }
     }
-
-}
-
-.home_slider_area2{
     
+    .home_top_company{
+        margin-left: 15%;
+        margin-top: 20px;
+        color: #494949;
+        .home_top_company_label{
+            font-size: 25px;
+            padding-top: 20px;
+        }
+        .single_company{
+            float: left;
+            display: block;
+            width: 253px;
+            @media screen and (max-width: 600px){
+                width: 400px;
+                margin-left: 10px;
+            }
+            height: 350px;
+            margin-top: 5px;
+            margin-bottom: 5px;
+            margin-right: 10px;
+            margin-left: 0px;
+            background:#ffffff;
+            border: 1px solid #e2e2e2;
+            border-radius: 5px;
+            &:hover{
+                box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+            }
+    
+            .company_thumbnail
+            {
+                height: 140px;
+                padding-top: 10px;
+                img{ 
+                    max-width: 100px;
+                    max-height: 100px;
+                    padding: 15px;
+                    margin-left: 55px;
+                }
+                display: block;
+                float: left;
+            }
+    
+            .company_love_button{
+                padding-right: 5px;
+                padding-top: 10px;
+                float: right;
+                button{
+                    border: none;
+                    background-color: #ffffff;
+                    i {
+                        font-size: 24px;
+                        color: #e2e2e2;
+                        position: relative;
+                        margin-right: 0px;
+                        &:hover{
+                            color: #4284f4;
+                        }
+                    }
+        
+                    .checked {
+                        color: #c8c8c8;
+                    }
+                }
+    
+                button:hover{
+                    background: #ffffff;
+                    .checked {
+                        color: #feb100;
+                    }
+                }
+            }
+    
+            .company_name
+            {
+                clear: both;
+                text-align: center;
+                color: #161e2e;
+                font-size: 18px;
+                font-weight: 550;
+                height: 50px;
+                .company_name_label{
+                    color: #161e2e;
+                    text-decoration: none !important;overflow: hidden;
+                    text-overflow: ellipsis;
+                    display: -webkit-box;
+                    -webkit-line-clamp: 2; /* number of lines to show */
+                    -webkit-box-orient: vertical;
+                }
+            }
+    
+            .company_summary
+            {
+                display: block;
+                margin-left: auto;
+                margin-right: auto;
+                width: 100%;
+                .company_location
+                {
+                    text-align: center;
+                    font-size: 14px;
+                    color: #635f5f;
+                    i{
+                        margin-right: 5px;
+                    }
+                }
+                .company_rating
+                {
+                    float: left;
+                    width: 100%;
+                    height: 100%;
+                    margin-left: 45px;
+                    margin-top: 10px;
+                    .review_score_star
+                    {
+                        i {
+                            font-size: 25px;
+                            margin-right: 5px;
+                        }
+            
+                        .checked {
+                            color: #feb100;
+                        }
+    
+                        .checked_out {
+                            color: #c8c8c8;
+                        }
+                    }
+                }
+    
+                .review_point
+                {
+                    clear: both;
+                    color: #161e2e;
+                    .review_point_review_content{
+                        font-size: 14px;
+                        font-weight: 600;
+                        float: left;
+                        margin-top: 15px;
+                        margin-left: 40px;
+                        margin-right: 30px;
+                    }
+                    clear: both;
+                    .review_point_label
+                    {
+                        float: left;
+                        font-size: 13px;
+                        margin-left: 15px;
+                        margin-right: 10px;
+                        text-align: center;
+                        .review_point_review_label{
+                            text-decoration: none !important;
+                            color: #505050; 
+                        }
+                    }
+                }
+            }
+        }
+    }
+    .home_top_job{
+        clear: both;
+        margin-left: 15%;
+        margin-top: 20px;
+        color: #494949;
+        .home_top_job_label{
+            font-size: 25px;
+            padding-top: 20px;
+        }
+        .user_job_block {
+            clear: left;
+            width: 1050px;
+            height: 180px;
+            background-color: #ffffff;
+            border: 1px solid #ece9e9;
+            margin-bottom: 10px;
+            border-radius: 2px;
+            padding: 0px !important;
+            &:hover{
+                box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+                border: 1px solid #629fdb;
+            }
+        
+            .user_job_left
+            {
+                width: 8%;
+                height: auto;
+                margin: 12px;
+                padding-top: 15px;
+                display: block;
+                position: relative;
+                float: left;
+                .user_avatar {
+                    float: left;
+                    border-radius: 2px;
+                    // border-style: ridge;
+                    img{ 
+                        box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.1), 0 6px 20px 0 rgba(0, 0, 0, 0.09);
+                        max-width: 100px;
+                        max-height: 100px;
+                    }
+                }
+            }
+        
+            .user_job_middle{
+                width: 70%;
+                float: left;
+                padding: 10px;
+                margin-left: 20px;
+                padding-top: 25px;
+        
+                .user_job_title{
+                    a:link{
+                        text-decoration: none !important ;
+                    }
+                    font-size: 20px;
+                    margin-bottom: 20px;
+                    overflow: hidden;
+                    text-overflow: ellipsis;
+                    display: -webkit-box;
+                    -webkit-line-clamp: 1; /* number of lines to show */
+                    -webkit-box-orient: vertical;
+                }
+        
+                .user_job_description{
+                    overflow: hidden;
+                    text-overflow: ellipsis;
+                    display: -webkit-box;
+                    -webkit-line-clamp: 2; /* number of lines to show */
+                    -webkit-box-orient: vertical;
+                    font-size: 14px;
+                }
+                .user_job_location{
+                    margin-top: 20px;
+                    float: left;
+                    font-size: 15px;
+                    i{
+                        font-size: 20px;
+                        margin-right: 5px;
+                        color: #8a8888;
+                        position: relative;
+                    }
+                }
+        
+                .user_job_salary{
+                    margin-top: 20px;
+                    font-size: 15px;
+                    color: #4fb87b;
+                    float: left;
+                    i{
+                        margin-left: 20px;
+                        margin-right: 5px;
+                        font-size: 20px;
+                        color: #8a8888;
+                    }
+                }
+                
+            }
+        
+            .user_job_right{
+                width: 15%;
+                padding-top: 10px;
+                background-color: green($color: #000000);
+                float: right;
+                .apply_job_button{
+                    padding: 10px;
+                    padding-top: 11px;
+                    button{
+                        padding: 6px;
+                        height: 33px;
+                        width: 140px;
+                        margin-right: 10px;
+                        background: #5850ec;
+                        font-size: 14px;
+                        border: none;
+                        border-radius: 5px;
+                        cursor: pointer;
+                        text-align: center;
+                        color: #ffffff;
+                        &:hover{
+                            background-color: #4284f4;
+                        }
+                    }
+                }
+                
+                .user_job_date{
+                    font-size: 15px;
+                    color: #8a8888;
+                    padding-top: 100px;
+                    text-align: left;
+                    margin-left: 10px;
+                }
+            }
+            clear: left;
+            clear: right;
+        }
+    }
 }

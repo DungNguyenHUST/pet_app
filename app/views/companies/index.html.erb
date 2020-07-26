@@ -5,6 +5,7 @@
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <!-- Add icon library -->
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+        <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
     </head>
 
     <body>
@@ -33,7 +34,7 @@
                     </div>
                     <div class="company_current_review_rating">
                         <%5.times do%>
-                            <span class="fa fa-star checked"></span>
+                            <i class="material-icons checked">star</i>
                         <%end%>
                     </div>
                 </div>
@@ -58,7 +59,7 @@
                         </div>
 
                         <div class="company_love_button">
-                            <%= link_to '<button type="button"><i class="fa fa-heart fa checked"></i></button>'.html_safe, company_path(company) %>
+                            <%= link_to '<button type="button"><i class="material-icons">favorite_border</i></button>'.html_safe, company_path(company) %>
                         </div>
 
                         <div class="company_name">
@@ -86,14 +87,14 @@
                                 <div class="review_score_star">
                                     <%if total_rate > 0%>
                                         <%total_rate.to_i.times do%>
-                                            <span class="fa fa-star checked"></span>
+                                            <i class="material-icons checked">star</i>
                                         <%end%>
                                         <%(5 - total_rate.to_i).to_i.times do%>
-                                            <span class="fa fa-star checked_out"></span>
+                                            <i class="material-icons checked_out">star_outline</i>
                                         <%end%>
                                     <%else%>
                                         <%5.times do%>
-                                            <span class="fa fa-star checked_out"></span>
+                                            <i class="material-icons checked_out">star_outline</i>
                                         <%end%>
                                     <%end%>
                                 </div>

@@ -5,7 +5,7 @@
     clear: left;
     width: 100%;
     height: auto;
-    margin-top: 20px;
+    margin-top: 30px;
     margin-bottom: 20px;
     .user_review_left
     {
@@ -21,8 +21,8 @@
             // border-style: ridge;
             img{ 
                 box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.1), 0 6px 20px 0 rgba(0, 0, 0, 0.09);
-                max-width: 80px;
-                max-height: 80px;
+                max-width: 75px;
+                max-height: 75px;
             }
         }
     }
@@ -57,10 +57,13 @@
             
             .review_score_star
             {
-                .fa {
+                i {
                     float: left;
                     margin-top: 4px;
                     margin-right: 6px;
+                    font-size: 24px;
+                    position: relative;
+                    top: -4px;
                 }
 
                 .checked {
@@ -75,7 +78,7 @@
         
         .user_review_status{
             font-size: 14px;
-            margin-left: 180px;
+            float: right;
             color: #3c3d3d;
             padding-top: 6px;
         }
@@ -83,20 +86,22 @@
         .user_review_pros
         {
             clear: both;
-            margin-top: 15px;
+            margin-left: 30px;
             .user_review_pros_label{
-                .fa {
+                padding-top: 15px;
+                i {
                     position: relative;
-                    margin-right: 10px;
-                    padding-top: 3px;
+                    margin-right: 5px;
+                    padding-top: 0px;
                     float: left;
+                    font-size: 20px;
+                    top: 0px;
                 }
 
                 .checked {
                     color: green;
-                    font-size: 14px;;
                 }
-                font-size: 14px;;
+                font-size: 16px;;
                 font-weight: 400;
             }
 
@@ -110,19 +115,21 @@
 
         .user_review_cons{
             margin-top: 15px;
+            margin-left: 30px;
             .user_review_cons_label{
-                font-size: 14px;;
+                font-size: 16px;;
                 font-weight: 400;
-                .fa {
+                i {
                     position: relative;
-                    margin-right: 10px;
-                    padding-top: 3px;
+                    margin-right: 5px;
+                    padding-top: 0px;
                     float: left;
+                    font-size: 20px;
+                    top: 0px;
                 }
 
                 .checked {
                     color: red;
-                    font-size: 14px;;
                 }
             }
 
@@ -148,22 +155,47 @@
             .review_toolbar {
                 display: block;
                 float: left;
-                font-size: 16px;
-                i {
-                    position: relative;
-                    margin-right: 20px;
-                    font-size: 18px;
+                font-size: 13px;
+                color: #a8a3a3;
+                margin-right: 5px !important;
+                button{
+                    margin-right: 15px;
+                    font-size: 14px;
+                    border: none;
+                    background-color: #f8f9fa;
+                    i {
+                        position: relative;
+                        margin-right: 3px;
+                        font-size: 18px;
+                        top: 3px;
+                    }
+        
+                    .checked {
+                        color: #feb100;
+                    }
+
+                    .checked_out {
+                        color: #a8a3a3;
+                    }
                 }
-    
-                .checked {
-                    color: #a8a3a3;
+
+                .reply_btn
+                {
+                    border-right: 1px solid #c8c8c8;
+                    min-width: 86px;
+                }
+
+                .like_btn
+                {
+                    border-right: 1px solid #c8c8c8;
+                    min-width: 80px;
                 }
             }
         }
 
         .review_feedback{
             .report_button{
-                margin-left: 50%;
+                margin-left: 35%;
                 float: left;
                 button{
                     border: none;

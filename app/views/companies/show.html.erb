@@ -3,8 +3,10 @@
     <head>
         <meta name='viewport' content='width=device-width, initial-scale=1'>
         <!-- Add icon library -->
-        <link rel='stylesheet' href='https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css'>
         <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
     </head>
 
     <body>
@@ -14,7 +16,7 @@
                     <div class="company_overview">
                         <div class="company_wall_image">
                             <%if @company.wall_picture.attached?%>
-                                <img> <%= image_tag @company.wall_picture %>
+                                <%= image_tag @company.wall_picture %>
                             <%end%>
                         </div>
 
@@ -46,14 +48,14 @@
                                     <strong><%=total_rate.to_i%>.0</strong>
                                     <%if total_rate > 0%>
                                         <%total_rate.to_i.times do%>
-                                            <span class="fa fa-star checked"></span>
+                                            <i class="material-icons checked">star</i>
                                         <%end%>
                                         <%(5 - total_rate.to_i).to_i.times do%>
-                                            <span class="fa fa-star checked_out"></span>
+                                            <i class="material-icons checked_out">star_outline</i>
                                         <%end%>
                                     <%else%>
                                         <%5.times do%>
-                                            <span class="fa fa-star checked_out"></span>
+                                            <i class="material-icons checked_out">star_outline</i>
                                         <%end%>
                                     <%end%>
                                 </div>
@@ -68,76 +70,83 @@
                         </div>
                     </div>
 
-                    <!-- Tab links -->
                     <div class="company_tab">
-                        <button class="company_tablinks active" onclick="openContent(event, 'Company')"><h3><i class="material-icons">business</i> Công ty</h3></button>
-                        <button class="company_tablinks" onclick="openContent(event, 'CompanyJoins')"><h3><i class="material-icons">favorite_border</i>Chính sách</h3></button>
-                        <button class="company_tablinks" onclick="openContent(event, 'CompanyReviews')"><h3><i class="material-icons">rate_review</i>Đánh giá(<%= @company.company_reviews.count%>)</h3></button>
-                        <button class="company_tablinks" onclick="openContent(event, 'CompanyInterviews')"><h3><i class="material-icons">group</i>Phỏng vấn (<%= @company.company_interviews.count%>)</h3></button>
-                        <button class="company_tablinks" onclick="openContent(event, 'CompanySalarys')"><h3><i class="material-icons">local_offer</i>Lương</h3></button>
-                        <button class="company_tablinks" onclick="openContent(event, 'CompanyJobs')"><h3><i class="material-icons">contact_mail</i>Tuyển dụng(<%= @company.company_jobs.count%>)</h3></button>
-                    </div>
+                        <ul class="nav nav-tabs" id="myTab">
+                            <li class="active"><a data-toggle="tab" href="#Company"><i class="material-icons">business</i> Công ty</a></li>
+                            <li><a data-toggle="tab" href="#CompanyJoins"><i class="material-icons">favorite_border</i>Chính sách nổi bật</a></li>
+                            <li><a data-toggle="tab" href="#CompanyReviews"><i class="material-icons">sentiment_satisfied_alt</i>Đánh giá công ty<span> <%= @company.company_reviews.count%><span></a></li>
+                            <li><a data-toggle="tab" href="#CompanyInterviews"><i class="material-icons">people_outline</i>Kinh nghiệm phỏng vấn <span><%= @company.company_interviews.count%><span></a></li>
+                            <li><a data-toggle="tab" href="#CompanyJobs"><i class="material-icons">work_outline</i>Tuyển dụng<span><%= @company.company_jobs.count%><span></a></li>
+                            <li><a data-toggle="tab" href="#CompanySalarys"><i class="material-icons">attach_money</i>Lương</a></li>
+                        </ul>
 
-                    <!-- Tab content -->
-                    <div id="Company" class="company_tabcontent" style="display:block;">
-                        <%= render :partial => 'companies/profile' %>
-                    </div>
-
-                    <div id="CompanyJoins" class="company_tabcontent">
-                        <%= render :partial => 'companies/why_join' %>
-                    </div>
-
-                    <div id="CompanyReviews" class="company_tabcontent">
-                        <%= render :partial => 'company_reviews/review_score' %>
-                        <div class="company_tab_des">
-                            <strong class="user_comment_heading"> Tất cả <%= @company.company_reviews.count%> đánh giá về <%= @company.name %> </strong>
-                            <%= render @company.company_reviews %>
-                        </div>
-                    </div>
-
-                    <div id="CompanyInterviews" class="company_tabcontent">
-                        <%= render :partial => 'company_interviews/interview_score' %>
-                        <div class="company_tab_des">
-                            <strong class="user_comment_heading"> Tất cả <%= @company.company_interviews.count%> kinh nghiệm phỏng vấn tại <%= @company.name %></strong>
-                            <%= render @company.company_interviews %>
-                        </div>
-                    </div>
-
-                    <div id="CompanySalarys" class="company_tabcontent">
-                        <h3>Comming soon ...</h3>
-                    </div>
-
-                    <div id="CompanyJobs" class="company_tabcontent">
-                        <div class="company_tab_des">
-                            <div class="company_tab_job">
-                                <strong class="user_comment_heading"> Tìm thấy <%= @company.company_jobs.count%> việc làm tại <%= @company.name %> </strong>
-                                <div class="new_job">
-                                    <div class="new_job_title">
-                                        <strong>Bạn là nhà tuyển dụng</strong>
-                                    </div>
-                                    <%= link_to '<button type="submit">Đăng tin tuyển dụng miễn phí</button>'.html_safe, new_company_company_job_path(@company) %>
+                        <div class="tab-content">
+                            <div id="Company" class="tab-pane fade in active">
+                                <div class="company_profile_tab">
+                                    <%= render :partial => 'companies/profile' %>
                                 </div>
                             </div>
-                            <%= render @company.company_jobs %>
+                            <div id="CompanyJoins" class="tab-pane fade">
+                                <div class="company_policy_tab">
+                                    <%= render :partial => 'companies/why_join' %>
+                                </div>
+                            </div>
+                            <div id="CompanyReviews" class="tab-pane fade">
+                                <div class="company_review_tab">
+                                    <%= render :partial => 'company_reviews/review_score' %>
+                                    <div class="company_tab_des">
+                                        <strong class="user_comment_heading"> Tất cả <%= @company.company_reviews.count%> đánh giá về <%= @company.name %> </strong>
+                                        <%= render @company.company_reviews %>
+                                    </div>
+                                </div>
+                            </div>
+                            <div id="CompanyInterviews" class="tab-pane fade">
+                                <div class="company_interview_tab">
+                                    <%= render :partial => 'company_interviews/interview_score' %>
+                                    <div class="company_tab_des">
+                                        <strong class="user_comment_heading"> Tất cả <%= @company.company_interviews.count%> kinh nghiệm phỏng vấn tại <%= @company.name %></strong>
+                                        <%= render @company.company_interviews %>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div id="CompanySalarys" class="tab-pane fade">
+                                <div class="company_salary_tab">
+                                    <h3>Comming soon ...</h3>
+                                </div>
+                            </div>
+
+                            <div id="CompanyJobs" class="tab-pane fade">
+                                <div class="company_job_tab">
+                                    <div class="company_tab_des">
+                                        <div class="company_tab_job">
+                                            <strong class="user_comment_heading"> Tìm thấy <%= @company.company_jobs.count%> việc làm tại <%= @company.name %> </strong>
+                                            <div class="new_job">
+                                                <div class="new_job_title">
+                                                    <strong>Bạn là nhà tuyển dụng</strong>
+                                                </div>
+                                                <%= link_to '<button type="submit">Đăng tin tuyển dụng miễn phí</button>'.html_safe, new_company_company_job_path(@company) %>
+                                            </div>
+                                        </div>
+                                        <div class="company_job_index">
+                                            <%= render @company.company_jobs %>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
                         </div>
                     </div>
-
                     <script>
-                        function openContent(evt, companyTag) {
-                            var i, company_tabcontent, company_tablinks;
-                            company_tabcontent = document.getElementsByClassName("company_tabcontent");
-                            for (i = 0; i < company_tabcontent.length; i++) {
-                                company_tabcontent[i].style.display = "none";
+                        $(document).ready(function(){
+                            $('a[data-toggle="tab"]').on('show.bs.tab', function(e) {
+                                localStorage.setItem('activeTab', $(e.target).attr('href'));
+                            });
+                            var activeTab = localStorage.getItem('activeTab');
+                            if(activeTab){
+                                $('#myTab a[href="' + activeTab + '"]').tab('show');
+                                loadTabContent(activeTab);
                             }
-
-                            company_tablinks = document.getElementsByClassName("company_tablinks");
-                            for (i = 0; i < company_tablinks.length; i++) {
-                                company_tablinks[i].className = company_tablinks[i].className.replace(" active", "");
-                            }
-
-                            document.getElementById(companyTag).style.display = "block";
-                            evt.currentTarget.className += " active";
-                        }
+                        });
                     </script>
                 </div>
             </div>

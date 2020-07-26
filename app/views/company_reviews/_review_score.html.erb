@@ -4,6 +4,7 @@
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <!-- Add icon library -->
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+        <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
     </head>
 
     <body>
@@ -26,14 +27,14 @@
                         <div class="review_score_star">
                             <%if rating_review_total_score > 0%>
                                 <%rating_review_total_score.to_i.times do%>
-                                    <span class="fa fa-star checked"></span>
+                                    <i class="material-icons checked">star</i>
                                 <%end%>
                                 <%(5 - rating_review_total_score.to_i).to_i.times do%>
-                                    <span class="fa fa-star checked_out"></span>
+                                    <i class="material-icons checked_out">star_outline</i>
                                 <%end%>
                             <%else%>
                                 <%5.times do%>
-                                    <span class="fa fa-star checked_out"></span>
+                                    <i class="material-icons checked_out">star_outline</i>
                                 <%end%>
                             <%end%>
                         </div>
@@ -52,7 +53,7 @@
                                 <strong><%=rating_review_work_env_score.round(1)%></strong>
                             </div>
                             <div class="review_score_star">
-                                <span class="fa fa-star checked"></span>
+                                <i class="material-icons checked">star</i>
                             </div>
                             <div class="review_score_label">
                                 <t>Văn hóa công ty</t>
@@ -66,7 +67,7 @@
                                 <strong><%=rating_review_salary_score.round(1)%></strong>
                             </div>
                             <div class="review_score_star">
-                                <span class="fa fa-star checked"></span>
+                                <i class="material-icons checked">star</i>
                             </div>
                             <div class="review_score_label">
                                 <t>Chế độ đãi ngộ</t>
@@ -80,7 +81,7 @@
                                 <strong><%=rating_review_ot_score.round(1)%></strong>
                             </div>
                             <div class="review_score_star">
-                                <span class="fa fa-star checked"></span>
+                                <i class="material-icons checked">star</i>
                             </div>
                             <div class="review_score_label">
                                 <t>Làm thêm giờ</t>
@@ -94,7 +95,7 @@
                                 <strong><%=rating_review_manager_score.round(1)%></strong>
                             </div>
                             <div class="review_score_star">
-                                <span class="fa fa-star checked"></span>
+                                <i class="material-icons checked">star</i>
                             </div>
                             <div class="review_score_label">
                                 <t>Quản lý cấp trên</t>
@@ -108,7 +109,7 @@
                                 <strong><%=rating_review_career_score.round(1)%></strong>
                             </div>
                             <div class="review_score_star">
-                                <span class="fa fa-star checked"></span>
+                                <i class="material-icons checked">star</i>
                             </div>
                             <div class="review_score_label">
                                 <t>Cơ hội thăng tiến</t>

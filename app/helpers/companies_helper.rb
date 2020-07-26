@@ -96,4 +96,7 @@ module CompaniesHelper
         end
     end
 
+    def find_top_company
+    end
+
 end

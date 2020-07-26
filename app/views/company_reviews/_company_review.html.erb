@@ -29,10 +29,10 @@
                     </div>
                     <div class="review_score_star">
                             <%company_review.average_score.to_i.times do%>
-                                <span class="fa fa-star checked"></span>
+                                <i class="material-icons checked">star</i>
                             <%end%>
                             <%(5 - company_review.average_score.to_i).to_i.times do%>
-                                <span class="fa fa-star checked_out"></span>
+                                <i class="material-icons checked_out">star_outline</i>
                             <%end%>
                     </div>
                 </div>
@@ -50,7 +50,7 @@
 
                 <div class="user_review_pros">
                     <div class="user_review_pros_label">
-                        <span class="fa fa-check-square fa checked"></span>
+                        <i class="material-icons checked">check_circle_outline</i>
                         <strong>Ưu điểm</strong>
                     </div>
                     <div class="user_review_pros_content">
@@ -60,7 +60,7 @@
 
                 <div class="user_review_cons">
                     <div class="user_review_cons_label">
-                        <span class="fa fa-times-circle fa checked"></span>
+                        <i class="material-icons checked">clear</i>
                         <strong>Nhược điểm </strong>
                     </div>
                     <div class="user_review_cons_content">
@@ -75,13 +75,13 @@
                 <div class="review_info">
                     <div class="review_toolbar">
                         <t><%= company_review.company_reply_reviews.count%></t>
-                        <%= link_to '<i class="material-icons">question_answer</i>'.html_safe, new_company_reply_review_path(@company.id, company_review.id)%>
-                        
+                        <button class="reply_btn" onclick="myFunction()"><i class="material-icons">chat_bubble</i> Trả lời </button>
+
                         <t><%= company_review.company_like_reviews.count%></t>
-                        <%= link_to '<i class="material-icons">thumb_up</i>'.html_safe, company_company_review_company_like_reviews_path(@company, company_review), method: :post%>
+                        <%= link_to '<button class="like_btn"><i class="material-icons">thumb_up</i> Thích </button>'.html_safe, company_company_review_company_like_reviews_path(@company, company_review), method: :post%>
                         
                         <t><%= company_review.company_dislike_reviews.count%></t>
-                        <%= link_to '<i class="material-icons">thumb_down</i>'.html_safe, company_company_review_company_dislike_reviews_path(@company, company_review), method: :post%>
+                        <%= link_to '<button class="dislike_btn"><i class="material-icons">thumb_down</i> Không thích </button>'.html_safe, company_company_review_company_dislike_reviews_path(@company, company_review), method: :post%>
                     </div>
                 </div>
 
@@ -97,6 +97,38 @@
             </div>
         </div>
         
-        <%= render company_review.company_reply_reviews %>
+        <div class="new_reply_review_form" id = "mydiv">
+            <%= form_for [@company, company_review, CompanyReplyReview.new] do |f| %>
+
+                <div class="new_reply_review_content">
+                    <div class="new_reply_review_input_review">
+                        <%= f.text_field :reply_content, class: "new_reply_review_form_input_review", placeholder: "  Gửi trả lời" %>
+                    </div>
+                </div>
+
+                <div class="new_reply_review_submit">
+                    <button type="submit" class="new_reply_review_form_submit">
+                        <i class="material-icons">send</i>
+                    </button>
+                </div>
+            <%end%>
+        </div>
+
+        <script>
+            function myFunction() {
+                var x = document.getElementById("mydiv");
+                if (x.style.display == "none") {
+                    x.style.display = "block";
+                } else {
+                    x.style.display = "none";
+                }
+            }
+        </script>
+
+        <%if company_review.company_reply_reviews.count > 0%>
+            <div class="review_reply">
+                <%= render company_review.company_reply_reviews %>
+            </div>
+        <%end%>
     </body>
 </html>

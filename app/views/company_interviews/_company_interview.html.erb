@@ -2,8 +2,6 @@
 <html>
     <head>
         <meta name='viewport' content='width=device-width, initial-scale=1'>
-        <!-- Add icon library -->
-        <link rel='stylesheet' href='https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css'>
         <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
 
     </head>
@@ -37,14 +35,14 @@
                         <div class="interview_score_star">
                             <%if company_interview.satisfied.to_i > 0%>
                                 <%company_interview.satisfied.to_i.times do%>
-                                    <span class="fa fa-star checked"></span>
+                                    <i class="material-icons checked">star</i>
                                 <%end%>
                                 <%(5 - company_interview.satisfied.to_i).to_i.times do%>
-                                    <span class="fa fa-star checked_out"></span>
+                                    <i class="material-icons checked_out">star_outline</i>
                                 <%end%>
                             <%else%>
                                 <%5.times do%>
-                                    <span class="fa fa-star checked_out"></span>
+                                    <i class="material-icons checked_out">star_outline</i>
                                 <%end%>
                             <%end%>
                         </div>
@@ -55,10 +53,10 @@
                     <div class="user_interview_offer_label">
                         <strong>Chấp nhận offer: </strong>
                         <%if company_interview.satisfied.to_i >0%>
-                            <span class="fa fa-check-square fa checked"></span>
+                            <i class="material-icons checked">check_circle_outline</i>
                             <t> Yes </t>
                         <% else %>
-                            <span class="fa fa-times-circle fa checked_out"></span>
+                            <i class="material-icons checked">clear</i>
                             <t> No </t>
                         <%end%>
                     </div>
@@ -81,15 +79,19 @@
 
                 <div class="interview_feedback">
                     <div class="report_button">
-                        <%= link_to '<button type="submit"><i class="fa fa-flag fa checked"></i> Báo cáo vi phạm</button>'.html_safe, sessions_new_path %>
+                        <%= link_to '<button type="submit"><i class="material-icons">flag</i> Báo cáo vi phạm</button>'.html_safe, sessions_new_path %>
                     </div>
 
                     <div class="share_button">
-                        <%= link_to '<button type="submit"><i class="fa fa-share-alt fa checked"></i> Chia sẻ</button>'.html_safe, new_user_path %>
+                        <%= link_to '<button type="submit"><i class="material-icons">share</i> Chia sẻ</button>'.html_safe, new_user_path %>
                     </div>
                 </div>
             </div>
         </div>
-        <%= render company_interview.company_reply_interviews %>
+         <%if company_interview.company_reply_interviews.count > 0%>
+            <div class="interview_reply">
+                <%= render company_interview.company_reply_interviews %>
+            </div>
+        <%end%>
     </body>
 </html>
