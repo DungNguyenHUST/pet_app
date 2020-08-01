@@ -2,32 +2,59 @@
 <html>
     <head>
         <meta name='viewport' content='width=device-width, initial-scale=1'>
-        <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
     </head>
 
     <body>
-        <div class='body_content'>
-            <div class='job_block'>
+        <div class="job_overview">
+            <div class="job_overview_left">
+                <div class="user_avatar">
+                    <%if @company.avatar.attached?%>
+                        <%= link_to (image_tag(@company.avatar)), image_path(url_for(@company.avatar)), rel: "gallery" , :href => company_path(@company)%>
+                    <%end%>
+                </div>
                 <div class="job_title">
                     <strong><%= @company_job.title %></strong>
                 </div>
+                <div class="company_name">
+                    <t><%= @company.name %></t>
+                </div>
+
                 <div class='job_block_info'>
-                    <div class="job_shoft_info">
-                        <span><i class="material-icons">location_on</i><%= @company_job.location %></span>
+                    <div class="job_shoft_info_location">
+                        <span><i class="material-icons">roofing</i><%= @company_job.location %></span>
                     </div>
-                    <div class="job_shoft_info">
-                        <span><i class="material-icons">euro_symbol</i><%= @company_job.salary %></span>
+                    <div class="job_shoft_info_salary">
+                        <span><i class="material-icons">attach_money</i><%= @company_job.salary %></span>
                     </div>
-                    <div class="job_shoft_info">
-                        <span><i class="material-icons">people</i><%= @company_job.quantity %></span>
-                    </div>
-                    <div class="job_shoft_info">
-                        <span><i class="material-icons">work</i><%= @company_job.category %></span>
-                    </div>
-                    <div class="job_shoft_info">
-                        <span><i class="material-icons">watch_later</i><%= time_ago_in_words(@company_job.created_at) %></span>
+                    <div class="job_shoft_info_time">
+                        <span><i class="material-icons">update</i><%= time_ago_in_words(@company_job.created_at) %></span>
                     </div>
                 </div>
+            </div>  
+            <div class="apply_job_button">
+                <%= link_to '<button type="submit">Nộp đơn</button>'.html_safe, new_company_apply_job_path(@company.id, @company_job.id)%>
+                <i class="material-icons">favorite_border</i>
+            </div>
+        </div>  
+        <div class='body_content'>
+            <div class='job_block_left'>
+                <div class="job_benefit">
+                    <div class="job_section">
+                        <strong>Top 3 lý do để bạn gia nhập công ty</strong>
+                    </div>
+                    <div class="job_content">
+                        <div class="job_benefit_1">
+                            <span><i class="material-icons">schedule</i> Không làm thêm giờ</span>
+                        </div>
+                        <div class="job_benefit_2">
+                            <span><i class="material-icons">emoji_transportation</i> Xe đưa đón tận nơi</span>
+                        </div>
+                        <div class="job_benefit_3">
+                            <span><i class="material-icons">child_care</i> Hưởng Bảo hiểm y tế và bảo hiểm xã hội theo luật Việt Nam</span>
+                        </div>
+                    </div>
+                </div>
+
                 <div class="job_description">
                     <div class="job_section">
                         <strong>Mô tả công việc</strong>
@@ -45,27 +72,50 @@
                         <%= @company_job.requirement %>
                     </div>
                 </div>
-
-                <div class="job_benefit">
-                    <div class="job_section">
-                        <strong>Lý do để bạn gia nhập công ty</strong>
-                    </div>
-                    <div class="job_content">
-                        <%= @company_job.benefit %>
-                    </div>
-                </div>
                 
                 <div class="apply_job_button">
-                    <%= link_to '<button type="submit">Ứng tuyển</button>'.html_safe, new_company_apply_job_path(@company.id, @company_job.id)%>
+                    <%= link_to '<button type="submit">Nộp đơn</button>'.html_safe, new_company_apply_job_path(@company.id, @company_job.id)%>
                 </div>
-
-                <div class="company_job_index">
-                    <div class="job_section">
-                        <strong>Có thể bạn sẽ thích</strong>
+            </div>
+            <div class='job_block_right'>
+                <div class="job_right">
+                    <div class="job_right_title">
+                        <t> <i class="material-icons">calendar_today</i> NGÀY ĐĂNG TUYỂN</t>
                     </div>
-                    <div class="job_content">
-                        <%= render @company.company_jobs %>
+                    <span><%= time_ago_in_words(@company_job.created_at) %></span>
+                </div>
+                <div class="job_right">
+                    <div class="job_right_title">
+                        <t> <i class="material-icons">check_circle_outline</i> LĨNH VỰC CHÍNH</t>
                     </div>
+                    <span> <%= time_ago_in_words(@company_job.created_at) %></span>
+                </div>
+                <div class="job_right">
+                    <div class="job_right_title">
+                        <t> <i class="material-icons">work_outline</i> CẤP BẬC</t>
+                    </div>
+                    <span> <%= time_ago_in_words(@company_job.created_at) %></span>
+                </div>
+                <div class="job_right">
+                    <div class="job_right_title">
+                        <t><i class="material-icons">translate</i> NGÔN NGỮ HỒ SƠ</t>
+                    </div>
+                    <span> <%= time_ago_in_words(@company_job.created_at) %></span>
+                </div>
+                <div class="job_right_end">
+                    <div class="job_right_title">
+                        <t> <i class="material-icons">timer</i> NGÀY HẾT HẠN</t>
+                    </div>
+                    <span> <%= time_ago_in_words(@company_job.created_at) %></span>
+                </div>
+            </div>
+            
+            <div class="company_job_index">
+                <div class="job_section">
+                    <strong>Có thể bạn sẽ thích</strong>
+                </div>
+                <div class="job_content">
+                    <%= render @company.company_jobs %>
                 </div>
             </div>
         </div>

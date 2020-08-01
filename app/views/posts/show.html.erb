@@ -8,70 +8,25 @@
         <div class='body_content'>
             <%- model_class = Post -%>
                 <div class="post_area">
-                    <div class="post_title">
-                        <div class="post_title_image">
-                            <img src="<%= "/assets/fpt-software-logo.png" %>" alt="Snow" style="width:100%;">
+                    <div class="post_area_left">
+                        <div class="post_title">
+                            <strong><%=@post.title%></strong>
                         </div>
-
-                        <div class="post_title_summary">
-                            <div class="post_title_name">
-                                <t><%= @post.title %></t>
-                            </div>
-
-                            <div class="post_title_short_des">
-                                <div class="post_title_short_des_group1">
-                                    <span class="fa fa-map-marker fa-2x checked"></span>
-                                    <t><%= @post.username %></t>
-                                </div>
-
-                                <div class="post_title_short_des_group">
-                                    <span class="fa fa-history fa-2x checked"></span>
-                                    <t><%= time_ago_in_words(@post.created_at) %></t>
-                                </div>
-                            </div>
+                        <div class="post_content">
+                            <span><%=@post.content%></span>
+                        </div>
+                        <div class="post_comment_btn">
+                            <t><%= @post.post_comments.count%></t>
+                            <%= link_to '<button class="reply"><i class="material-icons">reply</i> Trả lời </button>'.html_safe, new_post_comment_path(@post)%>
+                        </div>
+                        <div class="post_comment">
+                            <%= render @post.post_comments %>
                         </div>
                     </div>
-
-                    <!-- Tab links -->
-                    <div class="post_tab">
-                        <button class="post_tablinks active" onclick="openContent(event, 'post')"><h3>Mô tả chính</h3></button>
-                        <button class="post_tablinks" onclick="openContent(event, 'Solvepost')"><h3>Giải pháp</h3></button>
+                    <div class="post_area_right">
+                        <span>Xem thêm</span>
                     </div>
-
-                    <!-- Tab content -->
-                    <div id="post" class="post_tabcontent" style="display:block;">
-                        <%= @post.content %>
-                        <%# New comment button %>
-                        <div class="new_comment_button">
-                            <form action="/action_page.php">
-                                <%= link_to '<button type="submit"> <i class="fa fa-edit"></i> Comment </button>'.html_safe, new_post_post_comment_path(@post) %>
-                            </form>
-                        </div>
-                    </div>
-
-                    <div id="Solvepost" class="post_tabcontent">
-                        <%= render @post.post_comments %>
-                    </div>
-
-                    <script>
-                        function openContent(evt, cityName) {
-                            var i, post_tabcontent, post_tablinks;
-                            post_tabcontent = document.getElementsByClassName("post_tabcontent");
-                            for (i = 0; i < post_tabcontent.length; i++) {
-                                post_tabcontent[i].style.display = "none";
-                            }
-
-                            post_tablinks = document.getElementsByClassName("post_tablinks");
-                            for (i = 0; i < post_tablinks.length; i++) {
-                                post_tablinks[i].className = post_tablinks[i].className.replace(" active", "");
-                            }
-
-                            document.getElementById(cityName).style.display = "block";
-                            evt.currentTarget.className += " active";
-                        }
-                    </script>
-
-                </div>
+                </div>  
             </div>
         </div>
     </body>

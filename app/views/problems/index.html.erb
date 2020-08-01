@@ -8,39 +8,92 @@
         <div class='body_content'>
             <%- model_class = Problem -%>
                 <div class="problem_container">
-                    <div class="problem_header">
-                        <strong> Danh sách câu hỏi</strong>
-                    </div>
-                    
-                    <%# New button %>
-                    <div class="new_problem">
-                        <form action="/action_page.php">
-                            <%= link_to '<button type="submit">Tạo một problem mới</button>'.html_safe, new_problem_path %>
-                        </form>
-                    </div>
+                    <div class="problem_left">
+                        <div class="problem_category">
+                            <div class="problem_header">
+                                <strong> <i class="material-icons">apps</i> Danh mục chính</strong>
+                            </div>
 
-                    <table class="table problem_table">
-                        <thead>
-                            <tr>
-                                <th><div class="table_th_no">#</th>
-                                <th><div class="table_th_title">Tiêu đề</th>
-                                <th><div class="table_th_difficult">Độ khó</th>
-                                <th><div class="table_th_user">Trả lời</th>
-                                <th><div class="table_th_date">Ngày tạo</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <% @problems.each do |problem| %>
+                            <div class="new_category">
+                                <form action="/action_page.php">
+                                    <%= link_to '<button type="submit">Thuật toán</button>'.html_safe, new_problem_path %>
+                                </form>
+                            </div>
+                            <div class="new_category">
+                                <form action="/action_page.php">
+                                    <%= link_to '<button type="submit">Câu hỏi phỏng vấn</button>'.html_safe, new_problem_path %>
+                                </form>
+                            </div>
+                            <div class="new_category">
+                                <form action="/action_page.php">
+                                    <%= link_to '<button type="submit">Bài test mẫu</button>'.html_safe, new_problem_path %>
+                                </form>
+                            </div>
+                            <div class="new_category">
+                                <form action="/action_page.php">
+                                    <%= link_to '<button type="submit">Câu hỏi khác</button>'.html_safe, new_problem_path %>
+                                </form>
+                            </div>
+                        </div>
+                        
+                        <%# New button %>
+                        <div class="problem_short_des">
+                            <div class="short_des">
+                                <span>#Tổng số <%= @problems.count %></span>
+                            </div>
+                            <div class="short_des">
+                                <span>#Đã xử lý <%= @problems.count %></span>
+                            </div>
+                            <div class="short_des">
+                                <span>#Khó <%= @problems.count %></span>
+                            </div>
+                            <div class="short_des">
+                                <span>#Trung bình <%= @problems.count %></span>
+                            </div>
+                            <div class="short_des">
+                                <span>#Dễ <%= @problems.count %></span>
+                            </div>
+                            <div class="new_problem">
+                                <form action="/action_page.php">
+                                    <%= link_to '<button type="submit">Tạo một câu hỏi mới</button>'.html_safe, new_problem_path %>
+                                </form>
+                            </div>
+                        </div>
+
+                        <div class="problem_search">
+                            <div class="problem_search_label">
+                                <i class="material-icons">search</i>
+                            </div>
+                            <div class="problem_search_button">
+                                <%= link_to '<button type="submit">Tìm kiếm</button>'.html_safe, new_problem_path %>
+                            </div>
+                        </div>
+
+                        <table class="table problem_table">
+                            <thead>
                                 <tr>
-                                    <td><div class="table_td_no"><%= link_to problem.id, problem_path(problem) %></td>
-                                    <td><div class="table_td_title"><%= link_to problem.title, problem_path(problem) %></td>
-                                    <td><div class="table_td_difficult"><%= problem.difficult %></td>
-                                    <td><div class="table_td_user"><%= problem.problem_solutions.count %></td>
-                                    <td><div class="table_td_date"><%= time_ago_in_words(problem.created_at) %></td>                                
+                                    <th><div class="table_th_no">#</th>
+                                    <th><div class="table_th_title">Tiêu đề</th>
+                                    <th><div class="table_th_difficult">Độ khó</th>
+                                    <th><div class="table_th_user">Trả lời</th>
+                                    <th><div class="table_th_date">Ngày tạo</th>
                                 </tr>
-                            <% end %>
-                        </tbody>
-                    </table>
+                            </thead>
+                            <tbody>
+                                <% @problems.each do |problem| %>
+                                    <tr>
+                                        <td><div class="table_td_no"><%= link_to problem.id, problem_path(problem) %></td>
+                                        <td><div class="table_td_title"><%= link_to problem.title, problem_path(problem) %></td>
+                                        <td><div class="table_td_difficult"><%= problem.difficult %></td>
+                                        <td><div class="table_td_user"><%= problem.problem_solutions.count %></td>
+                                        <td><div class="table_td_date"><%= time_ago_in_words(problem.created_at) %></td>                                
+                                    </tr>
+                                <% end %>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div class="problem_right">
+                    </div>
                 </div>
             </div>
         </div>

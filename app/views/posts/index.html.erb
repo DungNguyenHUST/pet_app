@@ -2,7 +2,6 @@
 <html>
     <head>
         <meta name='viewport' content='width=device-width, initial-scale=1'>
-        <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
     </head>
 
     <body>
@@ -10,25 +9,31 @@
             <%- model_class = Post -%>
                 <% @posts.each do |post| %>
                     <div class="post_container">
-                        <div class="post_header">
-                            <strong><%=post.title%></strong>
-                        </div>
 
-                        <div class="post_info">
-                            <div class="post_username">
-                                <i class="material-icons">face</i><strong><%=post.username%></strong>
-                            </div>
-                            <div class="post_date">
-                                <t><%=time_ago_in_words(post.created_at)%></t>
+                        <div class="post_left">
+                            <div class="post_cover">
+                                <img src="<%= "/assets/fpt-software-logo.png" %>" alt="Snow" style="width:100%;">
                             </div>
                         </div>
 
-                        <div class="post_content">
-                            <t><%=post.content%></t>
-                        </div>
+                        <div class="post_right">
+                            <div class="post_header">
+                                <strong><%= link_to (post.title), post_path(post) %></strong>
+                            </div>
 
-                        <div class="post_view">
-                            <%= link_to '<button type="submit">Xem tiếp</button>'.html_safe, post_path(post) %>
+                            <div class="post_info">
+                                <div class="post_username">
+                                    <i class="material-icons">person_outline</i><span><%=post.username%></span> <span><%=time_ago_in_words(post.created_at)%></span>
+                                </div>
+                            </div>
+
+                            <div class="post_content">
+                                <span><%=post.content%></span>
+                            </div>
+
+                            <div class="post_view">
+                                <%= link_to '<button type="submit"> Đọc thêm <i class="material-icons">chevron_right</i></button>'.html_safe, post_path(post) %>
+                            </div>
                         </div>
                     </div>
                 <% end %>

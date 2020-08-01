@@ -3,13 +3,13 @@
 // You can use Sass (SCSS) here: https://sass-lang.com/
 .body_content_header_user{
 	background-color:#ffffff;
-	border-bottom: 2px solid #f0f0f0;
+	border-bottom: 1px solid #f0f0f0;
 	margin-bottom: 0px !important;
 	.header_user_area {
 		height: 50px !important;
 		margin-left: 15%;
 		margin-right: 15%;
-		padding-top: 20px;
+		padding-top: 12px;
 		@media screen and (max-width: 600px) {
 			height: 80px;
 			margin-left: 5%;
@@ -22,15 +22,23 @@
 				float: left;
 				@media screen and (max-width: 600px){
 					margin-left: 36%;
+				}	
+				i{
+					font-size: 40px;
+					color: #d74832;
+					position: relative;
+					top: 8px;
+					margin-right: 5px;
+					margin-left: 5px;
 				}
 				a{
-					font-size: 30px;
+					font-size: 33px;
 					display: block;
 					text-decoration:none;
-					line-height: 1;
-					text-align: center;
 					color: #5850ec;
 					font-weight: 600;
+					position: relative;
+					top: -14px;
 				}
 				span{
 					&:hover{
@@ -40,20 +48,24 @@
 			}
 
 			.header_user_navigation{
-				margin-left: 250px;
+				margin-left: 330px;
 				nav{
 					float: left;
 					a{
 						color: #161e2e;
 						font-size: 16px;
 						display: inline-block;
-						padding: 6px 15px;
+						padding: 6px 18px;
 						position: relative;
 						text-decoration: none;
 						line-height: 1;
 						text-align: center;
 						&:hover{
-							color: #4284f4;
+							border-bottom: 2px solid #4284f4;
+							color: black;
+						}
+						.active{
+							border-bottom: 2px solid #4284f4;
 						}
 					}
 				}
@@ -86,17 +98,21 @@
 					@media screen and (max-width: 600px){
 						display: none;
 					}
-					i{
-                        color: #5850ec !important;
-					}
-
-                    &:hover i{
-						color: #4284f4 !important;
-					}
 					
 					button{
 						background-color: #ffffff;
-						border: #ffffff;
+						border: none;
+						font-size: 33px;
+						color: #5850ec !important;
+						i{
+							color: #5850ec !important;
+							position: relative;
+							top: -10px;
+						}
+	
+						&:hover{
+							color: #4d78c2 !important;
+						}
 					}
 
 				}

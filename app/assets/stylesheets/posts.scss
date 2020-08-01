@@ -7,49 +7,80 @@
     margin-top: 30px;
     border-bottom: 2px solid #f0f0f1;
     padding-bottom: 30px;
-    .post_header{
-        font-size: 22px;
-        font-weight: 500;
-    }
-    .post_info{
-        padding-top: 10px;
-        padding-bottom: 20px;
-        .post_username{
-            i{
-                font-size: 40px;
-            }
+    height: 360px;
 
-        }
-
-        .post_date{
-            font-size: 14px;
-
-        }
-    }
-    .post_content{
-        font-size: 16px; 
-        overflow: hidden;
-        text-overflow: ellipsis;
-        display: -webkit-box;
-        -webkit-line-clamp: 10; /* number of lines to show */
-        -webkit-box-orient: vertical;
-    }
-
-    .post_view{
-        button {
-            width: 100%;
-            height: 40px;
-            margin-top: 25px;
-            background: #5850ec;
-            font-size: 14px;
-            border: 0px;
-            cursor: pointer;
-            text-align: center;
-            color: #ffffff;
+    .post_left{
+        width: 350px;
+        height: 350px;
+        float: left;
+        .post_cover{
+            width: 320px;
+            height: 300px;
+            background-color: #5850ec;
+            margin: 20px;
+            margin-left: 0px;
             border-radius: 5px;
         }
-        button:hover {
-            background: #6f68ec;
+    }
+
+    .post_right{
+        .post_header{
+            font-size: 22px;
+            font-weight: 500;
+            padding-top: 20px;
+            min-height: 50px;
+            a:link{
+                text-decoration: none !important ;
+                font-size: 22px;
+            }
+        }
+        .post_info{
+            padding-bottom: 20px;
+            .post_username{
+                i{
+                    font-size: 25px;
+                    position: relative;
+                    top: 5px;
+                }
+                span{
+                    margin-left: 6px;
+                    font-size: 14px;
+                }
+
+            }
+
+            .post_date{
+                font-size: 14px;
+            }
+        }
+        .post_content{
+            position: relative;
+            font-size: 16px; 
+            overflow: hidden;
+            text-overflow: ellipsis;
+            display: -webkit-box;
+            -webkit-line-clamp: 7; /* number of lines to show */
+            -webkit-box-orient: vertical;
+        }
+
+        .post_view{
+            padding-left: 0px;
+            button {
+                width: 20%;
+                height: 35px;
+                margin-top: 5px;
+                background: #ffffff;
+                font-size: 14px;
+                border: 0px;
+                text-align: left;
+                cursor: pointer;
+                color: #3d59a5;
+                border-radius: 5px;
+                i{
+                    position: relative;
+                    top: 7px;
+                }
+            }
         }
     }
 }
@@ -75,110 +106,33 @@
 ////////////////show/////////////////////////
 .post_area{
     padding:0 !important;
+    margin-top: 30px;
     clear: both;
-
-    .post_title{
-        width: 100%;
-        height: 50px;
-        padding-top: 100px;
-        padding-bottom: 100px;
-
-        .post_title_image{
-            top: 30%;
-            width: 120px;
-            height: 120px;
-            border: 1px solid #f0f0f1;
-            float: left;
+    .post_area_left{
+        margin-bottom: 30px;
+        width: 70%;
+        float: left;
+        .post_title{
+            font-size: 30px;
         }
-
-        .post_title_summary
-        {
-            border: 1px #161e2e;
-            margin-top: 10px;
-            .post_title_name
-            {
-                border-bottom: 1px solid #f0f0f1;
-                font-size: 30px;
-                text-align: left;
-                margin-left: 150px;
-            }
-            .post_title_short_des
-            {
-                width: 100%;
-                margin-left: 150px;
-                margin-top: 25px;
-                .post_title_short_des_group1{
-                    float: left;
-                    text-align: left;
-                    font-size: 14px;
-                    i {
-                        position: relative;
-                        margin-right: 10px;
-                        // margin-left: 30px;
-                        float: left;
-                    }
-
-                    .checked {
-                        color: #959da5;
-                    }
-                }
-                .post_title_short_des_group{
-                    float: left;
-                    text-align: left;
-                    font-size: 14px;
-                    i {
-                        position: relative;
-                        margin-right: 10px;
-                        margin-left: 30px;
-                        float: left;
-                    }
-
-                    .checked {
-                        color: #959da5;
-                    }
-                }
-            }
+        .post_content{
+            margin-top: 20px;
+            font-size: 16px;
+            margin-bottom: 20px;
+        }
+        .post_comment_btn{
+            border-top: 1px solid #e2dfdf;
+            padding-top: 20px;
         }
     }
     
-    /* Style the tab */
-    .post_tab {
-        clear: left;
-        overflow: hidden;
-        // border: 1px solid #f0f0f1;
-    }
-
-    .post_tablinks
-    {
-        // border: 1px solid #f0f0f1;
-    }
-
-    /* Style the buttons that are used to open the tab content */
-    .post_tab button {
-        background-color: inherit;
-        float: left;
-        border: none;
-        outline: none;
-        cursor: pointer;
-        padding: 14px 16px;
-        transition: 0.3s;
-    }
-
-    /* Change background color of buttons on hover */
-    .post_tab button:hover {
-        background-color: #ddd;
-    }
-
-    /* Create an active/current tablink class */
-    .post_tab button.active {
-        background-color: #f0f0f1;
-    }
-
-    /* Style the tab content */
-    .post_tabcontent {
-        display: none;
-        padding: 6px 12px;
-        // border: 1px solid #f0f0f1;
-        border-top: none;
+    .post_area_right{
+        position: relative;
+        display: block;
+        float: right;
+        width: 25%;
+        min-height: 400px;
+        padding: 20px;
+        border: 1px solid #5850ec;
     }
 }

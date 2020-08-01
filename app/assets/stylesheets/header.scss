@@ -6,47 +6,61 @@
 	border-bottom: 1px solid #f0f0f0;
 	margin-bottom: 0px !important;
 	.header_area {
-		height: 50px !important;
+		height: 40px !important;
 		margin-left: 15%;
 		margin-right: 15%;
-		padding-top: 20px;
+		padding-top: 10px;
 		.header_content
 		{
 			display: block;
 			.header_logo{
 				float: left;
+				@media screen and (max-width: 600px){
+					margin-left: 36%;
+				}	
+				i{
+					font-size: 40px;
+					color: #d74832;
+					position: relative;
+					top: 8px;
+					margin-right: 5px;
+					margin-left: 5px;
+				}
 				a{
-					font-size: 30px;
+					font-size: 33px;
 					display: block;
 					text-decoration:none;
-					line-height: 1;
-					text-align: center;
 					color: #5850ec;
 					font-weight: 600;
+					position: relative;
+					top: -14px;
 				}
 				span{
 					&:hover{
 						color: #4284f4;
 					}
 				}
-				
 			}
 
 			.header_navigation{
-				margin-left: 200px;
+				margin-left: 330px;
 				nav{
 					float: left;
 					a{
 						color: #161e2e;
 						font-size: 16px;;
 						display: inline-block;
-						padding: 6px 15px;
+						padding: 6px 18px;
 						position: relative;
 						text-decoration: none;
 						line-height: 1;
 						text-align: center;
 						&:hover{
-							color: #4284f4;
+							border-bottom: 2px solid #4284f4;
+							color: black;
+						}
+						.active{
+							border-bottom: 2px solid #4284f4;
 						}
 					}
 				}
@@ -55,7 +69,7 @@
 			.header_button{
 				.login_button{
 					float: left;
-					margin-left: 80px;
+					margin-left: 100px;
 					button{
 						padding: 6px;
 						height: 32px;

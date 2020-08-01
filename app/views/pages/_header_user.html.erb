@@ -4,7 +4,6 @@
 		<meta charset="utf-8">
 		<meta http-equiv="X-UA-Compatible" content="IE=edge">
 		<meta name="viewport" content="width=device-width, initial-scale=1">
-
 		<title>Main Header</title>
 	</head>
 
@@ -13,22 +12,35 @@
 			<header class="header_user_area">
 				<div class="header_user_content">
 					<div class="header_user_logo">
-						<a href="<%=pages_path %>"><span>Code <\></span></a>
+						<a href="<%=pages_path %>"><span><i class="material-icons">near_me</i>SPACE</span></a>
 					</div>
 					
 					<div class="header_user_navigation">
 						<nav>
 							<a href="<%=pages_path %>">Tìm việc </a>
 							<a href="<%=companies_path %>">Đánh giá công ty </a>
-							<a href="<%=problems_path %>">Câu hỏi phỏng vấn </a>
-							<a href="<%=posts_path %>">Tin tức</a>
+							<a href="<%=problems_path %>">Câu hỏi </a>
+							<a href="<%=posts_path %>">Blog</a>
 						</nav>
 					</div>
+
+					<script>
+					(function() {
+						var nav = document.getElementById('nav'),
+							anchor = nav.getElementsByTagName('a'),
+							current = window.location.pathname.split('/')[1];
+							for (var i = 0; i < anchor.length; i++) {
+							if(anchor[i].href == current) {
+								anchor[i].className = "active";
+							}
+						}
+					})();
+					</script>
 
 					<div class="header_user_button">
 						<%= form_for :session, url: login_path do |f| %>
 							<div class="user_icon_button">
-								<%= link_to '<button <i class="fa fa-user-circle fa-2x"></i> </button>'.html_safe, user_path(current_user) %>
+								<%= link_to '<button <i class="material-icons">person_outline</i> </button>'.html_safe, user_path(current_user) %>
 							</div>
 						<% end %>
 					</div>

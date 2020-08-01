@@ -4,8 +4,6 @@
     <head>
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <!-- Add icon library -->
-        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-        <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
     </head>
 
     <body>
@@ -14,8 +12,12 @@
                 <div class="company_search_bar">
 
                     <div class="company_search_bar_label">
-                        <h3>Tìm kiếm nơi làm việc lý tưởng</h3>
-                        <t>Cùng chia sẻ, đánh giá về nơi mà bạn đang làm việc</t>
+                        <div class="company_search_bar_label_strong">
+                            <strong>Thế nào là một nơi làm việc lý tưởng?</strong>
+                        </div>
+                        <div class="company_search_bar_label_sub">
+                            <span>Cùng chia sẻ, đánh giá về nơi mà bạn đang làm việc</span>
+                        </div>
                     </div>
 
                     <%=form_tag companies_path, :method => "get" do%>
@@ -41,11 +43,11 @@
 
                 <%if (@companies.count < @companies_all.count)%>
                     <div class="section_title">
-                        <t>Tìm thấy <%=@companies.count%> kết quả</t>
+                        <strong>Tìm thấy <%=@companies.count%> kết quả</strong>
                     </div>
                 <%else%>
                     <div class="section_title">
-                        <t>Danh sách công ty</t>
+                        <strong><i class="material-icons">business</i>Danh sách công ty</strong>
                     </div>
                 <%end%>
                 
@@ -54,7 +56,7 @@
                     
                         <div class="company_thumbnail">
                             <%if company.avatar.attached?%>
-                                <%= link_to (image_tag(company.avatar)), image_path(url_for(company.avatar)), rel: "gallery" , :href => company_path(company)%>
+                                <img><%= link_to (image_tag(company.avatar)), image_path(url_for(company.avatar)), rel: "gallery" , :href => company_path(company)%>
                             <%end%>
                         </div>
 
@@ -127,7 +129,6 @@
                                 </div>
                             </div>
                         </div>
-
                     </div>
                 <%end%>
 
