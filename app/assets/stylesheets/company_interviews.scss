@@ -6,7 +6,9 @@
     width: 100%;
     height: auto;
     margin-top: 30px;
-    margin-bottom: 20px;
+    margin-bottom: 20px;background-color: #ffffff;
+    // box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+    border-radius: 5px;
     .company_interview_left
     {
         width: auto;
@@ -35,6 +37,7 @@
         background-color: #f8f9fa;
         border-radius: 5px;
         padding: 20px;
+        padding-bottom: 30px;
         .company_interview_title{
             font-size: 20px;
             font-weight: 600;
@@ -125,16 +128,43 @@
             .interview_toolbar {
                 display: block;
                 float: left;
-                font-size: 16px;
-                i {
-                    position: relative;
-                    margin-right: 18px;
-                    font-size: 18px;
-                    top: 3px;
+                font-size: 13px;
+                color: #a8a3a3;
+                margin-right: 5px !important;
+                span{
+                    // position: absolute;
                 }
-    
-                .checked {
-                    color: #a8a3a3;
+                button{
+                    margin-right: 15px;
+                    font-size: 13px;
+                    border: none;
+                    background-color: #f8f9fa;
+                    i {
+                        position: relative;
+                        margin-right: 3px;
+                        font-size: 18px;
+                        top: 3px;
+                    }
+        
+                    .checked {
+                        color: #feb100;
+                    }
+
+                    .checked_out {
+                        color: #a8a3a3;
+                    }
+                }
+
+                .reply_btn
+                {
+                    border-right: 1px solid #c8c8c8;
+                    min-width: 86px;
+                }
+
+                .like_btn
+                {
+                    border-right: 1px solid #c8c8c8;
+                    min-width: 80px;
                 }
             }
 
@@ -146,19 +176,17 @@
             }
         }
         .interview_feedback{
-            padding-bottom: 10px;
             .report_button{
-                margin-left: 55%;
+                margin-left: 35%;
                 float: left;
                 button{
                     border: none;
                     background-color: #f8f9fa;
-                    font-size: 14px;
-                    i {
-                        position: relative;
-                        font-size: 16px;
+                    font-size: 13px;
+                    i{
+                        font-size: 18px;
                         margin-right: 2px;
-                        top: 1px;
+                        color: #feb100;
                     }
         
                     .checked {
@@ -169,13 +197,14 @@
             .share_button{
                 float: right;
                 button{
-                    border: none;
                     background-color: #f8f9fa;
-                    font-size: 14px;
+                    font-size: 13px;
+                    border: none;
                     i {
                         position: relative;
-                        font-size: 16px;
-                        top: 1px;
+                        font-size: 18px;
+                        margin-right: 2px;
+                        color: #feb100;
                     }
         
                     .checked {

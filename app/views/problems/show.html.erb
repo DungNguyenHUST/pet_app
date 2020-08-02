@@ -2,80 +2,81 @@
 <html>
     <head>
         <meta name='viewport' content='width=device-width, initial-scale=1'>
-        <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
     </head>
 
     <body>
-        <div class='body_content_full'>
-            <%- model_class = Problem -%>
-                <div class="problem_area">
-                    <div class="problem_area_left">
-                        <ul class="nav nav-tabs" id="myTab">
-                            <li class="active"><a data-toggle="tab" href="#Problem"><i class="material-icons">content_paste</i> Mô tả</a></li>
-                            <li><a data-toggle="tab" href="#SolveProblem"><i class="material-icons">check_circle_outline</i>Giải pháp</a></li>
-                        </ul>
+        <%- model_class = Problem -%>
+            <div class="problem_area">
+                <div class="problem_area_left">
+                    <ul class="nav nav-tabs" id="myTabProblem">
+                        <li class="active"><a data-toggle="tab" href="#Problem"><i class="material-icons">content_paste</i> Mô tả</a></li>
+                        <li><a data-toggle="tab" href="#SolveProblem"><i class="material-icons">check_circle_outline</i>Giải pháp</a></li>
+                        <li><a data-toggle="tab" href="#SolveProblem"><i class="material-icons">people_outline</i>Thảo luận</a></li>
+                        <li><a data-toggle="tab" href="#SolveProblem"><i class="material-icons">perm_identity</i>Giải pháp của bạn</a></li>
+                    </ul>
 
-                        <div class="tab-content">
-                            <div id="Problem" class="tab-pane fade in active">
-                                <div class="problem_des_tab">
-                                    <%= render :partial => 'problems/description' %>
-                                </div>
+                    <div class="tab-content">
+                        <div id="Problem" class="tab-pane fade in active">
+                            <div class="problem_des_tab">
+                                <%= render :partial => 'problems/description' %>
                             </div>
-                            <div id="SolveProblem" class="tab-pane fade">
-                                <div class="problem_solution_tab">
-                                    <%= render @problem.problem_solutions %>
-                                </div>
+                        </div>
+                        <div id="SolveProblem" class="tab-pane fade">
+                            <div class="problem_solution_tab">
+                                <%= render @problem.problem_solutions %>
                             </div>
                         </div>
                     </div>
-                    
-                    <script>
-                        $(document).ready(function(){
-                            $('a[data-toggle="tab"]').on('show.bs.tab', function(e) {
-                                localStorage.setItem('activeTab', $(e.target).attr('href'));
-                            });
-                            var activeTab = localStorage.getItem('activeTab');
-                            if(activeTab){
-                                $('#myTab a[href="' + activeTab + '"]').tab('show');
-                                loadTabContent(activeTab);
-                            }
+                </div>
+                
+                <script>
+                    $(document).ready(function(){
+                        $('a[data-toggle="tab"]').on('show.bs.tab', function(e) {
+                            localStorage.setItem('activeTab', $(e.target).attr('href'));
                         });
-                    </script>
+                        var activeTab = localStorage.getItem('activeTab');
+                        if(activeTab){
+                            $('#myTabProblem a[href="' + activeTab + '"]').tab('show');
+                            loadTabContent(activeTab);
+                        }
+                    });
+                </script>
 
-                    <div class="problem_area_right">
-                        <div class="problem_submit">
-                            <div class="new_problem_solution_right_form">
-                                <%= form_for [@problem, ProblemSolution.new] do |f| %>
-                                    <div class="new_problem_solution_right_title">
-                                        <t>Hãy cho mọi người biết giải pháp của bạn</t>
-                                    </div>
+                <div class="problem_area_right">
+                    <div class="problem_submit">
+                        <div class="new_problem_solution_right_form">
+                            <%= form_for [@problem, ProblemSolution.new] do |f| %>
+                                <div class="new_problem_solution_right_title">
+                                    <t>Hãy cho mọi người biết giải pháp của bạn</t>
+                                </div>
 
-                                    <div class="new_problem_solution_right_section">
-                                        <div class="new_problem_solution_right_content">
-                                            <div class="new_problem_solution_right_label_title">
-                                                <t><%= f.label :title, "Tiêu đề: *", class: "new_problem_solution_right_label_name" %></t>
-                                            </div>
+                                <div class="new_problem_solution_right_section">
+                                    <div class="new_problem_solution_right_content">
+                                        <div class="new_problem_solution_right_label_title">
+                                            <t><%= f.label :title, "Tiêu đề: *", class: "new_problem_solution_right_label_name" %></t>
+                                        </div>
 
-                                            <div class="new_problem_solution_right_input_review_title">
-                                                <%= f.text_field :title, class: "new_problem_solution_right_form_input", placeholder: "  Nhập tiêu đề" %>
-                                            </div>
+                                        <div class="new_problem_solution_right_input_review_title">
+                                            <%= f.text_field :title, class: "new_problem_solution_right_form_input", placeholder: "  Nhập tiêu đề" %>
+                                        </div>
 
-                                            <div class="new_problem_solution_right_label">
-                                                <t><%= f.label :content, "Giải pháp chính :*", class: "new_problem_solution_right_label_name" %></t>
-                                            </div>
+                                        <div class="new_problem_solution_right_label">
+                                            <t><%= f.label :content, "Giải pháp chính :*", class: "new_problem_solution_right_label_name" %></t>
+                                        </div>
 
-                                            <div class="new_problem_solution_right_input_review">
-                                                <%= f.text_field :content, class: "new_problem_solution_right_form_input", placeholder: "  Nhập nội dung trả lời" %>
-                                            </div>
+                                        <div class="new_problem_solution_right_input_review">
+                                            <%= f.text_field :content, class: "new_problem_solution_right_form_input", placeholder: "  Nhập nội dung trả lời" %>
                                         </div>
                                     </div>
+                                </div>
 
-                                    <div class="new_problem_solution_right_submit_button">
-                                        <%= f.submit "Gửi trả lời", class: "new_problem_solution_right_form_submit" %>
-                                    </div>
-                                <%end%>
-                            </div>
+                                <div class="new_problem_solution_right_submit_button">
+                                    <%= f.submit "Gửi trả lời", class: "new_problem_solution_right_form_submit" %>
+                                </div>
+                            <%end%>
                         </div>
                     </div>
                 </div>

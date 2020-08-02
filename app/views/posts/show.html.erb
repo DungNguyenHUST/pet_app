@@ -12,13 +12,30 @@
                         <div class="post_title">
                             <strong><%=@post.title%></strong>
                         </div>
+                        <div class="post_info">
+                            <div class="post_username">
+                                <i class="material-icons">person_outline</i><span><%=@post.username%></span> <span><%=time_ago_in_words(@post.created_at)%></span>
+                            </div>
+                        </div>
                         <div class="post_content">
                             <span><%=@post.content%></span>
                         </div>
-                        <div class="post_comment_btn">
-                            <t><%= @post.post_comments.count%></t>
-                            <%= link_to '<button class="reply"><i class="material-icons">reply</i> Trả lời </button>'.html_safe, new_post_comment_path(@post)%>
+
+                        <div class="post_count">
+                            <strong><%= @post.post_comments.count%> Bình luận</strong>
                         </div>
+
+                        <%= form_for [@post, PostComment.new] do |f| %>
+                            <div class="new_post_show_comment_section">
+                                <div class="new_post_show_comment_input">
+                                    <%= f.text_field :comment_content, class: "new_post_comment_form_input", placeholder: "  Nhập bình luận" %>
+                                </div>
+                            </div>
+
+                            <div class="new_post_show_comment_submit">
+                                <%= f.submit "Gửi bình luận", class: "new_post_comment_form_submit" %>
+                            </div>
+                        <%end%>
                         <div class="post_comment">
                             <%= render @post.post_comments %>
                         </div>

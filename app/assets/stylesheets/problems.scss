@@ -1,11 +1,20 @@
+@mixin problem-border-total {
+    border-radius: 5px;
+    box-shadow: 0 1px 2px 0 rgba(179, 150, 150, 0.1), 0 2px 4px 0 rgba(168, 151, 151, 0.09);
+    background-color: #ffffff;
+}
 ///////////////////index//////////////////
 .problem_container{
     .problem_left
     {
         .problem_category{
-            min-height: 160px;
+            min-height: 150px;
+            @include problem-border-total;
+            padding: 20px;
+            margin-bottom: 20px;
+            margin-top: 20px;
             .problem_header{
-                margin-top: 30px;
+                margin-top: 10px;
                 font-size: 30px;
                 font-weight: 550;
                 i{
@@ -34,8 +43,10 @@
         }
 
         .problem_short_des{
-            border-bottom: 1px solid #efefef;
+            @include problem-border-total;
+            padding: 20px;
             height: 60px;
+            margin-bottom: 20px;
             .short_des{
                 float: left;
                 margin-top: 20px;
@@ -73,13 +84,15 @@
         }
 
         .problem_search{
-            margin-bottom: 120px;
+            margin-bottom: 100px;
             .problem_search_label{
                 width: 900px;
                 height: 40px;
                 float: left;
-                border: 1px solid #d1cece;
                 border-radius: 5px;
+                background-color: #ffffff;
+                border-radius: 5px;
+                border: 2px solid #dadce0;
                 i{
                     position: relative;
                     top: 5px;
@@ -103,12 +116,13 @@
 
         .problem_table{
             clear: both;
-            margin-top: 80px;
+            margin-top: 60px;
             margin-bottom: 50px;
             border-collapse: collapse;
             width: 100%;
             height: auto;
             text-decoration: none;
+            @include problem-border-total;
             
             tr:nth-child(even){background-color: #fafafa;}
             
@@ -189,6 +203,8 @@
 ////////////////show/////////////////////////
 .problem_area
 {
+    width: 100%;
+    clear: both;
     min-height: 720px;
     .problem_area_left{
         width: 50%;
@@ -205,14 +221,14 @@
                 }
             }
             i{
-                padding-left: 120px;
+                // padding-left: 120px;
                 font-size: 22px;
                 position: relative;
                 top: 5px;
                 margin-right: 5px;
             }
             li{
-                width: 50%;
+                min-width: 150px;
                 :active
                 {
                     color: #4284f4;
@@ -228,54 +244,54 @@
             }
         }
         
-        // /* Style the tab */
-        // .problem_tab {
-        //     overflow: hidden;
-        //     width: 100%;
-        // }
+    //     // /* Style the tab */
+    //     // .problem_tab {
+    //     //     overflow: hidden;
+    //     //     width: 100%;
+    //     // }
 
-        // .problem_tablinks
-        // {
-        //     width: 50%;
-        // }
+    //     // .problem_tablinks
+    //     // {
+    //     //     width: 50%;
+    //     // }
 
-        // /* Style the buttons that are used to open the tab content */
-        // .problem_tab button {
-        //     background-color: inherit;
-        //     float: left;
-        //     outline: none;
-        //     cursor: pointer;
-        //     transition: 0.5s;
-        //     border: 1px solid #eeeeee;
-        // }
+    //     // /* Style the buttons that are used to open the tab content */
+    //     // .problem_tab button {
+    //     //     background-color: inherit;
+    //     //     float: left;
+    //     //     outline: none;
+    //     //     cursor: pointer;
+    //     //     transition: 0.5s;
+    //     //     border: 1px solid #eeeeee;
+    //     // }
 
-        // /* Change background color of buttons on hover */
-        // .problem_tab button:hover {
-        //     background-color: #f8f9fa;
-        // }
+    //     // /* Change background color of buttons on hover */
+    //     // .problem_tab button:hover {
+    //     //     background-color: #f8f9fa;
+    //     // }
 
-        // /* Create an active/current tablink class */
-        // .problem_tab button.active {
-        //     border-bottom: 2px solid #5850ec;
-        //     background-color: #ffffff;
-        //     box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.1), 0 6px 20px 0 rgba(0, 0, 0, 0.09);
-        // }
+    //     // /* Create an active/current tablink class */
+    //     // .problem_tab button.active {
+    //     //     border-bottom: 2px solid #5850ec;
+    //     //     background-color: #ffffff;
+    //     //     box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.1), 0 6px 20px 0 rgba(0, 0, 0, 0.09);
+    //     // }
 
-        // /* Style the tab content */
-        // .problem_tabcontent {
-        //     display: none;
-        //     padding: 20px;
-        // }
+    //     // /* Style the tab content */
+    //     // .problem_tabcontent {
+    //     //     display: none;
+    //     //     padding: 20px;
+    //     // }
     }
 
     .problem_area_right
     {
+        margin-left: 50%;
         border-top: 1px solid #eeeeee;
         .problem_submit{
             display: block;
             .new_problem_solution_right_form
             {
-                margin-left: 50%;
                 margin-bottom: 50px;
                 .new_problem_solution_right_title{
                     font-size: 20px;
@@ -283,7 +299,7 @@
                     text-align: center;
                     margin-top: 20px;
                     margin-bottom: 30px;
-                    border-bottom: 1px solid #c8c8c8;
+                    // border-bottom: 1px solid #c8c8c8;
                     position: relative;
                 }
 

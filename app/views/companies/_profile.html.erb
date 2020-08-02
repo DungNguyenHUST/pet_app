@@ -10,7 +10,7 @@
 
             <div class="company_profile_overview">
                 <div class="company_profile_title">
-                    <t> Giới thiệu về <%= @company.name %></t>
+                    <strong>Giới thiệu về <%= @company.name %></strong>
                 </div>
                 <div class="company_profile_content">
                     <div class="company_profile_detail">
@@ -60,18 +60,30 @@
 
             <div class="company_profile_review">
                 <div class="company_profile_title">
-                    <t> Mọi người đánh giá thế nào về <%= @company.name %></t>
+                    <t> Đánh giá nhận xét về <%= @company.name %></t>
                 </div>
-                <%= render :partial => 'company_reviews/review_score' %>
+                <div class="review_content">
+                    <%= render :partial => 'company_reviews/review_score' %>
+                </div>
             </div>    
 
             <div class="company_profile_interview">
                 <div class="company_profile_title">
-                    <t> Những chia sẻ về kinh nghiệm phỏng vấn tại <%= @company.name %></t>
+                    <t> Kinh nghiệm phỏng vấn tại <%= @company.name %></t>
                 </div>
+                <div class="interview_content">
+                    <%= render :partial => 'company_interviews/interview_score' %>
+                </div>
+            </div> 
 
-                <%= render :partial => 'company_interviews/interview_score' %>
-            </div>  
+            <div class="company_job">
+                <div class="company_job_title">
+                    <t> Việc làm tại <%= @company.name %></t>
+                </div>
+                <div class="job_content">
+                    <%= render @company.company_jobs %>
+                </div>
+            </div> 
         </div>
     </body>
 

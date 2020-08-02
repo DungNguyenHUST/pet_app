@@ -3,7 +3,7 @@
 <html>
     <head>
         <meta name="viewport" content="width=device-width, initial-scale=1">
-        <!-- Add icon library -->
+        
     </head>
 
     <body>
@@ -73,7 +73,7 @@
                 <div class="review_info">
                     <div class="review_toolbar">
                         <t><%= company_review.company_reply_reviews.count%></t>
-                        <button class="reply_btn" onclick="myFunction()"><i class="material-icons">chat_bubble</i> Trả lời </button>
+                        <button class="reply_btn" onclick="myFunctionReplyReview()"><i class="material-icons">chat_bubble</i> Trả lời </button>
 
                         <t><%= company_review.company_like_reviews.count%></t>
                         <%= link_to '<button class="like_btn"><i class="material-icons">thumb_up</i> Thích </button>'.html_safe, company_company_review_company_like_reviews_path(@company, company_review), method: :post%>
@@ -95,7 +95,7 @@
             </div>
         </div>
         
-        <div class="new_reply_review_form" id = "mydiv">
+        <div class="new_reply_review_form" id = "mydivReview">
             <%= form_for [@company, company_review, CompanyReplyReview.new] do |f| %>
 
                 <div class="new_reply_review_content">
@@ -113,8 +113,8 @@
         </div>
 
         <script>
-            function myFunction() {
-                var x = document.getElementById("mydiv");
+            function myFunctionReplyReview() {
+                var x = document.getElementById("mydivReview");
                 if (x.style.display == "none") {
                     x.style.display = "block";
                 } else {
@@ -123,10 +123,24 @@
             }
         </script>
 
-        <%if company_review.company_reply_reviews.count > 0%>
-            <div class="review_reply">
-                <%= render company_review.company_reply_reviews %>
-            </div>
-        <%end%>
+        <div class="reply_review_content">
+            <%if company_review.company_reply_reviews.count > 0%>
+                <button class="show_hide_reply_btn_show" onclick="myFunctionReplyShowHide()"><i class="material-icons">keyboard_arrow_down</i></button>
+                <button class="show_hide_reply_btn_hide" onclick="myFunctionReplyShowHide()"><i class="material-icons">keyboard_arrow_up</i></button>
+                <div class="review_reply" id = "mydivShowHide">
+                    <%= render company_review.company_reply_reviews %>
+                </div>
+            <%end%>
+            <script>
+                function myFunctionReplyShowHide() {
+                    var x = document.getElementById("mydivShowHide");
+                    if (x.style.display == "none") {
+                        x.style.display = "block";
+                    } else {
+                        x.style.display = "none";
+                    }
+                }
+            </script>
+        </div>
     </body>
 </html>

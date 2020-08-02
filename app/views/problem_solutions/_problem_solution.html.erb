@@ -3,7 +3,7 @@
 <html>
     <head>
         <meta name="viewport" content="width=device-width, initial-scale=1">
-        <!-- Add icon library -->
+        
     </head>
 
     <body>
@@ -15,7 +15,6 @@
             </div>
 
             <div class="user_problem_solution_cotent">
-                
                 <div class="user_problem_solution_title">
                     <strong><%= problem_solution.title %></strong>
                 </div>
@@ -25,23 +24,70 @@
                 </div>
 
                 <div class="problem_solution_info">
-                    <div class="problem_solution_toolbar">
-                        <t><%= problem_solution.problem_reply_solutions.count%></t>
-                        <%= link_to '<i class="material-icons">question_answer</i>'.html_safe, new_problem_reply_solution_path(@problem.id, problem_solution.id)%>
-                        <t><%= problem_solution.problem_reply_solutions.count%></t>
-                        <%= link_to '<i class="material-icons">thumb_up</i>'.html_safe, new_problem_reply_solution_path(@problem.id, problem_solution.id)%>
-                        <t><%= problem_solution.problem_reply_solutions.count%></t>
-                        <%= link_to '<i class="material-icons">thumb_down</i>'.html_safe, new_problem_reply_solution_path(@problem.id, problem_solution.id)%>
+                    <div class="problem_solution_info">
+                        <div class="problem_solution_toolbar">
+                            <t><%= problem_solution.problem_reply_solutions.count%></t>
+                            <button class="reply_btn" onclick="myFunctionReplyproblem_solution()"><i class="material-icons">chat_bubble</i> Trả lời </button>
+
+                            <t><%= problem_solution.problem_reply_solutions.count%></t>
+                            <%= link_to '<button class="like_btn"><i class="material-icons">thumb_up</i> Thích </button>'.html_safe, problem_problem_solution_problem_reply_solutions_path(@problem, problem_solution), method: :post%>
+                            
+                            <t><%= problem_solution.problem_reply_solutions.count%></t>
+                            <%= link_to '<button class="dislike_btn"><i class="material-icons">thumb_down</i> Không thích </button>'.html_safe, problem_problem_solution_problem_reply_solutions_path(@problem, problem_solution), method: :post%>
+                        </div>
                     </div>
 
                     <div class="user_problem_solution_time">
                         <t><%= problem_solution.user_name %> lúc <%= time_ago_in_words(problem_solution.created_at) %></t>
                     </div>
                 </div>
-                
+
+                <div class="new_reply_problem_solution_form" id = "mydivproblem_solution">
+                    <%= form_for [@problem, problem_solution, ProblemReplySolution.new] do |f| %>
+
+                        <div class="new_reply_problem_solution_content">
+                            <div class="new_reply_problem_solution_input_problem_solution">
+                                <%= f.text_field :reply_content, class: "new_reply_problem_solution_form_input_problem_solution", placeholder: "  Gửi trả lời" %>
+                            </div>
+                        </div>
+
+                        <div class="new_reply_problem_solution_submit">
+                            <button type="submit" class="new_reply_problem_solution_form_submit">
+                                <i class="material-icons">send</i>
+                            </button>
+                        </div>
+                    <%end%>
+                </div>
+
+                <script>
+                    function myFunctionReplyproblem_solution() {
+                        var x = document.getElementById("mydivproblem_solution");
+                        if (x.style.display == "none") {
+                            x.style.display = "block";
+                        } else {
+                            x.style.display = "none";
+                        }
+                    }
+                </script>
             </div>
-            <div class="reply_solution">
-                <%= render problem_solution.problem_reply_solutions %>
+            <div class="reply_problem_solution_content">
+                <%if problem_solution.problem_reply_solutions.count > 0%>
+                    <button class="show_hide_reply_btn_show" onclick="myFunctionReplyproblem_solutionShowHide()"><i class="material-icons">keyboard_arrow_down</i></button>
+                    <button class="show_hide_reply_btn_hide" onclick="myFunctionReplyproblem_solutionShowHide()"><i class="material-icons">keyboard_arrow_up</i></button>
+                    <div class="problem_solution_reply" id = "mydivShowHide">
+                        <%= render problem_solution.problem_reply_solutions %>
+                    </div>
+                <%end%>
+                <script>
+                    function myFunctionReplyproblem_solutionShowHide() {
+                        var x = document.getElementById("mydivShowHide");
+                        if (x.style.display == "none") {
+                            x.style.display = "block";
+                        } else {
+                            x.style.display = "none";
+                        }
+                    }
+                </script>
             </div>
         </div>
     </body>

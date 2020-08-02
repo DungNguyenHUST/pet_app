@@ -67,11 +67,13 @@
                 <div class="interview_info">
                     <div class="interview_toolbar">
                         <t><%= company_interview.company_reply_interviews.count%></t>
-                        <%= link_to '<i class="material-icons">question_answer</i>'.html_safe, new_company_reply_interview_path(@company.id, company_interview.id)%>
+                        <button class="reply_btn" onclick="myFunctionReplyInterview()"><i class="material-icons">chat_bubble</i> Trả lời </button>
+
                         <t><%= company_interview.company_reply_interviews.count%></t>
-                        <%= link_to '<i class="material-icons">thumb_up</i>'.html_safe, new_company_reply_interview_path(@company.id, company_interview.id)%>
+                        <%= link_to '<button class="like_btn"><i class="material-icons">thumb_up</i> Thích </button>'.html_safe, company_company_interview_company_reply_interviews_path(@company, company_interview), method: :post%>
+                        
                         <t><%= company_interview.company_reply_interviews.count%></t>
-                        <%= link_to '<i class="material-icons">thumb_down</i>'.html_safe, new_company_reply_interview_path(@company.id, company_interview.id)%>
+                        <%= link_to '<button class="dislike_btn"><i class="material-icons">thumb_down</i> Không thích </button>'.html_safe, company_company_interview_company_reply_interviews_path(@company, company_interview), method: :post%>
                     </div>
                 </div>
 
@@ -85,11 +87,53 @@
                     </div>
                 </div>
             </div>
-        </div>
-         <%if company_interview.company_reply_interviews.count > 0%>
-            <div class="interview_reply">
-                <%= render company_interview.company_reply_interviews %>
+            <div class="new_reply_interview_form" id = "mydivInterview">
+                <%= form_for [@company, company_interview, CompanyReplyInterview.new] do |f| %>
+
+                    <div class="new_reply_interview_content">
+                        <div class="new_reply_interview_input_interview">
+                            <%= f.text_field :reply_content, class: "new_reply_interview_form_input_interview", placeholder: "  Gửi trả lời" %>
+                        </div>
+                    </div>
+
+                    <div class="new_reply_interview_submit">
+                        <button type="submit" class="new_reply_interview_form_submit">
+                            <i class="material-icons">send</i>
+                        </button>
+                    </div>
+                <%end%>
             </div>
-        <%end%>
+
+            <script>
+                function myFunctionReplyInterview() {
+                    var x = document.getElementById("mydivInterview");
+                    if (x.style.display == "none") {
+                        x.style.display = "block";
+                    } else {
+                        x.style.display = "none";
+                    }
+                }
+            </script>
+        </div>
+        
+        <div class="reply_interview_content">
+            <%if company_interview.company_reply_interviews.count > 0%>
+                <button class="show_hide_reply_btn_show" onclick="myFunctionReplyInterviewShowHide()"><i class="material-icons">keyboard_arrow_down</i></button>
+                <button class="show_hide_reply_btn_hide" onclick="myFunctionReplyInterviewShowHide()"><i class="material-icons">keyboard_arrow_up</i></button>
+                <div class="interview_reply" id = "mydivShowHide">
+                    <%= render company_interview.company_reply_interviews %>
+                </div>
+            <%end%>
+            <script>
+                function myFunctionReplyInterviewShowHide() {
+                    var x = document.getElementById("mydivShowHide");
+                    if (x.style.display == "none") {
+                        x.style.display = "block";
+                    } else {
+                        x.style.display = "none";
+                    }
+                }
+            </script>
+        </div>
     </body>
 </html>

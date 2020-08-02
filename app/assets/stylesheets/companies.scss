@@ -2,29 +2,38 @@
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: https://sass-lang.com/
 
-//////////////////index//////////////////
-.companies_area{
-    padding-top: 15px;
-    padding-bottom: 15px;
+@mixin border-total {
+    border-radius: 5px;
+    box-shadow: 0 1px 2px 0 rgba(179, 150, 150, 0.1), 0 2px 4px 0 rgba(168, 151, 151, 0.09);
+    background-color: #ffffff;
+}
+@mixin border-tab {
+    border: 1px solid #eeeeee;    
+    box-shadow: 0 1px 2px 0 rgba(179, 150, 150, 0.1), 0 2px 4px 0 rgba(168, 151, 151, 0.09);
+    // border-radius: 5px;
+    // margin-top: 30px;
+    padding: 20px;
+    border-top: none;
+}
 
+//////////////////index//////////////////
+.companies_top{
+    // background-color: #ffffff;
+    // @include border-total();
     .company_search_bar{
         // background-color: #f8f9fa;
-        display: block;
-        margin-top: 50px;
-        margin-bottom: 50px;
-        margin-left: auto;
-        margin-right: auto;
+        padding-top: 50px;
+        padding-left: 15%;
+        height: 300px;
         .company_search_bar_label
         {
-            .company_search_bar_label_strong{
+            h3{
                 font-size: 36px;
                 margin-bottom: 8px;
             }
-            .company_search_bar_label_sub{
-                span{
-                    font-size: 22px;
-                    color: #635f5f;
-                }
+            span{
+                font-size: 22px;
+                color: #635f5f;
             }
             margin-bottom: 50px;
         }
@@ -33,11 +42,12 @@
             .company_search_input{
                 font-size: 14px;
                 // margin-left: 100px;
-                width: 1050px;
+                width: 830px;
                 @media screen and (max-width: 600px){
                     width: 440px;
                 }
                 height: 44px;
+                background-color: #ffffff;
                 border-radius: 5px;
                 border: 2px solid #dadce0;
             }
@@ -45,7 +55,6 @@
         }
         .company_search_button{
             .search_button{
-                margin-top: 15px;
                 width: 200px;
                 height: 50px;
                 border-radius: 5px;
@@ -53,26 +62,30 @@
                 background: #5850ec;
                 font-size: 14px;
                 color: #ffffff;
+                margin-left: 10px;
             }
         }
     }
+}
 
+.companies_area{
     .company_current_review{
-        width: 1050px;
+        width: 1040px;
         height: 90px;
         background-color: #ebfeff;
         padding-top: 20px;
         padding-left: 10px;
         border-radius: 5px;
+        margin-top: 20px;
         .company_current_review_title{
-            margin-top: 10px;
+            margin-top: 20px;
             font-size: 22px;
             float: left;
-            color: #464545;
         }
 
         .company_current_review_rating{
-            margin-right: 10px;
+            margin-right: 20px;
+            margin-top: 10px;
             float: right;
             background-color: #fffbde;
             border-radius: 10px;
@@ -92,8 +105,8 @@
 
     .section_title
     {
-        margin-top: 60px;
-        font-size: 25px;
+        padding-top: 20px;
+        font-size: 24px;
         font-weight: 550;
         text-align: left;
         margin-bottom: 20px;
@@ -101,10 +114,9 @@
             font-size: 33px;
             position: relative;
             top: 5px;
-            margin-right: 5px;
+            color: #5850ec;
         }
     }
-    
     .single_company{
         float: left;
         display: block;
@@ -130,10 +142,10 @@
             height: 140px;
             padding-top: 10px;
             img{ 
-                max-width: 140px;
-                max-height: 140px;
+                max-width: 100px;
+                max-height: 100px;
                 padding: 15px;
-                margin-left: 13px;
+                margin-left: 55px;
             }
             display: block;
             float: left;
@@ -304,38 +316,38 @@
 
 .company_area{
     clear: both;
-    // margin-top: 0px !important;
+    margin-top: 0px !important;
     padding-bottom: 20px;
-    // border: 1px solid #ffffff;
     position: static;
 
     .company_overview{
         width: 100%;
-        height: 100px;
-        padding-bottom: 100px;
+        height: auto;
+        padding-bottom: 125px;
+        @include border-total;
         .company_wall_image{
             img{
                 width: 100%;
                 max-height: 300px;
-                margin-top: 0px;
             }
         }
 
         .company_title_image{
-            padding-top: 5px;
+            padding: 15px;
+            padding-right: 0px;
             img{
                 max-width: 90px;
                 height: 90px;
                 box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.1), 0 6px 20px 0 rgba(0, 0, 0, 0.09);
                 border-radius: 5px;
-                background-size: cover;
+                // border: 1px solid #eeeeee;
             }
             float: left;
         }
 
         .company_title_summary
         {
-            margin-top: 9px;
+            margin-top: 15px;
             margin-left: 10px;
             float: left;
             .company_title_name
@@ -376,7 +388,7 @@
             .company_title_short_des{
                 margin-left: 10px;
                 padding-top: 3px;
-                font-size: 14px;
+                font-size: 13px;
                 color: #939394;
             }
         }
@@ -388,7 +400,7 @@
                 // margin-left: 350px;
                 height: 45px;
                 width: 200px;
-                margin-right: 10px;
+                margin-right: 20px;
                 background: #5850ec;
                 font-size: 14px;
                 border: none;
@@ -409,12 +421,14 @@
     
     /* Style the tab */
     .company_tab {
+        margin-top: 40px;
         clear: left;
         overflow: hidden;
-        padding-top: 30px;
         position: relative;
         display: block;
+        // @include border-total;
         a{
+            border: none;
             font-size: 16px;
             :active
             {
@@ -428,16 +442,18 @@
             position: relative;
             top: 5px;
         }
-        li{
-            // margin-right: 10px;
-            min-width: 150px;
-            :active
-            {
-                color: #4284f4;
+        ul{
+            li{
+                // margin-right: 10px;
+                min-width: 140px;
+                :active
+                {
+                    color: #4284f4;
+                }
             }
         }
         span{
-            font-size: 14px;
+            font-size: 13px;
             margin-left: 0px;
             position: absolute;
             left: 42px;
@@ -449,9 +465,29 @@
     /* Style the tab content */
     .tab-pane{
         display: block;
+        background-color: #ffffff;
+        .company_profile_tab{
+            @include border-tab();
+        }
+        .company_policy_tab{
+            @include border-tab();
+        }
+        .company_interview_tab{
+            @include border-tab();
+        }
+        .company_salary_tab{
+            @include border-tab();
+        }
+        .company_review_tab
+        {
+            @include border-tab();
+        }
+        .company_job_tab{
+            @include border-tab();
+        }
+
         .company_tab_des
         {
-            margin-top: 30px;
             .user_comment_heading{
                 font-size: 22px;
             }
