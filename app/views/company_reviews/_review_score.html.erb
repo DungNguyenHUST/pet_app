@@ -8,7 +8,7 @@
     <body>
         <div class="review_score_content">
             <div class="review_score_title">
-                <t>Tổng quan chung</t>
+                <t>Review <%=@company.name%></t>
             </div>
 
             <div class="review_score">
@@ -22,7 +22,7 @@
                         <div class="review_point">
                             <strong><%=rating_review_total_score.round(1)%> </strong>
                         </div>
-                        <div class="review_score_star">
+                        <div class="review_score_star_des">
                             <%if rating_review_total_score > 0%>
                                 <%rating_review_total_score.to_i.times do%>
                                     <i class="material-icons checked">star</i>

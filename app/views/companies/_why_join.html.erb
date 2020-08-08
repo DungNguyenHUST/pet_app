@@ -8,7 +8,7 @@
     <body>
         <div class="company_join">
 
-            <div class="company_join_overview">
+            <div class="company_join_overview_left">
 
                 <div class="company_join_title">
                     <t> Những chính sách nổi bật của <%= @company.name %></t>
@@ -16,6 +16,57 @@
 
                 <div class="company_join_policy">
                     <t><%= @company.policy %></t>
+                </div>
+            </div>
+            
+            <div class='company_join_overview_block_right'>
+                <div class='company_join_overview_block_right_overview'>
+                    <div class="company_join_overview_right">
+                        <div class="company_join_overview_right_title">
+                            <strong> <i class="material-icons">calendar_today</i> ĐỊA CHỈ</strong>
+                        </div>
+                        <div class="company_join_overview_right_des">
+                            <t><%= @company.location %></t>
+                        </div>
+                    </div>
+                    <div class="company_join_overview_right">
+                        <div class="company_join_overview_right_title">
+                            <strong> <i class="material-icons">check_circle_outline</i> NHÂN VIÊN</strong>
+                        </div>
+                        <div class="company_join_overview_right_des">
+                            <t><%= @company.size %></t>
+                        </div>
+                    </div>
+                    <div class="company_join_overview_right">
+                        <div class="company_join_overview_right_title">
+                            <strong> <i class="material-icons">work_outline</i> LĨNH VỰC CHÍNH</strong>
+                        </div>
+                        <div class="company_join_overview_right_des">
+                            <t><%= @company.field_operetion %></t>
+                        </div>
+                    </div>
+                    <div class="company_join_overview_right">
+                        <div class="company_join_overview_right_title">
+                            <strong><i class="material-icons">translate</i> LIÊN HỆ</strong>
+                        </div>
+                        <div class="company_join_overview_right_des">
+                            <t><%= @company.website %></t>
+                        </div>
+                    </div>
+                    <div class="company_join_overview_right">
+                        <div class="company_join_overview_right_title">
+                            <strong> <i class="material-icons">timer</i> LAST UPDATE</strong>
+                        </div>
+                        <div class="company_join_overview_right_des">
+                            <t><%= @company.name %></t>
+                        </div>
+                    </div>
+                </div>
+
+                <div class='company_join_overview_block_right_job'>
+                    <div class="company_job">
+                        <strong> Việc làm tại <%=@company.name%></strong>
+                    </div>
                 </div>
             </div>
 

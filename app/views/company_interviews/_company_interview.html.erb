@@ -20,9 +20,9 @@
                 </div>
 
                 <div class="user_interview_status">
-                    <t>Phỏng vấn qua <%= company_interview.get_interview %> - </t>
-                    <t><%= company_interview.process %> vòng - </t>
-                    <t> lúc <%= time_ago_in_words(company_interview.created_at) %></t>
+                    <t>Phỏng vấn qua <%= company_interview.get_interview %> . </t>
+                    <t><%= company_interview.process %> vòng . </t>
+                    <t><%= time_ago_in_words(company_interview.created_at) %></t>
                 </div>
 
                 <div class="interview_satisfied_overview">
@@ -118,8 +118,7 @@
         
         <div class="reply_interview_content">
             <%if company_interview.company_reply_interviews.count > 0%>
-                <button class="show_hide_reply_btn_show" onclick="myFunctionReplyInterviewShowHide()"><i class="material-icons">keyboard_arrow_down</i></button>
-                <button class="show_hide_reply_btn_hide" onclick="myFunctionReplyInterviewShowHide()"><i class="material-icons">keyboard_arrow_up</i></button>
+                <button class="show_hide_reply_btn_show" onclick="myFunctionReplyInterviewShowHide()">Xem thêm <%=company_interview.company_reply_interviews.count%> trả lời...</button>
                 <div class="interview_reply" id = "mydivShowHide">
                     <%= render company_interview.company_reply_interviews %>
                 </div>

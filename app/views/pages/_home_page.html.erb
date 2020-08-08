@@ -14,10 +14,12 @@
                     </div>
                     <%=form_tag companies_path, :method => "get" do%>
                         <div class="home_search_form_text">
-                            <i class="material-icons checked">search</i><%= text_field_tag :search, params[:search], class: 'home_search_input' %>
+                            <%= text_field_tag :search, params[:search], class: 'home_search_input', placeholder: "Tìm kiếm theo công việc, kĩ năng hoặc tên công ty" %>
+                            <i class="material-icons checked">search</i>
                         </div>
                         <div class="home_search_form_address">
-                            <i class="material-icons checked">place</i><%= text_field_tag :search, params[:search], class: 'home_search_input'%>
+                            <%= text_field_tag :search, params[:search], class: 'home_search_input', placeholder: "Hà Nội"%>
+                            <i class="material-icons checked">place</i>
                         </div>
                         <div class="home_search_button">
                             <%= submit_tag "Tìm kiếm ", :name => nil, class: 'search_button'%>
@@ -58,7 +60,7 @@
                                 <%end%>
 
                                 <div class="company_location">
-                                    <p><i class="fa fa-map-marker"></i> <%= company.location %></p>
+                                    <p><i class="material-icons">place</i> <%= company.location %></p>
                                 </div>
 
                                 <div class="company_rating">
@@ -112,38 +114,45 @@
                     <div class="home_top_job_label">
                         <h3><i class="material-icons">work_outline</i>Việc làm mới dành cho bạn</h3>
                     </div>
-                    <% @company_jobs.each do |company_job| %>
-                        <div class="user_job_block">
-                            <div class="user_job_left">
-                                <div class="user_avatar">
+                    <% @companies.each do |company| %>
+                        <%company.company_jobs.each do |company_job|%>
+                            <div class="user_job_block">
+                                <div class="user_job_left">
+                                    <div class="user_avatar">
+                                        <%if company.avatar.attached?%>
+                                            <%= link_to (image_tag(company.avatar)), image_path(url_for(company.avatar)), rel: "gallery" , :href => company_path(company)%>
+                                        <%end%>
+                                    </div>
+                                </div>
+
+                                <div class="user_job_middle">
+                                    <div class="user_job_title">
+                                        <strong><%= link_to (company_job.title), company_company_job_path(company, company_job) %></strong>
+                                    </div>
+
+                                    <div class="user_job_description">
+                                        <t><%= company_job.description %></t>
+                                    </div>
+
+                                    <div class="user_job_location">
+                                        <t><i class="material-icons">room</i><%= company_job.location %></t>
+                                    </div>
+
+                                    <div class="user_job_salary">
+                                        <t><i class="material-icons">local_offer</i><%= company_job.salary %></t>
+                                    </div>
+                                </div>
+
+                                <div class="user_job_right">
+                                    <div class="apply_job_button">
+                                        <%= link_to '<button type="submit">Ứng tuyển</button>'.html_safe, new_company_apply_job_path(company.id, company_job.id)%>
+                                    </div>
+                                    <div class="user_job_date">
+                                        <t><%= time_ago_in_words(company_job.created_at) %></t>
+                                    </div>
                                 </div>
                             </div>
-
-                            <div class="user_job_middle">
-                                <div class="user_job_title">
-                                </div>
-
-                                <div class="user_job_description">
-                                    <t><%= company_job.description %></t>
-                                </div>
-
-                                <div class="user_job_location">
-                                    <t><i class="material-icons">room</i><%= company_job.location %></t>
-                                </div>
-
-                                <div class="user_job_salary">
-                                    <t><i class="material-icons">local_offer</i><%= company_job.salary %></t>
-                                </div>
-                            </div>
-
-                            <div class="user_job_right">
-                                <div class="apply_job_button">
-                                </div>
-                                <div class="user_job_date">
-                                    <t><%= time_ago_in_words(company_job.created_at) %></t>
-                                </div>
-                            </div>
-                        </div>
+                        <%end%>
                     <%end%>
                 </div>
             </div>

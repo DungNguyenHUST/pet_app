@@ -8,7 +8,7 @@
     </head>
 
     <body>
-        <div class='body_content'>
+        <div class='body_content_full'>
             <%- model_class = Company -%>
                 <div class="company_area">
                     <div class="company_overview">
@@ -91,19 +91,33 @@
                             </div>
                             <div id="CompanyReviews" class="tab-pane fade">
                                 <div class="company_review_tab">
-                                    <%= render :partial => 'company_reviews/review_score' %>
-                                    <div class="company_tab_des">
+                                    <div class="company_review_score">
+                                        <%= render :partial => 'company_reviews/review_score' %>
+                                    </div>
+                                    <div class="company_review_tab_des">
                                         <strong class="user_comment_heading"> Tất cả <%= @company.company_reviews.count%> đánh giá về <%= @company.name %> </strong>
-                                        <%= render @company.company_reviews %>
+                                        <div class="company_review_tab_des_left">
+                                            <%= render @company.company_reviews %>
+                                        </div>
+                                        <div class="company_review_tab_des_right">
+                                            <strong>Việc làm tại <%= @company.name%></strong>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
                             <div id="CompanyInterviews" class="tab-pane fade">
                                 <div class="company_interview_tab">
-                                    <%= render :partial => 'company_interviews/interview_score' %>
+                                    <div class="company_interview_score">
+                                        <%= render :partial => 'company_interviews/interview_score' %>
+                                    </div>
                                     <div class="company_tab_des">
                                         <strong class="user_comment_heading"> Tất cả <%= @company.company_interviews.count%> kinh nghiệm phỏng vấn tại <%= @company.name %></strong>
-                                        <%= render @company.company_interviews %>
+                                        <div class="company_interview_tab_des_left">
+                                            <%= render @company.company_interviews %>
+                                        </div>
+                                        <div class="company_interview_tab_des_right">
+                                            <strong>Việc làm tại <%= @company.name%></strong>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
@@ -115,10 +129,10 @@
                             </div>
 
                             <div id="CompanyJobs" class="tab-pane fade">
-                                <div class="company_job_tab">
-                                    <div class="company_tab_des">
+                                <div class="company_tab_des">
+                                    <div class="company_job_tab">
                                         <div class="company_tab_job">
-                                            <strong class="user_comment_heading"> Tìm thấy <%= @company.company_jobs.count%> việc làm tại <%= @company.name %> </strong>
+                                            <strong class="user_comment_heading_job"> Tìm thấy <%= @company.company_jobs.count%> việc làm tại <%= @company.name %> </strong>
                                             <div class="new_job">
                                                 <div class="new_job_title">
                                                     <strong>Bạn là nhà tuyển dụng</strong>
