@@ -2,41 +2,76 @@
 <html>
 	<head>
 		<meta charset="utf-8">
-		<meta http-equiv="X-UA-Compatible" content="IE=edge">
 		<meta name="viewport" content="width=device-width, initial-scale=1">
 		<title>Main Header</title>
 	</head>
 
 	<body>
-		<div class="body_content_header">
-			<header class="header_area">
-				<div class="header_content">
-					<div class="header_logo">
-						<a href="<%=pages_path %>"><span><i class="material-icons">near_me</i>NICE</span></a>
-					</div>
-					
-					<div class="header_navigation">
-						<nav>
-							<a href="<%=pages_path %>">Tìm việc </a>
-							<a href="<%=companies_path %>">Review công ty </a>
-							<a href="<%=problems_path %>">Câu hỏi </a>
-							<a href="<%=posts_path %>">Blog</a>
-						</nav>
-					</div>
-
-					<div class="header_button">
-						<%= form_for :session, url: login_path do |f| %>
-							<div class="login_button">
-								<%= link_to '<button type="submit">Đăng nhập</button>'.html_safe, sessions_new_path %>
+	
+		<div id="navbar">
+			<div class="body_content_header">
+				<header class="header_area">
+					<div class="header_content">
+						
+						<div id="main" class="header_logo_mobile_block">
+							<div class="header_menu">
+  								<button class="openbtn" onclick="openNav()"><i class="material-icons">menu</i></button>
 							</div>
-
-							<div class="signup_button">
-								<%= link_to '<button type="submit">Đăng kí</button>'.html_safe, new_user_path %>
+							<div class="header_logo_mobile">
+								<a href="<%=pages_path %>"><span><i class="material-icons">near_me</i>NICE</span></a> 
 							</div>
-						<% end %>
+						</div>
+
+						<div class="header_logo">
+							<a href="<%=pages_path %>"><span><i class="material-icons">near_me</i>NICE</span></a>
+						</div>
+						
+						<div id="mySidebar" class="header_navigation" >
+							<nav>
+								<a href="javascript:void(0)" class="closebtn" onclick="closeNav()">×</a>
+								<a href="<%=pages_path %>">Tìm việc </a>
+								<a href="<%=companies_path %>">Review công ty </a>
+								<a href="<%=problems_path %>">Câu hỏi phỏng vấn </a>
+								<a href="<%=posts_path %>">Blog</a>
+							</nav>
+						</div>
+
+						<% if logged_in? %>
+							<div class="header_button_user">
+								<%= form_for :session, url: login_path do |f| %>
+									<div class="user_icon_button">
+										<%= link_to '<button <i class="material-icons">person_outline</i> </button>'.html_safe, user_path(current_user) %>
+									</div>
+								<% end %>
+							</div>
+						<% else %>
+							<div class="header_button_login">
+								<%= form_for :session, url: login_path do |f| %>
+									<div class="login_button">
+										<%= link_to '<button type="submit">Đăng nhập</button>'.html_safe, sessions_new_path %>
+									</div>
+
+									<div class="signup_button">
+										<%= link_to '<button type="submit">Đăng kí</button>'.html_safe, new_user_path %>
+									</div>
+								<% end %>
+							</div>
+						<%end%>
+
+						<script>
+							function openNav() {
+								document.getElementById("mySidebar").style.width = "66%";
+								document.getElementById("main").style.marginLeft = "0px";
+							}
+
+							function closeNav() {
+								document.getElementById("mySidebar").style.width = "0";
+								document.getElementById("main").style.marginLeft= "0";
+							}
+						</script>
 					</div>
-				</div>
-			</header>
-		</body>
-	</div>
+				</header>
+			</div>
+		</div>
+	</body>
 </html>

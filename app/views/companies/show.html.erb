@@ -70,12 +70,14 @@
 
                     <div class="company_tab">
                         <ul class="nav nav-tabs" id="myTab">
-                            <li class="active"><a data-toggle="tab" href="#Company"><i class="material-icons">business</i> Giới thiệu công ty</a></li>
-                            <li><a data-toggle="tab" href="#CompanyJoins"><i class="material-icons">favorite_border</i>Chính sách nổi bật</a></li>
+                            <li class="active"><a data-toggle="tab" href="#Company"><i class="material-icons">business</i> Giới thiệu</a></li>
+                            <li><a data-toggle="tab" href="#CompanyJoins"><i class="material-icons">favorite_border</i>Chính sách</a></li>
                             <li><a data-toggle="tab" href="#CompanyReviews"><i class="material-icons">sentiment_satisfied_alt</i>Review công ty<span> <%= @company.company_reviews.count%><span></a></li>
-                            <li><a data-toggle="tab" href="#CompanyInterviews"><i class="material-icons">people_outline</i>Kinh nghiệm phỏng vấn <span><%= @company.company_interviews.count%><span></a></li>
+                            <li><a data-toggle="tab" href="#CompanyInterviews"><i class="material-icons">people_outline</i>Phỏng vấn <span><%= @company.company_interviews.count%><span></a></li>
                             <li><a data-toggle="tab" href="#CompanyJobs"><i class="material-icons">work_outline</i>Tuyển dụng<span><%= @company.company_jobs.count%><span></a></li>
-                            <li><a data-toggle="tab" href="#CompanySalarys"><i class="material-icons">attach_money</i>Lương</a></li>
+                            <li><a data-toggle="tab" href="#CompanySalarys"><i class="material-icons">attach_money</i>Lương<span><%= @company.company_jobs.count%><span></a></li>
+                            <li><a data-toggle="tab" href="#CompanySalarys"><i class="material-icons">help_outline</i>Q&A<span><%= @company.company_jobs.count%><span></a></li>
+                            <li><a data-toggle="tab" href="#CompanySalarys"><i class="material-icons">filter</i>Photo<span><%= @company.company_jobs.count%><span></a></li>
                         </ul>
 
                         <div class="tab-content">
@@ -100,7 +102,23 @@
                                             <%= render @company.company_reviews %>
                                         </div>
                                         <div class="company_review_tab_des_right">
-                                            <strong>Việc làm tại <%= @company.name%></strong>
+                                            <div class="company_job_label">
+                                                <strong> Việc làm tại <%=@company.name%></strong>
+                                            </div>
+                                            <div class="company_job_des">
+                                                <%@company.company_jobs.each do |company_job|%>
+                                                    <div class="company_job_block">
+                                                        <div class="company_avatar">
+                                                            <%if @company.avatar.attached?%>
+                                                                <img><%= link_to (image_tag(@company.avatar)), image_path(url_for(@company.avatar)), rel: "gallery" , :href => company_path(@company)%>
+                                                            <%end%>
+                                                        </div>
+                                                        <div class="company_job_title">
+                                                            <%= link_to (company_job.title), company_company_job_path(@company, company_job) %>
+                                                        </div>
+                                                    </div>
+                                                <%end%>
+                                            </div>
                                         </div>
                                     </div>
                                 </div>
@@ -116,7 +134,23 @@
                                             <%= render @company.company_interviews %>
                                         </div>
                                         <div class="company_interview_tab_des_right">
-                                            <strong>Việc làm tại <%= @company.name%></strong>
+                                            <div class="company_job_label">
+                                                <strong> Việc làm tại <%=@company.name%></strong>
+                                            </div>
+                                            <div class="company_job_des">
+                                                <%@company.company_jobs.each do |company_job|%>
+                                                    <div class="company_job_block">
+                                                        <div class="company_avatar">
+                                                            <%if @company.avatar.attached?%>
+                                                                <img><%= link_to (image_tag(@company.avatar)), image_path(url_for(@company.avatar)), rel: "gallery" , :href => company_path(@company)%>
+                                                            <%end%>
+                                                        </div>
+                                                        <div class="company_job_title">
+                                                            <%= link_to (company_job.title), company_company_job_path(@company, company_job) %>
+                                                        </div>
+                                                    </div>
+                                                <%end%>
+                                            </div>
                                         </div>
                                     </div>
                                 </div>

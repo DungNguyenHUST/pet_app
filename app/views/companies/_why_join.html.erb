@@ -11,7 +11,7 @@
             <div class="company_join_overview_left">
 
                 <div class="company_join_title">
-                    <t> Những chính sách nổi bật của <%= @company.name %></t>
+                    <t> Những chính sách nổi bật tại <%= @company.name %></t>
                 </div>
 
                 <div class="company_join_policy">
@@ -23,7 +23,7 @@
                 <div class='company_join_overview_block_right_overview'>
                     <div class="company_join_overview_right">
                         <div class="company_join_overview_right_title">
-                            <strong> <i class="material-icons">calendar_today</i> ĐỊA CHỈ</strong>
+                            <strong> <i class="material-icons">place</i> ĐỊA CHỈ</strong>
                         </div>
                         <div class="company_join_overview_right_des">
                             <t><%= @company.location %></t>
@@ -31,7 +31,7 @@
                     </div>
                     <div class="company_join_overview_right">
                         <div class="company_join_overview_right_title">
-                            <strong> <i class="material-icons">check_circle_outline</i> NHÂN VIÊN</strong>
+                            <strong> <i class="material-icons">people</i> NHÂN VIÊN</strong>
                         </div>
                         <div class="company_join_overview_right_des">
                             <t><%= @company.size %></t>
@@ -39,7 +39,7 @@
                     </div>
                     <div class="company_join_overview_right">
                         <div class="company_join_overview_right_title">
-                            <strong> <i class="material-icons">work_outline</i> LĨNH VỰC CHÍNH</strong>
+                            <strong> <i class="material-icons">grading</i> LĨNH VỰC CHÍNH</strong>
                         </div>
                         <div class="company_join_overview_right_des">
                             <t><%= @company.field_operetion %></t>
@@ -47,7 +47,7 @@
                     </div>
                     <div class="company_join_overview_right">
                         <div class="company_join_overview_right_title">
-                            <strong><i class="material-icons">translate</i> LIÊN HỆ</strong>
+                            <strong><i class="material-icons">http</i> LIÊN HỆ</strong>
                         </div>
                         <div class="company_join_overview_right_des">
                             <t><%= @company.website %></t>
@@ -55,7 +55,7 @@
                     </div>
                     <div class="company_join_overview_right">
                         <div class="company_join_overview_right_title">
-                            <strong> <i class="material-icons">timer</i> LAST UPDATE</strong>
+                            <strong> <i class="material-icons">history</i> LAST UPDATE</strong>
                         </div>
                         <div class="company_join_overview_right_des">
                             <t><%= @company.name %></t>
@@ -64,8 +64,22 @@
                 </div>
 
                 <div class='company_join_overview_block_right_job'>
-                    <div class="company_job">
+                    <div class="company_job_label">
                         <strong> Việc làm tại <%=@company.name%></strong>
+                    </div>
+                    <div class="company_job_des">
+                        <%@company.company_jobs.each do |company_job|%>
+                            <div class="company_job_block">
+                                <div class="company_avatar">
+                                    <%if @company.avatar.attached?%>
+                                        <img><%= link_to (image_tag(@company.avatar)), image_path(url_for(@company.avatar)), rel: "gallery" , :href => company_path(@company)%>
+                                    <%end%>
+                                </div>
+                                <div class="company_job_title">
+                                    <%= link_to (company_job.title), company_company_job_path(@company, company_job) %>
+                                </div>
+                            </div>
+                        <%end%>
                     </div>
                 </div>
             </div>

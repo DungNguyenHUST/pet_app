@@ -10,6 +10,15 @@
             <div class="review_score_title">
                 <t>Review <%=@company.name%></t>
             </div>
+            
+            <%# Review in button %>
+            <div class="review_new_button_side">
+                <div class="review_new_button">
+                    <form action="/action_page.php">
+                        <%= link_to '<button type="submit"> <i class="fa fa-edit"></i> Viết đánh giá của bạn</button>'.html_safe, new_company_company_review_path(@company) %>
+                    </form>
+                </div>
+            </div>
 
             <div class="review_score">
                 <%# total score %>
@@ -113,15 +122,6 @@
                                 <t>Cơ hội thăng tiến</t>
                             </div>
                         </div>
-                    </div>
-                </div>
-                
-                <%# Review in button %>
-                <div class="review_new_button_side">
-                    <div class="review_new_button">
-                        <form action="/action_page.php">
-                            <%= link_to '<button type="submit"> <i class="fa fa-edit"></i> Viết đánh giá của bạn</button>'.html_safe, new_company_company_review_path(@company) %>
-                        </form>
                     </div>
                 </div>
             </div>

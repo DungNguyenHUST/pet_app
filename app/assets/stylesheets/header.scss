@@ -1,117 +1,341 @@
-// Place all the styles related to the Header controller here.
+// Place all the styles related to the header controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: https://sass-lang.com/
 .body_content_header{
 	background-color:#fff;
-	border-bottom: 1px solid #f0f0f0;
+	border-bottom: 1px solid #dadce0;
+	// box-shadow: 0 1px 2px 0 rgba(90, 90, 90, 0.1), 0 1px 4px 0 rgba(30, 30, 30, 0.09);
 	margin-bottom: 0px !important;
 	.header_area {
-		height: 40px !important;
-		margin-left: 15%;
-		margin-right: 15%;
-		padding-top: 10px;
-		.header_content
-		{
-			display: block;
-			.header_logo{
-				float: left;
-				@media screen and (max-width: 600px){
-					margin-left: 36%;
-				}	
-				i{
-					font-size: 40px;
-					color: #d74832;
-					position: relative;
-					top: 8px;
-					margin-right: 5px;
-					margin-left: 5px;
+		// navigation Mobile
+		@media screen and (max-width: 600px){
+			height: 50px !important;
+			margin-left: 5%;
+			margin-right: 5%;
+			padding-top: 10px;
+			.header_content
+			{
+				display: block;
+				#main {
+					transition: margin-left .5s;
+					padding: 16px;
 				}
-				a{
-					font-size: 33px;
-					display: block;
-					text-decoration:none;
-					color: #5850ec;
-					font-weight: 600;
-					position: relative;
-					top: -14px;
-				}
-				span{
-					&:hover{
-						color: #4284f4;
-					}
-				}
-			}
 
-			.header_navigation{
-				margin-left: 330px;
-				nav{
-					float: left;
-					a{
-						color: #161e2e;
-						font-size: 15px;
-						display: inline-block;
-						padding: 6px 18px;
+				//logo
+				.header_logo_mobile_block{
+					.header_menu{
+						.openbtn {
+							font-size: 20px;
+							cursor: pointer;
+							background-color: #fff;
+							color: rgb(95, 92, 92);
+							position: relative;
+							top: -10px;
+							border: none;
+							left: -20px;
+							display: block;
+							i{
+								font-size: 1.5em;
+							}
+							&:hover{
+								color: #1a73e8;
+							}
+							float: left;
+						}
+					}
+					
+					.header_logo_mobile{
 						position: relative;
-						text-decoration: none;
-						line-height: 1;
-						text-align: center;
-						&:hover{
-							border-bottom: 2px solid #4284f4;
-							color: black;
+						display: inline;
+						float: left;
+						padding-left: 25%;
+						a{
+							font-size: 33px;
+							display: block;
+							text-decoration:none;
+							color: #1a73e8;
+							font-weight: 600;
+							position: relative;
+							top: -25px;
+							
+							i{
+								font-size: 40px;
+								color: #d74832;
+								position: relative;
+								margin-right: 5px;
+								margin-left: 5px;
+								top: 8px;
+							}
 						}
-						.active{
-							border-bottom: 2px solid #4284f4;
-						}
-					}
-				}
-			}
-
-			.header_button{
-				.login_button{
-					float: left;
-					margin-left: 100px;
-					button{
-						padding: 6px;
-						height: 32px;
-						width: 93px;
-						margin-right: 10px;
-						background: #5850ec;
-						font-size: 16px;
-						border: none;
-						border-radius: 5px;
-						cursor: pointer;
-						text-align: center;
-						color: #fff;
-						
-						&:hover{
-							background-color: #4284f4;
+						span{
+							&:hover{
+								color: #4284f4;
+							}
 						}
 					}
 				}
+				.header_logo{
+					display: none;
+				}
 
-				.signup_button{
-					// float: right;
-					button{
-						padding: 6px;
-						height: 32px;
-						width: 93px;
-						margin-top: 0px;
-						margin-right: 0px;
-						font-size: 16px;
-						border: 1px solid #5850ec;
-						border-radius: 5px;
-						cursor: pointer;
-						text-align: center;
-						color: #161e2e;
-						background-color: #fff;
-						&:hover{
-							background-color: #4284f4;
+				.header_navigation {
+					height: 100%;
+					width: 0;
+					position: fixed;
+					z-index: 1;
+					top: 0;
+					left: 0;
+					background-color: #ffffff;
+					overflow-x: hidden;
+					transition: 0.5s;
+					padding-top: 60px;
+				}
+
+				.header_navigation a {
+					width: 100%;
+					padding: 8px 8px 8px 32px;
+					text-decoration: none;
+					font-size: 18px;
+					color: #202020;
+					display: block;
+					transition: 0.3s;
+					text-align: left;
+					padding-top: 20px;
+					border-top: 1px solid #dadce0;
+				}
+
+				.header_navigation a:hover {
+					color: #1a73e8;
+				}
+
+				.header_navigation .closebtn {
+					color: #818181;
+					position: absolute;
+					top: -10px;
+					left: 60%;
+					font-size: 36px;
+					margin-left: 50px;
+				}
+
+				.header_button_user{
+					.user_icon_button{
+						position: relative;
+						top: -25px;
+						margin-left: 90%;
+						button{
+							background-color: #fff;
+							border: none;
+							font-size: 33px;
+							color: #1a73e8 !important;
+							position: relative;
+							top: -2px;
+							.i{
+								color: #1a73e8 !important;
+							}
+		
+							&:hover{
+								color: #4d78c2 !important;
+							}
+						}
+
+					}
+				}
+
+				.header_button_login{
+					position: relative;
+					top: 3px;
+					.login_button{
+						display: none;
+						float: left;
+						padding-left: 50px;
+						button{
+							padding: 6px;
+							height: 32px;
+							width: 90px;
+							margin-right: 10px;
+							background: #1a73e8;
+							font-size: 14px;
+							border: none;
+							border-radius: 2px;
+							cursor: pointer;
+							text-align: center;
 							color: #fff;
+							
+							&:hover{
+								background-color: #4284f4;
+							}
+						}
+					}
+	
+					.signup_button{
+						// float: right;
+						padding-left: 82%;
+						top: -30px;
+						position: relative;
+						button{
+							padding: 6px;
+							height: 32px;
+							width: 90px;
+							margin-top: 0px;
+							margin-right: 0px;
+							font-size: 14px;
+							border: 1px solid #1a73e8;
+							border-radius: 2px;
+							cursor: pointer;
+							text-align: center;
+							color: #161e2e;
+							background-color: #fff;
+							&:hover{
+								background-color: #4284f4;
+								color: #fff;
+							}
 						}
 					}
 				}
 			}
+			clear: both;
 		}
-		clear: both;
+	}
+
+	// desktop
+	@media screen and (min-width: 600px){
+		.header_area {
+			height: 50px !important;
+			padding-left: 15%;
+			padding-right: 15%;
+			padding-top: 12px;
+			.header_content
+			{
+				display: block;
+				.header_logo_mobile_block{
+					display: none;
+				}
+				//logo
+				.header_logo{
+					float: left;
+					i{
+						font-size: 40px;
+						color: #d74832;
+						position: relative;
+						top: 8px;
+						margin-right: 5px;
+						margin-left: 5px;
+					}
+					a{
+						font-size: 33px;
+						display: block;
+						text-decoration:none;
+						color: #1a73e8;
+						font-weight: 600;
+						position: relative;
+						top: -10px;
+					}
+					span{
+						&:hover{
+							color: #4284f4;
+						}
+					}
+				}
+
+				.header_navigation{
+					margin-left: 300px;
+					nav{
+						float: left;
+						a{
+							color: #161e2e;
+							font-size: 16px;
+							display: inline-block;
+							padding: 10px 18px;
+							position: relative;
+							text-decoration: none;
+							line-height: 1;
+							text-align: center;
+							&:hover{
+								border-bottom: 2px solid #4284f4;
+								color: black;
+							}
+							.active{
+								border-bottom: 2px solid #4284f4;
+							}
+						}
+						
+						.closebtn{
+							display: none;
+						}
+					}
+				}
+
+				.header_button_user{
+					.user_icon_button{
+						margin-left: 1010px;
+						button{
+							background-color: #fff;
+							border: none;
+							font-size: 33px;
+							color: #1a73e8 !important;
+							position: relative;
+							top: -2px;
+							.i{
+								color: #1a73e8 !important;
+							}
+		
+							&:hover{
+								color: #4d78c2 !important;
+							}
+						}
+
+					}
+				}
+
+				.header_button_login{
+					position: relative;
+					top: 3px;
+					.login_button{
+						float: left;
+						margin-left: 80px;
+						button{
+							padding: 6px;
+							height: 32px;
+							width: 90px;
+							margin-right: 10px;
+							background: #1a73e8;
+							font-size: 14px;
+							border: none;
+							border-radius: 2px;
+							cursor: pointer;
+							text-align: center;
+							color: #fff;
+							
+							&:hover{
+								background-color: #4284f4;
+							}
+						}
+					}
+	
+					.signup_button{
+						// float: right;
+						button{
+							padding: 6px;
+							height: 32px;
+							width: 90px;
+							margin-top: 0px;
+							margin-right: 0px;
+							font-size: 14px;
+							border: 1px solid #1a73e8;
+							border-radius: 2px;
+							cursor: pointer;
+							text-align: center;
+							color: #161e2e;
+							background-color: #fff;
+							&:hover{
+								background-color: #4284f4;
+								color: #fff;
+							}
+						}
+					}
+				}
+			}
+			clear: both;
+		}
 	}
 }

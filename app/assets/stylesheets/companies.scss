@@ -3,18 +3,19 @@
 // You can use Sass (SCSS) here: https://sass-lang.com/
 
 @mixin border-total {
-    border-radius: 5px;
+    border-radius: 2px;
     box-shadow: 0 1px 2px 0 rgba(179, 150, 150, 0.1), 0 2px 4px 0 rgba(168, 151, 151, 0.09);
     background-color: #fff;
+    border: 1px solid #fafafa;
 }
 @mixin border-tab {
-    border: 1px solid #eeeeee;    
     box-shadow: 0 1px 2px 0 rgba(179, 150, 150, 0.1), 0 2px 4px 0 rgba(168, 151, 151, 0.09);
-    // border-radius: 5px;
+    // border-radius: 2px;
     // margin-top: 30px;
     padding: 20px;
     padding-top: 30px;
     border-top: none;
+    border: 1px solid #fafafa;
 }
 
 //////////////////index//////////////////
@@ -29,7 +30,7 @@
         .company_search_bar_label
         {
             h3{
-                font-size: 36px;
+                font-size: 40px;
                 margin-bottom: 8px;
             }
             span{
@@ -40,7 +41,7 @@
         }
         .company_search_form{
             float: left;
-            border-radius: 5px;
+            border-radius: 2px;
             border: 1px solid #dadce0;
             background-color: #fff;
             padding: 0px !important;
@@ -66,11 +67,11 @@
         }
         .company_search_button{
             .search_button{
-                width: 200px;
+                width: 190px;
                 height: 55px;
-                border-radius: 5px;
-                border: 2px solid #5850ec;
-                background: #5850ec;
+                border-radius: 2px;
+                border: 2px solid #1a73e8;
+                background: #1a73e8;
                 font-size: 14px;
                 color: #fff;
                 margin-left: 10px;
@@ -86,7 +87,7 @@
         background-color: #ebfeff;
         padding-top: 20px;
         padding-left: 10px;
-        border-radius: 5px;
+        border-radius: 2px;
         margin-top: 20px;
         .company_current_review_title{
             margin-top: 20px;
@@ -107,7 +108,7 @@
             }
 
             .fa:hover{
-                color: #c8c8c8;
+                color: #dfe1e5;
             }
         }
         
@@ -119,11 +120,13 @@
         font-size: 25px;
         margin-right: 13px;
         background-color: #fff;
-        border-top: 5px solid #ff7240;
-        border-top-right-radius: 5px;
-        border-top-left-radius: 5px;
         margin-top: 30px;
-        box-shadow: 0 1px 2px 0 rgba(179, 150, 150, 0.1), 0 2px 4px 0 rgba(168, 151, 151, 0.09);
+        // box-shadow: 0 1px 2px 0 rgba(179, 150, 150, 0.1), 0 2px 4px 0 rgba(168, 151, 151, 0.09);
+        border: 1px solid #dfe1e5;
+        border-top: 5px solid #ff7240;
+        border-top-right-radius: 1px;
+        border-top-left-radius: 1px;
+        margin-bottom: 2px;
         h3{
             padding-left: 10px;
             position: relative;
@@ -156,7 +159,8 @@
             background:#fff;
             border: 1px solid #fff;
             border-radius: 2px;
-            box-shadow: 0 1px 2px 0 rgba(179, 150, 150, 0.1), 0 2px 4px 0 rgba(168, 151, 151, 0.09);
+            // box-shadow: 0 1px 2px 0 rgba(179, 150, 150, 0.1), 0 2px 4px 0 rgba(168, 151, 151, 0.09);
+            border: 1px solid #dfe1e5;
             &:hover{
                 box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
                 // border: 1px solid #629fdb;
@@ -194,7 +198,7 @@
                     }
         
                     .checked {
-                        color: #c8c8c8;
+                        color: #dfe1e5;
                     }
                 }
 
@@ -262,7 +266,7 @@
                         }
 
                         .checked_out {
-                            color: #c8c8c8;
+                            color: #dfe1e5;
                         }
                     }
                 }
@@ -307,12 +311,12 @@
                     margin-top: 5px;
                     margin-right: 16px;
                     margin-left: 0px;
-                    background: #5850ec;
+                    background: #1a73e8;
                     font-size: 14px;
                     border: 0px;
                     text-align: center;
                     color: #fff;
-                    border-radius: 5px;
+                    border-radius: 2px;
                 }
                 
                 button:hover {
@@ -327,17 +331,17 @@
         margin-top: 150px;
         margin-right: 16px;
         margin-left: 30px;
-        background: #5850ec;
+        background: #1a73e8;
         font-size: 14px;
         border: 0px;
         cursor: pointer;
         text-align: center;
         color: #fff;
-        border-radius: 5px;
+        border-radius: 2px;
     }
     
     .new-company button:hover {
-        background: #5850ec;
+        background: #1a73e8;
     }
 }
 
@@ -362,6 +366,11 @@
     .company_overview{
         padding-left: 15%;
         padding-right: 15%;
+        @media screen and (max-width: 600px)
+        {
+            padding-left: 3%;
+            padding-right: 3%;
+        }
         width: 100%;
         height: auto;
         padding-bottom: 125px;
@@ -371,7 +380,7 @@
         .company_wall_image{
             img{
                 width: 100%;
-                max-height: 300px;
+                max-height: 250px;
             }
         }
 
@@ -383,8 +392,8 @@
                 max-width: 90px;
                 height: 90px;
                 box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.1), 0 6px 20px 0 rgba(0, 0, 0, 0.09);
-                border-radius: 5px;
-                // border: 1px solid #eeeeee;
+                border-radius: 2px;
+                // border: 1px solid #dfe1e5;
             }
             float: left;
         }
@@ -424,7 +433,7 @@
                         color: #feb100;
                     }
                     .checked_out{
-                        color: #c8c8c8;
+                        color: #dfe1e5;
                     }
                 }
             }
@@ -444,13 +453,13 @@
                 // margin-left: 350px;
                 height: 45px;
                 width: 200px;
-                background: #5850ec;
+                background: #1a73e8;
                 font-size: 14px;
                 border: none;
                 cursor: pointer;
                 text-align: center;
                 color: #fff;
-                border-radius: 5px;
+                border-radius: 2px;
                 
                 &:hover{
                     background-color: #4284f4;
@@ -476,10 +485,17 @@
             border-top-color: #ff7240;
             border-top: 4px solid #ff7240;
             font-weight: bold !important;
+            background-color: #fff;
+            color: #141414;
         }
         .nav-tabs{
             padding-left: 15%;
             padding-right: 15%;
+            @media screen and (max-width: 600px)
+            {
+                padding-left: 3%;
+                padding-right: 3%;
+            }
         }
 
         a{
@@ -494,14 +510,15 @@
         }
         i{
             font-size: 22px;
-            margin-right: 5px;
+            padding-right: 5px;
             position: relative;
             top: 5px;
         }
+
         ul{
             li{
                 // margin-right: 10px;
-                min-width: 105px;
+                min-width: 100px;
                 :active
                 {
                     color: #4284f4;
@@ -522,6 +539,11 @@
     .tab-pane{
         padding-left: 15%;
         padding-right: 15%;
+        @media screen and (max-width: 600px)
+        {
+            padding-left: 3%;
+            padding-right: 3%;
+        }
         display: block;
         background-color: #fff;
         padding-top: 30px;
@@ -547,28 +569,67 @@
         .company_review_tab{
             display: block;
             // padding-top: 10px;
-            // border-top: 1px solid #c8c8c8;
-            .user_comment_heading{
-                font-size: 22px;
-                // margin-top: 20px;
+            // border-top: 1px solid #dfe1e5;
+            .company_review_score{
+                margin-bottom: 60px;
             }
-            .company_review_tab_des_left{
-                width: 75%;
-                float: left;
-            }
-            .company_review_tab_des_right{
-                width: 23%;
-                border: 2px solid #eeeeee;
-                margin-left: 77%;
-                margin-top: 30px;
-                height: 500px;
+            .company_review_tab_des{
+                .user_comment_heading{
+                    font-size: 22px;
+                    margin-top: 20px;
+                }
+                .company_review_tab_des_left{
+                    width: 75%;
+                    float: left;
+                }
+                .company_review_tab_des_right{
+                    width: 23%;
+                    margin-top: 30px;
+                    margin-bottom: 20px;
+                    padding: 10px;
+                    // width: 25%;
+                    border: 2px solid #e3e5e9;
+                    margin-left: 77%;
+                    min-height: 400px;
+                    display: block;
+                    margin-bottom: 30px;
+                    .company_job_label{
+                        font-size: 16px;
+                    }
+                    .company_job_des{
+                        margin-top: 20px;
+                        margin-bottom: 20px;
+                        border-top: 1px solid #e3e5e9;
+                        .company_job_block{
+                            // border-top: 1px solid #e3e5e9;
+                            border-bottom: 1px solid #e3e5e9;
+                            padding-top: 10px;
+                            padding-bottom: 15px;
+                            .company_avatar{
+                                img{
+                                    max-width: 60px;
+                                    max-height: 60px;
+                                }
+                                float: left;
+                            }
+                            .company_job_title{
+                                padding: 5px;
+                                padding-top: 0px;
+                                margin-left: 60px;
+                                a:link{
+                                    font-size: 14px;
+                                }
+                            }
+                        }
+                    }
+                }
             }
         }
 
         .company_interview_tab{
             display: block;
             // padding-top: 10px;
-            // border-top: 1px solid #c8c8c8;
+            // border-top: 1px solid #dfe1e5;
             .user_comment_heading{
                 font-size: 22px;
                 // margin-top: 20px;
@@ -579,10 +640,44 @@
             }
             .company_interview_tab_des_right{
                 width: 23%;
-                border: 2px solid #eeeeee;
-                margin-left: 77%;
                 margin-top: 30px;
-                height: 500px;
+                margin-bottom: 20px;
+                padding: 10px;
+                // width: 25%;
+                border: 2px solid #e3e5e9;
+                margin-left: 77%;
+                min-height: 400px;
+                display: block;
+                margin-bottom: 30px;
+                .company_job_label{
+                    font-size: 16px;
+                }
+                .company_job_des{
+                    margin-top: 20px;
+                    margin-bottom: 20px;
+                    border-top: 1px solid #e3e5e9;
+                    .company_job_block{
+                        // border-top: 1px solid #e3e5e9;
+                        border-bottom: 1px solid #e3e5e9;
+                        padding-top: 10px;
+                        padding-bottom: 15px;
+                        .company_avatar{
+                            img{
+                                max-width: 60px;
+                                max-height: 60px;
+                            }
+                            float: left;
+                        }
+                        .company_job_title{
+                            padding: 5px;
+                            padding-top: 0px;
+                            margin-left: 60px;
+                            a:link{
+                                font-size: 14px;
+                            }
+                        }
+                    }
+                }
             }
         }
 
@@ -590,7 +685,7 @@
         {
             display: block;
             // padding-top: 10px;
-            // border-top: 1px solid #c8c8c8;
+            // border-top: 1px solid #dfe1e5;
             .user_comment_heading{
                 font-size: 22px;
                 // margin-top: 20px;
@@ -607,7 +702,7 @@
                     margin-bottom: 30px;
                     background-color: #ebfeff;
                     border: 1px solid #ebfeff;
-                    border-radius: 5px;
+                    border-radius: 2px;
                     .new_job_title{
                         font-size: 22px;
                         float: left;
@@ -621,13 +716,13 @@
                         height: 45px;
                         width: 250px;
                         margin-right: 10px;
-                        background: #5850ec;
+                        background: #1a73e8;
                         font-size: 16px;
                         border: none;
                         cursor: pointer;
                         text-align: center;
                         color: #fff;
-                        border-radius: 5px;
+                        border-radius: 2px;
                         
                         &:hover{
                             background-color: #4284f4;
@@ -682,16 +777,16 @@
                     margin-left: 0px;
                     height: 40px;
                     width: 100%;
-                    border: 1px solid #c8c8c8;
-                    border-radius: 5px;
+                    border: 1px solid #dfe1e5;
+                    border-radius: 2px;
                 }
                 .new_company_form_input_rich_text{
                     margin-left: 0px;
                     height: 200px;
                     overflow: scroll;
                     width: 100%;
-                    border: 1px solid #c8c8c8;
-                    border-radius: 5px;
+                    border: 1px solid #dfe1e5;
+                    border-radius: 2px;
                 }
             }
             .new_company_input_time{
@@ -703,8 +798,8 @@
                     margin-left: 0px;
                     height: 40px;
                     width: 100%;
-                    border: 1px solid #c8c8c8;
-                    border-radius: 5px;
+                    border: 1px solid #dfe1e5;
+                    border-radius: 2px;
                 }
             }
 
@@ -720,8 +815,8 @@
                     margin-left: 0px;
                     height: 80px;
                     width: 100%;
-                    border: 1px solid #c8c8c8;
-                    border-radius: 5px;
+                    border: 1px solid #dfe1e5;
+                    border-radius: 2px;
                 }
             }
         }
@@ -742,9 +837,9 @@
         .new_company_form_submit{
             height: 50px;
             width: 100%;
-            border-radius: 5px;
+            border-radius: 2px;
             padding: 6px;
-            background: #5850ec;
+            background: #1a73e8;
             font-size: 14px;
             border: none;
             cursor: pointer;
@@ -752,7 +847,7 @@
             color: #fff;
             
             &:hover{
-                background-color: #5850ec;
+                background-color: #1a73e8;
             }
         }
     }
@@ -761,7 +856,7 @@
         padding: 10px;
         width: 300px;
         font-size: 14px;
-        border-radius: 5px;
+        border-radius: 2px;
         background: #fff;
     }
 }
