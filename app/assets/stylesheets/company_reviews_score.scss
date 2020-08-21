@@ -8,7 +8,7 @@
     margin-bottom: 30px;
     .review_score_title{
         display: inline-block;
-        font-size: 22px;
+        font-size: 24px;
         font-weight: 550;
         float: left;
         margin-bottom: 40px;
@@ -57,6 +57,7 @@
                 .review_point
                 {
                     margin-left: 140px;
+                    margin-top: 20px;
                     font-size: 40px;
                     color: #ea1e30;
                 }
@@ -120,7 +121,7 @@
                         text-align: center;
                         color: rgb(75, 71, 71);
                         margin-right: 3px;
-                        margin-top: 4px;
+                        margin-top: 7px;
                         margin-left: 10px;
                     }
             
@@ -131,7 +132,7 @@
                         margin-top: 4px;
                         margin-left: 3px;
                         i {
-                            font-size: 22px;
+                            font-size: 24px;
                             position: relative;
                             top: 0px;
                         }
@@ -147,11 +148,70 @@
 
                     .review_score_label{
                         font-size: 14px;
-                        margin-top: 4px;
+                        margin-top: 8px;
                     }
                 }
             }
         }
-        
+        .review_score_recommand{
+            margin-left: 70%;
+            .review_score_recommand_title{
+                text-align: center;
+                font-size: 18px;
+                font-weight: 600;
+                padding-top: 50px;
+            }
+
+            .circle-wrap {
+                margin: 50px auto;
+                margin-top: 20px;
+                width: 150px;
+                height: 150px;
+                background: #e6e2e7;
+                border-radius: 50%;
+            }
+            .circle-wrap .circle .mask,
+            .circle-wrap .circle .fill {
+                width: 150px;
+                height: 150px;
+                position: absolute;
+                border-radius: 50%;
+            }
+            .circle-wrap .circle .mask {
+                clip: rect(0px, 150px, 150px, 75px);
+            }
+            // .circle-wrap .circle .mask .fill {
+            //     clip: rect(0px, 75px, 150px, 0px);
+            //     background-color: #feb100;
+            //     }
+            //     .circle-wrap .circle .mask.full,
+            //     .circle-wrap .circle .fill {
+            //     animation: fill ease-in-out 3s;
+            //     transform: rotate(126deg);
+            //     }
+                
+            //     @keyframes fill {
+            //     0% {
+            //         transform: rotate(0deg);
+            //     }
+            //     100% {
+            //         transform: rotate(12deg);
+            //     }
+            // }
+            .circle-wrap .inside-circle {
+                width: 130px;
+                height: 130px;
+                border-radius: 50%;
+                background: #fff;
+                line-height: 130px;
+                text-align: center;
+                margin-top: 10px;
+                margin-left: 10px;
+                position: absolute;
+                z-index: 100;
+                font-weight: 700;
+                font-size: 2em;
+            }
+        }
     }
 }

@@ -124,6 +124,53 @@
                         </div>
                     </div>
                 </div>
+
+                <%# recommand %>
+                <div class="review_score_recommand">
+                    
+                    <div class="review_score_recommand_title">
+                        <t>Khuyến khích làm việc tại đây</t>
+                    </div>
+
+                    <div class="circle-wrap">
+                        <div class="circle">
+                            
+                            <div class="mask full">
+                                <div class="fill"></div>
+                            </div>
+                        
+                            <div class="mask half">
+                                <div class="fill"></div>
+                            </div>
+                            
+                            <div class="inside-circle">
+                                <%= rating_review_total_score.to_i * 20%>%
+                            </div>
+                        </div>
+                    </div>
+                    
+                </div>
+
+                <style>
+                    .circle-wrap .circle .mask .fill {
+                        clip: rect(0px, 75px, 150px, 0px);
+                        background-color: #feb100;
+                    }
+                    .circle-wrap .circle .mask.full,
+                    .circle-wrap .circle .fill {
+                        animation: fill ease-in-out 3s;
+                        transform: rotate(<%= rating_review_total_score.to_i * 36%>deg);
+                    }
+                    
+                    @keyframes fill {
+                    0% {
+                        transform: rotate(0deg);
+                    }
+                    100% {
+                        transform: rotate(<%= rating_review_total_score.to_i * 36%>deg);
+                    }
+                }
+                </style>
             </div>
         </div>
     <body>

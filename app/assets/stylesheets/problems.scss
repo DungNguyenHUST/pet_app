@@ -6,12 +6,16 @@
 }
 ///////////////////index//////////////////
 .problem_container{
+    padding-left: 3%;
+    width: 70%;
     .problem_left
     {
+        float: left;
         .problem_category{
             min-height: 150px;
-            @include problem-border-total;
+            border-bottom: 1px solid #eeeeee;
             padding: 20px;
+            padding-left: 0px;
             margin-bottom: 20px;
             margin-top: 20px;
             .problem_header{
@@ -44,8 +48,10 @@
         }
 
         .problem_short_des{
-            @include problem-border-total;
+            // background-color: #f7f9fa;
             padding: 20px;
+            padding-right: 0px;
+            padding-left: 0px;
             height: 60px;
             margin-bottom: 20px;
             .short_des{
@@ -90,10 +96,9 @@
                 width: 900px;
                 height: 40px;
                 float: left;
-                border-radius: 2px;
                 background-color: #fff;
                 border-radius: 2px;
-                border: 2px solid #dadce0;
+                border: 2px solid #eaebee;
                 i{
                     position: relative;
                     top: 5px;
@@ -106,7 +111,7 @@
                 float: right;
                 button{
                     width: 150px;
-                    height: 40px;
+                    height: 45px;
                     border-radius: 2px;
                     color: #fff;
                     background-color: #1a73e8;
@@ -123,7 +128,8 @@
             width: 100%;
             height: auto;
             text-decoration: none;
-            @include problem-border-total;
+            // @include problem-border-total;
+            border-top: 1px solid #eeeeee;
             
             tr:nth-child(even){background-color: #fafafa;}
             
@@ -132,10 +138,10 @@
                 box-shadow: 0 1px 2px 0 rgba(179, 150, 150, 0.1), 0 2px 4px 0 rgba(168, 151, 151, 0.09);}
             
             tr th {
-                border-bottom: 1px solid #d1cece;
+                border-bottom: 1px solid #eeeeee;
                 padding-top: 10px;
                 padding-bottom: 10px;
-                font-size: 14px;
+                font-size: 16px;
                 text-align: left;
                 text-decoration: none;
                 width: 100%;
@@ -169,7 +175,7 @@
                 text-align: left;
                 padding-top: 10px;
                 padding-bottom: 10px;
-                font-size: 14px;
+                font-size: 15px;
                 a:link{
                     text-decoration: none;
                 }
@@ -201,6 +207,65 @@
             }
         }
     }
+
+    .problem_right{
+        padding-right: 3.5%;
+        margin-left: 101%;
+        width: 28%;
+        min-height: 800px;
+        padding-left: 3%;
+        padding-top: 60px;
+        .problem_top{
+            width: 100%;
+            // border: 1px solid #dfe1e5;
+            background-color: #f7f9fa;
+            min-height: 500px;
+            padding: 10px;
+            font-size: 22px;
+            font-weight: 400;
+            color: #ff7240;
+            i{
+                font-size: 30px;
+                position: relative;
+                top: 8px;
+                margin-right: 3px;
+            }
+            .problem_short{
+                padding-top: 20px;
+                .problem_label{
+                    padding: 10px;
+                    font-size: 15px;
+                    border-top: 1px solid #dfe1e5;
+                    min-height: 40px;
+                    a:link{
+                        text-decoration: none !important;
+                        overflow: hidden;
+                        text-overflow: ellipsis;
+                        display: -webkit-box;
+                        -webkit-line-clamp: 2; /* number of lines to show */
+                        -webkit-box-orient: vertical;
+                        color: #444343;
+                    }
+                }
+            }
+        }
+        .problem_company{
+            width: 100%;
+            // border: 1px solid #dfe1e5;
+            background-color: #f7f9fa;
+            min-height: 500px;
+            padding: 10px;
+            margin-top: 20px;
+            font-size: 22px;
+            font-weight: 400;
+            i{
+                font-size: 28px;
+                position: relative;
+                top: 5px;
+                margin-right: 3px;
+            }
+        }
+    }
 }
 
 ////////////////show/////////////////////////
@@ -208,128 +273,112 @@
 {
     width: 100%;
     clear: both;
-    min-height: 720px;
     .problem_area_left{
         width: 50%;
         float: left;
         padding-top: 0px !important;
-        border-right: 1px solid #dfe1e5;
-        .nav-tabs>.active>a, .nav-tabs>.active>a:hover, .nav-tabs>.active>a:focus {
-            // border-color: #d45500;
-            border-top-color: #ff7240;
-            border-top: 4px solid #ff7240;
-            font-weight: bold !important;
-        }
-        .nav-tabs{
-            // border: 1px solid #dfe1e5;
-            a{
-                font-size: 14px;
-                :active
-                {
-                    color: #4284f4;
-                    font-size: 600px;
+        border-right: 2px solid #dfe1e5;
+        min-height: 720px;
+        .problem_tab {
+            padding-left: 30px;
+            clear: left;
+            overflow: hidden;
+            position: relative;
+            display: block;
+            background-color: #fff;
+            .tab_container {
+                font-weight: bold !important;
+                background-color: #fff;
+                color: #141414;
+            }
+            .tab_container button{
+                outline:none;
+                border: none;
+                min-width: 22%;
+                height: 50px;
+                background-color: #fff;
+                margin-right: 11px;
+                .tablinks{
+                    margin-bottom: 10px;
+                }
+                a{
+                    font-size: 16px;
+                }
+                i{
+                    font-size: 24px;
+                    padding-right: 5px;
+                    position: relative;
+                    top: 5px;
+                }
+                span{
+                    font-size: 12px;
+                    margin-left: 0px;
+                    position: absolute;
+                    top: 8px;
+                    margin-left: -6px;
+                    color: #939394;
                 }
             }
-            i{
-                // padding-left: 120px;
-                font-size: 22px;
-                position: relative;
-                top: 5px;
-                margin-right: 5px;
+            .tab_container button:hover{
+                border-bottom: 3px solid #4284f4;
             }
-            li{
-                min-width: 189px;
-                :active
-                {
-                    color: #4284f4;
-                }
+    
+            .tab_container button:focus{
+                border-bottom: 3px solid #4284f4;
             }
-            span{
-                font-size: 14px;
-                position: absolute;
-                left: 42px;
-                top: -1px;
-                color: #939394;
-                text-align: center;
+    
+            .tab_container button.active {
+                border-bottom: 3px solid #2b78f7;
+                color: #2b78f7;
+            }
+
+            .tabcontent{
+                padding-top: 30px;
+                padding-right: 30px;
+                padding-bottom: 30px;
             }
         }
-        
-    //     // /* Style the tab */
-    //     // .problem_tab {
-    //     //     overflow: hidden;
-    //     //     width: 100%;
-    //     // }
-
-    //     // .problem_tablinks
-    //     // {
-    //     //     width: 50%;
-    //     // }
-
-    //     // /* Style the buttons that are used to open the tab content */
-    //     // .problem_tab button {
-    //     //     background-color: inherit;
-    //     //     float: left;
-    //     //     outline: none;
-    //     //     cursor: pointer;
-    //     //     transition: 0.5s;
-    //     //     border: 1px solid #dfe1e5;
-    //     // }
-
-    //     // /* Change background color of buttons on hover */
-    //     // .problem_tab button:hover {
-    //     //     background-color: #f8f9fa;
-    //     // }
-
-    //     // /* Create an active/current tablink class */
-    //     // .problem_tab button.active {
-    //     //     border-bottom: 2px solid #1a73e8;
-    //     //     background-color: #fff;
-    //     //     box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.1), 0 6px 20px 0 rgba(0, 0, 0, 0.09);
-    //     // }
-
-    //     // /* Style the tab content */
-    //     // .problem_tabcontent {
-    //     //     display: none;
-    //     //     padding: 20px;
-    //     // }
     }
 
     .problem_area_right
     {
         margin-left: 50%;
-        border-top: 1px solid #dfe1e5;
+        padding: 20px;
+        padding-top: 10px;
+        min-height: 720px;
         .problem_submit{
             display: block;
             .new_problem_solution_right_form
             {
                 margin-bottom: 50px;
                 .new_problem_solution_right_title{
-                    font-size: 20px;
+                    font-size: 22px;
+                    font-weight: 500;
                     color: #161e2e;
                     text-align: center;
-                    margin-top: 15px;
                     margin-bottom: 30px;
-                    // border-bottom: 1px solid #dfe1e5;
                     position: relative;
                 }
 
                 .new_problem_solution_right_section
                 {
                     padding-left: 20px;
+                    padding-top: 10px;
                     .new_problem_solution_right_content{
                         .new_problem_solution_right_label_title{
                             font-weight: 600;
                             font-size: 14px;
                             color: #161e2e;
                             text-align: left;
+                            margin-bottom: 10px;
                         }
 
                         .new_problem_solution_right_input_review_title{
                             left: 0px;
                             margin-top: 5px;
-                            margin-bottom: 20px;
+                            margin-bottom: 40px;
                             margin-right: 20px;
-                            width: 90%;
+                            width: 96%;
                             height: auto;
                             .new_problem_solution_right_form_input{
                                 margin-left: 0px;
@@ -345,6 +394,7 @@
                             font-size: 14px;
                             color: #161e2e;
                             text-align: left;
+                            margin-bottom: 10px;
                         }
 
                         .new_problem_solution_right_input_review{
@@ -352,9 +402,9 @@
                             margin-top: 5px;
                             margin-bottom: 20px;
                             margin-right: 20px;
-                            width: 90%;
+                            width: 96%;
                             .new_problem_solution_right_form_input{
-                                min-height: 360px;
+                                min-height: 380px;
                                 margin-left: 0px;
                                 width: 100%;
                                 border: 1px solid #dfe1e5;
@@ -366,11 +416,11 @@
                 }
 
                 .new_problem_solution_right_submit_button{
-                    margin-top: 20px;
+                    margin-top: 30px;
                     padding-left: 20px;
                     .new_problem_solution_right_form_submit{
-                        height: 50px;
-                        width: 90%;
+                        height: 40px;
+                        width: 97%;
                         border-radius: 2px;
                         padding: 6px;
                         background: #1a73e8;

@@ -2,47 +2,86 @@
 <html>
     <head>
         <meta name='viewport' content='width=device-width, initial-scale=1'>
-        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
-        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
     </head>
 
     <body>
         <%- model_class = Problem -%>
             <div class="problem_area">
                 <div class="problem_area_left">
-                    <ul class="nav nav-tabs" id="myTabProblem">
-                        <li class="active"><a data-toggle="tab" href="#Problem"><i class="material-icons">content_paste</i> Mô tả</a></li>
-                        <li><a data-toggle="tab" href="#SolveProblem"><i class="material-icons">check_circle_outline</i>Giải pháp</a></li>
-                        <li><a data-toggle="tab" href="#SolveProblem"><i class="material-icons">people_outline</i>Thảo luận</a></li>
-                        <li><a data-toggle="tab" href="#SolveProblem"><i class="material-icons">perm_identity</i>Giải pháp của bạn</a></li>
-                    </ul>
+                    <div class="problem_tab">
+                        <div class="tab_container">
+                            <button class="tablinks active" id="ProblemDescriptionID" onclick="openTab(event, 'ProblemDescription')"><i class="material-icons">content_paste</i> <a>Mô tả</a></button>
+                            <button class="tablinks" id="ProblemSolutionID" onclick="openTab(event, 'ProblemSolution')"><i class="material-icons">check_circle_outline</i><a>Giải pháp</a><span><%= @problem.problem_solutions.count%><span></button>
+                            <button class="tablinks" id="ProblemDiscusstionID" onclick="openTab(event, 'ProblemDiscusstion')"><i class="material-icons">people_outline</i><a>Thảo luận</a><span><%= @problem.problem_solutions.count%><span></button>
+                            <button class="tablinks" id="ProblemYourSolutionID" onclick="openTab(event, 'ProblemYourSolution')"><i class="material-icons">perm_identity</i><a>Giải pháp của bạn</a></button>
+                        </div>
 
-                    <div class="tab-content">
-                        <div id="Problem" class="tab-pane fade in active">
+                        <div id="ProblemDescription" class="tabcontent">
                             <div class="problem_des_tab">
                                 <%= render :partial => 'problems/description' %>
                             </div>
                         </div>
-                        <div id="SolveProblem" class="tab-pane fade">
+
+                        <div id="ProblemSolution" class="tabcontent">
                             <div class="problem_solution_tab">
                                 <%= render @problem.problem_solutions %>
                             </div>
                         </div>
+
+                        <div id="ProblemDiscusstion" class="tabcontent">
+                        </div>
+
+                        <div id="ProblemYourSolution" class="tabcontent">
+                        </div>
+
                     </div>
                 </div>
                 
                 <script>
-                    $(document).ready(function(){
-                        $('a[data-toggle="tab"]').on('show.bs.tab', function(e) {
-                            localStorage.setItem('activeTab', $(e.target).attr('href'));
-                        });
-                        var activeTab = localStorage.getItem('activeTab');
-                        if(activeTab){
-                            $('#myTabProblem a[href="' + activeTab + '"]').tab('show');
-                            loadTabContent(activeTab);
+                    function openTab(evt, TabName) {
+                        var i, tabcontent, tablinks;
+                        tabcontent = document.getElementsByClassName("tabcontent");
+                        for (i = 0; i < tabcontent.length; i++) {
+                            tabcontent[i].style.display = "none";
+                        }
+                        tablinks = document.getElementsByClassName("tablinks");
+                        for (i = 0; i < tablinks.length; i++) {
+                            tablinks[i].className = tablinks[i].className.replace(" active", "");
+                        }
+                        document.getElementById(TabName).style.display = "block";
+
+                        evt.currentTarget.className += " active";
+
+                        document.cookie = "TabName="+TabName+"ID; expires=Thu, 18 Dec 2090 12:00:00 UTC; path=/";
+                    }
+
+                    document.addEventListener("DOMContentLoaded", function(){
+                        // Handler when the DOM is fully loaded
+                        var selectedTab = getCookie("TabName");
+                        if (selectedTab != ""){
+                            document.getElementById(selectedTab).click();
+                        }
+                        else
+                        {
+                            document.getElementById("ProblemDescriptionID").click();
                         }
                     });
+
+                    function getCookie(cname) {
+                        var name = cname + "=";
+                        var decodedCookie = decodeURIComponent(document.cookie);
+                        var ca = decodedCookie.split(';');
+                        for(var i = 0; i <ca.length; i++) {
+                            var c = ca[i];
+                            while (c.charAt(0) == ' ') {
+                                c = c.substring(1);
+                            }
+                            if (c.indexOf(name) == 0) {
+                                return c.substring(name.length, c.length);
+                            }
+                        }
+                        return "";
+                    }
                 </script>
 
                 <div class="problem_area_right">
