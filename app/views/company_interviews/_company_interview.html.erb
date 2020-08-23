@@ -28,7 +28,10 @@
                 <div class="interview_satisfied_overview">
                     <div class="interview_content">
                         <div class="interview_satisfied_label">
-                            <strong>Hài lòng:</strong>
+                            <a>Hài lòng với buổi phỏng vấn </a>
+                        </div>
+                        <div class="interview_point">
+                            <%= company_interview.satisfied.to_f%>
                         </div>
                         <div class="interview_score_star">
                             <%if company_interview.satisfied.to_i > 0%>
@@ -49,7 +52,9 @@
 
                 <div class="user_interview_offer">
                     <div class="user_interview_offer_label">
-                        <strong>Chấp nhận offer: </strong>
+                        <t>Chấp nhận offer </t>
+                    </div>
+                    <div class="user_interview_offer_content">
                         <%if company_interview.satisfied.to_i >0%>
                             <i class="material-icons checked">check_circle_outline</i>
                             <t> Yes </t>
