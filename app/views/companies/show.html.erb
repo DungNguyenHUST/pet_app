@@ -159,12 +159,14 @@
                             <div class="company_tab_des">
                                 <div class="company_job_tab">
                                     <div class="company_tab_job">
-                                        <strong class="user_comment_heading_job"> Tìm thấy <%= @company.company_jobs.count%> việc làm tại <%= @company.name %> </strong>
                                         <div class="new_job">
                                             <div class="new_job_title">
                                                 <strong>Bạn là nhà tuyển dụng</strong>
                                             </div>
-                                            <%= link_to '<button type="submit">Đăng tin tuyển dụng miễn phí</button>'.html_safe, new_company_company_job_path(@company) %>
+                                            <%= link_to '<button type="submit"><i class="material-icons">add</i><span>Đăng tin tuyển dụng miễn phí<span></button>'.html_safe, new_company_company_job_path(@company) %>
+                                        </div>
+                                        <div class="user_comment_heading_job">
+                                            <strong> Tìm thấy <%= @company.company_jobs.count%> việc làm tại <%= @company.name %> </strong>
                                         </div>
                                     </div>
                                     <div class="company_job_index">

@@ -32,7 +32,7 @@
             h3{
                 font-size: 50px;
                 margin-bottom: 10px;
-                color: #073042;
+                color: #222;
             }
             span{
                 font-size: 24px;
@@ -52,23 +52,25 @@
                 position: relative;
                 padding: 5px;
                 height: 40px;
-                width: 800px;
+                width: 880px;
                 @media screen and (max-width: 600px){
                     width: 440px;
                 }
                 border: none;
                 top: -2px;
+                outline: none;
             }
             i{
                 position: relative;
                 top: 10px;
                 font-size: 33px;
+                color: #3b3b3b;
             }
 
         }
         .company_search_button{
             .search_button{
-                width: 190px;
+                width: 200px;
                 height: 55px;
                 border-radius: 2px;
                 border: 2px solid #1a73e8;
@@ -159,7 +161,7 @@
     }
 
     .section_arange{
-        font-size: 18px;
+        font-size: 16px;
         margin-bottom: 30px;
     }
 
@@ -401,7 +403,7 @@
         .company_wall_image{
             img{
                 width: 100%;
-                max-height: 250px;
+                max-height: 300px;
             }
         }
 
@@ -421,7 +423,7 @@
 
         .company_title_summary
         {
-            margin-top: 15px;
+            margin-top: 20px;
             margin-left: 10px;
             float: left;
             .company_title_name
@@ -438,7 +440,7 @@
             }
 
             .company_score_star_overview{
-                padding-top: 4px;
+                padding-top: 5px;
                 .company_rating{
                     font-size: 20px;
                     margin-left: 10px;
@@ -461,7 +463,7 @@
 
             .company_title_short_des{
                 margin-left: 10px;
-                padding-top: 3px;
+                padding-top: 5px;
                 font-size: 13px;
                 color: #939394;
             }
@@ -511,7 +513,8 @@
         .tab_container button{
             outline:none;
             border: none;
-            min-width: 11%;
+            // min-width: 11%;
+            padding-right: 1.8%;
             height: 50px;
             background-color: #fff;
             margin-right: 11px;
@@ -526,6 +529,7 @@
                 padding-right: 5px;
                 position: relative;
                 top: 5px;
+                padding-left: 5px;
             }
             span{
                 font-size: 12px;
@@ -562,6 +566,7 @@
         // display: none;
         background-color: #fff;
         padding-top: 30px;
+        min-height: 600px;
         .company_review_tab{
             display: block;
             // padding-top: 10px;
@@ -579,7 +584,7 @@
                     float: left;
                 }
                 .company_review_tab_des_right{
-                    width: 20%;
+                    width: 19%;
                     margin-top: 30px;
                     margin-bottom: 20px;
                     padding: 20px;
@@ -649,10 +654,10 @@
                 .company_job_des{
                     margin-top: 20px;
                     margin-bottom: 20px;
-                    border-top: 1px solid #e3e5e9;
+                    border-top: 1px solid #f0f1f3;
                     .company_job_block{
                         // border-top: 1px solid #e3e5e9;
-                        border-bottom: 1px solid #e3e5e9;
+                        border-bottom: 1px solid #f0f1f3;
                         padding-top: 10px;
                         padding-bottom: 15px;
                         .company_avatar{
@@ -668,6 +673,7 @@
                             margin-left: 60px;
                             a:link{
                                 font-size: 14px;
+                                text-decoration: none;
                             }
                         }
                     }
@@ -683,17 +689,15 @@
             }
 
             .company_tab_job{
-                .user_comment_heading_job{
-                    font-size: 24px;
-                }
                 .new_job{
                     width: 100%;
                     height: 100px;
-                    margin-top: 30px;
+                    margin-top: 20px;
                     margin-bottom: 30px;
                     background-color: #ebfeff;
                     border: 1px solid #ebfeff;
                     border-radius: 2px;
+                    // border-bottom: 1px solid #dddcda;
                     .new_job_title{
                         font-size: 24px;
                         float: left;
@@ -704,7 +708,7 @@
                         float: right;
                         margin-left: 47%;
                         margin-top: 25px;
-                        height: 45px;
+                        height: 50px;
                         width: 250px;
                         margin-right: 10px;
                         background: #1a73e8;
@@ -714,16 +718,32 @@
                         text-align: center;
                         color: #fff;
                         border-radius: 2px;
+                        i{
+                            position: relative;
+                            top: 2px;
+                            font-size: 20px;
+                            margin-right: 3px;
+                        }
+
+                        span{
+                            font-size: 16px;
+                            position: relative;
+                            top: -2px;
+                        }
                         
                         &:hover{
                             background-color: #4284f4;
                         }
                     }
                 }
+                .user_comment_heading_job{
+                    font-size: 24px;
+                    padding-top: 50px;
+                }
             }
 
             .company_job_index{
-                margin-top: 10px;
+                // margin-top: 10px;
                 margin-bottom: 30px;
             }
         }
@@ -734,8 +754,8 @@
 //////////////////new///////////////////////
 .new_company_form
 {
-    margin-left: 20%;
-    margin-right: 20%;
+    padding-left: 15%;
+    padding-right: 20%;
     margin-bottom: 50px;
     .new_company_title{
         font-size: 24px;
@@ -743,6 +763,7 @@
         text-align: center;
         margin-top: 50px;
         margin-bottom: 30px;
+        font-weight: 600;
     }
 
     .new_company_section
@@ -753,9 +774,10 @@
         .new_company_content{
             .new_company_label{
                 font-weight: 600;
-                font-size: 14px;
+                font-size: 16px;
                 color: #161e2e;
                 text-align: left;
+                padding-top: 10px;
             }
 
             .new_company_input{

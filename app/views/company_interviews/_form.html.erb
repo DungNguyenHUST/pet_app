@@ -9,7 +9,7 @@
             <div class="new_interview_form">
                 <%= form_for [@company, CompanyInterview.new] do |f| %>
                     <div class="new_interview_title">
-                        <strong>Chia sẻ kinh nghiệm phỏng vấn của bạn </strong>
+                        <strong>Chia sẻ kinh nghiệm phỏng vấn của bạn tại <%=@company.name%> </strong>
                     </div>
 
                     <div class="new_interview_section">
@@ -29,7 +29,7 @@
                             </div>
 
                             <div class="new_interview_input">
-                                <%= f.text_field :get_interview, class: "new_interview_form_input", placeholder: "  Ex: Người quen, mạng xã hội, internet" %>
+                                <%= f.select(:get_interview, ['Mạng xã hội','Bạn bè người thân', 'Kênh tuyển dụng', 'Quảng cáo', 'Kênh khác'], {include_blank: true}, { :class => 'my_style_class' }) %>
                             </div>
                         </div>
 
@@ -39,27 +39,31 @@
                             </div>
 
                             <div class="new_interview_input">
-                                <%= f.select(:process, ['1','2', '3', '4', '5'], {include_blank: true}, { :class => 'my_style_class' }) %>
+                                <%= f.select(:process, options_for_select(['1','2', '3', '4', '5'], '1'), {include_blank: true}, { :class => 'my_style_class' }) %>
                             </div>
                         </div>
 
                         <div class="new_interview_content">
                             <div class="new_interview_label">
-                                <t><%= f.label :difficultly, "Độ khó*", class: "new_interview_label_name" %></t>
+                                <t><%= f.label :difficultly, "Độ khó bài test hoặc câu hỏi phỏng vấn*", class: "new_interview_label_name" %></t>
                             </div>
 
                             <div class="new_interview_input">
-                                <%= f.select(:difficultly, ['1','2', '3', '4', '5'], {include_blank: true}, { :class => 'my_style_class' }) %>
+                                <%= f.collection_radio_buttons :difficultly, [[1, 'Rất dễ'] ,[2, 'Dễ'], [3, 'Vừa sức'], [4, 'Khó '], [5, "Rất khó"] ],:first, :last, { item_wrapper_tag: false } do |b|
+                                    b.radio_button(:class => "collection_radio_buttons icon-star") + b.label(:class => "collection_radio_buttons_label icon-star-label")
+                                end%>
                             </div>
                         </div>
 
                         <div class="new_interview_content">
                             <div class="new_interview_label">
-                                <t><%= f.label :difficultly, "Mức độ hài lòng*", class: "new_interview_label_name" %></t>
+                                <t><%= f.label :satisfied, "Mức độ hài lòng*", class: "new_interview_label_name" %></t>
                             </div>
 
                             <div class="new_interview_input">
-                                <%= f.select(:difficultly, ['1','2', '3', '4', '5'], {include_blank: true}, { :class => 'my_style_class' }) %>
+                                <%= f.collection_radio_buttons :satisfied, [[1, 'Rất không hài lòng'] ,[2, 'Không hài lòng'], [3, 'Hài lòng'], [4, 'Tốt'], [5, "Rất tốt"] ],:first, :last, { item_wrapper_tag: false } do |b|
+                                    b.radio_button(:class => "collection_radio_buttons icon-star") + b.label(:class => "collection_radio_buttons_label icon-star-label")
+                                end%>
                             </div>
                         </div>
 
@@ -69,7 +73,9 @@
                             </div>
 
                             <div class="new_interview_input">
-                                <%= f.select(:offer, ['1','0'], {include_blank: true}, { :class => 'my_style_class' }) %>
+                                <%= f.collection_radio_buttons :offer, [[1, 'Có'] ,[2, 'Không']],:first, :last, { item_wrapper_tag: false } do |b|
+                                    b.radio_button(:class => "collection_radio_buttons icon-star") + b.label(:class => "collection_radio_buttons_label icon-star-label")
+                                end%>
                             </div>
                         </div>
 
@@ -82,11 +88,6 @@
                                 <%= f.text_field :content, class: "new_interview_form_input", placeholder: "  Chia sẻ nội dung phỏng vấn, câu hỏi hay cho mọi người nào" %>
                             </div>
                         </div>
-                    </div>
-
-                    <div class="new_interview_content_checkbox">
-                        <input type="checkbox" name="agree-term" id="agree-term" class="agree-term" />
-                        <label for="agree-term" class="label-agree-term"><span><span></span></span> Đồng ý với điều khoản điều kiện</label>
                     </div>
 
                     <div class="new_interview_submit">

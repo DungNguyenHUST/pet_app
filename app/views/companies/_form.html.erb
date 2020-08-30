@@ -9,57 +9,263 @@
             <div class="new_company_form">
                 <%= form_for @company, :html => { :class => "form-horizontal company" } do |f| %>
                     <div class="new_company_title">
-                        <t>Tạo một công ty mới</t>
+                        <t>Tạo thông tin công ty mới</t>
                     </div>
 
                     <div class="new_company_section">
                         <div class="new_company_content">
                             <div class="new_company_label">
-                                <t><%= f.label :name, "Tên công ty*", class: "new_company_label_name" %></t>
+                                <t><%= f.label :name, "Tên công ty* : ", class: "new_company_label_name" %></t>
                             </div>
 
                             <div class="new_company_input">
-                                <%= f.text_field :name, class: "new_company_form_input", placeholder: "  Nhập tên hoặc email của bạn" %>
+                                <%= f.text_field :name, class: "new_company_form_input", placeholder: "  Nhập tên công ty" %>
                             </div>
                         </div>
 
                         <div class="new_company_content">
                             <div class="new_company_label">
-                                <t><%= f.label :location, "Địa điểm", class: "new_company_label_name" %></t>
+                                <t><%= f.label :location, "Địa điểm làm việc* : ", class: "new_company_label_name" %></t>
                             </div>
 
                             <div class="new_company_input">
-                                <%= f.select(:location, ['Hà Nội','Đà Nẵng','TP Hồ Chí Minh', 'Other' ], {include_blank: true}, { :class => 'my_style_class' }) %>
+                                <%= f.select(:location, options_for_select(['An Giang','Bà Rịa-Vũng Tàu','Bạc Liêu','Bắc Kạn','Bắc Giang',
+                                                        'Bắc Ninh','Bến Tre','Bình Dương','Bình Định','Bình Phước',
+                                                        'Bình Thuận','Cà Mau','Cao Bằng','Cần Thơ','Đà Nẵng','Đắk Lắk','Đắk Nông','Điện Biên',
+                                                        'Đồng Nai','Đồng Tháp','Gia Lai','Hà Giang','Hà Nam','Hà Nội','Hà Tây','Hà Tĩnh',
+                                                        'Hải Dương','Hải Phòng','Hòa Bình','Hồ Chí Minh','Hậu Giang','Hưng Yên','Khánh Hòa',
+                                                        'Kiên Giang','Kon Tum','Lai Châu','Lào Cai',
+                                                        'Lạng Sơn','Lâm Đồng','Long An','Nam Định','Nghệ An',
+                                                        'Ninh Bình','Ninh Thuận','Phú Thọ','Phú Yên','Quảng Bình',
+                                                        'Quảng Nam','Quảng Ngãi','Quảng Ninh','Quảng Trị',
+                                                        'Sóc Trăng','Sơn La','Tây Ninh','Thái Bình','Thái Nguyên' ,
+                                                        'Thanh Hóa','Thừa Thiên – Huế','Tiền Giang','Trà Vinh',
+                                                        'Tuyên Quang','Vĩnh Long','Vĩnh Phúc','Yên Bái' ], "Hà Nội"), {include_blank: true}, { :class => 'my_style_class' }) %>
                             </div>
                         </div>
 
                         <div class="new_company_content">
                             <div class="new_company_label">
-                                <t><%= f.label :country, "Quốc gia", class: "new_company_label_name" %></t>
+                                <t><%= f.label :country, "Quốc gia* :", class: "new_company_label_name" %></t>
                             </div>
 
                             <div class="new_company_input">
-                                <%= f.select(:country, ['Việt Nam','Japan', 'Korea' , 'Singapore', 'Other'], {include_blank: true}, { :class => 'my_style_class' }) %>
+                                <%= f.select(:country, options_for_select(['Afghanistan',
+                                                                            'Albania',
+                                                                            'Algeria',
+                                                                            'Andorra',
+                                                                            'Angola',
+                                                                            'Antigua and Barbuda',
+                                                                            'Argentina',
+                                                                            'Armenia',
+                                                                            'Australia',
+                                                                            'Áo',
+                                                                            'Azerbaijan',
+                                                                            'Bahamas',
+                                                                            'Bahrain',
+                                                                            'Bangladesh',
+                                                                            'Barbados',
+                                                                            'Belarus',
+                                                                            'Belgium (Bỉ)',
+                                                                            'Belize',
+                                                                            'Benin',
+                                                                            'Bhutan',
+                                                                            'Bolivia',
+                                                                            'Bosnia and Herzegovina',
+                                                                            'Botswana',
+                                                                            'Brazil',
+                                                                            'Brunei',
+                                                                            'Bulgaria',
+                                                                            'Burkina Faso',
+                                                                            'Burundi',
+                                                                            'Cabo Verde',
+                                                                            'Cambodia (Cam-pu-chia)',
+                                                                            'Cameroon',
+                                                                            'Canada',
+                                                                            'Central African Republic (Cộng hòa Trung Phi)',
+                                                                            'Chad',
+                                                                            'Chile',
+                                                                            'China (Trung Quốc)',
+                                                                            'Colombia',
+                                                                            'Comoros',
+                                                                            'Congo',
+                                                                            'Costa Rica',
+                                                                            'Côte d Ivoire',
+                                                                            '(Bờ Biển Ngà)',
+                                                                            'Croatia',
+                                                                            'Cuba',
+                                                                            'Cyprus (Đảo Síp)',
+                                                                            'Czechia (Séc)',
+                                                                            'Denmark (Đan mạch)',
+                                                                            'Djibouti',
+                                                                            'Dominica',
+                                                                            'Dominican Republic (Cộng hòa Đô-mi-ni-ca-na)',
+                                                                            'DR Congo (Cộng hoà dân chủ Công-gô)',
+                                                                            'Ecuador',
+                                                                            'Egypt (Ai Cập)',
+                                                                            'El Salvador',
+                                                                            'Equatorial Guinea',
+                                                                            'Eritrea',
+                                                                            'Estonia',
+                                                                            'Eswatini',
+                                                                            'Ethiopia',
+                                                                            'Fiji',
+                                                                            'Finland (Phần Lan)',
+                                                                            'France (Pháp)',
+                                                                            'Gabon',
+                                                                            'Gambia',
+                                                                            'Georgia',
+                                                                            'Germany (Đức)',
+                                                                            'Ghana',
+                                                                            'Greece (Hy Lạp)',
+                                                                            'Grenada',
+                                                                            'Guatemala',
+                                                                            'Guinea',
+                                                                            'Guinea-Bissau',
+                                                                            'Guyana',
+                                                                            'Haiti',
+                                                                            'Holy See (Thành va-ti-can)',
+                                                                            'Honduras',
+                                                                            'Hungary',
+                                                                            'Iceland',
+                                                                            'India (Ấn Độ)',
+                                                                            'Indonesia',
+                                                                            'Iran',
+                                                                            'Iraq',
+                                                                            'Ireland',
+                                                                            'Israel',
+                                                                            'Italy',
+                                                                            'Jamaica',
+                                                                            'Japan',
+                                                                            'Jordan',
+                                                                            'Kazakhstan',
+                                                                            'Kenya',
+                                                                            'Kiribati',
+                                                                            'Kuwait',
+                                                                            'Kyrgyzstan',
+                                                                            'Laos (Lào)',
+                                                                            'Latvia',
+                                                                            'Lebanon (Li-băng)',
+                                                                            'Lesotho',
+                                                                            'Liberia',
+                                                                            'Libya',
+                                                                            'Liechtenstein',
+                                                                            'Lithuania',
+                                                                            'Luxembourg',
+                                                                            'Madagascar',
+                                                                            'Malawi (Ma-rốc)',
+                                                                            'Malaysia',
+                                                                            'Maldives',
+                                                                            'Mali',
+                                                                            'Malta',
+                                                                            'Marshall Islands',
+                                                                            'Mauritania',
+                                                                            'Mauritius',
+                                                                            'Mexico',
+                                                                            'Micronesia',
+                                                                            'Moldova',
+                                                                            'Monaco',
+                                                                            'Mongolia (Mông Cổ)',
+                                                                            'Montenegro',
+                                                                            'Morocco (Ma-rốc)',
+                                                                            'Mozambique',
+                                                                            'Myanmar',
+                                                                            'Namibia',
+                                                                            'Nauru',
+                                                                            'Nepal',
+                                                                            'Netherlands (Hà Lan)',
+                                                                            'New Zealand',
+                                                                            'Nicaragua',
+                                                                            'Niger',
+                                                                            'Nigeria',
+                                                                            'North Korea (Triều Tiên)',
+                                                                            'North Macedonia',
+                                                                            'Norway (Na Uy)',
+                                                                            'Oman',
+                                                                            'Pakistan',
+                                                                            'Palau',
+                                                                            'Panama',
+                                                                            'Papua New Guinea',
+                                                                            'Paraguay',
+                                                                            'Peru',
+                                                                            'Philippines',
+                                                                            'Poland (Ba Lan)',
+                                                                            'Portugal (Bồ Đào Nha)',
+                                                                            'Qatar',
+                                                                            'Romania',
+                                                                            'Russia (Nga)',
+                                                                            'Rwanda',
+                                                                            'Saint Kitts & Nevis',
+                                                                            'Saint Lucia',
+                                                                            'Samoa',
+                                                                            'San Marino',
+                                                                            'Sao Tome & Principe',
+                                                                            'Saudi Arabia (Ả Rập Xê-út)',
+                                                                            'Senegal',
+                                                                            'Serbia',
+                                                                            'Seychelles',
+                                                                            'Sierra Leone',
+                                                                            'Singapore',
+                                                                            'Slovakia',
+                                                                            'Slovenia',
+                                                                            'Solomon Islands',
+                                                                            'Somalia',
+                                                                            'South Africa (Nam Phi)',
+                                                                            'South Korea (Hàn Quốc)',
+                                                                            'South Sudan (Nam Sudan)',
+                                                                            'Spain (Tây Ban Nha)',
+                                                                            'Sri Lanka',
+                                                                            'St. Vincent & Grenadines',
+                                                                            'State of Palestine',
+                                                                            'Sudan',
+                                                                            'Suriname',
+                                                                            'Sweden (Thụy Điển)',
+                                                                            'Switzerland (Thụy sĩ)',
+                                                                            'Syria',
+                                                                            'Tajikistan',
+                                                                            'Tanzania',
+                                                                            'Thailand (Thái Lan)',
+                                                                            'Timor-Leste (Đông Timor)',
+                                                                            'Togo',
+                                                                            'Tonga',
+                                                                            'Trinidad and Tobago',
+                                                                            'Tunisia',
+                                                                            'Turkey (Thổ Nhĩ Kỳ)',
+                                                                            'Turkmenistan',
+                                                                            'Tuvalu',
+                                                                            'Uganda',
+                                                                            'Ukraine',
+                                                                            'United Arab Emirates (Các Tiểu Vương Quốc Ả Rập Thống Nhất)',
+                                                                            'United Kingdom (Vương quốc Anh)',
+                                                                            'United States (Hoa Kỳ)',
+                                                                            'Uruguay',
+                                                                            'Uzbekistan',
+                                                                            'Vanuatu',
+                                                                            'Venezuela',
+                                                                            'Việt Nam',
+                                                                            'Yemen',
+                                                                            'Zambia',
+                                                                            'Zimbabwe'], "Việt Nam"), {include_blank: true}, { :class => 'my_style_class' }) %>
                             </div>
                         </div>
 
                         <div class="new_company_content">
                             <div class="new_company_label">
-                                <t><%= f.label :website, "Địa chỉ website*", class: "new_company_label_name" %></t>
+                                <t><%= f.label :website, "Địa chỉ website* :", class: "new_company_label_name" %></t>
                             </div>
 
                             <div class="new_company_input">
-                                <%= f.text_field :website, class: "new_company_form_input", placeholder: "  Nhập địa chỉ website" %>
+                                <%= f.text_field :website, class: "new_company_form_input", placeholder: "  Nhập địa chỉ website or facebook của công ty" %>
                             </div>
                         </div>
 
                         <div class="new_company_content">
                             <div class="new_company_label">
-                                <t><%= f.label :time_establish, "Năm thành lập*", class: "new_company_label_name" %></t>
+                                <t><%= f.label :time_establish, "Năm thành lập* :", class: "new_company_label_name" %></t>
                             </div>
 
                             <div class="new_company_input_time">
-                                <%= f.date_field :time_establish, class: "new_company_form_input" %>
+                                <%= f.date_field(:time_establish, { :class => 'new_company_form_input' }) %>
                             </div>
 
                         </div>
@@ -88,11 +294,11 @@
                     <div class="new_company_section">
                         <div class="new_company_content">
                             <div class="new_company_label">
-                                <t><%= f.label :size, "Quy mô công ty*", class: "new_company_label_name" %></t>
+                                <t><%= f.label :size, "Quy mô công ty* :", class: "new_company_label_name" %></t>
                             </div>
 
                             <div class="new_company_input">
-                                <%= f.select(:size, ['1-100','100-1000', '1000+'], {include_blank: true}, { :class => 'my_style_class' }) %>
+                                <%= f.select(:size, options_for_select(['10', '10-50', '50-100', '100-500', '500-1000', '1000+'], "10"), {include_blank: true}, { :class => 'my_style_class' }) %>
                             </div>
                         </div>
 
@@ -102,7 +308,250 @@
                             </div>
 
                             <div class="new_company_input">
-                                <%= f.select(:field_operetion, ['IT', 'Automotive', 'Web', 'Embeeded', 'Other'], {include_blank: true}, { :class => 'my_style_class' }) %>
+                                <%= f.select(:field_operetion, options_for_select(['Sản xuất con dấu',
+                                                                'Kinh doanh công cụ hỗ trợ (bao gồm cả sửa chữa)',
+                                                                'Kinh doanh các loại pháo, trừ pháo nổ',
+                                                                'Kinh doanh thiết bị, phần mềm ngụy trang dùng để ghi âm, ghi hình, định vị',
+                                                                'Kinh doanh súng bắn sơn',
+                                                                'Kinh doanh quân trang, quân dụng cho lực lượng vũ trang, vũ khí quân dụng, trang thiết bị, kỹ thuật, khí tài, phương tiện chuyên dùng quân sự, công an; linh kiện, bộ phận, phụ tùng, vật tư và trang thiết bị đặc chủng, công nghệ chuyên dùng chế tạo chúng',
+                                                                'Kinh doanh dịch vụ cầm đồ',
+                                                                'Kinh doanh dịch vụ xoa bóp',
+                                                                'Kinh doanh thiết bị phát tín hiệu của xe được quyền ưu tiên',
+                                                                'Kinh doanh dịch vụ đòi nợ',
+                                                                'Kinh doanh dịch vụ bảo vệ',
+                                                                'Kinh doanh dịch vụ phòng cháy, chữa cháy',
+                                                                'Hành nghề luật sư',
+                                                                'Hành nghề công chứng',
+                                                                'Hành nghề giám định tư pháp trong các lĩnh vực tài chính, ngân hàng, xây dựng, cổ vật, di vật, bản quyền tác giả',
+                                                                'Hành nghề đấu giá tài sản',
+                                                                'Hoạt động dịch vụ của tổ chức trọng tài thương mại',
+                                                                'Hành nghề thừa phát lại',
+                                                                'Hành nghề quản lý, thanh lý tài sản của doanh nghiệp, hợp tác xã trong quá trình giải quyết phá sản',
+                                                                'Kinh doanh dịch vụ kế toán',
+                                                                'Kinh doanh dịch vụ kiểm toán',
+                                                                'Kinh doanh dịch vụ làm thủ tục về thuế',
+                                                                'Kinh doanh dịch vụ làm thủ tục hải quan',
+                                                                'Kinh doanh hàng miễn thuế',
+                                                                'Kinh doanh kho ngoại quan, địa điểm thu gom hàng lẻ',
+                                                                'Kinh doanh địa điểm làm thủ tục hải quan, tập kết, kiểm tra, giám sát hải quan',
+                                                                'Kinh doanh chứng khoán',
+                                                                'Kinh doanh dịch vụ đăng ký, lưu ký, bù trừ và thanh toán chứng khoán của Trung tâm lưu ký chứng khoán/ Tổ chức thị trường giao dịch chứng khoán niêm yết và các loại chứng khoán khác',
+                                                                'Kinh doanh bảo hiểm',
+                                                                'Kinh doanh tái bảo hiểm',
+                                                                'Môi giới bảo hiểm',
+                                                                'Đại lý bảo hiểm',
+                                                                'Kinh doanh dịch vụ thẩm định giá',
+                                                                'Kinh doanh xổ số',
+                                                                'Kinh doanh trò chơi điện tử có thưởng dành cho người nước ngoài',
+                                                                'Kinh doanh dịch vụ mua bán nợ',
+                                                                'Kinh doanh dịch vụ xếp hạng tín nhiệm',
+                                                                'Kinh doanh casino',
+                                                                'Kinh doanh đặt cược',
+                                                                'Kinh doanh dịch vụ quản lý quỹ hưu trí tự nguyện',
+                                                                'Kinh doanh xăng dầu',
+                                                                'Kinh doanh khí',
+                                                                'Sản xuất, sửa chữa chai chứa khí dầu mỏ hóa lỏng (chai LPG)',
+                                                                'Kinh doanh dịch vụ giám định thương mại',
+                                                                'Kinh doanh vật liệu nổ công nghiệp (bao gồm cả hoạt động tiêu hủy)',
+                                                                'Kinh doanh tiền chất thuốc nổ',
+                                                                'Kinh doanh ngành, nghề có sử dụng vật liệu nổ công nghiệp và tiền chất thuốc nổ',
+                                                                'Kinh doanh dịch vụ nổ mìn',
+                                                                'Kinh doanh hóa chất, trừ hóa chất bị cấm theo Công ước Quốc tế về cấm phát triển, sản xuất, tàng trữ, sử dụng và phá hủy vũ khí hóa học',
+                                                                'Kinh doanh rượu',
+                                                                'Kinh doanh sản phẩm thuốc lá, nguyên liệu thuốc lá, máy móc, thiết bị thuộc chuyên ngành thuốc lá',
+                                                                'Kinh doanh thực phẩm thuộc lĩnh vực quản lý chuyên ngành của Bộ Công Thương',
+                                                                'Hoạt động Sở giao dịch hàng hóa',
+                                                                'Hoạt động phát điện, truyền tải, phân phối, bán buôn, bán lẻ, xuất khẩu, nhập khẩu điện, tư vấn chuyên ngành điện lực',
+                                                                'Xuất khẩu gạo',
+                                                                'Kinh doanh tạm nhập, tái xuất hàng hóa có thuế tiêu thụ đặc biệt',
+                                                                'Kinh doanh tạm nhập, tái xuất hàng thực phẩm đông lạnh',
+                                                                'Kinh doanh tạm nhập, tái xuất hàng hóa thuộc Danh mục hàng hóa đã qua sử dụng',
+                                                                'Nhượng quyền thương mại',
+                                                                'Kinh doanh dịch vụ Lô-gi-stíc',
+                                                                'Kinh doanh khoáng sản',
+                                                                'Kinh doanh tiền chất công nghiệp',
+                                                                'Hoạt động mua bán hàng hóa và các hoạt động liên quan trực tiếp đến hoạt động mua bán hàng hóa của nhà đầu tư nước ngoài, tổ chức kinh tế có vốn đầu tư nước ngoài',
+                                                                'Kinh doanh theo phương thức bán hàng đa cấp',
+                                                                'Hoạt động thương mại điện tử',
+                                                                'Hoạt động dầu khí',
+                                                                'Kiểm toán năng lượng',
+                                                                'Hoạt động giáo dục nghề nghiệp',
+                                                                'Kiểm định chất lượng giáo dục nghề nghiệp',
+                                                                'Kinh doanh dịch vụ đánh giá kỹ năng nghề',
+                                                                'Kinh doanh dịch vụ kiểm định kỹ thuật an toàn lao động',
+                                                                'Kinh doanh dịch vụ huấn luyện an toàn lao động, vệ sinh lao động',
+                                                                'Kinh doanh dịch vụ việc làm',
+                                                                'Kinh doanh dịch vụ đưa người lao động đi làm việc ở nước ngoài',
+                                                                'Kinh doanh dịch vụ cai nghiện ma tuý tự nguyện',
+                                                                'Kinh doanh dịch vụ cho thuê lại lao động',
+                                                                'Kinh doanh vận tải đường bộ',
+                                                                'Kinh doanh dịch vụ bảo hành, bảo dưỡng xe ô tô',
+                                                                'Sản xuất, lắp ráp, nhập khẩu xe ô tô',
+                                                                'Kinh doanh dịch vụ kiểm định xe cơ giới',
+                                                                'Kinh doanh dịch vụ đào tạo lái xe ô tô',
+                                                                'Kinh doanh dịch vụ đào tạo thẩm tra viên an toàn giao thông',
+                                                                'Kinh doanh dịch vụ sát hạch lái xe',
+                                                                'Kinh doanh dịch vụ thẩm tra an toàn giao thông',
+                                                                'Kinh doanh vận tải đường thủy',
+                                                                'Kinh doanh dịch vụ đóng mới, hoán cải, sửa chữa, phục hồi phương tiện thủy nội địa',
+                                                                'Kinh doanh dịch vụ đào tạo thuyền viên và người lái phương tiện thủy nội địa',
+                                                                'Đào tạo, huấn luyện thuyền viên hàng hải và tổ chức tuyển dụng, cung ứng thuyền viên hàng hải',
+                                                                'Kinh doanh dịch vụ bảo đảm an toàn hàng hải',
+                                                                'Kinh doanh vận tải biển, dịch vụ đại lý tàu biển',
+                                                                'Kinh doanh dịch vụ lai dắt tàu biển',
+                                                                'Nhập khẩu, phá dỡ tàu biển đã qua sử dụng',
+                                                                'Kinh doanh dịch vụ đóng mới, hoán cải, sửa chữa tàu biển',
+                                                                'Kinh doanh khai thác cảng biển',
+                                                                'Kinh doanh vận tải hàng không',
+                                                                'Kinh doanh dịch vụ thiết kế, sản xuất, bảo dưỡng, thử nghiệm tàu bay, động cơ tàu bay, cánh quạt tàu bay và trang bị, thiết bị tàu bay tại Việt Nam',
+                                                                'Kinh doanh cảng hàng không, sân bay',
+                                                                'Kinh doanh dịch vụ hàng không tại cảng hàng không, sân bay',
+                                                                'Kinh doanh dịch vụ bảo đảm hoạt động bay',
+                                                                'Kinh doanh dịch vụ đào tạo, huấn luyện nghiệp vụ nhân viên hàng không',
+                                                                'Kinh doanh vận tải đường sắt',
+                                                                'Kinh doanh kết cấu hạ tầng đường sắt',
+                                                                'Kinh doanh đường sắt đô thị',
+                                                                'Kinh doanh dịch vụ vận tải đa phương thức',
+                                                                'Kinh doanh dịch vụ vận chuyển hàng nguy hiểm',
+                                                                'Kinh doanh vận tải đường ống',
+                                                                'Kinh doanh bất động sản',
+                                                                'Kinh doanh dịch vụ đào tạo, bồi dưỡng kiến thức về môi giới bất động sản, điều hành sàn giao dịch bất động sản',
+                                                                'Kinh doanh dịch vụ đào tạo, bồi dưỡng kiến thức chuyên môn, nghiệp vụ quản lý, vận hành nhà chung cư',
+                                                                'Kinh doanh dịch vụ tư vấn quản lý dự án đầu tư xây dựng',
+                                                                'Kinh doanh dịch vụ khảo sát xây dựng',
+                                                                'Kinh doanh dịch vụ tổ chức thiết kế, thẩm tra thiết kế xây dựng',
+                                                                'Kinh doanh dịch vụ tư vấn giám sát thi công xây dựng công trình',
+                                                                'Kinh doanh dịch vụ thi công xây dựng công trình',
+                                                                'Hoạt động xây dựng của nhà thầu nước ngoài',
+                                                                'Kinh doanh dịch vụ quản lý chi phí đầu tư xây dựng',
+                                                                'Kinh doanh dịch vụ kiểm định chất lượng công trình xây dựng',
+                                                                'Kinh doanh dịch vụ thí nghiệm chuyên ngành xây dựng',
+                                                                'Kinh doanh dịch vụ quản lý, vận hành nhà chung cư',
+                                                                'Kinh doanh dịch vụ quản lý, vận hành cơ sở hỏa táng',
+                                                                'Kinh doanh dịch vụ lập thiết kế quy hoạch xây dựng',
+                                                                'Kinh doanh dịch vụ tư vấn lập quy hoạch đô thị do tổ chức, cá nhân nước ngoài thực hiện',
+                                                                'Kinh doanh sản phẩm amiang trắng thuộc nhóm Serpentine',
+                                                                'Kinh doanh dịch vụ bưu chính',
+                                                                'Kinh doanh dịch vụ viễn thông',
+                                                                'Kinh doanh dịch vụ chứng thực chữ ký số',
+                                                                'Hoạt động của nhà xuất bản',
+                                                                'Kinh doanh dịch vụ in, trừ in bao bì',
+                                                                'Kinh doanh dịch vụ phát hành xuất bản phẩm',
+                                                                'Kinh doanh dịch vụ mạng xã hội',
+                                                                'Kinh doanh trò chơi trên mạng viễn thông, mạng Internet',
+                                                                'Kinh doanh dịch vụ phát thanh, truyền hình trả tiền',
+                                                                'Kinh doanh dịch vụ thiết lập trang thông tin điện tử tổng hợp',
+                                                                'Dịch vụ gia công, tái chế, sửa chữa, làm mới sản phẩm công nghệ thông tin đã qua sử dụng thuộc Danh mục sản phẩm công nghệ thông tin đã qua sử dụng cấm nhập khẩu cho đối tác nước ngoài',
+                                                                'Kinh doanh dịch vụ nội dung thông tin trên mạng viễn thông di động, mạng Internet',
+                                                                'Kinh doanh dịch vụ đăng ký, duy trì tên miền “.vn”',
+                                                                'Kinh doanh sản phẩm, dịch vụ an toàn thông tin mạng',
+                                                                'Kinh doanh sản phẩm, dịch vụ mật mã dân sự',
+                                                                'Kinh doanh các thiết bị gây nhiễu, phá sóng thông tin di động',
+                                                                'Hoạt động của cơ sở giáo dục mầm non',
+                                                                'Hoạt động của cơ sở giáo dục phổ thông',
+                                                                'Hoạt động của cơ sở giáo dục đại học',
+                                                                'Hoạt động của cơ sở giáo dục có vốn đầu tư nước ngoài, văn phòng đại diện giáo dục nước ngoài tại Việt Nam, phân hiệu cơ sở giáo dục có vốn đầu tư nước ngoài',
+                                                                'Hoạt động của cơ sở giáo dục thường xuyên',
+                                                                'Hoạt động của trường chuyên biệt',
+                                                                'Hoạt động liên kết đào tạo với nước ngoài',
+                                                                'Kiểm định chất lượng giáo dục',
+                                                                'Kinh doanh dịch vụ tư vấn du học',
+                                                                'Khai thác thủy sản',
+                                                                'Kinh doanh thủy sản',
+                                                                'Kinh doanh thức ăn thuỷ sản, thức ăn chăn nuôi',
+                                                                'Kinh doanh dịch vụ khảo nghiệm thức ăn thủy sản, thức ăn chăn nuôi',
+                                                                'Kinh doanh chế phẩm sinh học, vi sinh vật, hóa chất, chất xử lý cải tạo môi trường trong nuôi trồng thủy sản',
+                                                                'Kinh doanh đóng mới, cải hoán tàu cá',
+                                                                'Nuôi sinh sản, nuôi sinh trưởng, trồng cấy nhân tạo các loài động vật, thực vật hoang dã theo Phụ lục của Công ước CITES',
+                                                                'Nuôi sinh sản, nuôi sinh trưởng, trồng cấy nhân tạo các loài động vật, thực vật hoang dã, nguy cấp, quý, hiếm không quy định tại Phụ lục của Công ước CITES',
+                                                                'Nuôi sinh sản, nuôi sinh trưởng động vật hoang dã thông thường',
+                                                                'Xuất khẩu, nhập khẩu, tái xuất khẩu, quá cảnh và nhập nội từ biển mẫu vật từ tự nhiên quy định tại Phụ lục của Công ước CITES',
+                                                                'Xuất khẩu, nhập khẩu, tái xuất khẩu mẫu vật nuôi sinh sản, nuôi sinh trưởng, trồng cấy nhân tạo quy định tại Phụ lục của Công ước CITES',
+                                                                'Kinh doanh thực vật rừng, động vật rừng hạn chế khai thác, sử dụng vì mục đích thương mại',
+                                                                'Kinh doanh thuốc bảo vệ thực vật',
+                                                                'Kinh doanh dịch vụ xử lý vật thể thuộc diện kiểm dịch thực vật',
+                                                                'Kinh doanh dịch vụ khảo nghiệm thuốc bảo vệ thực vật',
+                                                                'Kinh doanh dịch vụ bảo vệ thực vật',
+                                                                'Kinh doanh thuốc thú y, vắc xin, chế phẩm sinh học, vi sinh vật, hóa chất dùng trong thú y',
+                                                                'Kinh doanh dịch vụ kỹ thuật về thú y',
+                                                                'Kinh doanh dịch vụ xét nghiệm, phẫu thuật động vật',
+                                                                'Kinh doanh dịch vụ tiêm phòng, chẩn đoán bệnh, kê đơn, chữa bệnh, chăm sóc sức khỏe động vật',
+                                                                'Kinh doanh dịch vụ thử nghiệm, khảo nghiệm thuốc thú y (bao gồm thuốc thú y, thuốc thú y thủy sản, vắc xin, chế phẩm sinh học, vi sinh vật, hóa chất dùng trong thú y, thú y thủy sản)',
+                                                                'Kinh doanh chăn nuôi tập trung',
+                                                                'Kinh doanh cơ sở giết mổ gia súc, gia cầm',
+                                                                'Kinh doanh thực phẩm thuộc lĩnh vực quản lý chuyên ngành của Bộ Nông nghiệp và Phát triển nông thôn',
+                                                                'Kinh doanh dịch vụ cách ly kiểm dịch động vật, sản phẩm động vật',
+                                                                'Kinh doanh phân bón',
+                                                                'Kinh doanh dịch vụ khảo nghiệm phân bón',
+                                                                'Kinh doanh giống cây trồng, giống vật nuôi',
+                                                                'Kinh doanh giống thủy sản',
+                                                                'Kinh doanh dịch vụ khảo nghiệm giống cây trồng, giống vật nuôi',
+                                                                'Kinh doanh dịch vụ khảo nghiệm giống thủy sản',
+                                                                'Kinh doanh dịch vụ thử nghiệm, khảo nghiệm chế phẩm sinh học, vi sinh vật, hóa chất, chất xử lý cải tạo môi trường trong nuôi trồng thủy sản',
+                                                                'Kinh doanh sản phẩm biến đổi gen',
+                                                                'Kinh doanh dịch vụ khám bệnh, chữa bệnh',
+                                                                'Kinh doanh dịch vụ xét nghiệm HIV',
+                                                                'Kinh doanh dịch vụ ngân hàng mô',
+                                                                'Kinh doanh dịch vụ hỗ trợ sinh sản, lưu giữ tinh trùng, lưu giữ phôi',
+                                                                'Kinh doanh dịch vụ xét nghiệm vi sinh vật gây bệnh truyền nhiễm',
+                                                                'Kinh doanh dịch vụ tiêm chủng',
+                                                                'Kinh doanh dịch vụ điều trị nghiện chất dạng thuốc phiện bằng thuốc thay thế',
+                                                                'Kinh doanh dịch vụ phẫu thuật thẩm mỹ',
+                                                                'Kinh doanh dịch vụ thực hiện kỹ thuật mang thai hộ',
+                                                                'Kinh doanh dược',
+                                                                'Sản xuất mỹ phẩm',
+                                                                'Kinh doanh hóa chất, chế phẩm diệt côn trùng, diệt khuẩn dùng trong lĩnh vực gia dụng y tế',
+                                                                'Kinh doanh thực phẩm thuộc lĩnh vực quản lý chuyên ngành của Bộ Y tế',
+                                                                'Kinh doanh trang thiết bị y tế',
+                                                                'Hoạt động của cơ sở phân loại trang thiết bị y tế',
+                                                                'Kinh doanh dịch vụ kiểm định trang thiết bị y tế',
+                                                                'Kinh doanh dịch vụ giám định về sở hữu trí tuệ (bao gồm: giám định về quyền tác giả và quyền liên quan, giám định sở hữu công nghiệp và giám định về quyền đối với giống cây trồng)',
+                                                                'Kinh doanh dịch vụ tiến hành công việc bức xạ',
+                                                                'Kinh doanh dịch vụ hỗ trợ ứng dụng năng lượng nguyên tử',
+                                                                'Kinh doanh dịch vụ đánh giá sự phù hợp',
+                                                                'Kinh doanh dịch vụ kiểm định, hiệu chuẩn, thử nghiệm phương tiện đo, chuẩn đo lường',
+                                                                'Sản xuất mũ bảo hiểm cho người đi mô tô, xe gắn máy',
+                                                                'Kinh doanh dịch vụ đánh giá, định giá và giám định công nghệ',
+                                                                'Kinh doanh dịch vụ đại diện quyền sở hữu trí tuệ',
+                                                                'Kinh doanh dịch vụ sản xuất, phát hành và phổ biến phim',
+                                                                'Kinh doanh dịch vụ giám định cổ vật',
+                                                                'Kinh doanh dịch vụ lập quy hoạch dự án, tổ chức thi công, giám sát thi công dự án bảo quản, tu bổ và phục hồi di tích',
+                                                                'Kinh doanh dịch vụ karaoke, vũ trường',
+                                                                'Kinh doanh dịch vụ lữ hành',
+                                                                'Kinh doanh hoạt động thể thao của doanh nghiệp thể thao, câu lạc bộ thể thao chuyên nghiệp',
+                                                                'Kinh doanh dịch vụ biểu diễn nghệ thuật, trình diễn thời trang, tổ chức thi người đẹp, người mẫu',
+                                                                'Kinh doanh bản ghi âm, ghi hình ca múa nhạc, sân khấu',
+                                                                'Kinh doanh dịch vụ lưu trú',
+                                                                'Kinh doanh dịch vụ giới thiệu sản phẩm quảng cáo đến công chúng',
+                                                                'Mua bán di vật, cổ vật, bảo vật quốc gia',
+                                                                'Xuất khẩu di vật, cổ vật không thuộc sở hữu nhà nước, sở hữu của tổ chức chính trị, tổ chức chính trị – xã hội; nhập khẩu hàng hóa văn hóa thuộc diện quản lý chuyên ngành của Bộ Văn hóa, Thể thao và Du lịch',
+                                                                'Kinh doanh dịch vụ bảo tàng',
+                                                                'Kinh doanh trò chơi điện tử (trừ kinh doanh trò chơi điện tử có thưởng dành cho người nước ngoài và kinh doanh trò chơi điện tử có thưởng trên mạng)',
+                                                                'Kinh doanh dịch vụ tư vấn điều tra, đánh giá đất đai',
+                                                                'Kinh doanh dịch vụ về lập quy hoạch, kế hoạch sử dụng đất',
+                                                                'Kinh doanh dịch vụ xây dựng hạ tầng kỹ thuật công nghệ thông tin, xây dựng phần mềm của hệ thống thông tin đất đai',
+                                                                'Kinh doanh dịch vụ xây dựng cơ sở dữ liệu đất đai',
+                                                                'Kinh doanh dịch vụ xác định giá đất',
+                                                                'Kinh doanh dịch vụ đo đạc và bản đồ',
+                                                                'Kinh doanh dịch vụ dự báo, cảnh báo khí tượng thủy văn',
+                                                                'Kinh doanh dịch vụ khoan nước dưới đất, thăm dò nước dưới đất',
+                                                                'Kinh doanh dịch vụ khai thác, sử dụng tài nguyên nước, xả nước thải vào nguồn nước',
+                                                                'Kinh doanh dịch vụ điều tra cơ bản, tư vấn lập quy hoạch, đề án, báo cáo tài nguyên nước',
+                                                                'Kinh doanh dịch vụ thăm dò khoáng sản',
+                                                                'Khai thác khoáng sản',
+                                                                'Kinh doanh dịch vụ vận chuyển, xử lý chất thải nguy hại',
+                                                                'Nhập khẩu phế liệu',
+                                                                'Kinh doanh dịch vụ quan trắc môi trường',
+                                                                'Kinh doanh chế phẩm sinh học trong xử lý chất thải',
+                                                                'Hoạt động kinh doanh của ngân hàng thương mại',
+                                                                'Hoạt động kinh doanh của tổ chức tín dụng phi ngân hàng',
+                                                                'Hoạt động kinh doanh của ngân hàng hợp tác xã, quỹ tín dụng nhân dân, tổ chức tài chính vi mô',
+                                                                'Cung ứng dịch vụ trung gian thanh toán',
+                                                                'Cung ứng dịch vụ thông tin tín dụng',
+                                                                'Hoạt động ngoại hối của tổ chức không phải là tổ chức tín dụng',
+                                                                'Kinh doanh vàng',
+                                                                'Hoạt động in, đúc tiền',
+                                                                'Lĩnh vực khác'] , "Lĩnh vực khác"), {include_blank: true}, { :class => 'my_style_class' }) %>
                             </div>
                         </div>
                     </div>
@@ -110,11 +559,11 @@
                     <div class="new_company_section">
                         <div class="new_company_content">
                             <div class="new_company_label">
-                                <t><%= f.label :content, "Mô tả chung", class: "new_company_label" %></t>
+                                <t><%= f.label :content, "Mô tả chung về công ty* :", class: "new_company_label" %></t>
                             </div>
                             
                             <div class="new_company_input">
-                                <%= f.rich_text_area :content, class: "new_company_form_input_rich_text", placeholder: "  Nhập mô tả chính" %>
+                                <%= f.rich_text_area :content, class: "new_company_form_input_rich_text", placeholder: "  Nhập mô tả chính, giới thiệu, lịch sử hoạt động ..." %>
                             </div>
                         </div>
                     </div>
@@ -122,11 +571,11 @@
                     <div class="new_company_section">
                         <div class="new_company_content">
                             <div class="new_company_label">
-                                <t><%= f.label :policy, "Chính sách nổi bật", class: "new_company_label" %></t>
+                                <t><%= f.label :policy, "Chính sách nổi bật* :", class: "new_company_label" %></t>
                             </div>
                             
                             <div class="new_company_input">
-                                <%= f.rich_text_area :policy, class: "new_company_form_input_rich_text", placeholder: "  Nhập nội dung" %>
+                                <%= f.rich_text_area :policy, class: "new_company_form_input_rich_text", placeholder: "  Nhập ít nhất 3 chính sách nổi bật của công ty" %>
                             </div>
                         </div>
                     </div>
@@ -134,7 +583,7 @@
                     <div class="new_company_section">
                         <div class="new_company_content">
                             <div class="new_company_label">
-                                <t><%= f.label :avatar, "Ảnh đại diện công ty", class: "new_company_label" %></t>
+                                <t><%= f.label :avatar, "Ảnh đại diện công ty(120x120)* :", class: "new_company_label" %></t>
                             </div>
                             
                             <div class="new_company_input">
@@ -146,7 +595,7 @@
                     <div class="new_company_section">
                         <div class="new_company_content">
                             <div class="new_company_label">
-                                <t><%= f.label :wall_picture, "Ảnh bìa công ty", class: "new_company_label" %></t>
+                                <t><%= f.label :wall_picture, "Ảnh bìa công ty(900x600)* :", class: "new_company_label" %></t>
                             </div>
                             
                             <div class="new_company_input">

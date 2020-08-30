@@ -9,24 +9,33 @@
             <div class="new_review_form">
                 <%= form_for [@company, CompanyReview.new] do |f| %>
                     <div class="new_review_title">
-                        <strong>Tạo một bản đánh giá của bạn<%@company.name%></strong>
+                        <strong>Tạo một bản đánh giá về <%=@company.name%></strong>
                     </div>
 
                     <div class="new_review_section">
-
                         <div class="new_review_content">
                             <div class="new_review_label">
-                                <t><%= f.label :working_status, "Bạn có còn làm việc ở đây không", class: "new_review_label_name" %></t>
+                                <t><%= f.label :working_status, "Bạn có còn làm việc ở đây không*:", class: "new_review_label_name" %></t>
                             </div>
 
                             <div class="new_review_input">
-                                <%= f.select(:working_status, ['Có','Không'], {include_blank: true}, { :class => 'my_style_class' }) %>
+                                <%= f.select(:working_status, options_for_select(['Có','Không'], "Có"), {include_blank: true}, { :class => 'my_style_class' }) %>
                             </div>
                         </div>
 
                         <div class="new_review_content">
                             <div class="new_review_label">
-                                <t><%= f.label :start_date, "Thời gian bắt đầu*", class: "new_review_label_name" %></t>
+                                <t><%= f.label :position, "Vị trí làm việc của bạn*:", class: "new_review_label_name" %></t>
+                            </div>
+
+                            <div class="new_review_input">
+                                <%= f.text_field :position, class: "new_review_form_input", placeholder: "  Nhập vị trí làm việc hiện tại của bạn" %>
+                            </div>
+                        </div>
+
+                        <div class="new_review_content">
+                            <div class="new_review_label">
+                                <t><%= f.label :start_date, "Thời gian bắt đầu*: ", class: "new_review_label_name" %></t>
                             </div>
 
                             <div class="new_review_input_time">
@@ -36,7 +45,7 @@
 
                         <div class="new_review_content">
                             <div class="new_review_label">
-                                <t><%= f.label :end_date, "Thời gian kết thúc*", class: "new_review_label_name" %></t>
+                                <t><%= f.label :end_date, "Thời gian kết thúc*: ", class: "new_review_label_name" %></t>
                             </div>
 
                             <div class="new_review_input_time">
@@ -44,14 +53,98 @@
                             </div>
 
                         </div>
+                    </div>
 
+                    <div class="new_review_section">
                         <div class="new_review_content">
                             <div class="new_review_label">
-                                <t><%= f.label :position, "Vị trí làm việc của bạn", class: "new_review_label_name" %></t>
+                                <t><%= f.label :work_env_score, "Môi trường làm việc*:", class: "new_review_label_name" %></t>
                             </div>
 
                             <div class="new_review_input">
-                                <%= f.select(:position, ['Project Manager','Sennior','Junnior', 'Fresher' ], {include_blank: true}, { :class => 'my_style_class' }) %>
+                                <%= f.collection_radio_buttons :work_env_score, [[1, 'Rất không hài lòng'] ,[2, 'Không hài lòng'], [3, 'Hài lòng'], [4, 'Tốt'], [5, "Rất tốt"] ],:first, :last, { item_wrapper_tag: false } do |b|
+                                    b.radio_button(:class => "collection_radio_buttons icon-star") + b.label(:class => "collection_radio_buttons_label icon-star-label")
+                                end%>
+                            </div>
+                        </div>
+
+                        <div class="new_review_content">
+                            <div class="new_review_label">
+                                <t><%= f.label :salary_score, "Lương bổng*:", class: "new_review_label_name" %></t>
+                            </div>
+
+                            <div class="new_review_input">
+                                <%= f.collection_radio_buttons :salary_score, [[1, 'Rất không hài lòng'] ,[2, 'Không hài lòng'], [3, 'Hài lòng'], [4, 'Tốt'], [5, "Rất tốt"] ],:first, :last, { item_wrapper_tag: false } do |b|
+                                    b.radio_button(:class => "collection_radio_buttons icon-star") + b.label(:class => "collection_radio_buttons_label icon-star-label")
+                                end%>
+                            </div>
+                        </div>
+
+                        <div class="new_review_content">
+                            <div class="new_review_label">
+                                <t><%= f.label :ot_score, "Chế độ làm thêm giờ*:", class: "new_review_label_name" %></t>
+                            </div>
+
+                            <div class="new_review_input">
+                                <%= f.collection_radio_buttons :ot_score, [[1, 'Rất không hài lòng'] ,[2, 'Không hài lòng'], [3, 'Hài lòng'], [4, 'Tốt'], [5, "Rất tốt"] ],:first, :last, { item_wrapper_tag: false } do |b|
+                                    b.radio_button(:class => "collection_radio_buttons icon-star") + b.label(:class => "collection_radio_buttons_label icon-star-label")
+                                end%>
+                            </div>
+                        </div>
+
+                        <div class="new_review_content">
+                            <div class="new_review_label">
+                                <t><%= f.label :manager_score, "Trình độ quản lý, cấp trên*:", class: "new_review_label_name" %></t>
+                            </div>
+
+                            <div class="new_review_input">
+                                <%= f.collection_radio_buttons :manager_score, [[1, 'Rất không hài lòng'] ,[2, 'Không hài lòng'], [3, 'Hài lòng'], [4, 'Tốt'], [5, "Rất tốt"] ],:first, :last, { item_wrapper_tag: false } do |b|
+                                    b.radio_button(:class => "collection_radio_buttons icon-star") + b.label(:class => "collection_radio_buttons_label icon-star-label")
+                                end%>
+                            </div>
+                        </div>
+
+                        <div class="new_review_content">
+                            <div class="new_review_label">
+                                <t><%= f.label :career_score, "Cơ hội thăng tiến*:", class: "new_review_label_name" %></t>
+                            </div>
+
+                            <div class="new_review_input">
+                                <%= f.collection_radio_buttons :career_score, [[1, 'Rất không hài lòng'] ,[2, 'Không hài lòng'], [3, 'Hài lòng'], [4, 'Tốt'], [5, "Rất tốt"] ],:first, :last, { item_wrapper_tag: false } do |b|
+                                    b.radio_button(:class => "collection_radio_buttons icon-star") + b.label(:class => "collection_radio_buttons_label icon-star-label")
+                                end%>
+                            </div>
+                        </div>
+
+                        <div class="new_review_content">
+                            <div class="new_review_label">
+                                <t><%= f.label :score, "Bạn cho điểm công ty này bao nhiêu điểm*: ", class: "new_review_label_name" %></t>
+                            </div>
+
+                            <div class="new_review_input">
+                                <%= f.collection_radio_buttons :score, [[1, '1'] ,[2, '2'], [3, '3'], [4, '4'], [5, "5"] ],:first, :last, { item_wrapper_tag: false } do |b|
+                                    b.radio_button(:class => "collection_radio_buttons icon-star") + b.label(:class => "collection_radio_buttons_label icon-star-label")
+                                end%>
+                            </div>
+                        </div>
+
+                        <div class="new_review_content">
+                            <div class="new_review_label">
+                                <t><%= f.label :pros, "Ưu điểm*:", class: "new_review_label_name" %></t>
+                            </div>
+
+                            <div class="new_review_input">
+                                <%= f.rich_text_area :pros, class: "new_review_form_input_rich_text", placeholder: "  Hãy nhập ít nhất 3 ưu điểm của công ty này" %>
+                            </div>
+                        </div>
+
+                        <div class="new_review_content">
+                            <div class="new_review_label">
+                                <t><%= f.label :cons, "Nhược điểm*:", class: "new_review_label_name" %></t>
+                            </div>
+
+                            <div class="new_review_input">
+                                <%= f.rich_text_area :cons, class: "new_review_form_input_rich_text", placeholder: "  Hãy nhập ít nhất 3 nhược điểm của công ty này" %>
                             </div>
                         </div>
                     </div>
@@ -59,89 +152,7 @@
                     <div class="new_review_section">
                         <div class="new_review_content">
                             <div class="new_review_label">
-                                <t><%= f.label :work_env_score, "Môi trường làm việc*", class: "new_review_label_name" %></t>
-                            </div>
-
-                            <div class="new_review_input">
-                                <%= f.select(:work_env_score, ['1','2', '3', '4', '5'], {include_blank: true}, { :class => 'my_style_class' }) %>
-                            </div>
-                        </div>
-
-                        <div class="new_review_content">
-                            <div class="new_review_label">
-                                <t><%= f.label :salary_score, "Lương bổng*", class: "new_review_label_name" %></t>
-                            </div>
-
-                            <div class="new_review_input">
-                                <%= f.select(:salary_score, ['1','2', '3', '4', '5'], {include_blank: true}, { :class => 'my_style_class' }) %>
-                            </div>
-                        </div>
-
-                        <div class="new_review_content">
-                            <div class="new_review_label">
-                                <t><%= f.label :ot_score, "Chế độ làm thêm giờ*", class: "new_review_label_name" %></t>
-                            </div>
-
-                            <div class="new_review_input">
-                                <%= f.select(:ot_score, ['1','2', '3', '4', '5'], {include_blank: true}, { :class => 'my_style_class' }) %>
-                            </div>
-                        </div>
-
-                        <div class="new_review_content">
-                            <div class="new_review_label">
-                                <t><%= f.label :manager_score, "Quản lý, cấp trên*", class: "new_review_label_name" %></t>
-                            </div>
-
-                            <div class="new_review_input">
-                                <%= f.select(:manager_score, ['1','2', '3', '4', '5'], {include_blank: true}, { :class => 'my_style_class' }) %>
-                            </div>
-                        </div>
-
-                        <div class="new_review_content">
-                            <div class="new_review_label">
-                                <t><%= f.label :career_score, "Cơ hội thăng tiến*", class: "new_review_label_name" %></t>
-                            </div>
-
-                            <div class="new_review_input">
-                                <%= f.select(:career_score, ['1','2', '3', '4', '5'], {include_blank: true}, { :class => 'my_style_class' }) %>
-                            </div>
-                        </div>
-
-                        <div class="new_review_content">
-                            <div class="new_review_label">
-                                <t><%= f.label :score, "Cho điểm công ty này*", class: "new_review_label_name" %></t>
-                            </div>
-
-                            <div class="new_review_input">
-                                <%= f.select(:score, ['1','2', '3', '4', '5'], {include_blank: true}, { :class => 'my_style_class' }) %>
-                            </div>
-                        </div>
-
-                        <div class="new_review_content">
-                            <div class="new_review_label">
-                                <t><%= f.label :pros, "Ưu điểm*", class: "new_review_label_name" %></t>
-                            </div>
-
-                            <div class="new_review_input">
-                                <%= f.rich_text_area :pros, class: "new_review_form_input_rich_text", placeholder: "  Ưu điểm của công ty này" %>
-                            </div>
-                        </div>
-
-                        <div class="new_review_content">
-                            <div class="new_review_label">
-                                <t><%= f.label :cons, "Nhược điểm*", class: "new_review_label_name" %></t>
-                            </div>
-
-                            <div class="new_review_input">
-                                <%= f.rich_text_area :cons, class: "new_review_form_input_rich_text", placeholder: "  Nhược điểm của công ty" %>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="new_review_section">
-                        <div class="new_review_content">
-                            <div class="new_review_label">
-                                <t><%= f.label :review_title, "Title", class: "new_review_label" %></t>
+                                <t><%= f.label :review_title, "Tiêu đề*:", class: "new_review_label" %></t>
                             </div>
                             
                             <div class="new_review_input">
@@ -151,7 +162,7 @@
 
                         <div class="new_review_content">
                             <div class="new_review_label">
-                                <t><%= f.label :review, "Nội dung", class: "new_review_label" %></t>
+                                <t><%= f.label :review, "Nội dung đánh giá*:", class: "new_review_label" %></t>
                             </div>
                             
                             <div class="new_review_input_review">

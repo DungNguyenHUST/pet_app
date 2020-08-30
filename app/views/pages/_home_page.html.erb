@@ -9,8 +9,8 @@
             <div class="home_page">
                 <div class="home_search_bar">
                     <div class="home_search_bar_label">
-                        <h3>Tìm kiếm công việc mơ ước</h3>
-                        <span>Khám phá <%= @companies.count%> công ty và <%= @company_jobs.count%> việc làm cùng hơn <%= @company_reviews.count%>+ đánh giá từ mọi người</span>
+                        <h3>Tìm kiếm công việc phù hợp với bạn</h3>
+                        <span>Giúp bạn hiểu rõ về công ty trước khi đưa ra quyết định. Quá trình phỏng vấn sẽ dễ dàng hơn bao giờ hết.</span>
                     </div>
                     <%=form_tag companies_path, :method => "get" do%>
                         <div class="home_search_form_text">
@@ -18,7 +18,7 @@
                             <i class="material-icons checked">search</i>
                         </div>
                         <div class="home_search_form_address">
-                            <%= text_field_tag :search, params[:search], class: 'home_search_input', placeholder: "Hà Nội"%>
+                            <%= text_field_tag :search, params[:search], class: 'home_search_input', placeholder: "Địa điểm"%>
                             <i class="material-icons checked">place</i>
                         </div>
                         <div class="home_search_button">

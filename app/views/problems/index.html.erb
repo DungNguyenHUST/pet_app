@@ -14,22 +14,22 @@
                                 <strong> <i class="material-icons">apps</i> Danh mục chính</strong>
                             </div>
 
-                            <div class="new_category">
+                            <div class="new_category_math">
                                 <form action="/action_page.php">
                                     <%= link_to '<button type="submit">Thuật toán</button>'.html_safe, new_problem_path %>
                                 </form>
                             </div>
-                            <div class="new_category">
+                            <div class="new_category_interview">
                                 <form action="/action_page.php">
                                     <%= link_to '<button type="submit">Câu hỏi phỏng vấn</button>'.html_safe, new_problem_path %>
                                 </form>
                             </div>
-                            <div class="new_category">
+                            <div class="new_category_test">
                                 <form action="/action_page.php">
                                     <%= link_to '<button type="submit">Bài test mẫu</button>'.html_safe, new_problem_path %>
                                 </form>
                             </div>
-                            <div class="new_category">
+                            <div class="new_category_qa">
                                 <form action="/action_page.php">
                                     <%= link_to '<button type="submit">Câu hỏi khác</button>'.html_safe, new_problem_path %>
                                 </form>
@@ -54,9 +54,7 @@
                                 <span>#Dễ <%= @problems.count %></span>
                             </div>
                             <div class="new_problem">
-                                <form action="/action_page.php">
-                                    <%= link_to '<button type="submit">Tạo một câu hỏi mới</button>'.html_safe, new_problem_path %>
-                                </form>
+                                <%= link_to '<button type="submit"><i class="material-icons">add</i> <span>Tạo một câu hỏi mới<span></button>'.html_safe, new_problem_path %>
                             </div>
                         </div>
 

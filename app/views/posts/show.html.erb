@@ -41,7 +41,31 @@
                         </div>
                     </div>
                     <div class="post_area_right">
-                        <span>Xem thêm</span>
+                        <div class="post_area_right_title">
+                            <t>Xem thêm</t>
+                        </div>
+                        <% @posts.each do |post| %>
+                            <div class="post_container">
+
+                                <div class="post_left">
+                                    <div class="post_cover">
+                                        <img src="<%= "/assets/illustration.png" %>" alt="Snow" style="width:100%;">
+                                    </div>
+                                </div>
+
+                                <div class="post_right">
+                                    <div class="post_header">
+                                        <strong><%= link_to (post.title), post_path(post) %></strong>
+                                    </div>
+
+                                    <div class="post_info">
+                                        <div class="post_username">
+                                            <strong><%=post.username%></strong> . <span><%=time_ago_in_words(post.created_at)%></span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        <% end %>
                     </div>
                 </div>  
             </div>

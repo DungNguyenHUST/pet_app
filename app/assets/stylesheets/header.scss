@@ -4,8 +4,10 @@
 .body_content_header{
 	background-color:#fff;
 	border-bottom: 1px solid #dadce0;
-	// box-shadow: 0 1px 4px 0 rgba(131, 130, 130, 0.1), 0 2px 4px 0 rgba(131, 126, 126, 0.09);
-	margin-bottom: 0px !important;
+	// position: fixed;
+	// box-shadow: 0 1px 4px 0 rgba(131, 130, 130, 0.1), 0 2px 4px 0 rgba(131, 126, 126, 0.09) !important;
+	margin-top: 0px !important;
+	width: 100%;
 	.header_area {
 		// navigation Mobile
 		@media screen and (max-width: 600px){
@@ -200,7 +202,7 @@
 	// desktop
 	@media screen and (min-width: 600px){
 		.header_area {
-			height: 45px !important;
+			height: 50px !important;
 			padding-left: 3%;
 			padding-right: 3%;
 			padding-top: 8px;
@@ -212,29 +214,50 @@
 				}
 				//logo
 				.header_logo{
-					float: left;
-					i{
-						font-size: 40px;
-						color: #d74832;
-						position: relative;
-						top: 10px;
-						margin-right: 5px;
-						margin-left: 5px;
+					.header_logo_image{
 					}
-					a{
-						font-size: 33px;
+					.header_logo_title{
 						display: block;
-						text-decoration:none;
-						color: #1a73e8;
-						font-weight: 600;
 						position: relative;
-						top: -10px;
-					}
-					span{
-						&:hover{
-							color: #4284f4;
+						top: 12px;
+						img{
+							float: left;
+							width: 30px; 
+							height: 30px;
+							padding-right: 10px;
+							position: relative;
+							top: -2px;
+						}
+
+						i{
+							font-size: 30px;
+							color: #d74832;
+							position: relative;
+							top: 10px;
+							margin-right: 5px;
+							margin-left: 5px;
+						}
+						a{
+							font-size: 26px;
+							display: block;
+							text-decoration:none;
+							color: #444;
+							font-weight: 600;
+							position: relative;
+							top: -10px;
+							background-color: #fff;
+							padding: 3px;
+							padding-right: 5px;
+							border-radius: 2px;
+							font-family: 'Ubuntu', Sans-serif;
+						}
+						span{
+							&:hover{
+								color: #111;
+							}
 						}
 					}
+					float: left;
 				}
 
 				.header_navigation{
@@ -243,20 +266,20 @@
 						float: left;
 						a{
 							margin-right: 20px;
-							color: #161e2e;
+							color: #444;
 							font-size: 16px;
 							display: inline-block;
-							padding: 10px 18px;
+							padding: 12px 18px;
 							position: relative;
 							text-decoration: none;
 							line-height: 1;
 							text-align: center;
+							font-weight: 500;
 							&:hover{
-								border-bottom: 3px solid #4284f4;
-								color: black;
+								color: #4284f4;
 							}
 							.active{
-								border-bottom: 2px solid #4284f4;
+								color: #4284f4;
 							}
 						}
 						
@@ -273,9 +296,9 @@
 							background-color: #fff;
 							border: none;
 							font-size: 33px;
-							color: #1a73e8 !important;
+							color: #444 !important;
 							position: relative;
-							top: -2px;
+							// top: -2px;
 							.i{
 								color: #1a73e8 !important;
 							}

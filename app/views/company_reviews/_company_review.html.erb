@@ -35,17 +35,18 @@
                     </div>
                 </div>
                 <div class="user_review_times">
-                    <strong><%= company_review.user_name%></strong>
-                    <t> . <%= time_ago_in_words(company_review.created_at) %></t>
+                    <%# <strong><%= company_review.user_name</strong> %>
+                    <%# <t> . <%= time_ago_in_words(company_review.created_at) </t> %>
                 </div>
 
                 <div class="user_review_status">
                         <t><%= company_review.position %></t>
                         <%if company_review.working_status%>
-                            <t> - Nhân viên đang làm việc</t>
+                            <t> . Nhân viên đang làm việc</t>
                         <%else%>
-                            <t> - Đã nghỉ việc</t>
+                            <t> . Đã nghỉ việc</t>
                         <%end%>
+                        <t> . <%= time_ago_in_words(company_review.created_at) %></t>
                 </div>
 
                 <div class="user_review_pros">

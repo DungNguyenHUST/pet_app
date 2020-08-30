@@ -12,7 +12,7 @@
                 <div class="company_search_bar">
                     <div class="company_search_bar_label">
                         <h3>Mọi người đang nói gì về công ty của bạn?</h3>
-                        <span>Cùng chia sẻ, đánh giá về nơi mà bạn đang làm việc</span>
+                        <span>Khám phá <%= @companies.count%> công ty và <%= @company_jobs.count%> việc làm cùng hơn <%= @company_reviews.count%>+ đánh giá từ mọi người.</span>
                     </div>
 
                     <%=form_tag companies_path, :method => "get" do%>
@@ -48,7 +48,7 @@
                     </div>
 
                     <div class="section_arange">
-                        <t>Sắp xếp theo: | Mới nhất | | Nhiều người quan tâm | | Công ty tốt nhất |</t>
+                        <t>Sắp xếp theo: Mới nhất | Nhiều người quan tâm | Công ty tốt nhất </t>
                     </div>
                 <%end%>
                 <div class="company_block">
@@ -136,7 +136,7 @@
                     <div class="single_company">
                         <div class="company_contents">
                             <div class="new-company">
-                                <%= link_to '<button type="submit"> <i class="material-icons">playlist_add</i>Tạo công ty mới</button>'.html_safe, new_company_path %>
+                                <%= link_to '<button type="submit"> <i class="material-icons">add</i>Tạo công ty mới</button>'.html_safe, new_company_path %>
                             </div>
                         </div>
                     </div>

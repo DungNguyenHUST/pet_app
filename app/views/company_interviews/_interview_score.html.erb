@@ -12,7 +12,7 @@
             <%# interview in button %>
             <div class="interview_new_button_side">
                 <div class="interview_new_button">
-                    <%= link_to '<button type="submit"> <i class="material-icons">edit</i> <a> Chia sẻ kinh nghiệm </a> </button>'.html_safe, new_company_company_interview_path(@company) %>
+                    <%= link_to '<button type="submit"> <i class="material-icons">edit</i> <span> Chia sẻ kinh nghiệm </span> </button>'.html_safe, new_company_company_interview_path(@company) %>
                 </div>
             </div>
 
@@ -80,7 +80,7 @@
                 <div class="interview_score_interview">
                     <div class="interview_content">
                         <div class="interview_point">
-                            <strong><%=rating_interview_offer_score.round(1) * 100%> %</strong>
+                            <strong><%=(rating_interview_offer_score.to_i/5) * 100%> %</strong>
                         </div>
                         <div class="interview_score_star">
                             <i class="material-icons checked">work_outline</i>

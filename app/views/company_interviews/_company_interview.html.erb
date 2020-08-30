@@ -21,14 +21,14 @@
 
                 <div class="user_interview_status">
                     <t>Phỏng vấn qua <%= company_interview.get_interview %> . </t>
-                    <t><%= company_interview.process %> vòng . </t>
+                    <t><%= company_interview.process %> vòng phỏng vấn . </t>
                     <t><%= time_ago_in_words(company_interview.created_at) %></t>
                 </div>
 
                 <div class="interview_satisfied_overview">
                     <div class="interview_content">
                         <div class="interview_satisfied_label">
-                            <a>Hài lòng với buổi phỏng vấn </a>
+                            <a>Hài lòng với buổi phỏng vấn: </a>
                         </div>
                         <div class="interview_point">
                             <%= company_interview.satisfied.to_f%>
@@ -52,7 +52,7 @@
 
                 <div class="user_interview_offer">
                     <div class="user_interview_offer_label">
-                        <t>Chấp nhận offer </t>
+                        <t>Chấp nhận offer: </t>
                     </div>
                     <div class="user_interview_offer_content">
                         <%if company_interview.satisfied.to_i >0%>
