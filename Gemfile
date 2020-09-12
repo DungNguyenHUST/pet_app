@@ -42,13 +42,13 @@ group :development do
   # Spring speeds up development by keeping your application running in the background. Read more: https://github.com/rails/spring
   gem 'spring'
   gem 'spring-watcher-listen', '~> 2.0.0'
-  gem 'capistrano',         require: false
-  gem 'capistrano-rvm',     require: false
-  gem 'capistrano-rails',   require: false
-  gem 'capistrano-bundler', require: false
-  gem 'capistrano3-puma',   require: false  
-  gem 'capistrano-passenger', '~> 0.2.0'
-  gem 'capistrano-rbenv', '~> 2.1', '>= 2.1.4'
+  # gem 'capistrano',         require: false
+  # gem 'capistrano-rvm',     require: false
+  # gem 'capistrano-rails',   require: false
+  # gem 'capistrano-bundler', require: false
+  # gem 'capistrano3-puma',   require: false  
+  # gem 'capistrano-passenger', '~> 0.2.0'
+  # gem 'capistrano-rbenv', '~> 2.1', '>= 2.1.4'
 end
 
 group :test do
@@ -76,10 +76,10 @@ gem "twitter-bootstrap-rails"
 gem 'image_processing'
 
 #deploy
-# gem 'capistrano', '~> 3.11'
-# gem 'capistrano-rails', '~> 1.4'
-# gem 'capistrano-passenger', '~> 0.2.0'
-# gem 'capistrano-rbenv', '~> 2.1', '>= 2.1.4'
+gem 'capistrano', '~> 3.11'
+gem 'capistrano-rails', '~> 1.4'
+gem 'capistrano-passenger', '~> 0.2.0'
+gem 'capistrano-rbenv', '~> 2.1', '>= 2.1.4'
 
 gem 'net-ssh', '>= 6.0.2'
 gem 'ed25519', '>= 1.2', '< 2.0'
