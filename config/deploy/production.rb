@@ -61,4 +61,3 @@
 #   }
 
 server '103.253.146.88', user: 'deploy', roles: %w{app db web}
-config.force_ssl = true
