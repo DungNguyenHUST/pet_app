@@ -3,6 +3,22 @@
   <head>
     <title>Firework</title>
     <meta name='viewport' content='width=device-width, initial-scale=1'>
+    <!-- Google Tag Manager -->
+    <% if Rails.env.production? %>
+    <script>
+      document.addEventListener('turbolinks:load', function(event) {
+        var url = event.data.url;  dataLayer.push({
+          'event':'pageView',
+          'virtualUrl': url
+        });
+      });(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+      new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+      j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+      'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+      })(window,document,'script','dataLayer','GTM-TP9TWNJ');
+      </script>
+    <% end %>
+    <!-- End Google Tag Manager -->
     <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
     <!-- Font Icon -->
 		<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:regular,bold,italic">
@@ -17,6 +33,11 @@
   </head>
 
   <body>
+    <!-- Google Tag Manager (noscript) -->
+    <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-TP9TWNJ"
+    height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+    <!-- End Google Tag Manager (noscript) -->
+
     <%# alert key of user %>
     <section class="content" style="min-height: auto;">
       <% flash.each do |key, value| %>
