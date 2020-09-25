@@ -6,16 +6,27 @@ module SessionHelper
 
     def log_out
         session.delete :user_id
+        @current_user = nil
     end
 
     # get current user ID
     def current_user
-        @current_user ||= User.find_by id: session[:user_id]
+        if session[:user_id]
+            @current_user ||= User.find_by(id: session[:user_id])
+        end
     end
 
     # Check user has logged in before ? 
     def logged_in?
         current_user.present?
+    end
+
+    def current_user?(user)
+        user == current_user
+    end
+
+    def store_location
+        session[:forwarding_url] = request.original_url if request.get?
     end
     
 end

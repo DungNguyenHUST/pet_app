@@ -38,26 +38,24 @@
 							</nav>
 						</div>
 
-						<% if logged_in? %>
-							<div class="header_button_user">
-								<%= form_for :session, url: login_path do |f| %>
+						<%= form_for :session, url: login_path do |f| %>
+							<% if logged_in? %>
+								<div class="header_button_user">
 									<div class="user_icon_button">
-										<%= link_to '<button <i class="material-icons">person_outline</i> </button>'.html_safe, user_path(current_user) %>
+										<%= link_to '<button type="text" <i class="material-icons">person_outline</i> </button>'.html_safe, user_path(current_user) %>
 									</div>
-								<% end %>
-							</div>
-						<% else %>
-							<div class="header_button_login">
-								<%= form_for :session, url: login_path do |f| %>
+								</div>
+							<% else %>
+								<div class="header_button_login">
 									<div class="login_button">
-										<%= link_to '<button type="submit">Đăng nhập</button>'.html_safe, sessions_new_path %>
+										<%= link_to '<button type="text">Đăng nhập</button>'.html_safe, sessions_new_path %>
 									</div>
 
 									<div class="signup_button">
-										<%= link_to '<button type="submit">Đăng kí</button>'.html_safe, new_user_path %>
+										<%= link_to '<button type="text">Đăng kí</button>'.html_safe, new_user_path %>
 									</div>
-								<% end %>
-							</div>
+								</div>
+							<%end%>
 						<%end%>
 
 						<script>

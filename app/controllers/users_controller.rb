@@ -3,6 +3,7 @@ class UsersController < ApplicationController
     skip_before_action :require_login, only: [:new, :create]
     
     def index
+        @users = User.all
     end
 
     def new
@@ -11,10 +12,16 @@ class UsersController < ApplicationController
     
     def create
         @user = User.new user_params
-        if @user.save
-            redirect_to sessions_new_path
+        if @user.password == @user.password_confirmation
+            if @user.save
+                flash[:success] = "Đăng kí thành công"
+                redirect_to sessions_new_path
+            else
+                flash[:danger] = "Email này đã được đăng ký, hãy đăng nhập hoặc thử một email khác"
+                render :new
+            end
         else
-            flash[:success] = "Tên tài khoản hoặc mật khẩu không chính xác"
+            flash[:danger] = "Mật khẩu không khớp, vui lòng nhập lại"
             render :new
         end
     end
@@ -27,6 +34,11 @@ class UsersController < ApplicationController
         @user = User.find params[:id]
     end
 
+    def destroy
+        @user = User.find params[:id]
+        @user.destroy
+    end
+
     def update
         @user = User.update user_params
         redirect_to user_path(current_user)
@@ -34,6 +46,6 @@ class UsersController < ApplicationController
     
     private
     def user_params
-        params.require(:user).permit :name, :email, :password, :password_confirmation, :phone, :address, :cover_letter , :cover_letter_attach, :avatar
+        params.require(:user).permit :name, :email, :password, :password_confirmation, :phone, :address, :cover_letter , :cover_letter_attach, :avatar, :root, :admin, :user
     end
 end

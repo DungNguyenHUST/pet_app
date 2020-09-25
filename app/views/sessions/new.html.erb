@@ -5,43 +5,58 @@
     </head>
 
     <body>
-        <div class='body_content'>
-            <div class="user_signin_form">
-                <%= form_for :session, url: login_path do |f| %>
+        <div class='body_content_full'>
+            <div class='session_block'>
+                <div class="user_signin_form_left">
+                    <%= form_for :session, url: login_path do |f| %>
+                        <div class="user_signin_title">
+                            <t>Đăng nhập</t>
+                        </div>
 
+                        <div class="user_signin_content">
+                            <div class="user_signin_label">
+                                <t><%= f.label :email, "Địa chỉ email", class: "user_signin_label_name" %></t>
+                            </div>
+
+                            <div class="user_signin_input">
+                                <%= f.email_field :email, class: "user_signin_form_input", placeholder: "Nhập địa chỉ email của bạn" %>
+                            </div>
+                        </div>
+
+                        <div class="user_signin_content">
+                            <div class="user_signin_label">
+                                <t><%= f.label :password, "Mật khẩu", class: "user_signin_label" %></t>
+                            </div>
+                            
+                            <div class="user_signin_input">
+                                <%= f.password_field :password, class: "user_signin_form_input", placeholder: "Nhập mật khẩu của bạn" %>
+                            </div>
+                        </div>
+
+                        <div class="user_signin_submit">
+                            <%= f.submit "Đăng nhập", class: "user_signin_form_submit" %>
+                        </div>
+
+                        <p class="user_signin_loginhere">
+                            Bạn chưa có tài khoản? <%= link_to "Tạo tài khoản mới", new_user_path %>
+                        </p>
+
+                    <%end%>
+                </div>
+                <div class="user_signin_form_right">
                     <div class="user_signin_title">
-                        <t>Đăng nhập</t>
+                        <t>Hoặc</t>
                     </div>
-
-                    <div class="user_signin_content">
-                        <div class="user_signin_label">
-                            <t><%= f.label :name, "Tên hoặc địa chỉ email", class: "user_signin_label_name" %></t>
-                        </div>
-
-                        <div class="user_signin_input">
-                            <%= f.text_field :name, class: "user_signin_form_input", placeholder: "  Nhập tên hoặc email của bạn" %>
-                        </div>
+                    <div class="login_with_google">
+                        <%= link_to '<button type="text">Đăng nhập bằng Google</button>'.html_safe, sessions_new_path %>
                     </div>
-
-                    <div class="user_signin_content">
-                        <div class="user_signin_label">
-                            <t><%= f.label :password, "Mật khẩu", class: "user_signin_label" %></t>
-                        </div>
-                        
-                        <div class="user_signin_input">
-                            <%= f.password_field :password, class: "user_signin_form_input", placeholder: "  Nhập mật khẩu của bạn" %>
-                        </div>
+                    <div class="login_with_google">
+                        <%= link_to '<button type="text">Đăng nhập bằng Google</button>'.html_safe, sessions_new_path %>
                     </div>
-
-                    <div class="user_signin_submit">
-                        <%= f.submit "Đăng nhập", class: "user_signin_form_submit" %>
+                    <div class="login_with_google">
+                        <%= link_to '<button type="text">Đăng nhập bằng Google</button>'.html_safe, sessions_new_path %>
                     </div>
-
-                    <p class="user_signin_loginhere">
-                        Chưa có tài khoản? <%= link_to " Đăng ký", new_user_path %>
-                    </p>
-
-                <%end%>
+                </div>
             </div>
         </div>
     </body>

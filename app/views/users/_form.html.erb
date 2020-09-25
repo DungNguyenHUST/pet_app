@@ -5,68 +5,80 @@
     </head>
 
     <body>
-        <div class='body_content'>
-            <div class="user_add_new_form">
-                <%= form_for @user, html: {class: "form-horizontal"} do |f| %>
+        <div class='body_content_full'>
+            <div class="user_block">
+                <div class="user_add_new_form_left">
+                    <%= form_for @user, html: {class: "form-horizontal"} do |f| %>
 
+                        <div class="user_add_new_title">
+                            <t>Đăng ký tài khoản mới</t>
+                        </div>
+
+                        <div class="user_add_new_content">
+                            <div class="user_add_new_label">
+                                <t><%= f.label :name, "Họ và tên", class: "user_add_new_label_name" %></t>
+                            </div>
+
+                            <div class="user_add_new_input">
+                                <%= f.text_field :name, class: "user_add_new_form_input", placeholder: "Nhập họ và tên của bạn" %>
+                            </div>
+                        </div>
+
+                        <div class="user_add_new_content">
+                            <div class="user_add_new_label">
+                                <t><%= f.label :email, "Địa chỉ email", class: "user_add_new_label_name" %></t>
+                            </div>
+
+                            <div class="user_add_new_input">
+                                <%= f.email_field :email, class: "user_add_new_form_input", placeholder: "Nhập email của bạn" %>
+                            </div>
+                        </div>
+
+                        <div class="user_add_new_content">
+                            <div class="user_add_new_label">
+                                <t><%= f.label :password, "Mật khẩu", class: "user_add_new_label" %></t>
+                            </div>
+                            
+                            <div class="user_add_new_input">
+                                <%= f.password_field :password, class: "user_add_new_form_input", placeholder: "Nhập mật khẩu sử dụng từ 6 kí tự và kết hợp chữ cái, chữ số và biểu tượng" %>
+                            </div>
+                        </div>
+
+                        <div class="user_add_new_content">
+                            <div class="user_add_new_label">
+                                <t><%= f.label :password_confirmation, "Xác nhận mật khẩu", class: "user_add_new_label" %></t>
+                            </div>
+
+                            <div class="user_add_new_input">
+                                <%= f.password_field :password_confirmation, class: "user_add_new_form_input", placeholder: "Nhập lại mật khẩu" %>
+                            </div>
+                        </div>
+
+                        <div class="user_add_new_submit">
+                            <%= f.submit "Đăng ký", class: "user_add_new_form_submit" %>
+                        </div>
+
+                        <p class="user_add_new_loginhere">
+                            Đã có tài khoản? <%= link_to " Đăng nhập", sessions_new_path %>
+                        </p>
+
+                    <%end%>
+                </div>
+                
+                <div class="user_add_new_form_right">
                     <div class="user_add_new_title">
-                        <t>Đăng ký tài khoản mới</t>
+                        <t>Hoặc</t>
                     </div>
-
-                    <div class="user_add_new_content">
-                        <div class="user_add_new_label">
-                            <t><%= f.label :name, "Tên đăng nhập", class: "user_add_new_label_name" %></t>
-                        </div>
-
-                        <div class="user_add_new_input">
-                            <%= f.text_field :name, class: "user_add_new_form_input", placeholder: "  Nhập tên tên đăng nhập của bạn" %>
-                        </div>
+                    <div class="login_with_google">
+                        <%= link_to '<button type="text">Đăng kí bằng Google</button>'.html_safe, sessions_new_path %>
                     </div>
-
-                    <div class="user_add_new_content">
-                        <div class="user_add_new_label">
-                            <t><%= f.label :email, "Địa chỉ email", class: "user_add_new_label_name" %></t>
-                        </div>
-
-                        <div class="user_add_new_input">
-                            <%= f.text_field :email, class: "user_add_new_form_input", placeholder: "  Nhập email của bạn" %>
-                        </div>
+                    <div class="login_with_google">
+                        <%= link_to '<button type="text">Đăng kí bằng Google</button>'.html_safe, sessions_new_path %>
                     </div>
-
-                    <div class="user_add_new_content">
-                        <div class="user_add_new_label">
-                            <t><%= f.label :password, "Mật khẩu", class: "user_add_new_label" %></t>
-                        </div>
-                        
-                        <div class="user_add_new_input">
-                            <%= f.password_field :password, class: "user_add_new_form_input", placeholder: "  Nhập mật khẩu của bạn" %>
-                        </div>
+                    <div class="login_with_google">
+                        <%= link_to '<button type="text">Đăng kí bằng Google</button>'.html_safe, sessions_new_path %>
                     </div>
-
-                    <div class="user_add_new_content">
-                        <div class="user_add_new_label">
-                            <t><%= f.label :password_confirmation, "Xác nhận mật khẩu", class: "user_add_new_label" %></t>
-                        </div>
-
-                        <div class="user_add_new_input">
-                            <%= f.password_field :password_confirmation, class: "user_add_new_form_input", placeholder: "  Nhập lại mật khẩu" %>
-                        </div>
-                    </div>
-
-                    <div class="user_add_new_content_checkbox">
-                        <input type="checkbox" name="agree-term" id="agree-term" class="agree-term" />
-                        <label for="agree-term" class="label-agree-term"><span><span></span></span> Gửi cho tôi những thông tin mới nhất từ trang web</label>
-                    </div>
-
-                    <div class="user_add_new_submit">
-                        <%= f.submit "Đăng ký tài khoản", class: "user_add_new_form_submit" %>
-                    </div>
-
-                    <p class="user_add_new_loginhere">
-                        Đã có tài khoản? <%= link_to " Đăng nhập", sessions_new_path %>
-                    </p>
-
-                <%end%>
+                </div>
             </div>
         </div>
     </body>

@@ -132,14 +132,16 @@
                         </div>
                     <%end%>
 
-                    <%# add new template%>
-                    <div class="single_company">
-                        <div class="company_contents">
-                            <div class="new-company">
-                                <%= link_to '<button type="submit"> <i class="material-icons">add</i>Tạo công ty mới</button>'.html_safe, new_company_path %>
+                    <%if current_user.admin?%>
+                        <%# add new template%>
+                        <div class="single_company">
+                            <div class="company_contents">
+                                <div class="new-company">
+                                    <%= link_to '<button type="submit"> <i class="material-icons">add</i>Tạo công ty mới</button>'.html_safe, new_company_path %>
+                                </div>
                             </div>
                         </div>
-                    </div>
+                    <%end%>
                 </div>
             </div>
             <div class="resume_upload">
