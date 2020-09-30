@@ -2,6 +2,7 @@
 <html>
     <head>
         <meta name='viewport' content='width=device-width, initial-scale=1'>
+        <script src="http://code.jquery.com/jquery-1.7.min.js"></script>
     </head>
 
     <body>
@@ -9,8 +10,25 @@
             <div class="home_page">
                 <div class="home_search_bar">
                     <div class="home_search_bar_label">
-                        <h3>Tìm kiếm công việc phù hợp với bạn</h3>
-                        <span>Giúp bạn hiểu rõ về công ty trước khi đưa ra quyết định. Quá trình phỏng vấn sẽ dễ dàng hơn bao giờ hết.</span>
+                        <h3>Tìm kiếm <span class="textbox">công việc</span> phù hợp với bạn</h3>
+                        <script>
+                            $(document).ready(function() {
+
+                            // List your words here:
+                            var words = [
+                                'công ty',
+                                'công việc',
+                                'công ty',
+                                ], i = 0;
+
+                            setInterval(function(){
+                                $('.textbox').fadeOut(500, function(){
+                                    $(this).html(words[i=(i+1)%words.length]).fadeIn(500);
+                                });
+                            }, 5000);
+
+                            });
+                        </script>
                     </div>
                     <%=form_tag companies_path, :method => "get" do%>
                         <div class="home_search_form_text">
@@ -25,9 +43,20 @@
                             <%= submit_tag "Tìm kiếm ", :name => nil, class: 'search_button'%>
                         </div>
                     <%end%>
+
+                    <%# <div class="searh_refer">
+                        <button type="text"> IT</button>
+                        <button type="text"> Nhân viên văn phòng</button>
+                        <button type="text"> Sale</button>
+                        <button type="text"> Nhân viên kinh doanh</button>
+                        <button type="text"> Nhân viên bán hàng</button>
+                        <button type="text"> Hà Nội</button>
+                    </div> %>
+
                 </div>
                 <div class="home_top_company">
                     <div class="home_top_company_label">
+                        <%# <div class="separator">Top công ty được yêu thích</div> %>
                         <t>Top công ty được yêu thích</t>
                     </div>
                     <div class="home_top_company_index">
@@ -117,6 +146,7 @@
                 </div>
                 <div class="home_top_job">
                     <div class="home_top_job_label">
+                        <%# <div class="separator">Việc làm mới dành cho bạn</div> %>
                         <t>Việc làm mới dành cho bạn</t>
                     </div>
 
@@ -140,7 +170,11 @@
                                             <strong><%= link_to (company_job.title), company_company_job_path(company, company_job) %></strong>
                                         </div>
 
-                                        <div class="user_job_description">
+                                        <div class="user_job_company">
+                                            <h3><%= company.name %></h3>
+                                        </div>
+
+                                        <div class="user_job_des">
                                             <t><%= company_job.description %></t>
                                         </div>
 
@@ -157,9 +191,9 @@
                                         </div>
                                         
                                         
-                                        <div class="apply_job_button">
+                                        <%# <div class="apply_job_button">
                                             <%= link_to '<button type="submit">Ứng tuyển</button>'.html_safe, new_company_apply_job_path(company.id, company_job.id)%>
-                                        </div>
+                                        <%# </div> %> 
                                     </div>
                                 </div>
                             <%end%>

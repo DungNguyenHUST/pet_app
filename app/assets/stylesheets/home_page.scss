@@ -29,14 +29,62 @@
                 color: #2d2d2d;
                 line-break: auto;
             }
+            span.textbox{
+                color: #feb100;
+                font-size: 50px;
+                text-shadow: -0.1px -0.1px 0 #feb100, 0.1px -0.1px 0 #feb100;
+                // padding-left: 10px;
+                // padding-right: 10px;
+            }
             margin-bottom: 60px;
         }
         .home_search_form_text{
-            border: 1px solid #dfe1e5;
+            // border: 1px solid #dfe1e5;
             border-radius: 2px;
+            box-shadow: 0 1px 4px 0 rgba(60, 60, 60, 0.1), 0 2px 4px 0 rgba(30, 30, 30, 0.09);
             .home_search_input{
                 padding: 5px;
                 width: 600px;
+                height: 40px;
+                border: none;
+                outline: none;
+                border-radius: 2px;
+                font-size: 14px;
+                // box-shadow: 0 1px 4px 0 rgba(60, 60, 60, 0.1), 0 2px 4px 0 rgba(30, 30, 30, 0.09);
+                @media screen and (max-width: 600px)
+                {
+                    width: 90%;
+                    height: 40px;
+                }
+                &:hover{
+                    // box-shadow: 0 1px 4px 0 rgba(60, 60, 60, 0.1), 0 2px 4px 0 rgba(30, 30, 30, 0.09);
+                }
+            }
+            @media screen and (min-width: 600px)
+            {
+                float: left;
+            }
+            i{
+                font-size: 28px;
+                color: #666;
+                position: relative;
+                top: 10px;
+            }
+        }
+
+        .home_search_form_address{
+            // border: 1px solid #dfe1e5;
+            box-shadow: 0 1px 4px 0 rgba(60, 60, 60, 0.1), 0 2px 4px 0 rgba(30, 30, 30, 0.09);
+            border-radius: 2px;
+            margin-left: 5px;
+            @media screen and (max-width: 600px)
+            {
+                margin-top: 10px;
+                margin-left: 0px;
+            }
+            .home_search_input{
+                padding: 5px;
+                width: 240px;
                 height: 40px;
                 border: none;
                 outline: none;
@@ -56,45 +104,8 @@
                 float: left;
             }
             i{
-                font-size: 30px;
-                color: #555555;
-                position: relative;
-                top: 10px;
-            }
-        }
-
-        .home_search_form_address{
-            border: 1px solid #dfe1e5;
-            border-radius: 2px;
-            margin-left: 5px;
-            @media screen and (max-width: 600px)
-            {
-                margin-top: 10px;
-                margin-left: 0px;
-            }
-            .home_search_input{
-                padding: 5px;
-                width: 240px;
-                height: 40px;
-                border: none;
-                outline: none;
-                border-radius: 2px;
-                @media screen and (max-width: 600px)
-                {
-                    width: 90%;
-                    height: 40px;
-                }
-                &:hover{
-                    // box-shadow: 0 1px 4px 0 rgba(60, 60, 60, 0.1), 0 2px 4px 0 rgba(30, 30, 30, 0.09);
-                }
-            }
-            @media screen and (min-width: 600px)
-            {
-                float: left;
-            }
-            i{
-                font-size: 30px;
-                color: #555555;
+                font-size: 25px;
+                color: #666;
                 position: relative;
                 top: 10px;
             }
@@ -104,10 +115,10 @@
             .search_button{
                 margin-left: 5px;
                 width: 200px;
-                height: 52px;
+                height: 50px;
                 border-radius: 2px;
                 border: none;
-                background-color: #1877f2;
+                background-color: #0071e3;
                 color: #fff;
                 font-size: 16px;
                 @media screen and (max-width: 600px)
@@ -145,6 +156,22 @@
             }
             font-size: 33px;
             font-weight: 500;
+            .separator {
+                display: flex;
+                align-items: center;
+                text-align: center;
+            }
+            .separator::before, .separator::after {
+                content: '';
+                flex: 1;
+                border-bottom: 1px solid #cfcfcf;
+            }
+            .separator::before {
+                margin-right: .25em;
+            }
+            .separator::after {
+                margin-left: .25em;
+            }
         }
 
         .home_top_company_index{
@@ -204,7 +231,7 @@
                             position: relative;
                             margin-right: 0px;
                             &:hover{
-                                color: #4284f4;
+                                color: #0071e3;
                             }
                         }
             
@@ -363,9 +390,25 @@
             //         position: relative;
             //         top: 5px;
             //         margin-right: 5px;
-            //         color: #4284f4;
+            //         color: #0071e3;
             //     }
             // }
+            .separator {
+                display: flex;
+                align-items: center;
+                text-align: center;
+            }
+            .separator::before, .separator::after {
+                content: '';
+                flex: 1;
+                border-bottom: 1px solid #bebebe;
+            }
+            .separator::before {
+                margin-right: .25em;
+            }
+            .separator::after {
+                margin-left: .25em;
+            }
         }
 
         .home_top_job_des{
@@ -373,14 +416,14 @@
             .user_job_block {
                 clear: left;
                 width: 48.4%;
-                height: 280px;
+                height: 200px;
                 margin-bottom: 20px;
                 margin-right: 20px;
                 border-radius: 2px;
                 padding: 0px !important;
                 float: left;
                 background-color: #fff;
-                border: 1px solid #f0e9e9;
+                border: 1px solid #dfdedc;
                 
                 @media screen and (max-width: 600px)
                 {
@@ -431,7 +474,7 @@
                             text-decoration: none !important ;
                         }
                         font-size: 20px;
-                        margin-bottom: 20px;
+                        // margin-bottom: 10px;
                         overflow: hidden;
                         text-overflow: ellipsis;
                         display: -webkit-box;
@@ -444,31 +487,43 @@
                         }
                     }
             
-                    .user_job_description{
+                    .user_job_company{
                         overflow: hidden;
                         text-overflow: ellipsis;
                         display: -webkit-box;
-                        -webkit-line-clamp: 5; /* number of lines to show */
+                        -webkit-line-clamp: 2; /* number of lines to show */
                         -webkit-box-orient: vertical;
-                        font-size: 15px;
-                        min-height: 85px;
+                        font-size: 14px;
+                        // min-height: 20px;
                         padding-right: 10px;
                         @media screen and (max-width: 600px)
                         {
                             display: none;
                         }
                     }
+
+                    .user_job_des{
+                        overflow: hidden;
+                        text-overflow: ellipsis;
+                        display: -webkit-box;
+                        -webkit-line-clamp: 2; /* number of lines to show */
+                        -webkit-box-orient: vertical;
+                        font-size: 14px;
+                        min-height: 20px;
+                        padding-right: 10px;
+                        color: #444;
+                    }
                     .user_job_location{
                         margin-top: 20px;
                         float: left;
-                        font-size: 14px;
+                        font-size: 13px;
                         width: 36%;
                         @media screen and (max-width: 600px)
                         {
                             margin-top: 10px;
                         }
                         i{
-                            font-size: 20px;
+                            font-size: 18px;
                             margin-right: 5px;
                             color: #8a8888;
                             position: relative;
@@ -479,7 +534,7 @@
                     .user_job_salary{
                         margin-top: 20px;
                         width: 33%;
-                        font-size: 14px;
+                        font-size: 13px;
                         color: #4fb87b;
                         float: left;
                         @media screen and (max-width: 600px)
@@ -489,7 +544,7 @@
                         i{
                             margin-left: 20px;
                             margin-right: 5px;
-                            font-size: 20px;
+                            font-size: 18px;
                             color: #8a8888;
                             position: relative;
                             top: 5px;
@@ -497,7 +552,7 @@
                     }
                     
                     .user_job_date{
-                        font-size: 14px;
+                        font-size: 13px;
                         color: #8a8888;
                         display: inline;
                         position: relative;
@@ -511,7 +566,7 @@
                         i{
                             margin-left: 20px;
                             margin-right: 5px;
-                            font-size: 20px;
+                            font-size: 18px;
                             color: #8a8888;
                             position: relative;
                             top: 5px;
@@ -530,14 +585,14 @@
                             // padding: 6px;
                             height: 33px;
                             width: 150px;
-                            background: #1877f2;
+                            background: #0071e3;
                             font-size: 14px;
                             border: none;
                             border-radius: 2px;
                             cursor: pointer;
                             text-align: center;
                             &:hover{
-                                background-color: #4284f4;
+                                background-color: #0071e3;
                             }
                             position: relative;
                             left: -10px;

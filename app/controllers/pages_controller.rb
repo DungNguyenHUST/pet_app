@@ -1,6 +1,6 @@
 class PagesController < ApplicationController
     def index
-        @user = User.new
+        @users = User.all
         @companies = Company.all
         @company_jobs = CompanyJob.all
         @company_reviews = CompanyReview.all

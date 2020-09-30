@@ -13,6 +13,15 @@
                     </div>
 
                     <div class="new_problem_section">
+                        <div class="new_problem_content">
+                            <div class="new_problem_label">
+                                <t><%= f.label :category, "Lĩnh vực chính", class: "new_problem_label_name" %></t>
+                            </div>
+
+                            <div class="new_problem_input">
+                                <%= f.select(:category, options_for_select(['Thuật toán','Câu hỏi phỏng vấn','IQ test', 'Câu hỏi khác'], "Câu hỏi khác"), {include_blank: true}, { :class => 'my_style_class' }) %>
+                            </div>
+                        </div>
 
                         <div class="new_problem_content">
                             <div class="new_problem_label">
@@ -20,7 +29,7 @@
                             </div>
 
                             <div class="new_problem_input">
-                                <%= f.select(:difficult, ['Dễ','Trung bình','Khó'], {include_blank: true}, { :class => 'my_style_class' }) %>
+                                <%= f.select(:difficult, options_for_select(['Dễ','Trung bình','Khó'], "Dễ"), {include_blank: true}, { :class => 'my_style_class' }) %>
                             </div>
                         </div>
 

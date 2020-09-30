@@ -11,7 +11,7 @@ class ProblemsController < ApplicationController
     def create
         @problem = Problem.new(problem_param)
 
-        @problem.user_name = @current_user.name
+        # @problem.user_name = @current_user.name
 
         if @problem.save
             redirect_to problems_path
@@ -43,6 +43,6 @@ class ProblemsController < ApplicationController
     private
     # define param for each problem
     def problem_param
-        params.require(:problem).permit(:title, :problem_content, :difficult)
+        params.require(:problem).permit(:title, :problem_content, :difficult, :category)
     end
 end

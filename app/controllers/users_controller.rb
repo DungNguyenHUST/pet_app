@@ -1,6 +1,6 @@
 class UsersController < ApplicationController
 
-    skip_before_action :require_login, only: [:new, :create]
+    # skip_before_action :require_login, only: [:new, :create]
     
     def index
         @users = User.all
@@ -40,8 +40,13 @@ class UsersController < ApplicationController
     end
 
     def update
-        @user = User.update user_params
-        redirect_to user_path(current_user)
+        @user = User.find params[:id]
+        if(@user.update(user_params))
+            flash[:success] = "Update thành công"
+            redirect_to user_path(current_user)
+        else
+            flash[:danger] = "Không thể update thông tin, vui lòng thử lại"
+        end
     end
     
     private
