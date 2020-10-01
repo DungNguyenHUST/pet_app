@@ -16,22 +16,28 @@
 
                             <div class="new_category_math">
                                 <form action="/action_page.php">
-                                    <%= link_to '<button type="submit">Thuật toán</button>'.html_safe, new_problem_path %>
+                                    <%= link_to '<button type="submit"><i class="material-icons checked">filter_alt</i>Thuật toán</button>'.html_safe, new_problem_path %>
                                 </form>
                             </div>
                             <div class="new_category_interview">
                                 <form action="/action_page.php">
-                                    <%= link_to '<button type="submit">Câu hỏi phỏng vấn</button>'.html_safe, new_problem_path %>
+                                    <%= link_to '<button type="submit"><i class="material-icons checked">people</i>Câu hỏi phỏng vấn</button>'.html_safe, new_problem_path %>
                                 </form>
                             </div>
                             <div class="new_category_test">
                                 <form action="/action_page.php">
-                                    <%= link_to '<button type="submit">Bài test mẫu</button>'.html_safe, new_problem_path %>
+                                    <%= link_to '<button type="submit"><i class="material-icons checked">model_training</i>Bài test mẫu</button>'.html_safe, new_problem_path %>
                                 </form>
                             </div>
                             <div class="new_category_qa">
                                 <form action="/action_page.php">
-                                    <%= link_to '<button type="submit">Câu hỏi khác</button>'.html_safe, new_problem_path %>
+                                    <%= link_to '<button type="submit"><i class="material-icons checked">wysiwyg</i>Câu hỏi khác</button>'.html_safe, new_problem_path %>
+                                </form>
+                            </div>
+
+                            <div class="new_category_discuss">
+                                <form action="/action_page.php">
+                                    <%= link_to '<button type="submit"><i class="material-icons checked">record_voice_over</i>Chia sẻ thảo luận</button>'.html_safe, new_problem_path %>
                                 </form>
                             </div>
                         </div>
@@ -106,6 +112,16 @@
                         </div>
                         <div class="problem_company">
                             <t><i class="material-icons">business</i>Câu hỏi theo công ty</t>
+                            <div class="problem_short">
+                                <%i = 0%>
+                                <% @problems.each do |problem| %>
+                                    <%i += 1%>
+                                    <%break if i > 10%>
+                                    <div class="problem_label">
+                                        <%= link_to problem.title, problem_path(problem) %>
+                                    </div>
+                                <% end %>
+                            </div>
                         </div>
                     </div>
                 </div>
