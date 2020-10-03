@@ -25,7 +25,12 @@
         padding-top: 75px;
         padding-left: 12%;
         padding-right: 12%;
-        height: 400px;
+        min-height: 400px;
+        @media screen and (max-width: 600px){
+            padding-left: 3%;
+            padding-right: 3%;
+            min-height: 600px;
+        }
         .company_search_bar_label
         {
             text-align: center;
@@ -47,18 +52,28 @@
             background-color: #fff;
             padding: 0px !important;
             margin: 0px !important;
+            @media screen and (max-width: 600px){
+                // width: 440px;
+                margin-left: 3%;
+                padding-right: 3%;
+                width: 96%;
+                height: 60px;
+            }
             .company_search_input{
                 font-size: 14px;
-                position: relative;
+                // position: relative;
                 padding: 5px;
-                height: 40px;
-                width: 880px;
-                @media screen and (max-width: 600px){
-                    width: 440px;
-                }
+                height: 45px;
+                width: 63em;
                 border: none;
-                top: -2px;
+                // top: -2px;
                 outline: none;
+                
+                @media screen and (max-width: 600px){
+                    // width: 440px;
+                    width: 26em;
+                    height: 50px;
+                }
             }
             i{
                 position: relative;
@@ -78,6 +93,14 @@
                 font-size: 18px;
                 color: #fff;
                 margin-left: 10px;
+                
+                @media screen and (max-width: 600px){
+                    // width: 440px;
+                    width: 97%;
+                    height: 60px;
+                    margin-top: 20px;
+                    margin-left: 0px;
+                }
             }
         }
     }
@@ -95,12 +118,17 @@
         border-top: 5px solid #feb100;
         // padding-top: 20px;
         padding-left: 10px;
+        @media screen and (max-width: 600px){
+            padding-left: 0px;
+        }
         border-radius: 2px;
         margin-top: 30px;
         .company_current_review_title{
             margin-top: 25px;
             font-size: 25px;
-            float: left;
+            @media screen and (min-width: 600px){
+                float: left;
+            }
             i {
                 font-size: 30px;
                 margin: 3px;
@@ -113,9 +141,19 @@
         .company_current_review_rating{
             margin-right: 20px;
             margin-top: 20px;
-            float: right;
+            @media screen and (min-width: 600px){
+                float: right;
+            }
             background-color: #fffbde;
             border-radius: 10px;
+            
+            @media screen and (max-width: 600px){
+                margin-top: 40px;
+                width: 100%;
+                margin-left: 0px;
+                text-align: center;
+            }
+
             i {
                 font-size: 40px;
                 margin: 5px;
@@ -158,6 +196,11 @@
         //         color: #1a73e8;
         //     }
         // }
+        @media screen and (max-width: 600px){
+            margin-top: 100px;
+            width: 100%;
+        }
+
     }
 
     .section_arange{
@@ -173,7 +216,7 @@
             display: block;
             width: 17.7%;
             @media screen and (max-width: 600px){
-                width: 100%;
+                width: 94%;
                 margin-top: 10px;
             }
             height: 350px;
@@ -203,7 +246,7 @@
                 @media screen and (max-width: 600px){
                     max-width: 120px;
                     max-height: 120px;
-                    margin-left: 25%;
+                    margin-left: 20%;
                 }
                 display: block;
                 float: left;
@@ -596,17 +639,27 @@
                     display: block;
                     margin-bottom: 30px;
                     .company_job_label{
-                        font-size: 16px;
+                        a{
+                            border-bottom: 3px solid #feb100;
+                            font-size: 22px;
+                            padding-top: 5px;
+                            padding-bottom: 5px;
+                            font-weight: 500;
+                            // padding-left: 15px;
+                            padding-right: 5px;
+                            color: #444;
+                        }
                     }
                     .company_job_des{
-                        margin-top: 20px;
+                        margin-top: 30px;
                         margin-bottom: 20px;
                         border-top: 1px solid #e3e5e9;
                         .company_job_block{
                             // border-top: 1px solid #e3e5e9;
                             border-bottom: 1px solid #e3e5e9;
-                            padding-top: 10px;
-                            padding-bottom: 15px;
+                            padding-top: 20px;
+                            padding-bottom: 10px;
+                            min-height: 60px;
                             .company_avatar{
                                 img{
                                     max-width: 60px;
@@ -655,7 +708,16 @@
                 display: block;
                 margin-bottom: 30px;
                 .company_job_label{
-                    font-size: 16px;
+                    a{
+                        border-bottom: 3px solid #feb100;
+                        font-size: 22px;
+                        padding-top: 5px;
+                        padding-bottom: 5px;
+                        font-weight: 500;
+                        // padding-left: 15px;
+                        padding-right: 5px;
+                        color: #444;
+                    }
                 }
                 .company_job_des{
                     margin-top: 20px;
@@ -664,8 +726,9 @@
                     .company_job_block{
                         // border-top: 1px solid #e3e5e9;
                         border-bottom: 1px solid #f0f1f3;
-                        padding-top: 10px;
+                        padding-top: 20px;
                         padding-bottom: 15px;
+                        min-height: 60px;
                         .company_avatar{
                             img{
                                 max-width: 60px;

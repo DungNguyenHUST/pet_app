@@ -22,7 +22,7 @@
                         </div>
 
                         <div class="post_count">
-                            <strong><%= @post.post_comments.count%> Bình luận</strong>
+                            <span><%= @post.post_comments.count%> Bình luận</span>
                         </div>
 
                         <%= form_for [@post, PostComment.new] do |f| %>
@@ -42,7 +42,7 @@
                     </div>
                     <div class="post_area_right">
                         <div class="post_area_right_title">
-                            <t>Xem thêm</t>
+                            <span>Xem thêm</span>
                         </div>
                         <% @posts.each do |post| %>
                             <div class="post_container">

@@ -6,10 +6,53 @@
 
     <body>
         <div class='body_content'>
-            <%- model_class = Post -%>
-                <% @posts.each do |post| %>
-                    <div class="post_container">
+            <div class="post_new_container">
+                <div class="post_label">
+                    <span>Blog</span>
+                </div>
+                    <% @posts.each do |post| %>
+                        <div class="post_block">
+                            <div class="post_left">
+                                <div class="post_cover">
+                                    <img src="<%= "/assets/illustration.png" %>" alt="Snow" style="width:100%;">
+                                </div>
+                            </div>
 
+                            <div class="post_right">
+                                <div class="post_header">
+                                    <strong><%= link_to (post.title), post_path(post) %></strong>
+                                </div>
+
+                                <div class="post_info">
+                                    <div class="post_username">
+                                        <i class="material-icons">person_outline</i><strong><%=post.username%></strong> . <span><%=time_ago_in_words(post.created_at)%></span>
+                                    </div>
+                                </div>
+
+                                <div class="post_content">
+                                    <span><%=post.content%></span>
+                                </div>
+
+                                <div class="post_view">
+                                    <%= link_to '<button type="submit"> Đọc tiếp <i class="material-icons">chevron_right</i></button>'.html_safe, post_path(post) %>
+                                </div>
+                            </div>
+                        </div>
+                    <% end %>
+
+                    <%# New button %>
+                    <div class="new_post">
+                        <%= link_to '<button type="submit"><i class="material-icons">create</i>Tạo một post mới</button>'.html_safe, new_post_path %>
+                    </div>
+            </div>
+
+            <div class="post_most_container">
+                <div class="post_most_visit_label">
+                    <span>Tin nổi bật</span>
+                </div>
+                
+                <% @posts.each do |post| %>
+                    <div class="post_block">
                         <div class="post_left">
                             <div class="post_cover">
                                 <img src="<%= "/assets/illustration.png" %>" alt="Snow" style="width:100%;">
@@ -20,28 +63,15 @@
                             <div class="post_header">
                                 <strong><%= link_to (post.title), post_path(post) %></strong>
                             </div>
-
+                            
                             <div class="post_info">
                                 <div class="post_username">
-                                    <i class="material-icons">person_outline</i><strong><%=post.username%></strong> . <span><%=time_ago_in_words(post.created_at)%></span>
+                                    <strong><%=post.username%></strong> . <span><%=time_ago_in_words(post.created_at)%></span>
                                 </div>
-                            </div>
-
-                            <div class="post_content">
-                                <span><%=post.content%></span>
-                            </div>
-
-                            <div class="post_view">
-                                <%= link_to '<button type="submit"> Đọc thêm <i class="material-icons">chevron_right</i></button>'.html_safe, post_path(post) %>
                             </div>
                         </div>
                     </div>
-                <% end %>
-
-                <%# New button %>
-                <div class="new_post">
-                    <%= link_to '<button type="submit">Tạo một post mới</button>'.html_safe, new_post_path %>
-                </div>
+                <%end%>
             </div>
         </div>
     </body>

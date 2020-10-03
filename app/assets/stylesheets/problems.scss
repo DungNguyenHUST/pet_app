@@ -8,6 +8,11 @@
 .problem_container{
     padding-left: 3%;
     width: 70%;
+    @media screen and (max-width: 600px){
+        padding-left: 3%;
+        padding-right: 3%;
+        width: 100%;
+    }
     .problem_left
     {
         float: left;
@@ -18,6 +23,10 @@
             padding-left: 0px;
             margin-bottom: 20px;
             margin-top: 20px;
+            @media screen and (max-width: 600px){
+                width: 94%;
+                min-height: 400px;
+            }
             .problem_header{
                 margin-bottom: 10px;
                 font-size: 30px;
@@ -32,6 +41,9 @@
                 padding-top: 30px;
                 float: left;
                 margin-right: 20px;
+                @media screen and (max-width: 600px){
+                    width: 40%;
+                }
                 button{
                     width: 190px;
                     height: 100px;
@@ -159,6 +171,9 @@
             margin-bottom: 60px;
             border-bottom: 2px dashed #dfdedc;
             .short_des{
+                @media screen and (max-width: 600px){
+                    display: none;
+                }
                 float: left;
                 margin-top: 10px;
                 border: none;
@@ -175,6 +190,11 @@
                 }
             }
             .new_problem button {
+                @media screen and (max-width: 600px){
+                    // float: right;
+                    float: none;
+                    width: 40%;
+                }
                 float: right;
                 height: 50px;
                 width: 200px;
@@ -304,6 +324,7 @@
                     margin-left: 20px;
                 }
                 .table_td_title{
+                    font-size: 16px;
                     width: 600px;
                     display: flex;
                     font-weight: 600px;
@@ -318,12 +339,16 @@
                 .table_td_date{
                     width: 120px;
                     margin-right: 10px;
+                    font-size: 14px;
                 }
             }
         }
     }
 
     .problem_right{
+        @media screen and (max-width: 600px){
+            display: none;
+        }
         padding-right: 3.5%;
         margin-left: 101%;
         width: 28%;
@@ -337,7 +362,7 @@
             min-height: 500px;
             padding: 10px;
             font-size: 22px;
-            font-weight: 400;
+            font-weight: 500;
             color: #feb100;
             border: 2px solid #dfe1e5;
             i{
@@ -350,7 +375,7 @@
                 padding-top: 20px;
                 .problem_label{
                     padding: 10px;
-                    font-size: 15px;
+                    font-size: 16px;
                     border-top: 1px solid #dfe1e5;
                     min-height: 40px;
                     a:link{
@@ -385,7 +410,7 @@
                 padding-top: 20px;
                 .problem_label{
                     padding: 10px;
-                    font-size: 15px;
+                    font-size: 16px;
                     border-top: 1px solid #dfe1e5;
                     min-height: 40px;
                     a:link{
@@ -490,7 +515,7 @@
             {
                 margin-bottom: 50px;
                 .new_problem_solution_right_title{
-                    font-size: 22px;
+                    font-size: 24px;
                     font-weight: 500;
                     color: #161e2e;
                     text-align: center;
@@ -505,7 +530,7 @@
                     .new_problem_solution_right_content{
                         .new_problem_solution_right_label_title{
                             font-weight: 600;
-                            font-size: 14px;
+                            font-size: 16px;
                             color: #161e2e;
                             text-align: left;
                             margin-bottom: 10px;
@@ -529,7 +554,7 @@
 
                         .new_problem_solution_right_label{
                             font-weight: 600;
-                            font-size: 14px;
+                            font-size: 16px;
                             color: #161e2e;
                             text-align: left;
                             margin-bottom: 10px;
@@ -562,7 +587,7 @@
                         border-radius: 2px;
                         padding: 6px;
                         background: #1a73e8;
-                        font-size: 14px;
+                        font-size: 16px;
                         border: none;
                         cursor: pointer;
                         text-align: center;

@@ -123,19 +123,19 @@
         
         <div class="reply_interview_content">
             <%if company_interview.company_reply_interviews.count > 0%>
-                <button class="show_hide_reply_btn_show" onclick="myFunctionReplyInterviewShowHide()">Xem thêm <%=company_interview.company_reply_interviews.count%> trả lời...</button>
+                <%# <button class="show_hide_reply_btn_show" onclick="myFunctionReplyInterviewShowHide()">Xem thêm <%=company_interview.company_reply_interviews.count trả lời...</button> %>
                 <div class="interview_reply" id = "mydivShowHide">
                     <%= render company_interview.company_reply_interviews %>
                 </div>
             <%end%>
             <script>
                 function myFunctionReplyInterviewShowHide() {
-                    var x = document.getElementById("mydivShowHide");
-                    if (x.style.display == "none") {
-                        x.style.display = "block";
-                    } else {
-                        x.style.display = "none";
-                    }
+                    // var x = document.getElementById("mydivShowHide");
+                    // if (x.style.display == "none") {
+                    //     x.style.display = "block";
+                    // } else {
+                    //     x.style.display = "none";
+                    // }
                 }
             </script>
         </div>

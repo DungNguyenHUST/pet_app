@@ -38,7 +38,7 @@
                     </div>
 
                     <div class="user_problem_solution_time">
-                        <t><%= problem_solution.user_name %> lúc <%= time_ago_in_words(problem_solution.created_at) %></t>
+                        <t><%= problem_solution.user_name %> . <%= time_ago_in_words(problem_solution.created_at) %></t>
                     </div>
                 </div>
 
@@ -72,20 +72,20 @@
             </div>
             <div class="reply_problem_solution_content">
                 <%if problem_solution.problem_reply_solutions.count > 0%>
-                    <button class="show_hide_reply_btn_show" onclick="myFunctionReplyproblem_solutionShowHide()"><i class="material-icons">keyboard_arrow_down</i></button>
-                    <button class="show_hide_reply_btn_hide" onclick="myFunctionReplyproblem_solutionShowHide()"><i class="material-icons">keyboard_arrow_up</i></button>
+                    <%# <button class="show_hide_reply_btn_show" onclick="myFunctionReplyproblem_solutionShowHide()"><i class="material-icons">keyboard_arrow_down</i></button> %>
+                    <%# <button class="show_hide_reply_btn_hide" onclick="myFunctionReplyproblem_solutionShowHide()"><i class="material-icons">keyboard_arrow_up</i></button> %>
                     <div class="problem_solution_reply" id = "mydivShowHide">
                         <%= render problem_solution.problem_reply_solutions %>
                     </div>
                 <%end%>
                 <script>
                     function myFunctionReplyproblem_solutionShowHide() {
-                        var x = document.getElementById("mydivShowHide");
-                        if (x.style.display == "none") {
-                            x.style.display = "block";
-                        } else {
-                            x.style.display = "none";
-                        }
+                        // var x = document.getElementById("mydivShowHide");
+                        // if (x.style.display == "none") {
+                        //     x.style.display = "block";
+                        // } else {
+                        //     x.style.display = "none";
+                        // }
                     }
                 </script>
             </div>
