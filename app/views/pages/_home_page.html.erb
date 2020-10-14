@@ -29,15 +29,16 @@
 
                             });
                         </script>
+                        <%# <span>Một công viêc</span> %>
                     </div>
                     <%=form_tag companies_path, :method => "get" do%>
                         <div class="home_search_form_text">
-                            <%= text_field_tag :search, params[:search], class: 'home_search_input', placeholder: "Tìm kiếm theo công việc, kĩ năng hoặc tên công ty" %>
                             <i class="material-icons checked">search</i>
+                            <%= text_field_tag :search, params[:search], class: 'home_search_input', placeholder: "Tìm kiếm theo công việc, kĩ năng hoặc tên công ty" %>
                         </div>
                         <div class="home_search_form_address">
-                            <%= text_field_tag :search, params[:search], class: 'home_search_input', placeholder: "Địa điểm"%>
                             <i class="material-icons checked">place</i>
+                            <%= text_field_tag :search, params[:search], class: 'home_search_input', placeholder: "Địa điểm"%>
                         </div>
                         <div class="home_search_button">
                             <%= submit_tag "Tìm kiếm ", :name => nil, class: 'search_button'%>
@@ -57,46 +58,48 @@
                 <div class="home_top_company">
                     <div class="home_top_company_label">
                         <%# <div class="separator">Top công ty được yêu thích</div> %>
-                        <t>Top công ty được yêu thích</t>
+                        <span>Top công ty được yêu thích</span>
                     </div>
                     <div class="home_top_company_index">
                         <%i = 0%>
                         <% @companies.each do |company| %>
                             <%i += 1%>
-                            <%break if i > 15%>
+                            <%break if i > 12%>
                             <div class="single_company">
+
+                                <div class="company_wall">
+                                    <%if company.wall_picture.attached?%>
+                                        <%= link_to (image_tag(company.wall_picture)), image_path(url_for(company.wall_picture)), rel: "gallery" , :href => company_path(company)%>
+                                    <%end%>
+                                </div>
+
                                 <div class="company_thumbnail">
                                     <%if company.avatar.attached?%>
                                         <%= link_to (image_tag(company.avatar)), image_path(url_for(company.avatar)), rel: "gallery" , :href => company_path(company)%>
                                     <%end%>
                                 </div>
 
-                                <div class="company_love_button">
+                                <%# <div class="company_love_button">
                                     <%= link_to '<button type="button"><i class="material-icons">favorite_border</i></button>'.html_safe, company_path(company) %>
-                                </div>
+                                <%# </div> %>
 
-                                <div class="company_name">
-                                    <t> <%= link_to company.name, company_path(company), class: "company_name_label" %></t>
-                                </div>
-                                
-                                <div class="company_summary">
-                                    <%# Cal culate rating score %>
-                                    <%if(company.company_reviews.count > 0)%>
-                                        <%rate_work_env = company.company_reviews.sum('work_env_score').to_f / company.company_reviews.count%>
-                                        <%rate_salary = company.company_reviews.sum('salary_score').to_f / company.company_reviews.count%>
-                                        <%rate_ot = company.company_reviews.sum('ot_score').to_f / company.company_reviews.count%>
-                                        <%rate_manager = company.company_reviews.sum('manager_score').to_f / company.company_reviews.count%>
-                                        <%rate_career = company.company_reviews.sum('career_score').to_f / company.company_reviews.count%>
-                                        <%total_rate = (rate_work_env + rate_salary + rate_ot + rate_manager + rate_career)/5%>
-                                    <%else%>
-                                        <%total_rate = 0%>
-                                    <%end%>
-
-                                    <div class="company_location">
-                                        <p><i class="material-icons">place</i> <%= company.location %></p>
+                                <div class="company_title">
+                                    <div class="company_name">
+                                        <t> <%= link_to company.name, company_path(company), class: "company_name_label" %></t>
                                     </div>
 
                                     <div class="company_rating">
+                                        <%# Cal culate rating score %>
+                                        <%if(company.company_reviews.count > 0)%>
+                                            <%rate_work_env = company.company_reviews.sum('work_env_score').to_f / company.company_reviews.count%>
+                                            <%rate_salary = company.company_reviews.sum('salary_score').to_f / company.company_reviews.count%>
+                                            <%rate_ot = company.company_reviews.sum('ot_score').to_f / company.company_reviews.count%>
+                                            <%rate_manager = company.company_reviews.sum('manager_score').to_f / company.company_reviews.count%>
+                                            <%rate_career = company.company_reviews.sum('career_score').to_f / company.company_reviews.count%>
+                                            <%total_rate = (rate_work_env + rate_salary + rate_ot + rate_manager + rate_career)/5%>
+                                        <%else%>
+                                            <%total_rate = 0%>
+                                        <%end%>
                                         <div class="review_score_star">
                                             <%if total_rate > 0%>
                                                 <%total_rate.to_i.times do%>
@@ -112,6 +115,13 @@
                                             <%end%>
                                         </div>
                                     </div>
+                                </div>
+                                
+                                <div class="company_summary">
+
+                                    <%# <div class="company_location">
+                                        <p><i class="material-icons">place</i> <%= company.location %></p>
+                                    <%# </div> %>
 
                                     <div class="review_point">
 
@@ -128,15 +138,15 @@
                                         </div>
 
                                         <div class="review_point_label">
-                                            <t> <%= link_to " Đánh giá", company_path(company), class: "review_point_review_label" %></t>
+                                            <t> <i class="material-icons">sentiment_satisfied_alt</i><%= link_to " Đánh giá", company_path(company), class: "review_point_review_label" %></t>
                                         </div>
 
                                         <div class="review_point_label">
-                                            <t> <%= link_to " Phỏng vấn", company_path(company), class: "review_point_review_label" %></t>
+                                            <t> <i class="material-icons">people_outline</i><%= link_to " Phỏng vấn", company_path(company), class: "review_point_review_label" %></t>
                                         </div>
 
                                         <div class="review_point_label">
-                                            <t> <%= link_to " Việc làm", company_path(company), class: "review_point_review_label" %></t>
+                                            <t> <i class="material-icons">work_outline</i><%= link_to " Việc làm", company_path(company), class: "review_point_review_label" %></t>
                                         </div>
                                     </div>
                                 </div>
@@ -147,7 +157,7 @@
                 <div class="home_top_job">
                     <div class="home_top_job_label">
                         <%# <div class="separator">Việc làm mới dành cho bạn</div> %>
-                        <t>Việc làm mới dành cho bạn</t>
+                        <span>Việc làm mới dành cho bạn</span>
                     </div>
 
                     <div class="home_top_job_des">
