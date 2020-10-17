@@ -80,7 +80,6 @@
                                     <th><div class="table_th_title">Tiêu đề</th>
                                     <th><div class="table_th_difficult">Độ khó</th>
                                     <th><div class="table_th_user">Trả lời</th>
-                                    <th><div class="table_th_date">Ngày tạo</th>
                                 </tr>
                             </thead>
                             <tbody>
@@ -90,7 +89,6 @@
                                         <td><div class="table_td_title"><%= link_to problem.title, problem_path(problem) %></td>
                                         <td><div class="table_td_difficult"><%= problem.difficult %></td>
                                         <td><div class="table_td_user"><%= problem.problem_solutions.count %></td>
-                                        <td><div class="table_td_date"><%= time_ago_in_words(problem.created_at) %></td>                                
                                     </tr>
                                 <% end %>
                             </tbody>
@@ -98,7 +96,7 @@
                     </div>
                     <div class="problem_right">
                         <div class="problem_top">
-                            <t><i class="material-icons">list</i>Top câu hỏi hot trong tuần</t>
+                            <t><i class="material-icons">list</i>Top câu hỏi hot</t>
                             <div class="problem_short">
                                 <%i = 0%>
                                 <% @problems.each do |problem| %>

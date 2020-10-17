@@ -43,14 +43,14 @@
                                     <strong><%=total_rate.to_i%>.0</strong>
                                     <%if total_rate > 0%>
                                         <%total_rate.to_i.times do%>
-                                            <i class="material-icons checked">star</i>
+                                            <i class="material-icons checked">circle</i>
                                         <%end%>
                                         <%(5 - total_rate.to_i).to_i.times do%>
-                                            <i class="material-icons checked_out">star_outline</i>
+                                            <i class="material-icons checked_out">radio_button_unchecked</i>
                                         <%end%>
                                     <%else%>
                                         <%5.times do%>
-                                            <i class="material-icons checked_out">star_outline</i>
+                                            <i class="material-icons checked_out">radio_button_unchecked</i>
                                         <%end%>
                                     <%end%>
                                 </div>
