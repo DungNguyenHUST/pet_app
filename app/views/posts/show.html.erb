@@ -18,7 +18,7 @@
                             </div>
                         </div>
                         <div class="post_content">
-                            <span><%=@post.content%></span>
+                            <span><%=@post.content_rich%></span>
                         </div>
 
                         <div class="post_count">
@@ -48,9 +48,11 @@
                             <div class="post_container">
 
                                 <div class="post_left">
-                                    <div class="post_cover">
+                                    <%if post.wall_picture.attached?%>
+                                        <%= link_to (image_tag(post.wall_picture)), image_path(url_for(post.wall_picture)), rel: "gallery" , :href => post_path(post)%>
+                                    <%else%>
                                         <img src="<%= "/assets/illustration.png" %>" alt="Snow" style="width:100%;">
-                                    </div>
+                                    <%end%>
                                 </div>
 
                                 <div class="post_right">

@@ -11,12 +11,12 @@ class PostsController < ApplicationController
     def create
         @post = Post.new(post_param)
 
-        @post.username = @current_user.name
+        # @post.username = @current_user.name
 
         if @post.save
             redirect_to posts_path
         else
-            flash[:danger] = "Hãy lưu lại thông tin của công ty"
+            flash[:danger] = "[WARN]Can't save data"
             render :new
         end
     end
@@ -44,6 +44,6 @@ class PostsController < ApplicationController
     private
     # define param for each post
     def post_param
-        params.require(:post).permit(:title, :content)
+        params.require(:post).permit(:wall_picture, :title, :content_rich)
     end
 end
