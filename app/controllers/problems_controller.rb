@@ -1,6 +1,7 @@
 class ProblemsController < ApplicationController
     def index
-        @problems = Problem.all
+        @problems = Problem.search(params[:search])
+        @problem_all = Problem.all
         @problem_solutions = ProblemSolution.all
     end
 
@@ -43,6 +44,6 @@ class ProblemsController < ApplicationController
     private
     # define param for each problem
     def problem_param
-        params.require(:problem).permit(:title, :problem_content, :difficult, :category)
+        params.require(:problem).permit(:title, :problem_content, :difficult, :category, :search)
     end
 end

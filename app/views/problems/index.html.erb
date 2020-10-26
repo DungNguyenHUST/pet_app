@@ -42,6 +42,14 @@
                             </div>
                         </div>
                         
+                        <%if @problems.nil?%>
+                            <%if (@problems.count < @problems_all.count)%>
+                                <div class="section_title">
+                                    <h3>Tìm thấy <%=@problems.count%> kết quả</h3>
+                                </div>
+                            <%end%>
+                        <%end%>
+
                         <%# New button %>
                         <div class="problem_short_des">
                             <div class="short_des">
@@ -63,14 +71,17 @@
                                 <%= link_to '<button type="submit"><i class="material-icons">add</i> <span>Tạo một câu hỏi mới<span></button>'.html_safe, new_problem_path %>
                             </div>
                         </div>
-
+                        
                         <div class="problem_search">
-                            <div class="problem_search_label">
-                                <i class="material-icons">search</i>
-                            </div>
-                            <div class="problem_search_button">
-                                <%= link_to '<button type="submit">Tìm kiếm</button>'.html_safe, new_problem_path %>
-                            </div>
+                            <%=form_tag problems_path, :method => "get" do%>
+                                <div class="problem_search_form">
+                                    <i class="material-icons checked">search</i>
+                                    <%= text_field_tag :search, params[:search], class: 'problem_search_input', placeholder: "Nhập tên câu hỏi"%>
+                                </div>
+                                <div class="problem_search_button">
+                                    <%= submit_tag "Tìm kiếm ", :name => nil, class: 'search_button'%>
+                                </div>
+                            <%end%>
                         </div>
 
                         <table class="table problem_table">
