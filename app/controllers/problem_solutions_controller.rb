@@ -14,7 +14,11 @@ class ProblemSolutionsController < ApplicationController
 
         @problem_solution = @problem.problem_solutions.build(problem_solution_param)
 
-        @problem_solution.user_name = @current_user.name
+        if logged_in?
+            @problem_solution.user_name = @current_user.name
+        else
+            @problem_solution.user_name = "Ẩn danh"
+        end
 
         if @problem_solution.save
             redirect_to problem_path(@problem)

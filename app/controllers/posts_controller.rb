@@ -11,7 +11,11 @@ class PostsController < ApplicationController
     def create
         @post = Post.new(post_param)
 
-        # @post.username = @current_user.name
+        if logged_in?
+            @post.username = @current_user.name
+        else
+            @post.username = "Ẩn danh"
+        end
 
         if @post.save
             redirect_to posts_path

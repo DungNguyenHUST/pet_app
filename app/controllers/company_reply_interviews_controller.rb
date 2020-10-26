@@ -16,7 +16,11 @@ class CompanyReplyInterviewsController < ApplicationController
         @company_interview = @company.company_interviews.find(params[:company_interview_id])
         @company_reply_interview = @company_interview.company_reply_interviews.build(company_reply_interview_param)
 
-        @company_reply_interview.user_name = @current_user.name
+        if logged_in?
+            @company_reply_interview.user_name = @current_user.name
+        else
+            @company_reply_interview.user_name = "Ẩn danh"
+        end
 
         if @company_reply_interview.save
             redirect_to company_path(@company)

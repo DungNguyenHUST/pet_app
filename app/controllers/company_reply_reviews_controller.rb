@@ -16,7 +16,11 @@ class CompanyReplyReviewsController < ApplicationController
         @company_review = @company.company_reviews.find(params[:company_review_id])
         @company_reply_review = @company_review.company_reply_reviews.build(company_reply_review_param)
 
-        @company_reply_review.user_name = @current_user.name
+        if logged_in?
+            @company_reply_review.user_name = @current_user.name
+        else
+            @company_reply_review.user_name = "Ẩn danh"
+        end
 
         if @company_reply_review.save
             redirect_to company_path(@company)

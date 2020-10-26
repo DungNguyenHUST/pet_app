@@ -14,7 +14,11 @@ class PostCommentsController < ApplicationController
 
         @post_comment = @post.post_comments.build(post_comment_param)
 
-        @post_comment.user_name = @current_user.name
+        if logged_in?
+            @post_comment.user_name = @current_user.name
+        else
+            @post_comment.user_name = "Ẩn danh"
+        end
 
         if @post_comment.save
             redirect_to post_path(@post)

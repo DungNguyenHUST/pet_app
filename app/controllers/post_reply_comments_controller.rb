@@ -16,7 +16,11 @@ class PostReplyCommentsController < ApplicationController
         @post_comment = @post.post_comments.find(params[:post_comment_id])
         @post_reply_comment = @post_comment.post_reply_comments.build(post_reply_comment_param)
 
-        @post_reply_comment.user_name = @current_user.name
+        if logged_in?
+            @post_reply_comment.user_name = @current_user.name
+        else
+            @post_reply_comment.user_name = "Ẩn danh"
+        end
 
         if @post_reply_comment.save
             redirect_to post_path(@post)

@@ -14,7 +14,11 @@ class CompanyReviewsController < ApplicationController
 
         @company_review = @company.company_reviews.build(company_review_param)
 
-        @company_review.user_name = @current_user.name
+        if logged_in?
+            @company_review.user_name = @current_user.name
+        else
+            @company_review.user_name = "Ẩn danh"
+        end
 
         @company_review.companyName = @company.name
 

@@ -14,13 +14,17 @@ class CompanyDislikeReviewsController < ApplicationController
     def create
         @company = Company.find(params[:company_id])
         @company_review = CompanyReview.find(params[:company_review_id])
-        @company_dislike_review = @company_review.company_dislike_reviews.create(user_id: current_user.id)
+        if logged_in?
+            @company_dislike_review = @company_review.company_dislike_reviews.create(user_id: current_user.id)
 
-        if @company_dislike_review.save
-            redirect_to company_path(@company)
+            if @company_dislike_review.save
+                redirect_to company_path(@company)
+            else
+                flash[:danger] = "Lỗi, Không thể trả lời *?"
+                # render :new
+            end
         else
-            flash[:danger] = "Lỗi, Không thể trả lời *?"
-            # render :new
+            redirect_to login_path
         end
     end
     

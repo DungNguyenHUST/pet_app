@@ -12,7 +12,11 @@ class ProblemsController < ApplicationController
     def create
         @problem = Problem.new(problem_param)
 
-        # @problem.user_name = @current_user.name
+        if logged_in?
+            @problem.user_name = @problem.name
+        else
+            @problem.user_name = "Ẩn danh"
+        end
 
         if @problem.save
             redirect_to problems_path
