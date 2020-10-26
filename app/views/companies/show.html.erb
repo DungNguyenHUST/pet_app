@@ -95,9 +95,11 @@
                                     <%= render :partial => 'company_reviews/review_score' %>
                                 </div>
                                 <div class="company_review_tab_des">
-                                    <strong class="user_comment_heading"> Tất cả <%= @company.company_reviews.count%> đánh giá về <%= @company.name %> </strong>
-                                    <div class="company_review_tab_des_left">
-                                        <%= render @company.company_reviews %>
+                                    <div class="company_review_left">
+                                        <strong class="user_comment_heading"> Tất cả <%= @company.company_reviews.count%> đánh giá về <%= @company.name %> </strong>
+                                        <div class="company_review_tab_des_left">
+                                            <%= render @company.company_reviews %>
+                                        </div>
                                     </div>
                                     <div class="company_review_tab_des_right">
                                         <div class="company_job_label">
@@ -128,9 +130,11 @@
                                     <%= render :partial => 'company_interviews/interview_score' %>
                                 </div>
                                 <div class="company_tab_des">
-                                    <strong class="user_comment_heading"> Tất cả <%= @company.company_interviews.count%> kinh nghiệm phỏng vấn tại <%= @company.name %></strong>
-                                    <div class="company_interview_tab_des_left">
-                                        <%= render @company.company_interviews %>
+                                    <div class="company_interview_tab_left">
+                                        <strong class="user_comment_heading"> Tất cả <%= @company.company_interviews.count%> kinh nghiệm phỏng vấn tại <%= @company.name %></strong>
+                                        <div class="company_interview_tab_des_left">
+                                            <%= render @company.company_interviews %>
+                                        </div>
                                     </div>
                                     <div class="company_interview_tab_des_right">
                                         <div class="company_job_label">
