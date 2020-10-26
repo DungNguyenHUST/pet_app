@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        
+    </head>
+
+    <body>
+        <div class="problems_search_area">
+
+            <div class="problem_search_bar">
+                <%=form_tag problems_path, :method => "get" do%>
+                    <%= text_field_tag :search, params[:search]%>
+                    <%= submit_tag("Tìm kiếm", :name => nil)%>
+                <%end%>
+            </div>
+                
+            <div class="section_title">
+                <t>Tìm thấy <%@problems.count.to_i%> kết quả phù hợp</t>
+            </div>
+
+            <table class="table problem_table">
+                <thead>
+                    <tr>
+                        <th><div class="table_th_no">#</th>
+                        <th><div class="table_th_title">Tiêu đề</th>
+                        <th><div class="table_th_difficult">Độ khó</th>
+                        <th><div class="table_th_user">Trả lời</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <% @problems.each do |problem| %>
+                        <tr>
+                            <td><div class="table_td_no"><%= link_to problem.id, problem_path(problem) %></td>
+                            <td><div class="table_td_title"><%= link_to problem.title, problem_path(problem) %></td>
+                            <td><div class="table_td_difficult"><%= problem.difficult %></td>
+                            <td><div class="table_td_user"><%= problem.problem_solutions.count %></td>
+                        </tr>
+                    <% end %>
+                </tbody>
+            </table>
+        </div>
+</html>
