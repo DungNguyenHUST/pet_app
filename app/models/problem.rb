@@ -14,4 +14,17 @@ class Problem < ApplicationRecord
             @problems = Problem.all
         end
     end
+
+    # def self.sort(soft_type)
+    #     if soft_type
+    #         problem_type = Problem.all(:order => 'DATE(updated_at), difficult')
+    #         if (problem_type)
+    #             self.where(id: problem_type)
+    #         else
+    #             @problems = Problem.all
+    #         end
+    #     else
+    #         @problems = Problem.all
+    #     end
+    # end
 end

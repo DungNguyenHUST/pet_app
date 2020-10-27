@@ -1,6 +1,6 @@
 class CompanyJobsController < ApplicationController
     def index 
-        @company = Company.search(params[:search])
+        @companies = Company.search(params[:search])
         @company_jobs = CompanyJob.search(params[:search])
     end
 
@@ -37,6 +37,6 @@ class CompanyJobsController < ApplicationController
     private
 
     def company_job_param
-        params.require(:company_job).permit(:title, :location, :description, :requirement , :benefit, :salary, :quantity, :category, :search)
+        params.require(:company_job).permit(:title, :location, :description_rich, :requirement_rich , :benefit_rich, :salary, :quantity, :category, :search)
     end
 end
