@@ -12,7 +12,7 @@ class Company < ApplicationRecord
 
     def self.search(search)
         if search
-            company_type = Company.where("name like ?", "%#{search}%")
+            company_type = Company.where("name ILIKE? OR location ILIKE?", "%#{search}%", "%#{search}%")
             if(company_type)
                 self.where(id: company_type)
             else

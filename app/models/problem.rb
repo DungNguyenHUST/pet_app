@@ -4,7 +4,7 @@ class Problem < ApplicationRecord
 
     def self.search(search)
         if search
-            problem_type = Problem.where("name like ?", "%#{search}%")
+            problem_type = Problem.where("title ILIKE ?", "%#{search}%")
             if(problem_type)
                 self.where(id: problem_type)
             else
