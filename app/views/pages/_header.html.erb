@@ -1,83 +1,36 @@
 <!DOCTYPE html>
 <html>
 	<head>
-		<meta charset="utf-8">
 		<meta name="viewport" content="width=device-width, initial-scale=1">
-		<title>Main Header</title>
+		<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 	</head>
-
 	<body>
-	
-		<div id="navbar">
-			<div class="body_content_header">
-				<header class="header_area">
-					<div class="header_content">
-						
-						<div id="main" class="header_logo_mobile_block">
-							<div class="header_menu">
-  								<button class="openbtn" onclick="openNav()"><i class="material-icons">menu</i></button>
-							</div>
-							<div class="header_logo_mobile">
-								<a href="<%=pages_path %>"><span>firework</span></a> 
-							</div>
-						</div>
 
-						<div class="header_logo">
-							<div class="header_logo_title">
-								<a href="<%=pages_path %>"><span>firework</span></a>
-							</div>
-						</div>
-						
-						<div id="mySidebar" class="header_navigation" >
-							<nav>
-								<a href="javascript:void(0)" class="closebtn" onclick="closeNav()">×</a>
-								<a href="<%=pages_path %>">Tìm việc </a>
-								<a href="<%=companies_path %>">Review công ty </a>
-								<a href="<%=problems_path %>">Câu hỏi phỏng vấn </a>
-								<a href="<%=posts_path %>">Blog</a>
-							</nav>
-						</div>
+		<div class="topnav" id="myTopnav">
+			<a href="<%=pages_path %>"class="logo">firework</a>
+			<a href="<%=pages_path %>">Tìm việc </a>
+			<a href="<%=companies_path %>">Review công ty </a>
+			<a href="<%=problems_path %>">Câu hỏi phỏng vấn </a>
+			<a href="<%=posts_path %>">Blog</a>
 
-						<%= form_for :session, url: login_path do |f| %>
-							<% if logged_in? %>
-								<div class="header_button_user">
-									<div class="user_icon_button">
-										<%= link_to '<button type="text" <i class="material-icons">person_outline</i> </button>'.html_safe, user_path(current_user) %>
-										<%# <a><i class="material-icons">person_outline</i><%= link_to "Đăng nhập", user_path(current_user) %>
-									</div>
-								</div>
-							<% else %>
-								<div class="header_button_login">
+			<a href="<%=companies_path %>">Tuyển dụng</a>
+			<a href="<%=sessions_new_path %>">Đăng nhập</a>
 
-									<div class="post_job_button">
-										<a><%= link_to "Tuyển dụng", sessions_new_path %></a>
-									</div>
-
-									<div class="login_button">
-										<a><i class="material-icons">perm_identity</i><%= link_to "Đăng nhập", sessions_new_path %></a>
-									</div>
-
-									<%# <div class="signup_button">
-										<%= link_to '<button type="text">Đăng kí</button>'.html_safe, new_user_path %>
-									<%# </div> %>
-								</div>
-							<%end%>
-						<%end%>
-
-						<script>
-							function openNav() {
-								document.getElementById("mySidebar").style.width = "66%";
-								document.getElementById("main").style.marginLeft = "0px";
-							}
-
-							function closeNav() {
-								document.getElementById("mySidebar").style.width = "0";
-								document.getElementById("main").style.marginLeft= "0";
-							}
-						</script>
-					</div>
-				</header>
-			</div>
+			<a href="javascript:void(0);" class="icon" onclick="myFunction()">
+				<i class="fa fa-bars"></i>
+			</a>
 		</div>
+
+		<script>
+			function myFunction() {
+			var x = document.getElementById("myTopnav");
+				if (x.className === "topnav") {
+					x.className += " responsive";
+				} else {
+					x.className = "topnav";
+				}
+			}
+		</script>
+
 	</body>
 </html>
