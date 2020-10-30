@@ -260,11 +260,14 @@
             color: #202124;
             font-size: 33px;
             font-weight: 500;
+            padding-bottom: 30px;
         }
 
         .row{
             .col-lg-6{
                 padding: 10px;
+                padding-bottom: 0px;
+                padding-top: 0px;
                 .user_job_block {
                     clear: left;
                     min-height: 200px;
@@ -357,7 +360,13 @@
                             float: left;
                             font-size: 13px;
                             color: #444;
-                            margin-left: 20px;
+                            margin-right: 20px; 
+                            @media screen and (max-width: 600px)
+                            {
+                                margin-left: 20px;
+                                -webkit-line-clamp: 1; /* number of lines to show */
+                                margin-right: 0px; 
+                            }
                             a{
                                 padding-top: 5px;
                                 padding-bottom: 5px;
