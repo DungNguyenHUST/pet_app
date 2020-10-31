@@ -5,34 +5,26 @@
 .user_job_block {
     clear: left;
     width: 100%;
-    height: 180px;
+    min-height: 180px;
     background-color: #fff;
-    border: 1px solid #ecedee;
-    // box-shadow: 0 1px 8px 0 rgba(92, 91, 91, 0.1), 0 2px 6px 0 rgba(99, 98, 98, 0.09);
-    margin-bottom: 20px;
-    border-radius: 2px;
+    border-top: 1px solid #ecedee;
+    border-bottom: 1px solid #ecedee;
     padding: 0px !important;
     &:hover{
         box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
-        // border: 1px solid #629fdb;
     }
 
     .user_job_left
     {
-        width: 8%;
         height: auto;
         margin: 12px;
         padding-top: 10px;
         display: block;
         position: relative;
-        float: left;
         .user_avatar {
-            float: left;
             border-radius: 2px;
-            padding-left: 10px;
-            // border-style: ridge;
             img{ 
-                // box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.1), 0 6px 20px 0 rgba(0, 0, 0, 0.09);
+                box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.1), 0 6px 20px 0 rgba(0, 0, 0, 0.09);
                 max-width: 100px;
                 max-height: 100px;
             }
@@ -40,12 +32,8 @@
     }
 
     .user_job_middle{
-        width: 70%;
-        float: left;
         padding: 10px;
-        margin-left: 20px;
         padding-top: 25px;
-
         .user_job_title{
             a:link{
                 text-decoration: none !important ;
@@ -69,10 +57,11 @@
             -webkit-box-orient: vertical;
             font-size: 14px;
         }
+
         .user_job_location{
             margin-top: 20px;
             float: left;
-            font-size: 15px;
+            font-size: 14px;
             a{
                 padding-top: 5px;
                 padding-bottom: 5px;
@@ -93,9 +82,8 @@
 
         .user_job_salary{
             margin-top: 20px;
-            font-size: 15px;
+            font-size: 14px;
             color: #4fb87b;
-            float: left;
             a{
                 padding-top: 5px;
                 padding-bottom: 5px;
@@ -118,10 +106,7 @@
     }
 
     .user_job_right{
-        width: 15%;
         padding-top: 10px;
-        background-color: green($color: #000000);
-        float: right;
         .apply_job_button{
             padding: 10px;
             padding-top: 11px;
@@ -129,6 +114,10 @@
                 padding: 6px;
                 height: 33px;
                 width: 140px;
+                @media screen and (max-width: 600px){
+                    width: 100%;
+                    height: 35px;
+                }
                 margin-right: 10px;
                 background: #1877f2;
                 font-size: 14px;
@@ -147,6 +136,13 @@
             font-size: 13px;
             color: #8a8888;
             padding-top: 70px;
+            @media screen and (max-width: 600px){
+                padding-top: 0px;
+                position: absolute;
+                top: -200px;
+                left: 380px;
+                color: #1877f2;
+            }
             text-align: left;
             margin-left: 10px;
         }

@@ -264,109 +264,71 @@
         }
 
         .row{
+            padding-bottom: 30px;
             .col-lg-6{
                 padding: 10px;
                 padding-bottom: 0px;
                 padding-top: 0px;
                 .user_job_block {
                     clear: left;
-                    min-height: 200px;
-                    @media screen and (max-width: 600px)
-                    {
-                        min-height: 220px;
-                    }
-                    border-radius: 2px;
+                    width: 100%;
+                    min-height: 180px;
+                    background-color: #fff;
+                    border-top: 1px solid #ecedee;
+                    border-bottom: 1px solid #ecedee;
                     padding: 0px !important;
-                    float: left;
-                    border: 1px solid #edeef0;
                     &:hover{
                         box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
-                        background-color: #fff;
                     }
                 
                     .user_job_left
                     {
-                        width: 5%;
                         height: auto;
+                        margin: 12px;
                         padding-top: 10px;
                         display: block;
                         position: relative;
-                        float: left;
                         .user_avatar {
-                            float: left;
                             border-radius: 2px;
                             img{ 
                                 box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.1), 0 6px 20px 0 rgba(0, 0, 0, 0.09);
-                                max-width: 80px;
-                                max-height: 80px;
+                                max-width: 100px;
+                                max-height: 100px;
                             }
                         }
                     }
                 
-                    .user_job_right{
-                        width: 80%;
+                    .user_job_middle{
                         padding: 10px;
-                        margin-left: 10px;
                         padding-top: 25px;
                         .user_job_title{
-                            min-height: 40px;
                             a:link{
-                                font-size: 18px;
-                                font-weight: 600;
-                                overflow: hidden;
-                                text-overflow: ellipsis;
-                                display: -webkit-box;
-                                -webkit-line-clamp: 2; /* number of lines to show */
-                                -webkit-box-orient: vertical;
                                 text-decoration: none !important ;
+                                font-size: 20px;
+                                position: relative;
+                                top: -5px;
                             }
-                            @media screen and (max-width: 600px)
-                            {
-                                margin-left: 20px;
-                                -webkit-line-clamp: 2;
-                            }
+                            margin-bottom: 10px;
+                            overflow: hidden;
+                            text-overflow: ellipsis;
+                            display: -webkit-box;
+                            -webkit-line-clamp: 1; /* number of lines to show */
+                            -webkit-box-orient: vertical;
                         }
                 
-                        .user_job_company{
+                        .user_job_description{
                             overflow: hidden;
                             text-overflow: ellipsis;
                             display: -webkit-box;
                             -webkit-line-clamp: 2; /* number of lines to show */
                             -webkit-box-orient: vertical;
-                            font-size: 16px;
-                            padding-right: 10px;
-                            @media screen and (max-width: 600px)
-                            {
-                                margin-left: 20px;
-                                -webkit-line-clamp: 1; /* number of lines to show */
-                            }
-                            i {
-                                font-size: 17px;
-                                position: relative;
-                                top: 3px;
-                            }
-                            span{
-                                font-size: 14px;
-                                font-weight: 100px;
-                            }
-
-                            .checked {
-                                color: #a3a2a2;
-                            }
+                            font-size: 14px;
                         }
-
-                        .user_job_des{
+                
+                        .user_job_location{
                             margin-top: 20px;
                             float: left;
-                            font-size: 13px;
-                            color: #444;
-                            margin-right: 20px; 
-                            @media screen and (max-width: 600px)
-                            {
-                                margin-left: 20px;
-                                -webkit-line-clamp: 1; /* number of lines to show */
-                                margin-right: 0px; 
-                            }
+                            font-size: 14px;
                             a{
                                 padding-top: 5px;
                                 padding-bottom: 5px;
@@ -375,13 +337,81 @@
                                 border: 1px solid #1877f2;
                                 border-radius: 30px;
                                 i{
-                                    font-size: 18px;
-                                    margin-right: 3px;
+                                    font-size: 20px;
+                                    margin-right: 5px;
+                                    color: #8a8888;
+                                    position: relative;
+                                    position: relative;
+                                    top: 5px;
+                                }
+                            }
+                        }
+                
+                        .user_job_salary{
+                            margin-top: 20px;
+                            font-size: 14px;
+                            color: #4fb87b;
+                            a{
+                                padding-top: 5px;
+                                padding-bottom: 5px;
+                                padding-left: 10px;
+                                padding-right: 10px;
+                                border: 1px solid #1877f2;
+                                border-radius: 30px;
+                                margin-left: 10px;
+                                i{
+                                    margin-left: 20px;
+                                    margin-right: 5px;
+                                    font-size: 20px;
                                     color: #8a8888;
                                     position: relative;
                                     top: 5px;
                                 }
                             }
+                        }
+                        
+                    }
+                
+                    .user_job_right{
+                        padding-top: 10px;
+                        .apply_job_button{
+                            padding: 10px;
+                            padding-top: 11px;
+                            button{
+                                padding: 6px;
+                                height: 33px;
+                                width: 140px;
+                                @media screen and (max-width: 600px){
+                                    width: 100%;
+                                    height: 35px;
+                                }
+                                margin-right: 10px;
+                                background: #1877f2;
+                                font-size: 14px;
+                                border: none;
+                                border-radius: 2px;
+                                cursor: pointer;
+                                text-align: center;
+                                color: #fff;
+                                &:hover{
+                                    background-color: #1877f2;
+                                }
+                            }
+                        }
+                        
+                        .user_job_date{
+                            font-size: 13px;
+                            color: #8a8888;
+                            padding-top: 70px;
+                            @media screen and (max-width: 600px){
+                                padding-top: 0px;
+                                position: absolute;
+                                top: -200px;
+                                left: 380px;
+                                color: #1877f2;
+                            }
+                            text-align: left;
+                            margin-left: 10px;
                         }
                     }
                     clear: left;

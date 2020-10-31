@@ -5,40 +5,58 @@
     </head>
 
     <body>
-        <div class='body_content_full'>
+        <div class='container'>
             <%- model_class = Problem -%>
-                <div class="problem_container">
-                    <div class="problem_left">
+                <div class="row">
+                    <div class="col-sm-8">
                         <div class="problem_category">
                             <div class="problem_header">
                                 <strong> <i class="material-icons">apps</i> Danh mục chính</strong>
                             </div>
 
-                            <div class="new_category_math">
-                                <form action="/action_page.php">
-                                    <%= link_to '<button type="submit"><i class="material-icons checked">filter_alt</i>Thuật toán</button>'.html_safe, new_problem_path %>
-                                </form>
+                            <div class="col-sm-3">
+                                <div class="category_name">
+                                    <form action="/action_page.php">
+                                        <%= link_to '<button type="submit"><i class="material-icons checked">filter_alt</i>Thuật toán</button>'.html_safe, new_problem_path %>
+                                    </form>
+                                </div>
                             </div>
-                            <div class="new_category_interview">
-                                <form action="/action_page.php">
-                                    <%= link_to '<button type="submit"><i class="material-icons checked">people</i>Câu hỏi phỏng vấn</button>'.html_safe, new_problem_path %>
-                                </form>
+                            <div class="col-sm-3">
+                                <div class="category_name">
+                                    <form action="/action_page.php">
+                                        <%= link_to '<button type="submit"><i class="material-icons checked">filter_alt</i>Thuật toán</button>'.html_safe, new_problem_path %>
+                                    </form>
+                                </div>
                             </div>
-                            <div class="new_category_test">
-                                <form action="/action_page.php">
-                                    <%= link_to '<button type="submit"><i class="material-icons checked">model_training</i>Bài test mẫu</button>'.html_safe, new_problem_path %>
-                                </form>
+                            <div class="col-sm-3">
+                                <div class="category_name">
+                                    <form action="/action_page.php">
+                                        <%= link_to '<button type="submit"><i class="material-icons checked">filter_alt</i>Thuật toán</button>'.html_safe, new_problem_path %>
+                                    </form>
+                                </div>
                             </div>
-                            <div class="new_category_qa">
-                                <form action="/action_page.php">
-                                    <%= link_to '<button type="submit"><i class="material-icons checked">wysiwyg</i>Câu hỏi khác</button>'.html_safe, new_problem_path %>
-                                </form>
+                            <div class="col-sm-3">
+                                <div class="category_name">
+                                    <form action="/action_page.php">
+                                        <%= link_to '<button type="submit"><i class="material-icons checked">filter_alt</i>Thuật toán</button>'.html_safe, new_problem_path %>
+                                    </form>
+                                </div>
+                            </div>
+                            
+                            <div class="col-sm-3">
+                                <div class="category_name">
+                                    <form action="/action_page.php">
+                                        <%= link_to '<button type="submit"><i class="material-icons checked">filter_alt</i>Thuật toán</button>'.html_safe, new_problem_path %>
+                                    </form>
+                                </div>
                             </div>
 
-                            <div class="new_category_discuss">
-                                <form action="/action_page.php">
-                                    <%= link_to '<button type="submit"><i class="material-icons checked">record_voice_over</i>Chia sẻ thảo luận</button>'.html_safe, new_problem_path %>
-                                </form>
+                            <div class="col-sm-3">
+                                <div class="category_name">
+                                    <form action="/action_page.php">
+                                        <%= link_to '<button type="submit"><i class="material-icons checked">add</i>Tạo câu hỏi mới</button>'.html_safe, new_problem_path %>
+                                    </form>
+                                </div>
                             </div>
                         </div>
                         
@@ -49,42 +67,19 @@
                                 </div>
                             <%end%>
                         <%end%>
-
-                        <%# New button %>
-                        <div class="problem_short_des">
-                            <div class="short_des">
-                                <span>#Tổng số <%= @problems.count %></span>
-                            </div>
-                            <div class="short_des">
-                                <span>#Đã xử lý <%= @problems.count %></span>
-                            </div>
-                            <div class="short_des">
-                                <span>#Khó <%= @problems.count %></span>
-                            </div>
-                            <div class="short_des">
-                                <span>#Trung bình <%= @problems.count %></span>
-                            </div>
-                            <div class="short_des">
-                                <span>#Dễ <%= @problems.count %></span>
-                            </div>
-                            <div class="new_problem">
-                                <%= link_to '<button type="submit"><i class="material-icons">add</i> <span>Tạo một câu hỏi mới<span></button>'.html_safe, new_problem_path %>
-                            </div>
-                        </div>
                         
                         <div class="problem_search">
                             <%=form_tag problems_path, :method => "get" do%>
-                                <div class="problem_search_form">
-                                    <i class="material-icons checked">search</i>
-                                    <%= text_field_tag :search, params[:search], class: 'problem_search_input', placeholder: "Nhập tên câu hỏi"%>
-                                </div>
-                                <div class="problem_search_button">
-                                    <%= submit_tag "Tìm kiếm ", :name => nil, class: 'search_button'%>
+                                <div class="input-group mb-3">
+                                    <div class="input-group-addon">
+                                        <i class="material-icons checked">search</i>
+                                    </div>
+                                    <%= text_field_tag :search, params[:search], class: 'form-control', placeholder: "Nhập tên câu hỏi" %>
                                 </div>
                             <%end%>
                         </div>
 
-                        <table class="table problem_table">
+                        <table class="table table-hover table-striped table-bordere">
                             <thead>
                                 <tr>
                                     <th><div class="table_th_no">#</th>
@@ -104,10 +99,11 @@
                                 <% end %>
                             </tbody>
                         </table>
+
                     </div>
-                    <div class="problem_right">
+                    <div class="col-sm-4">
                         <div class="problem_top">
-                            <t><i class="material-icons">list</i>Top câu hỏi hot</t>
+                            <a><i class="material-icons">list</i>Top câu hỏi hot</a>
                             <div class="problem_short">
                                 <%i = 0%>
                                 <% @problems.each do |problem| %>
@@ -120,7 +116,7 @@
                             </div>
                         </div>
                         <div class="problem_company">
-                            <t><i class="material-icons">business</i>Câu hỏi theo công ty</t>
+                            <a><i class="material-icons">business</i>Câu hỏi theo công ty</a>
                             <div class="problem_short">
                                 <%i = 0%>
                                 <% @problems.each do |problem| %>

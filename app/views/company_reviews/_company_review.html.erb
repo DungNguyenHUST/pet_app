@@ -18,7 +18,7 @@
 
             <div class="user_review_cotent">
                 <div class="user_review_title">
-                    <t><%= company_review.review_title %></t>
+                    <a><%= company_review.review_title %></t>
                 </div>
 
                 <div class="user_review_score_star">
@@ -36,17 +36,17 @@
                 </div>
                 <div class="user_review_times">
                     <%# <strong><%= company_review.user_name</strong> %>
-                    <%# <t> . <%= time_ago_in_words(company_review.created_at) </t> %>
+                    <%# <a> . <%= time_ago_in_words(company_review.created_at) </t> %>
                 </div>
 
                 <div class="user_review_status">
-                        <t><%= company_review.position %></t>
+                        <a><%= company_review.position %></t>
                         <%if company_review.working_status%>
-                            <t> . Nhân viên đang làm việc</t>
+                            <a> . Nhân viên đang làm việc</t>
                         <%else%>
-                            <t> . Đã nghỉ việc</t>
+                            <a> . Đã nghỉ việc</t>
                         <%end%>
-                        <t> . <%= time_ago_in_words(company_review.created_at) %></t>
+                        <a> . <%= time_ago_in_words(company_review.created_at) %></t>
                 </div>
 
                 <div class="user_review_pros">
@@ -55,7 +55,7 @@
                         <strong>Ưu điểm</strong>
                     </div>
                     <div class="user_review_pros_content">
-                        <t><%= company_review.pros %></t>
+                        <a><%= company_review.pros %></t>
                     </div>
                 </div>
 
@@ -65,23 +65,23 @@
                         <strong>Nhược điểm </strong>
                     </div>
                     <div class="user_review_cons_content">
-                        <t><%= company_review.cons %></t>
+                        <a><%= company_review.cons %></t>
                     </div>
                 </div>
 
                 <div class="user_review_body">
-                    <t><%= company_review.review %></t>
+                    <a><%= company_review.review %></t>
                 </div>
 
                 <div class="review_info">
                     <div class="review_toolbar">
-                        <t><%= company_review.company_reply_reviews.count%></t>
+                        <a><%= company_review.company_reply_reviews.count%></t>
                         <button class="reply_btn" onclick="myFunctionReplyReview()"><i class="material-icons">chat_bubble</i> Trả lời </button>
 
-                        <t><%= company_review.company_like_reviews.count%></t>
+                        <a><%= company_review.company_like_reviews.count%></t>
                         <%= link_to '<button class="like_btn"><i class="material-icons">thumb_up</i> Thích </button>'.html_safe, company_company_review_company_like_reviews_path(@company, company_review), method: :post%>
                         
-                        <t><%= company_review.company_dislike_reviews.count%></t>
+                        <a><%= company_review.company_dislike_reviews.count%></t>
                         <%= link_to '<button class="dislike_btn"><i class="material-icons">thumb_down</i> Không thích </button>'.html_safe, company_company_review_company_dislike_reviews_path(@company, company_review), method: :post%>
                     </div>
                 </div>

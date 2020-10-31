@@ -10,7 +10,6 @@
     padding: 20px;
     .interview_score_title{
         display: inline-block;
-        // margin-top: 10px;
         font-size: 24px;
         font-weight: 550;
         width: 720px;
@@ -18,8 +17,12 @@
         margin-bottom: 40px;
     }
     .interview_new_button_side{
-        float: right;
         .interview_new_button button {
+            float: right;
+            @media screen and (max-width: 600px){
+                float: none;
+                width: 100%;
+            }
             padding: 14px;
             width: 200px;
             height: 50px;
@@ -52,21 +55,19 @@
     .interview_score
     {
         clear: both;
-        width: 100%;
-        height: 330px;
+        min-height: 330px;
         background-color: #fff;
         margin-top: 30px;
         margin-bottom: 30px;
         display: block;
-        margin-left: auto;
-        margin-right: auto;
 
         .interview_score_difficult{
-            float: left;
-            width: 24%;
             text-align: center;
             margin-top: 90px;
             border-right: 1px solid #e6e6e6;
+            @media screen and (max-width: 600px){
+                border: none;
+            }
             .interview_point{
                 font-size: 40px;
                 margin-bottom: 5px;
@@ -93,11 +94,12 @@
         }
 
         .interview_score_satisfied{
-            float: left;
-            width: 24%;
             text-align: center;
             margin-top: 90px;
             border-right: 1px solid #e6e6e6;
+            @media screen and (max-width: 600px){
+                border: none;
+            }
             .interview_point{
                 font-size: 40px;
                 margin-bottom: 5px;
@@ -124,11 +126,12 @@
         }
 
         .interview_score_process{
-            float: left;
-            width: 24%;
             text-align: center;
             margin-top: 90px;
             border-right: 1px solid #e6e6e6;
+            @media screen and (max-width: 600px){
+                border: none;
+            }
             .interview_point{
                 font-size: 40px;
                 margin-bottom: 5px;
@@ -156,11 +159,12 @@
         }
 
         .interview_score_interview{
-            float: left;
-            width: 24%;
             text-align: center;
             margin-top: 90px;
             // border-right: 1px solid #dfe1e5;
+            @media screen and (max-width: 600px){
+                border: none;
+            }
             .interview_point{
                 font-size: 40px;
                 margin-bottom: 5px;
@@ -184,53 +188,6 @@
             .interview_score_label{
                 margin-top: 8px;
                 font-size: 17px;
-            }
-        }
-        
-        .interview_score_total{
-            clear: both;
-            text-align: center;
-            display: block;
-            .interview_score_label{
-                padding-top: 60px;
-                font-size: 18px;
-                font-weight: 600;
-            }
-
-            .interview_point
-            {
-                float: left;
-                font-size: 24px;
-                text-align: center;
-                color: rgb(75, 71, 71);
-                margin-right: 15px;
-                margin-left: 400px;
-            }
-
-            .interview_score_star
-            {
-                float: left;
-                margin-right: 10px;
-                margin-top: 10px;
-                font-size: 24px;
-                margin-left: 400px;
-                i {
-                    font-size: 24px;
-                }
-
-                .checked {
-                    color: #feb100;
-                }
-
-                .checked_out {
-                    color: #dfe1e5;
-                }
-            }
-
-            .interview_total_des{
-                margin-top: 8px;
-                clear: both;
-                font-size: 13px;
             }
         }
         

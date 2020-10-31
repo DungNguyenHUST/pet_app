@@ -16,7 +16,7 @@
             </div>
                 
             <div class="section_title">
-                <t>Tìm thấy <%@companies.count.to_i%> kết quả phù hợp</t>
+                <a>Tìm thấy <%@companies.count.to_i%> kết quả phù hợp</a>
             </div>
 
             <% @companies.each do |company| %>
@@ -29,7 +29,7 @@
                     </div>
 
                     <div class="company_name">
-                        <t><%= company.name%></t>
+                        <a><%= company.name%></a>
                     </div>
                     
                     <div class="company_summary">
@@ -44,7 +44,7 @@
                         </div>
 
                         <div class="review_point">
-                            <t><i class="fa fa-edit"></i> <%= company.company_reviews.count %> đánh giá (4.1/5 điểm)</t>
+                            <a><i class="fa fa-edit"></i> <%= company.company_reviews.count %> đánh giá (4.1/5 điểm)</a>
                         </div>
 
                         <div class="company_location">

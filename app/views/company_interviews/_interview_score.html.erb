@@ -7,9 +7,9 @@
     <body>
         <div class="interview_score_content">
             <div class="interview_score_title">
-                <t>Kinh nghiệm phỏng vấn tại <%=@company.name%></t>
+                <a>Kinh nghiệm phỏng vấn tại <%=@company.name%></a>
             </div>
-            <%# interview in button %>
+
             <div class="interview_new_button_side">
                 <div class="interview_new_button">
                     <%= link_to '<button type="submit"> <i class="material-icons">edit</i> <span> Chia sẻ kinh nghiệm </span> </button>'.html_safe, new_company_company_interview_path(@company) %>
@@ -17,76 +17,86 @@
             </div>
 
             <div class="interview_score">
-                <div class="interview_score_difficult">
-                    <div class="interview_point">
-                        <strong><%=rating_interview_difficultly_score.round(1)%></strong>
+                <div class="row">
+                    <div class="col-sm-3">
+                        <div class="interview_score_difficult">
+                            <div class="interview_point">
+                                <strong><%=rating_interview_difficultly_score.round(1)%></strong>
+                            </div>
+                            <div class="interview_score_star">
+                                <%if rating_interview_difficultly_score > 0%>
+                                    <%rating_interview_difficultly_score.to_i.times do%>
+                                        <i class="material-icons checked">circle</i>
+                                    <%end%>
+                                    <%(5 - rating_interview_difficultly_score.to_i).to_i.times do%>
+                                        <i class="material-icons checked_out">radio_button_unchecked</i>
+                                    <%end%>
+                                <%else%>
+                                    <%5.times do%>
+                                        <i class="material-icons checked_out">radio_button_unchecked</i>
+                                    <%end%>
+                                <%end%>
+                            </div>
+                            <div class="interview_score_label">
+                                <a>Độ khó bài phỏng vấn</a>
+                            </div>
+                        </div>
                     </div>
-                    <div class="interview_score_star">
-                        <%if rating_interview_difficultly_score > 0%>
-                            <%rating_interview_difficultly_score.to_i.times do%>
-                                <i class="material-icons checked">circle</i>
-                            <%end%>
-                            <%(5 - rating_interview_difficultly_score.to_i).to_i.times do%>
-                                <i class="material-icons checked_out">radio_button_unchecked</i>
-                            <%end%>
-                        <%else%>
-                            <%5.times do%>
-                                <i class="material-icons checked_out">radio_button_unchecked</i>
-                            <%end%>
-                        <%end%>
-                    </div>
-                    <div class="interview_score_label">
-                        <t>Độ khó bài phỏng vấn</t>
-                    </div>
-                </div>
 
-                <div class="interview_score_satisfied">
-                    <div class="interview_point">
-                        <strong><%=rating_interview_satisfied_score.round(1)%></strong>
+                    <div class="col-sm-3">
+                        <div class="interview_score_satisfied">
+                            <div class="interview_point">
+                                <strong><%=rating_interview_satisfied_score.round(1)%></strong>
+                            </div>
+                            <div class="interview_score_star">
+                                <%if rating_interview_satisfied_score > 0%>
+                                    <%rating_interview_satisfied_score.to_i.times do%>
+                                        <i class="material-icons checked">circle</i>
+                                    <%end%>
+                                    <%(5 - rating_interview_satisfied_score.to_i).to_i.times do%>
+                                        <i class="material-icons checked_out">radio_button_unchecked</i>
+                                    <%end%>
+                                <%else%>
+                                    <%5.times do%>
+                                        <i class="material-icons checked_out">radio_button_unchecked</i>
+                                    <%end%>
+                                <%end%>
+                            </div>
+                            <div class="interview_score_label">
+                                <a>Hài lòng với cuộc phỏng vấn</a>
+                            </div>
+                        </div>
                     </div>
-                    <div class="interview_score_star">
-                        <%if rating_interview_satisfied_score > 0%>
-                            <%rating_interview_satisfied_score.to_i.times do%>
-                                <i class="material-icons checked">circle</i>
-                            <%end%>
-                            <%(5 - rating_interview_satisfied_score.to_i).to_i.times do%>
-                                <i class="material-icons checked_out">radio_button_unchecked</i>
-                            <%end%>
-                        <%else%>
-                            <%5.times do%>
-                                <i class="material-icons checked_out">radio_button_unchecked</i>
-                            <%end%>
-                        <%end%>
-                    </div>
-                    <div class="interview_score_label">
-                        <t>Hài lòng với cuộc phỏng vấn</t>
-                    </div>
-                </div>
 
-                <div class="interview_score_process">
-                    <div class="interview_content">
-                        <div class="interview_point">
-                            <strong><%=rating_interview_process_score.round(1)%></strong>
-                        </div>
-                        <div class="interview_score_star">
-                            <i class="material-icons checked">people_outline</i>
-                        </div>
-                        <div class="interview_score_label">
-                            <t>Vòng phỏng vấn trung bình</t>
+                    <div class="col-sm-3">
+                        <div class="interview_score_process">
+                            <div class="interview_content">
+                                <div class="interview_point">
+                                    <strong><%=rating_interview_process_score.round(1)%></strong>
+                                </div>
+                                <div class="interview_score_star">
+                                    <i class="material-icons checked">people_outline</i>
+                                </div>
+                                <div class="interview_score_label">
+                                    <a>Vòng phỏng vấn trung bình</a>
+                                </div>
+                            </div>
                         </div>
                     </div>
-                </div>
 
-                <div class="interview_score_interview">
-                    <div class="interview_content">
-                        <div class="interview_point">
-                            <strong><%=(rating_interview_offer_score.to_i/5) * 100%> %</strong>
-                        </div>
-                        <div class="interview_score_star">
-                            <i class="material-icons checked">work_outline</i>
-                        </div>
-                        <div class="interview_score_label">
-                            <t>Chấp nhận offer</t>
+                    <div class="col-sm-3">
+                        <div class="interview_score_interview">
+                            <div class="interview_content">
+                                <div class="interview_point">
+                                    <strong><%=(rating_interview_offer_score.to_i/5) * 100%> %</strong>
+                                </div>
+                                <div class="interview_score_star">
+                                    <i class="material-icons checked">work_outline</i>
+                                </div>
+                                <div class="interview_score_label">
+                                    <a>Chấp nhận offer</a>
+                                </div>
+                            </div>
                         </div>
                     </div>
                 </div>

@@ -28,7 +28,6 @@
 
                             });
                         </script>
-                        <%# <span>Một công viêc</span> %>
                     </div>
                     
                     <%=form_tag company_company_jobs_path(@companies, @company_jobs), :method => "get" do%>
@@ -39,15 +38,6 @@
                             <%= text_field_tag :search, params[:search], class: 'form-control', placeholder: "Tìm kiếm theo công việc, kĩ năng hoặc tên công ty" %>
                         </div>
                     <%end%>
-
-                    <%# <div class="searh_refer">
-                        <button type="text"> IT</button>
-                        <button type="text"> Nhân viên văn phòng</button>
-                        <button type="text"> Sale</button>
-                        <button type="text"> Nhân viên kinh doanh</button>
-                        <button type="text"> Nhân viên bán hàng</button>
-                        <button type="text"> Hà Nội</button>
-                    </div> %>
 
                 </div>
                 <div class="home_top_company">
@@ -83,7 +73,7 @@
 
                                     <div class="company_title">
                                         <div class="company_name">
-                                            <t> <%= link_to company.name, company_path(company), class: "company_name_label" %></t>
+                                            <a> <%= link_to company.name, company_path(company), class: "company_name_label" %></a>
                                         </div>
 
                                         <div class="company_rating">
@@ -124,15 +114,15 @@
                                         <div class="review_point">
 
                                             <div class="review_point_review_content">
-                                                <t><%= company.company_reviews.count%></t>
+                                                <a><%= company.company_reviews.count%></a>
                                             </div>
 
                                             <div class="review_point_review_content">
-                                                <t><%= company.company_interviews.count %></t>
+                                                <a><%= company.company_interviews.count %></a>
                                             </div>
 
                                             <div class="review_point_review_content">
-                                                <t><%= company.company_jobs.count %></t>
+                                                <a><%= company.company_jobs.count %></a>
                                             </div>
 
                                             <div class="review_point_label">
@@ -165,8 +155,8 @@
                             <%company.company_jobs.each do |company_job|%>
                                 <%i += 1%>
                                 <%break if i > 10%>
-                                <div class="col-lg-6">
-                                    <div class="user_job_block">
+                                <div class="user_job_block">
+                                    <div class="col-sm-2">
                                         <div class="user_job_left">
                                             <div class="user_avatar">
                                                 <%if company.avatar.attached?%>
@@ -174,36 +164,35 @@
                                                 <%end%>
                                             </div>
                                         </div>
+                                    </div>
 
-                                        <div class="user_job_right">
+                                    <div class="col-sm-8">
+                                        <div class="user_job_middle">
                                             <div class="user_job_title">
-                                                <a><%= link_to (company_job.title), company_company_job_path(company, company_job) %></a>
+                                                <strong><%= link_to (company_job.title), company_company_job_path(company, company_job) %></strong>
                                             </div>
 
-                                            <%if(company.company_reviews.count > 0)%>
-                                                <%rate_work_env = company.company_reviews.sum('work_env_score').to_f / company.company_reviews.count%>
-                                                <%rate_salary = company.company_reviews.sum('salary_score').to_f / company.company_reviews.count%>
-                                                <%rate_ot = company.company_reviews.sum('ot_score').to_f / company.company_reviews.count%>
-                                                <%rate_manager = company.company_reviews.sum('manager_score').to_f / company.company_reviews.count%>
-                                                <%rate_career = company.company_reviews.sum('career_score').to_f / company.company_reviews.count%>
-                                                <%total_rate = (rate_work_env + rate_salary + rate_ot + rate_manager + rate_career)/5%>
-                                            <%else%>
-                                                <%total_rate = 0%>
-                                            <%end%>
-                                            <div class="user_job_company">
-                                                <a><%= company.name %> | <%= total_rate.to_f%> <i class="material-icons checked">circle</i></a>
+                                            <div class="user_job_description">
+                                                <a><%= company_job.description %></a>
                                             </div>
 
-                                            <div class="user_job_des">
+                                            <div class="user_job_location">
                                                 <a><i class="material-icons">room</i><%= company_job.location %></a>
                                             </div>
 
-                                            <div class="user_job_des">
-                                                <a><i class="material-icons">local_offer</i><%= company_job.salary %>$</a> 
+                                            <div class="user_job_salary">
+                                                <a><i class="material-icons">local_offer</i><%= company_job.salary %></a>
                                             </div>
-                                            
-                                            <div class="user_job_des">
-                                                <a><i class="material-icons">history</i><%= time_ago_in_words(company_job.created_at) %></a>
+                                        </div>
+                                    </div>
+
+                                    <div class="col-sm-2">
+                                        <div class="user_job_right">
+                                            <div class="apply_job_button">
+                                                <%= link_to '<button type="submit">Ứng tuyển</button>'.html_safe, new_company_apply_job_path(company.id, company_job.id)%>
+                                            </div>
+                                            <div class="user_job_date">
+                                                <a><%= time_ago_in_words(company_job.created_at) %></a>
                                             </div>
                                         </div>
                                     </div>

@@ -7,80 +7,79 @@
 
     <body>
         <div class="company_profile">
-
             <div class="company_profile_overview">
                 <div class="company_profile_title">
                     <strong>Tổng quan chung về <%= @company.name %></strong>
                 </div>
-                <div class="company_profile_container">
-                    <div class="company_profile_block">
-                        <div class="company_profile_detail_left">
-                            <div class="company_profile_section">
-                                <strong> Trụ sở chính </strong>
-                            </div>
-                            <div class="company_profile_content">
-                                <%= @company.location %>
-                            </div>
-                            <div class="company_profile_section">
-                                <strong> Liên hệ </strong>
-                            </div>
-                            <div class="company_profile_content">
-                                <%= @company.website %>
-                            </div>
-
-                            <div class="company_profile_section">
-                                <strong> Số điện thoại </strong>
-                            </div>
-                            <div class="company_profile_content">
-                                <%= @company.website %>
-                            </div>
+            
+                <div class="company_profile_block">
+                    <div class="col-sm-4">
+                        <div class="company_profile_section">
+                            <strong> Trụ sở chính </strong>
+                        </div>
+                        <div class="company_profile_content">
+                            <%= @company.location %>
+                        </div>
+                        <div class="company_profile_section">
+                            <strong> Liên hệ </strong>
+                        </div>
+                        <div class="company_profile_content">
+                            <%= @company.website %>
                         </div>
 
-                        <div class="company_profile_detail_mid">
-                            <div class="company_profile_section">
-                                <strong> Quy mô công ty </strong>
-                            </div>
-                            <div class="company_profile_content">
-                                <%= @company.size %>
-                            </div>
-                            <div class="company_profile_section">
-                                <strong> Năm thành lập </strong>
-                            </div>
-                            <div class="company_profile_content">
-                                <%= @company.time_establish %>
-                            </div>
-                            <div class="company_profile_section">
-                                <strong> Doanh thu </strong>
-                            </div>
-                            <div class="company_profile_content">
-                                <%= @company.time_end %>
-                            </div>
+                        <div class="company_profile_section">
+                            <strong> Số điện thoại </strong>
                         </div>
-
-                        <div class="company_profile_detail_right">
-                            <div class="company_profile_section">
-                                <strong> Quốc gia </strong>
-                            </div>
-                            <div class="company_profile_content">
-                                <%= @company.country %>
-                            </div>
-                            <div class="company_profile_section">
-                                <strong> Lĩnh vực chính </strong>
-                            </div>
-                            <div class="company_profile_content">
-                                <%= @company.field_operetion %>
-                            </div>
-                            <div class="company_profile_section">
-                                <strong> Thời gian làm việc </strong>
-                            </div>
-                            <div class="company_profile_content">
-                                <%= @company.time_start.to_formatted_s(:long) %> -> <%= @company.time_end.to_formatted_s(:long)%>
-                            </div>
+                        <div class="company_profile_content">
+                            <%= @company.website %>
                         </div>
                     </div>
-                    <div class="company_profile_summary">
-                        <t><%= @company.content %></t>
+
+                    <div class="col-sm-4">
+                        <div class="company_profile_section">
+                            <strong> Quy mô công ty </strong>
+                        </div>
+                        <div class="company_profile_content">
+                            <%= @company.size %>
+                        </div>
+                        <div class="company_profile_section">
+                            <strong> Năm thành lập </strong>
+                        </div>
+                        <div class="company_profile_content">
+                            <%= @company.time_establish %>
+                        </div>
+                        <div class="company_profile_section">
+                            <strong> Doanh thu </strong>
+                        </div>
+                        <div class="company_profile_content">
+                            <%= @company.time_end %>
+                        </div>
                     </div>
+
+                    <div class="col-sm-4">
+                        <div class="company_profile_section">
+                            <strong> Quốc gia </strong>
+                        </div>
+                        <div class="company_profile_content">
+                            <%= @company.country %>
+                        </div>
+                        <div class="company_profile_section">
+                            <strong> Lĩnh vực chính </strong>
+                        </div>
+                        <div class="company_profile_content">
+                            <%= @company.field_operetion %>
+                        </div>
+                        <div class="company_profile_section">
+                            <strong> Thời gian làm việc </strong>
+                        </div>
+                        <div class="company_profile_content">
+                            <%= @company.time_start.to_formatted_s(:long) %> -> <%= @company.time_end.to_formatted_s(:long)%>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="company_profile_summary">
+                    <a><%= @company.content %></a>
                 </div>
             </div>
 
@@ -98,7 +97,7 @@
 
             <div class="company_job">
                 <div class="company_job_title">
-                    <t> Việc làm mới từ <%= @company.name %></t>
+                    <a> Việc làm mới từ <%= @company.name %></a>
                 </div>
                 <div class="job_content">
                     <%= render @company.company_jobs %>
