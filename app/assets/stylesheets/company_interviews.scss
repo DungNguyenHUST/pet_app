@@ -3,25 +3,18 @@
 
 .company_interview_block {
     clear: both;
-    width: 100%;
-    height: auto;
     margin-top: 30px;
     margin-bottom: 20px;
     background-color: #fff;
-    // box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
     border-radius: 2px;
     .company_interview_left
     {
-        width: auto;
-        height: auto;
         display: block;
         position: relative;
         float: left;
         .company_avatar {
-            float: left;
             border-radius: 2px;
             margin-left: 0px;
-            // border-style: ridge;
             img{ 
                 box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.1), 0 6px 20px 0 rgba(0, 0, 0, 0.09);
                 max-width: 75px;
@@ -62,31 +55,28 @@
                 margin-top: 20px;
                 .interview_satisfied_label{
                     float: left;
+                    @media screen and (max-width: 600px){
+                        float: none;
+                    }
                     a{
                         font-size: 16px;
                         font-weight: 600;
                     }
                 }
-
-                // .interview_point
-                // {
-                //     margin-left: 100px;
-                //     margin-right: 10px;
-                //     float: left;
-                //     font-size: 18px;
-                //     font-weight: 600px;
-                //     color: rgb(75, 71, 71);
-                // }
         
                 .interview_score_star
                 {
                     display: block;
-                    // margin-right: 5px;
-                    margin-left: 280px;
+                    padding-left: 50%;
+                    
+                    @media screen and (max-width: 600px){
+                        padding-left: 0%;
+                    }
                     i {
                         font-size: 22px;
                         position: relative;
                         margin-right: 5px;
+                        float: left;
                     }
         
                     .checked {
@@ -106,29 +96,39 @@
 
         .user_interview_offer{
             clear: both;
-            margin-top: 10px;
+            padding-top: 20px;
             .user_interview_offer_label{
                 float: left;
+                @media screen and (max-width: 600px){
+                    float: none;
+                }
                 font-size: 16px;
                 font-weight: 600;
             }
             .user_interview_offer_content
             {
-                margin-left: 33%;
-                i {
-                    font-size: 18px;
-                    margin-right: 16px;
-                    margin-left: 22px;
-                    position: relative;
-                    top: 3px;
+                padding-left: 50%;
+                @media screen and (max-width: 600px){
+                    padding-left: 0%;
                 }
-    
-                .checked {
-                    color: #308d23;
-                }
-    
-                .checked_out {
-                    color: #db4040;
+                a{
+                    border: 1px solid #db4040;
+                    border-radius: 2px;
+                    padding: 5px;
+                    i {
+                        font-size: 18px;
+                        margin-right: 16px;
+                        position: relative;
+                        top: 3px;
+                    }
+        
+                    .checked {
+                        color: #308d23;
+                    }
+        
+                    .checked_out {
+                        color: #db4040;
+                    }    
                 }
             }
         }
@@ -144,23 +144,30 @@
             margin-top: 20px;
             .interview_toolbar {
                 display: block;
-                float: left;
                 font-size: 13px;
                 color: #a8a3a3;
-                margin-right: 5px !important;
-                span{
-                    // position: absolute;
+                a{
+                    // margin-right: -3px;
                 }
                 button{
-                    margin-right: 15px;
+                    margin-right: 2px;
                     font-size: 13px;
                     border: none;
                     background-color: #f8f9fa;
-                    i {
+                    i{
                         position: relative;
-                        margin-right: 3px;
-                        font-size: 18px;
+                        margin-right: 2px;
+                        font-size: 16px;
                         top: 3px;
+                        @media screen and (max-width: 600px){
+                            margin-right: 0px;
+                        }
+                    }
+                    span{
+                        color: #1877f2;
+                        @media screen and (max-width: 600px){
+                            // display: none;
+                        }
                     }
         
                     .checked {
@@ -174,18 +181,25 @@
 
                 .reply_btn
                 {
-                    border-right: 1px solid #dfe1e5;
-                    min-width: 86px;
-                    color: #1877f2;
+                    border: 1px solid #feb100;
+                    min-width: 12%;
+                    border-radius: 2px;
+                    padding: 5px;
+                    color: #fff;
+                    background-color: #feb100;
+                    a{
+                        color: #f1f1f1;
+                        margin-right: 5px;
+                    }
                     i{
-                        color: #a8a3a3;
+                        color: #f1f1f1;
                     }
                 }
 
                 .like_btn
                 {
                     border-right: 1px solid #dfe1e5;
-                    min-width: 80px;
+                    min-width: 12%;
                     color: #1877f2;
                     i{
                         color: #a8a3a3;
@@ -194,63 +208,10 @@
 
                 .dislike_btn
                 {
-                    border-right: 1px solid #dfe1e5;
-                    min-width: 80px;
+                    min-width: 12%;
                     color: #1877f2;
                     i{
                         color: #a8a3a3;
-                    }
-                }
-            }
-
-            .user_interview_time{
-                margin-left: 66%;
-                display: block;
-                font-size: 14px;
-                color: #6b6c6d;
-            }
-        }
-        .interview_feedback{
-            .report_button{
-                margin-left: 20%;
-                float: left;
-                button{
-                    border: none;
-                    background-color: #f8f9fa;
-                    font-size: 13px;
-                    color: #6b6c6d;
-                    i{
-                        font-size: 18px;
-                        margin-right: 2px;
-                        color: #a8a3a3;
-                        position: relative;
-                        top: 5px;
-                    }
-        
-                    .checked {
-                        color: #feb100;
-                    }
-                }
-            }
-            .share_button{
-                float: right;
-                button{
-                    background-color: #f8f9fa;
-                    font-size: 13px;
-                    border: none;
-                    color: #6b6c6d;
-                    i {
-                        position: relative;
-                        font-size: 18px;
-                        margin-right: 2px;
-                        // color: #a8a3a3;
-                        position: relative;
-                        top: 5px;
-                        color: #6b6c6d;
-                    }
-        
-                    .checked {
-                        color: #feb100;
                     }
                 }
             }

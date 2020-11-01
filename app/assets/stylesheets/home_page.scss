@@ -80,7 +80,7 @@
                     min-height: 300px;
                     &:hover{
                         box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
-                        // border: 1px solid #629fdb;
+                        background-color: #fff;
                     }
                     
                     .company_wall{
@@ -252,56 +252,50 @@
         }
     }
 
-    .home_top_job{
+    .home_top_job_home{
         clear: both;
         padding-top: 20px;
+        margin-bottom: 30px;
         background-color: #fff;
-        .home_top_job_label{
+        .home_top_job_home_label{
             color: #202124;
             font-size: 33px;
             font-weight: 500;
             padding-bottom: 30px;
         }
 
-        .row{
-            padding-bottom: 30px;
-            .col-lg-6{
-                padding: 10px;
-                padding-bottom: 0px;
-                padding-top: 0px;
-                .user_job_block {
-                    clear: left;
-                    width: 100%;
-                    min-height: 180px;
+        .home_top_job_home_container{
+            .user_job_home_block {
+                clear: left;
+                min-height: 200px;
+                background-color: #f7f8fa;
+                border-top: 1px solid #ecedee;
+                border-bottom: 1px solid #ecedee;
+                padding: 0px !important;
+                &:hover{
+                    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
                     background-color: #fff;
-                    border-top: 1px solid #ecedee;
-                    border-bottom: 1px solid #ecedee;
-                    padding: 0px !important;
-                    &:hover{
-                        box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
-                    }
-                
-                    .user_job_left
-                    {
-                        height: auto;
-                        margin: 12px;
-                        padding-top: 10px;
-                        display: block;
-                        position: relative;
-                        .user_avatar {
-                            border-radius: 2px;
-                            img{ 
-                                box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.1), 0 6px 20px 0 rgba(0, 0, 0, 0.09);
-                                max-width: 100px;
-                                max-height: 100px;
-                            }
+                }
+            
+                .user_job_home_left
+                {
+                    margin: 12px;
+                    padding-top: 20px;
+                    display: block;
+                    position: relative;
+                    .user_avatar {
+                        border-radius: 2px;
+                        float: left;
+                        img{ 
+                            box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.1), 0 6px 20px 0 rgba(0, 0, 0, 0.09);
+                            max-width: 100px;
+                            max-height: 100px;
                         }
                     }
-                
-                    .user_job_middle{
-                        padding: 10px;
-                        padding-top: 25px;
-                        .user_job_title{
+            
+                    .user_job_home_des{
+                        padding-left: 120px;
+                        .user_job_home_title{
                             a:link{
                                 text-decoration: none !important ;
                                 font-size: 20px;
@@ -315,8 +309,8 @@
                             -webkit-line-clamp: 1; /* number of lines to show */
                             -webkit-box-orient: vertical;
                         }
-                
-                        .user_job_description{
+            
+                        .user_job_home_description{
                             overflow: hidden;
                             text-overflow: ellipsis;
                             display: -webkit-box;
@@ -324,16 +318,21 @@
                             -webkit-box-orient: vertical;
                             font-size: 14px;
                         }
-                
-                        .user_job_location{
+            
+                        .user_job_home_location{
                             margin-top: 20px;
                             float: left;
+                            
+                            @media screen and (max-width: 600px){
+                                float: none;
+                            }
                             font-size: 14px;
                             a{
                                 padding-top: 5px;
                                 padding-bottom: 5px;
                                 padding-left: 10px;
                                 padding-right: 10px;
+                                margin-right: 10px;
                                 border: 1px solid #1877f2;
                                 border-radius: 30px;
                                 i{
@@ -346,21 +345,20 @@
                                 }
                             }
                         }
-                
-                        .user_job_salary{
+            
+                        .user_job_home_salary{
                             margin-top: 20px;
                             font-size: 14px;
                             color: #4fb87b;
                             a{
                                 padding-top: 5px;
                                 padding-bottom: 5px;
-                                padding-left: 10px;
                                 padding-right: 10px;
                                 border: 1px solid #1877f2;
                                 border-radius: 30px;
-                                margin-left: 10px;
+                                // margin-left: 10px;
                                 i{
-                                    margin-left: 20px;
+                                    padding-left: 10px;
                                     margin-right: 5px;
                                     font-size: 20px;
                                     color: #8a8888;
@@ -369,54 +367,53 @@
                                 }
                             }
                         }
-                        
                     }
-                
-                    .user_job_right{
-                        padding-top: 10px;
-                        .apply_job_button{
-                            padding: 10px;
-                            padding-top: 11px;
-                            button{
-                                padding: 6px;
-                                height: 33px;
-                                width: 140px;
-                                @media screen and (max-width: 600px){
-                                    width: 100%;
-                                    height: 35px;
-                                }
-                                margin-right: 10px;
-                                background: #1877f2;
-                                font-size: 14px;
-                                border: none;
-                                border-radius: 2px;
-                                cursor: pointer;
-                                text-align: center;
-                                color: #fff;
-                                &:hover{
-                                    background-color: #1877f2;
-                                }
-                            }
-                        }
-                        
-                        .user_job_date{
-                            font-size: 13px;
-                            color: #8a8888;
-                            padding-top: 70px;
-                            @media screen and (max-width: 600px){
-                                padding-top: 0px;
-                                position: absolute;
-                                top: -200px;
-                                left: 380px;
-                                color: #1877f2;
-                            }
-                            text-align: left;
-                            margin-left: 10px;
-                        }
-                    }
-                    clear: left;
-                    clear: right;
                 }
+            
+                .user_job_home_right{
+                    padding-top: 20px;
+                    .apply_job_home_button{
+                        padding: 10px;
+                        padding-top: 11px;
+                        button{
+                            padding: 6px;
+                            height: 33px;
+                            width: 140px;
+                            @media screen and (max-width: 600px){
+                                width: 100%;
+                                height: 35px;
+                            }
+                            margin-right: 10px;
+                            background: #1877f2;
+                            font-size: 14px;
+                            border: none;
+                            border-radius: 2px;
+                            cursor: pointer;
+                            text-align: center;
+                            color: #fff;
+                            &:hover{
+                                background-color: #1877f2;
+                            }
+                        }
+                    }
+                    
+                    .user_job_home_date{
+                        font-size: 13px;
+                        color: #8a8888;
+                        padding-top: 70px;
+                        @media screen and (max-width: 600px){
+                            padding-top: 0px;
+                            position: absolute;
+                            top: -20px;
+                            left: 20px;
+                            color: #8a8888;
+                        }
+                        text-align: left;
+                        margin-left: 10px;
+                    }
+                }
+                clear: left;
+                clear: right;
             }
         }
     }

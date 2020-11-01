@@ -30,9 +30,6 @@
                         <div class="interview_satisfied_label">
                             <a>Hài lòng với buổi phỏng vấn: </a>
                         </div>
-                        <%# <div class="interview_point">
-                            <%= company_interview.satisfied.to_f%>
-                        <%# </div> %>
                         <div class="interview_score_star">
                             <%if company_interview.satisfied.to_i > 0%>
                                 <%company_interview.satisfied.to_i.times do%>
@@ -56,11 +53,9 @@
                     </div>
                     <div class="user_interview_offer_content">
                         <%if company_interview.satisfied.to_i >0%>
-                            <i class="material-icons checked">check_circle_outline</i>
-                            <a> Yes </a>
+                            <a><i class="material-icons checked">check_circle_outline</i> Yes </a>
                         <% else %>
-                            <i class="material-icons checked_out">clear</i>
-                            <a> No </a>
+                            <a><i class="material-icons checked_out">clear</i> No </a>
                         <%end%>
                     </div>
                 </div>
@@ -68,30 +63,18 @@
                 <div class="company_interview_body">
                     <a><%= company_interview.content %></a>
                 </div>
-
+            
                 <div class="interview_info">
                     <div class="interview_toolbar">
+                        <button class="reply_btn" onclick="myFunctionReplyReview()"><a><%= company_interview.company_reply_interviews.count%></a><i class="material-icons">chat_bubble</i> <span>Trả lời</span> </button>
                         <a><%= company_interview.company_reply_interviews.count%></a>
-                        <button class="reply_btn" onclick="myFunctionReplyInterview()"><i class="material-icons">chat_bubble</i> Trả lời </button>
-
+                        <%= link_to '<button class="like_btn"><i class="material-icons">thumb_up</i> <span>Thích</span> </button>'.html_safe, company_company_interview_company_reply_interviews_path(@company, company_interview), method: :post%>
                         <a><%= company_interview.company_reply_interviews.count%></a>
-                        <%= link_to '<button class="like_btn"><i class="material-icons">thumb_up</i> Thích </button>'.html_safe, company_company_interview_company_reply_interviews_path(@company, company_interview), method: :post%>
-                        
-                        <a><%= company_interview.company_reply_interviews.count%></a>
-                        <%= link_to '<button class="dislike_btn"><i class="material-icons">thumb_down</i> Không thích </button>'.html_safe, company_company_interview_company_reply_interviews_path(@company, company_interview), method: :post%>
-                    </div>
-                </div>
-
-                <div class="interview_feedback">
-                    <div class="report_button">
-                        <%= link_to '<button type="submit"><i class="material-icons">flag</i> Báo cáo vi phạm</button>'.html_safe, sessions_new_path %>
-                    </div>
-
-                    <div class="share_button">
-                        <%= link_to '<button type="submit"><i class="material-icons">share</i> Chia sẻ</button>'.html_safe, new_user_path %>
+                        <%= link_to '<button class="dislike_btn"><i class="material-icons">thumb_down</i> <span>Không thích</span> </button>'.html_safe, company_company_interview_company_reply_interviews_path(@company, company_interview), method: :post%>
                     </div>
                 </div>
             </div>
+
             <div class="new_reply_interview_form" id = "mydivInterview">
                 <%= form_for [@company, company_interview, CompanyReplyInterview.new] do |f| %>
 
@@ -119,25 +102,14 @@
                     }
                 }
             </script>
-        </div>
-        
-        <div class="reply_interview_content">
-            <%if company_interview.company_reply_interviews.count > 0%>
-                <%# <button class="show_hide_reply_btn_show" onclick="myFunctionReplyInterviewShowHide()">Xem thêm <%=company_interview.company_reply_interviews.count trả lời...</button> %>
-                <div class="interview_reply" id = "mydivShowHide">
-                    <%= render company_interview.company_reply_interviews %>
-                </div>
-            <%end%>
-            <script>
-                function myFunctionReplyInterviewShowHide() {
-                    // var x = document.getElementById("mydivShowHide");
-                    // if (x.style.display == "none") {
-                    //     x.style.display = "block";
-                    // } else {
-                    //     x.style.display = "none";
-                    // }
-                }
-            </script>
+    
+            <div class="reply_interview_content">
+                <%if company_interview.company_reply_interviews.count > 0%>
+                    <div class="interview_reply">
+                        <%= render company_interview.company_reply_interviews %>
+                    </div>
+                <%end%>
+            </div>
         </div>
     </body>
 </html>
