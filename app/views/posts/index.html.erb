@@ -30,9 +30,9 @@
                                     </div>
 
                                     <div class="post_info">
-                                        <div class="post_username">
-                                            <i class="material-icons">person_outline</i><strong><%=post.username%></strong> . <span><%=time_ago_in_words(post.created_at)%></span>
-                                        </div>
+                                        <i class="material-icons">person_outline</i><span><%=post.username%></span>
+                                        <i class="material-icons">chat_bubble_outline</i><span><%=post.post_comments.count%></span> 
+                                        <i class="material-icons">slow_motion_video</i><span><%=time_ago_in_words(post.created_at)%></span>
                                     </div>
 
                                     <div class="post_content">
