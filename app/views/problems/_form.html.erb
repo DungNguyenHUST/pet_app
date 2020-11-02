@@ -39,7 +39,7 @@
                             </div>
 
                             <div class="new_problem_input">
-                                <%= f.text_field :title, class: "new_problem_form_input", placeholder: " Nhập vấn đề cần giải quyết" %>
+                                <%= f.text_field :title, class: "form-control", placeholder: " Nhập vấn đề cần giải quyết" %>
                             </div>
                         </div>
 
@@ -49,15 +49,10 @@
                             </div>
 
                             <div class="new_problem_input_rich_text">
-                                <%= f.rich_text_area :problem_content, class: "new_problem_form_input", placeholder: "  Mô tả nội dung" %>
+                                <%= f.rich_text_area :problem_content, class: "rich_text_input", placeholder: "  Mô tả nội dung" %>
                             </div>
                         </div>
-                    </div>
-
-                    <div class="new_problem_content_checkbox">
-                        <input type="checkbox" name="agree-term" id="agree-term" class="agree-term" />
-                        <label for="agree-term" class="label-agree-term"><span><span></span></span> Đồng ý với điều khoản điều kiện</label>
-                    </div>
+                    </div>  
 
                     <div class="new_problem_submit">
                         <%= f.submit "Gửi nội dung", class: "new_problem_form_submit" %>

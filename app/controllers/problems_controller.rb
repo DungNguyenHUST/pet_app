@@ -13,7 +13,7 @@ class ProblemsController < ApplicationController
         @problem = Problem.new(problem_param)
 
         if logged_in?
-            @problem.user_name = @problem.name
+            @problem.user_name = @current_user.name
         else
             @problem.user_name = "Ẩn danh"
         end

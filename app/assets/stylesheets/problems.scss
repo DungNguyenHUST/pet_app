@@ -6,10 +6,9 @@
         .problem_category{
             min-height: 300px;
             border-bottom: 1px solid #edeef0;
-            padding-top: 20px;
+            padding-top: 30px;
             padding-left: 0px;
             margin-bottom: 20px;
-            margin-top: 20px;
             .problem_header{
                 margin-bottom: 10px;
                 font-size: 30px;
@@ -49,6 +48,7 @@
         .input-group{
             box-shadow: 0 1px 4px 0 rgba(60, 60, 60, 0.1), 0 2px 4px 0 rgba(30, 30, 30, 0.09);
             background-color: #fff;
+            border-radius: 2px;
             border: none;
             .form-control{
                 height: 50px;
@@ -126,18 +126,18 @@
     }
 
     .col-sm-4{
-        // padding-top: 60px;
+        padding-top: 30px;
         border: none;
         .problem_top{
             padding: 10px;
             width: 100%;
-            background-color: #fff;
+            background-color: #fdf7e3;
             min-height: 500px;
             padding: 10px;
             font-size: 22px;
             font-weight: 500;
             color: #feb100;
-            border: 2px solid #dfe1e5;
+            border: 1px solid #dfe1e5;
             border-radius: 2px;
             i{
                 font-size: 30px;
@@ -167,7 +167,7 @@
         }
         .problem_company{
             width: 100%;
-            border: 2px solid #dfe1e5;
+            border: 1px solid #dfe1e5;
             background-color: #fff;
             min-height: 500px;
             padding: 10px;
@@ -210,80 +210,63 @@
 {
     width: 100%;
     clear: both;
-    border-top: 1px solid #dfe1e5;
     .problem_area_left{
-        width: 50%;
-        float: left;
         padding-top: 0px !important;
         border-right: 2px solid #dfe1e5;
-        min-height: 720px;
-        .problem_tab {
-            // padding-left: 30px;
+        @media screen and (max-width: 600px){
+            border: none;
+        }
+        min-height: 720px; 
+        padding: 10px;
+        padding-right: 20px;
+        .tab_link {
             clear: left;
             overflow: hidden;
             position: relative;
             display: block;
             background-color: #fff;
-            .tab_container {
-                font-weight: bold !important;
-                background-color: #fff;
-                color: #141414;
-                border-bottom: 1px solid #dfe1e5;
+            // border-bottom: 1px solid #dfe1e5;
+            .nav-tabs {
+                overflow-x: auto;
+                overflow-y: hidden;
+                flex-wrap: nowrap;
             }
-            .tab_container button{
-                outline:none;
+            .nav-tabs .nav-link {
+                white-space: nowrap;
+            }
+            .nav-tabs .nav-link, .nav-tabs .nav-link.active, .nav-tabs .nav-link:hover {
                 border: none;
-                min-width: 22%;
-                height: 50px;
-                background-color: #fff;
-                margin-right: 11px;
-                .tablinks{
-                    margin-bottom: 10px;
-                }
-                a{
-                    font-size: 16px;
-                }
+                color: gray;
                 i{
-                    font-size: 24px;
-                    padding-right: 5px;
                     position: relative;
                     top: 5px;
+                    padding-right: 3px;
                 }
                 span{
-                    font-size: 12px;
-                    margin-left: 0px;
                     position: absolute;
-                    top: 8px;
-                    margin-left: -6px;
-                    color: #939394;
+                    top: -1px;
+                    font-size: 13px;
                 }
             }
-            .tab_container button:hover{
-                border-bottom: 3px solid #1877f2;
+            .nav-tabs .nav-link.active {
+                border-radius: 0;
+                border-bottom: 4px solid blue;
+                font-weight: 550;
+                color: #1877f2;
             }
-    
-            .tab_container button:focus{
-                border-bottom: 3px solid #1877f2;
-            }
-    
-            .tab_container button.active {
-                border-bottom: 3px solid #2b78f7;
-                color: #2b78f7;
-            }
+        }
 
-            .tabcontent{
-                // padding-top: 30px;
-                // padding-right: 30px;
-                // padding-bottom: 30px;
-                padding: 30px;
-            }
+        .tab-content{
+            padding-left: 0px;
+            background-color: #fff;
+            padding-top: 20px;
+            min-height: 600px;
         }
     }
 
     .problem_area_right
     {
-        margin-left: 50%;
-        padding: 20px;
+        padding: 10px;
         padding-top: 10px;
         min-height: 720px;
         .problem_submit{
@@ -302,7 +285,6 @@
 
                 .new_problem_solution_right_section
                 {
-                    padding-left: 20px;
                     padding-top: 10px;
                     .new_problem_solution_right_content{
                         .new_problem_solution_right_label_title{
@@ -317,12 +299,10 @@
                             left: 0px;
                             margin-top: 5px;
                             margin-bottom: 40px;
-                            margin-right: 20px;
-                            width: 96%;
                             height: auto;
-                            .new_problem_solution_right_form_input{
+                            .form-control{
                                 margin-left: 0px;
-                                height: 40px;
+                                min-height: 50px;
                                 width: 100%;
                                 border: 1px solid #dfe1e5;
                                 border-radius: 2px;
@@ -341,10 +321,10 @@
                             left: 0px;
                             margin-top: 5px;
                             margin-bottom: 20px;
-                            margin-right: 20px;
-                            width: 96%;
-                            .new_problem_solution_right_form_input{
-                                min-height: 380px;
+
+                            .form-control{
+                                min-height: 150px;
+                                height: auto;
                                 margin-left: 0px;
                                 width: 100%;
                                 border: 1px solid #dfe1e5;
@@ -357,10 +337,9 @@
 
                 .new_problem_solution_right_submit_button{
                     margin-top: 30px;
-                    padding-left: 20px;
                     .new_problem_solution_right_form_submit{
-                        height: 40px;
-                        width: 97%;
+                        height: 50px;
+                        width: 100%;
                         border-radius: 2px;
                         padding: 6px;
                         background: #1877f2;

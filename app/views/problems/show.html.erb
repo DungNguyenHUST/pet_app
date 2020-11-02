@@ -7,115 +7,93 @@
     <body>
         <%- model_class = Problem -%>
             <div class="problem_area">
-                <div class="problem_area_left">
-                    <div class="problem_tab">
-                        <div class="tab_container">
-                            <button class="tablinks active" id="ProblemDescriptionID" onclick="openTab(event, 'ProblemDescription')"><i class="material-icons">content_paste</i> <a>Mô tả</a></button>
-                            <button class="tablinks" id="ProblemSolutionID" onclick="openTab(event, 'ProblemSolution')"><i class="material-icons">check_circle_outline</i><a>Giải pháp</a><span><%= @problem.problem_solutions.count%><span></button>
-                            <button class="tablinks" id="ProblemDiscusstionID" onclick="openTab(event, 'ProblemDiscusstion')"><i class="material-icons">people_outline</i><a>Thảo luận</a><span><%= @problem.problem_solutions.count%><span></button>
-                            <button class="tablinks" id="ProblemYourSolutionID" onclick="openTab(event, 'ProblemYourSolution')"><i class="material-icons">perm_identity</i><a>Giải pháp của bạn</a></button>
+                <div class="col-sm-6">
+                    <div class="problem_area_left">
+                        <div class="tab_link">
+                            <ul class="nav nav-tabs" role="tablist">
+                                <li class="nav-item">
+                                    <a class="nav-link active" data-toggle="tab" href="#ProblemDescriptionID"><i class="material-icons">content_paste</i>Mô tả</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link" data-toggle="tab" href="#ProblemSolutionID"><i class="material-icons">check_circle_outline</i>Giải pháp<span> <%= @problem.problem_solutions.count%><span></a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link" data-toggle="tab" href="#ProblemDiscusstionID"><i class="material-icons">people_outline</i>Thảo luận</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link" data-toggle="tab" href="#ProblemYourSolutionID"><i class="material-icons">perm_identity</i>Giải pháp của bạn</a>
+                                </li>
+                            </ul>
                         </div>
 
-                        <div id="ProblemDescription" class="tabcontent">
-                            <div class="problem_des_tab">
-                                <%= render :partial => 'problems/description' %>
-                            </div>
-                        </div>
-
-                        <div id="ProblemSolution" class="tabcontent">
-                            <div class="problem_solution_tab">
-                                <%= render @problem.problem_solutions %>
-                            </div>
-                        </div>
-
-                        <div id="ProblemDiscusstion" class="tabcontent">
-                        </div>
-
-                        <div id="ProblemYourSolution" class="tabcontent">
-                        </div>
-
-                    </div>
-                </div>
-                
-                <script>
-                    function openTab(evt, TabName) {
-                        var i, tabcontent, tablinks;
-                        tabcontent = document.getElementsByClassName("tabcontent");
-                        for (i = 0; i < tabcontent.length; i++) {
-                            tabcontent[i].style.display = "none";
-                        }
-                        tablinks = document.getElementsByClassName("tablinks");
-                        for (i = 0; i < tablinks.length; i++) {
-                            tablinks[i].className = tablinks[i].className.replace(" active", "");
-                        }
-                        document.getElementById(TabName).style.display = "block";
-
-                        evt.currentTarget.className += " active";
-
-                        document.cookie = "TabName="+TabName+"ID; expires=Thu, 18 Dec 2090 12:00:00 UTC; path=/";
-                    }
-
-                    document.addEventListener("DOMContentLoaded", function(){
-                        // Handler when the DOM is fully loaded
-                        var selectedTab = getCookie("TabName");
-                        if (selectedTab != ""){
-                            document.getElementById(selectedTab).click();
-                        }
-                        else
-                        {
-                            document.getElementById("ProblemDescriptionID").click();
-                        }
-                    });
-
-                    function getCookie(cname) {
-                        var name = cname + "=";
-                        var decodedCookie = decodeURIComponent(document.cookie);
-                        var ca = decodedCookie.split(';');
-                        for(var i = 0; i <ca.length; i++) {
-                            var c = ca[i];
-                            while (c.charAt(0) == ' ') {
-                                c = c.substring(1);
-                            }
-                            if (c.indexOf(name) == 0) {
-                                return c.substring(name.length, c.length);
-                            }
-                        }
-                        return "";
-                    }
-                </script>
-
-                <div class="problem_area_right">
-                    <div class="problem_submit">
-                        <div class="new_problem_solution_right_form">
-                            <%= form_for [@problem, ProblemSolution.new] do |f| %>
-                                <div class="new_problem_solution_right_title">
-                                    <a>Câu trả lời của bạn</a>
+                        <div class="tab-content">
+                            <div role="tabpanel" id="ProblemDescriptionID" class="tab-pane fade in active"><br>
+                                <div class="problem_des_tab">
+                                    <%= render :partial => 'problems/description' %>
                                 </div>
+                            </div>
 
-                                <div class="new_problem_solution_right_section">
-                                    <div class="new_problem_solution_right_content">
-                                        <div class="new_problem_solution_right_label_title">
-                                            <a><%= f.label :title, "Tiêu đề*", class: "new_problem_solution_right_label_name" %></a>
-                                        </div>
+                            <div role="tabpanel" id="ProblemSolutionID" class="tab-pane fade in active"><br>
+                                <div class="problem_solution_tab">
+                                    <%= render @problem.problem_solutions %>
+                                </div>
+                            </div>
 
-                                        <div class="new_problem_solution_right_input_review_title">
-                                            <%= f.text_field :title, class: "new_problem_solution_right_form_input", placeholder: "  Nhập tiêu đề" %>
-                                        </div>
+                            <div role="tabpanel" id="ProblemDiscusstionID" class="tab-pane fade in active"><br>
+                            </div>
 
-                                        <div class="new_problem_solution_right_label">
-                                            <a><%= f.label :content, "Giải pháp chính*", class: "new_problem_solution_right_label_name" %></a>
-                                        </div>
+                            <div role="tabpanel" id="ProblemYourSolutionID" class="tab-pane fade in active"><br>
+                            </div>
+                        </div>
+                    </div>
+                    <script type="text/javascript">
+                        $(function() { 
+                            $('a[data-toggle="tab"]').on('shown.bs.tab', function (e) {
+                                localStorage.setItem('lastTab', $(this).attr('href'));
+                            });
 
-                                        <div class="new_problem_solution_right_input_review">
-                                            <%= f.text_field :content, class: "new_problem_solution_right_form_input", placeholder: "  Nhập nội dung trả lời" %>
+                            var lastTab = localStorage.getItem('lastTab');
+                            if (lastTab) {
+                                $('[href="' + lastTab + '"]').tab('show');
+                            }
+                        });
+                    </script>
+                </div>
+
+                <div class="col-sm-6">
+                    <div class="problem_area_right">
+                        <div class="problem_submit">
+                            <div class="new_problem_solution_right_form">
+                                <%= form_for [@problem, ProblemSolution.new] do |f| %>
+                                    <div class="new_problem_solution_right_title">
+                                        <a>Câu trả lời của bạn</a>
+                                    </div>
+
+                                    <div class="new_problem_solution_right_section">
+                                        <div class="new_problem_solution_right_content">
+                                            <div class="new_problem_solution_right_label_title">
+                                                <a><%= f.label :title, "Tiêu đề*", class: "new_problem_solution_right_label_name" %></a>
+                                            </div>
+
+                                            <div class="new_problem_solution_right_input_review_title">
+                                                <%= f.text_field :title, class: "form-control", placeholder: "  Nhập tiêu đề" %>
+                                            </div>
+
+                                            <div class="new_problem_solution_right_label">
+                                                <a><%= f.label :solution_rich, "Giải pháp chính*", class: "new_problem_solution_right_label_name" %></a>
+                                            </div>
+
+                                            <div class="new_problem_solution_right_input_review">
+                                                <%= f.rich_text_area :solution_rich, class: "form-control", placeholder: "  Nhập nội dung trả lời" %>
+                                            </div>
                                         </div>
                                     </div>
-                                </div>
 
-                                <div class="new_problem_solution_right_submit_button">
-                                    <%= f.submit "Gửi trả lời", class: "new_problem_solution_right_form_submit" %>
-                                </div>
-                            <%end%>
+                                    <div class="new_problem_solution_right_submit_button">
+                                        <%= f.submit "Gửi trả lời", class: "new_problem_solution_right_form_submit" %>
+                                    </div>
+                                <%end%>
+                            </div>
                         </div>
                     </div>
                 </div>

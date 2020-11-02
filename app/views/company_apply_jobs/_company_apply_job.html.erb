@@ -3,26 +3,27 @@
 <html>
     <head>
         <meta name="viewport" content="width=device-width, initial-scale=1">
-        
     </head>
 
     <body>
-        <div class="user_apply_job_block">
-            <div class="user_apply_job_left">
-                <div class="user_avatar">
-                    <%if @company.avatar.attached?%>
-                            <%= link_to (image_tag(@company.avatar)), image_path(url_for(@company.avatar)), rel: "gallery" , :href => company_path(@company)%>
-                    <%end%>
-                </div>    
-            </div>
-
-            <div class="user_apply_job_cotent">
-                <div class="user_apply_job_body">
-                    <a><%= company_apply_job.reply_content %></a>
+        <div class="container">
+            <div class="user_apply_job_block">
+                <div class="user_apply_job_left">
+                    <div class="user_avatar">
+                        <%if @company.avatar.attached?%>
+                                <%= link_to (image_tag(@company.avatar)), image_path(url_for(@company.avatar)), rel: "gallery" , :href => company_path(@company)%>
+                        <%end%>
+                    </div>    
                 </div>
 
-                <div class="user_apply_job_time">
-                    <a><%= company_apply_job.user_name %> lúc <%= time_ago_in_words(company_apply_job.created_at) %></a>
+                <div class="user_apply_job_cotent">
+                    <div class="user_apply_job_body">
+                        <a><%= company_apply_job.reply_content %></a>
+                    </div>
+
+                    <div class="user_apply_job_time">
+                        <a><%= company_apply_job.user_name %> lúc <%= time_ago_in_words(company_apply_job.created_at) %></a>
+                    </div>
                 </div>
             </div>
         </div>
