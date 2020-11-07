@@ -32,10 +32,10 @@
                     
                     <%=form_tag company_company_jobs_path(@companies, @company_jobs), :method => "get" do%>
                         <div class="input-group mb-3">
+                            <%= text_field_tag :search, params[:search], class: 'form-control', placeholder: "Tìm kiếm theo công việc, kĩ năng hoặc tên công ty" %>
                             <div class="input-group-addon">
                                 <i class="material-icons checked">search</i>
                             </div>
-                            <%= text_field_tag :search, params[:search], class: 'form-control', placeholder: "Tìm kiếm theo công việc, kĩ năng hoặc tên công ty" %>
                         </div>
                     <%end%>
 
