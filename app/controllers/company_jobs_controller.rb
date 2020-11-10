@@ -1,7 +1,10 @@
 class CompanyJobsController < ApplicationController
     def index 
+        @companie_all = Company.all
+        @company_job_all = CompanyJob.all
         @companies = Company.search(params[:search])
         @company_jobs = CompanyJob.search(params[:search])
+        @company_by_jobs = Company.includes(@company_jobs)
     end
 
     def new

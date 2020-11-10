@@ -19,7 +19,7 @@
 
                 <div class="user_review_intro_right">
                     <div class="user_review_title">
-                        <a><%= company_review.review_title %></a>
+                        <a><%= company_review.review_title.html_safe %></a>
                     </div>
 
                     <div class="user_review_score_star">
@@ -37,7 +37,7 @@
                     </div>
 
                     <div class="user_review_status">
-                            <a><%= company_review.position %></a>
+                            <a><%= company_review.position.html_safe %></a>
                             <%if company_review.working_status%>
                                 <a> . Nhân viên đang làm việc</a>
                             <%else%>
@@ -45,43 +45,43 @@
                             <%end%>
                             <a> . <%= time_ago_in_words(company_review.created_at) %></a>
                     </div>
-                </div>
-            </div>
 
-            <div class="user_review_cotent">
-                <div class="user_review_pros">
-                    <div class="user_review_pros_label">
-                        <i class="material-icons checked">check_circle_outline</i>
-                        <strong>Ưu điểm</strong>
-                    </div>
-                    <div class="user_review_pros_content">
-                        <a><%= company_review.pros %></a>
-                    </div>
-                </div>
+                    <div class="user_review_cotent">
+                        <div class="user_review_pros">
+                            <div class="user_review_pros_label">
+                                <i class="material-icons checked">check_circle_outline</i>
+                                <strong>Ưu điểm</strong>
+                            </div>
+                            <div class="user_review_pros_content">
+                                <a><%= company_review.pros.html_safe %></a>
+                            </div>
+                        </div>
 
-                <div class="user_review_cons">
-                    <div class="user_review_cons_label">
-                        <i class="material-icons checked">clear</i>
-                        <strong>Nhược điểm </strong>
-                    </div>
-                    <div class="user_review_cons_content">
-                        <a><%= company_review.cons %></a>
-                    </div>
-                </div>
+                        <div class="user_review_cons">
+                            <div class="user_review_cons_label">
+                                <i class="material-icons checked">clear</i>
+                                <strong>Nhược điểm </strong>
+                            </div>
+                            <div class="user_review_cons_content">
+                                <a><%= company_review.cons.html_safe %></a>
+                            </div>
+                        </div>
 
-                <div class="user_review_body">
-                    <a><%= company_review.review %></a>
-                </div>
+                        <div class="user_review_body">
+                            <a><%= company_review.review.html_safe %></a>
+                        </div>
 
-                <div class="review_info">
-                    <div class="review_toolbar">
-                        <button class="reply_btn" onclick="myFunctionReplyReview()"><a><%= company_review.company_reply_reviews.count%></a><i class="material-icons">chat_bubble</i> <span>Trả lời</span> </button>
+                        <div class="review_info">
+                            <div class="review_toolbar">
+                                <button class="reply_btn" onclick="myFunctionReplyReview()"><a><%= company_review.company_reply_reviews.count%></a><i class="material-icons">chat_bubble</i> <span>Trả lời</span> </button>
 
-                        <a><%= company_review.company_like_reviews.count%></a>
-                        <%= link_to '<button class="like_btn"><i class="material-icons">thumb_up</i> <span>Thích</span> </button>'.html_safe, company_company_review_company_like_reviews_path(@company, company_review), method: :post%>
-                        
-                        <a><%= company_review.company_dislike_reviews.count%></a>
-                        <%= link_to '<button class="dislike_btn"><i class="material-icons">thumb_down</i> <span>Không thích</span> </button>'.html_safe, company_company_review_company_dislike_reviews_path(@company, company_review), method: :post%>
+                                <a><%= company_review.company_like_reviews.count%></a>
+                                <%= link_to '<button class="like_btn"><i class="material-icons">thumb_up</i> <span>Thích</span> </button>'.html_safe, company_company_review_company_like_reviews_path(@company, company_review), method: :post%>
+                                
+                                <a><%= company_review.company_dislike_reviews.count%></a>
+                                <%= link_to '<button class="dislike_btn"><i class="material-icons">thumb_down</i> <span>Không thích</span> </button>'.html_safe, company_company_review_company_dislike_reviews_path(@company, company_review), method: :post%>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -91,7 +91,7 @@
 
                     <div class="new_reply_review_content">
                         <div class="new_reply_review_input_review">
-                            <%= f.text_field :reply_content, class: "new_reply_review_form_input_review", placeholder: "  Gửi trả lời" %>
+                            <%= f.text_area :reply_content, class: "new_reply_review_form_input_review", placeholder: "  Gửi trả lời" %>
                         </div>
                     </div>
 

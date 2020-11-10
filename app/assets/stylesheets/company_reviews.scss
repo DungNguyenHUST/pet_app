@@ -6,7 +6,6 @@
     height: auto;
     margin-top: 20px;
     margin-bottom: 20px;
-    padding-top: 20px;
     .user_review_intro{
         .user_review_intro_left
         {
@@ -14,35 +13,30 @@
             position: relative;
             float: left;
             .user_avatar {
-                float: left;
                 border-radius: 2px;
                 img{ 
                     box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.1), 0 6px 20px 0 rgba(0, 0, 0, 0.09);
-                    max-width: 70px;
-                    max-height: 70px;
+                    max-width: 66px;
+                    max-height: 66px;
                 }
             }
         }
 
         .user_review_intro_right{
-            margin-left: 90px;
-            padding: 20px;
-            padding-top: 0px;
+            margin-left: 75px;
+            padding: 10px;
             background-color: #f8f9fa;
-            border-radius: 2px;
+            border-radius: 5px;
 
             .user_review_title{
-                padding-top: 10px;
                 font-size: 18px;
                 font-weight: 600;
-                padding-bottom: 10px;
                 color: #2e3030;
+                margin-bottom: 10px;
             }
 
             .user_review_score_star
             {
-                margin-top: 10px;
-                margin-bottom: 5px;
                 .review_point{
                     float: left;
                     margin-right: 5px;
@@ -58,7 +52,6 @@
                     i {
                         float: left;
                         margin-top: 4px;
-                        // margin-right: 6px;
                         font-size: 22px;
                         position: relative;
                         top: -5px;
@@ -77,172 +70,164 @@
             .user_review_status{
                 font-size: 13px;
                 float: right;
+                @media screen and (max-width: 600px){
+                    clear: both;
+                    float: none;
+                }
                 color: #535351;
-                height: 30px;
                 padding-left: 0px;
                 padding-top: 5px;
-                border-radius: 20px;
-                margin-bottom: 10px;
             }
-        }
-    }
-    
-    .user_review_cotent
-    {
-        display: block;
-        width: auto;
-        height: auto;
-        margin-left: 90px;
-        padding: 20px;
-        padding-bottom: 20px;
-        padding-top: 0px;
-        background-color: #f8f9fa;
-        border-radius: 2px;
-
-        .user_review_pros
-        {
-            clear: both;
-            padding-top: 15px;
-            .user_review_pros_label{
-                i {
-                    position: relative;
-                    margin-right: 5px;
-                    padding-top: 0px;
-                    float: left;
-                    font-size: 18px;
-                    top: 0px;
-                }
-
-                .checked {
-                    color: green;
-                }
-                font-size: 16px;;
-                font-weight: 400;
-            }
-
-            .user_review_pros_content{
-                font-size: 14px;
-                margin-left: 30px;
-                margin-top: 10px;
-                color: #3c3d3d;
-            }
-        }
-
-        .user_review_cons{
-            margin-top: 10px;
-            // margin-left: 20px;
-            .user_review_cons_label{
-                font-size: 16px;;
-                font-weight: 400;
-                i {
-                    position: relative;
-                    margin-right: 5px;
-                    padding-top: 0px;
-                    float: left;
-                    font-size: 18px;
-                    top: 0px;
-                }
-
-                .checked {
-                    color: red;
-                }
-            }
-
-            .user_review_cons_content{
-                font-size: 14px;
-                margin-left: 30px;
-                margin-top: 10px;
-                color: #3c3d3d;
-            }
-        }
-
-        .user_review_body {
-            padding-top: 30px;
-            font-size: 14px;
-            margin-bottom: 30px;
-            display: block;
-            color: black;
-        }
-
-        .review_info{
-            margin-top: 15px;
-            .review_toolbar {
+            
+            .user_review_cotent
+            {
+                clear: both;
                 display: block;
-                font-size: 13px;
-                color: #a8a3a3;
-                a{
-                    // margin-right: -3px;
-                }
-                button{
-                    margin-right: 2px;
-                    font-size: 13px;
-                    border: none;
-                    background-color: #f7f8fa;
-                    i{
-                        position: relative;
-                        margin-right: 2px;
-                        font-size: 16px;
-                        top: 3px;
-                        @media screen and (max-width: 600px){
-                            margin-right: 0px;
+                height: auto;
+                background-color: #f8f9fa;
+                border-radius: 2px;
+                .user_review_pros
+                {
+                    padding-top: 10px;
+                    .user_review_pros_label{
+                        i {
+                            position: relative;
+                            margin-right: 5px;
+                            float: left;
+                            font-size: 18px;
+                            top: 3px;
                         }
+        
+                        .checked {
+                            color: green;
+                        }
+                        font-size: 16px;;
+                        font-weight: 400;
                     }
-                    span{
-                        color: #1877f2;
-                        @media screen and (max-width: 600px){
-                            // display: none;
+        
+                    .user_review_pros_content{
+                        font-size: 14px;
+                        margin-left: 30px;
+                        margin-top: 10px;
+                        color: #3c3d3d;
+                    }
+                }
+        
+                .user_review_cons{
+                    padding-top: 10px;
+                    .user_review_cons_label{
+                        font-size: 16px;;
+                        font-weight: 400;
+                        i {
+                            position: relative;
+                            margin-right: 5px;
+                            padding-top: 0px;
+                            float: left;
+                            font-size: 18px;
+                            top: 3px;
+                        }
+        
+                        .checked {
+                            color: red;
                         }
                     }
         
-                    .checked {
-                        color: #feb100;
-                    }
-
-                    .checked_out {
-                        color: #a8a3a3;
-                    }
-                }
-
-                .reply_btn
-                {
-                    border: 1px solid #feb100;
-                    min-width: 12%;
-                    border-radius: 2px;
-                    padding: 5px;
-                    color: #fff;
-                    background-color: #feb100;
-                    a{
-                        color: #f1f1f1;
-                        margin-right: 5px;
-                    }
-                    i{
-                        color: #f1f1f1;
+                    .user_review_cons_content{
+                        font-size: 14px;
+                        margin-left: 30px;
+                        margin-top: 10px;
+                        color: #3c3d3d;
                     }
                 }
-
-                .like_btn
-                {
-                    border-right: 1px solid #dfe1e5;
-                    min-width: 12%;
-                    color: #1877f2;
-                    i{
-                        color: #a8a3a3;
-                    }
+        
+                .user_review_body {
+                    padding-top: 20px;
+                    font-size: 14px;
+                    margin-bottom: 30px;
+                    display: block;
+                    color: #111111;
                 }
-
-                .dislike_btn
-                {
-                    min-width: 12%;
-                    color: #1877f2;
-                    i{
+        
+                .review_info{
+                    margin-top: 15px;
+                    .review_toolbar {
+                        display: block;
+                        font-size: 13px;
                         color: #a8a3a3;
+                        a{
+                            // margin-right: -3px;
+                        }
+                        button{
+                            margin-right: 3px;
+                            font-size: 13px;
+                            border: none;
+                            background-color: #f7f8fa;
+                            i{
+                                position: relative;
+                                margin-right: 2px;
+                                font-size: 16px;
+                                top: 3px;
+                                @media screen and (max-width: 600px){
+                                    margin-right: 0px;
+                                }
+                            }
+                            span{
+                                color: #1877f2;
+                                @media screen and (max-width: 600px){
+                                    // display: none;
+                                }
+                            }
+                
+                            .checked {
+                                color: #feb100;
+                            }
+        
+                            .checked_out {
+                                color: #a8a3a3;
+                            }
+                        }
+        
+                        .reply_btn
+                        {
+                            border: 1px solid #feb100;
+                            min-width: 12%;
+                            border-radius: 2px;
+                            padding: 5px;
+                            color: #fff;
+                            background-color: #feb100;
+                            a{
+                                color: #f1f1f1;
+                                margin-right: 5px;
+                            }
+                            i{
+                                color: #f1f1f1;
+                            }
+                        }
+        
+                        .like_btn
+                        {
+                            border-right: 1px solid #dfe1e5;
+                            min-width: 12%;
+                            color: #1877f2;
+                            i{
+                                color: #a8a3a3;
+                            }
+                        }
+        
+                        .dislike_btn
+                        {
+                            min-width: 12%;
+                            color: #1877f2;
+                            i{
+                                color: #a8a3a3;
+                            }
+                        }
                     }
                 }
             }
         }
     }
-    clear: left;
-    clear: right;
+    clear: both;
 }
 
 ////////////////////new///////////////////

@@ -1,0 +1,100 @@
+<!doctype html>
+<html>
+    <head>
+    <!-- Place your kit's code here -->
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+    </head>
+
+    <body>
+        <div class="company_policy">
+            <div class="row">                
+                <div class="col-sm-8">
+                    <div class="company_policy_overview_left">
+                        <div class="company_policy_title">
+                            <a> Những chính sách nổi bật tại <%= @company.name %></a>
+                        </div>
+
+                        <div class="company_policy_policy">
+                            <a><%= @company.policy %></a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-sm-4">
+                    <div class='company_policy_overview_block_right'>
+                        <div class='company_policy_overview_block_right_overview'>
+                            <div class="company_policy_overview_label">
+                                <span> Giới thiệu</span>
+                            </div>
+
+                            <div class="company_policy_overview_right">
+                                <div class="company_policy_overview_right_title">
+                                    <i class="material-icons">place</i><a>  Địa chỉ </a>
+                                </div>
+                                <div class="company_policy_overview_right_des">
+                                    <a><%= @company.location %></a>
+                                </div>
+                            </div>
+                            <div class="company_policy_overview_right">
+                                <div class="company_policy_overview_right_title">
+                                    <i class="material-icons">people</i> <a> Nhân viên </a>
+                                </div>
+                                <div class="company_policy_overview_right_des">
+                                    <a><%= @company.size %></a>
+                                </div>
+                            </div>
+                            <div class="company_policy_overview_right">
+                                <div class="company_policy_overview_right_title">
+                                    <i class="material-icons">grading</i> <a> Lĩnh vực hoạt động </a>
+                                </div>
+                                <div class="company_policy_overview_right_des">
+                                    <a><%= @company.field_operetion %></a>
+                                </div>
+                            </div>
+                            <div class="company_policy_overview_right">
+                                <div class="company_policy_overview_right_title">
+                                    <i class="material-icons">http</i><a> Liên hệ </a>
+                                </div>
+                                <div class="company_policy_overview_right_des">
+                                    <a><%= @company.website %></a>
+                                </div>
+                            </div>
+                            <div class="company_policy_overview_right">
+                                <div class="company_policy_overview_right_title">
+                                    <i class="material-icons">history</i><a> Cập nhật lần cuối </a>
+                                </div>
+                                <div class="company_policy_overview_right_des">
+                                    <a><%= @company.name %></a>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class='company_policy_overview_block_right_job'>
+                            <div class="company_job_label">
+                                <span> Việc làm</span>
+                            </div>
+                            <div class="company_job_des">
+                                <%@company.company_jobs.each do |company_job|%>
+                                    <div class="company_job_block">
+                                        <div class="company_avatar">
+                                            <%if @company.avatar.attached?%>
+                                                <img><%= link_to (image_tag(@company.avatar)), image_path(url_for(@company.avatar)), rel: "gallery" , :href => company_path(@company)%>
+                                            <%end%>
+                                        </div>
+                                        <div class="company_job_title">
+                                            <%= link_to (company_job.title), company_company_job_path(@company, company_job) %>
+                                        </div>
+                                        <div class="user_job_date">
+                                            <a><%= time_ago_in_words(company_job.created_at) %></a>
+                                        </div>
+                                    </div>
+                                <%end%>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </body>
+
+</html>
