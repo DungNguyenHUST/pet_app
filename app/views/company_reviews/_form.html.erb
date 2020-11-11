@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html>
     <head>
+        <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
         <meta name="viewport" content="width=device-width, height=device-height, initial-scale=1.0"/>
     </head>
 
@@ -56,75 +57,363 @@
                     </div>
 
                     <div class="new_review_section">
-                        <div class="new_review_content">
-                            <div class="new_review_label">
+                        <div class="new_review_work_env_content">
+                            <div class="new_review_work_env_label">
                                 <a><%= f.label :work_env_score, "Môi trường làm việc*:", class: "new_review_label_name" %></a>
                             </div>
 
-                            <div class="new_review_input">
-                                <%= f.collection_radio_buttons :work_env_score, [[1, 'Rất không hài lòng'] ,[2, 'Không hài lòng'], [3, 'Hài lòng'], [4, 'Tốt'], [5, "Rất tốt"] ],:first, :last, { item_wrapper_tag: false } do |b|
-                                    b.radio_button(:class => "collection_radio_buttons icon-star") + b.label(:class => "collection_radio_buttons_label icon-star-label")
-                                end%>
+                            <div class="new_review_work_env_input">
+                                <div class="new_review_form_work_env_input">
+                                    <%= f.number_field :work_env_score, readonly: true, :id => "work_env_score_id", :value => ''%>
+                                </div>
+
+                                <div class="new_review_work_env_star_block">
+                                    <button type="button" class="btnrating_work_env" data-attr="1" id="rating-star-work_env-1">
+                                        <i class="material-icons">star_outline </i>
+                                    </button>
+
+                                    <button type="button" class="btnrating_work_env" data-attr="2" id="rating-star-work_env-2">
+                                        <i class="material-icons">star_outline </i>
+                                    </button>
+
+                                    <button type="button" class="btnrating_work_env" data-attr="3" id="rating-star-work_env-3">
+                                        <i class="material-icons">star_outline </i>
+                                    </button>
+
+                                    <button type="button" class="btnrating_work_env" data-attr="4" id="rating-star-work_env-4">
+                                        <i class="material-icons">star_outline </i>
+                                    </button>
+                                    
+                                    <button type="button" class="btnrating_work_env" data-attr="5" id="rating-star-work_env-5">
+                                        <i class="material-icons">star_outline </i>
+                                    </button>
+                                </div>
+
+                                <script>
+                                    jQuery(document).ready(function($){
+            
+                                        $(".btnrating_work_env").on('click',(function(e) {
+                                        
+                                        var previous_value = $("#selected_rating").val();
+                                        
+                                        var selected_value = $(this).attr("data-attr");
+                                        $("#selected_rating").val(selected_value);
+
+                                        $("#work_env_score_id").val(selected_value).attr("disable","false");
+                                        
+                                        for (i = 1; i <= selected_value; ++i) {
+                                            $("#rating-star-work_env-"+i).toggleClass('btn-warning');
+                                            $("#rating-star-work_env-"+i).toggleClass('btn-default');
+                                        }
+                                        
+                                        for (ix = 1; ix <= previous_value; ++ix) {
+                                            $("#rating-star-work_env-"+ix).toggleClass('btn-warning');
+                                            $("#rating-star-work_env-"+ix).toggleClass('btn-default');
+                                        }
+                                        
+                                        }));
+                                    });
+                                </script>
                             </div>
                         </div>
 
-                        <div class="new_review_content">
-                            <div class="new_review_label">
+                        <div class="new_review_salary_content">
+                            <div class="new_review_salary_label">
                                 <a><%= f.label :salary_score, "Lương bổng*:", class: "new_review_label_name" %></a>
                             </div>
 
-                            <div class="new_review_input">
-                                <%= f.collection_radio_buttons :salary_score, [[1, 'Rất không hài lòng'] ,[2, 'Không hài lòng'], [3, 'Hài lòng'], [4, 'Tốt'], [5, "Rất tốt"] ],:first, :last, { item_wrapper_tag: false } do |b|
-                                    b.radio_button(:class => "collection_radio_buttons icon-star") + b.label(:class => "collection_radio_buttons_label icon-star-label")
-                                end%>
+                            <div class="new_review_salary_input">
+                                <div class="new_review_form_salary_input">
+                                    <%= f.number_field :salary_score, readonly: true, :id => "salary_score_id", :value => ''%>
+                                </div>
+
+                                <div class="new_review_salary_star_block">
+                                    <button type="button" class="btnrating_salary" data-attr="1" id="rating-star-salary-1">
+                                        <i class="material-icons">star_outline </i>
+                                    </button>
+
+                                    <button type="button" class="btnrating_salary" data-attr="2" id="rating-star-salary-2">
+                                        <i class="material-icons">star_outline </i>
+                                    </button>
+
+                                    <button type="button" class="btnrating_salary" data-attr="3" id="rating-star-salary-3">
+                                        <i class="material-icons">star_outline </i>
+                                    </button>
+
+                                    <button type="button" class="btnrating_salary" data-attr="4" id="rating-star-salary-4">
+                                        <i class="material-icons">star_outline </i>
+                                    </button>
+                                    
+                                    <button type="button" class="btnrating_salary" data-attr="5" id="rating-star-salary-5">
+                                        <i class="material-icons">star_outline </i>
+                                    </button>
+                                </div>
+
+                                <script>
+                                    jQuery(document).ready(function($){
+            
+                                        $(".btnrating_salary").on('click',(function(e) {
+                                        
+                                        var previous_value = $("#selected_rating").val();
+                                        
+                                        var selected_value = $(this).attr("data-attr");
+                                        $("#selected_rating").val(selected_value);
+
+                                        $("#salary_score_id").val(selected_value).attr("disable","false");
+                                        
+                                        for (i = 1; i <= selected_value; ++i) {
+                                            $("#rating-star-salary-"+i).toggleClass('btn-warning');
+                                            $("#rating-star-salary-"+i).toggleClass('btn-default');
+                                        }
+                                        
+                                        for (ix = 1; ix <= previous_value; ++ix) {
+                                            $("#rating-star-salary-"+ix).toggleClass('btn-warning');
+                                            $("#rating-star-salary-"+ix).toggleClass('btn-default');
+                                        }
+                                        
+                                        }));
+                                    });
+                                </script>
                             </div>
                         </div>
 
-                        <div class="new_review_content">
-                            <div class="new_review_label">
-                                <a><%= f.label :ot_score, "Chế độ làm thêm giờ*:", class: "new_review_label_name" %></a>
+                        <div class="new_review_ot_content">
+                            <div class="new_review_ot_label">
+                                <a><%= f.label :ot_score, "Làm thêm giờ*:", class: "new_review_label_name" %></a>
                             </div>
 
-                            <div class="new_review_input">
-                                <%= f.collection_radio_buttons :ot_score, [[1, 'Rất không hài lòng'] ,[2, 'Không hài lòng'], [3, 'Hài lòng'], [4, 'Tốt'], [5, "Rất tốt"] ],:first, :last, { item_wrapper_tag: false } do |b|
-                                    b.radio_button(:class => "collection_radio_buttons icon-star") + b.label(:class => "collection_radio_buttons_label icon-star-label")
-                                end%>
+                            <div class="new_review_ot_input">
+                                <div class="new_review_form_ot_input">
+                                    <%= f.number_field :ot_score, readonly: true, :id => "ot_score_id", :value => ''%>
+                                </div>
+
+                                <div class="new_review_ot_star_block">
+                                    <button type="button" class="btnrating_ot" data-attr="1" id="rating-star-ot-1">
+                                        <i class="material-icons">star_outline </i>
+                                    </button>
+
+                                    <button type="button" class="btnrating_ot" data-attr="2" id="rating-star-ot-2">
+                                        <i class="material-icons">star_outline </i>
+                                    </button>
+
+                                    <button type="button" class="btnrating_ot" data-attr="3" id="rating-star-ot-3">
+                                        <i class="material-icons">star_outline </i>
+                                    </button>
+
+                                    <button type="button" class="btnrating_ot" data-attr="4" id="rating-star-ot-4">
+                                        <i class="material-icons">star_outline </i>
+                                    </button>
+                                    
+                                    <button type="button" class="btnrating_ot" data-attr="5" id="rating-star-ot-5">
+                                        <i class="material-icons">star_outline </i>
+                                    </button>
+                                </div>
+
+                                <script>
+                                    jQuery(document).ready(function($){
+            
+                                        $(".btnrating_ot").on('click',(function(e) {
+                                        
+                                        var previous_value = $("#selected_rating").val();
+                                        
+                                        var selected_value = $(this).attr("data-attr");
+                                        $("#selected_rating").val(selected_value);
+
+                                        $("#ot_score_id").val(selected_value).attr("disable","false");
+                                        
+                                        for (i = 1; i <= selected_value; ++i) {
+                                            $("#rating-star-ot-"+i).toggleClass('btn-warning');
+                                            $("#rating-star-ot-"+i).toggleClass('btn-default');
+                                        }
+                                        
+                                        for (ix = 1; ix <= previous_value; ++ix) {
+                                            $("#rating-star-ot-"+ix).toggleClass('btn-warning');
+                                            $("#rating-star-ot-"+ix).toggleClass('btn-default');
+                                        }
+                                        
+                                        }));
+                                    });
+                                </script>
                             </div>
                         </div>
 
-                        <div class="new_review_content">
-                            <div class="new_review_label">
-                                <a><%= f.label :manager_score, "Trình độ quản lý, cấp trên*:", class: "new_review_label_name" %></a>
+                        <div class="new_review_manager_content">
+                            <div class="new_review_manager_label">
+                                <a><%= f.label :manager_score, "Quản lý, manager*:", class: "new_review_label_name" %></a>
                             </div>
 
-                            <div class="new_review_input">
-                                <%= f.collection_radio_buttons :manager_score, [[1, 'Rất không hài lòng'] ,[2, 'Không hài lòng'], [3, 'Hài lòng'], [4, 'Tốt'], [5, "Rất tốt"] ],:first, :last, { item_wrapper_tag: false } do |b|
-                                    b.radio_button(:class => "collection_radio_buttons icon-star") + b.label(:class => "collection_radio_buttons_label icon-star-label")
-                                end%>
+                            <div class="new_review_manager_input">
+                                <div class="new_review_form_manager_input">
+                                    <%= f.number_field :manager_score, readonly: true, :id => "manager_score_id", :value => ''%>
+                                </div>
+
+                                <div class="new_review_manager_star_block">
+                                    <button type="button" class="btnrating_manager" data-attr="1" id="rating-star-manager-1">
+                                        <i class="material-icons">star_outline </i>
+                                    </button>
+
+                                    <button type="button" class="btnrating_manager" data-attr="2" id="rating-star-manager-2">
+                                        <i class="material-icons">star_outline </i>
+                                    </button>
+
+                                    <button type="button" class="btnrating_manager" data-attr="3" id="rating-star-manager-3">
+                                        <i class="material-icons">star_outline </i>
+                                    </button>
+
+                                    <button type="button" class="btnrating_manager" data-attr="4" id="rating-star-manager-4">
+                                        <i class="material-icons">star_outline </i>
+                                    </button>
+                                    
+                                    <button type="button" class="btnrating_manager" data-attr="5" id="rating-star-manager-5">
+                                        <i class="material-icons">star_outline </i>
+                                    </button>
+                                </div>
+
+                                <script>
+                                    jQuery(document).ready(function($){
+            
+                                        $(".btnrating_manager").on('click',(function(e) {
+                                        
+                                        var previous_value = $("#selected_rating").val();
+                                        
+                                        var selected_value = $(this).attr("data-attr");
+                                        $("#selected_rating").val(selected_value);
+
+                                        $("#manager_score_id").val(selected_value).attr("disable","false");
+                                        
+                                        for (i = 1; i <= selected_value; ++i) {
+                                            $("#rating-star-manager-"+i).toggleClass('btn-warning');
+                                            $("#rating-star-manager-"+i).toggleClass('btn-default');
+                                        }
+                                        
+                                        for (ix = 1; ix <= previous_value; ++ix) {
+                                            $("#rating-star-manager-"+ix).toggleClass('btn-warning');
+                                            $("#rating-star-manager-"+ix).toggleClass('btn-default');
+                                        }
+                                        
+                                        }));
+                                    });
+                                </script>
                             </div>
                         </div>
 
-                        <div class="new_review_content">
-                            <div class="new_review_label">
+                        <div class="new_review_career_content">
+                            <div class="new_review_career_label">
                                 <a><%= f.label :career_score, "Cơ hội thăng tiến*:", class: "new_review_label_name" %></a>
                             </div>
 
-                            <div class="new_review_input">
-                                <%= f.collection_radio_buttons :career_score, [[1, 'Rất không hài lòng'] ,[2, 'Không hài lòng'], [3, 'Hài lòng'], [4, 'Tốt'], [5, "Rất tốt"] ],:first, :last, { item_wrapper_tag: false } do |b|
-                                    b.radio_button(:class => "collection_radio_buttons icon-star") + b.label(:class => "collection_radio_buttons_label icon-star-label")
-                                end%>
+                            <div class="new_review_career_input">
+                                <div class="new_review_form_career_input">
+                                    <%= f.number_field :career_score, readonly: true, :id => "career_score_id", :value => ''%>
+                                </div>
+
+                                <div class="new_review_career_star_block">
+                                    <button type="button" class="btnrating_career" data-attr="1" id="rating-star-career-1">
+                                        <i class="material-icons">star_outline </i>
+                                    </button>
+
+                                    <button type="button" class="btnrating_career" data-attr="2" id="rating-star-career-2">
+                                        <i class="material-icons">star_outline </i>
+                                    </button>
+
+                                    <button type="button" class="btnrating_career" data-attr="3" id="rating-star-career-3">
+                                        <i class="material-icons">star_outline </i>
+                                    </button>
+
+                                    <button type="button" class="btnrating_career" data-attr="4" id="rating-star-career-4">
+                                        <i class="material-icons">star_outline </i>
+                                    </button>
+                                    
+                                    <button type="button" class="btnrating_career" data-attr="5" id="rating-star-career-5">
+                                        <i class="material-icons">star_outline </i>
+                                    </button>
+                                </div>
+
+                                <script>
+                                    jQuery(document).ready(function($){
+            
+                                        $(".btnrating_career").on('click',(function(e) {
+                                        
+                                        var previous_value = $("#selected_rating").val();
+                                        
+                                        var selected_value = $(this).attr("data-attr");
+                                        $("#selected_rating").val(selected_value);
+
+                                        $("#career_score_id").val(selected_value).attr("disable","false");
+                                        
+                                        for (i = 1; i <= selected_value; ++i) {
+                                            $("#rating-star-career-"+i).toggleClass('btn-warning');
+                                            $("#rating-star-career-"+i).toggleClass('btn-default');
+                                        }
+                                        
+                                        for (ix = 1; ix <= previous_value; ++ix) {
+                                            $("#rating-star-career-"+ix).toggleClass('btn-warning');
+                                            $("#rating-star-career-"+ix).toggleClass('btn-default');
+                                        }
+                                        
+                                        }));
+                                    });
+                                </script>
                             </div>
                         </div>
 
-                        <div class="new_review_content">
-                            <div class="new_review_label">
-                                <a><%= f.label :score, "Bạn cho điểm công ty này bao nhiêu điểm*: ", class: "new_review_label_name" %></a>
+                        <div class="new_review_score_content">
+                            <div class="new_review_score_label">
+                                <a><%= f.label :score, "Bạn đánh giá công ty này bao nhiêu điểm*:", class: "new_review_label_name" %></a>
                             </div>
 
-                            <div class="new_review_input">
-                                <%= f.collection_radio_buttons :score, [[1, '1'] ,[2, '2'], [3, '3'], [4, '4'], [5, "5"] ],:first, :last, { item_wrapper_tag: false } do |b|
-                                    b.radio_button(:class => "collection_radio_buttons icon-star") + b.label(:class => "collection_radio_buttons_label icon-star-label")
-                                end%>
+                            <div class="new_review_score_input">
+                                <div class="new_review_form_score_input">
+                                    <%= f.number_field :score, readonly: true, :id => "score_score_id", :value => ''%>
+                                </div>
+
+                                <div class="new_review_score_star_block">
+                                    <button type="button" class="btnrating_score" data-attr="1" id="rating-star-score-1">
+                                        <i class="material-icons">star_outline </i>
+                                    </button>
+
+                                    <button type="button" class="btnrating_score" data-attr="2" id="rating-star-score-2">
+                                        <i class="material-icons">star_outline </i>
+                                    </button>
+
+                                    <button type="button" class="btnrating_score" data-attr="3" id="rating-star-score-3">
+                                        <i class="material-icons">star_outline </i>
+                                    </button>
+
+                                    <button type="button" class="btnrating_score" data-attr="4" id="rating-star-score-4">
+                                        <i class="material-icons">star_outline </i>
+                                    </button>
+                                    
+                                    <button type="button" class="btnrating_score" data-attr="5" id="rating-star-score-5">
+                                        <i class="material-icons">star_outline </i>
+                                    </button>
+                                </div>
+
+                                <script>
+                                    jQuery(document).ready(function($){
+            
+                                        $(".btnrating_score").on('click',(function(e) {
+                                        
+                                        var previous_value = $("#selected_rating").val();
+                                        
+                                        var selected_value = $(this).attr("data-attr");
+                                        $("#selected_rating").val(selected_value);
+
+                                        $("#score_score_id").val(selected_value).attr("disable","false");
+                                        
+                                        for (i = 1; i <= selected_value; ++i) {
+                                            $("#rating-star-score-"+i).toggleClass('btn-warning');
+                                            $("#rating-star-score-"+i).toggleClass('btn-default');
+                                        }
+                                        
+                                        for (ix = 1; ix <= previous_value; ++ix) {
+                                            $("#rating-star-score-"+ix).toggleClass('btn-warning');
+                                            $("#rating-star-score-"+ix).toggleClass('btn-default');
+                                        }
+                                        
+                                        }));
+                                    });
+                                </script>
                             </div>
                         </div>
 

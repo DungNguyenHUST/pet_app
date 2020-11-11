@@ -2,6 +2,7 @@
 <html>
     <head>
         <meta name="viewport" content="width=device-width, height=device-height, initial-scale=1.0"/>
+        <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
     </head>
 
     <body>
@@ -29,7 +30,7 @@
                             </div>
 
                             <div class="new_interview_input">
-                                <%= f.select(:get_interview, ['Mạng xã hội','Bạn bè người thân', 'Kênh tuyển dụng', 'Quảng cáo', 'Kênh khác'], {include_blank: true}, { :class => 'my_style_class' }) %>
+                                <%= f.select(:get_interview, options_for_select(['Mạng xã hội','Bạn bè người thân', 'Kênh tuyển dụng', 'Quảng cáo', 'Kênh khác'], 'Kênh khác'), {include_blank: true}, { :class => 'my_style_class' }) %>
                             </div>
                         </div>
 
@@ -43,27 +44,123 @@
                             </div>
                         </div>
 
-                        <div class="new_interview_content">
-                            <div class="new_interview_label">
-                                <a><%= f.label :difficultly, "Độ khó bài test hoặc câu hỏi phỏng vấn*", class: "new_interview_label_name" %></a>
+                        <div class="new_interview_difficultly_content">
+                            <div class="new_interview_difficultly_label">
+                                <a><%= f.label :difficultly, "Bạn cảm nhận thế nào về độ khó bài phỏng vấn ?*:", class: "new_interview_label_name" %></a>
                             </div>
 
-                            <div class="new_interview_input">
-                                <%= f.collection_radio_buttons :difficultly, [[1, 'Rất dễ'] ,[2, 'Dễ'], [3, 'Vừa sức'], [4, 'Khó '], [5, "Rất khó"] ],:first, :last, { item_wrapper_tag: false } do |b|
-                                    b.radio_button(:class => "collection_radio_buttons icon-star") + b.label(:class => "collection_radio_buttons_label icon-star-label")
-                                end%>
+                            <div class="new_interview_difficultly_input">
+                                <div class="new_interview_form_difficultly_input">
+                                    <%= f.number_field :difficultly, readonly: true, :id => "difficultly_id", :value => ''%>
+                                </div>
+
+                                <div class="new_interview_difficultly_star_block">
+                                    <button type="button" class="btnrating_difficultly" data-attr="1" id="rating-star-difficultly-1">
+                                        <i class="material-icons">wb_incandescent </i>
+                                    </button>
+
+                                    <button type="button" class="btnrating_difficultly" data-attr="2" id="rating-star-difficultly-2">
+                                        <i class="material-icons">wb_incandescent </i>
+                                    </button>
+
+                                    <button type="button" class="btnrating_difficultly" data-attr="3" id="rating-star-difficultly-3">
+                                        <i class="material-icons">wb_incandescent </i>
+                                    </button>
+
+                                    <button type="button" class="btnrating_difficultly" data-attr="4" id="rating-star-difficultly-4">
+                                        <i class="material-icons">wb_incandescent </i>
+                                    </button>
+                                    
+                                    <button type="button" class="btnrating_difficultly" data-attr="5" id="rating-star-difficultly-5">
+                                        <i class="material-icons">wb_incandescent </i>
+                                    </button>
+                                </div>
+
+                                <script>
+                                    jQuery(document).ready(function($){
+            
+                                        $(".btnrating_difficultly").on('click',(function(e) {
+                                        
+                                        var previous_value = $("#selected_rating").val();
+                                        
+                                        var selected_value = $(this).attr("data-attr");
+                                        $("#selected_rating").val(selected_value);
+
+                                        $("#difficultly_id").val(selected_value).attr("disable","false");
+                                        
+                                        for (i = 1; i <= selected_value; ++i) {
+                                            $("#rating-star-difficultly-"+i).toggleClass('btn-warning');
+                                            $("#rating-star-difficultly-"+i).toggleClass('btn-default');
+                                        }
+                                        
+                                        for (ix = 1; ix <= previous_value; ++ix) {
+                                            $("#rating-star-difficultly-"+ix).toggleClass('btn-warning');
+                                            $("#rating-star-difficultly-"+ix).toggleClass('btn-default');
+                                        }
+                                        
+                                        }));
+                                    });
+                                </script>
                             </div>
                         </div>
 
-                        <div class="new_interview_content">
-                            <div class="new_interview_label">
-                                <a><%= f.label :satisfied, "Mức độ hài lòng*", class: "new_interview_label_name" %></a>
+                        <div class="new_interview_satisfied_content">
+                            <div class="new_interview_satisfied_label">
+                                <a><%= f.label :satisfied, "Bạn có hài lòng với buổi phỏng vấn không?*:", class: "new_interview_label_name" %></a>
                             </div>
 
-                            <div class="new_interview_input">
-                                <%= f.collection_radio_buttons :satisfied, [[1, 'Rất không hài lòng'] ,[2, 'Không hài lòng'], [3, 'Hài lòng'], [4, 'Tốt'], [5, "Rất tốt"] ],:first, :last, { item_wrapper_tag: false } do |b|
-                                    b.radio_button(:class => "collection_radio_buttons icon-star") + b.label(:class => "collection_radio_buttons_label icon-star-label")
-                                end%>
+                            <div class="new_interview_satisfied_input">
+                                <div class="new_interview_form_satisfied_input">
+                                    <%= f.number_field :satisfied, readonly: true, :id => "satisfied_id", :value => ''%>
+                                </div>
+
+                                <div class="new_interview_satisfied_star_block">
+                                    <button type="button" class="btnrating_satisfied" data-attr="1" id="rating-star-satisfied-1">
+                                        <i class="material-icons">star_outline </i>
+                                    </button>
+
+                                    <button type="button" class="btnrating_satisfied" data-attr="2" id="rating-star-satisfied-2">
+                                        <i class="material-icons">star_outline </i>
+                                    </button>
+
+                                    <button type="button" class="btnrating_satisfied" data-attr="3" id="rating-star-satisfied-3">
+                                        <i class="material-icons">star_outline </i>
+                                    </button>
+
+                                    <button type="button" class="btnrating_satisfied" data-attr="4" id="rating-star-satisfied-4">
+                                        <i class="material-icons">star_outline </i>
+                                    </button>
+                                    
+                                    <button type="button" class="btnrating_satisfied" data-attr="5" id="rating-star-satisfied-5">
+                                        <i class="material-icons">star_outline </i>
+                                    </button>
+                                </div>
+
+                                <script>
+                                    jQuery(document).ready(function($){
+            
+                                        $(".btnrating_satisfied").on('click',(function(e) {
+                                        
+                                        var previous_value = $("#selected_rating").val();
+                                        
+                                        var selected_value = $(this).attr("data-attr");
+                                        $("#selected_rating").val(selected_value);
+
+                                        $("#satisfied_id").val(selected_value).attr("disable","false");
+                                        
+                                        for (i = 1; i <= selected_value; ++i) {
+                                            $("#rating-star-satisfied-"+i).toggleClass('btn-warning');
+                                            $("#rating-star-satisfied-"+i).toggleClass('btn-default');
+                                        }
+                                        
+                                        for (ix = 1; ix <= previous_value; ++ix) {
+                                            $("#rating-star-satisfied-"+ix).toggleClass('btn-warning');
+                                            $("#rating-star-satisfied-"+ix).toggleClass('btn-default');
+                                        }
+                                        
+                                        }));
+                                    });
+                                </script>
                             </div>
                         </div>
 
