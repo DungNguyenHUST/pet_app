@@ -2,34 +2,66 @@
 <html>
 	<head>
 		<meta name="viewport" content="width=device-width, initial-scale=1">
-		<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 	</head>
 	<body>
 		<div class="topnav" id="myTopnav">
 			<div class="container">
-				<a href="<%=pages_path %>"class="logo">firework</a>
+				<a href="javascript:void(0);" class="menu_icon" onclick="openNav()">
+					<i class="material-icons"> reorder</i> 
+				</a>
+
+				<a href="javascript:void(0);" class="close_icon" onclick="closeNav()">
+					<i class="material-icons"> close</i> 
+				</a>
+
+				<div class="nav_logo">
+					<a href="<%=pages_path %>">firework </a>
+				</div>
+
 				<a href="<%=pages_path %>">Tìm việc </a>
 				<a href="<%=companies_path %>">Review công ty </a>
 				<a href="<%=problems_path %>">Câu hỏi phỏng vấn </a>
 				<a href="<%=posts_path %>">Blog</a>
 
-				<a class="nav_recrui" href="<%=companies_path %>">
-					<span>Tuyển dụng</span>
-				</a>
-				<a class="nav_login" href="<%=sessions_new_path %>">
-					<i class="material-icons"> person_outline</i> 
-					<span>Đăng nhập</span>
-				</a>
+				<div class="nav_right">
+					<a class="nav_recrui" href="<%=companies_path %>">
+						<span>Tuyển dụng</span>
+					</a>
 
-				<a href="javascript:void(0);" class="icon" onclick="myFunction()">
-					<i class="fa fa-bars"></i>
-				</a>
+					<%if current_user.present?%>
+						<a class="nav_user" href="<%=user_path(current_user) %>"> 
+							<span> Hi, <%=current_user.name%></span>
+						</a>
+					<%else%>
+						<a class="nav_login" href="<%=sessions_new_path %>">
+							<i class="material-icons"> person_outline</i> 
+							<span>Đăng nhập</span>
+						</a>
+					<%end%>
+				</div>
+				
+				<div class="nav_login_mobile">
+					<%if current_user.present?%>
+						<%= link_to '<button type="button"><i class="material-icons"> person_outline</i></button>'.html_safe, user_path(current_user) %>
+					<%else%>
+						<%= link_to '<button type="button"><i class="material-icons"> person_outline</i></button>'.html_safe, sessions_new_path %>
+					<%end%>
+				</div>
 			</div>
 		</div>
 
 		<script>
-			function myFunction() {
-			var x = document.getElementById("myTopnav");
+			function openNav() {
+				var x = document.getElementById("myTopnav");
+				if (x.className === "topnav") {
+					x.className += " responsive";
+				} else {
+					x.className = "topnav";
+				}
+			}
+
+			function closeNav() {
+				var x = document.getElementById("myTopnav");
 				if (x.className === "topnav") {
 					x.className += " responsive";
 				} else {
