@@ -48,6 +48,6 @@ class PostsController < ApplicationController
     private
     # define param for each post
     def post_param
-        params.require(:post).permit(:wall_picture, :title, :content_rich)
+        params.require(:post).permit(:wall_picture, :title, :content)
     end
 end

@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta name="viewport" content="width=device-width, height=device-height, initial-scale=1.0"/>
+    </head>
+
+    <body>
+        <div class='container'>
+            <div class="user_block">
+                <div class='col-sm-6'>
+                    <div class="user_add_new_form_left">
+                        <%= form_for @user, html: {class: "form-horizontal"} do |f| %>
+                            <div class="user_add_new_title">
+                                <a>Đăng ký thông tin tài khoản mới</a>
+                            </div>
+
+                            <div class="user_add_new_content">
+                                <div class="user_add_new_label">
+                                    <a><%= f.label :name, "Họ và tên", class: "user_add_new_label_name" %></a>
+                                </div>
+
+                                <div class="user_add_new_input">
+                                    <%= f.text_field :name, class: 'form-control', placeholder: "Nhập họ và tên của bạn" %>
+                                </div>
+                            </div>
+
+                            <div class="user_add_new_content">
+                                <div class="user_add_new_label">
+                                    <a><%= f.label :email, "Địa chỉ email", class: "user_add_new_label_name" %></a>
+                                </div>
+
+                                <div class="user_add_new_input">
+                                    <%= f.email_field :email, class: "form-control", placeholder: "Nhập email của bạn" %>
+                                </div>
+                            </div>
+
+                            <div class="user_add_new_content">
+                                <div class="user_add_new_label">
+                                    <a><%= f.label :password, "Mật khẩu", class: "user_add_new_label" %></a>
+                                </div>
+
+                                <div class="user_add_new_input">
+                                    <%= f.password_field :password, class: "form-control", placeholder: "Mật khẩu ít nhất 6 kí tự gồm chữ in hoa, chữ số và biểu tượng" %>
+                                </div>
+                            </div>
+
+                            <div class="user_add_new_content">
+                                <div class="user_add_new_label">
+                                    <a><%= f.label :password_confirmation, "Xác nhận mật khẩu", class: "user_add_new_label" %></a>
+                                </div>
+
+                                <div class="user_add_new_input">
+                                    <%= f.password_field :password_confirmation, class: "form-control", placeholder: "Nhập lại mật khẩu" %>
+                                </div>
+                            </div>
+
+                            <div class="user_add_new_submit">
+                                <%= f.submit "Đăng ký", class: "user_add_new_form_submit" %>
+                            </div>
+
+                            <p class="user_add_new_loginhere">
+                                Bạn đã có tài khoản? <%= link_to " Đăng nhập", sessions_new_path %>
+                            </p>
+                        <%end%>
+                    </div>
+                </div>
+                
+                <div class='col-sm-6'>
+                    <div class="user_add_new_form_right">
+                        <div class="user_add_new_title">
+                            <a>Hoặc</a>
+                        </div>
+                        <div class="login_with_google">
+                            <%= link_to '<button type="submit"> <i class="material-icons">mail_outline</i><span>Đăng kí bằng Gmail</span></button>'.html_safe, sessions_new_path %>
+                        </div>
+                        <div class="login_with_facebook">
+                            <%= link_to '<button type="submit"> <i class="material-icons">facebook</i> <span>Đăng kí bằng Facebook</span></button>'.html_safe, sessions_new_path %>
+                        </div>
+                        <div class="login_with_phone">
+                            <%= link_to '<button type="submit"> <i class="material-icons">phone</i><span>Đăng kí bằng Số điện thoại</span></button>'.html_safe, sessions_new_path %>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </body>
+</html>

@@ -42,6 +42,6 @@ class CompanyApplyJobsController < ApplicationController
     private
 
     def company_apply_job_param
-        params.require(:company_apply_job).permit(:name, :email, :cover_letter_rich)
+        params.require(:company_apply_job).permit(:name, :email, :cover_letter, :cover_vitate)
     end
 end

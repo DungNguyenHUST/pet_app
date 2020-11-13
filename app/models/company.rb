@@ -5,8 +5,6 @@ class Company < ApplicationRecord
     
     has_one_attached :avatar
     has_one_attached :wall_picture
-    has_rich_text :content
-    has_rich_text :policy
 
     validate :image_type
 

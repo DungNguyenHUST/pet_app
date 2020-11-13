@@ -2,7 +2,9 @@
 <%if (!current_user.nil?)%>
     <%if current_user.admin?%>
         <%flash[:success] = "admin user login"%>
-        <%= render :partial => 'pages/admin_page' %>
+        <%= render :partial => 'pages/admin_home_page' %>
+    <%elsif current_user.employer?%>
+        <%= render :partial => 'pages/employer_home_page' %>
     <%else%>
         <%= render :partial => 'pages/home_page' %>
     <%end%>

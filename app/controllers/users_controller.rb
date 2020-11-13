@@ -8,10 +8,11 @@ class UsersController < ApplicationController
 
     def new
         @user = User.new
+        @param = params[:role_param]
     end
     
     def create
-        @user = User.new user_params
+        @user = User.new(user_params)
         if @user.password == @user.password_confirmation
             if @user.save
                 flash[:success] = "Đăng kí thành công"
@@ -48,9 +49,13 @@ class UsersController < ApplicationController
             flash[:danger] = "Không thể update thông tin, vui lòng thử lại"
         end
     end
+
+    def try(arg)
+        self[arg] rescue nil
+    end
     
     private
     def user_params
-        params.require(:user).permit :name, :email, :password, :password_confirmation, :phone, :address, :cover_letter , :cover_letter_attach, :avatar, :root, :admin, :user
+        params.require(:user).permit :name, :email, :password, :password_confirmation, :phone, :address, :cover_letter , :cover_letter_attach, :avatar, :root, :admin, :user, :employer, :company
     end
 end

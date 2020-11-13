@@ -4,5 +4,7 @@ class PagesController < ApplicationController
         @companies = Company.all
         @company_jobs = CompanyJob.all
         @company_reviews = CompanyReview.all
+        @posts = Post.all
+        @problems = Problem.all
     end
 end

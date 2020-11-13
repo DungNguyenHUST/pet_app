@@ -1,2 +1,8 @@
 <%- model_class = User -%>
-<%= render :partial => 'users/form' %>
+<%if @param == "employer"%>
+    <%= render :partial => 'users/employer_form' %>
+<%elsif @param == "admin"%>
+    <%= render :partial => 'users/admin_form' %>
+<% else %>
+    <%= render :partial => 'users/user_form' %>
+<%end%>
