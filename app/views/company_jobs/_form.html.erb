@@ -14,7 +14,7 @@
 
                     <div class="new_job_section">
                         <div class="new_job_content">
-                            <div class="new_job_label_index">
+                            <div class="new_job_label">
                                 <a><%= f.label :title, "Tiêu đề*", class: "new_job_label" %></a>
                             </div>
                             
@@ -24,78 +24,78 @@
                         </div>
 
                         <div class="new_job_content">
-                            <div class="new_job_label_index">
+                            <div class="new_job_label">
                                 <a><%= f.label :location, "Địa điểm làm việc*", class: "new_job_label" %></a>
                             </div>
                             
                             <div class="new_job_input">
-                                <%= f.text_area :location, class: "new_job_form_input", placeholder: "  Nhập địa chỉ làm việc" %>
+                                <%= f.text_field :location, class: "new_job_form_input", placeholder: "  Nhập địa chỉ làm việc" %>
                             </div>
                         </div>
 
                         <div class="new_job_content">
-                            <div class="new_job_label_index">
-                                <a><%= f.label :description_rich, "Mô tả chung*", class: "new_job_label" %></a>
-                            </div>
-                            
-                            <div class="new_job_input_job">
-                                <%= f.rich_text_area :description_rich, class: "new_job_form_input_rich_text", placeholder: "  Nhập mô tả chung về công việc" %>
-                            </div>
-                        </div>
-
-                        <div class="new_job_content">
-                            <div class="new_job_label_index">
-                                <a><%= f.label :requirement_rich, "Yêu câu công việc*", class: "new_job_label" %></a>
-                            </div>
-                            
-                            <div class="new_job_input_job">
-                                <%= f.rich_text_area :requirement_rich, class: "new_job_form_input_rich_text", placeholder: "  Nhập yêu cầu công việc" %>
-                            </div>
-                        </div>
-
-                        <div class="new_job_content">
-                            <div class="new_job_label_index">
-                                <a><%= f.label :benefit_rich, "Chế độ đãi ngộ*", class: "new_job_label" %></a>
-                            </div>
-                            
-                            <div class="new_job_input_job">
-                                <%= f.rich_text_area :benefit_rich, class: "new_job_form_input_rich_text", placeholder: "  Chế độ đãi ngộ của công ty, hãy cho biết ít nhất 3 lý do" %>
-                            </div>
-                        </div>
-
-                        <div class="new_job_content">
-                            <div class="new_job_label_index">
+                            <div class="new_job_label">
                                 <a><%= f.label :salary, "Lương thưởng*", class: "new_job_label" %></a>
                             </div>
                             
-                            <div class="new_job_input_job">
-                                <%= f.text_area :salary, class: "new_job_form_input", placeholder: "  Mức lương cho công việc này" %>
+                            <div class="new_job_input">
+                                <%= f.text_field :salary, class: "new_job_form_input", placeholder: "  Mức lương cho công việc này" %>
                             </div>
                         </div>
 
                         <div class="new_job_content">
-                            <div class="new_job_label_index">
+                            <div class="new_job_label">
                                 <a><%= f.label :quantity, "Số lượng*", class: "new_job_label" %></a>
                             </div>
                             
-                            <div class="new_job_input_job">
-                                <%= f.text_area :quantity, class: "new_job_form_input", placeholder: "  Số lượng vị trí cần tuyển dụng" %>
+                            <div class="new_job_input">
+                                <%= f.text_field :quantity, class: "new_job_form_input", placeholder: "  Số lượng vị trí cần tuyển dụng" %>
                             </div>
                         </div>
 
                         <div class="new_job_content">
-                            <div class="new_job_label_index">
+                            <div class="new_job_label">
                                 <a><%= f.label :category, "Lĩnh vực*", class: "new_job_label" %></a>
                             </div>
                             
-                            <div class="new_job_input_job">
-                                <%= f.text_area :category, class: "new_job_form_input", placeholder: "  Lĩnh vực chính của việc làm này" %>
+                            <div class="new_job_input">
+                                <%= f.text_field :category, class: "new_job_form_input", placeholder: "  Lĩnh vực chính của việc làm này" %>
+                            </div>
+                        </div>
+
+                        <div class="new_job_content">
+                            <div class="new_job_label">
+                                <a><%= f.label :description, "Mô tả chung*", class: "new_job_label" %></a>
+                            </div>
+                            
+                            <div class="new_job_input">
+                                <%= f.text_area :description, class: "tinymce", placeholder: "  Nhập mô tả chung về công việc" %>
+                            </div>
+                        </div>
+
+                        <div class="new_job_content">
+                            <div class="new_job_label">
+                                <a><%= f.label :requirement, "Yêu câu công việc*", class: "new_job_label" %></a>
+                            </div>
+                            
+                            <div class="new_job_input">
+                                <%= f.text_area :requirement, class: "tinymce", placeholder: "  Nhập yêu cầu công việc" %>
+                            </div>
+                        </div>
+
+                        <div class="new_job_content">
+                            <div class="new_job_label">
+                                <a><%= f.label :benefit, "Chế độ đãi ngộ*", class: "new_job_label" %></a>
+                            </div>
+                            
+                            <div class="new_job_input">
+                                <%= f.text_area :benefit, class: "tinymce", placeholder: "  Chế độ đãi ngộ của công ty, hãy cho biết ít nhất 3 lý do" %>
                             </div>
                         </div>
                     </div>
 
                     <div class="new_job_submit">
-                        <%= f.submit "Submit", class: "new_job_form_submit" %>
+                        <%= f.submit "Đăng tin", class: "new_job_form_submit" %>
                     </div>
                 <%end%>
             </div>

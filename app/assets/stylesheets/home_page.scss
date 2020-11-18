@@ -2,7 +2,7 @@
 {
     min-height: 1080px;
     .home_search_bar{
-        height: 480px;
+        min-height: 444px;
         background-color: #fff;
         .home_search_bar_label{
             padding-top: 120px;
@@ -60,27 +60,32 @@
         }
 
         .home_search_suggestion{
-            margin-top: 20px;
+            @media screen and (max-width: 600px){
+                display: none;
+            }
+            margin-top: 30px;
             min-height: 30px;
+            margin-bottom: 20px;
             .home_search_suggestion_button{
                 button{
+                    margin-top: 10px;
                     padding: 5px;
                     border-radius: 20px;
                     border: 1px solid #dfe1e5;
                     float: left;
                     margin-right: 20px;
                     background-color: #fff;
-                    a:link{
-                        color: #444;
-                    }
+                    color: #555 !important;
                 }
             }
         }
     }
     
     .home_top_company{
+        clear: both;
         height: auto;
         .home_top_company_label{
+            padding-top: 30px;
             padding-bottom: 20px;
             span{
                 font-weight: 500;

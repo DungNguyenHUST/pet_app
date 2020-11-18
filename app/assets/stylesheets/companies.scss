@@ -7,7 +7,7 @@
     // border-bottom: 1px solid #dfe1e5;
     .company_search_bar{
         padding-top: 75px;
-        min-height: 400px;
+        min-height: 444px;
         background-color: #fff;
         .company_search_bar_label
         {
@@ -479,6 +479,7 @@
         }
         .nav-tabs .nav-link {
             white-space: nowrap;
+            font-size: 16px;
         }
         .nav-tabs .nav-link, .nav-tabs .nav-link.active, .nav-tabs .nav-link:hover {
             border: none;
@@ -496,9 +497,10 @@
         }
         .nav-tabs .nav-link.active {
             border-radius: 0;
-            border-bottom: 4px solid blue;
+            border-bottom: 5px solid #1877f2;
             font-weight: 550;
             color: #1877f2;
+            font-size: 16px;
         }
     }
 
@@ -506,8 +508,8 @@
     .tab-content{
         padding-left: 0px;
         background-color: #fff;
-        padding-top: 20px;
-        min-height: 600px;
+        // padding-top: 10px;
+        min-height: 500px;
         .company_profile_tab{
             display: block;
             width: 100%;
@@ -522,7 +524,7 @@
             .company_review_tab_des{                
                 .company_review_left{
                     background-color: #fff;
-                    margin-top: 30px;
+                    margin-top: 10px;
                     .user_comment_heading{
                         font-size: 24px;
                     }
@@ -554,24 +556,38 @@
                         margin-top: 20px;
                         margin-bottom: 20px;
                         .company_job_block{
-                            padding-top: 20px;
+                            padding-top: 15px;
                             padding-bottom: 10px;
-                            min-height: 80px;
+                            min-height: 100px;
+                            border-bottom: 1px solid #dfe1e5;
+                            border-top: 1px solid #dfe1e5;
                             .company_avatar{
+                                border-radius: 2px;
+                                box-shadow: 0 1px 4px 0 rgba(60, 60, 60, 0.1), 0 2px 4px 0 rgba(30, 30, 30, 0.09);
                                 img{
                                     max-width: 60px;
                                     max-height: 60px;
                                 }
                                 float: left;
                             }
-                            .company_job_title{
-                                padding: 5px;
-                                padding-top: 0px;
-                                margin-left: 60px;
-                                a:link{
-                                    font-size: 16px;
-                                    font-weight: 600;
-                                    text-decoration: none;
+                            .company_job_info{
+                                margin-left: 80px;
+                                .company_job_title{
+                                    min-height: 30px;
+                                    a:link{
+                                        font-size: 16px;
+                                        font-weight: 600;
+                                        text-decoration: none !important;overflow: hidden;
+                                        text-overflow: ellipsis;
+                                        display: -webkit-box;
+                                        -webkit-line-clamp: 2; /* number of lines to show */
+                                        -webkit-box-orient: vertical;
+                                    }
+                                }
+                                .user_job_date{
+                                    padding-top: 10px;
+                                    font-size: 13px;
+                                    color: #808080;
                                 }
                             }
                         }
@@ -621,24 +637,38 @@
                         margin-top: 20px;
                         margin-bottom: 20px;
                         .company_job_block{
-                            padding-top: 20px;
-                            padding-bottom: 15px;
-                            min-height: 50px;
+                            padding-top: 15px;
+                            padding-bottom: 10px;
+                            min-height: 100px;
+                            border-bottom: 1px solid #dfe1e5;
+                            border-top: 1px solid #dfe1e5;
                             .company_avatar{
+                                border-radius: 2px;
+                                box-shadow: 0 1px 4px 0 rgba(60, 60, 60, 0.1), 0 2px 4px 0 rgba(30, 30, 30, 0.09);
                                 img{
                                     max-width: 60px;
                                     max-height: 60px;
                                 }
                                 float: left;
                             }
-                            .company_job_title{
-                                padding: 5px;
-                                padding-top: 0px;
-                                margin-left: 70px;
-                                a:link{
-                                    font-size: 16px;
-                                    font-weight: 600;
-                                    text-decoration: none;
+                            .company_job_info{
+                                margin-left: 80px;
+                                .company_job_title{
+                                    min-height: 30px;
+                                    a:link{
+                                        font-size: 16px;
+                                        font-weight: 600;
+                                        text-decoration: none !important;overflow: hidden;
+                                        text-overflow: ellipsis;
+                                        display: -webkit-box;
+                                        -webkit-line-clamp: 2; /* number of lines to show */
+                                        -webkit-box-orient: vertical;
+                                    }
+                                }
+                                .user_job_date{
+                                    padding-top: 10px;
+                                    font-size: 13px;
+                                    color: #808080;
                                 }
                             }
                         }
@@ -771,15 +801,19 @@
 
                     }
                 }
+
                 .user_comment_heading_job{
                     font-size: 24px;
-                    padding-top: 50px;
+                    padding-top: 30px;
+                    @media screen and (max-width: 600px){
+                        padding-top: 0px;
+                    }
                 }
             }
 
             .company_job_index{
                 // margin-top: 10px;
-                margin-bottom: 30px;
+                margin-bottom: 20px;
             }
         }
     }

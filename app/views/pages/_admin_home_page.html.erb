@@ -39,9 +39,9 @@
                                     <h4>Việc làm</h4>
                                     <%company.company_jobs.each do |company_job|%>
                                         <div class='company_job_name'>
-                                            <h4> <%= link_to (company_job.title), company_company_job_path(company, company_job) %></h4>
+                                            <a> <%= link_to (company_job.title), company_company_job_path(company, company_job) %></a>
+                                            <i class="fa fa-edit"></i> <%= link_to " Edit job", edit_company_company_job_path(company, company_job), class: "user_info_edit_link_to" %>
                                         </div>
-                                        <i class="fa fa-edit"></i> <%= link_to " Edit job", edit_company_company_job_path(company, company_job), class: "user_info_edit_link_to" %>
                                     <%end%>
                                 </div>
                             </div>

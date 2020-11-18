@@ -64,7 +64,7 @@
                                     <i class="material-icons">history</i><a> Cập nhật lần cuối </a>
                                 </div>
                                 <div class="company_policy_overview_right_des">
-                                    <a><%= @company.name %></a>
+                                    <a><%= @company.created_at %></a>
                                 </div>
                             </div>
                         </div>
@@ -81,11 +81,14 @@
                                                 <img><%= link_to (image_tag(@company.avatar)), image_path(url_for(@company.avatar)), rel: "gallery" , :href => company_path(@company)%>
                                             <%end%>
                                         </div>
-                                        <div class="company_job_title">
-                                            <%= link_to (company_job.title), company_company_job_path(@company, company_job) %>
-                                        </div>
-                                        <div class="user_job_date">
-                                            <a><%= time_ago_in_words(company_job.created_at) %></a>
+
+                                        <div class="company_job_info">
+                                            <div class="company_job_title">
+                                                <%= link_to (company_job.title), company_company_job_path(@company, company_job) %>
+                                            </div>
+                                            <div class="user_job_date">
+                                                <a><%= time_ago_in_words(company_job.created_at) %></a>
+                                            </div>
                                         </div>
                                     </div>
                                 <%end%>
