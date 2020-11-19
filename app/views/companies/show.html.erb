@@ -69,7 +69,7 @@
                     </div>
                 </div>
 
-                <div class="tab_link">  
+                <div class="company_tab_link">  
                     <div class='container'> 
                         <ul class="nav nav-tabs" role="tablist">
                             <li class="nav-item">
@@ -91,144 +91,146 @@
                     </div>
                 </div>
 
-                <div class='container'>
-                    <!-- Tab panes -->
-                    <div class="tab-content">
-                        <div role="tabpanel" id="CompanyID" class="tab-pane fade in active"><br>
-                            <div class="company_profile_tab">
-                                <%= render :partial => 'companies/profile' %>
-                            </div>                        
-                        </div>
-
-                        <div role="tabpanel" id="CompanyJoinsID" class="tab-pane"><br>
-                            <div class="company_policy_tab">
-                                <%= render :partial => 'companies/policy' %>
+                <div class="company_tab_content">
+                    <div class='container'>
+                        <!-- Tab panes -->
+                        <div class="tab-content">
+                            <div role="tabpanel" id="CompanyID" class="tab-pane fade in active"><br>
+                                <div class="company_profile_tab">
+                                    <%= render :partial => 'companies/profile' %>
+                                </div>                        
                             </div>
-                        </div>
 
-                        <div role="tabpanel" id="CompanyReviewsID" class="tab-pane"><br>
-                            <div class="company_review_tab">
-                                <div class="company_review_score">
-                                    <%= render :partial => 'company_reviews/review_score' %>
-                                </div>
-                                <div class="company_review_tab_des">
-                                    <div class="row">
-                                        <div class="col-sm-8">
-                                            <div class="company_review_left">
-                                                <strong class="user_comment_heading"> Tất cả <%= @company.company_reviews.count%> đánh giá về <%= @company.name %> </strong>
-                                                <div class="company_review_tab_des_left">
-                                                    <%= render @company.company_reviews %>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        
-                                        <div class="col-sm-4">
-                                            <div class="company_review_tab_des_right">
-                                                <div class="company_job_label">
-                                                    <a> Việc làm </a>
-                                                </div>
-                                                <div class="company_job_des">
-                                                    <%@company.company_jobs.each do |company_job|%>
-                                                        <div class="company_job_block">
-                                                            <div class="company_avatar">
-                                                                <%if @company.avatar.attached?%>
-                                                                    <img><%= link_to (image_tag(@company.avatar)), image_path(url_for(@company.avatar)), rel: "gallery" , :href => company_path(@company)%>
-                                                                <%end%>
-                                                            </div>
-
-                                                            <div class="company_job_info">
-                                                                <div class="company_job_title">
-                                                                    <%= link_to (company_job.title), company_company_job_path(@company, company_job) %>
-                                                                </div>
-                                                                <div class="user_job_date">
-                                                                    <a><%= time_ago_in_words(company_job.created_at) %></a>
-                                                                </div>
-                                                            </div>
-                                                        </div>
-                                                    <%end%>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
+                            <div role="tabpanel" id="CompanyJoinsID" class="tab-pane"><br>
+                                <div class="company_policy_tab">
+                                    <%= render :partial => 'companies/policy' %>
                                 </div>
                             </div>
-                        </div>
 
-                        <div role="tabpanel" id="CompanyInterviewsID" class="tab-pane"><br>
-                            <div class="company_interview_tab">
-                                <div class="company_interview_score">
-                                    <%= render :partial => 'company_interviews/interview_score' %>
-                                </div>
-                                <div class="company_interview_tab_des">
-                                    <div class="row">
-                                        <div class="col-sm-8">
-                                            <div class="company_interview_tab_left">
-                                                <strong class="user_comment_heading"> Tất cả <%= @company.company_interviews.count%> kinh nghiệm phỏng vấn tại <%= @company.name %></strong>
-                                                <div class="company_interview_tab_des_left">
-                                                    <%= render @company.company_interviews %>
+                            <div role="tabpanel" id="CompanyReviewsID" class="tab-pane"><br>
+                                <div class="company_review_tab">
+                                    <div class="company_review_score">
+                                        <%= render :partial => 'company_reviews/review_score' %>
+                                    </div>
+                                    <div class="company_review_tab_des">
+                                        <div class="row">
+                                            <div class="col-sm-8">
+                                                <div class="company_review_left">
+                                                    <strong class="user_comment_heading"> Tất cả <%= @company.company_reviews.count%> đánh giá về <%= @company.name %> </strong>
+                                                    <div class="company_review_tab_des_left">
+                                                        <%= render @company.company_reviews %>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            
+                                            <div class="col-sm-4">
+                                                <div class="company_review_tab_des_right">
+                                                    <div class="company_job_label">
+                                                        <a> Việc làm </a>
+                                                    </div>
+                                                    <div class="company_job_des">
+                                                        <%@company.company_jobs.each do |company_job|%>
+                                                            <div class="company_job_block">
+                                                                <div class="company_avatar">
+                                                                    <%if @company.avatar.attached?%>
+                                                                        <img><%= link_to (image_tag(@company.avatar)), image_path(url_for(@company.avatar)), rel: "gallery" , :href => company_path(@company)%>
+                                                                    <%end%>
+                                                                </div>
+
+                                                                <div class="company_job_info">
+                                                                    <div class="company_job_title">
+                                                                        <%= link_to (company_job.title), company_company_job_path(@company, company_job) %>
+                                                                    </div>
+                                                                    <div class="user_job_date">
+                                                                        <a><%= time_ago_in_words(company_job.created_at) %></a>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        <%end%>
+                                                    </div>
                                                 </div>
                                             </div>
                                         </div>
-
-                                        <div class="col-sm-4">
-                                            <div class="company_interview_tab_des_right">
-                                                <div class="company_job_label">
-                                                    <a> Việc làm </a>
-                                                </div>
-                                                <div class="company_job_des">
-                                                    <%@company.company_jobs.each do |company_job|%>
-                                                        <div class="company_job_block">
-                                                            <div class="company_avatar">
-                                                                <%if @company.avatar.attached?%>
-                                                                    <img><%= link_to (image_tag(@company.avatar)), image_path(url_for(@company.avatar)), rel: "gallery" , :href => company_path(@company)%>
-                                                                <%end%>
-                                                            </div>
-
-                                                            <div class="company_job_info">
-                                                                <div class="company_job_title">
-                                                                    <%= link_to (company_job.title), company_company_job_path(@company, company_job) %>
-                                                                </div>
-                                                                <div class="user_job_date">
-                                                                    <a><%= time_ago_in_words(company_job.created_at) %></a>
-                                                                </div>
-                                                            </div>
-                                                        </div>
-                                                    <%end%>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-
-                                <div class="new_interview_question">
-                                    <div class="new_interview_question_title">
-                                        <i class="material-icons checked">record_voice_over</i><strong> Chia sẻ câu hỏi phỏng vấn với mọi người </strong>
-                                    </div>
-                                    <div class="new_interview_question_button">
-                                        <%= link_to '<button type="submit"> <i class="material-icons">add</i> <span> Thêm câu hỏi mới </span> </button>'.html_safe, new_problem_path %>
                                     </div>
                                 </div>
                             </div>
-                        </div>
 
-                        <div role="tabpanel" id="CompanyJobsID" class="tab-pane"><br>
-                            <div class="company_job_tab_des">
-                                <div class="company_job_tab">
-                                    <div class="company_tab_job">
-                                        <div class="new_job">
-                                            <div class="new_job_title">
-                                                <strong>Bạn là nhà tuyển dụng</strong>
+                            <div role="tabpanel" id="CompanyInterviewsID" class="tab-pane"><br>
+                                <div class="company_interview_tab">
+                                    <div class="company_interview_score">
+                                        <%= render :partial => 'company_interviews/interview_score' %>
+                                    </div>
+                                    <div class="company_interview_tab_des">
+                                        <div class="row">
+                                            <div class="col-sm-8">
+                                                <div class="company_interview_tab_left">
+                                                    <strong class="user_comment_heading"> Tất cả <%= @company.company_interviews.count%> kinh nghiệm phỏng vấn tại <%= @company.name %></strong>
+                                                    <div class="company_interview_tab_des_left">
+                                                        <%= render @company.company_interviews %>
+                                                    </div>
+                                                </div>
                                             </div>
-                                            <div class="new_job_button">
-                                                <%= link_to '<button type="submit"><i class="material-icons">add</i><span>Đăng tin tuyển dụng miễn phí<span></button>'.html_safe, new_company_company_job_path(@company) %>
+
+                                            <div class="col-sm-4">
+                                                <div class="company_interview_tab_des_right">
+                                                    <div class="company_job_label">
+                                                        <a> Việc làm </a>
+                                                    </div>
+                                                    <div class="company_job_des">
+                                                        <%@company.company_jobs.each do |company_job|%>
+                                                            <div class="company_job_block">
+                                                                <div class="company_avatar">
+                                                                    <%if @company.avatar.attached?%>
+                                                                        <img><%= link_to (image_tag(@company.avatar)), image_path(url_for(@company.avatar)), rel: "gallery" , :href => company_path(@company)%>
+                                                                    <%end%>
+                                                                </div>
+
+                                                                <div class="company_job_info">
+                                                                    <div class="company_job_title">
+                                                                        <%= link_to (company_job.title), company_company_job_path(@company, company_job) %>
+                                                                    </div>
+                                                                    <div class="user_job_date">
+                                                                        <a><%= time_ago_in_words(company_job.created_at) %></a>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        <%end%>
+                                                    </div>
+                                                </div>
                                             </div>
-                                        </div>
-                                        <div class="user_comment_heading_job">
-                                            <strong> Tìm thấy <%= @company.company_jobs.count%> việc làm tại <%= @company.name %> </strong>
                                         </div>
                                     </div>
-                                    <div class="company_job_index">
-                                        <%= render @company.company_jobs %>
+
+                                    <div class="new_interview_question">
+                                        <div class="new_interview_question_title">
+                                            <i class="material-icons checked">record_voice_over</i><strong> Chia sẻ câu hỏi phỏng vấn với mọi người </strong>
+                                        </div>
+                                        <div class="new_interview_question_button">
+                                            <%= link_to '<button type="submit"> <i class="material-icons">add</i> <span> Thêm câu hỏi mới </span> </button>'.html_safe, new_problem_path %>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div role="tabpanel" id="CompanyJobsID" class="tab-pane"><br>
+                                <div class="company_job_tab_des">
+                                    <div class="company_job_tab">
+                                        <div class="company_tab_job">
+                                            <div class="new_job">
+                                                <div class="new_job_title">
+                                                    <strong>Bạn là nhà tuyển dụng</strong>
+                                                </div>
+                                                <div class="new_job_button">
+                                                    <%= link_to '<button type="submit"><i class="material-icons">add</i><span>Đăng tin tuyển dụng miễn phí<span></button>'.html_safe, new_company_company_job_path(@company) %>
+                                                </div>
+                                            </div>
+                                            <div class="user_comment_heading_job">
+                                                <strong> Tìm thấy <%= @company.company_jobs.count%> việc làm tại <%= @company.name %> </strong>
+                                            </div>
+                                        </div>
+                                        <div class="company_job_index">
+                                            <%= render @company.company_jobs %>
+                                        </div>
                                     </div>
                                 </div>
                             </div>

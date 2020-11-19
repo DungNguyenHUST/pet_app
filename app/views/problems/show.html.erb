@@ -9,7 +9,7 @@
             <div class="problem_area">
                 <div class="col-sm-6">
                     <div class="problem_area_left">
-                        <div class="tab_link">
+                        <div class="problem_tab_link">
                             <ul class="nav nav-tabs" role="tablist">
                                 <li class="nav-item">
                                     <a class="nav-link active" data-toggle="tab" href="#ProblemDescriptionID"><i class="material-icons">content_paste</i>Mô tả</a>
@@ -26,23 +26,25 @@
                             </ul>
                         </div>
 
-                        <div class="tab-content">
-                            <div role="tabpanel" id="ProblemDescriptionID" class="tab-pane fade in active"><br>
-                                <div class="problem_des_tab">
-                                    <%= @problem.content.html_safe %>
+                        <div class="problem_tab_content">
+                            <div class="tab-content">
+                                <div role="tabpanel" id="ProblemDescriptionID" class="tab-pane fade in active"><br>
+                                    <div class="problem_des_tab">
+                                        <%= @problem.content.html_safe %>
+                                    </div>
                                 </div>
-                            </div>
 
-                            <div role="tabpanel" id="ProblemSolutionID" class="tab-pane fade in active"><br>
-                                <div class="problem_solution_tab">
-                                    <%= render @problem.problem_solutions %>
+                                <div role="tabpanel" id="ProblemSolutionID" class="tab-pane fade in active"><br>
+                                    <div class="problem_solution_tab">
+                                        <%= render @problem.problem_solutions %>
+                                    </div>
                                 </div>
-                            </div>
 
-                            <div role="tabpanel" id="ProblemDiscusstionID" class="tab-pane fade in active"><br>
-                            </div>
+                                <div role="tabpanel" id="ProblemDiscusstionID" class="tab-pane fade in active"><br>
+                                </div>
 
-                            <div role="tabpanel" id="ProblemYourSolutionID" class="tab-pane fade in active"><br>
+                                <div role="tabpanel" id="ProblemYourSolutionID" class="tab-pane fade in active"><br>
+                                </div>
                             </div>
                         </div>
                     </div>

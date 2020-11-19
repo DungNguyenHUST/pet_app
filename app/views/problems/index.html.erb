@@ -9,53 +9,6 @@
             <%- model_class = Problem -%>
                 <div class="row">
                     <div class="col-sm-8">
-                        <div class="problem_category">
-                            <div class="problem_header">
-                                <strong> <i class="material-icons">apps</i> Danh mục chính</strong>
-                            </div>
-
-                            <div class="col-sm-3">
-                                <div class="category_name">
-                                    <%= link_to '<button type="submit"><i class="material-icons checked">filter_alt</i>Thuật toán</button>'.html_safe, new_problem_path %>
-                                </div>
-                            </div>
-                            <div class="col-sm-3">
-                                <div class="category_name">
-                                    <%= link_to '<button type="submit"><i class="material-icons checked">filter_alt</i>Câu hỏi IQ</button>'.html_safe, new_problem_path %>
-                                </div>
-                            </div>
-                            <div class="col-sm-3">
-                                <div class="category_name">
-                                    <%= link_to '<button type="submit"><i class="material-icons checked">filter_alt</i>Câu hỏi nghề nghiệp</button>'.html_safe, new_problem_path %>
-                                </div>
-                            </div>
-                            <div class="col-sm-3">
-                                <div class="category_name">
-                                    <%= link_to '<button type="submit"><i class="material-icons checked">filter_alt</i>Bài test mẫu</button>'.html_safe, new_problem_path %>
-                                </div>
-                            </div>
-                            
-                            <div class="col-sm-3">
-                                <div class="category_name">
-                                    <%= link_to '<button type="submit"><i class="material-icons checked">filter_alt</i>Sự nghiệp</button>'.html_safe, new_problem_path %>
-                                </div>
-                            </div>
-
-                            <div class="col-sm-3">
-                                <div class="category_name">
-                                    <%= link_to '<button type="submit"><i class="material-icons checked">add</i>Tạo câu hỏi mới</button>'.html_safe, new_problem_path %>
-                                </div>
-                            </div>
-                        </div>
-                        
-                        <%if @problems.nil?%>
-                            <%if (@problems.count < @problems_all.count)%>
-                                <div class="section_title">
-                                    <h3>Tìm thấy <%=@problems.count%> kết quả</h3>
-                                </div>
-                            <%end%>
-                        <%end%>
-                        
                         <div class="problem_search">
                             <%=form_tag problems_path, :method => "get" do%>
                                 <div class="input-group mb-3">
@@ -66,28 +19,207 @@
                                 </div>
                             <%end%>
                         </div>
+                        
+                        <%if @problems.nil?%>
+                            <%if (@problems.count < @problems_all.count)%>
+                                <div class="section_title">
+                                    <h3>Tìm thấy <%=@problems.count%> kết quả</h3>
+                                </div>
+                            <%end%>
+                        <%end%>
+                        
+                        <div class="problem_index_tab_link">  
+                            <ul class="nav nav-tabs nav-justified nav-pills" role="tablist">
+                                <li class="nav-item">
+                                    <a class="nav-link active" data-toggle="tab" href="#ProblemIndexAllID"><i class="material-icons">view_list</i>Tất cả</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link" data-toggle="tab" href="#ProblemIndexAlgorithmID"><i class="material-icons">calculate</i>Thuật toán</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link" data-toggle="tab" href="#ProblemIndexTestingID"><i class="material-icons">create</i>Testing <span><span></a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link" data-toggle="tab" href="#ProblemIndexIQTestID"><i class="material-icons">scatter_plot</i>Testing IQ <span><span></a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link" data-toggle="tab" href="#ProblemIndexCareerID"><i class="material-icons">card_travel</i>Công việc <span></a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link" data-toggle="tab" href="#ProblemIndexOtherID"><i class="material-icons">blur_on</i>Other <span></a>
+                                </li>
+                            </ul>
+                        </div>
 
-                        <table class="table table-hover table-striped table-bordere">
-                            <thead>
-                                <tr>
-                                    <th><div class="table_th_no">#</th>
-                                    <th><div class="table_th_title">Tiêu đề</th>
-                                    <th><div class="table_th_difficult">Độ khó</th>
-                                    <th><div class="table_th_user">Trả lời</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                <% @problems.each do |problem| %>
-                                    <tr>
-                                        <td><div class="table_td_no"><%= link_to problem.id, problem_path(problem) %></td>
-                                        <td><div class="table_td_title"><%= link_to problem.title, problem_path(problem) %></td>
-                                        <td><div class="table_td_difficult"><%= problem.difficult %></td>
-                                        <td><div class="table_td_user"><%= problem.problem_solutions.count %></td>
-                                    </tr>
-                                <% end %>
-                            </tbody>
-                        </table>
+                        <div class="problem_index_tab_content">
+                            <div class="tab-content">
+                                <div role="tabpanel" id="ProblemIndexAllID" class="tab-pane fade in active"><br>
+                                    <div class="problem_index_all_tab">
+                                        <table class="table table-hover table-striped table-bordere">
+                                            <thead>
+                                                <tr>
+                                                    <th><div class="table_th_no">#</th>
+                                                    <th><div class="table_th_title">Tiêu đề</th>
+                                                    <th><div class="table_th_difficult">Độ khó</th>
+                                                    <th><div class="table_th_user">Trả lời</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                                <% @problems.each do |problem| %>
+                                                    <tr>
+                                                        <td><div class="table_td_no"><%= link_to problem.id, problem_path(problem) %></td>
+                                                        <td><div class="table_td_title"><%= link_to problem.title, problem_path(problem) %></td>
+                                                        <td><div class="table_td_difficult"><%= problem.difficult %></td>
+                                                        <td><div class="table_td_user"><%= problem.problem_solutions.count %></td>
+                                                    </tr>
+                                                <% end %>
+                                            </tbody>
+                                        </table>
+                                    </div>                        
+                                </div>
+
+                                <div role="tabpanel" id="ProblemIndexAlgorithmID" class="tab-pane"><br>
+                                    <div class="problem_index_algotithm_tab">
+                                        <table class="table table-hover table-striped table-bordere">
+                                            <thead>
+                                                <tr>
+                                                    <th><div class="table_th_no">#</th>
+                                                    <th><div class="table_th_title">Tiêu đề</th>
+                                                    <th><div class="table_th_difficult">Độ khó</th>
+                                                    <th><div class="table_th_user">Trả lời</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                                <% @problems.each do |problem| %>
+                                                    <tr>
+                                                        <td><div class="table_td_no"><%= link_to problem.id, problem_path(problem) %></td>
+                                                        <td><div class="table_td_title"><%= link_to problem.title, problem_path(problem) %></td>
+                                                        <td><div class="table_td_difficult"><%= problem.difficult %></td>
+                                                        <td><div class="table_td_user"><%= problem.problem_solutions.count %></td>
+                                                    </tr>
+                                                <% end %>
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                </div>
+
+                                <div role="tabpanel" id="ProblemIndexTestingID" class="tab-pane"><br>
+                                    <div class="problem_index_testing_tab">
+                                        <table class="table table-hover table-striped table-bordere">
+                                            <thead>
+                                                <tr>
+                                                    <th><div class="table_th_no">#</th>
+                                                    <th><div class="table_th_title">Tiêu đề</th>
+                                                    <th><div class="table_th_difficult">Độ khó</th>
+                                                    <th><div class="table_th_user">Trả lời</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                                <% @problems.each do |problem| %>
+                                                    <tr>
+                                                        <td><div class="table_td_no"><%= link_to problem.id, problem_path(problem) %></td>
+                                                        <td><div class="table_td_title"><%= link_to problem.title, problem_path(problem) %></td>
+                                                        <td><div class="table_td_difficult"><%= problem.difficult %></td>
+                                                        <td><div class="table_td_user"><%= problem.problem_solutions.count %></td>
+                                                    </tr>
+                                                <% end %>
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                </div>
+
+                                <div role="tabpanel" id="ProblemIndexIQTestID" class="tab-pane"><br>
+                                    <div class="problem_index_iqtest_tab">
+                                        <table class="table table-hover table-striped table-bordere">
+                                            <thead>
+                                                <tr>
+                                                    <th><div class="table_th_no">#</th>
+                                                    <th><div class="table_th_title">Tiêu đề</th>
+                                                    <th><div class="table_th_difficult">Độ khó</th>
+                                                    <th><div class="table_th_user">Trả lời</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                                <% @problems.each do |problem| %>
+                                                    <tr>
+                                                        <td><div class="table_td_no"><%= link_to problem.id, problem_path(problem) %></td>
+                                                        <td><div class="table_td_title"><%= link_to problem.title, problem_path(problem) %></td>
+                                                        <td><div class="table_td_difficult"><%= problem.difficult %></td>
+                                                        <td><div class="table_td_user"><%= problem.problem_solutions.count %></td>
+                                                    </tr>
+                                                <% end %>
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                </div>
+
+                                <div role="tabpanel" id="ProblemIndexCareerID" class="tab-pane"><br>
+                                    <div class="problem_index_career_tab">
+                                        <table class="table table-hover table-striped table-bordere">
+                                            <thead>
+                                                <tr>
+                                                    <th><div class="table_th_no">#</th>
+                                                    <th><div class="table_th_title">Tiêu đề</th>
+                                                    <th><div class="table_th_difficult">Độ khó</th>
+                                                    <th><div class="table_th_user">Trả lời</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                                <% @problems.each do |problem| %>
+                                                    <tr>
+                                                        <td><div class="table_td_no"><%= link_to problem.id, problem_path(problem) %></td>
+                                                        <td><div class="table_td_title"><%= link_to problem.title, problem_path(problem) %></td>
+                                                        <td><div class="table_td_difficult"><%= problem.difficult %></td>
+                                                        <td><div class="table_td_user"><%= problem.problem_solutions.count %></td>
+                                                    </tr>
+                                                <% end %>
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                </div>
+
+                                <div role="tabpanel" id="ProblemIndexOtherID" class="tab-pane"><br>
+                                    <div class="problem_index_other_tab">
+                                        <table class="table table-hover table-striped table-bordere">
+                                            <thead>
+                                                <tr>
+                                                    <th><div class="table_th_no">#</th>
+                                                    <th><div class="table_th_title">Tiêu đề</th>
+                                                    <th><div class="table_th_difficult">Độ khó</th>
+                                                    <th><div class="table_th_user">Trả lời</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                                <% @problems.each do |problem| %>
+                                                    <tr>
+                                                        <td><div class="table_td_no"><%= link_to problem.id, problem_path(problem) %></td>
+                                                        <td><div class="table_td_title"><%= link_to problem.title, problem_path(problem) %></td>
+                                                        <td><div class="table_td_difficult"><%= problem.difficult %></td>
+                                                        <td><div class="table_td_user"><%= problem.problem_solutions.count %></td>
+                                                    </tr>
+                                                <% end %>
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                </div>
+
+                            </div>
+                        </div>
+
+                        <script type="text/javascript">
+                            $(function() { 
+                                $('a[data-toggle="tab"]').on('shown.bs.tab', function (e) {
+                                    localStorage.setItem('lastTab', $(this).attr('href'));
+                                });
+
+                                var lastTab = localStorage.getItem('lastTab');
+                                if (lastTab) {
+                                    $('[href="' + lastTab + '"]').tab('show');
+                                }
+                            });
+                        </script>
                     </div>
+                    
                     <div class="col-sm-4">
                         <div class="problem_top">
                             <a><i class="material-icons">list</i>Top câu hỏi hot</a>
