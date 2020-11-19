@@ -12,10 +12,10 @@
                         <div class="problem_search">
                             <%=form_tag problems_path, :method => "get" do%>
                                 <div class="input-group mb-3">
+                                    <%= text_field_tag :search, params[:search], class: 'form-control', placeholder: "Tìm kiếm câu hỏi" %>
                                     <div class="input-group-addon">
                                         <i class="material-icons checked">search</i>
                                     </div>
-                                    <%= text_field_tag :search, params[:search], class: 'form-control', placeholder: "Nhập tên câu hỏi" %>
                                 </div>
                             <%end%>
                         </div>
@@ -29,7 +29,7 @@
                         <%end%>
                         
                         <div class="problem_index_tab_link">  
-                            <ul class="nav nav-tabs nav-justified nav-pills" role="tablist">
+                            <ul class="nav nav-tabs" role="tablist">
                                 <li class="nav-item">
                                     <a class="nav-link active" data-toggle="tab" href="#ProblemIndexAllID"><i class="material-icons">view_list</i>Tất cả</a>
                                 </li>
@@ -37,16 +37,16 @@
                                     <a class="nav-link" data-toggle="tab" href="#ProblemIndexAlgorithmID"><i class="material-icons">calculate</i>Thuật toán</a>
                                 </li>
                                 <li class="nav-item">
-                                    <a class="nav-link" data-toggle="tab" href="#ProblemIndexTestingID"><i class="material-icons">create</i>Testing <span><span></a>
+                                    <a class="nav-link" data-toggle="tab" href="#ProblemIndexTestingID"><i class="material-icons">text_snippet</i>Testing <span><span></a>
                                 </li>
                                 <li class="nav-item">
-                                    <a class="nav-link" data-toggle="tab" href="#ProblemIndexIQTestID"><i class="material-icons">scatter_plot</i>Testing IQ <span><span></a>
+                                    <a class="nav-link" data-toggle="tab" href="#ProblemIndexIQTestID"><i class="material-icons">batch_prediction</i>IQ Testing <span><span></a>
                                 </li>
                                 <li class="nav-item">
-                                    <a class="nav-link" data-toggle="tab" href="#ProblemIndexCareerID"><i class="material-icons">card_travel</i>Công việc <span></a>
+                                    <a class="nav-link" data-toggle="tab" href="#ProblemIndexCareerID"><i class="material-icons">card_travel</i>Phỏng vấn <span></a>
                                 </li>
                                 <li class="nav-item">
-                                    <a class="nav-link" data-toggle="tab" href="#ProblemIndexOtherID"><i class="material-icons">blur_on</i>Other <span></a>
+                                    <a class="nav-link" data-toggle="tab" href="#ProblemIndexOtherID"><i class="material-icons">blur_on</i>Khác <span></a>
                                 </li>
                             </ul>
                         </div>
@@ -235,7 +235,7 @@
                             </div>
                         </div>
                         <div class="problem_company">
-                            <a><i class="material-icons">business</i>Câu hỏi theo công ty</a>
+                            <a><i class="material-icons">corporate_fare</i>Câu hỏi theo công ty</a>
                             <div class="problem_short">
                                 <%i = 0%>
                                 <% @problems.each do |problem| %>
