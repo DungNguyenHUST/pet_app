@@ -73,20 +73,24 @@
                 span{
                     position: absolute;
                     top: -1px;
-                    font-size: 13px;
+                    font-size: 12px;
+                    color: #999;
                 }
             }
             .nav-tabs .nav-link.active {
                 border-radius: 0px;
                 // background-color: #1877f2;
                 border-bottom: 4px solid #1877f2;
-                color: #444;
+                color: #1877f2;
                 font-size: 16px;
+                span{
+                    color: #1877f2;
+                }
             }
         }
         
         .problem_index_tab_content{
-
+            width: 100%;
         }
 
         .table{
@@ -101,19 +105,21 @@
             
             tr th {
                 text-align: left;
-                font-size: 16px;
+                font-size: 15px;
                 white-space: normal;
+                border-bottom: 1px solid #dfe1e5;
                 .table_th_no{
-                    display: block;
+                    text-align: center;
                 }
                 .table_th_title{
-                    display: block;
+                    text-align: left;
                 }
                 .table_th_difficult{
-                    display: block;
+                    text-align: left;
                 }
-                .table_th_date{
-                    display: block;
+                .table_td_user{
+                    min-width: 30px;
+                    text-align: center;
                 }
             }
 
@@ -122,22 +128,106 @@
                 font-size: 14px;
                 white-space: normal;
                 color: #444;
+                border: none;
                 a:link{
                     text-decoration: none;
                     color: #444;
                 }
                 .table_td_no{
+                    text-align: center;
+                    font-size: 13px;
+                    color: #666;
                 }
                 .table_td_title{
+                    min-width: 50%;
                     text-decoration: none !important;overflow: hidden;
                     text-overflow: ellipsis;
                     display: -webkit-box;
-                    -webkit-line-clamp: 1; /* number of lines to show */
+                    -webkit-line-clamp: 2; /* number of lines to show */
                     -webkit-box-orient: vertical;
                 }
+
                 .table_td_difficult{
+                    width: 80px;
+                    border-radius: 3px;
+                    text-align: left;
+                    a{
+                        padding-top: 2px;
+                        padding-bottom: 2px;
+                        padding-left: 5px;
+                        padding-right: 5px;
+                    }
                 }
-                .table_td_date{
+                .easy { 
+                    width: 100px;
+                    text-align: left;
+                    a{
+                        border: none;
+                        border-radius: 20px;
+                        color: #fff;
+                        background-color: #5cb85c;
+                        padding-top: 2px;
+                        padding-bottom: 2px;
+                        padding-left: 10px;
+                        padding-right: 10px;
+                        font-size: 13px;
+                    }
+                }
+                .average { 
+                    width: 100px;
+                    border-radius: 3px;
+                    text-align: left;
+                    a{
+                        border: none;
+                        border-radius: 20px;
+                        color: #fff;
+                        background-color:#f0ad4e;
+                        padding-top: 2px;
+                        padding-bottom: 2px;
+                        padding-left: 10px;
+                        padding-right: 10px;
+                        font-size: 13px;
+                    }
+                }
+                .hard{
+                    width: 100px;
+                    border-radius: 3px;
+                    text-align: left;
+                    a{
+                        border: none;
+                        border-radius: 20px;
+                        color: #fff;
+                        background-color: #d9534f;
+                        padding-top: 2px;
+                        padding-bottom: 2px;
+                        padding-left: 10px;
+                        padding-right: 10px;
+                        font-size: 13px;
+                    }
+                }
+                
+                .table_td_user{
+                    min-width: 50px;
+                    text-align: center;
+                    font-size: 13px;
+                }
+            }
+        }
+
+        .problem_new_button{
+            padding-top: 20px;
+            padding-bottom: 20px;
+            button{
+                width: 100%;
+                height: 50px;
+                border-radius: 2px;
+                background-color: #1877f2;
+                border: none;
+                color: #fff;
+                i{
+                    color: #fff;
+                    position: relative;
+                    top: 5px;
                 }
             }
         }
@@ -231,21 +321,14 @@
     width: 100%;
     clear: both;
     .problem_area_left{
-        padding-top: 0px !important;
-        border-right: 2px solid #dfe1e5;
-        @media screen and (max-width: 600px){
-            border: none;
-        }
-        min-height: 720px; 
-        padding: 10px;
-        padding-right: 20px;
+        width: 100%;
         .problem_tab_link {
             clear: left;
             overflow: hidden;
             position: relative;
             display: block;
             background-color: #fff;
-            // border-bottom: 1px solid #dfe1e5;
+            border-bottom: 1px solid #dfe1e5;
             .nav-tabs {
                 overflow-x: auto;
                 overflow-y: hidden;
@@ -253,10 +336,13 @@
             }
             .nav-tabs .nav-link {
                 white-space: nowrap;
+                font-size: 16px;
+                color: #444;
             }
             .nav-tabs .nav-link, .nav-tabs .nav-link.active, .nav-tabs .nav-link:hover {
                 border: none;
-                color: gray;
+                color: #444;
+                font-size: 16px;
                 i{
                     position: relative;
                     top: 5px;
@@ -265,12 +351,12 @@
                 span{
                     position: absolute;
                     top: -1px;
-                    font-size: 13px;
+                    font-size: 12px;
                 }
             }
             .nav-tabs .nav-link.active {
                 border-radius: 0;
-                border-bottom: 4px solid 1877f2;
+                border-bottom: 4px solid #1877f2;
                 font-weight: 550;
                 color: #1877f2;
             }
@@ -288,20 +374,24 @@
 
     .problem_area_right
     {
-        padding: 10px;
-        padding-top: 10px;
-        min-height: 720px;
+        border-left: 1px solid #dfe1e5;
+        min-height: 1024px;
+        @media screen and (max-width: 600px){
+            border-left: none;
+            border-top: 1px solid #dfe1e5;
+        }
+        padding: 20px;
         .problem_submit{
             display: block;
             .new_problem_solution_right_form
             {
-                margin-bottom: 50px;
+                margin-bottom: 30px;
                 .new_problem_solution_right_title{
                     font-size: 24px;
                     font-weight: 500;
                     color: #161e2e;
                     text-align: center;
-                    margin-bottom: 30px;
+                    margin-bottom: 20px;
                     position: relative;
                 }
 
@@ -319,8 +409,6 @@
 
                         .new_problem_solution_right_input_review_title{
                             left: 0px;
-                            margin-top: 5px;
-                            margin-bottom: 40px;
                             height: auto;
                             .form-control{
                                 margin-left: 0px;
@@ -336,6 +424,7 @@
                             font-size: 16px;
                             color: #161e2e;
                             text-align: left;
+                            margin-top: 30px;
                             margin-bottom: 10px;
                         }
 

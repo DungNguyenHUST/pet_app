@@ -129,6 +129,55 @@
             font-size: 16px;
             padding-bottom: 20px;
         }
+
+        .company_index_tab_link{
+            clear: left;
+            overflow: hidden;
+            position: relative;
+            display: block;
+            background-color: #fff;
+            // border-bottom: 1px solid #dfe1e5;
+            .nav-tabs {
+                overflow-x: auto;
+                overflow-y: hidden;
+                flex-wrap: nowrap;
+            }
+            .nav-tabs .nav-link {
+                white-space: nowrap;
+                font-size: 16px;
+                color: #444;
+            }
+            .nav-tabs .nav-link, .nav-tabs .nav-link.active, .nav-tabs .nav-link:hover {
+                border: none;
+                color: #444;
+                font-size: 16px;
+                i{
+                    position: relative;
+                    top: 5px;
+                    padding-right: 3px;
+                }
+                span{
+                    position: absolute;
+                    top: -1px;
+                    font-size: 12px;
+                }
+            }
+            .nav-tabs .nav-link.active {
+                border-radius: 0;
+                border-bottom: 4px solid #1877f2;
+                font-weight: 550;
+                color: #1877f2;
+            }
+        }
+
+        .company_index_tab_content{
+            .tab-content{
+                padding-left: 0px;
+                background-color: #fff;
+                padding-top: 20px;
+                min-height: 600px;
+            }
+        }
     
         .row{
             padding-bottom: 50px;
@@ -486,6 +535,7 @@
         .nav-tabs .nav-link, .nav-tabs .nav-link.active, .nav-tabs .nav-link:hover {
             border: none;
             color: #444;
+            text-align: left;
             i{
                 position: relative;
                 top: 5px;
@@ -494,7 +544,8 @@
             span{
                 position: absolute;
                 top: -1px;
-                font-size: 13px;
+                font-size: 12px;
+                color: #999;
             }
         }
         .nav-tabs .nav-link.active {
@@ -503,6 +554,9 @@
             font-weight: 550;
             color: #1877f2;
             font-size: 16px;
+            span{
+                color: #1877f2;
+            }
         }
     }
 

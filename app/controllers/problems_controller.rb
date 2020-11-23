@@ -1,8 +1,28 @@
 class ProblemsController < ApplicationController
     def index
-        @problems = Problem.search(params[:search])
-        @problem_all = Problem.all
+        @problems = Problem.search(params[:search]).order("created_at DESC").reverse
+        @problems_newest = Problem.all.order("created_at DESC")
         @problem_solutions = ProblemSolution.all
+
+        @problem_math = []
+        @problem_eq_test = []
+        @problem_iq_test = []
+        @problem_interview = []
+        @problem_other = []
+
+        @problems.each do |problem|
+            if(problem.category.to_i == 1 || problem.category.to_s == 'Thuật toán')
+                @problem_math.push(problem)
+            elsif(problem.category.to_i == 2 || problem.category.to_s == 'Câu hỏi phỏng vấn')
+                @problem_interview.push(problem)
+            elsif(problem.category.to_i == 3 || problem.category.to_s == 'EQ Test')
+                @problem_eq_test.push(problem)
+            elsif(problem.category.to_i == 4 || problem.category.to_s == 'IQ Test')
+                @problem_iq_test.push(problem)
+            elsif(problem.category.to_i == 5 || problem.category.to_s == 'Câu hỏi khác')
+                @problem_other.push(problem)
+            end 
+        end
     end
 
     def new
