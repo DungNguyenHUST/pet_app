@@ -13,5 +13,10 @@ class User < ApplicationRecord
 
     has_many :company_like_reviews, dependent: :destroy
     has_many :company_dislike_reviews, dependent: :destroy
-    
+
+    has_many :company_like_interviews, dependent: :destroy
+    has_many :company_dislike_interviews, dependent: :destroy
+
+    has_many :problem_vote_solutions, dependent: :destroy
+    has_many :problem_unvote_solutions, dependent: :destroy
 end

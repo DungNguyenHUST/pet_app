@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_11_13_080352) do
+ActiveRecord::Schema.define(version: 2020_11_24_104157) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -85,6 +85,15 @@ ActiveRecord::Schema.define(version: 2020_11_13_080352) do
     t.text "cover_letter"
   end
 
+  create_table "company_dislike_interviews", force: :cascade do |t|
+    t.bigint "user_id", null: false
+    t.bigint "company_interview_id", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["company_interview_id"], name: "index_company_dislike_interviews_on_company_interview_id"
+    t.index ["user_id"], name: "index_company_dislike_interviews_on_user_id"
+  end
+
   create_table "company_dislike_reviews", force: :cascade do |t|
     t.bigint "company_review_id", null: false
     t.bigint "user_id", null: false
@@ -121,6 +130,15 @@ ActiveRecord::Schema.define(version: 2020_11_13_080352) do
     t.datetime "updated_at", precision: 6, null: false
     t.integer "company_id"
     t.string "location"
+  end
+
+  create_table "company_like_interviews", force: :cascade do |t|
+    t.bigint "user_id", null: false
+    t.bigint "company_interview_id", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["company_interview_id"], name: "index_company_like_interviews_on_company_interview_id"
+    t.index ["user_id"], name: "index_company_like_interviews_on_user_id"
   end
 
   create_table "company_like_reviews", force: :cascade do |t|
@@ -213,6 +231,24 @@ ActiveRecord::Schema.define(version: 2020_11_13_080352) do
     t.integer "problem_id"
   end
 
+  create_table "problem_unvote_solutions", force: :cascade do |t|
+    t.bigint "user_id", null: false
+    t.bigint "problem_solution_id", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["problem_solution_id"], name: "index_problem_unvote_solutions_on_problem_solution_id"
+    t.index ["user_id"], name: "index_problem_unvote_solutions_on_user_id"
+  end
+
+  create_table "problem_vote_solutions", force: :cascade do |t|
+    t.bigint "user_id", null: false
+    t.bigint "problem_solution_id", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["problem_solution_id"], name: "index_problem_vote_solutions_on_problem_solution_id"
+    t.index ["user_id"], name: "index_problem_vote_solutions_on_user_id"
+  end
+
   create_table "problems", force: :cascade do |t|
     t.string "user_name"
     t.string "title"
@@ -241,8 +277,16 @@ ActiveRecord::Schema.define(version: 2020_11_13_080352) do
   end
 
   add_foreign_key "active_storage_attachments", "active_storage_blobs", column: "blob_id"
+  add_foreign_key "company_dislike_interviews", "company_interviews"
+  add_foreign_key "company_dislike_interviews", "users"
   add_foreign_key "company_dislike_reviews", "company_reviews"
   add_foreign_key "company_dislike_reviews", "users"
+  add_foreign_key "company_like_interviews", "company_interviews"
+  add_foreign_key "company_like_interviews", "users"
   add_foreign_key "company_like_reviews", "company_reviews"
   add_foreign_key "company_like_reviews", "users"
+  add_foreign_key "problem_unvote_solutions", "problem_solutions"
+  add_foreign_key "problem_unvote_solutions", "users"
+  add_foreign_key "problem_vote_solutions", "problem_solutions"
+  add_foreign_key "problem_vote_solutions", "users"
 end

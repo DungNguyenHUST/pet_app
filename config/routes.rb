@@ -21,6 +21,8 @@ Rails.application.routes.draw do
 
     resources :company_interviews do
       resources :company_reply_interviews
+      resources :company_like_interviews
+      resources :company_dislike_interviews
     end
 
     resources :company_jobs do
@@ -37,6 +39,8 @@ Rails.application.routes.draw do
   resources :problems do
     resources :problem_solutions do
       resources :problem_reply_solutions
+      resources :problem_vote_solutions
+      resources :problem_unvote_solutions
     end
   end
 

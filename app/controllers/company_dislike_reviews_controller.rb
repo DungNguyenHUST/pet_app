@@ -15,14 +15,12 @@ class CompanyDislikeReviewsController < ApplicationController
         @company = Company.find(params[:company_id])
         @company_review = CompanyReview.find(params[:company_review_id])
         if logged_in?
-            @company_dislike_review = @company_review.company_dislike_reviews.create(user_id: current_user.id)
-
-            if @company_dislike_review.save
-                redirect_to company_path(@company)
+            if already_liked?
+                flash[:notice] = "You can't dislike more than once"
             else
-                flash[:danger] = "Lỗi, Không thể trả lời *?"
-                # render :new
+                @company_dislike_review = @company_review.company_dislike_reviews.create(user_id: current_user.id)
             end
+            redirect_to company_path(@company)
         else
             redirect_to login_path
         end
@@ -47,5 +45,9 @@ class CompanyDislikeReviewsController < ApplicationController
 
     def company_dislike_review_param
         # params.require(:company_dislike_review).permit(:like_content)
+    end
+
+    def already_liked?
+        CompanyDislikeReview.where(user_id: current_user.id, company_review_id: params[:company_review_id]).exists?
     end
 end

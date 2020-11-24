@@ -12,18 +12,24 @@
                 <div class="user_avatar">
                     <i class="material-icons">perm_identity</i>
                 </div>
-                
-                <div class="problem_solution_like">
-                    <%= link_to '<button class="like_btn"><i class="material-icons">arrow_circle_up</i></button>'.html_safe, problem_problem_solution_problem_reply_solutions_path(@problem, problem_solution), method: :post%>
-                </div>
+
+                <% pre_vote = problem_solution.problem_vote_solutions.find { |vote| vote.user_id == current_user.id} %>
+                <% if pre_vote %>  
+                    <%= link_to '<button class="problem_solution_like_highlight"><i class="material-icons">arrow_circle_up</i></button>'.html_safe, problem_problem_solution_problem_vote_solutions_path(@problem, problem_solution, pre_vote), method: :delete%>
+                <%else%>
+                    <%= link_to '<button class="problem_solution_like"><i class="material-icons">arrow_circle_up</i></button>'.html_safe, problem_problem_solution_problem_vote_solutions_path(@problem, problem_solution), method: :post%>
+                <%end%>
 
                 <div class="problem_solution_like_info">
-                    <a><%= problem_solution.problem_reply_solutions.count%></a>
+                    <a><%= problem_solution.problem_vote_solutions.count%></a>
                 </div>
 
-                <div class="problem_solution_dislike">
-                    <%= link_to '<button class="dislike_btn"><i class="material-icons">arrow_circle_down</i></button>'.html_safe, problem_problem_solution_problem_reply_solutions_path(@problem, problem_solution), method: :post%>
-                </div>
+                <% pre_unvote = problem_solution.problem_unvote_solutions.find { |unvote| unvote.user_id == current_user.id} %>
+                <% if pre_unvote %>
+                    <%= link_to '<button class="problem_solution_dislike_highlight"><i class="material-icons">arrow_circle_down</i></button>'.html_safe, problem_problem_solution_problem_unvote_solutions_path(@problem, problem_solution), method: :delete%>
+                <%else%>
+                    <%= link_to '<button class="problem_solution_dislike"><i class="material-icons">arrow_circle_down</i></button>'.html_safe, problem_problem_solution_problem_unvote_solutions_path(@problem, problem_solution), method: :post%>
+                <%end%>
             </div>
 
             <div class="user_problem_solution_cotent">

@@ -49,6 +49,7 @@ class ProblemsController < ApplicationController
     def show
         @problem = Problem.find params[:id]
         @problem_solution = ProblemSolution.new
+        @problems = Problem.all
     end
 
     def edit

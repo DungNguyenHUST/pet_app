@@ -6,10 +6,10 @@
 
     <body>
         <%- model_class = Problem -%>
-            <div class="container-fluid">
+            <div class="container">
                 <div class="problem_area">
                     <div class="row">
-                        <div class="col-sm-6">
+                        <div class="col-sm-8">
                             <div class="problem_area_left">
                                 <div class="problem_tab_link">
                                     <ul class="nav nav-tabs nav-justified" role="tablist">
@@ -18,12 +18,6 @@
                                         </li>
                                         <li class="nav-item">
                                             <a class="nav-link" data-toggle="tab" href="#ProblemSolutionID"><i class="material-icons">check_circle_outline</i>Giải pháp<span> <%= @problem.problem_solutions.count%><span></a>
-                                        </li>
-                                        <li class="nav-item">
-                                            <a class="nav-link" data-toggle="tab" href="#ProblemDiscusstionID"><i class="material-icons">people_outline</i>Thảo luận</a>
-                                        </li>
-                                        <li class="nav-item">
-                                            <a class="nav-link" data-toggle="tab" href="#ProblemYourSolutionID"><i class="material-icons">perm_identity</i>Giải pháp của bạn</a>
                                         </li>
                                     </ul>
                                 </div>
@@ -36,35 +30,35 @@
                                             </div>
                                         </div>
 
-                                        <div role="tabpanel" id="ProblemSolutionID" class="tab-pane fade in active"><br>
+                                        <div role="tabpanel" id="ProblemSolutionID" class="tab-pane"><br>
                                             <div class="problem_solution_tab">
-                                                <%= render @problem.problem_solutions %>
+                                                <div class="problem_solution_best">
+                                                    <a class="problem_solution_title"> Câu trả lời hay nhất</a>
+                                                </div>
+
+                                                <div class="problem_solution_normal">
+                                                    <%# <a class="problem_solution_title">Câu trả lời hay nhất</a> %>
+                                                    <%= render @problem.problem_solutions %>
+                                                </div>
                                             </div>
-                                        </div>
-
-                                        <div role="tabpanel" id="ProblemDiscusstionID" class="tab-pane fade in active"><br>
-                                        </div>
-
-                                        <div role="tabpanel" id="ProblemYourSolutionID" class="tab-pane fade in active"><br>
                                         </div>
                                     </div>
                                 </div>
-                            </div>
-                            <script type="text/javascript">
-                                $(function() { 
-                                    $('a[data-toggle="tab"]').on('shown.bs.tab', function (e) {
-                                        localStorage.setItem('lastTab', $(this).attr('href'));
+
+                                <script type="text/javascript">
+                                    $(function() { 
+                                        $('a[data-toggle="tab"]').on('shown.bs.tab', function (e) {
+                                            localStorage.setItem('lastTab', $(this).attr('href'));
+                                        });
+
+                                        var lastTab = localStorage.getItem('lastTab');
+                                        if (lastTab) {
+                                            $('[href="' + lastTab + '"]').tab('show');
+                                        }
                                     });
+                                </script>
+                            </div>
 
-                                    var lastTab = localStorage.getItem('lastTab');
-                                    if (lastTab) {
-                                        $('[href="' + lastTab + '"]').tab('show');
-                                    }
-                                });
-                            </script>
-                        </div>
-
-                        <div class="col-sm-6">
                             <div class="problem_area_right">
                                 <div class="problem_submit">
                                     <div class="new_problem_solution_right_form">
@@ -89,9 +83,25 @@
                                 </div>
                             </div>
                         </div>
+
+                        <div class="col-sm-4">
+                            <div class="problem_related">
+                                <a><i class="material-icons">list</i>Câu hỏi liên quan</a>
+                                <div class="problem_short">
+                                    <%i = 0%>
+                                    <% @problems.each do |problem| %>
+                                        <%i += 1%>
+                                        <%break if i > 10%>
+                                        <div class="problem_label">
+                                            <%= link_to problem.title, problem_path(problem) %>
+                                        </div>
+                                    <% end %>
+                                </div>
+                            </div>
+                        </div>
                     </div>
                 </div>
-            </div>
+            </div> 
         </div>
     </body>
 </html>
