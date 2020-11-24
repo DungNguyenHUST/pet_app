@@ -13,9 +13,13 @@
                     <i class="material-icons">perm_identity</i>
                 </div>
 
-                <% pre_vote = problem_solution.problem_vote_solutions.find { |vote| vote.user_id == current_user.id} %>
-                <% if pre_vote %>  
-                    <%= link_to '<button class="problem_solution_like_highlight"><i class="material-icons">arrow_circle_up</i></button>'.html_safe, problem_problem_solution_problem_vote_solutions_path(@problem, problem_solution, pre_vote), method: :delete%>
+                <%if current_user.present?%>
+                    <% pre_vote = problem_solution.problem_vote_solutions.find { |vote| vote.user_id == current_user.id} %>
+                    <% if pre_vote %>  
+                        <%= link_to '<button class="problem_solution_like_highlight"><i class="material-icons">arrow_circle_up</i></button>'.html_safe, problem_problem_solution_problem_vote_solutions_path(@problem, problem_solution, pre_vote), method: :delete%>
+                    <%else%>
+                        <%= link_to '<button class="problem_solution_like"><i class="material-icons">arrow_circle_up</i></button>'.html_safe, problem_problem_solution_problem_vote_solutions_path(@problem, problem_solution), method: :post%>
+                    <%end%>
                 <%else%>
                     <%= link_to '<button class="problem_solution_like"><i class="material-icons">arrow_circle_up</i></button>'.html_safe, problem_problem_solution_problem_vote_solutions_path(@problem, problem_solution), method: :post%>
                 <%end%>
@@ -24,9 +28,13 @@
                     <a><%= problem_solution.problem_vote_solutions.count%></a>
                 </div>
 
-                <% pre_unvote = problem_solution.problem_unvote_solutions.find { |unvote| unvote.user_id == current_user.id} %>
-                <% if pre_unvote %>
-                    <%= link_to '<button class="problem_solution_dislike_highlight"><i class="material-icons">arrow_circle_down</i></button>'.html_safe, problem_problem_solution_problem_unvote_solutions_path(@problem, problem_solution), method: :delete%>
+                <%if current_user.present?%>
+                    <% pre_unvote = problem_solution.problem_unvote_solutions.find { |unvote| unvote.user_id == current_user.id} %>
+                    <% if pre_unvote %>
+                        <%= link_to '<button class="problem_solution_dislike_highlight"><i class="material-icons">arrow_circle_down</i></button>'.html_safe, problem_problem_solution_problem_unvote_solutions_path(@problem, problem_solution), method: :delete%>
+                    <%else%>
+                        <%= link_to '<button class="problem_solution_dislike"><i class="material-icons">arrow_circle_down</i></button>'.html_safe, problem_problem_solution_problem_unvote_solutions_path(@problem, problem_solution), method: :post%>
+                    <%end%>
                 <%else%>
                     <%= link_to '<button class="problem_solution_dislike"><i class="material-icons">arrow_circle_down</i></button>'.html_safe, problem_problem_solution_problem_unvote_solutions_path(@problem, problem_solution), method: :post%>
                 <%end%>
