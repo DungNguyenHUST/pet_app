@@ -191,28 +191,28 @@
                                 <%company.company_jobs.each do |company_job|%>
                                     <%i += 1%>
                                     <%break if i > 8%>
-                                    <div class="user_job_home_block">
+                                    <div class="company_job_home_block">
                                         <div class="col-sm-10">
-                                            <div class="user_job_home_left">
-                                                <div class="user_avatar">
+                                            <div class="company_job_home_left">
+                                                <div class="company_avatar">
                                                     <%if company.avatar.attached?%>
                                                         <%= link_to (image_tag(company.avatar)), image_path(url_for(company.avatar)), rel: "gallery" , :href => company_path(company)%>
                                                     <%end%>
                                                 </div>
-                                                <div class="user_job_home_des">
-                                                    <div class="user_job_home_title">
+                                                <div class="company_job_home_des">
+                                                    <div class="company_job_home_title">
                                                         <strong><%= link_to (company_job.title), company_company_job_path(company, company_job) %></strong>
                                                     </div>
 
-                                                    <div class="user_job_home_description">
+                                                    <div class="company_job_home_description">
                                                         <a><%= company_job.description %></a>
                                                     </div>
 
-                                                    <div class="user_job_home_location">
+                                                    <div class="company_job_home_location">
                                                         <a><i class="material-icons">room</i><%= company_job.location %></a>
                                                     </div>
 
-                                                    <div class="user_job_home_salary">
+                                                    <div class="company_job_home_salary">
                                                         <a><i class="material-icons">monetization_on</i><%= company_job.salary %></a>
                                                     </div>
                                                 </div>
@@ -220,17 +220,94 @@
                                         </div>
 
                                         <div class="col-sm-2">
-                                            <div class="user_job_home_right">
+                                            <div class="company_job_home_right">
                                                 <div class="apply_job_home_button">
                                                     <%= link_to '<button type="submit">Ứng tuyển</button>'.html_safe, new_company_apply_job_path(company.id, company_job.id)%>
                                                 </div>
-                                                <div class="user_job_home_date">
+                                                <div class="company_job_home_date">
                                                     <a><%= time_ago_in_words(company_job.created_at) %></a>
                                                 </div>
                                             </div>
                                         </div>
                                     </div>
                                 <%end%>
+                            <%end%>
+                        </div>
+                    </div>
+
+                    <div class="home_top_question">
+                        <div class="home_top_question_label">
+                            <span>Câu hỏi phỏng vấn đang được quan tâm</span>
+                        </div>
+                        <div class="home_top_question_container">
+                            <div class="row">
+                                <%i = 0%>
+                                <% @problems.each do |problem| %>
+                                    <%i += 1%>
+                                    <%break if i > 6%>
+                                    <div class="col-sm-6">
+                                        <div class="home_top_question_block">
+                                            <div class="problem_label">
+                                                <%= link_to problem.title, problem_path(problem) %>
+                                            </div>
+                                            <div class="problem_des">
+                                                <a><%= problem.content%></a>
+                                            </div>
+                                            <div class="problem_info">
+                                                <a><i class="material-icons checked">wb_incandescent</i><%= problem.problem_solutions.count%></a>
+                                                <a><i class="material-icons checked">description</i><%= problem.difficult%></a>
+                                                <a><i class="material-icons checked">history_toggle_off</i><%= time_ago_in_words(problem.created_at)%></a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                <%end%>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="home_top_blog">
+                        <div class="home_top_blog_label">
+                            <span>Bài viết mới</span>
+                        </div>
+
+                        <div class="row">
+                            <%i = 0%>
+                            <% @posts.each do |post| %>
+                                <%i += 1%>
+                                <%break if i > 4%>
+                                <div class="col-sm-6">
+                                    <div class="home_post_block">
+                                        <div class="post_left">
+                                            <div class="post_cover">
+                                                <%if post.wall_picture.attached?%>
+                                                    <%= link_to (image_tag(post.wall_picture)), image_path(url_for(post.wall_picture)), rel: "gallery" , :href => post_path(post)%>
+                                                <%else%>
+                                                    <img src="<%= "/assets/illustration.png" %>" alt="Snow" style="width:100%;">
+                                                <%end%>
+                                            </div>
+                                        </div>
+
+                                        <div class="post_right">
+                                            <div class="post_header">
+                                                <a><%= link_to (post.title), post_path(post) %></a>
+                                            </div>
+
+                                            <div class="post_info">
+                                                <i class="material-icons">person_outline</i><span><%=post.username%></span>
+                                                <i class="material-icons">chat_bubble_outline</i><span><%=post.post_comments.count%></span> 
+                                                <i class="material-icons">slow_motion_video</i><span><%=time_ago_in_words(post.created_at)%></span>
+                                            </div>
+
+                                            <div class="post_content">
+                                                <a><%=post.content%></a>
+                                            </div>
+
+                                            <div class="post_view">
+                                                <%= link_to '<button type="submit"> Đọc tiếp <i class="material-icons">chevron_right</i></button>'.html_safe, post_path(post) %>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
                             <%end%>
                         </div>
                     </div>

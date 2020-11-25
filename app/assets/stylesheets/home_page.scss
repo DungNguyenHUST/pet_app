@@ -298,7 +298,7 @@
         }
 
         .home_top_job_home_container{
-            .user_job_home_block {
+            .company_job_home_block {
                 clear: left;
                 min-height: 200px;
                 background-color: #f7f8fa;
@@ -310,25 +310,36 @@
                     background-color: #fff;
                 }
             
-                .user_job_home_left
+                .company_job_home_left
                 {
-                    margin: 12px;
+                    margin: 10px;
                     padding-top: 20px;
+                    @media screen and (max-width: 600px){
+                        margin: 0px;
+                        padding-top: 15px;
+                    }
                     display: block;
                     position: relative;
-                    .user_avatar {
-                        border-radius: 3px;
+                    .company_avatar {
                         float: left;
                         img{ 
+                            border-radius: 3px;
                             box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.1), 0 6px 20px 0 rgba(0, 0, 0, 0.09);
                             max-width: 100px;
                             max-height: 100px;
+                            @media screen and (max-width: 600px){
+                                max-width: 80px;
+                                max-height: 80px;
+                            }
                         }
                     }
             
-                    .user_job_home_des{
-                        padding-left: 120px;
-                        .user_job_home_title{
+                    .company_job_home_des{
+                        @media screen and (max-width: 600px){
+                            padding-left: 95px;
+                        }
+                        padding-left: 120px;    
+                        .company_job_home_title{
                             a:link{
                                 text-decoration: none !important ;
                                 font-size: 20px;
@@ -343,7 +354,7 @@
                             -webkit-box-orient: vertical;
                         }
             
-                        .user_job_home_description{
+                        .company_job_home_description{
                             overflow: hidden;
                             text-overflow: ellipsis;
                             display: -webkit-box;
@@ -352,7 +363,7 @@
                             font-size: 14px;
                         }
             
-                        .user_job_home_location{
+                        .company_job_home_location{
                             margin-top: 20px;
                             float: left;
                             
@@ -379,7 +390,7 @@
                             }
                         }
             
-                        .user_job_home_salary{
+                        .company_job_home_salary{
                             margin-top: 20px;
                             font-size: 14px;
                             color: #4fb87b;
@@ -403,10 +414,15 @@
                     }
                 }
             
-                .user_job_home_right{
+                .company_job_home_right{
                     padding-top: 20px;
                     .apply_job_home_button{
                         padding: 10px;
+                        @media screen and (max-width: 600px){
+                            padding: 0px;
+                            padding-bottom: 15px;
+                            padding-top: 10px;
+                        }
                         padding-top: 11px;
                         button{
                             padding: 6px;
@@ -430,7 +446,7 @@
                         }
                     }
                     
-                    .user_job_home_date{
+                    .company_job_home_date{
                         font-size: 13px;
                         color: #8a8888;
                         padding-top: 70px;
@@ -447,6 +463,156 @@
                 }
                 clear: left;
                 clear: right;
+            }
+        }
+    }
+
+    .home_top_question{
+        clear: both;
+        padding-top: 20px;
+        margin-bottom: 20px;
+        .home_top_question_label{
+            color: #202124;
+            font-size: 33px;
+            font-weight: 500;
+            margin-bottom: 30px;
+        }
+        .home_top_question_container{
+            background-color: #fff;
+            .home_top_question_block{
+                background-color: #fff;
+                border-radius: 3px;
+                box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.1), 0 6px 20px 0 rgba(0, 0, 0, 0.09);
+                padding: 20px;
+                margin-bottom: 20px;
+                .problem_label{
+                    font-size: 16px;
+                    padding-bottom: 10px;
+                }
+                .problem_des{
+                    color: #161e2e;
+                    text-decoration: none !important;overflow: hidden;
+                    text-overflow: ellipsis;
+                    display: -webkit-box;
+                    -webkit-line-clamp: 3; /* number of lines to show */
+                    -webkit-box-orient: vertical;
+                }
+                .problem_info{
+                    a{
+                        font-size: 14px;
+                        padding-right: 20px;
+                        i{
+                            font-size: 20px;
+                            position: relative;
+                            top: 5px;
+                            padding-right: 3px;
+                        }   
+                    }
+                }
+            }
+
+        }
+    }
+
+    .home_top_blog{
+        clear: both;
+        padding-top: 20px;
+        margin-bottom: 30px;
+        background-color: #fff;
+        .home_top_blog_label{
+            color: #202124;
+            font-size: 33px;
+            font-weight: 500;
+            padding-bottom: 30px;
+        }
+
+        .home_post_block{
+            padding-top: 10px;
+            min-height: 240px;
+
+            .post_left{
+                float: left;
+                padding-right: 20px;
+                width: 45%;
+                .post_cover{
+                    border-radius: 5px;
+                    img{
+                        display: block;
+                        width: 100%;
+                        height: 200px;
+                        border-radius: 5px;
+                    }
+                    background-color: #fff;
+                    box-shadow: 0 1px 2px 0 rgba(179, 150, 150, 0.1), 0 2px 4px 0 rgba(168, 151, 151, 0.09);
+                }
+            }
+
+            .post_right{
+                width: 55%;
+                float: right;
+                .post_header{
+                    a{
+                        font-size: 20px;
+                        font-weight: 600;
+                        text-decoration: none !important;overflow: hidden;
+                        text-overflow: ellipsis;
+                        display: -webkit-box;
+                        -webkit-line-clamp: 2; /* number of lines to show */
+                        -webkit-box-orient: vertical;
+                    }
+                    a:link{
+                        text-decoration: none !important ;
+                    }
+                }
+
+                .post_info{
+                    padding-bottom: 20px;
+                    font-size: 14px;
+                    i{
+                        font-size: 20px;
+                        position: relative;
+                        top: 5px;
+                    }
+                    span{
+                        margin-left: 3px;
+                        font-size: 13px;
+                        margin-right: 20px;
+                    }
+                }
+
+                .post_content{
+                    position: relative;
+                    a{
+                        font-size: 14px; 
+                        overflow: hidden;
+                        text-overflow: ellipsis;
+                        display: -webkit-box;
+                        -webkit-line-clamp: 3; /* number of lines to show */
+                        -webkit-box-orient: vertical;
+                        @media screen and (max-width: 600px){
+                            display: none;
+                        }
+                    }
+                }
+
+                .post_view{
+                    padding-left: 0px;
+                    button {
+                        width: 100px;
+                        height: 35px;
+                        margin-top: 5px;
+                        background: #fff;
+                        font-size: 14px;
+                        border: 0px;
+                        text-align: left;
+                        cursor: pointer;
+                        color: #3d59a5;
+                        i{
+                            position: relative;
+                            top: 7px;
+                        }
+                    }
+                }
             }
         }
     }
