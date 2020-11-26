@@ -10,6 +10,10 @@
         .footer_container_top{
             padding-top: 20px;
             padding-bottom: 20px;
+            @media screen and (max-width: 600px){
+                // text-align: center;
+                display: none;
+            }
             .footer_label{
                 padding-top: 10px;
                 padding-bottom: 10px;
@@ -38,6 +42,10 @@
 
         .footer_container_bottom{
             border-top: 1px solid #dfe1e5;
+            
+            @media screen and (max-width: 600px){
+                border: none;
+            }
             .footer_links
             {
                 font-size: 14px;
@@ -61,8 +69,11 @@
 
             .footer_socail_links{
                 text-align: right;
+                position: relative;
+                top: -10px;
                 @media screen and (max-width: 600px){
                     text-align: center;
+                    display: none;
                 }
                 ul{
                     li{
@@ -76,7 +87,7 @@
                             background: transparent;
                             margin-right: 10px;
                             color: #1877f2 !important;
-                            line-height: 40px !important;
+                            // line-height: 40px !important;
                             border: 1px solid #dfe1e5 ;
                             border-radius: 3px;
                             background-color: #fff;
