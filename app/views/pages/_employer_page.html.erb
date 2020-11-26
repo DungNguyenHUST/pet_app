@@ -1,0 +1,322 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta name="viewport" content="width=device-width, height=device-height, initial-scale=1.0"/>
+    </head>
+
+    <body>
+        <div class='container'>
+            <div class='employer_dasboard'>
+                <div class='employer_title'>
+                    <span href="<%=user_path(current_user)%>">Xin chào nhà tuyển dụng, <%=current_user.name%></span>
+                </div>
+
+                <div class="employer_tab_link">
+                    <ul class="nav nav-tabs" role="tablist">
+                        <li class="nav-item">
+                            <a class="nav-link active" data-toggle="tab" href="#CompanyID">Công ty</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" data-toggle="tab" href="#JobID">Tin tuyển dụng</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" data-toggle="tab" href="#PersonalID">Thông tin cá nhân</a>
+                        </li>
+                    </ul>
+                </div>
+
+                <div class="employer_tab_content">
+                    <div class="tab-content">
+                        <div role="tabpanel" id="CompanyID" class="tab-pane fade in active"><br>
+                            <div class='employer_company_tab'>
+                                <div class="employer_top_company">
+                                    <div class="employer_top_company_label">
+                                        <a>Công ty hiện tại của <%=current_user.name%> </a>
+                                    </div>
+                                    <div class="row">
+                                            <div class="col-sm-3">
+                                                <div class="single_company">
+                                                    <div class="company_wall">
+                                                        <div class="rounded">
+                                                            <%if @company_by_user.wall_picture.attached?%>
+                                                                <%= link_to (image_tag(@company_by_user.wall_picture)), image_path(url_for(@company_by_user.wall_picture)), rel: "gallery" , :href => company_path(@company_by_user)%>
+                                                            <%end%>
+                                                        </div>
+                                                    </div>
+
+                                                    <div class="company_thumbnail">
+                                                        <div class="rounded">
+                                                            <%if @company_by_user.avatar.attached?%>
+                                                                <%= link_to (image_tag(@company_by_user.avatar)), image_path(url_for(@company_by_user.avatar)), rel: "gallery" , :href => company_path(@company_by_user)%>
+                                                            <%end%>
+                                                        </div>
+                                                    </div>
+
+                                                    <%# <div class="company_love_button">
+                                                        <%= link_to '<button type="button"><i class="material-icons">favorite_border</i></button>'.html_safe, company_path(@company_by_user) %>
+                                                    <%# </div> %>
+
+                                                    <div class="company_title">
+                                                        <div class="company_name">
+                                                            <a> <%= link_to @company_by_user.name, company_path(@company_by_user), class: "company_name_label" %></a>
+                                                        </div>
+
+                                                        <div class="company_rating">
+                                                            <%# Cal culate rating score %>
+                                                            <%if(@company_by_user.company_reviews.count > 0)%>
+                                                                <%rate_work_env = @company_by_user.company_reviews.sum('work_env_score').to_f / @company_by_user.company_reviews.count%>
+                                                                <%rate_salary = @company_by_user.company_reviews.sum('salary_score').to_f / @company_by_user.company_reviews.count%>
+                                                                <%rate_ot = @company_by_user.company_reviews.sum('ot_score').to_f / @company_by_user.company_reviews.count%>
+                                                                <%rate_manager = @company_by_user.company_reviews.sum('manager_score').to_f / @company_by_user.company_reviews.count%>
+                                                                <%rate_career = @company_by_user.company_reviews.sum('career_score').to_f / @company_by_user.company_reviews.count%>
+                                                                <%total_rate = (rate_work_env + rate_salary + rate_ot + rate_manager + rate_career)/5%>
+                                                            <%else%>
+                                                                <%total_rate = 0%>
+                                                            <%end%>
+                                                            <div class="review_score_star">
+                                                                <%if total_rate > 0%>
+                                                                    <%total_rate.to_i.times do%>
+                                                                        <i class="material-icons checked">circle</i>
+                                                                    <%end%>
+                                                                    <%(5 - total_rate.to_i).to_i.times do%>
+                                                                        <i class="material-icons checked_out">radio_button_unchecked</i>
+                                                                    <%end%>
+                                                                <%else%>
+                                                                    <%5.times do%>
+                                                                        <i class="material-icons checked_out">radio_button_unchecked</i>
+                                                                    <%end%>
+                                                                <%end%>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    
+                                                    <div class="company_summary">
+
+                                                        <%# <div class="company_location">
+                                                            <p><i class="material-icons">place</i> <%= @company_by_user.location %></p>
+                                                        <%# </div> %>
+
+                                                        <div class="review_point">
+
+                                                            <div class="review_point_review_content">
+                                                                <a><%= @company_by_user.company_reviews.count%></a>
+                                                            </div>
+
+                                                            <div class="review_point_review_content">
+                                                                <a><%= @company_by_user.company_interviews.count %></a>
+                                                            </div>
+
+                                                            <div class="review_point_review_content">
+                                                                <a><%= @company_by_user.company_jobs.count %></a>
+                                                            </div>
+
+                                                            <div class="review_point_label">
+                                                                <span> <i class="material-icons">sentiment_satisfied_alt</i><%= link_to " Đánh giá", company_path(@company_by_user), class: "review_point_review_label" %></span>
+                                                            </div>
+
+                                                            <div class="review_point_label">
+                                                                <span> <i class="material-icons">people_outline</i><%= link_to " Phỏng vấn", company_path(@company_by_user), class: "review_point_review_label" %></span>
+                                                            </div>
+
+                                                            <div class="review_point_label">
+                                                                <span> <i class="material-icons">work_outline</i><%= link_to " Việc làm", company_path(@company_by_user), class: "review_point_review_label" %></span>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div role="tabpanel" id="JobID" class="tab-pane fade in active"><br>
+                            <div class="employer_job_tab">
+                                <div class="employer_top_job_employer">
+                                    <div class="employer_top_job_employer_label">
+                                        <span>Việc làm đang tuyển dụng</span>
+                                    </div>
+
+                                    <div class="employer_top_job_employer_container">
+                                        <%@company_job_by_user.each do |company_job|%>
+                                            <div class="company_job_block">
+                                                <div class="company_job_employer_block">
+                                                    <div class="col-sm-10">
+                                                        <div class="company_job_employer_left">
+                                                            <div class="company_avatar">
+                                                                <%if @company_by_user.avatar.attached?%>
+                                                                    <%= link_to (image_tag(@company_by_user.avatar)), image_path(url_for(@company_by_user.avatar)), rel: "gallery" , :href => company_path(@company_by_user)%>
+                                                                <%end%>
+                                                            </div>
+                                                            <div class="company_job_employer_des">
+                                                                <div class="company_job_employer_title">
+                                                                    <strong><%= link_to (company_job.title), company_company_job_path(@company_by_user, company_job) %></strong>
+                                                                </div>
+
+                                                                <div class="company_job_employer_description">
+                                                                    <a><%= company_job.description %></a>
+                                                                </div>
+
+                                                                <div class="company_job_employer_location">
+                                                                    <a><i class="material-icons">room</i><%= company_job.location %></a>
+                                                                </div>
+
+                                                                <div class="company_job_employer_salary">
+                                                                    <a><i class="material-icons">monetization_on</i><%= company_job.salary %></a>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+
+                                                    <div class="col-sm-2">
+                                                        <div class="company_job_employer_right">
+                                                            <div class="apply_job_employer_button">
+                                                                <%= link_to '<button type="submit">Ứng tuyển</button>'.html_safe, new_company_apply_job_path(@company_by_user.id, company_job.id)%>
+                                                            </div>
+                                                            <div class="company_job_employer_date">
+                                                                <a><%= time_ago_in_words(company_job.created_at) %></a>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                
+                                                <%if !company_job.company_apply_jobs.nil?%>
+                                                    <%company_job.company_apply_jobs.each do |company_apply_job|%>
+                                                        <div class="row">
+                                                            <div class="col-sm-6">
+                                                                <div class="company_job_apply_block">
+                                                                    <div class="company_job_apply_label">
+                                                                        <a>Hồ sơ ứng tuyển <%=company_apply_job.id%></a>
+                                                                    </div>
+
+                                                                    <div class="company_job_apply_info">
+                                                                        <a class="company_job_apply_name"><%=company_apply_job.name%></a>
+                                                                        <a class="company_job_apply_email" ><%=company_apply_job.email%></a>
+                                                                        <a class="company_job_apply_letter"><%=company_apply_job.cover_letter%></a>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    <%end%>
+                                                <%end%>
+                                            </div>
+                                        <%end%>
+                                    </div>
+
+                                </div>
+                            </div>
+                        </div>
+
+                        <div role="tabpanel" id="PersonalID" class="tab-pane fade in active"><br>
+                            <div class="employer_info_tab">
+                                <div class="employer_info_wellcome_label">
+                                    <strong>Xin chào, <%= current_user.name %></strong>
+                                </div> 
+                                
+                                <div class="employer_info_des_label">
+                                    <strong>Cài đặt tài khoản</strong>
+                                </div>
+
+                                <div class="employer_info_about">
+
+                                    <div class="employer_info_label">
+                                        <strong>Tên tài khoản:</strong>
+                                    </div>
+
+                                    <div class="employer_info_des">
+                                        <%= current_user.name %>
+                                    </div>
+
+                                    <div class="employer_info_edit_button">
+                                        <i class="fa fa-edit"></i> <%= link_to " Thay đổi tên đăng nhập", edit_user_path(current_user), class: "employer_info_edit_link_to" %>
+                                    </div>
+
+                                    <div class="employer_info_label">
+                                        <strong>Địa chỉ email:</strong>
+                                    </div>
+
+                                    <div class="employer_info_des">
+                                        <%= current_user.email %>
+                                    </div>
+
+                                    <div class="employer_info_edit_button">
+                                        <i class="fa fa-edit"></i><%= link_to " Thay đổi địa chỉ email", edit_user_path(current_user), class: "employer_info_edit_link_to"  %>
+                                    </div>
+
+                                    <div class="employer_info_label">
+                                        <strong>Mật khẩu:</strong>
+                                    </div>
+
+                                    <div class="employer_info_des">
+                                        <%= current_user.password_digest, type="********"%> 
+                                    </div>
+
+                                    <div class="employer_info_edit_button">
+                                        <i class="fa fa-edit"></i><%= link_to " Thay đổi mật khẩu", edit_user_path(current_user), class: "employer_info_edit_link_to"  %>
+                                    </div>
+
+                                    <div class="employer_info_label">
+                                        <strong>Số điện thoại liên lạc:</strong>
+                                    </div>
+
+                                    <div class="employer_info_des">
+                                        <%= current_user.phone %>
+                                    </div>
+
+                                    <div class="employer_info_edit_button">
+                                        <i class="fa fa-edit"></i><%= link_to " Thay đổi số điện thoại", edit_user_path(current_user), class: "employer_info_edit_link_to"  %>
+                                    </div>
+
+                                    <div class="employer_info_label">
+                                        <strong>Địa chỉ liên hệ:</strong>
+                                    </div>
+
+                                    <div class="employer_info_des">
+                                        <%= current_user.address %>
+                                    </div>
+
+                                    <div class="employer_info_edit_button">
+                                        <i class="fa fa-edit"></i><%= link_to " Thay đổi địa chỉ", edit_user_path(current_user), class: "employer_info_edit_link_to"  %>
+                                    </div>
+                                </div>
+
+                                
+                                <div class="user_cover_letter_label">
+                                    <strong>Giới thiệu bản thân</strong>
+                                </div>
+
+                                <div class="user_cover_letter">
+
+                                    <div class="user_cv_des">
+                                        <%= current_user.cover_letter %>
+                                    </div>
+
+                                    <div class="employer_info_edit_button">
+                                        <i class="fa fa-upload"></i><%= link_to " Tải CV lên", edit_user_path(current_user), class: "employer_info_edit_link_to"  %>
+                                    </div>
+                                </div>
+
+                                <div class="user_log_out">
+                                    <%= link_to '<button type="submit">Đăng xuất</button>'.html_safe, logout_path(current_user) %>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <script type="text/javascript">
+                    $(function() { 
+                        $('a[data-toggle="tab"]').on('shown.bs.tab', function (e) {
+                            localStorage.setItem('lastTab', $(this).attr('href'));
+                        });
+
+                        var lastTab = localStorage.getItem('lastTab');
+                        if (lastTab) {
+                            $('[href="' + lastTab + '"]').tab('show');
+                        }
+                    });
+                </script>
+            </div>
+        </div>
+    </body>
+</html>

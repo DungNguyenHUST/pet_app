@@ -1,9 +1,9 @@
 
 <%if (!current_user.nil?)%>
     <%if current_user.admin?%>
-        <%= render :partial => 'pages/admin_home_page' %>
+        <%= render :partial => 'pages/admin_page' %>
     <%elsif current_user.employer?%>
-        <%= render :partial => 'pages/employer_home_page' %>
+        <%= render :partial => 'pages/employer_page' %>
     <%else%>
         <%= render :partial => 'pages/home_page' %>
     <%end%>

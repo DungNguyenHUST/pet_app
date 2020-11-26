@@ -6,5 +6,9 @@ class PagesController < ApplicationController
         @company_reviews = CompanyReview.all
         @posts = Post.all
         @problems = Problem.all
+        if current_user.employer
+            @company_by_user = @current_user.company
+            @company_job_by_user = @company_by_user.company_jobs.all
+        end
     end
 end
