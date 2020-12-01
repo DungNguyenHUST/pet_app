@@ -7,56 +7,58 @@
     <body>
         <div class='container'>
             <div class='session_block'>
-                <div class='col-sm-6'>
-                    <div class="user_signin_form_left">
-                        <%= form_for :session, url: login_path do |f| %>
-                            <div class="user_signin_title">
-                                <a>Đăng nhập</a>
-                            </div>
-
-                            <div class="user_signin_content">
-                                <div class="user_signin_label">
-                                    <a><%= f.label :email, "Địa chỉ email", class: "user_signin_label_name" %></a>
+                <div class='row'>
+                    <div class='col-sm-6'>
+                        <div class="user_signin_form_left">
+                            <%= form_for :session, url: login_path do |f| %>
+                                <div class="user_signin_title">
+                                    <a>Đăng nhập</a>
                                 </div>
 
-                                <div class="user_signin_input">
-                                    <%= f.email_field :email, class: "form-control", placeholder: "Nhập địa chỉ email của bạn" %>
+                                <div class="user_signin_content">
+                                    <div class="user_signin_label">
+                                        <a><%= f.label :email, "Địa chỉ email", class: "user_signin_label_name" %></a>
+                                    </div>
+
+                                    <div class="user_signin_input">
+                                        <%= f.email_field :email, class: "form-control", placeholder: "Nhập địa chỉ email của bạn" %>
+                                    </div>
                                 </div>
-                            </div>
 
-                            <div class="user_signin_content">
-                                <div class="user_signin_label">
-                                    <a><%= f.label :password, "Mật khẩu", class: "user_signin_label" %></a>
+                                <div class="user_signin_content">
+                                    <div class="user_signin_label">
+                                        <a><%= f.label :password, "Mật khẩu", class: "user_signin_label" %></a>
+                                    </div>
+
+                                    <div class="user_signin_input">
+                                        <%= f.password_field :password, class: "form-control", placeholder: "Nhập mật khẩu của bạn" %>
+                                    </div>
                                 </div>
 
-                                <div class="user_signin_input">
-                                    <%= f.password_field :password, class: "form-control", placeholder: "Nhập mật khẩu của bạn" %>
+                                <div class="user_signin_submit">
+                                    <%= f.submit "Đăng nhập", class: "user_signin_form_submit" %>
                                 </div>
-                            </div>
 
-                            <div class="user_signin_submit">
-                                <%= f.submit "Đăng nhập", class: "user_signin_form_submit" %>
-                            </div>
-
-                            <p class="user_signin_loginhere">
-                                Bạn chưa có tài khoản? <%= link_to "Tạo tài khoản mới", new_user_path %>
-                            </p>
-                        <%end%>
+                                <p class="user_signin_loginhere">
+                                    Bạn chưa có tài khoản? <%= link_to "Tạo tài khoản mới", new_user_path %>
+                                </p>
+                            <%end%>
+                        </div>
                     </div>
-                </div>
-                <div class='col-sm-6'>
-                    <div class="user_signin_form_right">
-                        <div class="user_signin_title">
-                            <a>Hoặc</a>
-                        </div>
-                        <div class="login_with_google">
-                            <%= link_to '<button type="submit"> <i class="material-icons">mail_outline</i><span>Đăng nhập bằng Gmail</span></button>'.html_safe, sessions_new_path %>
-                        </div>
-                        <div class="login_with_facebook">
-                            <%= link_to '<button type="submit"> <i class="material-icons">facebook</i> <span>Đăng nhập bằng Facebook</span></button>'.html_safe, sessions_new_path %>
-                        </div>
-                        <div class="login_with_phone">
-                            <%= link_to '<button type="submit"> <i class="material-icons">phone</i><span>Đăng nhập bằng Số điện thoại</span></button>'.html_safe, sessions_new_path %>
+                    <div class='col-sm-6'>
+                        <div class="user_signin_form_right">
+                            <div class="user_signin_title">
+                                <a>Hoặc</a>
+                            </div>
+                            <div class="login_with_google">
+                                <%= link_to '<button type="submit"> <i class="material-icons">mail_outline</i><span>Đăng nhập bằng Gmail</span></button>'.html_safe, sessions_new_path %>
+                            </div>
+                            <div class="login_with_facebook">
+                                <%= link_to '<button type="submit"> <i class="material-icons">facebook</i> <span>Đăng nhập bằng Facebook</span></button>'.html_safe, sessions_new_path %>
+                            </div>
+                            <div class="login_with_phone">
+                                <%= link_to '<button type="submit"> <i class="material-icons">phone</i><span>Đăng nhập bằng Số điện thoại</span></button>'.html_safe, sessions_new_path %>
+                            </div>
                         </div>
                     </div>
                 </div>

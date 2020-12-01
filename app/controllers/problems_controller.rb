@@ -58,17 +58,22 @@ class ProblemsController < ApplicationController
 
     def update
         @problem = Problem.find params[:id]
+        if(@problem.update(problem_param))
+            redirect_to problems_path
+        else
+            flash[:danger] = "Không thể cập nhật thông tin"
+        end
     end
 
     def destroy
         @problem = Problem.find params[:id]
         @problem.destroy
-        redirect_to problem_path
+        redirect_to pages_path
     end
 
     private
     # define param for each problem
     def problem_param
-        params.require(:problem).permit(:title, :content, :difficult, :category, :search)
+        params.require(:problem).permit(:id, :title, :content, :difficult, :category, :search)
     end
 end

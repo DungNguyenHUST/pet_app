@@ -37,17 +37,22 @@ class PostsController < ApplicationController
 
     def update
         @post = Post.find params[:id]
+        if(@post.update(post_param))
+            redirect_to posts_path
+        else
+            flash[:danger] = "Không thể cập nhật thông tin"
+        end
     end
 
     def destroy
         @post = Post.find params[:id]
         @post.destroy
-        redirect_to post_path
+        redirect_to pages_path
     end
 
     private
     # define param for each post
     def post_param
-        params.require(:post).permit(:wall_picture, :title, :content)
+        params.require(:post).permit(:id, :wall_picture, :title, :content)
     end
 end

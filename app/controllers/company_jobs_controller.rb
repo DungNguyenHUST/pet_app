@@ -24,6 +24,21 @@ class CompanyJobsController < ApplicationController
             # render :new
         end
     end
+
+    def edit
+        @company = Company.find params[:company_id]
+        @company_job = @company.company_jobs.find(params[:id])
+    end
+
+    def update
+        @company = Company.find params[:company_id]
+        @company_job = @company.company_jobs.find(params[:id])
+        if(@company_job.update(company_job_param))
+            redirect_to pages_path
+        else
+            flash[:danger] = "Không thể cập nhật thông tin"
+        end
+    end
     
     def destroy
         @company = Company.find(params[:company_id])
@@ -40,6 +55,6 @@ class CompanyJobsController < ApplicationController
     private
 
     def company_job_param
-        params.require(:company_job).permit(:title, :location, :description, :requirement , :benefit, :salary, :quantity, :category, :search)
+        params.require(:company_job).permit(:id, :title, :location, :description, :requirement , :benefit, :salary, :quantity, :category, :search)
     end
 end

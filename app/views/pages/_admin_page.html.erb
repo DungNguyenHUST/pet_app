@@ -6,90 +6,115 @@
 
     <body>
         <div class='container'>
-        <div class='admin_dasboard'>
-            <div class="admin_tab_link">
-                <ul class="nav nav-tabs" role="tablist">
-                    <li class="nav-item">
-                        <a class="nav-link active" data-toggle="tab" href="#CompanyID">Công ty</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" data-toggle="tab" href="#UserID">User</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" data-toggle="tab" href="#PostID">Post</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" data-toggle="tab" href="#ProblemID">Problem</a>
-                    </li>
-                </ul>
-            </div>
+            <div class='admin_dasboard'>
+                <div class="admin_tab_link">
+                    <ul class="nav nav-tabs" role="tablist">
+                        <li class="nav-item">
+                            <a class="nav-link active" data-toggle="tab" href="#CompanyID">Company</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" data-toggle="tab" href="#UserID">User</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" data-toggle="tab" href="#PostID">Post</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" data-toggle="tab" href="#ProblemID">Problem</a>
+                        </li>
+                    </ul>
+                </div>
 
-            <div class="admin_tab_content">
-                <div class="tab-content">
-                    <div role="tabpanel" id="CompanyID" class="tab-pane fade in active"><br>
-                        <div class="company_tab">
-                            <h2>Danh sách công ty</h2>
-                            <% @companies.each do |company| %>
-                                <div class='company_block'>
-                                    <div class='company_name'>
-                                        <%= link_to company.name, company_path(company), class: "company_name_label" %>
-                                        <i class="fa fa-edit"></i> <%= link_to " Edit company", edit_company_path(company), class: "user_info_edit_link_to" %>
+                <div class="admin_tab_content">
+                    <div class="tab-content">
+                        <div role="tabpanel" id="CompanyID" class="tab-pane fade in active"><br>
+                            <div class="company_tab">
+                                <h2>Danh sách công ty</h2>
+                                <% @companies.each do |company| %>
+                                    <div class='company_block'>
+                                        <div class='company_name'>
+                                            <%=company.id%>
+                                            <%= link_to company.name, company_path(company), class: "company_name_label" %>
+                                        </div>
+                                        <div class='company_name'>
+                                            <i class="fa fa-edit"></i><%= link_to "Update", edit_company_path(company), class: "user_info_edit_link_to" %>
+                                            <i class="fa fa-edit"></i><%= link_to 'Delete', [company], method: :delete, class: "button is-danger", data: { confirm: 'Are you sure?' } %>
+                                        </div>
+
+                                        <div class='company_job_block'>
+                                            <strong><%=company.company_jobs.count%> jobs</strong>
+                                            <%company.company_jobs.each do |company_job|%>
+                                                <div class='company_job_name'>
+                                                    <%=company_job.id%>
+                                                    <%= link_to (company_job.title), company_company_job_path(company, company_job) %>
+                                                </div>
+                                                <div class='company_job_name'>
+                                                    <i class="fa fa-edit"></i><%= link_to 'Update', edit_company_company_job_path(company, company_job), class: "user_info_edit_link_to" %>
+                                                    <i class="fa fa-edit"></i><%= link_to 'Delete', [company, company_job], method: :delete, class: "button is-danger", data: { confirm: 'Are you sure?' } %>
+                                                </div>
+                                            <%end%>
+                                        </div>
                                     </div>
+                                <%end%>
+                            </div>                        
+                        </div>
 
-                                    <div class='company_job_block'>
-                                        <h4>Việc làm</h4>
-                                        <%company.company_jobs.each do |company_job|%>
-                                            <div class='company_job_name'>
-                                                <a> <%= link_to (company_job.title), company_company_job_path(company, company_job) %></a>
-                                                <i class="fa fa-edit"></i> <%= link_to " Edit job", edit_company_company_job_path(company, company_job), class: "user_info_edit_link_to" %>
-                                            </div>
-                                        <%end%>
+                        <div role="tabpanel" id="UserID" class="tab-pane fade in active"><br>
+                            <div class="user_tab">
+                                <h2>Tất cả user</h2>
+                                <% @users.each do |user| %>
+                                    <%=user.id%>
+                                    <%= link_to user.name, user_path(user), class: "admin_name_label" %>
+                                    <div class='user_name'>
+                                        <i class="fa fa-edit"></i><%= link_to "Update", edit_user_path(user), class: "user_info_edit_link_to" %>
+                                        <i class="fa fa-edit"></i><%= link_to 'Delete', [user], method: :delete, class: "button is-danger", data: { confirm: 'Are you sure?' } %>
                                     </div>
-                                </div>
-                            <%end%>
-                        </div>                        
-                    </div>
+                                <%end%>
+                            </div>                        
+                        </div>
 
-                    <div role="tabpanel" id="UserID" class="tab-pane fade in active"><br>
-                        <div class="user_tab">
-                            <h2>Tất cả user</h2>
-                            <% @users.each do |user| %>
-                                <h3> <%= link_to user.name, user_path(user), class: "admin_name_label" %></h3>
-                            <%end%>
-                        </div>                        
-                    </div>
+                        <div role="tabpanel" id="PostID" class="tab-pane fade in active"><br>
+                            <div class="post_tab">
+                                <h2>Tất cả bài viết</h2>
+                                <% @posts.each do |post| %>
+                                    <%=post.id%>
+                                    <%= link_to post.title, post_path(post), class: "admin_name_label" %>
+                                    <div class='post_name'>
+                                        <i class="fa fa-edit"></i><%= link_to "Update", edit_post_path(post), class: "user_info_edit_link_to" %>
+                                        <i class="fa fa-edit"></i><%= link_to 'Delete', [post], method: :delete, class: "button is-danger", data: { confirm: 'Are you sure?' } %>
+                                    </div>
+                                <%end%>
+                            </div>                        
+                        </div>
 
-                    <div role="tabpanel" id="PostID" class="tab-pane fade in active"><br>
-                        <div class="post_tab">
-                            <h2>Tất cả bài viết</h2>
-                            <% @posts.each do |post| %>
-                                <h3> <%= link_to post.title, post_path(post), class: "admin_name_label" %></h3>
-                            <%end%>
-                        </div>                        
-                    </div>
-
-                    <div role="tabpanel" id="ProblemID" class="tab-pane fade in active"><br>
-                        <div class="problem_tab">
-                            <h2>Tất cả câu hỏi</h2>
-                            <% @problems.each do |problem| %>
-                                <h3> <%= link_to problem.title, problem_path(problem), class: "admin_name_label" %></h3>
-                            <%end%>
-                        </div>                        
+                        <div role="tabpanel" id="ProblemID" class="tab-pane fade in active"><br>
+                            <div class="problem_tab">
+                                <h2>Tất cả câu hỏi</h2>
+                                <% @problems.each do |problem| %>
+                                    <%=problem.id%>
+                                    <%= link_to problem.title, problem_path(problem), class: "admin_name_label" %>
+                                    <div class='problem_name'>
+                                        <i class="fa fa-edit"></i><%= link_to "Update", edit_problem_path(problem), class: "user_info_edit_link_to" %>
+                                        <i class="fa fa-edit"></i><%= link_to 'Delete', [problem], method: :delete, class: "button is-danger", data: { confirm: 'Are you sure?' } %>
+                                    </div>
+                                <%end%>
+                            </div>                        
+                        </div>
                     </div>
                 </div>
-            </div>
-            <script type="text/javascript">
-                $(function() { 
-                    $('a[data-toggle="tab"]').on('shown.bs.tab', function (e) {
-                        localStorage.setItem('lastTab', $(this).attr('href'));
-                    });
 
-                    var lastTab = localStorage.getItem('lastTab');
-                    if (lastTab) {
-                        $('[href="' + lastTab + '"]').tab('show');
-                    }
-                });
-            </script>
+                <script type="text/javascript">
+                    $(function() { 
+                        $('a[data-toggle="tab"]').on('shown.bs.tab', function (e) {
+                            localStorage.setItem('lastTab', $(this).attr('href'));
+                        });
+
+                        var lastTab = localStorage.getItem('lastTab');
+                        if (lastTab) {
+                            $('[href="' + lastTab + '"]').tab('show');
+                        }
+                    });
+                </script>
+            </div>
         </div>
     </body>
 </html>

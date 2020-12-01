@@ -27,6 +27,21 @@ class ProblemSolutionsController < ApplicationController
             render :new
         end
     end
+
+    def edit
+        @problem = problem.find params[:problem_id]
+        @problem_solution = @problem.problem_solutions.find(params[:id])
+    end
+
+    def update
+        @problem = problem.find params[:problem_id]
+        @problem_solution = @problem.problem_solutions.find(params[:id])
+        if(@problem_solution.update(problem_solution_param))
+            redirect_to pages_path
+        else
+            flash[:danger] = "Không thể cập nhật thông tin"
+        end
+    end
     
     def destroy
         @problem = Problem.find(params[:problem_id])
