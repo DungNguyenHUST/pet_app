@@ -13,7 +13,7 @@
                     <div class="company_search_bar">
                         <div class="company_search_bar_label">
                             <h3>Mọi người đang nói gì về công ty của bạn?</h3>
-                            <span>Khám phá <%= @companies.count%> công ty và <%= @company_jobs.count%> việc làm cùng hơn <%= @company_reviews.count%>+ đánh giá từ mọi người.</span>
+                            <a>Khám phá <%= @companies.count%> công ty và <%= @company_jobs.count%> việc làm cùng hơn <%= @company_reviews.count%>+ đánh giá từ mọi người.</a>
                         </div>
 
                         <%=form_tag companies_path, :method => "get" do%>
@@ -25,11 +25,7 @@
                             </div>
                         <%end%>
                     </div>
-                </div>
-            </div>
 
-            <div class="companies_area">
-                <div class="container">
                     <div class="company_current_review">
                         <div class="company_current_review_title">
                             <i class="material-icons checked">create</i><strong> Nhận xét công ty của bạn </strong>
@@ -40,6 +36,11 @@
                             <%end%>
                         </div>
                     </div>
+                </div>
+            </div>
+
+            <div class="companies_area">
+                <div class="container">
                     <%if (@companies.count < @companies_all.count)%>
                         <div class="section_title">
                             <h3>Tìm thấy <%=@companies.count%> kết quả</h3>
@@ -49,7 +50,6 @@
                             <a>Danh sách công ty</a>
                         </div>
                     <%end%>
-
                     <div class="company_index_tab_link">  
                         <ul class="nav nav-tabs" role="tablist">
                             <li class="nav-item">
