@@ -6,7 +6,7 @@
         min-height: 80px;
         margin-top: 20px;
         .footer_container_top{
-            border-top: 1px solid #dfe1e5;
+            // border-top: 1px solid #dfe1e5;
             background-color: #f6fbf9;
             padding-top: 20px;
             padding-bottom: 20px;
@@ -21,7 +21,7 @@
                 font-weight: 600;
             }
             .footer_link{
-                color: #444;
+                color: #333;
                 ul{
                     display: block;
                     margin: 0; 
@@ -33,7 +33,7 @@
                         a{
                             font-size: 14px;
                             text-decoration: none;
-                            color: #444;
+                            color: #333;
                         }
                         a:hover{
                             color: #1877f2;
@@ -45,68 +45,70 @@
 
         .footer_container_bottom{
             background-color: #f6fbf9;
-            
-            @media screen and (max-width: 600px){
-                border: none;
-            }
-            .footer_links
-            {
-                font-size: 14px;
+            .container{
+                border-top: 1px solid #dfe1e5;
                 @media screen and (max-width: 600px){
+                    border: none;
+                }
+                .footer_links
+                {
+                    font-size: 14px;
+                    @media screen and (max-width: 600px){
+                        text-align: center;
+                    }
+                }
+                
+                .footer_copyright{
+                    font-size: 14px;
+                    color: #333 ;
                     text-align: center;
+                    @media screen and (max-width: 600px){
+                        text-align: center;
+                    }
+                    font-weight: 500;
+                    .checked {
+                        color: red;
+                    }
                 }
-            }
-            
-            .footer_copyright{
-                font-size: 14px;
-                color: #444 ;
-                text-align: center;
-                @media screen and (max-width: 600px){
-                    text-align: center;
-                }
-                font-weight: 500;
-                .checked {
-                    color: red;
-                }
-            }
 
-            .footer_socail_links{
-                text-align: right;
-                position: relative;
-                top: -10px;
-                @media screen and (max-width: 600px){
-                    text-align: center;
-                    display: none;
-                }
-                ul{
-                    li{
-                        display: inline-block;
-                        a{
-                            font-size: 14px;
-                            width: 35px;
-                            height: 35px;
+                .footer_socail_links{
+                    text-align: right;
+                    position: relative;
+                    top: -10px;
+                    @media screen and (max-width: 600px){
+                        text-align: center;
+                        display: none;
+                    }
+                    ul{
+                        li{
                             display: inline-block;
-                            text-align: center;
-                            background: transparent;
-                            margin-right: 10px;
-                            color: #1877f2 !important;
-                            // line-height: 40px !important;
-                            border: 1px solid #dfe1e5 ;
-                            border-radius: 3px;
-                            background-color: #fff;
-                            i{
+                            a{
                                 font-size: 14px;
-                                line-height: 40px;
-                                position: relative;
-                                top: -1px;
+                                width: 35px;
+                                height: 35px;
+                                display: inline-block;
+                                text-align: center;
+                                background: transparent;
+                                margin-right: 10px;
+                                color: #1877f2 !important;
+                                // line-height: 40px !important;
+                                border: 1px solid #dfe1e5 ;
+                                border-radius: 3px;
+                                background-color: #fff;
+                                i{
+                                    font-size: 14px;
+                                    line-height: 40px;
+                                    position: relative;
+                                    top: -1px;
+                                }
+                                
                             }
-                            
-                        }
-                        &:hover a{
-                            color: #fff !important;
-                            background: #1877f2;
-                            border-color: transparent;
-                            border: 1px solid #dfe1e5 ;
+                            &:hover a{
+                                color: #fff !important;
+                                background: #1877f2;
+                                border-color: transparent;
+                                border: 1px solid #dfe1e5 ;
+                            }
                         }
                     }
                 }

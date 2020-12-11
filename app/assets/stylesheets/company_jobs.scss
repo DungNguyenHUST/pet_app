@@ -29,11 +29,18 @@
                 box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.1), 0 6px 20px 0 rgba(0, 0, 0, 0.09);
                 max-width: 100px;
                 max-height: 100px;
+                @media screen and (max-width: 600px){
+                    max-width: 60px;
+                    max-height: 60px;
+                }
             }
         }
 
         .user_job_des{
             padding-left: 120px;
+            @media screen and (max-width: 600px){
+                padding-left: 75px;
+            }
             .user_job_title{
                 a:link{
                     text-decoration: none !important ;
@@ -56,10 +63,11 @@
                 -webkit-line-clamp: 2; /* number of lines to show */
                 -webkit-box-orient: vertical;
                 font-size: 14px;
+                margin-bottom: 10px;
             }
 
             .user_job_location{
-                margin-top: 20px;
+                margin-top: 10px;
                 float: left;
                 
                 @media screen and (max-width: 600px){
@@ -87,6 +95,9 @@
 
             .user_job_salary{
                 margin-top: 20px;
+                @media screen and (max-width: 600px){
+                    margin-top: 10px;
+                }
                 font-size: 14px;
                 color: #4fb87b;
                 a{
@@ -121,8 +132,8 @@
                 @media screen and (max-width: 600px){
                     width: 100%;
                     height: 35px;
-                    margin-top: 20px;
-                    margin-bottom: 20px;
+                    margin-top: 15px;
+                    margin-bottom: 25px;
                 }
                 margin-right: 10px;
                 background: #1877f2;
@@ -132,8 +143,10 @@
                 cursor: pointer;
                 text-align: center;
                 color: #fff;
+                            
                 &:hover{
-                    background-color: #1877f2;
+                    background-color: #369;
+                    color: #fff;
                 }
             }
         }
@@ -145,7 +158,7 @@
             @media screen and (max-width: 600px){
                 padding-top: 0px;
                 position: absolute;
-                top: -20px;
+                top: -15px;
                 left: 20px;
                 color: #8a8888;
             }
@@ -238,10 +251,11 @@
                 text-align: center;
                 color: #fff;
                 border-radius: 3px;
-            }
-        
-            button:hover {
-                background: #1877f2;
+                            
+                &:hover{
+                    background-color: #369;
+                    color: #fff;
+                }
             }
             i{
                 font-size: 50px;
@@ -338,10 +352,11 @@
                 text-align: center;
                 color: #fff;
                 border-radius: 3px;
-            }
-        
-            button:hover {
-                background: #1877f2;
+                            
+                &:hover{
+                    background-color: #369;
+                    color: #fff;
+                }
             }
         }
     }
@@ -421,7 +436,7 @@
     margin-bottom: 50px;
     .new_job_title{
         font-size: 24px;
-        color: #444;
+        color: #333;
         text-align: center;
         margin-top: 50px;
         margin-bottom: 30px;
@@ -438,7 +453,7 @@
             .new_job_label{
                 font-weight: 600;
                 font-size: 16px;
-                color: #444;
+                color: #333;
                 text-align: left;
             }
             .new_job_input{
@@ -459,7 +474,7 @@
                     margin-right: 40px;
                     min-width: 100px;
                     font-size: 14px;
-                    color: #444;
+                    color: #333;
                 }
                 .new_job_form_input{
                     margin-left: 0px;
@@ -592,12 +607,10 @@
                             .checked {
                                 color: #dfe1e5;
                             }
-                        }
-            
-                        button:hover{
-                            background: #fff;
-                            .checked {
-                                color: #febb02;
+
+                            &:hover{
+                                background-color: #369;
+                                color: #fff;
                             }
                         }
                     }
@@ -609,13 +622,13 @@
                             padding-left: 3px;
                             clear: both;
                             text-align: left;
-                            color: #444;
+                            color: #333;
                             font-size: 18px;
                             font-weight: 550;
                             padding-top: 10px;
                             // height: 50px;
                             .company_search_name_label{
-                                color: #444;
+                                color: #333;
                                 text-decoration: none !important;overflow: hidden;
                                 text-overflow: ellipsis;
                                 display: -webkit-box;
@@ -669,7 +682,7 @@
                         .review_point
                         {
                             clear: both;
-                            color: #444;
+                            color: #333;
                             .review_point_review_content{
                                 font-size: 14px;
                                 font-weight: 500;
@@ -689,18 +702,23 @@
                                     margin-right: 6%;
                                 }
                                 margin-left: 3%;
-                                // margin-right: 5%;
                                 .review_point_review_label{
+                                    text-decoration: none !important;
                                     span{
-                                        text-decoration: none !important;
-                                        color: #808080; 
+                                        color: #444;
+                                    } 
+                                    &:hover{
+                                        color: #1877f2;
                                     }
                                 }
                                 i{
                                     font-size: 18px;
-                                    color: #808080; 
+                                    color: #444; 
                                     position: relative;
                                     top: 5px;
+                                    &:hover{
+                                        color: #1877f2;
+                                    }
                                 }
                             }
                         }
@@ -847,8 +865,10 @@
                         cursor: pointer;
                         text-align: center;
                         color: #fff;
+                        
                         &:hover{
-                            background-color: #1877f2;
+                            background-color: #369;
+                            color: #fff;
                         }
                     }
                 }

@@ -18,13 +18,18 @@
             }
             a{
                 // margin-top: 25px;
-                font-size: 22px;
-                color: #2d2d2d;
+                font-size: 24px;
+                color: #444;
                 line-break: auto;
             }
             span.textbox{
-                color: #febb02;
-                font-size: 44px;
+                color: #fff;
+                padding-left: 10px;
+                padding-right: 10px;
+                border-radius: 30px;
+                font-size: 40px;
+                background-color: #1877f2;
+                // border-bottom: 2px dashed #febb02;
                 // text-decoration: underline;
                 // text-shadow: -0.1px -0.1px 0 #febb02, 0.1px -0.1px 0 #febb02;
                 // padding-left: 10px;
@@ -73,12 +78,17 @@
                     padding-left: 10px;
                     padding-right: 10px;
                     border-radius: 20px;
-                    border: 1px solid #7bb0f5;
+                    border: 1px solid #1877f2;
                     float: left;
                     margin-right: 10px;
                     font-size: 14px;
                     background-color: #fff;
-                    color: #555 !important;
+                    color: #333;
+                    &:hover{
+                        background-color: #1877f2;
+                        color: #fff;
+                        border: none;
+                    }
                 }
             }
         }
@@ -88,13 +98,19 @@
         clear: both;
         height: auto;
         .home_top_company_label{
-            padding-top: 30px;
-            padding-bottom: 20px;
-            span{
-                font-weight: 500;
+            padding-top: 40px;
+            padding-bottom: 10px;
+            a{
                 text-align: left;
                 font-size: 30px;
-                color: #444;
+                color: #333;
+                font-weight: 500;
+                i{
+                    position: relative;
+                    top: 5px;
+                    font-size: 32px;
+                    padding-right: 5px;
+                }
             }
         }
 
@@ -164,12 +180,9 @@
                             .checked {
                                 color: #dfe1e5;
                             }
-                        }
-            
-                        button:hover{
-                            background: #fff;
-                            .checked {
-                                color: #febb02;
+                            &:hover{
+                                background-color: #369;
+                                color: #fff;
                             }
                         }
                     }
@@ -181,13 +194,13 @@
                             padding-left: 3px;
                             clear: both;
                             text-align: left;
-                            color: #444;
+                            color: #333;
                             font-size: 18px;
                             font-weight: 550;
                             padding-top: 10px;
                             // height: 50px;
                             .company_name_label{
-                                color: #444;
+                                color: #333;
                                 text-decoration: none !important;overflow: hidden;
                                 text-overflow: ellipsis;
                                 display: -webkit-box;
@@ -229,7 +242,7 @@
                         margin-right: auto;
                         width: 100%;
                         a{
-                            color: #444;
+                            color: #333;
                         }
                         .company_location
                         {
@@ -248,7 +261,7 @@
                         .review_point
                         {
                             clear: both;
-                            color: #444;
+                            color: #333;
                             .review_point_review_content{
                                 font-size: 14px;
                                 font-weight: 500;
@@ -273,16 +286,22 @@
                                 }
                                 margin-left: 3%;
                                 .review_point_review_label{
+                                    text-decoration: none !important;
                                     span{
-                                        text-decoration: none !important;
-                                        color: #808080; 
+                                        color: #444;
+                                    } 
+                                    &:hover{
+                                        color: #1877f2;
                                     }
                                 }
                                 i{
                                     font-size: 18px;
-                                    color: #808080; 
+                                    color: #444; 
                                     position: relative;
                                     top: 5px;
+                                    &:hover{
+                                        color: #1877f2;
+                                    }
                                 }
                             }
                         }
@@ -298,10 +317,19 @@
         margin-bottom: 30px;
         background-color: #fff;
         .home_top_job_home_label{
-            font-size: 30px;
-            color: #444;
-            font-weight: 500;
             padding-bottom: 20px;
+            a{
+                text-align: left;
+                font-size: 30px;
+                color: #333;
+                font-weight: 500;
+                i{
+                    position: relative;
+                    top: 5px;
+                    font-size: 32px;
+                    padding-right: 5px;
+                }
+            }
         }
 
         .home_top_job_home_container{
@@ -335,15 +363,15 @@
                             max-width: 100px;
                             max-height: 100px;
                             @media screen and (max-width: 600px){
-                                max-width: 80px;
-                                max-height: 80px;
+                                max-width: 60px;
+                                max-height: 60px;
                             }
                         }
                     }
             
                     .company_job_home_des{
                         @media screen and (max-width: 600px){
-                            padding-left: 95px;
+                            padding-left: 70px;
                         }
                         padding-left: 120px;    
                         .company_job_home_title{
@@ -352,7 +380,7 @@
                                 font-size: 20px;
                                 position: relative;
                                 top: -5px;
-                                color: #444;
+                                color: #333;
                                 font-weight: 550;
                             }
                             a:hover{
@@ -373,10 +401,11 @@
                             -webkit-line-clamp: 2; /* number of lines to show */
                             -webkit-box-orient: vertical;
                             font-size: 14px;
+                            margin-bottom: 10px;
                         }
             
                         .company_job_home_location{
-                            margin-top: 20px;
+                            margin-top: 10px;
                             float: left;
                             
                             @media screen and (max-width: 600px){
@@ -403,6 +432,10 @@
                         }
             
                         .company_job_home_salary{
+                            @media screen and (max-width: 600px){
+                                float: none;
+                                margin-top: 10px;
+                            }
                             margin-top: 20px;
                             font-size: 14px;
                             color: #4fb87b;
@@ -432,7 +465,7 @@
                         padding: 10px;
                         @media screen and (max-width: 600px){
                             // padding: 0px;
-                            padding-bottom: 15px;
+                            padding-bottom: 20px;
                             padding-top: 10px;
                         }
                         padding-top: 11px;
@@ -453,7 +486,8 @@
                             text-align: center;
                             color: #fff;
                             &:hover{
-                                background-color: #1877f2;
+                                background-color: #369;
+                                color: #fff;
                             }
                         }
                     }
@@ -461,7 +495,7 @@
                     .company_job_home_date{
                         font-size: 13px;
                         color: #8a8888;
-                        padding-top: 70px;
+                        padding-top: 60px;
                         @media screen and (max-width: 600px){
                             padding-top: 0px;
                             position: absolute;
@@ -485,10 +519,19 @@
         padding-top: 30px;
         margin-bottom: 20px;
         .home_top_question_label{
-            font-size: 30px;
-            color: #444;
-            font-weight: 500;
             margin-bottom: 20px;
+            a{
+                text-align: left;
+                font-size: 30px;
+                color: #333;
+                font-weight: 500;
+                i{
+                    position: relative;
+                    top: 5px;
+                    font-size: 32px;
+                    padding-right: 5px;
+                }
+            }
         }
         .home_top_question_container{
             background-color: #fff;
@@ -508,7 +551,7 @@
                         display: -webkit-box;
                         -webkit-line-clamp: 1; /* number of lines to show */
                         -webkit-box-orient: vertical;
-                        color: #444;
+                        color: #333;
                     }
                     a:hover{
                         color: #1877f2;
@@ -516,7 +559,7 @@
                 }
                 .problem_des{
                     padding-top: 10px;
-                    color: #444;
+                    color: #333;
                     text-decoration: none !important;
                     overflow: hidden;
                     text-overflow: ellipsis;
@@ -530,7 +573,7 @@
                     a{
                         font-size: 13px;
                         padding-right: 20px;
-                        color: #666;
+                        color: #1877f2;
                         i{
                             font-size: 20px;
                             position: relative;
@@ -550,10 +593,19 @@
         margin-bottom: 30px;
         background-color: #fff;
         .home_top_blog_label{
-            font-size: 30px;
-            color: #444;
-            font-weight: 500;
-            padding-bottom: 20px;
+            padding-bottom: 10px;
+            a{
+                text-align: left;
+                font-size: 30px;
+                color: #333;
+                font-weight: 500;
+                i{
+                    position: relative;
+                    top: 5px;
+                    font-size: 32px;
+                    padding-right: 5px;
+                }
+            }
         }
 
         .home_post_block{
@@ -589,7 +641,7 @@
                         display: -webkit-box;
                         -webkit-line-clamp: 2; /* number of lines to show */
                         -webkit-box-orient: vertical;
-                        color: #444;
+                        color: #333;
                     }
                     a:link{
                         text-decoration: none !important ;
@@ -625,7 +677,7 @@
                         -webkit-line-clamp: 3; /* number of lines to show */
                         -webkit-box-orient: vertical;
                         @media screen and (max-width: 600px){
-                            display: none;
+                            // display: none;
                         }
                     }
                 }
@@ -634,7 +686,7 @@
                     padding-left: 0px;
                     button {
                         width: 100px;
-                        height: 35px;
+                        height: 25px;
                         margin-top: 5px;
                         background: #fff;
                         font-size: 14px;
@@ -645,6 +697,10 @@
                         i{
                             position: relative;
                             top: 7px;
+                        }
+                        &:hover {
+                            background-color: #369;
+                            color: #fff;
                         }
                     }
                 }
