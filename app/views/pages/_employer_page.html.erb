@@ -52,9 +52,18 @@
                                                         </div>
                                                     </div>
 
-                                                    <%# <div class="company_love_button">
-                                                        <%= link_to '<button type="button"><i class="material-icons">favorite_border</i></button>'.html_safe, company_path(@company_by_employer) %>
-                                                    <%# </div> %>
+                                                    <div class="company_love_button">
+                                                        <%if current_user.present?%>
+                                                            <% pre_follow = company.company_follows.find { |follow| follow.user_id == current_user.id} %>
+                                                            <% if pre_follow %> 
+                                                                <%= link_to '<button class="follow_btn_highlight"><i class="material-icons">favorite_border</i></button>'.html_safe, company_company_follows_path(company), method: :delete%>
+                                                            <%else%>
+                                                                <%= link_to '<button class="follow_btn"><i class="material-icons">favorite_border</i></button>'.html_safe, company_company_follows_path(company), method: :post%>
+                                                            <%end%>
+                                                        <%else%>
+                                                            <%= link_to '<button class="follow_btn"><i class="material-icons">favorite_border</i></button>'.html_safe, company_company_follows_path(company), method: :post%>
+                                                        <%end%>
+                                                    </div>
 
                                                     <div class="company_title">
                                                         <div class="company_name">

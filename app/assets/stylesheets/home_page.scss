@@ -163,28 +163,42 @@
                     }
             
                     .company_love_button{
-                        padding-right: 5px;
-                        padding-top: 10px;
-                        float: right;
+                        padding-top: 15px;
+                        @media screen and (max-width: 600px){
+                            padding-left: 85%;
+                        }
+                        padding-left: 75%;
+                        position: absolute;
                         button{
                             border: none;
-                            background-color: #fff;
+                            background-color: transparent;
+                            color: #999;
                             i {
                                 font-size: 24px;
-                                color: #e2e2e2;
+                                color: #999;
                                 position: relative;
                                 margin-right: 0px;
                                 &:hover{
                                     color: #1877f2;
                                 }
                             }
-                
-                            .checked {
-                                color: #dfe1e5;
-                            }
+
                             &:hover{
-                                background-color: #369;
+                                background-color: transparent;
                                 color: #fff;
+                            }
+                        }
+                        
+                        .follow_btn_highlight{ 
+                            i{
+                                color: #1877f2;
+                                background-color: #1877f2;
+                            }
+                        }
+
+                        .follow_btn{
+                            i{
+                                color: #999;
                             }
                         }
                     }
