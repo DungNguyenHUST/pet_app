@@ -68,12 +68,36 @@
         }
     
         .user_signin_form_right{
-            // padding-left: 20px;
             .user_signin_title{
                 font-size: 16px;
                 color: #444;
                 text-align: center;
                 margin-top: 20px;
+                a {
+                    overflow: hidden;
+                }
+                
+                a:after {
+                    content:"";
+                    display: inline-block;
+                    height: 0.5em;
+                    vertical-align: bottom;
+                    width: 45%;
+                    margin-right: -45%;
+                    margin-left: 10px;
+                    border-top: 1px solid #dfe1e5;
+                }
+
+                a:before {
+                    content:"";
+                    display: inline-block;
+                    height: 0.5em;
+                    vertical-align: bottom;
+                    width: 45%;
+                    margin-left: -45%;
+                    margin-right: 10px;
+                    border-top: 1px solid #dfe1e5;
+                }
             }
     
             .login_with_google{   
@@ -90,6 +114,7 @@
                     cursor: pointer;
                     text-align: center;
                     color: #ea4537;
+                    font-weight: 600;
                     i{
                         margin-right: 10px;
                         color: #ea4537;
@@ -122,6 +147,7 @@
                     text-align: center;
                     // color: #fff;
                     color: #0c87ee;
+                    font-weight: 600;
                     i{
                         margin-right: 5px;
                         color: #0c87ee;
@@ -149,11 +175,12 @@
                     margin-top: 10px;
                     background: #fff;
                     font-size: 16px;
-                    border: 1px solid #1877f2;
+                    border: 1px solid #444;
                     cursor: pointer;
                     text-align: center;
                     // color: #fff;
                     color: #444;
+                    font-weight: 600;
                     i{
                         margin-right: 8px;
                         color: #444;

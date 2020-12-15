@@ -5,105 +5,86 @@
     </head>
 
     <body>
-        <div class='container'>
-            <div class="employer_block">
-                <div class='row'>
-                    <div class='col-sm-6'>
-                        <div class="employer_add_new_form_left">
-                            <%= form_for @user, html: {class: "form-horizontal"} do |f| %>
-                                <div class="employer_add_new_title">
-                                    <a>Dành cho nhà tuyển dụng</a>
-                                </div>
-
-                                <div class="employer_add_new_content">
-                                    <div class="employer_add_new_label">
-                                        <a>Vui lòng chọn công ty bạn đang làm việc*</a>
-                                    </div>
-
-                                    <div class="employer_add_new_input">
-                                        <%= f.select :company_id, Company.all.collect {|m| [m.name, m.id]},{}, class: "form-control"%>
-                                    </div>
-                                </div>
-
-                                <div class="employer_add_new_content">
-                                    <div class="employer_add_new_label">
-                                        <a><%= f.label :address, "Địa chỉ liên hệ hoặc số điện thoại*", class: "employer_add_new_label_name" %></a>
-                                    </div>
-
-                                    <div class="employer_add_new_input">
-                                        <%= f.text_field :address, class: 'form-control', placeholder: "Nhập địa chỉ công ty" %>
-                                    </div>
-                                </div>
-
-                                <div class="employer_add_new_content">
-                                    <div class="employer_add_new_label">
-                                        <a><%= f.label :name, "Họ và tên*", class: "employer_add_new_label_name" %></a>
-                                    </div>
-
-                                    <div class="employer_add_new_input">
-                                        <%= f.text_field :name, class: 'form-control', placeholder: "Nhập họ và tên của bạn" %>
-                                    </div>
-                                </div>
-
-                                <div class="employer_add_new_content">
-                                    <div class="employer_add_new_label">
-                                        <a><%= f.label :email, "Địa chỉ email*", class: "employer_add_new_label_name" %></a>
-                                    </div>
-
-                                    <div class="employer_add_new_input">
-                                        <%= f.email_field :email, class: "form-control", placeholder: "Vui lòng sử dụng địa chỉ email công ty" %>
-                                    </div>
-                                </div>
-
-                                <div class="employer_add_new_content">
-                                    <div class="employer_add_new_label">
-                                        <a><%= f.label :password, "Mật khẩu*", class: "employer_add_new_label" %></a>
-                                    </div>
-                                    
-                                    <div class="employer_add_new_input">
-                                        <%= f.password_field :password, class: "form-control", placeholder: "Nhập mật khẩu sử dụng từ 6 kí tự và kết hợp chữ cái, chữ số và biểu tượng" %>
-                                    </div>
-                                </div>
-
-                                <div class="employer_add_new_content">
-                                    <div class="employer_add_new_label">
-                                        <a><%= f.label :password_confirmation, "Xác nhận mật khẩu*", class: "employer_add_new_label" %></a>
-                                    </div>
-
-                                    <div class="employer_add_new_input">
-                                        <%= f.password_field :password_confirmation, class: "form-control", placeholder: "Nhập lại mật khẩu" %>
-                                    </div>
-                                </div>
-
-                                <%=f.hidden_field :employer, :value => true, readonly: true%>
-
-                                <div class="employer_add_new_submit">
-                                    <%= f.submit "Đăng ký", class: "employer_add_new_form_submit" %>
-                                </div>
-
-                                <p class="employer_add_new_loginhere">
-                                    Đã có tài khoản? <%= link_to " Đăng nhập", sessions_new_path %>
-                                </p>
-                            <%end%>
-                        </div>
-                    </div>
-                    
-                    <div class='col-sm-6'>
-                        <div class="employer_add_new_form_right">
+        <div class="employer_container">
+            <div class='container'>
+                <div class="employer_block">
+                    <div class="employer_add_new_form">
+                        <%= form_for @user, html: {class: "form-horizontal"} do |f| %>
                             <div class="employer_add_new_title">
-                                <a>Hoặc</a>
+                                <a>Dành cho nhà tuyển dụng</a>
                             </div>
-                            <div class="login_with_google">
-                                <%= link_to '<button type="submit"> <i class="material-icons">mail_outline</i><span>Đăng kí bằng Gmail</span></button>'.html_safe, sessions_new_path %>
+
+                            <div class="employer_add_new_content">
+                                <div class="employer_add_new_label">
+                                    <a>Vui lòng chọn công ty bạn đang làm việc*</a>
+                                </div>
+
+                                <div class="employer_add_new_input">
+                                    <%= f.select :company_id, Company.all.collect {|m| [m.name, m.id]},{}, class: "form-control"%>
+                                </div>
                             </div>
-                            <div class="login_with_facebook">
-                                <%= link_to '<button type="submit"> <i class="material-icons">facebook</i> <span>Đăng kí bằng Facebook</span></button>'.html_safe, sessions_new_path %>
+
+                            <div class="employer_add_new_content">
+                                <div class="employer_add_new_label">
+                                    <a><%= f.label :address, "Địa chỉ liên hệ hoặc số điện thoại*", class: "employer_add_new_label_name" %></a>
+                                </div>
+
+                                <div class="employer_add_new_input">
+                                    <%= f.text_field :address, class: 'form-control', placeholder: "Nhập địa chỉ công ty" %>
+                                </div>
                             </div>
-                            <div class="login_with_phone">
-                                <%= link_to '<button type="submit"> <i class="material-icons">phone</i><span>Đăng kí bằng Số điện thoại</span></button>'.html_safe, sessions_new_path %>
+
+                            <div class="employer_add_new_content">
+                                <div class="employer_add_new_label">
+                                    <a><%= f.label :name, "Họ và tên*", class: "employer_add_new_label_name" %></a>
+                                </div>
+
+                                <div class="employer_add_new_input">
+                                    <%= f.text_field :name, class: 'form-control', placeholder: "Nhập họ và tên của bạn" %>
+                                </div>
                             </div>
-                        </div>
+
+                            <div class="employer_add_new_content">
+                                <div class="employer_add_new_label">
+                                    <a><%= f.label :email, "Địa chỉ email*", class: "employer_add_new_label_name" %></a>
+                                </div>
+
+                                <div class="employer_add_new_input">
+                                    <%= f.email_field :email, class: "form-control", placeholder: "Vui lòng sử dụng địa chỉ email công ty" %>
+                                </div>
+                            </div>
+
+                            <div class="employer_add_new_content">
+                                <div class="employer_add_new_label">
+                                    <a><%= f.label :password, "Mật khẩu*", class: "employer_add_new_label" %></a>
+                                </div>
+                                
+                                <div class="employer_add_new_input">
+                                    <%= f.password_field :password, class: "form-control", placeholder: "Nhập mật khẩu sử dụng từ 6 kí tự và kết hợp chữ cái, chữ số và biểu tượng" %>
+                                </div>
+                            </div>
+
+                            <div class="employer_add_new_content">
+                                <div class="employer_add_new_label">
+                                    <a><%= f.label :password_confirmation, "Xác nhận mật khẩu*", class: "employer_add_new_label" %></a>
+                                </div>
+
+                                <div class="employer_add_new_input">
+                                    <%= f.password_field :password_confirmation, class: "form-control", placeholder: "Nhập lại mật khẩu" %>
+                                </div>
+                            </div>
+
+                            <%=f.hidden_field :employer, :value => true, readonly: true%>
+
+                            <div class="employer_add_new_submit">
+                                <%= f.submit "Đăng ký", class: "employer_add_new_form_submit" %>
+                            </div>
+                        <%end%>
                     </div>
+
+                    <p class="employer_add_new_loginhere">
+                        Đã có tài khoản Employer? <%= link_to " Đăng nhập", sessions_new_path %>
+                    </p>
                 </div>
             </div>
         </div>

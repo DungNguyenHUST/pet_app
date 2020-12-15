@@ -1,337 +1,298 @@
 //////////////////new user////////////////////
-.user_block
+.user_container
 {
-    background-color: #fff;
-    min-height: 600px;
-    margin-top: 30px;
-    .user_add_new_form_left
+    background-color: #ffffff;
+    min-height: 1024px;
+    .user_block
     {
-        margin-bottom: 30px;
-        padding-top: 10px;
-        .user_add_new_title{
-            text-align: center;
-            a{
-                font-size: 28px;
-                color: #333;
-            }
-            margin-top: 10px;
-            margin-bottom: 30px;
+        background-color: #fff;
+        border-radius: 5px;
+        margin-top: 80px;
+        margin-bottom: 80px;
+        background-color: #fff;
+        @media screen and (min-width: 600px)
+        {
+            margin-left: 25%;
+            margin-right: 25%;
+            padding: 20px;
+            box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.1), 0 6px 20px 0 rgba(0, 0, 0, 0.09);
         }
-
-        .user_add_new_content{
-            .user_add_new_label{
-                font-weight: 600;
-                font-size: 16px;
-                color: #333;
+        .user_add_new_form_left
+        {
+            margin-bottom: 20px;
+            .user_add_new_title{
                 text-align: left;
+                a{
+                    font-size: 28px;
+                    color: #333;
+                }
+                margin-bottom: 20px;
             }
-            .user_add_new_input{
-                left: 0px;
-                margin-top: 5px;
-                margin-bottom: 30px;
-                .form-control{
+    
+            .user_add_new_content{
+                .user_add_new_label{
+                    font-weight: 600;
+                    font-size: 16px;
+                    color: #333;
+                    text-align: left;
+                }
+                .user_add_new_input{
+                    left: 0px;
+                    margin-top: 5px;
+                    margin-bottom: 20px;
+                    .form-control{
+                        width: 100%;
+                        height: 50px;
+                        border: 1px solid #dfe1e5;
+                        border-radius: 3px;
+                    }
+                }
+            }
+    
+            .user_add_new_submit{
+                .user_add_new_form_submit{
                     width: 100%;
                     height: 50px;
-                    border: 1px solid #dfe1e5;
                     border-radius: 3px;
+                    padding: 6px;
+                    background: #1877f2;
+                    font-size: 16px;
+                    border: none;
+                    cursor: pointer;
+                    text-align: center;
+                    color: #fff;
+                    
+                    &:hover{
+                        background-color: #369;
+                    }
                 }
             }
         }
-
-        .user_add_new_submit{
-            .user_add_new_form_submit{
-                width: 100%;
-                margin-top: 10px;
-                height: 50px;
-                border-radius: 3px;
-                padding: 6px;
-                background: #1877f2;
+    
+        .user_add_new_form_right{
+            .user_add_new_title{
                 font-size: 16px;
-                border: none;
-                cursor: pointer;
+                color: #333;
                 text-align: center;
-                color: #fff;
+                margin-top: 10px;
+                a {
+                    overflow: hidden;
+                }
                 
-                &:hover{
-                    background-color: #369;
+                a:after {
+                    content:"";
+                    display: inline-block;
+                    height: 0.5em;
+                    vertical-align: bottom;
+                    width: 45%;
+                    margin-right: -45%;
+                    margin-left: 10px;
+                    border-top: 1px solid #dfe1e5;
+                }
+
+                a:before {
+                    content:"";
+                    display: inline-block;
+                    height: 0.5em;
+                    vertical-align: bottom;
+                    width: 45%;
+                    margin-left: -45%;
+                    margin-right: 10px;
+                    border-top: 1px solid #dfe1e5;
+                }
+            }
+            .login_with_google{   
+                button{
+                    height: 50px;
+                    width: 100%;
+                    border-radius: 3px;
+                    padding: 6px;
+                    margin-bottom: 10px;
+                    margin-top: 20px;
+                    background: #fff;
+                    border: 1px solid #ea4537;
+                    font-size: 16px;
+                    cursor: pointer;
+                    text-align: center;
+                    color: #ea4537;
+                    font-weight: 600;
+                    i{
+                        margin-right: 10px;
+                        color: #ea4537;
+                        // padding-left: 25%;
+                    }
+                    span{
+                        position: relative;
+                        top: -5px;
+                    }
+                    &:hover{
+                        background-color: #1877f2;
+                        color: #fff;
+                    }
+                }
+            }
+    
+            .login_with_facebook{   
+                button{
+                    height: 50px;
+                    width: 100%;
+                    border-radius: 3px;
+                    padding: 6px;
+                    margin-bottom: 10px;
+                    margin-top: 10px;
+                    background: #fff;
+                    border: 1px solid #0c87ee;
+                    font-size: 16px;
+                    // border: none;
+                    cursor: pointer;
+                    text-align: center;
+                    // color: #fff;
+                    color: #0c87ee;
+                    font-weight: 600;
+                    i{
+                        margin-right: 5px;
+                        color: #0c87ee;
+                        // padding-left: 25%;
+                    }
+                    span{
+                        position: relative;
+                        top: -5px;
+                    }
+                    
+                    &:hover{
+                        background-color: #1877f2;
+                        color: #fff;
+                    }
+                }
+            }
+    
+            .login_with_phone{   
+                button{
+                    height: 50px;
+                    width: 100%;
+                    border-radius: 3px;
+                    padding: 6px;
+                    margin-bottom: 20px;
+                    margin-top: 10px;
+                    background: #fff;
+                    font-size: 16px;
+                    border: 1px solid #444;
+                    cursor: pointer;
+                    text-align: center;
+                    // color: #fff;
+                    color: #444;
+                    font-weight: 600;
+                    i{
+                        margin-right: 8px;
+                        color: #444;
+                        // padding-left: 25%;
+                    }
+                    span{
+                        position: relative;
+                        top: -5px;
+                    }
+                    &:hover{
+                        background-color: #1877f2;
+                        color: #fff;
+                    }
                 }
             }
         }
-
+        
         .user_add_new_loginhere
         {
             text-align: center;
             font-size: 16px;
-            margin-top: 30px;
-        }
-    }
-
-    .user_add_new_form_right{
-        margin-bottom: 20px;
-        padding-top: 10px;
-        min-height: 550px;
-        .user_add_new_title{
-            font-size: 28px;
-            color: #333;
-            text-align: center;
-            margin-top: 10px;
-            margin-bottom: 100px;
-        }
-        .login_with_google{   
-            button{
-                height: 50px;
-                width: 100%;
-                border-radius: 3px;
-                padding: 6px;
-                margin-bottom: 20px;
-                margin-top: 20px;
-                background: #fff;
-                border: 1px solid #ea4537;
-                font-size: 16px;
-                cursor: pointer;
-                text-align: center;
-                i{
-                    margin-right: 10px;
-                    color: #ea4537;
-                    // padding-left: 25%;
-                }
-                span{
-                    position: relative;
-                    top: -6px;
-                }
-                &:hover{
-                    background-color: #1877f2;
-                    color: #fff;
-                }
-            }
-        }
-
-        .login_with_facebook{   
-            button{
-                height: 50px;
-                width: 100%;
-                border-radius: 3px;
-                padding: 6px;
-                margin-bottom: 20px;
-                margin-top: 20px;
-                background: #fff;
-                border: 1px solid #0c87ee;
-                font-size: 16px;
-                cursor: pointer;
-                text-align: center;
-                i{
-                    margin-right: 6px;
-                    color: #0c87ee;
-                    // padding-left: 25%;
-                }
-                span{
-                    position: relative;
-                    top: -5px;
-                }
-                
-                &:hover{
-                    background-color: #1877f2;
-                    color: #fff;
-                }
-            }
-        }
-
-        .login_with_phone{   
-            button{
-                height: 50px;
-                width: 100%;
-                border-radius: 3px;
-                padding: 6px;
-                margin-bottom: 20px;
-                margin-top: 20px;
-                background: #fff;
-                font-size: 16px;
-                border: 1px solid #1877f2;
-                cursor: pointer;
-                text-align: center;
-                // color: #fff;
-                i{
-                    margin-right: 8px;
-                    color: #1877f2;
-                    // padding-left: 25%;
-                }
-                span{
-                    position: relative;
-                    top: -5px;
-                }
-                &:hover{
-                    background-color: #1877f2;
-                    color: #fff;
-                }
+            margin-top: 20px;
+            font-weight: 600;
+            a{
+                padding-left: 5px;
+                text-decoration: underline;
             }
         }
     }
 }
 
 //////////////////new employer////////////////////
-.employer_block
-{
+.employer_container{
     background-color: #fff;
-    min-height: 600px;
-    margin-top: 30px;
-    .employer_add_new_form_left
+    min-height: 1024px;
+    .employer_block
     {
-        margin-bottom: 30px;
-        padding-top: 10px;
-        .employer_add_new_title{
-            text-align: center;
-            a{
-                font-size: 28px;
-                color: #333;
-            }
-            margin-top: 10px;
-            margin-bottom: 30px;
+        background-color: #fff;
+        border-radius: 5px;
+        margin-top: 80px;
+        margin-bottom: 80px;
+        background-color: #fff;
+        @media screen and (min-width: 600px)
+        {
+            margin-left: 25%;
+            margin-right: 25%;
+            padding: 20px;
+            box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.1), 0 6px 20px 0 rgba(0, 0, 0, 0.09);
         }
-
-        .employer_add_new_content{
-            .employer_add_new_label{
-                font-weight: 600;
-                font-size: 16px;
-                color: #333;
+        .employer_add_new_form
+        {
+            .employer_add_new_title{
                 text-align: left;
+                a{
+                    font-size: 28px;
+                    color: #333;
+                }
+                margin-bottom: 20px;
             }
-            
-            .employer_add_new_input{
-                left: 0px;
-                margin-top: 5px;
-                margin-bottom: 30px;
-                .form-control{
+    
+            .employer_add_new_content{
+                .employer_add_new_label{
+                    font-weight: 600;
+                    font-size: 16px;
+                    color: #333;
+                    text-align: left;
+                }
+                
+                .employer_add_new_input{
+                    left: 0px;
+                    margin-top: 5px;
+                    margin-bottom: 20px;
+                    .form-control{
+                        width: 100%;
+                        height: 50px;
+                        border: 1px solid #dfe1e5;
+                        border-radius: 3px;
+                    }
+                }
+            }
+    
+            .employer_add_new_submit{
+                .employer_add_new_form_submit{
                     width: 100%;
                     height: 50px;
-                    border: 1px solid #dfe1e5;
                     border-radius: 3px;
-                }
-            }
-        }
-
-        .employer_add_new_submit{
-            .employer_add_new_form_submit{
-                width: 100%;
-                margin-top: 10px;
-                height: 50px;
-                border-radius: 3px;
-                padding: 6px;
-                background: #1877f2;
-                font-size: 16px;
-                border: none;
-                cursor: pointer;
-                text-align: center;
-                color: #fff;
-                
-                &:hover{
-                    background-color: #369;
+                    padding: 6px;
+                    background: #1877f2;
+                    font-size: 16px;
+                    border: none;
+                    cursor: pointer;
+                    text-align: center;
                     color: #fff;
+                    
+                    &:hover{
+                        background-color: #369;
+                        color: #fff;
+                    }
                 }
             }
         }
-
+    
         .employer_add_new_loginhere
         {
             text-align: center;
             font-size: 16px;
-            margin-top: 30px;
-        }
-    }
-
-    .employer_add_new_form_right{
-        margin-bottom: 20px;
-        padding-top: 10px;
-        min-height: 550px;
-        .employer_add_new_title{
-            font-size: 28px;
-            color: #333;
-            text-align: center;
-            margin-top: 10px;
-            margin-bottom: 100px;
-        }
-        .login_with_google{   
-            button{
-                height: 50px;
-                width: 100%;
-                border-radius: 3px;
-                padding: 6px;
-                margin-bottom: 20px;
-                margin-top: 20px;
-                background: #fff;
-                border: 1px solid #ea4537;
-                font-size: 16px;
-                cursor: pointer;
-                text-align: left;
-                i{
-                    margin-right: 10px;
-                    color: #ea4537;
-                    padding-left: 25%;
-                }
-                span{
-                    position: relative;
-                    top: -6px;
-                }
-                &:hover{
-                    background-color: #1877f2;
-                }
-            }
-        }
-
-        .login_with_facebook{   
-            button{
-                height: 50px;
-                width: 100%;
-                border-radius: 3px;
-                padding: 6px;
-                margin-bottom: 20px;
-                margin-top: 20px;
-                background: #fff;
-                border: 1px solid #0c87ee;
-                font-size: 16px;
-                cursor: pointer;
-                text-align: left;
-                i{
-                    margin-right: 6px;
-                    color: #0c87ee;
-                    padding-left: 25%;
-                }
-                span{
-                    position: relative;
-                    top: -5px;
-                }
-                
-                &:hover{
-                    background-color: #1877f2;
-                }
-            }
-        }
-
-        .login_with_phone{   
-            button{
-                height: 50px;
-                width: 100%;
-                border-radius: 3px;
-                padding: 6px;
-                margin-bottom: 20px;
-                margin-top: 20px;
-                background: #fff;
-                font-size: 16px;
-                border: 1px solid #1877f2;
-                cursor: pointer;
-                text-align: left;
-                // color: #fff;
-                i{
-                    margin-right: 8px;
-                    color: #1877f2;
-                    padding-left: 25%;
-                }
-                span{
-                    position: relative;
-                    top: -5px;
-                }
-                &:hover{
-                    background-color: #1877f2;
-                }
+            margin-top: 20px;
+            font-weight: 600;
+            a{
+                padding-left: 5px;
+                text-decoration: underline;
             }
         }
     }

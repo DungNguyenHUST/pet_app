@@ -64,7 +64,14 @@
                             </div>
                             <div class="col-sm-6">
                                 <div class="company_follow">
-                                    <%= link_to '<button type="button"><i class="fa fa-heart fa checked"></i> Theo dõi </button>'.html_safe, company_path(@company) %>
+                                    <%if current_user.present?%>
+                                        <% pre_follow = @company.company_follows.find { |follow| follow.user_id == current_user.id} %>
+                                        <% if pre_follow %> 
+                                            <%= link_to '<button class="follow_btn_highlight"><i class="fa fa-heart fa checked"></i> <span>Un Follow</span> </button>'.html_safe, company_company_follows_path(@company), method: :delete%>
+                                        <%else%>
+                                            <%= link_to '<button class="follow_btn"><i class="fa fa-heart fa checked"></i> <span>Follow</span> </button>'.html_safe, company_company_follows_path(@company), method: :post%>
+                                        <%end%>
+                                    <%end%>
                                 </div>
                             </div>
                         </div>

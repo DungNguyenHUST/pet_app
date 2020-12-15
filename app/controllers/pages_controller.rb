@@ -8,8 +8,9 @@ class PagesController < ApplicationController
         @problems = Problem.all
         if logged_in?
             if current_user.employer
-                @company_by_user = @current_user.company
-                @company_job_by_user = @company_by_user.company_jobs.all
+                # for company of employer
+                @company_by_employer = @current_user.company
+                @company_job_by_employer = @company_by_employer.company_jobs.all
             end
         end
     end

@@ -20,5 +20,7 @@ class User < ApplicationRecord
     has_many :problem_vote_solutions, dependent: :destroy
     has_many :problem_unvote_solutions, dependent: :destroy
 
+    has_many :company_follows, dependent: :destroy
+
     belongs_to :company, optional: true
 end
