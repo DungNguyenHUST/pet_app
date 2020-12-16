@@ -29,6 +29,57 @@ class UsersController < ApplicationController
 
     def show
         @user = User.find_by id: params[:id]
+        # find all apply job by current user
+        @company_apply_jobs = CompanyApplyJob.all
+        @company_apply_job_current = []
+        @company_apply_jobs.each do |company_apply_job|
+            if company_apply_job.user_id = current_user.id
+                @company_apply_job_current.push(company_apply_job)
+            end
+        end
+
+        # find all job of apply job by user
+        @company_jobs = CompanyJob.all
+        @company_job_current = []
+
+        @company_jobs.each do |company_job|
+            @company_apply_job_current.each do |company_apply_job_current|
+                if company_apply_job_current.company_job_id = company_job.id
+                    @company_job_current.push(company_job)
+                end
+            end
+        end
+
+        #find all company which include job
+        @companies = Company.all
+        @company_current = []
+
+        @companies.each do |comapny|
+            @company_job_current.each do |company_job_current|
+                if company_job_current.company_id = comapny.id
+                    @company_current.push(comapny)
+                end
+            end
+        end
+
+        @company_follows = CompanyFollow.all
+        @company_current_follow = []
+        @company_follows.each do |company_follow|
+            if company_follow.user_id = current_user.id
+                @company_current_follow.push(company_follow)
+            end
+        end
+
+        @company_all = Company.all
+        @company_current_follower = []
+
+        @company_all.each do |company|
+            @company_current_follow.each do |company_current_follow|
+                if company_current_follow.company_id = company.id
+                    @company_current_follower.push(company)
+                end
+            end
+        end
     end
 
     def edit

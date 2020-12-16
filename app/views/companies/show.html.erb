@@ -58,7 +58,7 @@
                                     </div>
 
                                     <div class="company_title_short_des">
-                                        <a><%= @company.company_reviews.count %> đánh giá & <%= @company.company_interviews.count %> nhận xét</a>
+                                        <a><%= @company.company_reviews.count %> đánh giá | <%= @company.company_interviews.count %> nhận xét | <%=@company.company_follows.count%> follower</a>
                                     </div>
                                 </div>
                             </div>
@@ -67,7 +67,7 @@
                                     <%if current_user.present?%>
                                         <% pre_follow = @company.company_follows.find { |follow| follow.user_id == current_user.id} %>
                                         <% if pre_follow %> 
-                                            <%= link_to '<button class="follow_btn_highlight"><i class="material-icons">favorite_border</i> <span>Unfollow</span> </button>'.html_safe, company_company_follows_path(@company), method: :delete%>
+                                            <%= link_to '<button class="follow_btn_highlight"><i class="material-icons">favorite</i> <span>Unfollow</span> </button>'.html_safe, company_company_follow_path(@company, pre_follow), method: :delete%>
                                         <%else%>
                                             <%= link_to '<button class="follow_btn"><i class="material-icons">favorite_border</i> <span>Follow</span> </button>'.html_safe, company_company_follows_path(@company), method: :post%>
                                         <%end%>
@@ -136,28 +136,30 @@
                                             
                                             <div class="col-sm-4">
                                                 <div class="company_review_tab_des_right">
-                                                    <div class="company_job_label">
-                                                        <a> Việc làm </a>
-                                                    </div>
-                                                    <div class="company_job_des">
-                                                        <%@company.company_jobs.each do |company_job|%>
-                                                            <div class="company_job_block">
-                                                                <div class="company_avatar">
-                                                                    <%if @company.avatar.attached?%>
-                                                                        <img><%= link_to (image_tag(@company.avatar)), image_path(url_for(@company.avatar)), rel: "gallery" , :href => company_path(@company)%>
-                                                                    <%end%>
-                                                                </div>
+                                                    <div class="company_job_mini_block">
+                                                        <div class="company_job_label">
+                                                            <a> Việc làm </a>
+                                                        </div>
+                                                        <div class="company_job_des">
+                                                            <%@company.company_jobs.each do |company_job|%>
+                                                                <div class="company_job_block">
+                                                                    <div class="company_avatar">
+                                                                        <%if @company.avatar.attached?%>
+                                                                            <img><%= link_to (image_tag(@company.avatar)), image_path(url_for(@company.avatar)), rel: "gallery" , :href => company_path(@company)%>
+                                                                        <%end%>
+                                                                    </div>
 
-                                                                <div class="company_job_info">
-                                                                    <div class="company_job_title">
-                                                                        <%= link_to (company_job.title), company_company_job_path(@company, company_job) %>
-                                                                    </div>
-                                                                    <div class="user_job_date">
-                                                                        <a><%= time_ago_in_words(company_job.created_at) %></a>
+                                                                    <div class="company_job_info">
+                                                                        <div class="company_job_title">
+                                                                            <%= link_to (company_job.title), company_company_job_path(@company, company_job) %>
+                                                                        </div>
+                                                                        <div class="user_job_date">
+                                                                            <a><%= time_ago_in_words(company_job.created_at) %></a>
+                                                                        </div>
                                                                     </div>
                                                                 </div>
-                                                            </div>
-                                                        <%end%>
+                                                            <%end%>
+                                                        </div>
                                                     </div>
                                                 </div>
                                             </div>
@@ -184,28 +186,30 @@
 
                                             <div class="col-sm-4">
                                                 <div class="company_interview_tab_des_right">
-                                                    <div class="company_job_label">
-                                                        <a> Việc làm </a>
-                                                    </div>
-                                                    <div class="company_job_des">
-                                                        <%@company.company_jobs.each do |company_job|%>
-                                                            <div class="company_job_block">
-                                                                <div class="company_avatar">
-                                                                    <%if @company.avatar.attached?%>
-                                                                        <img><%= link_to (image_tag(@company.avatar)), image_path(url_for(@company.avatar)), rel: "gallery" , :href => company_path(@company)%>
-                                                                    <%end%>
-                                                                </div>
+                                                    <div class="company_job_mini_block">
+                                                        <div class="company_job_label">
+                                                            <a> Việc làm </a>
+                                                        </div>
+                                                        <div class="company_job_des">
+                                                            <%@company.company_jobs.each do |company_job|%>
+                                                                <div class="company_job_block">
+                                                                    <div class="company_avatar">
+                                                                        <%if @company.avatar.attached?%>
+                                                                            <img><%= link_to (image_tag(@company.avatar)), image_path(url_for(@company.avatar)), rel: "gallery" , :href => company_path(@company)%>
+                                                                        <%end%>
+                                                                    </div>
 
-                                                                <div class="company_job_info">
-                                                                    <div class="company_job_title">
-                                                                        <%= link_to (company_job.title), company_company_job_path(@company, company_job) %>
-                                                                    </div>
-                                                                    <div class="user_job_date">
-                                                                        <a><%= time_ago_in_words(company_job.created_at) %></a>
+                                                                    <div class="company_job_info">
+                                                                        <div class="company_job_title">
+                                                                            <%= link_to (company_job.title), company_company_job_path(@company, company_job) %>
+                                                                        </div>
+                                                                        <div class="user_job_date">
+                                                                            <a><%= time_ago_in_words(company_job.created_at) %></a>
+                                                                        </div>
                                                                     </div>
                                                                 </div>
-                                                            </div>
-                                                        <%end%>
+                                                            <%end%>
+                                                        </div>
                                                     </div>
                                                 </div>
                                             </div>

@@ -4,7 +4,16 @@ class CompanyJobsController < ApplicationController
         @company_job_all = CompanyJob.all
         @companies = Company.search(params[:search])
         @company_jobs = CompanyJob.search(params[:search])
-        @company_by_jobs = Company.includes(:company_jobs).all
+        
+        # find company which incude job
+        @company_by_jobs = []
+        @companie_all.each do |company|
+            @company_jobs.each do |company_job|
+                if company.id = company_job.company_id
+                    @company_by_jobs.push(company)
+                end
+            end
+        end
     end
 
     def new

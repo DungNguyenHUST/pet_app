@@ -15,6 +15,7 @@ class CompanyApplyJobsController < ApplicationController
         @company = Company.find(params[:company_id])
         @company_job = @company.company_jobs.find(params[:company_job_id])
         @company_apply_job = @company_job.company_apply_jobs.build(company_apply_job_param)
+        @company_apply_job.user_id = current_user.id
 
         if @company_apply_job.save
             redirect_to company_path(@company)
