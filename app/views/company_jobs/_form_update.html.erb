@@ -19,7 +19,7 @@
                             </div>
                             
                             <div class="new_job_input">
-                                <%= f.text_field :title, class: "new_job_form_input", placeholder: "  Nhập tiêu đề việc làm" %>
+                                <%= f.text_field :title, :required => true,  class: "new_job_form_input", placeholder: "Nhập tiêu đề việc làm" %>
                             </div>
                         </div>
 
@@ -29,7 +29,7 @@
                             </div>
                             
                             <div class="new_job_input">
-                                <%= f.text_field :location, class: "new_job_form_input", placeholder: "  Nhập địa chỉ làm việc" %>
+                                <%= f.text_field :location, :required => true,  class: "new_job_form_input", placeholder: "Nhập địa chỉ làm việc" %>
                             </div>
                         </div>
 
@@ -39,7 +39,7 @@
                             </div>
                             
                             <div class="new_job_input">
-                                <%= f.text_field :salary, class: "new_job_form_input", placeholder: "  Mức lương cho công việc này" %>
+                                <%= f.number_field :salary, :required => true, class: "new_job_form_input", placeholder: "Mức lương cho công việc này" %>
                             </div>
                         </div>
 
@@ -49,7 +49,7 @@
                             </div>
                             
                             <div class="new_job_input">
-                                <%= f.text_field :quantity, class: "new_job_form_input", placeholder: "  Số lượng vị trí cần tuyển dụng" %>
+                                <%= f.number_field :quantity, :required => true, class: "new_job_form_input", placeholder: "Số lượng vị trí cần tuyển dụng" %>
                             </div>
                         </div>
 
@@ -59,7 +59,7 @@
                             </div>
                             
                             <div class="new_job_input">
-                                <%= f.text_field :category, class: "new_job_form_input", placeholder: "  Lĩnh vực chính của việc làm này" %>
+                                <%= f.text_field :category, :required => true, class: "new_job_form_input", placeholder: "Lĩnh vực chính của việc làm này" %>
                             </div>
                         </div>
 
@@ -69,7 +69,7 @@
                             </div>
                             
                             <div class="new_job_input">
-                                <%= f.text_area :description, class: "tinymce", placeholder: "  Nhập mô tả chung về công việc" %>
+                                <%= f.text_area :description, :required => true, class: "tinymce", placeholder: "Nhập mô tả chung về công việc" %>
                             </div>
                         </div>
 
@@ -79,7 +79,7 @@
                             </div>
                             
                             <div class="new_job_input">
-                                <%= f.text_area :requirement, class: "tinymce", placeholder: "  Nhập yêu cầu công việc" %>
+                                <%= f.text_area :requirement, :required => true, class: "tinymce", placeholder: "Nhập yêu cầu công việc" %>
                             </div>
                         </div>
 
@@ -89,7 +89,7 @@
                             </div>
                             
                             <div class="new_job_input">
-                                <%= f.text_area :benefit, class: "tinymce", placeholder: "  Chế độ đãi ngộ của công ty, hãy cho biết ít nhất 3 lý do" %>
+                                <%= f.text_area :benefit, :required => true, class: "tinymce", placeholder: "Chế độ đãi ngộ của công ty, hãy cho biết ít nhất 3 lý do" %>
                             </div>
                         </div>
                     </div>

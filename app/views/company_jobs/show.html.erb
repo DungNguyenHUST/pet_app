@@ -39,7 +39,11 @@
                     <div class="col-sm-4">
                         <div class="job_overview_right">
                             <div class="apply_job_button">
-                                <%= link_to '<button type="submit">Nộp đơn</button>'.html_safe, new_company_apply_job_path(@company.id, @company_job.id)%>
+                                <%if logged_in?%>
+                                    <%= link_to '<button type="submit">Nộp đơn</button>'.html_safe, new_company_apply_job_path(@company.id, @company_job.id)%>
+                                <%else%>
+                                    <%= link_to '<button type="submit">Nộp đơn</button>'.html_safe, login_path%>
+                                <%end%>
                             </div>
                         </div>
                     </div>
@@ -86,7 +90,11 @@
                             </div>
                             
                             <div class="apply_job_button">
-                                <%= link_to '<button type="submit">Nộp đơn</button>'.html_safe, new_company_apply_job_path(@company.id, @company_job.id)%>
+                                <%if logged_in?%>
+                                    <%= link_to '<button type="submit">Nộp đơn</button>'.html_safe, new_company_apply_job_path(@company.id, @company_job.id)%>
+                                <%else%>
+                                    <%= link_to '<button type="submit">Nộp đơn</button>'.html_safe, login_path%>
+                                <%end%>
                             </div>
                         </div>
                     </div>

@@ -14,7 +14,7 @@
                         </div>
                         
                         <div class="new_apply_job_input_job">
-                            <%= f.text_field :name, class: "new_apply_job_form_input_job", placeholder: "Nhập tên của bạn" %>
+                            <%= f.text_field :name, :required => true, class: "new_apply_job_form_input_job", placeholder: "Nhập tên của bạn" %>
                         </div>
                     </div>
 
@@ -24,7 +24,7 @@
                         </div>
                         
                         <div class="new_apply_job_input_job">
-                            <%= f.text_field :email, class: "new_apply_job_form_input_job", placeholder: "Nhập địa chỉ email" %>
+                            <%= f.text_field :email, :required => true, class: "new_apply_job_form_input_job", placeholder: "Nhập địa chỉ email" %>
                         </div>
                     </div>
 
@@ -34,7 +34,7 @@
                         </div>
                         
                         <div class="new_apply_job_input_job">
-                            <%= f.file_field :cover_vitate, class: "new_apply_job_form_input_job", placeholder: "  Nhập nội dung" %>
+                            <%= f.file_field :cover_vitate, :required => true, class: "new_apply_job_form_input_job", placeholder: "Nhập nội dung" %>
                         </div>
                     </div>
 
@@ -44,7 +44,7 @@
                         </div>
                         
                         <div class="new_apply_job_input_job">
-                            <%= f.text_area :cover_letter, class: "tinymce", placeholder: "Giới thiệu bản thân( kinh nghiệm, học vấn, nghề nghiệp...) ít nhất 3000 từ" %>
+                            <%= f.text_area :cover_letter, :required => true, class: "tinymce", placeholder: "Giới thiệu bản thân( kinh nghiệm, học vấn, nghề nghiệp...) ít nhất 3000 từ" %>
                         </div>
                     </div>
 

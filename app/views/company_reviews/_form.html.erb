@@ -30,17 +30,17 @@
                             </div>
 
                             <div class="new_review_input">
-                                <%= f.text_field :position, class: "new_review_form_input", placeholder: "  Nhập vị trí làm việc hiện tại của bạn" %>
+                                <%= f.text_field :position, :required => true, class: "new_review_form_input", placeholder: "Nhập vị trí làm việc hiện tại của bạn" %>
                             </div>
                         </div>
 
                         <div class="new_review_content">
                             <div class="new_review_label">
-                                <a><%= f.label :start_date, "Thời gian bắt đầu*: ", class: "new_review_label_name" %></a>
+                                <a><%= f.label :start_date, "Thời gian bắt đầu làm việc*: ", class: "new_review_label_name" %></a>
                             </div>
 
                             <div class="new_review_input_time">
-                                <%= f.date_field :start_date, class: "new_review_form_input", placeholder: "  Nhập tên hoặc email của bạn" %>
+                                <%= f.date_field :start_date, class: "new_review_form_input", placeholder: "Nhập tên hoặc email của bạn" %>
                             </div>
                         </div>
 
@@ -50,7 +50,7 @@
                             </div>
 
                             <div class="new_review_input_time">
-                                <%= f.date_field :end_date, class: "new_review_form_input", placeholder: "  Nhập tên hoặc email của bạn" %>
+                                <%= f.date_field :end_date, :required => true, class: "new_review_form_input", placeholder: "Nhập tên hoặc email của bạn" %>
                             </div>
 
                         </div>
@@ -64,7 +64,7 @@
 
                             <div class="new_review_work_env_input">
                                 <div class="new_review_form_work_env_input">
-                                    <%= f.number_field :work_env_score, readonly: true, :id => "work_env_score_id", :value => ''%>
+                                    <%= f.number_field :work_env_score, :required => true, readonly: true, :id => "work_env_score_id", :value => ''%>
                                 </div>
 
                                 <div class="new_review_work_env_star_block">
@@ -124,7 +124,7 @@
 
                             <div class="new_review_salary_input">
                                 <div class="new_review_form_salary_input">
-                                    <%= f.number_field :salary_score, readonly: true, :id => "salary_score_id", :value => ''%>
+                                    <%= f.number_field :salary_score, :required => true, readonly: true, :id => "salary_score_id", :value => ''%>
                                 </div>
 
                                 <div class="new_review_salary_star_block">
@@ -184,7 +184,7 @@
 
                             <div class="new_review_ot_input">
                                 <div class="new_review_form_ot_input">
-                                    <%= f.number_field :ot_score, readonly: true, :id => "ot_score_id", :value => ''%>
+                                    <%= f.number_field :ot_score, :required => true, readonly: true, :id => "ot_score_id", :value => ''%>
                                 </div>
 
                                 <div class="new_review_ot_star_block">
@@ -244,7 +244,7 @@
 
                             <div class="new_review_manager_input">
                                 <div class="new_review_form_manager_input">
-                                    <%= f.number_field :manager_score, readonly: true, :id => "manager_score_id", :value => ''%>
+                                    <%= f.number_field :manager_score, :required => true, readonly: true, :id => "manager_score_id", :value => ''%>
                                 </div>
 
                                 <div class="new_review_manager_star_block">
@@ -304,7 +304,7 @@
 
                             <div class="new_review_career_input">
                                 <div class="new_review_form_career_input">
-                                    <%= f.number_field :career_score, readonly: true, :id => "career_score_id", :value => ''%>
+                                    <%= f.number_field :career_score, :required => true, readonly: true, :id => "career_score_id", :value => ''%>
                                 </div>
 
                                 <div class="new_review_career_star_block">
@@ -364,7 +364,7 @@
 
                             <div class="new_review_score_input">
                                 <div class="new_review_form_score_input">
-                                    <%= f.number_field :score, readonly: true, :id => "score_score_id", :value => ''%>
+                                    <%= f.number_field :score, :required => true, readonly: true, :id => "score_score_id", :value => ''%>
                                 </div>
 
                                 <div class="new_review_score_star_block">
@@ -423,7 +423,7 @@
                             </div>
 
                             <div class="new_review_input">
-                                <%= f.text_area :pros, class: "tinymce", placeholder: "  Hãy nhập ít nhất 3 ưu điểm của công ty này" %>
+                                <%= f.text_area :pros, :required => true, class: "tinymce", placeholder: "Hãy nhập ít nhất 3 ưu điểm của công ty này" %>
                             </div>
                         </div>
 
@@ -433,7 +433,7 @@
                             </div>
 
                             <div class="new_review_input">
-                                <%= f.text_area :cons, class: "tinymce", placeholder: "  Hãy nhập ít nhất 3 nhược điểm của công ty này" %>
+                                <%= f.text_area :cons, :required => true, class: "tinymce", placeholder: "Hãy nhập ít nhất 3 nhược điểm của công ty này" %>
                             </div>
                         </div>
                     </div>
@@ -445,7 +445,7 @@
                             </div>
                             
                             <div class="new_review_input">
-                                <%= f.text_field :review_title, class: "new_review_form_input", placeholder: "  Nhập tiêu đề" %>
+                                <%= f.text_field :review_title, :required => true, class: "new_review_form_input", placeholder: "Nhập tiêu đề" %>
                             </div>
                         </div>
 
@@ -455,7 +455,7 @@
                             </div>
                             
                             <div class="new_review_input">
-                                <%= f.text_area :review, class: "tinymce", placeholder: "  Nhập nội dung review của bạn" %>
+                                <%= f.text_area :review, :required => true, class: "tinymce", placeholder: "Nhập nội dung review của bạn" %>
                             </div>
                         </div>
                     </div>

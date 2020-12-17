@@ -26,31 +26,41 @@
 
                             <div class="employer_add_new_content">
                                 <div class="employer_add_new_label">
-                                    <a><%= f.label :address, "Địa chỉ liên hệ hoặc số điện thoại*", class: "employer_add_new_label_name" %></a>
-                                </div>
-
-                                <div class="employer_add_new_input">
-                                    <%= f.text_field :address, class: 'form-control', placeholder: "Nhập địa chỉ công ty" %>
-                                </div>
-                            </div>
-
-                            <div class="employer_add_new_content">
-                                <div class="employer_add_new_label">
                                     <a><%= f.label :name, "Họ và tên*", class: "employer_add_new_label_name" %></a>
                                 </div>
 
                                 <div class="employer_add_new_input">
-                                    <%= f.text_field :name, class: 'form-control', placeholder: "Nhập họ và tên của bạn" %>
+                                    <%= f.text_field :name, :required => true, class: 'form-control', placeholder: "Nhập họ và tên của bạn" %>
                                 </div>
                             </div>
 
                             <div class="employer_add_new_content">
                                 <div class="employer_add_new_label">
-                                    <a><%= f.label :email, "Địa chỉ email*", class: "employer_add_new_label_name" %></a>
+                                    <a><%= f.label :phone, "Số điện thoại*", class: "employer_add_new_label_name" %></a>
                                 </div>
 
                                 <div class="employer_add_new_input">
-                                    <%= f.email_field :email, class: "form-control", placeholder: "Vui lòng sử dụng địa chỉ email công ty" %>
+                                    <%= f.text_field :phone, :required => true,  class: 'form-control', placeholder: "Nhập địa chỉ công ty" %>
+                                </div>
+                            </div>
+
+                            <div class="employer_add_new_content">
+                                <div class="employer_add_new_label">
+                                    <a><%= f.label :email, "Địa chỉ email (sử dụng email công ty)*", class: "employer_add_new_label_name" %></a>
+                                </div>
+
+                                <div class="employer_add_new_input">
+                                    <%= f.email_field :email, :required => true, class: "form-control", placeholder: "Vui lòng sử dụng địa chỉ email công ty" %>
+                                </div>
+                            </div>
+
+                            <div class="employer_add_new_content">
+                                <div class="employer_add_new_label">
+                                    <a><%= f.label :address, "Địa chỉ liên hệ*", class: "employer_add_new_label_name" %></a>
+                                </div>
+
+                                <div class="employer_add_new_input">
+                                    <%= f.text_field :address, :required => true,  class: 'form-control', placeholder: "Nhập địa chỉ công ty" %>
                                 </div>
                             </div>
 
@@ -60,7 +70,7 @@
                                 </div>
                                 
                                 <div class="employer_add_new_input">
-                                    <%= f.password_field :password, class: "form-control", placeholder: "Nhập mật khẩu sử dụng từ 6 kí tự và kết hợp chữ cái, chữ số và biểu tượng" %>
+                                    <%= f.password_field :password, :required => true, class: "form-control", placeholder: "Nhập mật khẩu sử dụng từ 6 kí tự và kết hợp chữ cái, chữ số và biểu tượng" %>
                                 </div>
                             </div>
 
@@ -70,7 +80,7 @@
                                 </div>
 
                                 <div class="employer_add_new_input">
-                                    <%= f.password_field :password_confirmation, class: "form-control", placeholder: "Nhập lại mật khẩu" %>
+                                    <%= f.password_field :password_confirmation, :required => true, class: "form-control", placeholder: "Nhập lại mật khẩu" %>
                                 </div>
                             </div>
 

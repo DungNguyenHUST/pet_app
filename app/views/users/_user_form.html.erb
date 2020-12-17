@@ -20,7 +20,7 @@
                                 </div>
 
                                 <div class="user_add_new_input">
-                                    <%= f.text_field :name, class: 'form-control', placeholder: "Nhập họ và tên của bạn" %>
+                                    <%= f.text_field :name, :required => true, class: 'form-control', placeholder: "Nhập họ và tên của bạn" %>
                                 </div>
                             </div>
 
@@ -30,7 +30,7 @@
                                 </div>
 
                                 <div class="user_add_new_input">
-                                    <%= f.email_field :email, class: "form-control", placeholder: "Nhập email của bạn" %>
+                                    <%= f.email_field :email, :required => true, class: "form-control", placeholder: "Nhập email của bạn" %>
                                 </div>
                             </div>
 
@@ -40,7 +40,7 @@
                                 </div>
 
                                 <div class="user_add_new_input">
-                                    <%= f.password_field :password, class: "form-control", placeholder: "Mật khẩu ít nhất 6 kí tự gồm chữ in hoa, chữ số và biểu tượng" %>
+                                    <%= f.password_field :password, :required => true, class: "form-control", placeholder: "Mật khẩu ít nhất 6 kí tự gồm chữ in hoa, chữ số và biểu tượng" %>
                                 </div>
                             </div>
 
@@ -50,7 +50,7 @@
                                 </div>
 
                                 <div class="user_add_new_input">
-                                    <%= f.password_field :password_confirmation, class: "form-control", placeholder: "Nhập lại mật khẩu" %>
+                                    <%= f.password_field :password_confirmation, :required => true, class: "form-control", placeholder: "Nhập lại mật khẩu" %>
                                 </div>
                             </div>
 

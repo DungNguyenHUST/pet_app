@@ -28,7 +28,7 @@
 						<span>Tuyển dụng</span>
 					</a>
 
-					<%if current_user.present?%>
+					<%if logged_in?%>
 						<a class="nav_user" href="<%=user_path(current_user) %>"> 
 							<span> Hi, <%=current_user.name%></span>
 						</a>
@@ -41,7 +41,7 @@
 				</div>
 				
 				<div class="nav_login_mobile">
-					<%if current_user.present?%>
+					<%if logged_in?%>
 						<%= link_to '<button type="button"><i class="material-icons"> person_outline</i></button>'.html_safe, user_path(current_user) %>
 					<%else%>
 						<%= link_to '<button type="button"><i class="material-icons"> person_outline</i></button>'.html_safe, sessions_new_path %>

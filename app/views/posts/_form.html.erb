@@ -19,7 +19,7 @@
                             </div>
                             
                             <div class="new_post_input">
-                                <%= f.file_field :wall_picture%>
+                                <%= f.file_field :wall_picture, :required => true%>
                             </div>
                         </div>
                     </div>
@@ -31,7 +31,7 @@
                             </div>
 
                             <div class="new_post_input">
-                                <%= f.text_field :title, class: "new_post_form_input", placeholder: " Nhập tiêu đề bài viết" %>
+                                <%= f.text_field :title, :required => true, class: "new_post_form_input", placeholder: " Nhập tiêu đề bài viết" %>
                             </div>
                         </div>
 
@@ -41,7 +41,7 @@
                             </div>
 
                             <div class="new_post_input">
-                                <%= f.text_area :content, class: "tinymce", placeholder: "Nội dung" %>
+                                <%= f.text_area :content, :required => true, class: "tinymce", placeholder: "Nội dung" %>
                             </div>
                         </div>
                     </div>

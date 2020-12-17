@@ -16,11 +16,11 @@
 
                             <div class="user_signin_content">
                                 <div class="user_signin_label">
-                                    <a><%= f.label :email, "Địa chỉ email hoặc số điện thoại*", class: "user_signin_label_name" %></a>
+                                    <a><%= f.label :email, "Địa chỉ email*", class: "user_signin_label_name" %></a>
                                 </div>
 
                                 <div class="user_signin_input">
-                                    <%= f.email_field :email, class: "form-control", placeholder: "Nhập địa chỉ email của bạn" %>
+                                    <%= f.email_field :email, :required => true, :pattern => '[^@]+@[^@]+\.[a-zA-Z]{2,6}', class: "form-control", placeholder: "Nhập địa chỉ email của bạn" %>
                                 </div>
                             </div>
 
@@ -30,7 +30,7 @@
                                 </div>
 
                                 <div class="user_signin_input">
-                                    <%= f.password_field :password, class: "form-control", placeholder: "Nhập mật khẩu của bạn" %>
+                                    <%= f.password_field :password, :required => true, class: "form-control", placeholder: "Nhập mật khẩu của bạn" %>
                                 </div>
                             </div>
 

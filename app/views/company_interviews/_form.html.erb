@@ -20,7 +20,7 @@
                             </div>
 
                             <div class="new_interview_input">
-                                <%= f.text_field :position, class: "new_interview_form_input", placeholder: "  Nhập vị trí mà bạn phỏng vấn" %>
+                                <%= f.text_field :position, :required => true, class: "new_interview_form_input", placeholder: "Nhập vị trí mà bạn phỏng vấn" %>
                             </div>
                         </div>
 
@@ -51,7 +51,7 @@
 
                             <div class="new_interview_difficultly_input">
                                 <div class="new_interview_form_difficultly_input">
-                                    <%= f.number_field :difficultly, readonly: true, :id => "difficultly_id", :value => ''%>
+                                    <%= f.number_field :difficultly, :required => true, readonly: true, :id => "difficultly_id", :value => ''%>
                                 </div>
 
                                 <div class="new_interview_difficultly_star_block">
@@ -111,7 +111,7 @@
 
                             <div class="new_interview_satisfied_input">
                                 <div class="new_interview_form_satisfied_input">
-                                    <%= f.number_field :satisfied, readonly: true, :id => "satisfied_id", :value => ''%>
+                                    <%= f.number_field :satisfied, :required => true, readonly: true, :id => "satisfied_id", :value => ''%>
                                 </div>
 
                                 <div class="new_interview_satisfied_star_block">
@@ -182,7 +182,7 @@
                             </div>
 
                             <div class="new_interview_input">
-                                <%= f.text_area :content, class: "tinymce", placeholder: "  Chia sẻ nội dung phỏng vấn, câu hỏi hay cho mọi người nào" %>
+                                <%= f.text_area :content, :required => true, class: "tinymce", placeholder: "Chia sẻ nội dung phỏng vấn, câu hỏi hay cho mọi người nào" %>
                             </div>
                         </div>
                     </div>
