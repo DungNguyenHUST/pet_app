@@ -6,7 +6,7 @@
     </head>
 
     <body>
-        <div class='container'>
+        <div class="container">
             <div class="new_review_form">
                 <%= form_for [@company, CompanyReview.new] do |f| %>
                     <div class="new_review_title">
@@ -423,7 +423,7 @@
                             </div>
 
                             <div class="new_review_input">
-                                <%= f.text_area :pros, :required => true, class: "tinymce", placeholder: "Hãy nhập ít nhất 3 ưu điểm của công ty này" %>
+                                <%= f.text_area :pros, class: "tinymce", placeholder: "Hãy nhập ít nhất 3 ưu điểm của công ty này" %>
                             </div>
                         </div>
 
@@ -433,7 +433,7 @@
                             </div>
 
                             <div class="new_review_input">
-                                <%= f.text_area :cons, :required => true, class: "tinymce", placeholder: "Hãy nhập ít nhất 3 nhược điểm của công ty này" %>
+                                <%= f.text_area :cons, class: "tinymce", placeholder: "Hãy nhập ít nhất 3 nhược điểm của công ty này" %>
                             </div>
                         </div>
                     </div>
@@ -455,7 +455,7 @@
                             </div>
                             
                             <div class="new_review_input">
-                                <%= f.text_area :review, :required => true, class: "tinymce", placeholder: "Nhập nội dung review của bạn" %>
+                                <%= f.text_area :review, class: "tinymce", placeholder: "Nhập nội dung review của bạn" %>
                             </div>
                         </div>
                     </div>
