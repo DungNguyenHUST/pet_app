@@ -15,7 +15,10 @@
 				</a>
 
 				<div class="nav_logo">
-					<a href="<%=pages_path %>">firework </a>
+					<div class="rounded">
+						<%= link_to (image_tag(("logo.png"))), image_path(url_for(("logo.png"))), rel: "gallery" , :href => pages_path%>
+					</div>
+					<a href="<%=pages_path %>">firework</a>
 				</div>
 
 				<a href="<%=pages_path %>">Tìm việc </a>
@@ -37,14 +40,6 @@
 							<i class="material-icons"> person_outline</i> 
 							<span>Đăng nhập</span>
 						</a>
-					<%end%>
-				</div>
-				
-				<div class="nav_login_mobile">
-					<%if logged_in?%>
-						<%= link_to '<button type="button"><i class="material-icons"> person_outline</i></button>'.html_safe, user_path(current_user) %>
-					<%else%>
-						<%= link_to '<button type="button"><i class="material-icons"> person_outline</i></button>'.html_safe, sessions_new_path %>
 					<%end%>
 				</div>
 			</div>

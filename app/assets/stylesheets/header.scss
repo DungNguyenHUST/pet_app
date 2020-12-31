@@ -8,13 +8,17 @@
 .topnav .nav_logo{
 	float: left;
 	display: block;
-	top: -8px;
+	top: -9px;
 	position: relative;
 	margin-right: 2%;
+	left: -15px;
 	a{
-		color: #333;
-		font-size: 26px;
+		color: #444;
+		font-size: 25px;
 		font-weight: 600;
+		// text-shadow: 0.5px 0.5px #999;
+		justify-content: center;
+		font-family: 'Roboto', Sans-serif;
 		&:hover{
 			color: #1877f2;
 		}
@@ -23,13 +27,17 @@
 			border-bottom: none;
 		}
 	}
-	i{
-		font-size: 28px;
+	.rounded
+	{
 		position: relative;
-		top: 5px;
-		margin-right: 3px;
-		color: #1877f2;
-		margin-left: 0px;
+		top: -2px;
+		right: -10px;
+		img{
+			width: 33px;
+			height: 33px;
+		}
+		display: block;
+		float: left;
 	}
 }
 
@@ -41,10 +49,10 @@
 	margin: 0;
 	padding: 10px;
 	text-decoration: none;
-	font-size: 16px;
+	font-size: 15px;
 	font-weight: 500;
 	position: relative;
-	top: 6px;
+	top: 7px;
 	white-space: nowrap;
 	text-decoration: none !important;
 	&:hover{
@@ -121,7 +129,7 @@
 @media screen and (max-width: 600px) {
 	.topnav a:not(:first-child) {display: none;}
 	.topnav a.menu_icon {
-		float: left;
+		float: right;
 		display: block;
 		font-size: 20px;
 		border-bottom: none;
@@ -129,32 +137,20 @@
 
 	.topnav .nav_logo{
 		float: left;
-		margin-left: 25%;
-		a{
-			font-size: 26px;
-		}
-	}
-
-	.topnav .nav_login_mobile{
-		position: relative;
-		top: -5px;
-		display: block;
-		border-radius: 3px;
-		float: right;
-		a{
-			border-bottom: none;
-		}
-		button{
-			background-color: #fff;
-			border: none;
-			i{
-				position: relative;
-				font-size: 28px;
+		// margin-left: 25%;
+		.rounded
+		{
+			position: relative;
+			img{
+				width: 30px;
+				height: 30px;
 			}
-			span{
-				position: relative;
-				top: -5px;
-			}
+			display: block;
+			float: left;
+		}
+		a{
+			font-size: 25px;
+			display: inline;
 		}
 	}
 
