@@ -13,6 +13,19 @@
                         <strong>Chia sẻ kinh nghiệm phỏng vấn của bạn tại <%=@company.name%> </strong>
                     </div>
 
+                    <%if logged_in?%>
+                        <div class="new_interview_section">
+                            <div class="new_interview_content">
+                                <div class="new_interview_label">
+                                    <a><%= f.label :privacy, "Bạn có muốn ẩn thông tin cá nhân*", class: "new_interview_label_name" %></a>
+                                </div>
+                                <div class="new_interview_input">
+                                    <%= f.select(:privacy, options_for_select([['Không, tôi không muốn ẩn thông tin cá nhân', false], ['Có, tôi muốn ẩn thông tin cá nhân', true]]), {include_blank: true}, { :class => 'my_style_class' }) %>
+                                </div>
+                            </div>
+                        </div>
+                    <%end%>
+
                     <div class="new_interview_section">
                         <div class="new_interview_content">
                             <div class="new_interview_label">
@@ -170,9 +183,7 @@
                             </div>
 
                             <div class="new_interview_input">
-                                <%= f.collection_radio_buttons :offer, [[1, 'Có'] ,[2, 'Không']],:first, :last, { item_wrapper_tag: false } do |b|
-                                    b.radio_button(:class => "collection_radio_buttons icon-star") + b.label(:class => "collection_radio_buttons_label icon-star-label")
-                                end%>
+                                <%= f.select(:offer, options_for_select([['Không', false], ['Có', true]]), {include_blank: true}, { :class => 'my_style_class' }) %>
                             </div>
                         </div>
 

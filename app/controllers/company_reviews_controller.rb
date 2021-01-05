@@ -14,7 +14,7 @@ class CompanyReviewsController < ApplicationController
 
         @company_review = @company.company_reviews.build(company_review_param)
 
-        if logged_in?
+        if logged_in? && !@company_review.privacy
             @company_review.user_name = @current_user.name
         else
             @company_review.user_name = "Ẩn danh"
@@ -47,6 +47,6 @@ class CompanyReviewsController < ApplicationController
     private
 
     def company_review_param
-        params.require(:company_review).permit(:working_status, :start_date, :end_date , :position, :work_env_score, :salary_score, :ot_score, :manager_score, :career_score, :score, :pros, :cons, :review_title, :review, :privacy)
+        params.require(:company_review).permit(:working_status, :working_time, :position, :work_env_score, :salary_score, :ot_score, :manager_score, :career_score, :score, :pros, :cons, :review_title, :review, :privacy)
     end
 end

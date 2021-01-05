@@ -14,7 +14,7 @@ class CompanyInterviewsController < ApplicationController
 
         @company_interview = @company.company_interviews.build(company_interview_param)
 
-        if logged_in?
+        if logged_in? && !@company_interview.privacy
             @company_interview.user_name = @current_user.name
         else
             @company_interview.user_name = "Ẩn danh"

@@ -15,6 +15,15 @@
                             <%= link_to (image_tag(@company.avatar)), image_path(url_for(@company.avatar)), rel: "gallery" , :href => company_path(@company)%>
                         <%end%>
                     </div>
+
+                    <div class="user_info">
+                        <div class="user_name">
+                            <a><%=company_review.user_name%></a>
+                        </div>
+                        <div class="user_time_review">
+                            <a><%= time_ago_in_words(company_review.created_at) %></a>
+                        </div>
+                    </div>
                 </div>
 
                 <div class="user_review_intro_right">
@@ -43,7 +52,7 @@
                             <%else%>
                                 <a> . Đã nghỉ việc</a>
                             <%end%>
-                            <a> . <%= time_ago_in_words(company_review.created_at) %></a>
+                            <a> . <%= company_review.working_time%></a>
                     </div>
 
                     <div class="user_review_cotent">

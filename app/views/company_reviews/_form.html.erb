@@ -13,29 +13,21 @@
                         <strong>Tạo một bản đánh giá về <%=@company.name%></strong>
                     </div>
 
-                    <div class="new_review_section">
-                        <div class="new_review_content">
-                            <div class="new_review_label">
-                                <a><%= f.label :privacy, "Bạn có muốn review ẩn danh không?*:", class: "new_review_label_name" %></a>
-                            </div>
+                    <%if logged_in?%>
+                        <div class="new_review_section">
+                            <div class="new_review_content">
+                                <div class="new_review_label">
+                                    <a><%= f.label :privacy, "Bạn có muốn review ẩn danh không?*:", class: "new_review_label_name" %></a>
+                                </div>
 
-                            <div class="new_review_input">
-                                <%= f.select(:privacy, options_for_select(['Có','Không'], "Không"), {include_blank: true}, { :class => 'my_style_class' }) %>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="new_review_section">
-                        <div class="new_review_content">
-                            <div class="new_review_label">
-                                <a><%= f.label :working_status, "Bạn có còn làm việc ở đây không*:", class: "new_review_label_name" %></a>
-                            </div>
-
-                            <div class="new_review_input">
-                                <%= f.select(:working_status, options_for_select(['Có','Không'], "Có"), {include_blank: true}, { :class => 'my_style_class' }) %>
+                                <div class="new_review_input">
+                                    <%= f.select(:privacy, options_for_select([['Không, tôi không muốn ẩn thông tin cá nhân', false], ['Có, tôi muốn ẩn thông tin cá nhân', true]]), {include_blank: true}, { :class => 'my_style_class' }) %>
+                                </div>
                             </div>
                         </div>
+                    <%end%>
 
+                    <div class="new_review_section">
                         <div class="new_review_content">
                             <div class="new_review_label">
                                 <a><%= f.label :position, "Vị trí làm việc của bạn*:", class: "new_review_label_name" %></a>
@@ -48,24 +40,24 @@
 
                         <div class="new_review_content">
                             <div class="new_review_label">
-                                <a><%= f.label :start_date, "Thời gian bắt đầu làm việc*: ", class: "new_review_label_name" %></a>
+                                <a><%= f.label :working_status, "Bạn có còn làm việc ở đây không?*:", class: "new_review_label_name" %></a>
                             </div>
 
-                            <div class="new_review_input_time">
-                                <%= f.date_field :start_date, class: "new_review_form_input", placeholder: "Nhập tên hoặc email của bạn" %>
+                            <div class="new_review_input">
+                                <%= f.select(:working_status, options_for_select([['Không, tôi không còn làm việc tại đây', false], ['Có, tôi vẫn đang làm việc tại đây', true]]), {include_blank: true}, { :class => 'my_style_class' }) %>
                             </div>
                         </div>
 
                         <div class="new_review_content">
                             <div class="new_review_label">
-                                <a><%= f.label :end_date, "Thời gian kết thúc*: ", class: "new_review_label_name" %></a>
+                                <a><%= f.label :working_time, "Bạn đã làm việc ở đây được bao lâu?*:", class: "new_review_label_name" %></a>
                             </div>
 
-                            <div class="new_review_input_time">
-                                <%= f.date_field :end_date, :required => true, class: "new_review_form_input", placeholder: "Nhập tên hoặc email của bạn" %>
+                            <div class="new_review_input">
+                                <%= f.select(:working_time, options_for_select(["6 tháng", "1 năm", "2 năm", "3 năm", "5 năm", "Nhiều hơn 5 năm"]), {include_blank: true}, { :class => 'my_style_class' }) %>
                             </div>
-
                         </div>
+
                     </div>
 
                     <div class="new_review_section">
@@ -427,6 +419,14 @@
                                     });
                                 </script>
                             </div>
+                        </div>
+
+                        <div class="new_review_description">
+                            <a>1★: Rất không hài lòng</a>
+                            <a>2★: Không hài lòng</a>
+                            <a>3★: Hài lòng</a>
+                            <a>4★: Rất hài lòng</a>
+                            <a>5★: Tuyệt vời</a>
                         </div>
 
                         <div class="new_review_content">
