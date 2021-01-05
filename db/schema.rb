@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_12_16_094915) do
+ActiveRecord::Schema.define(version: 2020_12_21_091405) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -124,6 +124,7 @@ ActiveRecord::Schema.define(version: 2020_12_16_094915) do
     t.boolean "offer"
     t.string "get_interview"
     t.string "companyName"
+    t.boolean "privacy", default: false
   end
 
   create_table "company_jobs", force: :cascade do |t|
@@ -195,6 +196,7 @@ ActiveRecord::Schema.define(version: 2020_12_16_094915) do
     t.integer "work_env_score"
     t.boolean "working_status"
     t.integer "average_score"
+    t.boolean "privacy", default: false
   end
 
   create_table "post_comments", force: :cascade do |t|

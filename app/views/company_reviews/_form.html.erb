@@ -16,6 +16,18 @@
                     <div class="new_review_section">
                         <div class="new_review_content">
                             <div class="new_review_label">
+                                <a><%= f.label :privacy, "Bạn có muốn review ẩn danh không?*:", class: "new_review_label_name" %></a>
+                            </div>
+
+                            <div class="new_review_input">
+                                <%= f.select(:privacy, options_for_select(['Có','Không'], "Không"), {include_blank: true}, { :class => 'my_style_class' }) %>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="new_review_section">
+                        <div class="new_review_content">
+                            <div class="new_review_label">
                                 <a><%= f.label :working_status, "Bạn có còn làm việc ở đây không*:", class: "new_review_label_name" %></a>
                             </div>
 

@@ -45,6 +45,6 @@ class CompanyInterviewsController < ApplicationController
     private
 
     def company_interview_param
-        params.require(:company_interview).permit(:position, :get_interview, :process , :difficultly, :satisfied , :offer, :content)
+        params.require(:company_interview).permit(:position, :get_interview, :process , :difficultly, :satisfied , :offer, :content, :privacy)
     end
 end
