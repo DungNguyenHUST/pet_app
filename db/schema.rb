@@ -50,7 +50,6 @@ ActiveRecord::Schema.define(version: 2020_12_21_091405) do
     t.string "data_file_name", null: false
     t.string "data_content_type"
     t.integer "data_file_size"
-    t.string "data_fingerprint"
     t.string "type", limit: 30
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
@@ -266,6 +265,10 @@ ActiveRecord::Schema.define(version: 2020_12_21_091405) do
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.string "difficult"
+    t.boolean "algorithms_question"
+    t.boolean "interview_question"
+    t.boolean "iq_question"
+    t.boolean "other_question"
     t.string "category"
   end
 
@@ -282,9 +285,21 @@ ActiveRecord::Schema.define(version: 2020_12_21_091405) do
     t.boolean "root", default: false
     t.boolean "admin", default: false
     t.boolean "user", default: true
+    t.string "encrypted_password", default: "", null: false
+    t.string "reset_password_token"
+    t.datetime "reset_password_sent_at"
+    t.datetime "remember_created_at"
+    t.string "provider"
+    t.string "uid"
+    t.string "token"
+    t.integer "expires_at"
+    t.boolean "expires"
+    t.string "refresh_token"
+    t.string "image_url"
     t.boolean "employer", default: false
     t.string "company"
     t.integer "company_id"
+    t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
 
   add_foreign_key "active_storage_attachments", "active_storage_blobs", column: "blob_id"
