@@ -290,8 +290,13 @@
                                 <% @problems_newest.each do |problem| %>
                                     <%i += 1%>
                                     <%break if i > 10%>
-                                    <div class="problem_label">
-                                        <a><%= link_to problem.title, problem_path(problem) %></a>
+                                    <div class="problem_block">
+                                        <div class="problem_id">
+                                            <a><%=problem.id%></a>
+                                        </div>
+                                        <div class="problem_label">
+                                            <a><%= link_to problem.title, problem_path(problem) %></a>
+                                        </div>
                                     </div>
                                 <% end %>
                             </div>

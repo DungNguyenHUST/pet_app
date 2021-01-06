@@ -355,7 +355,10 @@
         .home_top_job_home_container{
             .user_job_block {
                 clear: left;
-                min-height: 200px;
+                min-height: 220px;
+                @media screen and (max-width: 600px){
+                    min-height: 200px;
+                }
                 background-color: #f6fbf9;
                 border-top: 1px solid #ecedee;
                 border-bottom: 1px solid #ecedee;
@@ -367,11 +370,14 @@
             
                 .user_job_left
                 {
-                    margin: 10px;
-                    padding-top: 20px;
+                    padding-bottom: 20px;
+                    padding-top: 25px;
+                    padding-left: 15px;
+                    max-width: 80%;
+                    float: left;
                     @media screen and (max-width: 600px){
-                        // margin: 0px;
-                        padding-top: 15px;
+                        padding-left: 10px;
+                        padding-top: 25px;
                     }
                     display: block;
                     position: relative;
@@ -415,13 +421,21 @@
 
                         .user_job_company_name{
                             a{
-                                font-size: 16px;
-                                color: #666;
+                                font-size: 15px;
+                                color: #333;
                                 overflow: hidden;
                                 text-overflow: ellipsis;
                                 display: -webkit-box;
                                 -webkit-line-clamp: 1; /* number of lines to show */
                                 -webkit-box-orient: vertical;
+                                i{
+                                    color: #febb02;
+                                    font-size: 18px;
+                                    position: relative;
+                                    top: 3px;
+                                    padding-left: 3px;
+                                    // background-color: #febb02;
+                                }
                             }
                         }
             
@@ -433,7 +447,11 @@
                             -webkit-box-orient: vertical;
                             font-size: 14px;
                             // margin-bottom: 10px;
+                            color: #555;
                             margin-top: 10px;
+                            @media screen and (max-width: 600px){
+                                display: none;
+                            }
                         }
             
                         .user_job_location{
@@ -443,18 +461,25 @@
                             @media screen and (max-width: 600px){
                                 float: none;
                             }
-                            font-size: 14px;
+                            font-size: 13px;
                             a{
-                                padding-top: 5px;
-                                padding-bottom: 5px;
+                                padding-top: 3px;
+                                padding-bottom: 3px;
                                 padding-left: 10px;
                                 padding-right: 10px;
                                 margin-right: 10px;
-                                border: 1px solid #1877f2;
+                                border: 1px solid #dfe1e5;
                                 border-radius: 30px;
+                                background-color: #fff;
+                                color: #333;
+                                overflow: hidden;
+                                text-overflow: ellipsis;
+                                display: -webkit-box;
+                                -webkit-line-clamp: 1; /* number of lines to show */
+                                -webkit-box-orient: vertical;
                                 i{
-                                    font-size: 20px;
-                                    margin-right: 5px;
+                                    font-size: 18px;
+                                    margin-right: 3px;
                                     color: #8a8888;
                                     position: relative;
                                     position: relative;
@@ -468,20 +493,21 @@
                                 float: none;
                                 margin-top: 10px;
                             }
-                            margin-top: 10px;
-                            font-size: 14px;
-                            color: #4fb87b;
+                            margin-top: 12px;
+                            font-size: 13px;
+                            color: #333;
                             a{
                                 padding-top: 5px;
                                 padding-bottom: 5px;
                                 padding-right: 10px;
-                                border: 1px solid #1877f2;
+                                border: 1px solid #dfe1e5;
                                 border-radius: 30px;
+                                background-color: #fff;
                                 // margin-left: 10px;
                                 i{
                                     padding-left: 10px;
-                                    margin-right: 5px;
-                                    font-size: 20px;
+                                    margin-right: 3px;
+                                    font-size: 18px;
                                     color: #8a8888;
                                     position: relative;
                                     top: 5px;
@@ -493,51 +519,34 @@
             
                 .user_job_right{
                     padding-top: 20px;
-                    .apply_job_button{
-                        padding: 10px;
-                        @media screen and (max-width: 600px){
-                            // padding: 0px;
-                            padding-bottom: 20px;
-                            padding-top: 10px;
-                        }
-                        padding-top: 11px;
-                        button{
-                            padding: 6px;
-                            height: 33px;
-                            width: 140px;
-                            @media screen and (max-width: 600px){
-                                width: 100%;
-                                height: 35px;
-                            }
-                            margin-right: 10px;
-                            background: #1877f2;
-                            font-size: 14px;
-                            border: none;
-                            border-radius: 3px;
-                            cursor: pointer;
-                            text-align: center;
+                    padding-bottom: 20px;
+                    padding-right: 15px;
+                    float: right;
+                    max-width: 15%;
+                    .user_job_hot{
+                        text-align: right;
+                        a{
+                            padding-top: 2px;
+                            padding-bottom: 2px;
+                            padding-left: 8px;
+                            padding-right: 8px;
+                            border-radius: 2px;
+                            font-size: 12px;
                             color: #fff;
-                            &:hover{
-                                background-color: #369;
-                                color: #fff;
-                            }
+                            background-color: #ff5a5f;
                         }
                     }
                     
                     .user_job_date{
-                        font-size: 13px;
-                        color: #8a8888;
-                        padding-top: 66px;
-                        @media screen and (max-width: 600px){
-                            padding-top: 0px;
-                            position: absolute;
-                            top: -2px;
-                            left: 10px;
-                            color: #8a8888;
-                            margin-left: 15px;
+                        text-align: right;
+                        a{
+                            font-size: 13px;
+                            color: #1877f2;
                         }
-                        text-align: left;
-                        margin-left: 10px;
+                        padding-top: 120px;
+                        @media screen and (max-width: 600px){
+                            padding-top: 90px;
+                        }
                     }
                 }
                 clear: left;
