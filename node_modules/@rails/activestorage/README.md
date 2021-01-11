@@ -16,7 +16,7 @@ A key difference to how Active Storage works compared to other attachment soluti
 
 ## Installation
 
-Run `rails active_storage:install` to copy over active_storage migrations.
+Run `bin/rails active_storage:install` to copy over active_storage migrations.
 
 NOTE: If the task cannot be found, verify that `require "active_storage/engine"` is present in `config/application.rb`.
 
@@ -55,7 +55,7 @@ url_for(user.avatar)
 
 class AvatarsController < ApplicationController
   def update
-    # params[:avatar] contains a ActionDispatch::Http::UploadedFile object
+    # params[:avatar] contains an ActionDispatch::Http::UploadedFile object
     Current.user.avatar.attach(params.require(:avatar))
     redirect_to Current.user
   end
@@ -106,6 +106,37 @@ Variation of image attachment:
 <%= image_tag user.avatar.variant(resize_to_limit: [100, 100]) %>
 ```
 
+## File serving strategies
+
+Active Storage supports two ways to serve files: redirecting and proxying.
+
+### Redirecting
+
+Active Storage generates stable application URLs for files which, when accessed, redirect to signed, short-lived service URLs. This relieves application servers of the burden of serving file data. It is the default file serving strategy.
+
+When the application is configured to proxy files by default, use the `rails_storage_redirect_path` and `_url` route helpers to redirect instead:
+
+```erb
+<%= image_tag rails_storage_redirect_path(@user.avatar) %>
+```
+
+### Proxying
+
+Optionally, files can be proxied instead. This means that your application servers will download file data from the storage service in response to requests. This can be useful for serving files from a CDN.
+
+Explicitly proxy attachments using the `rails_storage_proxy_path` and `_url` route helpers:
+
+```erb
+<%= image_tag rails_storage_proxy_path(@user.avatar) %>
+```
+
+Or configure Active Storage to use proxying by default:
+
+```ruby
+# config/initializers/active_storage.rb
+Rails.application.config.active_storage.resolve_model_to_route = :rails_storage_proxy
+```
+
 ## Direct uploads
 
 Active Storage, with its included JavaScript library, supports uploading directly from the client to the cloud.
@@ -120,7 +151,8 @@ Active Storage, with its included JavaScript library, supports uploading directl
     ```
     Using the npm package:
     ```js
-    require("@rails/activestorage").start()
+    import * as ActiveStorage from "@rails/activestorage"
+    ActiveStorage.start()
     ```
 2. Annotate file inputs with the direct upload URL.
 
@@ -159,4 +191,4 @@ Bug reports for the Ruby on Rails project can be filed here:
 
 Feature requests should be discussed on the rails-core mailing list here:
 
-* https://groups.google.com/forum/?fromgroups#!forum/rubyonrails-core
+* https://discuss.rubyonrails.org/c/rubyonrails-core
