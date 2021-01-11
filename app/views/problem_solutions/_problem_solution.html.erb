@@ -16,12 +16,12 @@
                 <%if logged_in?%>
                     <% pre_vote = problem_solution.problem_vote_solutions.find { |vote| vote.user_id == current_user.id} %>
                     <% if pre_vote %>  
-                        <%= link_to '<button class="problem_solution_like_highlight"><i class="material-icons-outlined">arrow_circle_up</i></button>'.html_safe, problem_problem_solution_problem_vote_solution_path(@problem, problem_solution, pre_vote), method: :delete%>
+                        <%= link_to '<button class="problem_solution_like_highlight"><i class="material-icons-outlined">arrow_drop_up</i></button>'.html_safe, problem_problem_solution_problem_vote_solution_path(@problem, problem_solution, pre_vote), method: :delete%>
                     <%else%>
-                        <%= link_to '<button class="problem_solution_like"><i class="material-icons-outlined">arrow_circle_up</i></button>'.html_safe, problem_problem_solution_problem_vote_solutions_path(@problem, problem_solution), method: :post%>
+                        <%= link_to '<button class="problem_solution_like"><i class="material-icons-outlined">arrow_drop_up</i></button>'.html_safe, problem_problem_solution_problem_vote_solutions_path(@problem, problem_solution), method: :post%>
                     <%end%>
                 <%else%>
-                    <%= link_to '<button class="problem_solution_like"><i class="material-icons-outlined">arrow_circle_up</i></button>'.html_safe, login_path%>
+                    <%= link_to '<button class="problem_solution_like"><i class="material-icons-outlined">arrow_drop_up</i></button>'.html_safe, login_path%>
                 <%end%>
 
                 <div class="problem_solution_like_info">
@@ -31,9 +31,9 @@
                 <%if logged_in?%>
                     <% pre_unvote = problem_solution.problem_unvote_solutions.find { |unvote| unvote.user_id == current_user.id} %>
                     <% if pre_unvote %>
-                        <%= link_to '<button class="problem_solution_dislike_highlight"><i class="material-icons-outlined">arrow_circle_down</i></button>'.html_safe, problem_problem_solution_problem_unvote_solution_path(@problem, problem_solution, pre_unvote), method: :delete%>
+                        <%= link_to '<button class="problem_solution_dislike_highlight"><i class="material-icons-outlined">arrow_drop_down</i></button>'.html_safe, problem_problem_solution_problem_unvote_solution_path(@problem, problem_solution, pre_unvote), method: :delete%>
                     <%else%>
-                        <%= link_to '<button class="problem_solution_dislike"><i class="material-icons-outlined">arrow_circle_down</i></button>'.html_safe, problem_problem_solution_problem_unvote_solutions_path(@problem, problem_solution), method: :post%>
+                        <%= link_to '<button class="problem_solution_dislike"><i class="material-icons-outlined">arrow_drop_down</i></button>'.html_safe, problem_problem_solution_problem_unvote_solutions_path(@problem, problem_solution), method: :post%>
                     <%end%>
                 <%else%>
                     <%= link_to '<button class="problem_solution_dislike"><i class="material-icons-outlined">arrow_circle_down</i></button>'.html_safe, login_path%>
@@ -42,7 +42,7 @@
 
             <div class="user_problem_solution_cotent">
                 <div class="user_problem_solution_body">
-                    <a><%= problem_solution.content.html_safe %></a>
+                    <a><%= problem_solution.content_rich_text %></a>
                 </div>
 
                 <div class="problem_solution_info">

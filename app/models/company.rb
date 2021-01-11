@@ -10,6 +10,11 @@ class Company < ApplicationRecord
 
     validate :image_type
 
+    validates :overview_rich_text, presence: true
+    validates :policy_rich_text, presence: true
+    has_rich_text :overview_rich_text
+    has_rich_text :policy_rich_text
+
     def self.search(search)
         if search
             company_type = Company.where("name ILIKE? OR location ILIKE?", "%#{search}%", "%#{search}%")

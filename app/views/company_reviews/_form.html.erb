@@ -435,7 +435,7 @@
                             </div>
 
                             <div class="new_review_input">
-                                <%= f.text_area :pros, class: "tinymce", placeholder: "Hãy nhập ít nhất 3 ưu điểm của công ty này" %>
+                                <%= f.text_area :pros, class: "new_review_form_input", placeholder: "Hãy nhập ít nhất 3 ưu điểm của công ty này" %>
                             </div>
                         </div>
 
@@ -445,7 +445,7 @@
                             </div>
 
                             <div class="new_review_input">
-                                <%= f.text_area :cons, class: "tinymce", placeholder: "Hãy nhập ít nhất 3 nhược điểm của công ty này" %>
+                                <%= f.text_area :cons, class: "new_review_form_input", placeholder: "Hãy nhập ít nhất 3 nhược điểm của công ty này" %>
                             </div>
                         </div>
                     </div>
@@ -463,11 +463,11 @@
 
                         <div class="new_review_content">
                             <div class="new_review_label">
-                                <a><%= f.label :review, "Nội dung đánh giá*:", class: "new_review_label" %></a>
+                                <a><%= f.label :review_rich_text, "Nội dung đánh giá*:", class: "new_review_label" %></a>
                             </div>
                             
                             <div class="new_review_input">
-                                <%= f.text_area :review, class: "tinymce", placeholder: "Nhập nội dung review của bạn" %>
+                                <%= f.rich_text_area :review_rich_text, class: "rich_text_area", placeholder: "Nhập nội dung review của bạn" %>
                             </div>
                         </div>
                     </div>

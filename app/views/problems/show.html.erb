@@ -26,7 +26,7 @@
                                     <div class="tab-content">
                                         <div role="tabpanel" id="ProblemDescriptionID" class="tab-pane fade in active"><br>
                                             <div class="problem_des_tab">
-                                                <%= @problem.content.html_safe %>
+                                                <%= @problem.content_rich_text %>
                                             </div>
                                         </div>
 
@@ -70,7 +70,7 @@
                                             <div class="new_problem_solution_right_section">
                                                 <div class="new_problem_solution_right_content">
                                                     <div class="new_problem_solution_right_input_review">
-                                                        <%= f.text_area :content, class: "tinymce", placeholder: "Mô tả câu trả lời của bạn" %>
+                                                        <%= f.rich_text_area :content_rich_text, class: "rich_text_area", placeholder: "Mô tả câu trả lời của bạn" %>
                                                     </div>
                                                 </div>
                                             </div>

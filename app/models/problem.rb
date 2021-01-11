@@ -26,4 +26,7 @@ class Problem < ApplicationRecord
     #         @problems = Problem.all
     #     end
     # end
+
+    validates :content_rich_text, presence: true
+    has_rich_text :content_rich_text
 end
