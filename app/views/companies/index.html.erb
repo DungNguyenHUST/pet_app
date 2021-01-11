@@ -18,9 +18,9 @@
 
                         <%=form_tag companies_path, :method => "get" do%>
                             <div class="input-group mb-3">
-                                <%= text_field_tag :search, params[:search], class: 'form-control', placeholder: "Nhập tên công ty" %>
+                                <%= text_field_tag :search, params[:search], class: 'form-control', placeholder: "Nhập tên công ty cần tìm kiếm" %>
                                 <div class="input-group-addon">
-                                    <i class="material-icons checked">search</i>
+                                    <i class="material-icons-outlined checked">search</i>
                                 </div>
                             </div>
                         <%end%>
@@ -28,11 +28,11 @@
 
                     <div class="company_current_review">
                         <div class="company_current_review_title">
-                            <i class="material-icons checked">create</i><strong> Nhận xét công ty của bạn </strong>
+                            <i class="material-icons-outlined checked">create</i><strong> Nhận xét công ty của bạn </strong>
                         </div>
                         <div class="company_current_review_rating">
                             <%5.times do%>
-                                <i class="material-icons checked">radio_button_unchecked</i>
+                                <i class="material-icons-outlined checked">radio_button_unchecked</i>
                             <%end%>
                         </div>
                     </div>
@@ -53,19 +53,19 @@
                     <div class="company_index_tab_link">  
                         <ul class="nav nav-tabs" role="tablist">
                             <li class="nav-item">
-                                <a class="nav-link active" data-toggle="tab" href="#CompanyAllID"><i class="material-icons">view_list</i>Tất cả <span> <%= @companies_all.count%><span></a>
+                                <a class="nav-link active" data-toggle="tab" href="#CompanyAllID"><i class="material-icons-outlined">view_list</i>Tất cả <span> <%= @companies_all.count%><span></a>
                             </li>
                             
                             <li class="nav-item">
-                                <a class="nav-link" data-toggle="tab" href="#CompanyNewestID"><i class="material-icons">note_add</i>Công ty mới nhất </a>
+                                <a class="nav-link" data-toggle="tab" href="#CompanyNewestID"><i class="material-icons-outlined">note_add</i>Công ty mới nhất </a>
                             </li>
 
                             <li class="nav-item">
-                                <a class="nav-link" data-toggle="tab" href="#CompanyMostRecentID"><i class="material-icons">record_voice_over</i>Nhiều người quan tâm nhất</a>
+                                <a class="nav-link" data-toggle="tab" href="#CompanyMostRecentID"><i class="material-icons-outlined">record_voice_over</i>Nhiều người quan tâm nhất</a>
                             </li>
 
                             <li class="nav-item">
-                                <a class="nav-link" data-toggle="tab" href="#CompanyBestID"><i class="material-icons">thumb_up</i>Công ty tốt nhất</a>
+                                <a class="nav-link" data-toggle="tab" href="#CompanyBestID"><i class="material-icons-outlined">thumb_up</i>Công ty tốt nhất</a>
                             </li>
                         </ul>
                     </div>
@@ -98,12 +98,12 @@
                                                             <%if logged_in?%>
                                                                 <% pre_follow = company.company_follows.find { |follow| follow.user_id == current_user.id} %>
                                                                 <% if pre_follow %> 
-                                                                    <%= link_to '<button class="follow_btn_highlight"><i class="material-icons">favorite</i></button>'.html_safe, company_company_follow_path(company, pre_follow), method: :delete%>
+                                                                    <%= link_to '<button class="follow_btn_highlight"><i class="material-icons-outlined">favorite</i></button>'.html_safe, company_company_follow_path(company, pre_follow), method: :delete%>
                                                                 <%else%>
-                                                                    <%= link_to '<button class="follow_btn"><i class="material-icons">favorite_border</i></button>'.html_safe, company_company_follows_path(company), method: :post%>
+                                                                    <%= link_to '<button class="follow_btn"><i class="material-icons-outlined">favorite_border</i></button>'.html_safe, company_company_follows_path(company), method: :post%>
                                                                 <%end%>
                                                             <%else%>
-                                                                <%= link_to '<button class="follow_btn"><i class="material-icons">favorite_border</i></button>'.html_safe, login_path%>
+                                                                <%= link_to '<button class="follow_btn"><i class="material-icons-outlined">favorite_border</i></button>'.html_safe, login_path%>
                                                             <%end%>
                                                         </div>
 
@@ -144,7 +144,7 @@
                                                         <div class="company_summary">
 
                                                             <%# <div class="company_location">
-                                                                <p><i class="material-icons">place</i> <%= company.location %></p>
+                                                                <p><i class="material-icons-outlined">place</i> <%= company.location %></p>
                                                             <%# </div> %>
 
                                                             <div class="review_point">
@@ -162,15 +162,15 @@
                                                                 </div>
 
                                                                 <div class="review_point_label">
-                                                                    <span> <i class="material-icons">sentiment_satisfied_alt</i><%= link_to " Đánh giá", company_path(company), class: "review_point_review_label" %></span>
+                                                                    <span> <i class="material-icons-outlined">insert_emoticon</i><%= link_to " Đánh giá", company_path(company), class: "review_point_review_label" %></span>
                                                                 </div>
 
                                                                 <div class="review_point_label">
-                                                                    <span> <i class="material-icons">people_outline</i><%= link_to " Phỏng vấn", company_path(company), class: "review_point_review_label" %></span>
+                                                                    <span> <i class="material-icons-outlined">people_outline</i><%= link_to " Phỏng vấn", company_path(company), class: "review_point_review_label" %></span>
                                                                 </div>
 
                                                                 <div class="review_point_label">
-                                                                    <span> <i class="material-icons">work_outline</i><%= link_to " Việc làm", company_path(company), class: "review_point_review_label" %></span>
+                                                                    <span> <i class="material-icons-outlined">work_outline</i><%= link_to " Việc làm", company_path(company), class: "review_point_review_label" %></span>
                                                                 </div>
                                                             </div>
                                                         </div>
@@ -181,7 +181,7 @@
                                         <%if logged_in?%>
                                             <%if current_user.admin?%>
                                                 <div class="new-company">
-                                                    <%= link_to '<button type="submit"> <i class="material-icons">add</i>Tạo công ty mới</button>'.html_safe, new_company_path %>
+                                                    <%= link_to '<button type="submit"> <i class="material-icons-outlined">add</i>Tạo công ty mới</button>'.html_safe, new_company_path %>
                                                 </div>
                                             <%end%>
                                         <%end%>
@@ -215,12 +215,12 @@
                                                             <%if logged_in?%>
                                                                 <% pre_follow = company.company_follows.find { |follow| follow.user_id == current_user.id} %>
                                                                 <% if pre_follow %> 
-                                                                    <%= link_to '<button class="follow_btn_highlight"><i class="material-icons">favorite</i></button>'.html_safe, company_company_follow_path(company, pre_follow), method: :delete%>
+                                                                    <%= link_to '<button class="follow_btn_highlight"><i class="material-icons-outlined">favorite</i></button>'.html_safe, company_company_follow_path(company, pre_follow), method: :delete%>
                                                                 <%else%>
-                                                                    <%= link_to '<button class="follow_btn"><i class="material-icons">favorite_border</i></button>'.html_safe, company_company_follows_path(company), method: :post%>
+                                                                    <%= link_to '<button class="follow_btn"><i class="material-icons-outlined">favorite_border</i></button>'.html_safe, company_company_follows_path(company), method: :post%>
                                                                 <%end%>
                                                             <%else%>
-                                                                <%= link_to '<button class="follow_btn"><i class="material-icons">favorite_border</i></button>'.html_safe, login_path%>
+                                                                <%= link_to '<button class="follow_btn"><i class="material-icons-outlined">favorite_border</i></button>'.html_safe, login_path%>
                                                             <%end%>
                                                         </div>
 
@@ -261,7 +261,7 @@
                                                         <div class="company_summary">
 
                                                             <%# <div class="company_location">
-                                                                <p><i class="material-icons">place</i> <%= company.location %></p>
+                                                                <p><i class="material-icons-outlined">place</i> <%= company.location %></p>
                                                             <%# </div> %>
 
                                                             <div class="review_point">
@@ -279,15 +279,15 @@
                                                                 </div>
 
                                                                 <div class="review_point_label">
-                                                                    <span> <i class="material-icons">sentiment_satisfied_alt</i><%= link_to " Đánh giá", company_path(company), class: "review_point_review_label" %></span>
+                                                                    <span> <i class="material-icons-outlined">insert_emoticon</i><%= link_to " Đánh giá", company_path(company), class: "review_point_review_label" %></span>
                                                                 </div>
 
                                                                 <div class="review_point_label">
-                                                                    <span> <i class="material-icons">people_outline</i><%= link_to " Phỏng vấn", company_path(company), class: "review_point_review_label" %></span>
+                                                                    <span> <i class="material-icons-outlined">people_outline</i><%= link_to " Phỏng vấn", company_path(company), class: "review_point_review_label" %></span>
                                                                 </div>
 
                                                                 <div class="review_point_label">
-                                                                    <span> <i class="material-icons">work_outline</i><%= link_to " Việc làm", company_path(company), class: "review_point_review_label" %></span>
+                                                                    <span> <i class="material-icons-outlined">work_outline</i><%= link_to " Việc làm", company_path(company), class: "review_point_review_label" %></span>
                                                                 </div>
                                                             </div>
                                                         </div>
@@ -299,7 +299,7 @@
                                             <%if current_user.admin?%>
                                                 <%# add new template%>
                                                 <div class="new-company">
-                                                    <%= link_to '<button type="submit"> <i class="material-icons">add</i>Tạo công ty mới</button>'.html_safe, new_company_path %>
+                                                    <%= link_to '<button type="submit"> <i class="material-icons-outlined">add</i>Tạo công ty mới</button>'.html_safe, new_company_path %>
                                                 </div>
                                             <%end%>
                                         <%end%>
@@ -333,12 +333,12 @@
                                                             <%if logged_in?%>
                                                                 <% pre_follow = company.company_follows.find { |follow| follow.user_id == current_user.id} %>
                                                                 <% if pre_follow %> 
-                                                                    <%= link_to '<button class="follow_btn_highlight"><i class="material-icons">favorite</i></button>'.html_safe, company_company_follow_path(company, pre_follow), method: :delete%>
+                                                                    <%= link_to '<button class="follow_btn_highlight"><i class="material-icons-outlined">favorite</i></button>'.html_safe, company_company_follow_path(company, pre_follow), method: :delete%>
                                                                 <%else%>
-                                                                    <%= link_to '<button class="follow_btn"><i class="material-icons">favorite_border</i></button>'.html_safe, company_company_follows_path(company), method: :post%>
+                                                                    <%= link_to '<button class="follow_btn"><i class="material-icons-outlined">favorite_border</i></button>'.html_safe, company_company_follows_path(company), method: :post%>
                                                                 <%end%>
                                                             <%else%>
-                                                                <%= link_to '<button class="follow_btn"><i class="material-icons">favorite_border</i></button>'.html_safe, login_path%>
+                                                                <%= link_to '<button class="follow_btn"><i class="material-icons-outlined">favorite_border</i></button>'.html_safe, login_path%>
                                                             <%end%>
                                                         </div>
 
@@ -379,7 +379,7 @@
                                                         <div class="company_summary">
 
                                                             <%# <div class="company_location">
-                                                                <p><i class="material-icons">place</i> <%= company.location %></p>
+                                                                <p><i class="material-icons-outlined">place</i> <%= company.location %></p>
                                                             <%# </div> %>
 
                                                             <div class="review_point">
@@ -397,15 +397,15 @@
                                                                 </div>
 
                                                                 <div class="review_point_label">
-                                                                    <span> <i class="material-icons">sentiment_satisfied_alt</i><%= link_to " Đánh giá", company_path(company), class: "review_point_review_label" %></span>
+                                                                    <span> <i class="material-icons-outlined">insert_emoticon</i><%= link_to " Đánh giá", company_path(company), class: "review_point_review_label" %></span>
                                                                 </div>
 
                                                                 <div class="review_point_label">
-                                                                    <span> <i class="material-icons">people_outline</i><%= link_to " Phỏng vấn", company_path(company), class: "review_point_review_label" %></span>
+                                                                    <span> <i class="material-icons-outlined">people_outline</i><%= link_to " Phỏng vấn", company_path(company), class: "review_point_review_label" %></span>
                                                                 </div>
 
                                                                 <div class="review_point_label">
-                                                                    <span> <i class="material-icons">work_outline</i><%= link_to " Việc làm", company_path(company), class: "review_point_review_label" %></span>
+                                                                    <span> <i class="material-icons-outlined">work_outline</i><%= link_to " Việc làm", company_path(company), class: "review_point_review_label" %></span>
                                                                 </div>
                                                             </div>
                                                         </div>
@@ -417,7 +417,7 @@
                                             <%if current_user.admin?%>
                                                 <%# add new template%>
                                                 <div class="new-company">
-                                                    <%= link_to '<button type="submit"> <i class="material-icons">add</i>Tạo công ty mới</button>'.html_safe, new_company_path %>
+                                                    <%= link_to '<button type="submit"> <i class="material-icons-outlined">add</i>Tạo công ty mới</button>'.html_safe, new_company_path %>
                                                 </div>
                                             <%end%>
                                         <%end%>
@@ -451,12 +451,12 @@
                                                         <%if logged_in?%>
                                                             <% pre_follow = company.company_follows.find { |follow| follow.user_id == current_user.id} %>
                                                             <% if pre_follow %> 
-                                                                <%= link_to '<button class="follow_btn_highlight"><i class="material-icons">favorite</i></button>'.html_safe, company_company_follow_path(company, pre_follow), method: :delete%>
+                                                                <%= link_to '<button class="follow_btn_highlight"><i class="material-icons-outlined">favorite</i></button>'.html_safe, company_company_follow_path(company, pre_follow), method: :delete%>
                                                             <%else%>
-                                                                <%= link_to '<button class="follow_btn"><i class="material-icons">favorite_border</i></button>'.html_safe, company_company_follows_path(company), method: :post%>
+                                                                <%= link_to '<button class="follow_btn"><i class="material-icons-outlined">favorite_border</i></button>'.html_safe, company_company_follows_path(company), method: :post%>
                                                             <%end%>
                                                         <%else%>
-                                                            <%= link_to '<button class="follow_btn"><i class="material-icons">favorite_border</i></button>'.html_safe, login_path%>
+                                                            <%= link_to '<button class="follow_btn"><i class="material-icons-outlined">favorite_border</i></button>'.html_safe, login_path%>
                                                         <%end%>
                                                     </div>
 
@@ -497,7 +497,7 @@
                                                     <div class="company_summary">
 
                                                         <%# <div class="company_location">
-                                                            <p><i class="material-icons">place</i> <%= company.location %></p>
+                                                            <p><i class="material-icons-outlined">place</i> <%= company.location %></p>
                                                         <%# </div> %>
 
                                                         <div class="review_point">
@@ -515,15 +515,15 @@
                                                             </div>
 
                                                             <div class="review_point_label">
-                                                                <span> <i class="material-icons">sentiment_satisfied_alt</i><%= link_to " Đánh giá", company_path(company), class: "review_point_review_label" %></span>
+                                                                <span> <i class="material-icons-outlined">insert_emoticon</i><%= link_to " Đánh giá", company_path(company), class: "review_point_review_label" %></span>
                                                             </div>
 
                                                             <div class="review_point_label">
-                                                                <span> <i class="material-icons">people_outline</i><%= link_to " Phỏng vấn", company_path(company), class: "review_point_review_label" %></span>
+                                                                <span> <i class="material-icons-outlined">people_outline</i><%= link_to " Phỏng vấn", company_path(company), class: "review_point_review_label" %></span>
                                                             </div>
 
                                                             <div class="review_point_label">
-                                                                <span> <i class="material-icons">work_outline</i><%= link_to " Việc làm", company_path(company), class: "review_point_review_label" %></span>
+                                                                <span> <i class="material-icons-outlined">work_outline</i><%= link_to " Việc làm", company_path(company), class: "review_point_review_label" %></span>
                                                             </div>
                                                         </div>
                                                     </div>
@@ -535,7 +535,7 @@
                                             <%if current_user.admin?%>
                                                 <%# add new template%>
                                                 <div class="new-company">
-                                                    <%= link_to '<button type="submit"> <i class="material-icons">add</i>Tạo công ty mới</button>'.html_safe, new_company_path %>
+                                                    <%= link_to '<button type="submit"> <i class="material-icons-outlined">add</i>Tạo công ty mới</button>'.html_safe, new_company_path %>
                                                 </div>
                                             <%end%>
                                         <%end%>

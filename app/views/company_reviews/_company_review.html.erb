@@ -58,7 +58,7 @@
                     <div class="user_review_cotent">
                         <div class="user_review_pros">
                             <div class="user_review_pros_label">
-                                <i class="material-icons checked">check_circle_outline</i>
+                                <i class="material-icons-outlined checked">check_circle_outline</i>
                                 <strong>Ưu điểm</strong>
                             </div>
                             <div class="user_review_pros_content">
@@ -68,7 +68,7 @@
 
                         <div class="user_review_cons">
                             <div class="user_review_cons_label">
-                                <i class="material-icons checked">clear</i>
+                                <i class="material-icons-outlined checked">clear</i>
                                 <strong>Nhược điểm </strong>
                             </div>
                             <div class="user_review_cons_content">
@@ -82,30 +82,30 @@
 
                         <div class="review_info">
                             <div class="review_toolbar">
-                                <button class="reply_btn" onclick="myFunctionReplyReview()"><a><%= company_review.company_reply_reviews.count%></a><i class="material-icons">chat_bubble</i> <span>Trả lời</span> </button>
+                                <button class="reply_btn" onclick="myFunctionReplyReview()"><a><%= company_review.company_reply_reviews.count%></a><i class="material-icons-outlined">chat_bubble</i> <span>Trả lời</span> </button>
 
                                 <a><%= company_review.company_like_reviews.count%></a>
                                 <%if logged_in?%>
                                     <% pre_like = company_review.company_like_reviews.find { |like| like.user_id == current_user.id} %>
                                     <% if pre_like %>  
-                                        <%= link_to '<button class="like_btn_highlight"><i class="material-icons">thumb_up</i> <span>Thích</span> </button>'.html_safe, company_company_review_company_like_review_path(@company, company_review, pre_like), method: :delete%>
+                                        <%= link_to '<button class="like_btn_highlight"><i class="material-icons-outlined">thumb_up</i> <span>Thích</span> </button>'.html_safe, company_company_review_company_like_review_path(@company, company_review, pre_like), method: :delete%>
                                     <%else%>
-                                        <%= link_to '<button class="like_btn"><i class="material-icons">thumb_up</i> <span>Thích</span> </button>'.html_safe, company_company_review_company_like_reviews_path(@company, company_review), method: :post%>
+                                        <%= link_to '<button class="like_btn"><i class="material-icons-outlined">thumb_up</i> <span>Thích</span> </button>'.html_safe, company_company_review_company_like_reviews_path(@company, company_review), method: :post%>
                                     <%end%>
                                 <%else%>
-                                    <%= link_to '<button class="like_btn"><i class="material-icons">thumb_up</i> <span>Thích</span> </button>'.html_safe, login_path%>
+                                    <%= link_to '<button class="like_btn"><i class="material-icons-outlined">thumb_up</i> <span>Thích</span> </button>'.html_safe, login_path%>
                                 <%end%>
 
                                 <a><%= company_review.company_dislike_reviews.count%></a>
                                 <%if logged_in?%>
                                     <% pre_dislike = company_review.company_dislike_reviews.find { |dislike| dislike.user_id == current_user.id} %>
                                     <% if pre_dislike %>
-                                        <%= link_to '<button class="dislike_btn_highlight"><i class="material-icons">thumb_down</i> <span>Không thích</span> </button>'.html_safe, company_company_review_company_dislike_review_path(@company, company_review, pre_dislike), method: :delete%>
+                                        <%= link_to '<button class="dislike_btn_highlight"><i class="material-icons-outlined">thumb_down</i> <span>Không thích</span> </button>'.html_safe, company_company_review_company_dislike_review_path(@company, company_review, pre_dislike), method: :delete%>
                                     <%else%>
-                                        <%= link_to '<button class="dislike_btn"><i class="material-icons">thumb_down</i> <span>Không thích</span> </button>'.html_safe, company_company_review_company_dislike_reviews_path(@company, company_review), method: :post%>
+                                        <%= link_to '<button class="dislike_btn"><i class="material-icons-outlined">thumb_down</i> <span>Không thích</span> </button>'.html_safe, company_company_review_company_dislike_reviews_path(@company, company_review), method: :post%>
                                     <%end%>
                                 <%else%>
-                                    <%= link_to '<button class="dislike_btn"><i class="material-icons">thumb_down</i> <span>Không thích</span> </button>'.html_safe, login_path%>
+                                    <%= link_to '<button class="dislike_btn"><i class="material-icons-outlined">thumb_down</i> <span>Không thích</span> </button>'.html_safe, login_path%>
                                 <%end%>
                             </div>
                         </div>
@@ -124,7 +124,7 @@
 
                     <div class="new_reply_review_submit">
                         <button type="submit" class="new_reply_review_form_submit">
-                            <i class="material-icons">send</i>
+                            <i class="material-icons-outlined">send</i>
                         </button>
                     </div>
                 <%end%>

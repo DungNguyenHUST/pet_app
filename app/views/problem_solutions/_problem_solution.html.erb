@@ -10,18 +10,18 @@
         <div class="user_problem_solution_block">
             <div class="user_problem_solution_left">
                 <div class="user_avatar">
-                    <i class="material-icons">perm_identity</i>
+                    <i class="material-icons-outlined">perm_identity</i>
                 </div>
 
                 <%if logged_in?%>
                     <% pre_vote = problem_solution.problem_vote_solutions.find { |vote| vote.user_id == current_user.id} %>
                     <% if pre_vote %>  
-                        <%= link_to '<button class="problem_solution_like_highlight"><i class="material-icons">arrow_circle_up</i></button>'.html_safe, problem_problem_solution_problem_vote_solution_path(@problem, problem_solution, pre_vote), method: :delete%>
+                        <%= link_to '<button class="problem_solution_like_highlight"><i class="material-icons-outlined">arrow_circle_up</i></button>'.html_safe, problem_problem_solution_problem_vote_solution_path(@problem, problem_solution, pre_vote), method: :delete%>
                     <%else%>
-                        <%= link_to '<button class="problem_solution_like"><i class="material-icons">arrow_circle_up</i></button>'.html_safe, problem_problem_solution_problem_vote_solutions_path(@problem, problem_solution), method: :post%>
+                        <%= link_to '<button class="problem_solution_like"><i class="material-icons-outlined">arrow_circle_up</i></button>'.html_safe, problem_problem_solution_problem_vote_solutions_path(@problem, problem_solution), method: :post%>
                     <%end%>
                 <%else%>
-                    <%= link_to '<button class="problem_solution_like"><i class="material-icons">arrow_circle_up</i></button>'.html_safe, login_path%>
+                    <%= link_to '<button class="problem_solution_like"><i class="material-icons-outlined">arrow_circle_up</i></button>'.html_safe, login_path%>
                 <%end%>
 
                 <div class="problem_solution_like_info">
@@ -31,12 +31,12 @@
                 <%if logged_in?%>
                     <% pre_unvote = problem_solution.problem_unvote_solutions.find { |unvote| unvote.user_id == current_user.id} %>
                     <% if pre_unvote %>
-                        <%= link_to '<button class="problem_solution_dislike_highlight"><i class="material-icons">arrow_circle_down</i></button>'.html_safe, problem_problem_solution_problem_unvote_solution_path(@problem, problem_solution, pre_unvote), method: :delete%>
+                        <%= link_to '<button class="problem_solution_dislike_highlight"><i class="material-icons-outlined">arrow_circle_down</i></button>'.html_safe, problem_problem_solution_problem_unvote_solution_path(@problem, problem_solution, pre_unvote), method: :delete%>
                     <%else%>
-                        <%= link_to '<button class="problem_solution_dislike"><i class="material-icons">arrow_circle_down</i></button>'.html_safe, problem_problem_solution_problem_unvote_solutions_path(@problem, problem_solution), method: :post%>
+                        <%= link_to '<button class="problem_solution_dislike"><i class="material-icons-outlined">arrow_circle_down</i></button>'.html_safe, problem_problem_solution_problem_unvote_solutions_path(@problem, problem_solution), method: :post%>
                     <%end%>
                 <%else%>
-                    <%= link_to '<button class="problem_solution_dislike"><i class="material-icons">arrow_circle_down</i></button>'.html_safe, login_path%>
+                    <%= link_to '<button class="problem_solution_dislike"><i class="material-icons-outlined">arrow_circle_down</i></button>'.html_safe, login_path%>
                 <%end%>
             </div>
 
@@ -49,7 +49,7 @@
                     <div class="problem_solution_info">
                         <div class="problem_solution_toolbar">
                             <a><%= problem_solution.problem_reply_solutions.count%></a>
-                            <button class="reply_btn" onclick="myFunctionReplyproblem_solution()"><i class="material-icons">chat_bubble_outline</i> Trả lời </button>
+                            <button class="reply_btn" onclick="myFunctionReplyproblem_solution()"><i class="material-icons-outlined">chat_bubble_outline</i> Trả lời </button>
                         </div>
                     </div>
 
@@ -70,7 +70,7 @@
 
                     <div class="new_reply_problem_solution_submit">
                         <button type="submit" class="new_reply_problem_solution_form_submit">
-                            <i class="material-icons">send</i>
+                            <i class="material-icons-outlined">send</i>
                         </button>
                     </div>
                 <%end%>
@@ -89,8 +89,8 @@
 
             <div class="reply_problem_solution_content">
                 <%if problem_solution.problem_reply_solutions.count > 0%>
-                    <%# <button class="show_hide_reply_btn_show" onclick="myFunctionReplyproblem_solutionShowHide()"><i class="material-icons">keyboard_arrow_down</i></button> %>
-                    <%# <button class="show_hide_reply_btn_hide" onclick="myFunctionReplyproblem_solutionShowHide()"><i class="material-icons">keyboard_arrow_up</i></button> %>
+                    <%# <button class="show_hide_reply_btn_show" onclick="myFunctionReplyproblem_solutionShowHide()"><i class="material-icons-outlined">keyboard_arrow_down</i></button> %>
+                    <%# <button class="show_hide_reply_btn_hide" onclick="myFunctionReplyproblem_solutionShowHide()"><i class="material-icons-outlined">keyboard_arrow_up</i></button> %>
                     <div class="problem_solution_reply" id = "mydivShowHide">
                         <%= render problem_solution.problem_reply_solutions %>
                     </div>

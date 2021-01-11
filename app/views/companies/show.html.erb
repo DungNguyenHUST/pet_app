@@ -58,7 +58,7 @@
                                     </div>
 
                                     <div class="company_title_short_des">
-                                        <a><%= @company.company_reviews.count %> đánh giá | <%= @company.company_interviews.count %> nhận xét | <%=@company.company_follows.count%> follower</a>
+                                        <a><%= @company.company_reviews.count %> đánh giá | <%= @company.company_interviews.count %> nhận xét | <%=@company.company_follows.count%> theo dõi</a>
                                     </div>
                                 </div>
                             </div>
@@ -67,12 +67,12 @@
                                     <%if logged_in?%>
                                         <% pre_follow = @company.company_follows.find { |follow| follow.user_id == current_user.id} %>
                                         <% if pre_follow %> 
-                                            <%= link_to '<button class="follow_btn_highlight"><i class="material-icons">favorite</i> <span>Unfollow</span> </button>'.html_safe, company_company_follow_path(@company, pre_follow), method: :delete%>
+                                            <%= link_to '<button class="follow_btn_highlight"><i class="material-icons-outlined">favorite</i> <span>Unfollow</span> </button>'.html_safe, company_company_follow_path(@company, pre_follow), method: :delete%>
                                         <%else%>
-                                            <%= link_to '<button class="follow_btn"><i class="material-icons">favorite_border</i> <span>Follow</span> </button>'.html_safe, company_company_follows_path(@company), method: :post%>
+                                            <%= link_to '<button class="follow_btn"><i class="material-icons-outlined">favorite_border</i> <span>Follow</span> </button>'.html_safe, company_company_follows_path(@company), method: :post%>
                                         <%end%>
                                     <%else%>
-                                        <%= link_to '<button class="follow_btn"><i class="material-icons">favorite_border</i> <span>Follow</span> </button>'.html_safe, login_path%>
+                                        <%= link_to '<button class="follow_btn"><i class="material-icons-outlined">favorite_border</i> <span>Follow</span> </button>'.html_safe, login_path%>
                                     <%end%>
                                 </div>
                             </div>
@@ -84,19 +84,19 @@
                     <div class="container"> 
                         <ul class="nav nav-tabs" role="tablist">
                             <li class="nav-item">
-                                <a class="nav-link active" data-toggle="tab" href="#CompanyID"><i class="material-icons">corporate_fare</i>Giới thiệu</a>
+                                <a class="nav-link active" data-toggle="tab" href="#CompanyID"><i class="material-icons-outlined">corporate_fare</i>Giới thiệu</a>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link" data-toggle="tab" href="#CompanyJoinsID"><i class="material-icons">favorite_border</i>Chính sách</a>
+                                <a class="nav-link" data-toggle="tab" href="#CompanyJoinsID"><i class="material-icons-outlined">favorite_border</i>Chính sách</a>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link" data-toggle="tab" href="#CompanyReviewsID"><i class="material-icons">sentiment_satisfied_alt</i>Review công ty <span> <%= @company.company_reviews.count%><span></a>
+                                <a class="nav-link" data-toggle="tab" href="#CompanyReviewsID"><i class="material-icons-outlined">insert_emoticon</i>Review công ty <span> <%= @company.company_reviews.count%><span></a>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link" data-toggle="tab" href="#CompanyInterviewsID"><i class="material-icons">people_outline</i>Phỏng vấn <span> <%= @company.company_interviews.count%><span></a>
+                                <a class="nav-link" data-toggle="tab" href="#CompanyInterviewsID"><i class="material-icons-outlined">people_outline</i>Phỏng vấn <span> <%= @company.company_interviews.count%><span></a>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link" data-toggle="tab" href="#CompanyJobsID"><i class="material-icons">work_outline</i>Tuyển dụng <span> <%= @company.company_jobs.count%><span></a>
+                                <a class="nav-link" data-toggle="tab" href="#CompanyJobsID"><i class="material-icons-outlined">work_outline</i>Tuyển dụng <span> <%= @company.company_jobs.count%><span></a>
                             </li>
                         </ul>
                     </div>
@@ -218,13 +218,13 @@
 
                                     <div class="new_interview_question">
                                         <div class="new_interview_question_title">
-                                            <i class="material-icons checked">record_voice_over</i><strong> Chia sẻ câu hỏi phỏng vấn với mọi người </strong>
+                                            <i class="material-icons-outlined checked">record_voice_over</i><strong> Chia sẻ câu hỏi phỏng vấn với mọi người </strong>
                                         </div>
                                         <div class="new_interview_question_button">
                                             <%if logged_in?%>
-                                                <%= link_to '<button type="submit"> <i class="material-icons">add</i> <span> Thêm câu hỏi mới </span> </button>'.html_safe, new_problem_path %>
+                                                <%= link_to '<button type="submit"> <i class="material-icons-outlined">add</i> <span> Thêm câu hỏi mới </span> </button>'.html_safe, new_problem_path %>
                                             <%else%>
-                                                <%= link_to '<button type="submit"> <i class="material-icons">add</i> <span> Thêm câu hỏi mới </span> </button>'.html_safe, login_path %>
+                                                <%= link_to '<button type="submit"> <i class="material-icons-outlined">add</i> <span> Thêm câu hỏi mới </span> </button>'.html_safe, login_path %>
                                             <%end%>
                                         </div>
                                     </div>
@@ -242,12 +242,12 @@
                                                 <div class="new_job_button">
                                                     <%if logged_in?%>
                                                         <%if current_user.employer%>
-                                                            <%= link_to '<button type="submit"><i class="material-icons">add</i><span>Đăng tin tuyển dụng miễn phí<span></button>'.html_safe, new_company_company_job_path(@company) %>
+                                                            <%= link_to '<button type="submit"><i class="material-icons-outlined">add</i><span>Đăng tin tuyển dụng miễn phí<span></button>'.html_safe, new_company_company_job_path(@company) %>
                                                         <%else%>
-                                                            <%= link_to '<button type="submit"><i class="material-icons">add</i><span>Đăng tin tuyển dụng miễn phí<span></button>'.html_safe, login_path %>
+                                                            <%= link_to '<button type="submit"><i class="material-icons-outlined">add</i><span>Đăng tin tuyển dụng miễn phí<span></button>'.html_safe, login_path %>
                                                         <%end%>
                                                     <%else%>
-                                                        <%= link_to '<button type="submit"><i class="material-icons">add</i><span>Đăng tin tuyển dụng miễn phí<span></button>'.html_safe, login_path %>
+                                                        <%= link_to '<button type="submit"><i class="material-icons-outlined">add</i><span>Đăng tin tuyển dụng miễn phí<span></button>'.html_safe, login_path %>
                                                     <%end%>
                                                 </div>
                                             </div>

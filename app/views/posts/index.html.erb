@@ -30,9 +30,9 @@
                                     </div>
 
                                     <div class="post_info">
-                                        <i class="material-icons">person_outline</i><span><%=post.username%></span>
-                                        <i class="material-icons">chat_bubble_outline</i><span><%=post.post_comments.count%></span> 
-                                        <i class="material-icons">slow_motion_video</i><span><%=time_ago_in_words(post.created_at)%></span>
+                                        <i class="material-icons-outlined">person_outline</i><span><%=post.username%></span>
+                                        <i class="material-icons-outlined">chat_bubble_outline</i><span><%=post.post_comments.count%></span> 
+                                        <i class="material-icons-outlined">history_toggle_off</i><span><%=time_ago_in_words(post.created_at)%></span>
                                     </div>
 
                                     <div class="post_content">
@@ -40,7 +40,7 @@
                                     </div>
 
                                     <div class="post_view">
-                                        <%= link_to '<button type="submit"> Đọc tiếp <i class="material-icons">chevron_right</i></button>'.html_safe, post_path(post) %>
+                                        <%= link_to '<button type="submit"> Đọc tiếp <i class="material-icons-outlined">chevron_right</i></button>'.html_safe, post_path(post) %>
                                     </div>
                                 </div>
                             </div>
@@ -49,9 +49,9 @@
                         <%# New button %>
                         <div class="new_post">
                             <%if logged_in?%>
-                                <%= link_to '<button type="submit"><i class="material-icons">create</i>Tạo một bài viết mới</button>'.html_safe, new_post_path %>
+                                <%= link_to '<button type="submit"><i class="material-icons-outlined">create</i>Tạo một bài viết mới</button>'.html_safe, new_post_path %>
                             <%else%>
-                                <%= link_to '<button type="submit"><i class="material-icons">create</i>Tạo một bài viết mới</button>'.html_safe, login_path %>
+                                <%= link_to '<button type="submit"><i class="material-icons-outlined">create</i>Tạo một bài viết mới</button>'.html_safe, login_path %>
                             <%end%>
                         </div>
                     </div>

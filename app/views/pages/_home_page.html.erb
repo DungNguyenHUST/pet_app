@@ -35,11 +35,15 @@
                             <div class="input-group mb-3">
                                 <%= text_field_tag :search, params[:search], class: 'form-control', placeholder: "Tìm kiếm theo công việc, kĩ năng hoặc tên công ty" %>
                                 <div class="input-group-addon">
-                                    <i class="material-icons checked">search</i>
+                                    <i class="material-icons-outlined checked">search</i>
                                 </div>
                             </div>
                             
                             <div class="home_search_suggestion">
+                                <div class="home_search_suggestion_button_label">
+                                    <a>Đề xuất: </a>
+                                </div>
+
                                 <div class="home_search_suggestion_button">
                                     <%= link_to '<button type="button">Ruby & Rails</button>'.html_safe, pages_path %>
                                 </div>
@@ -79,7 +83,7 @@
                 <div class="container">
                     <div class="home_top_company">
                         <div class="home_top_company_label">
-                            <a><i class="material-icons">roofing</i>Công ty được yêu thích</a>
+                            <a>Công ty được yêu thích</a>
                         </div>
                         <div class="row">
                             <%i = 0%>
@@ -108,12 +112,12 @@
                                             <%if logged_in?%>
                                                 <% pre_follow = company.company_follows.find { |follow| follow.user_id == current_user.id} %>
                                                 <% if pre_follow %> 
-                                                    <%= link_to '<button class="follow_btn_highlight"><i class="material-icons">favorite</i></button>'.html_safe, company_company_follow_path(company, pre_follow), method: :delete%>
+                                                    <%= link_to '<button class="follow_btn_highlight"><i class="material-icons-outlined">favorite</i></button>'.html_safe, company_company_follow_path(company, pre_follow), method: :delete%>
                                                 <%else%>
-                                                    <%= link_to '<button class="follow_btn"><i class="material-icons">favorite_border</i></button>'.html_safe, company_company_follows_path(company), method: :post%>
+                                                    <%= link_to '<button class="follow_btn"><i class="material-icons-outlined">favorite_border</i></button>'.html_safe, company_company_follows_path(company), method: :post%>
                                                 <%end%>
                                             <%else%>
-                                                <%= link_to '<button class="follow_btn"><i class="material-icons">favorite_border</i></button>'.html_safe, login_path%>
+                                                <%= link_to '<button class="follow_btn"><i class="material-icons-outlined">favorite_border</i></button>'.html_safe, login_path%>
                                             <%end%>
                                         </div>
 
@@ -154,7 +158,7 @@
                                         <div class="company_summary">
 
                                             <%# <div class="company_location">
-                                                <p><i class="material-icons">place</i> <%= company.location %></p>
+                                                <p><i class="material-icons-outlined">place</i> <%= company.location %></p>
                                             <%# </div> %>
 
                                             <div class="review_point">
@@ -172,15 +176,15 @@
                                                 </div>
 
                                                 <div class="review_point_label">
-                                                    <span> <i class="material-icons">sentiment_satisfied_alt</i><%= link_to " Đánh giá", company_path(company), class: "review_point_review_label" %></span>
+                                                    <span> <i class="material-icons-outlined">insert_emoticon</i><%= link_to " Đánh giá", company_path(company), class: "review_point_review_label" %></span>
                                                 </div>
 
                                                 <div class="review_point_label">
-                                                    <span> <i class="material-icons">people_outline</i><%= link_to " Phỏng vấn", company_path(company), class: "review_point_review_label" %></span>
+                                                    <span> <i class="material-icons-outlined">people_outline</i><%= link_to " Phỏng vấn", company_path(company), class: "review_point_review_label" %></span>
                                                 </div>
 
                                                 <div class="review_point_label">
-                                                    <span> <i class="material-icons">work_outline</i><%= link_to " Việc làm", company_path(company), class: "review_point_review_label" %></span>
+                                                    <span> <i class="material-icons-outlined">work_outline</i><%= link_to " Việc làm", company_path(company), class: "review_point_review_label" %></span>
                                                 </div>
                                             </div>
                                         </div>
@@ -192,7 +196,7 @@
 
                     <div class="home_top_job_home">
                         <div class="home_top_job_home_label">
-                            <a><i class="material-icons">work_outline</i>Việc làm mới dành cho bạn</a>
+                            <a>Việc làm mới dành cho bạn</a>
                         </div>
                         
                         <div class="home_top_job_home_container">
@@ -233,11 +237,11 @@
                                                 </div>
 
                                                 <div class="user_job_location">
-                                                    <a><i class="material-icons">room</i><%= company_job.location %></a>
+                                                    <a><i class="material-icons-outlined">location_on</i><%= company_job.location %></a>
                                                 </div>
 
                                                 <div class="user_job_salary">
-                                                    <a><i class="material-icons">monetization_on</i><%= company_job.salary %></a>
+                                                    <a><i class="material-icons-outlined">local_offer</i><%= company_job.salary %></a>
                                                 </div>
                                             </div>
                                         </div>
@@ -258,7 +262,7 @@
 
                     <div class="home_top_question">
                         <div class="home_top_question_label">
-                            <a><i class="material-icons">turned_in_not</i>Câu hỏi phỏng vấn đang được quan tâm</a>
+                            <a>Câu hỏi phỏng vấn đang được quan tâm</a>
                         </div>
                         <div class="home_top_question_container">
                             <div class="row">
@@ -275,9 +279,9 @@
                                                 <a><%= problem.content%></a>
                                             </div>
                                             <div class="problem_info">
-                                                <a><i class="material-icons checked">wb_incandescent</i><%= problem.problem_solutions.count%> Trả lời</a>
-                                                <a><i class="material-icons checked">description</i><%= problem.difficult%></a>
-                                                <a><i class="material-icons checked">history_toggle_off</i><%= time_ago_in_words(problem.created_at)%></a>
+                                                <a><i class="material-icons-outlined checked">wb_incandescent</i><%= problem.problem_solutions.count%> Trả lời</a>
+                                                <a><i class="material-icons-outlined checked">calculate</i><%= problem.difficult%></a>
+                                                <a><i class="material-icons-outlined checked">history_toggle_off</i><%= time_ago_in_words(problem.created_at)%></a>
                                             </div>
                                         </div>
                                     </div>
@@ -288,7 +292,7 @@
 
                     <div class="home_top_blog">
                         <div class="home_top_blog_label">
-                            <a><i class="material-icons">insert_invitation</i>Bài viết mới</a>
+                            <a>Bài viết mới</a>
                         </div>
 
                         <div class="row">
@@ -314,9 +318,9 @@
                                             </div>
 
                                             <div class="post_info">
-                                                <i class="material-icons">person_outline</i><span><%=post.username%></span>
-                                                <i class="material-icons">chat_bubble_outline</i><span><%=post.post_comments.count%></span> 
-                                                <i class="material-icons">slow_motion_video</i><span><%=time_ago_in_words(post.created_at)%></span>
+                                                <i class="material-icons-outlined">person_outline</i><span><%=post.username%></span>
+                                                <i class="material-icons-outlined">chat_bubble_outline</i><span><%=post.post_comments.count%></span> 
+                                                <i class="material-icons-outlined">history_toggle_off</i><span><%=time_ago_in_words(post.created_at)%></span>
                                             </div>
 
                                             <div class="post_content">
@@ -324,7 +328,7 @@
                                             </div>
 
                                             <div class="post_view">
-                                                <%= link_to '<button type="submit"> Đọc tiếp <i class="material-icons">chevron_right</i></button>'.html_safe, post_path(post) %>
+                                                <%= link_to '<button type="submit"> Đọc tiếp <i class="material-icons-outlined">chevron_right</i></button>'.html_safe, post_path(post) %>
                                             </div>
                                         </div>
                                     </div>

@@ -14,7 +14,7 @@
                                 <div class="input-group mb-3">
                                     <%= text_field_tag :search, params[:search], class: 'form-control', placeholder: "Tìm kiếm câu hỏi" %>
                                     <div class="input-group-addon">
-                                        <i class="material-icons checked">search</i>
+                                        <i class="material-icons-outlined checked">search</i>
                                     </div>
                                 </div>
                             <%end%>
@@ -31,22 +31,22 @@
                         <div class="problem_index_tab_link">  
                             <ul class="nav nav-tabs" role="tablist">
                                 <li class="nav-item">
-                                    <a class="nav-link active" data-toggle="tab" href="#ProblemIndexAllID"><i class="material-icons">view_list</i>Tất cả <span><%=@problems.count%><span></a>
+                                    <a class="nav-link active" data-toggle="tab" href="#ProblemIndexAllID"><i class="material-icons-outlined">view_list</i>Tất cả <span><%=@problems.count%><span></a>
                                 </li>
                                 <li class="nav-item">
-                                    <a class="nav-link" data-toggle="tab" href="#ProblemIndexAlgorithmID"><i class="material-icons">calculate</i>Thuật toán<span><%=@problem_math.count%><span></a>
+                                    <a class="nav-link" data-toggle="tab" href="#ProblemIndexAlgorithmID"><i class="material-icons-outlined">calculate</i>Thuật toán<span><%=@problem_math.count%><span></a>
                                 </li>
                                 <li class="nav-item">
-                                    <a class="nav-link" data-toggle="tab" href="#ProblemIndexTestingID"><i class="material-icons">text_snippet</i>EQ Test <span><%=@problem_eq_test.count%><span></a>
+                                    <a class="nav-link" data-toggle="tab" href="#ProblemIndexTestingID"><i class="material-icons-outlined">text_snippet</i>EQ Test <span><%=@problem_eq_test.count%><span></a>
                                 </li>
                                 <li class="nav-item">
-                                    <a class="nav-link" data-toggle="tab" href="#ProblemIndexIQTestID"><i class="material-icons">batch_prediction</i>IQ Test <span><%=@problem_iq_test.count%><span></a>
+                                    <a class="nav-link" data-toggle="tab" href="#ProblemIndexIQTestID"><i class="material-icons-outlined">batch_prediction</i>IQ Test <span><%=@problem_iq_test.count%><span></a>
                                 </li>
                                 <li class="nav-item">
-                                    <a class="nav-link" data-toggle="tab" href="#ProblemIndexCareerID"><i class="material-icons">card_travel</i>Phỏng vấn <span><%=@problem_interview.count%><span></a>
+                                    <a class="nav-link" data-toggle="tab" href="#ProblemIndexCareerID"><i class="material-icons-outlined">card_travel</i>Phỏng vấn <span><%=@problem_interview.count%><span></a>
                                 </li>
                                 <li class="nav-item">
-                                    <a class="nav-link" data-toggle="tab" href="#ProblemIndexOtherID"><i class="material-icons">blur_on</i>Khác <span><%=@problem_other.count%><span></a>
+                                    <a class="nav-link" data-toggle="tab" href="#ProblemIndexOtherID"><i class="material-icons-outlined">blur_on</i>Khác <span><%=@problem_other.count%><span></a>
                                 </li>
                             </ul>
                         </div>
@@ -275,16 +275,16 @@
 
                         <div class="problem_new_button">
                             <%if logged_in?%>
-                                <%= link_to '<button type="submit"><i class="material-icons">create</i>Tạo một câu hỏi mới</button>'.html_safe, new_problem_path %>
+                                <%= link_to '<button type="submit"><i class="material-icons-outlined">create</i>Tạo một câu hỏi mới</button>'.html_safe, new_problem_path %>
                             <%else%>
-                                <%= link_to '<button type="submit"><i class="material-icons">create</i>Tạo một câu hỏi mới</button>'.html_safe, login_path %>
+                                <%= link_to '<button type="submit"><i class="material-icons-outlined">create</i>Tạo một câu hỏi mới</button>'.html_safe, login_path %>
                             <%end%>
                         </div>
                     </div>
                     
                     <div class="col-sm-4">
                         <div class="problem_top">
-                            <a><i class="material-icons">list</i>Top câu hỏi hot</a>
+                            <a><i class="material-icons-outlined">turned_in_not</i>Top câu hỏi hot</a>
                             <div class="problem_short">
                                 <%i = 0%>
                                 <% @problems_newest.each do |problem| %>
@@ -302,7 +302,7 @@
                             </div>
                         </div>
                         <div class="problem_company">
-                            <a><i class="material-icons">corporate_fare</i>Câu hỏi theo công ty</a>
+                            <a><i class="material-icons-outlined">corporate_fare</i>Câu hỏi theo công ty</a>
                             <div class="problem_short">
                                 <%i = 0%>
                                 <% @problems.each do |problem| %>
