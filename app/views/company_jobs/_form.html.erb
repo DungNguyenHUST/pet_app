@@ -15,11 +15,40 @@
                     <div class="new_job_section">
                         <div class="new_job_content">
                             <div class="new_job_label">
-                                <a><%= f.label :title, "Tiêu đề*", class: "new_job_label" %></a>
+                                <a><%= f.label :title, "Tiêu đề công việc*", class: "new_job_label" %></a>
                             </div>
                             
                             <div class="new_job_input">
                                 <%= f.text_field :title, :required => true, class: "new_job_form_input", placeholder: "Nhập tên việc làm đang tuyển dụng" %>
+                            </div>
+                        </div>
+
+                        <div class="new_job_content">
+                            <div class="new_job_label">
+                                <a><%= f.label :urgent, "Bạn cần tuyển gấp hay không?*", class: "new_job_label" %></a>
+                            </div>
+                            <div class="new_job_input">
+                                <%= f.select(:urgent, options_for_select([['Có, tôi cần tuyển gấp', true], ['Không, tôi không cần tuyển gấp', true]]), {include_blank: true}, { :class => 'my_style_class' }) %>
+                            </div>
+                        </div>
+                        
+                        <div class="new_job_content">
+                            <div class="new_job_label">
+                                <a><%= f.label :level, "Vị trí tuyển dụng*", class: "new_job_label" %></a>
+                            </div>
+                            
+                            <div class="new_job_input">
+                                <%= f.text_field :level, :required => true, class: "new_job_form_input", placeholder: "Nhập cấp bậc, vị trí cần tuyển dụng" %>
+                            </div>
+                        </div>
+                        
+                        <div class="new_job_content">
+                            <div class="new_job_label">
+                                <a><%= f.label :job_type, "Loại hình công việc*", class: "new_job_label" %></a>
+                            </div>
+                            
+                            <div class="new_job_input">
+                                <%= f.select(:job_type, options_for_select(['Full Time', 'Part Time', 'Remote']), {include_blank: true}, { :class => 'my_style_class' }) %>
                             </div>
                         </div>
 
@@ -50,6 +79,26 @@
                             
                             <div class="new_job_input">
                                 <%= f.number_field :quantity, :required => true,  class: "new_job_form_input", placeholder: "Số lượng vị trí cần tuyển dụng" %>
+                            </div>
+                        </div>
+
+                        <div class="new_job_content">
+                            <div class="new_job_label">
+                                <a><%= f.label :end_date, "Ngày hết hạn*", class: "new_job_label" %></a>
+                            </div>
+                            
+                            <div class="new_job_input">
+                                <%= f.date_field :end_date, :required => true, class: "new_job_form_input", placeholder: "Nhập ngày hết hạn nộp hồ sơ" %>
+                            </div>
+                        </div>
+
+                        <div class="new_job_content">
+                            <div class="new_job_label">
+                                <a><%= f.label :language, "Ngôn ngữ trình bày hồ sơ*", class: "new_job_label" %></a>
+                            </div>
+                            
+                            <div class="new_job_input">
+                                <%= f.select(:language, options_for_select(['English', 'Tiếng Việt']), {include_blank: true}, { :class => 'my_style_class' }) %>
                             </div>
                         </div>
 

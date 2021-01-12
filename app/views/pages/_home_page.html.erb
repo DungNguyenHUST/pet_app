@@ -212,6 +212,9 @@
                                                     <%= link_to (image_tag(company.avatar)), image_path(url_for(company.avatar)), rel: "gallery" , :href => company_path(company)%>
                                                 <%end%>
                                             </div>
+                                        </div>
+
+                                        <div class="user_job_right">
                                             <div class="user_job_des">
                                                 <div class="user_job_title">
                                                     <a><%= link_to (company_job.title), company_company_job_path(company, company_job) %></a>
@@ -243,15 +246,21 @@
                                                 <div class="user_job_salary">
                                                     <a><i class="material-icons-outlined">local_offer</i><%= company_job.salary %></a>
                                                 </div>
-                                            </div>
-                                        </div>
 
-                                        <div class="user_job_right">
-                                            <div class="user_job_hot">
-                                                <a>Urgent</a>
-                                            </div>
-                                            <div class="user_job_date">
-                                                <a><%= time_ago_in_words(company_job.created_at) %></a>
+                                                <div class="user_job_date">
+                                                    <a><%= time_ago_in_words(company_job.created_at) %></a>
+                                                </div>
+
+                                                <%if company_job.urgent%>
+                                                    <div class="user_job_hot">
+                                                        <a>Urgent</a>
+                                                        <i class="material-icons-outlined">turned_in_not</i>
+                                                    </div>
+                                                <%else%>
+                                                    <div class="user_job_hot1">
+                                                        <i class="material-icons-outlined">turned_in_not</i>
+                                                    </div>
+                                                <%end%>
                                             </div>
                                         </div>
                                     </div>

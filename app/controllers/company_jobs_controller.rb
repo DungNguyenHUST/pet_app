@@ -64,6 +64,6 @@ class CompanyJobsController < ApplicationController
     private
 
     def company_job_param
-        params.require(:company_job).permit(:id, :title, :location, :description_rich_text, :benefit_rich_text, :requirement_rich_text, :salary, :quantity, :category, :search)
+        params.require(:company_job).permit(:id, :title, :location, :description_rich_text, :benefit_rich_text, :requirement_rich_text, :salary, :quantity, :category, :search, :end_date, :language, :level, :job_type, :urgent)
     end
 end

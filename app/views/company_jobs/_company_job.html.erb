@@ -49,7 +49,11 @@
                 
             <div class="user_job_right">
                 <div class="user_job_hot">
-                    <a>Urgent</a>
+                    <%if company_job.urgent%>
+                        <a>Urgent</a>
+                    <%else%>
+                        <i class="material-icons-outlined">turned_in_not</i>
+                    <%end%>
                 </div>
                 <div class="user_job_date">
                     <a><%= time_ago_in_words(company_job.created_at) %></a>

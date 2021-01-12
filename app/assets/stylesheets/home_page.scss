@@ -369,10 +369,9 @@
 
         .home_top_job_home_container{
             .user_job_block {
-                clear: left;
-                min-height: 220px;
+                min-height: 240px;
                 @media screen and (max-width: 600px){
-                    min-height: 200px;
+                    min-height: 220px;
                 }
                 background-color: #f6fbf9;
                 border-top: 1px solid #ecedee;
@@ -388,19 +387,11 @@
                     padding-bottom: 20px;
                     padding-top: 25px;
                     padding-left: 15px;
-                    max-width: 80%;
+                    min-height: 200px;
                     float: left;
-                    @media screen and (max-width: 600px){
-                        padding-left: 10px;
-                        padding-top: 25px;
-                    }
-                    display: block;
-                    position: relative;
                     .company_avatar {
-                        float: left;
                         img{ 
                             border-radius: 3px;
-                            box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.1), 0 6px 20px 0 rgba(0, 0, 0, 0.09);
                             max-width: 100px;
                             max-height: 100px;
                             @media screen and (max-width: 600px){
@@ -409,12 +400,16 @@
                             }
                         }
                     }
-            
+                }
+                
+                .user_job_right{
+                    @media screen and (max-width: 600px){
+                        padding-left: 90px;
+                    }
+                    padding-left: 130px;
+                    padding-right: 10px;
                     .user_job_des{
-                        @media screen and (max-width: 600px){
-                            padding-left: 70px;
-                        }
-                        padding-left: 120px;    
+                        padding-top: 20px;
                         .user_job_title{
                             a{
                                 text-decoration: none !important ;
@@ -529,38 +524,63 @@
                                 }
                             }
                         }
-                    }
-                }
-            
-                .user_job_right{
-                    padding-top: 20px;
-                    padding-bottom: 20px;
-                    padding-right: 15px;
-                    float: right;
-                    max-width: 15%;
-                    .user_job_hot{
-                        text-align: right;
-                        a{
-                            padding-top: 2px;
-                            padding-bottom: 2px;
-                            padding-left: 8px;
-                            padding-right: 8px;
-                            border-radius: 2px;
-                            font-size: 12px;
-                            color: #fff;
-                            background-color: #ff5a5f;
-                        }
-                    }
+                        
                     
-                    .user_job_date{
-                        text-align: right;
-                        a{
-                            font-size: 13px;
-                            color: #1877f2;
+                        .user_job_date{
+                            text-align: left;
+                            padding-top: 15px;
+                            a{
+                                font-size: 13px;
+                                color: #1877f2;
+                            }
+                            @media screen and (max-width: 600px){
+                            
+                            }
                         }
-                        padding-top: 120px;
-                        @media screen and (max-width: 600px){
-                            padding-top: 90px;
+
+                        .user_job_hot{
+                            position: absolute;
+                            text-align: right;
+                            // float: right;
+                            // padding-left: 85%;
+                            a{
+                                padding-top: 2px;
+                                padding-bottom: 2px;
+                                padding-left: 8px;
+                                padding-right: 8px;
+                                border-radius: 2px;
+                                font-size: 12px;
+                                color: #fff;
+                                background-color: #ff5a5f;
+                            }
+                            i{
+                                color: #635f5f;
+                                font-size: 24px;
+                                position: relative;
+                                top : 8px;
+                            }
+                        }
+                        .user_job_hot1{
+                            position: absolute;
+                            // text-align: right;
+                            padding-top: -20px;
+                            padding-left: 70%;
+                            a{
+                                padding-top: 2px;
+                                padding-bottom: 2px;
+                                padding-left: 8px;
+                                padding-right: 8px;
+                                border-radius: 2px;
+                                font-size: 12px;
+                                color: #fff;
+                                background-color: #ff5a5f;
+                            }
+                            i{
+                                color: #635f5f;
+                                font-size: 24px;
+                                position: relative;
+                                top : 8px;
+                            }
                         }
                     }
                 }

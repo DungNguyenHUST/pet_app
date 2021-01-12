@@ -15,22 +15,25 @@
                                     <%= link_to (image_tag(@company.avatar)), image_path(url_for(@company.avatar)), rel: "gallery" , :href => company_path(@company)%>
                                 <%end%>
                             </div>
-                            <div class="job_title">
-                                <strong><%= @company_job.title %></strong>
-                            </div>
-                            <div class="company_name">
-                                <a><%= @company.name %></a>
-                            </div>
+                            <div class="job_des">
+                                <div class="job_title">
+                                    <strong><%= @company_job.title %></strong>
+                                </div>
+                                <div class="company_name">
+                                    <a><%= @company.name %></a>
+                                </div>
 
-                            <div class='job_block_info'>
-                                <div class="job_shoft_info">
-                                    <span><i class="material-icons-outlined">roofing</i><%= @company_job.location %></span>
-                                </div>
-                                <div class="job_shoft_info">
-                                    <span><i class="material-icons-outlined">local_offer</i><%= @company_job.salary %></span>
-                                </div>
-                                <div class="job_shoft_info">
-                                    <span><i class="material-icons-outlined">update</i><%= time_ago_in_words(@company_job.created_at) %></span>
+                                <div class='job_block_info'>
+                                    <div class="job_shoft_info">
+                                        <span><i class="material-icons-outlined">room</i><%= @company_job.location %></span>
+                                    </div>
+                                    <div class="job_shoft_info">
+                                        <span><i class="material-icons-outlined">local_offer</i><%= @company_job.salary %></span>
+                                    </div>
+                                    <div class="job_shoft_info">
+                                        <a><i class="material-icons-outlined">schedule</i> Đã đăng <%= time_ago_in_words(@company_job.created_at) %></a>
+                                        <a> - Hết hạn sau <%= time_ago_in_words(@company_job.created_at) %></a>
+                                    </div>
                                 </div>
                             </div>
                         </div>  
@@ -40,9 +43,19 @@
                         <div class="job_overview_right">
                             <div class="apply_job_button">
                                 <%if logged_in?%>
-                                    <%= link_to '<button type="submit">Nộp đơn</button>'.html_safe, new_company_apply_job_path(@company.id, @company_job.id)%>
+                                    <div class="apply_button">
+                                        <%= link_to '<button type="submit"><i class="material-icons-outlined">open_in_new</i>Nộp đơn</button>'.html_safe, new_company_apply_job_path(@company.id, @company_job.id)%>
+                                    </div>
+                                    <div class="save_button">
+                                        <%= link_to '<button type="submit"><i class="material-icons-outlined">turned_in_not</i>Save</button>'.html_safe, new_company_apply_job_path(@company.id, @company_job.id)%>
+                                    </div>
                                 <%else%>
-                                    <%= link_to '<button type="submit">Nộp đơn</button>'.html_safe, login_path%>
+                                    <div class="apply_button">
+                                        <%= link_to '<button type="submit"><i class="material-icons-outlined">open_in_new</i>Nộp đơn</button>'.html_safe, login_path%>
+                                    </div>
+                                    <div class="save_button">
+                                        <%= link_to '<button type="submit"><i class="material-icons-outlined">turned_in_not</i>Save</button>'.html_safe, login_path%>
+                                    </div>
                                 <%end%>
                             </div>
                         </div>
@@ -54,23 +67,6 @@
                 <div class='row'>
                     <div class="col-sm-8">
                         <div class='job_block_left'>
-                            <div class="job_benefit">
-                                <div class="job_section">
-                                    <strong>Top 3 lý do để bạn gia nhập công ty</strong>
-                                </div>
-                                <div class="job_content">
-                                    <div class="job_benefit_1">
-                                        <span><i class="material-icons-outlined">schedule</i> Không làm thêm giờ</span>
-                                    </div>
-                                    <div class="job_benefit_2">
-                                        <span><i class="material-icons-outlined">emoji_transportation</i> Xe đưa đón tận nơi</span>
-                                    </div>
-                                    <div class="job_benefit_3">
-                                        <span><i class="material-icons-outlined">child_care</i> Hưởng Bảo hiểm y tế và bảo hiểm xã hội theo luật Việt Nam</span>
-                                    </div>
-                                </div>
-                            </div>
-
                             <div class="job_description">
                                 <div class="job_section">
                                     <strong>Mô tả công việc</strong>
@@ -89,11 +85,28 @@
                                 </div>
                             </div>
                             
+                            <div class="job_benefit">
+                                <div class="job_section">
+                                    <strong>Top 3 lý do để bạn gia nhập công ty</strong>
+                                </div>
+                                <div class="job_content">
+                                    <div class="job_benefit_1">
+                                        <span><i class="material-icons-outlined">schedule</i> Không làm thêm giờ</span>
+                                    </div>
+                                    <div class="job_benefit_2">
+                                        <span><i class="material-icons-outlined">emoji_transportation</i> Xe đưa đón tận nơi</span>
+                                    </div>
+                                    <div class="job_benefit_3">
+                                        <span><i class="material-icons-outlined">child_care</i> Hưởng Bảo hiểm y tế và bảo hiểm xã hội theo luật Việt Nam</span>
+                                    </div>
+                                </div>
+                            </div>
+                            
                             <div class="apply_job_button">
                                 <%if logged_in?%>
-                                    <%= link_to '<button type="submit">Nộp đơn</button>'.html_safe, new_company_apply_job_path(@company.id, @company_job.id)%>
+                                    <%= link_to '<button type="submit"><i class="material-icons-outlined">open_in_new</i>Nộp đơn</button>'.html_safe, new_company_apply_job_path(@company.id, @company_job.id)%>
                                 <%else%>
-                                    <%= link_to '<button type="submit">Nộp đơn</button>'.html_safe, login_path%>
+                                    <%= link_to '<button type="submit"><i class="material-icons-outlined">open_in_new</i>Nộp đơn</button>'.html_safe, login_path%>
                                 <%end%>
                             </div>
                         </div>
@@ -110,25 +123,25 @@
                                 <div class="job_right_title">
                                     <a> <i class="material-icons-outlined">check_circle_outline</i> LĨNH VỰC CHÍNH</a>
                                 </div>
-                                <span> <%= time_ago_in_words(@company_job.created_at) %></span>
+                                <span> <%= @company_job.category %></span>
                             </div>
                             <div class="job_right">
                                 <div class="job_right_title">
                                     <a> <i class="material-icons-outlined">work_outline</i> CẤP BẬC</a>
                                 </div>
-                                <span> <%= time_ago_in_words(@company_job.created_at) %></span>
+                                <span> <%= @company_job.level %></span>
                             </div>
                             <div class="job_right">
                                 <div class="job_right_title">
                                     <a><i class="material-icons-outlined">translate</i> NGÔN NGỮ HỒ SƠ</a>
                                 </div>
-                                <span> <%= time_ago_in_words(@company_job.created_at) %></span>
+                                <span> <%= @company_job.language %></span>
                             </div>
                             <div class="job_right_end">
                                 <div class="job_right_title">
                                     <a> <i class="material-icons-outlined">timer</i> NGÀY HẾT HẠN</a>
                                 </div>
-                                <span> <%= time_ago_in_words(@company_job.created_at) %></span>
+                                <span> <%= @company_job.end_date %></span>
                             </div>
                         </div>
                     </div>
