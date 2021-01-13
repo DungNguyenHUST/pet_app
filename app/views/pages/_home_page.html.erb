@@ -205,7 +205,7 @@
                                 <%company.company_jobs.each do |company_job|%>
                                     <%i += 1%>
                                     <%break if i > 8%>
-                                    <div class="user_job_block">
+                                    <div class="user_home_job_block">
                                         <div class="user_job_left">
                                             <div class="company_avatar">
                                                 <%if company.avatar.attached?%>
@@ -243,24 +243,30 @@
                                                     <a><i class="material-icons-outlined">location_on</i><%= company_job.location %></a>
                                                 </div>
 
+                                                <div class="user_job_tech">
+                                                    <a><i class="material-icons-outlined">book</i><%= company_job.category %></a>
+                                                </div>
+
                                                 <div class="user_job_salary">
                                                     <a><i class="material-icons-outlined">local_offer</i><%= company_job.salary %></a>
                                                 </div>
 
                                                 <div class="user_job_date">
-                                                    <a><%= time_ago_in_words(company_job.created_at) %></a>
+                                                    <a><%= time_ago_in_words(company_job.created_at) %> • <%= company_job.job_type %></a>
                                                 </div>
 
-                                                <%if company_job.urgent%>
-                                                    <div class="user_job_hot">
-                                                        <a>Urgent</a>
-                                                        <i class="material-icons-outlined">turned_in_not</i>
-                                                    </div>
-                                                <%else%>
-                                                    <div class="user_job_hot1">
-                                                        <i class="material-icons-outlined">turned_in_not</i>
-                                                    </div>
-                                                <%end%>
+                                                <div class="user_job_save">
+                                                    <%if company_job.urgent%>
+                                                        <div class="user_job_hot">
+                                                            <a>Urgent</a>
+                                                            <i class="material-icons-outlined">turned_in_not</i>
+                                                        </div>
+                                                    <%else%>
+                                                        <div class="user_job_hot_and_save">
+                                                            <i class="material-icons-outlined">turned_in_not</i>
+                                                        </div>
+                                                    <%end%>
+                                                </div>
                                             </div>
                                         </div>
                                     </div>
