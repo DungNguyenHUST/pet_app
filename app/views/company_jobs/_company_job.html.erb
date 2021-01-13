@@ -56,18 +56,41 @@
                         <a><%= time_ago_in_words(company_job.created_at) %> • <%= company_job.job_type %></a>
                     </div>
 
-                    <div class="user_job_save">
-                        <%if company_job.urgent%>
-                            <div class="user_job_hot">
+                    <%if company_job.urgent%>                
+                        <div class="user_job_hot_save">
+                            <div class="user_job_hot_label">
                                 <a>Urgent</a>
-                                <i class="material-icons-outlined">turned_in_not</i>
                             </div>
-                        <%else%>
-                            <div class="user_job_hot_and_save">
-                                <i class="material-icons-outlined">turned_in_not</i>
+                            
+                            <div class="user_job_button_save">
+                                <%if logged_in?%>
+                                    <% pre_save = company_job.company_save_jobs.find { |save| save.user_id == current_user.id} %>
+                                    <% if pre_save %> 
+                                        <%= link_to '<button class="save_btn_highlight"><i class="material-icons">turned_in</i> </button>'.html_safe, company_company_job_company_save_job_path(@company.id, company_job.id, pre_save.id), method: :delete%>
+                                    <%else%>
+                                        <%= link_to '<button class="save_btn"><i class="material-icons-outlined">turned_in_not</i> </button>'.html_safe, company_company_job_company_save_jobs_path(@company.id, company_job.id), method: :post%>
+                                    <%end%>
+                                <%else%>
+                                    <%= link_to '<button class="save_btn"><i class="material-icons-outlined">turned_in_not</i> </button>'.html_safe, login_path%>
+                                <%end%>
                             </div>
-                        <%end%>
-                    </div>
+                        </div>
+                    <%else%>
+                        <div class="user_job_hot_save_only">
+                            <div class="user_job_button_save">
+                                <%if logged_in?%>
+                                    <% pre_save = company_job.company_save_jobs.find { |save| save.user_id == current_user.id} %>
+                                    <% if pre_save %> 
+                                        <%= link_to '<button class="save_btn_highlight"><i class="material-icons">turned_in</i> </button>'.html_safe, company_company_job_company_save_job_path(@company.id, company_job.id, pre_save.id), method: :delete%>
+                                    <%else%>
+                                        <%= link_to '<button class="save_btn"><i class="material-icons-outlined">turned_in_not</i> </button>'.html_safe, company_company_job_company_save_jobs_path(@company.id, company_job.id), method: :post%>
+                                    <%end%>
+                                <%else%>
+                                    <%= link_to '<button class="save_btn"><i class="material-icons-outlined">turned_in_not</i> </button>'.html_safe, login_path%>
+                                <%end%>
+                            </div>
+                        </div>   
+                    <%end%>
                 </div>
             </div>
         </div>

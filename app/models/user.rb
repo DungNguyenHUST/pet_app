@@ -22,5 +22,7 @@ class User < ApplicationRecord
 
     has_many :company_follows, dependent: :destroy
 
+    has_many :company_save_jobs, dependent: :destroy
+
     belongs_to :company, optional: true
 end
