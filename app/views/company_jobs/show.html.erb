@@ -87,17 +87,11 @@
                             
                             <div class="job_benefit">
                                 <div class="job_section">
-                                    <strong>Top 3 lý do để bạn gia nhập công ty</strong>
+                                    <strong>Chế độ đãi ngộ bạn sẽ nhận được</strong>
                                 </div>
                                 <div class="job_content">
-                                    <div class="job_benefit_1">
-                                        <span><i class="material-icons-outlined">schedule</i> Không làm thêm giờ</span>
-                                    </div>
-                                    <div class="job_benefit_2">
-                                        <span><i class="material-icons-outlined">emoji_transportation</i> Xe đưa đón tận nơi</span>
-                                    </div>
-                                    <div class="job_benefit_3">
-                                        <span><i class="material-icons-outlined">child_care</i> Hưởng Bảo hiểm y tế và bảo hiểm xã hội theo luật Việt Nam</span>
+                                    <div class="job_benefit_block">
+                                        <span><%= @company_job.benefit_rich_text %></span>
                                     </div>
                                 </div>
                             </div>
@@ -113,35 +107,114 @@
                     </div>
                     <div class="col-sm-4">
                         <div class='job_block_right'>
-                            <div class="job_right">
-                                <div class="job_right_title">
-                                    <a> <i class="material-icons-outlined">calendar_today</i> NGÀY ĐĂNG TUYỂN</a>
+                            <div class='job_block_right_des'>
+                                <div class="job_right">
+                                    <div class="job_right_title">
+                                        <a> <i class="material-icons-outlined">calendar_today</i> NGÀY ĐĂNG TUYỂN</a>
+                                    </div>
+                                    <span><%= time_ago_in_words(@company_job.created_at) %></span>
                                 </div>
-                                <span><%= time_ago_in_words(@company_job.created_at) %></span>
+                                <div class="job_right">
+                                    <div class="job_right_title">
+                                        <a> <i class="material-icons-outlined">check_circle_outline</i> LĨNH VỰC CHÍNH</a>
+                                    </div>
+                                    <span> <%= @company_job.category %></span>
+                                </div>
+                                <div class="job_right">
+                                    <div class="job_right_title">
+                                        <a> <i class="material-icons-outlined">work_outline</i> CẤP BẬC</a>
+                                    </div>
+                                    <span> <%= @company_job.level %></span>
+                                </div>
+                                <div class="job_right">
+                                    <div class="job_right_title">
+                                        <a><i class="material-icons-outlined">translate</i> NGÔN NGỮ HỒ SƠ</a>
+                                    </div>
+                                    <span> <%= @company_job.language %></span>
+                                </div>
+                                <div class="job_right_end">
+                                    <div class="job_right_title">
+                                        <a> <i class="material-icons-outlined">timer</i> NGÀY HẾT HẠN</a>
+                                    </div>
+                                    <span> <%= @company_job.end_date %></span>
+                                </div>
                             </div>
-                            <div class="job_right">
-                                <div class="job_right_title">
-                                    <a> <i class="material-icons-outlined">check_circle_outline</i> LĨNH VỰC CHÍNH</a>
+                            <div class='job_block_right_company'>
+                                <div class='job_block_right_label'>
+                                    <a>Mọi người nói gì về <%=@company.name%></a>
                                 </div>
-                                <span> <%= @company_job.category %></span>
-                            </div>
-                            <div class="job_right">
-                                <div class="job_right_title">
-                                    <a> <i class="material-icons-outlined">work_outline</i> CẤP BẬC</a>
+                                <div class='job_block_right_overview'>
+                                    <div class="review_job_score_star">
+                                        <div class="review_job_point">
+                                            <strong><%=rating_review_total_score.to_f.round(1)%> </strong>
+                                        </div>
+                                        <div class="review_job_score_star_des">
+                                            <%if rating_review_total_score > 0%>
+                                                <%rating_review_total_score.to_i.times do%>
+                                                    <i class="material-icons checked">circle</i>
+                                                <%end%>
+                                                <%(5 - rating_review_total_score.to_i).to_i.times do%>
+                                                    <i class="material-icons checked_out">radio_button_unchecked</i>
+                                                <%end%>
+                                            <%else%>
+                                                <%5.times do%>
+                                                    <i class="material-icons checked_out">radio_button_unchecked</i>
+                                                <%end%>
+                                            <%end%>
+                                        </div>
+                                    </div>
+
+                                    <div class="review_job_total_des">
+                                        <a>Dựa trên <%= @company.company_reviews.count%> đánh giá từ nhân viên</a>
+                                    </div>
+
+                                    <div class="review_job_score_recommand">  
+                                        <div class="review_job_score_recommand_title">
+                                            <a>Khuyến khích làm việc tại đây</a>
+                                        </div>
+
+                                        <div class="circle-wrap">
+                                            <div class="circle">
+                                                
+                                                <div class="mask full">
+                                                    <div class="fill"></div>
+                                                </div>
+                                            
+                                                <div class="mask half">
+                                                    <div class="fill"></div>
+                                                </div>
+                                                
+                                                <div class="inside-circle">
+                                                    <%= rating_review_total_score.to_i * 20%>%
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <style>
+                                            .circle-wrap .circle .mask .fill {
+                                                clip: rect(0px, 75px, 150px, 0px);
+                                                background-color: #ffc500;
+                                            }
+                                            .circle-wrap .circle .mask.full,
+                                            .circle-wrap .circle .fill {
+                                                animation: fill ease-in-out 3s;
+                                                transform: rotate(<%= rating_review_total_score.to_i * 36%>deg);
+                                            }
+                                            
+                                            @keyframes fill {
+                                            0% {
+                                                transform: rotate(0deg);
+                                            }
+                                            100% {
+                                                transform: rotate(<%= rating_review_total_score.to_i * 36%>deg);
+                                            }
+                                        }
+                                        </style>
+                                        
+                                    </div>
+                                    <div class="review_job_more">
+                                        <%= link_to '<button type="submit"> Xem thêm review <i class="material-icons-outlined">chevron_right</i></button>'.html_safe, company_path(@company) %>
+                                    </div>
                                 </div>
-                                <span> <%= @company_job.level %></span>
-                            </div>
-                            <div class="job_right">
-                                <div class="job_right_title">
-                                    <a><i class="material-icons-outlined">translate</i> NGÔN NGỮ HỒ SƠ</a>
-                                </div>
-                                <span> <%= @company_job.language %></span>
-                            </div>
-                            <div class="job_right_end">
-                                <div class="job_right_title">
-                                    <a> <i class="material-icons-outlined">timer</i> NGÀY HẾT HẠN</a>
-                                </div>
-                                <span> <%= @company_job.end_date %></span>
                             </div>
                         </div>
                     </div>

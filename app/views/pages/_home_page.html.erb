@@ -265,9 +265,9 @@
                                                             <%if logged_in?%>
                                                                 <% pre_save = company_job.company_save_jobs.find { |save| save.user_id == current_user.id} %>
                                                                 <% if pre_save %> 
-                                                                    <%= link_to '<button class="save_btn_highlight"><i class="material-icons">turned_in</i> </button>'.html_safe, company_company_job_company_save_job_path(company.id, company_job.id, pre_save.id), method: :delete%>
+                                                                    <%= link_to '<button class="save_btn_highlight"><i class="material-icons">turned_in</i> </button>'.html_safe, company_company_job_company_save_job_path(company.id, company_job.id, pre_save.id), method: :delete, remote: true %>
                                                                 <%else%>
-                                                                    <%= link_to '<button class="save_btn"><i class="material-icons-outlined">turned_in_not</i> </button>'.html_safe, company_company_job_company_save_jobs_path(company.id, company_job.id), method: :post%>
+                                                                    <%= link_to '<button class="save_btn"><i class="material-icons-outlined">turned_in_not</i> </button>'.html_safe, company_company_job_company_save_jobs_path(company.id, company_job.id), method: :post, remote: true %>
                                                                 <%end%>
                                                             <%else%>
                                                                 <%= link_to '<button class="save_btn"><i class="material-icons-outlined">turned_in_not</i> </button>'.html_safe, login_path%>
@@ -280,9 +280,9 @@
                                                             <%if logged_in?%>
                                                                 <% pre_save = company_job.company_save_jobs.find { |save| save.user_id == current_user.id} %>
                                                                 <% if pre_save %> 
-                                                                    <%= link_to '<button class="save_btn_highlight"><i class="material-icons">turned_in</i> </button>'.html_safe, company_company_job_company_save_job_path(company.id, company_job.id, pre_save.id), method: :delete%>
+                                                                    <%= link_to '<button class="save_btn_highlight"><i class="material-icons">turned_in</i> </button>'.html_safe, company_company_job_company_save_job_path(company.id, company_job.id, pre_save.id), method: :delete, remote: true%>
                                                                 <%else%>
-                                                                    <%= link_to '<button class="save_btn"><i class="material-icons-outlined">turned_in_not</i> </button>'.html_safe, company_company_job_company_save_jobs_path(company.id, company_job.id), method: :post%>
+                                                                    <%= link_to '<button class="save_btn"><i class="material-icons-outlined">turned_in_not</i> </button>'.html_safe, company_company_job_company_save_jobs_path(company.id, company_job.id), method: :post, remote: true %>
                                                                 <%end%>
                                                             <%else%>
                                                                 <%= link_to '<button class="save_btn"><i class="material-icons-outlined">turned_in_not</i> </button>'.html_safe, login_path%>
@@ -317,9 +317,25 @@
                                                 <a><%= problem.content%></a>
                                             </div>
                                             <div class="problem_info">
-                                                <a><i class="material-icons-outlined checked">wb_incandescent</i><%= problem.problem_solutions.count%> Trả lời</a>
-                                                <a><i class="material-icons-outlined checked">calculate</i><%= problem.difficult%></a>
-                                                <a><i class="material-icons-outlined checked">history_toggle_off</i><%= time_ago_in_words(problem.created_at)%></a>
+                                                <div class="problem_reply_info">
+                                                    <a><i class="material-icons-outlined checked">task_alt</i><%= problem.problem_solutions.count%> Giải pháp</a>
+                                                </div>
+                                                <div class="problem_difficult_info">
+                                                    <%problem_difficult = ""%>
+                                                    <%if(problem.difficult.to_i == 1 || problem.difficult.to_s == 'Dễ') %>
+                                                        <% problem_difficult = "easy" %>
+                                                    <% elsif (problem.difficult.to_i == 2 || problem.difficult.to_s == 'Trung bình') %>
+                                                        <% problem_difficult = "average" %>
+                                                    <% elsif (problem.difficult.to_i == 3 || problem.difficult.to_s == 'Khó') %>
+                                                        <% problem_difficult = "hard" %>
+                                                    <%end%>
+                                                    <div class=<%= problem_difficult %>>
+                                                        <a><i class="material-icons-outlined ">emoji_objects</i><%= problem.difficult %></a>
+                                                    </div>
+                                                </div>
+                                                <div class="problem_history_info">
+                                                    <a><i class="material-icons-outlined checked">history_toggle_off</i><%= time_ago_in_words(problem.created_at)%></a>
+                                                </div>
                                             </div>
                                         </div>
                                     </div>

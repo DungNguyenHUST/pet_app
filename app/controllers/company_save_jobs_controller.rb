@@ -34,7 +34,7 @@ class CompanySaveJobsController < ApplicationController
         @company_job = @company.company_jobs.find(params[:company_job_id])
         @company_save_job = @company_job.company_save_jobs.find(params[:id])
         @company_save_job.destroy
-        redirect_to page_path
+        redirect_to pages_path
     end
 
     def show
