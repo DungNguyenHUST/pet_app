@@ -20,6 +20,20 @@
 					</div>
 				</div>
 
+				<%if logged_in?%>
+					<div class="nav_login_moblie" >
+						<%= link_to user_path(current_user) do %>
+							<i class="material-icons-outlined">account_circle</i>
+						<% end %>
+					</div>
+				<%else%>
+					<div class="nav_login_moblie">
+						<%= link_to sessions_new_path do %>
+							<i class="material-icons-outlined">account_circle</i>
+						<% end %>
+					</div>
+				<%end%>
+
 				<a href="<%=pages_path %>">Tìm việc </a>
 				<a href="<%=companies_path %>">Review công ty </a>
 				<a href="<%=problems_path %>">Câu hỏi phỏng vấn </a>

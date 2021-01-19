@@ -94,13 +94,13 @@
                                                             </div>
                                                         </div>
 
-                                                        <div class="company_love_button">
+                                                        <div class="company_love_button" id ="<%=company.id%>">
                                                             <%if logged_in?%>
                                                                 <% pre_follow = company.company_follows.find { |follow| follow.user_id == current_user.id} %>
                                                                 <% if pre_follow %> 
-                                                                    <%= link_to '<button class="follow_btn_highlight"><i class="material-icons">favorite</i></button>'.html_safe, company_company_follow_path(company, pre_follow), method: :delete%>
+                                                                    <%= link_to '<button class="follow_btn_highlight"><i class="material-icons">favorite</i></button>'.html_safe, company_company_follow_path(company, pre_follow), remote: true, method: :delete%>
                                                                 <%else%>
-                                                                    <%= link_to '<button class="follow_btn"><i class="material-icons-outlined">favorite_border</i></button>'.html_safe, company_company_follows_path(company), method: :post%>
+                                                                    <%= link_to '<button class="follow_btn"><i class="material-icons-outlined">favorite_border</i></button>'.html_safe, company_company_follows_path(company), remote: true, method: :post%>
                                                                 <%end%>
                                                             <%else%>
                                                                 <%= link_to '<button class="follow_btn"><i class="material-icons-outlined">favorite_border</i></button>'.html_safe, login_path%>
@@ -211,13 +211,13 @@
                                                             </div>
                                                         </div>
 
-                                                        <div class="company_love_button">
+                                                        <div class="company_love_button" id ="<%=company.id%>">
                                                             <%if logged_in?%>
                                                                 <% pre_follow = company.company_follows.find { |follow| follow.user_id == current_user.id} %>
                                                                 <% if pre_follow %> 
-                                                                    <%= link_to '<button class="follow_btn_highlight"><i class="material-icons">favorite</i></button>'.html_safe, company_company_follow_path(company, pre_follow), method: :delete%>
+                                                                    <%= link_to '<button class="follow_btn_highlight"><i class="material-icons">favorite</i></button>'.html_safe, company_company_follow_path(company, pre_follow), remote: true, method: :delete%>
                                                                 <%else%>
-                                                                    <%= link_to '<button class="follow_btn"><i class="material-icons-outlined">favorite_border</i></button>'.html_safe, company_company_follows_path(company), method: :post%>
+                                                                    <%= link_to '<button class="follow_btn"><i class="material-icons-outlined">favorite_border</i></button>'.html_safe, company_company_follows_path(company), remote: true, method: :post%>
                                                                 <%end%>
                                                             <%else%>
                                                                 <%= link_to '<button class="follow_btn"><i class="material-icons-outlined">favorite_border</i></button>'.html_safe, login_path%>
@@ -329,13 +329,13 @@
                                                             </div>
                                                         </div>
 
-                                                        <div class="company_love_button">
+                                                        <div class="company_love_button" id ="<%=company.id%>">
                                                             <%if logged_in?%>
                                                                 <% pre_follow = company.company_follows.find { |follow| follow.user_id == current_user.id} %>
                                                                 <% if pre_follow %> 
-                                                                    <%= link_to '<button class="follow_btn_highlight"><i class="material-icons">favorite</i></button>'.html_safe, company_company_follow_path(company, pre_follow), method: :delete%>
+                                                                    <%= link_to '<button class="follow_btn_highlight"><i class="material-icons">favorite</i></button>'.html_safe, company_company_follow_path(company, pre_follow), remote: true, method: :delete%>
                                                                 <%else%>
-                                                                    <%= link_to '<button class="follow_btn"><i class="material-icons-outlined">favorite_border</i></button>'.html_safe, company_company_follows_path(company), method: :post%>
+                                                                    <%= link_to '<button class="follow_btn"><i class="material-icons-outlined">favorite_border</i></button>'.html_safe, company_company_follows_path(company), remote: true, method: :post%>
                                                                 <%end%>
                                                             <%else%>
                                                                 <%= link_to '<button class="follow_btn"><i class="material-icons-outlined">favorite_border</i></button>'.html_safe, login_path%>
@@ -447,13 +447,13 @@
                                                         </div>
                                                     </div>
 
-                                                    <div class="company_love_button">
+                                                    <div class="company_love_button" id ="<%=company.id%>">
                                                         <%if logged_in?%>
                                                             <% pre_follow = company.company_follows.find { |follow| follow.user_id == current_user.id} %>
                                                             <% if pre_follow %> 
-                                                                <%= link_to '<button class="follow_btn_highlight"><i class="material-icons">favorite</i></button>'.html_safe, company_company_follow_path(company, pre_follow), method: :delete%>
+                                                                <%= link_to '<button class="follow_btn_highlight"><i class="material-icons">favorite</i></button>'.html_safe, company_company_follow_path(company, pre_follow), remote: true, method: :delete%>
                                                             <%else%>
-                                                                <%= link_to '<button class="follow_btn"><i class="material-icons-outlined">favorite_border</i></button>'.html_safe, company_company_follows_path(company), method: :post%>
+                                                                <%= link_to '<button class="follow_btn"><i class="material-icons-outlined">favorite_border</i></button>'.html_safe, company_company_follows_path(company), remote: true, method: :post%>
                                                             <%end%>
                                                         <%else%>
                                                             <%= link_to '<button class="follow_btn"><i class="material-icons-outlined">favorite_border</i></button>'.html_safe, login_path%>
