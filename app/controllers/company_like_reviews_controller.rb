@@ -19,11 +19,14 @@ class CompanyLikeReviewsController < ApplicationController
         @company_review = CompanyReview.find(params[:company_review_id])
         if logged_in?
             if already_liked?
-                flash[:notice] = "You can't like more than once"
+                # flash[:notice] = "You can't like more than once"
             else
                 @company_like_review = @company_review.company_like_reviews.create(user_id: current_user.id)
             end
-            redirect_to company_path(@company)
+            respond_to do |format|
+                # format.html {redirect_to :back}
+                format.js
+            end
         else
             redirect_to login_path
         end
@@ -34,7 +37,10 @@ class CompanyLikeReviewsController < ApplicationController
         @company_review = @company.company_reviews.find(params[:company_review_id])
         @company_like_review = @company_review.company_like_reviews.find(params[:id])
         @company_like_review.destroy
-        redirect_to company_path(@company)
+        respond_to do |format|
+            # format.html {redirect_to :back}
+            format.js
+        end
     end
 
     def show

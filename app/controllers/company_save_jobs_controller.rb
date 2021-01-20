@@ -22,7 +22,10 @@ class CompanySaveJobsController < ApplicationController
                 flash[:notice] = "You can't save more than once"
             else              
                 @company_save_job = @company_job.company_save_jobs.create(user_id: current_user.id)
-                redirect_to pages_path
+            end
+            respond_to do |format|
+                format.html {redirect_to :back}
+                format.js
             end
         else
             redirect_to login_path
@@ -34,7 +37,10 @@ class CompanySaveJobsController < ApplicationController
         @company_job = @company.company_jobs.find(params[:company_job_id])
         @company_save_job = @company_job.company_save_jobs.find(params[:id])
         @company_save_job.destroy
-        redirect_to pages_path
+        respond_to do |format|
+            format.html {redirect_to :back}
+            format.js
+        end
     end
 
     def show
