@@ -173,7 +173,8 @@
         }
 
         .interview_info{
-            margin-top: 20px;
+            margin-top: 10px;
+            padding-bottom: 5px;
             .interview_toolbar {
                 display: block;
                 font-size: 13px;
@@ -182,7 +183,7 @@
                     // margin-right: -3px;
                 }
                 button{
-                    margin-right: 2px;
+                    margin-right: 3px;
                     font-size: 13px;
                     border: none;
                     background-color: #f8f9fa;
@@ -211,63 +212,72 @@
                     }
                 }
 
-                .reply_btn
-                {
-                    border: 1px solid #ffc500;
-                    min-width: 12%;
-                    border-radius: 3px;
-                    padding: 5px;
-                    color: #fff;
-                    background-color: #ffc500;
+                .interview_reply_button{
+                    float: left;
+                    .reply_btn
+                    {
+                        color: #a8a3a3;
+                        a{
+                            color: #a8a3a3;
+                            margin-right: 5px;
+                        }
+                        i{
+                            color: #a8a3a3;
+                        }
+                        &:hover{
+                            border-radius: 3px;
+                            background-color: #369;
+                            a{
+                                color: #fff;
+                            }
+                        }
+                    }
+                }
+
+                .interview_like_button{
+                    float: left;
+                    padding-left: 10px;
+                    margin-right: 10px;
+                    border-left: 1px solid #dfe1e5;
+                    border-right: 1px solid #dfe1e5;
+                    .like_btn_highlight
+                    {
+                        i{
+                            color: #1877f2;
+                        }
+                        &:focus {outline:none;}
+                    }
+
+                    .like_btn
+                    {
+                        color: #a8a3a3;
+                        i{
+                            color: #a8a3a3;
+                        }
+                        &:focus {outline:none;}
+                    }
                     a{
-                        color: #f1f1f1;
-                        margin-right: 5px;
-                    }
-                    i{
-                        color: #f1f1f1;
-                    }
-                    &:hover{
-                        background-color: #369;
-                        color: #fff;
+                        font-size: 13px;
                     }
                 }
-
-                .like_btn
-                {
-                    border-right: 1px solid #dfe1e5;
-                    min-width: 12%;
-                    i{
-                        color: #a8a3a3;
+                
+                .interview_dislike_button{
+                    
+                    .dislike_btn_highlight
+                    {
+                        i{
+                            color: #1877f2;
+                        }
+                        &:focus {outline:none;}
                     }
-                    &:focus {outline:none;}
-                }
-
-                .dislike_btn
-                {
-                    min-width: 12%;
-                    i{
-                        color: #a8a3a3;
+    
+                    .dislike_btn
+                    {
+                        i{
+                            color: #a8a3a3;
+                        }
+                        &:focus {outline:none;}
                     }
-                    &:focus {outline:none;}
-                }
-
-                .like_btn_highlight
-                {
-                    border-right: 1px solid #dfe1e5;
-                    min-width: 12%;
-                    i{
-                        color: #1877f2;
-                    }
-                    &:focus {outline:none;}
-                }
-
-                .dislike_btn_highlight
-                {
-                    min-width: 12%;
-                    i{
-                        color: #1877f2;
-                    }
-                    &:focus {outline:none;}
                 }
             }
         }

@@ -69,7 +69,7 @@
                         <div class="user_review_cons">
                             <div class="user_review_cons_label">
                                 <i class="material-icons-outlined checked">clear</i>
-                                <strong>Nhược điểm </strong>
+                                <strong>Nhược điểm</strong>
                             </div>
                             <div class="user_review_cons_content">
                                 <a><%= company_review.cons %></a>
@@ -82,8 +82,14 @@
 
                         <div class="review_info">
                             <div class="review_toolbar">
-                                <button class="reply_btn" onclick="myFunctionReplyReview()"><a><%= company_review.company_reply_reviews.count%></a><i class="material-icons-outlined">chat_bubble</i> <span>Trả lời</span> </button>
-                                
+                                <div class="review_reply_button">
+                                    <a><%= company_review.company_reply_reviews.count%></a>
+                                    <%if logged_in?%>
+                                        <button class="reply_btn" onclick="myFunctionReplyReview(<%=company_review.id%>)"><i class="material-icons-outlined">chat_bubble</i> <span>Trả lời</span> </button>
+                                    <%else%>
+                                        <%= link_to '<button class="reply_btn"><i class="material-icons-outlined">chat_bubble</i> <span>Trả lời</span> </button>'.html_safe, login_path%>
+                                    <%end%>
+                                </div>
                                 <div class="review_like_button" id="like_review_<%=company_review.id%>">
                                     <a><%= company_review.company_like_reviews.count%></a>
                                     <%if logged_in?%>
@@ -116,12 +122,11 @@
                 </div>
             </div>
             
-            <div class="new_reply_review_form" id = "mydivReview">
+            <div class="new_reply_review_form" id ="<%=company_review.id%>">
                 <%= form_for [@company, company_review, CompanyReplyReview.new] do |f| %>
-
                     <div class="new_reply_review_content">
                         <div class="new_reply_review_input_review">
-                            <%= f.text_area :reply_content, class: "new_reply_review_form_input_review", placeholder: "Gửi trả lời" %>
+                            <%= f.text_area :reply_content, class: "new_reply_review_form_input_review", placeholder: "Nhập vào câu trả lời của bạn" %>
                         </div>
                     </div>
 
@@ -134,11 +139,14 @@
             </div>
 
             <script>
-                function myFunctionReplyReview() {
-                    var x = document.getElementById("mydivReview");
-                    if (x.style.display == "none") {
+                function myFunctionReplyReview(review_id) {
+                    var x = document.getElementById(review_id);
+                    if (x.style.display == "none") 
+                    {
                         x.style.display = "block";
-                    } else {
+                    } 
+                    else 
+                    {
                         x.style.display = "none";
                     }
                 }

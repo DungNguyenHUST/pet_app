@@ -3,7 +3,6 @@
 <html>
     <head>
         <meta name="viewport" content="width=device-width, initial-scale=1">
-        
     </head>
 
     <body>
@@ -15,17 +14,58 @@
             </div>
 
             <div class="user_post_comment_cotent">
-                <div class="post_comment_info">
-                    <div class="user_post_comment_time">
-                        <a><%= post_comment.user_name %> . <%= time_ago_in_words(post_comment.created_at) %></a>
-                    </div>
-                </div>
                 <div class="user_post_comment_body">
                     <a><%= post_comment.comment_content %></a>
                 </div>
-                <div class="post_comment">
-                    <%= render post_comment.post_reply_comments %>
+                
+                <div class="post_reply_toolbar">
+                    <div class="post_reply_button">
+                        <a><%= post_comment.post_reply_comments.count%></a>
+                        <%if logged_in?%>
+                            <button class="reply_btn" onclick="myFunctionReplypost_comment(<%=post_comment.id%>)"><i class="material-icons-outlined">chat_bubble</i> <span>Trả lời</span> </button>
+                        <%else%>
+                            <%= link_to'<button class="reply_btn"><i class="material-icons-outlined">chat_bubble</i> <span>Trả lời</span> </button>'.html_safe, login_path%>
+                        <%end%>
+                    </div>
+
+                    <div class="post_comment_info">
+                        <a><%= post_comment.user_name %> . <%= time_ago_in_words(post_comment.created_at) %></a>
+                    </div>
                 </div>
+
+                <div class="new_reply_post_comment_form" id ="<%=post_comment.id%>">
+                    <%= form_for [@post, post_comment, PostReplyComment.new] do |f| %>
+                        <div class="new_reply_post_comment_content">
+                            <div class="new_reply_post_comment_input_post_comment">
+                                <%= f.text_area :reply_content, class: "new_reply_post_comment_form_input_post_comment", placeholder: "Nhập vào câu trả lời của bạn" %>
+                            </div>
+                        </div>
+
+                        <div class="new_reply_post_comment_submit">
+                            <button type="submit" class="new_reply_post_comment_form_submit">
+                                <i class="material-icons-outlined">send</i>
+                            </button>
+                        </div>
+                    <%end%>
+                </div>
+
+                <script>
+                    function myFunctionReplypost_comment(post_comment_id) {
+                        var x = document.getElementById(post_comment_id);
+                        if (x.style.display == "none") 
+                        {
+                            x.style.display = "block";
+                        } 
+                        else 
+                        {
+                            x.style.display = "none";
+                        }
+                    }
+                </script>
+            </div>
+            
+            <div class="post_reply_comment">
+                <%= render post_comment.post_reply_comments %>
             </div>
             
         </div>

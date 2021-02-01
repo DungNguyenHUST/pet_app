@@ -49,7 +49,7 @@
                     <div class="problem_solution_info">
                         <div class="problem_solution_toolbar">
                             <a><%= problem_solution.problem_reply_solutions.count%></a>
-                            <button class="reply_btn" onclick="myFunctionReplyproblem_solution()"><i class="material-icons-outlined">chat_bubble_outline</i> Trả lời </button>
+                            <button class="reply_btn" onclick="myFunctionReplyproblem_solution(<%=problem_solution.id%>)"><i class="material-icons-outlined">chat_bubble_outline</i> Trả lời </button>
                         </div>
                     </div>
 
@@ -59,9 +59,8 @@
                 </div>
             </div>
 
-            <div class="new_reply_problem_solution_form" id = "mydivproblem_solution">
+            <div class="new_reply_problem_solution_form" id ="<%=problem_solution.id%>">
                 <%= form_for [@problem, problem_solution, ProblemReplySolution.new] do |f| %>
-
                     <div class="new_reply_problem_solution_content">
                         <div class="new_reply_problem_solution_input_problem_solution">
                             <%= f.text_area :reply_content, class: "new_reply_problem_solution_form_input_problem_solution", placeholder: "Gửi trả lời" %>
@@ -77,8 +76,8 @@
             </div>
 
             <script>
-                function myFunctionReplyproblem_solution() {
-                    var x = document.getElementById("mydivproblem_solution");
+                function myFunctionReplyproblem_solution(problem_solution_id) {
+                    var x = document.getElementById(problem_solution_id);
                     if (x.style.display == "none") {
                         x.style.display = "block";
                     } else {

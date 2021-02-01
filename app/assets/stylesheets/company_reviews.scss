@@ -174,13 +174,14 @@
                 .user_review_body {
                     padding-top: 20px;
                     font-size: 14px;
-                    margin-bottom: 30px;
+                    margin-bottom: 20px;
                     display: block;
                     color: #111111;
                 }
         
                 .review_info{
-                    margin-top: 15px;
+                    margin-top: 10px;
+                    padding-bottom: 5px;
                     .review_toolbar {
                         display: block;
                         font-size: 13px;
@@ -217,66 +218,73 @@
                                 color: #a8a3a3;
                             }
                         }
-        
-                        .reply_btn
-                        {
-                            border: 1px solid #ffc500;
-                            min-width: 12%;
-                            border-radius: 3px;
-                            padding: 5px;
-                            color: #fff;
-                            background-color: #ffc500;
+                        
+                        .review_reply_button{
+                            float: left;
+                            .reply_btn
+                            {
+                                color: #a8a3a3;
+                                a{
+                                    color: #a8a3a3;
+                                    margin-right: 5px;
+                                }
+                                i{
+                                    color: #a8a3a3;
+                                }
+                                &:hover{
+                                    border-radius: 3px;
+                                    background-color: #369;
+                                    a{
+                                        color: #fff;
+                                    }
+                                }
+                            }
+                        }
+
+                        .review_like_button{
+                            float: left;
+                            padding-left: 10px;
+                            margin-right: 10px;
+                            border-left: 1px solid #dfe1e5;
+                            border-right: 1px solid #dfe1e5;
+                            .like_btn_highlight
+                            {
+                                i{
+                                    color: #1877f2;
+                                }
+                                &:focus {outline:none;}
+                            }
+    
+                            .like_btn
+                            {
+                                color: #a8a3a3;
+                                i{
+                                    color: #a8a3a3;
+                                }
+                                &:focus {outline:none;}
+                            }
                             a{
-                                color: #fff;
-                                margin-right: 5px;
-                            }
-                            i{
-                                color: #fff;
-                            }
-                            &:hover{
-                                background-color: #369;
-                                color: #fff;
+                                font-size: 13px;
                             }
                         }
-        
-                        .like_btn_highlight
-                        {
-                            border-right: 1px solid #dfe1e5;
-                            min-width: 12%;
-                            i{
-                                color: #1877f2;
+                        
+                        .review_dislike_button{
+                            
+                            .dislike_btn_highlight
+                            {
+                                i{
+                                    color: #1877f2;
+                                }
+                                &:focus {outline:none;}
                             }
-                            &:focus {outline:none;}
-                        }
-
-                        .like_btn
-                        {
-                            border-right: 1px solid #dfe1e5;
-                            min-width: 12%;
-                            color: #a8a3a3;
-                            i{
-                                color: #a8a3a3;
+            
+                            .dislike_btn
+                            {
+                                i{
+                                    color: #a8a3a3;
+                                }
+                                &:focus {outline:none;}
                             }
-                            &:focus {outline:none;}
-                        }
-
-                        .dislike_btn_highlight
-                        {
-                            border-right: 1px solid #dfe1e5;
-                            min-width: 12%;
-                            i{
-                                color: #1877f2;
-                            }
-                            &:focus {outline:none;}
-                        }
-        
-                        .dislike_btn
-                        {
-                            min-width: 12%;
-                            i{
-                                color: #a8a3a3;
-                            }
-                            &:focus {outline:none;}
                         }
                     }
                 }
