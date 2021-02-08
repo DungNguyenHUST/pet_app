@@ -62,17 +62,24 @@
                                     </div>
                                 </div>
                             </div>
+                            
                             <div class="col-sm-6">
-                                <div class="company_follow" id ='company_follow_show'>
+                                <div class="company_follow" id =<%=@company.id%>>
                                     <%if logged_in?%>
                                         <% pre_follow = @company.company_follows.find { |follow| follow.user_id == current_user.id} %>
                                         <% if pre_follow %> 
-                                            <%= link_to '<button class="follow_btn_highlight"><i class="material-icons">favorite</i> <span>Unfollow</span> </button>'.html_safe, company_company_follow_path(@company, pre_follow), remote: true, method: :delete%>
+                                            <%= button_to company_company_follow_path(@company, pre_follow), :method => :delete, remote: true, form_class: "follow_btn_highlight" do%>
+                                                <i class="material-icons">favorite</i> <span>Bỏ theo dõi</span>
+                                            <%end%> 
                                         <%else%>
-                                            <%= link_to '<button class="follow_btn"><i class="material-icons-outlined">favorite_border</i> <span>Follow</span> </button>'.html_safe, company_company_follows_path(@company), remote: true, method: :post%>
+                                            <%= button_to company_company_follows_path(@company), :method => :post, remote: true, form_class: "follow_btn" do%>
+                                                <i class="material-icons-outlined">favorite_border</i> <span>Theo dõi</span>
+                                            <%end%>
                                         <%end%>
                                     <%else%>
-                                        <%= link_to '<button class="follow_btn"><i class="material-icons-outlined">favorite_border</i> <span>Follow</span> </button>'.html_safe, login_path%>
+                                        <%= button_to login_path, :method => :post, remote: true, form_class: "follow_btn" do%>
+                                            <i class="material-icons-outlined">favorite_border</i> <span>Theo dõi</span>
+                                        <%end%>
                                     <%end%>
                                 </div>
                             </div>

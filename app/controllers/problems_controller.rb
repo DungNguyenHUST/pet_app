@@ -1,6 +1,7 @@
 class ProblemsController < ApplicationController
     def index
         @problems = Problem.search(params[:search]).order("created_at DESC").reverse
+        @problems_all = Problem.all
         @problems_newest = Problem.all.order("created_at DESC")
         @problem_solutions = ProblemSolution.all
 
@@ -10,7 +11,7 @@ class ProblemsController < ApplicationController
         @problem_interview = []
         @problem_other = []
 
-        @problems.each do |problem|
+        @problems_all.each do |problem|
             if(problem.category.to_i == 1 || problem.category.to_s == 'Thuật toán')
                 @problem_math.push(problem)
             elsif(problem.category.to_i == 2 || problem.category.to_s == 'Câu hỏi phỏng vấn')

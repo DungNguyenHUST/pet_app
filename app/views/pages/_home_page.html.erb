@@ -239,37 +239,43 @@
                                                     <a><%= company_job.description %></a>
                                                 </div>
 
-                                                <div class="user_job_location">
-                                                    <a><i class="material-icons-outlined">location_on</i><%= company_job.location %></a>
-                                                </div>
+                                                <div class="user_job_mark">
+                                                    <div class="user_job_location">
+                                                        <a><i class="material-icons-outlined">location_on</i><%= company_job.location %></a>
+                                                    </div>
 
-                                                <div class="user_job_tech">
-                                                    <a><i class="material-icons-outlined">book</i><%= company_job.category %></a>
-                                                </div>
+                                                    <div class="user_job_tech">
+                                                        <a><i class="material-icons-outlined">book</i><%= company_job.category %></a>
+                                                    </div>
 
-                                                <div class="user_job_salary">
-                                                    <a><i class="material-icons-outlined">local_offer</i><%= company_job.salary %></a>
-                                                </div>
+                                                    <div class="user_job_salary">
+                                                        <a><i class="material-icons-outlined">local_offer</i><%= company_job.salary%>$</a>
+                                                    </div>
 
-                                                <div class="user_job_date">
-                                                    <a><%= time_ago_in_words(company_job.created_at) %> • <%= company_job.job_type %></a>
-                                                </div>
-                                                                
-                                                <div class="user_job_hot_save">
-                                                    <div class="user_job_button_save" id="job_<%=company_job.id%>">
-                                                        <%if company_job.urgent%>
-                                                            <a class="hot_label">Urgent</a>
-                                                        <%end%>
-                                                        <%if logged_in?%>
-                                                            <% pre_save = company_job.company_save_jobs.find { |save| save.user_id == current_user.id} %>
-                                                            <% if pre_save %> 
-                                                                <%= link_to '<button class="save_btn_highlight"><i class="material-icons">turned_in</i> </button>'.html_safe, company_company_job_company_save_job_path(company.id, company_job.id, pre_save.id), method: :delete, remote: true %>
-                                                            <%else%>
-                                                                <%= link_to '<button class="save_btn"><i class="material-icons-outlined">turned_in_not</i> </button>'.html_safe, company_company_job_company_save_jobs_path(company.id, company_job.id), method: :post, remote: true %>
+                                                    <div class="user_job_type">
+                                                        <a><i class="material-icons-outlined">rss_feed</i><%= company_job.job_type %></a>
+                                                    </div>
+
+                                                    <div class="user_job_date">
+                                                        <a>Đã đăng <%= time_ago_in_words(company_job.created_at) %> • Hết hạn sau <%=company_job.end_date%> ngày</a>
+                                                    </div>
+                                                                    
+                                                    <div class="user_job_hot_save">
+                                                        <div class="user_job_button_save" id="job_<%=company_job.id%>">
+                                                            <%if company_job.urgent%>
+                                                                <a class="hot_label">Urgent</a>
                                                             <%end%>
-                                                        <%else%>
-                                                            <%= link_to '<button class="save_btn"><i class="material-icons-outlined">turned_in_not</i> </button>'.html_safe, login_path%>
-                                                        <%end%>
+                                                            <%if logged_in?%>
+                                                                <% pre_save = company_job.company_save_jobs.find { |save| save.user_id == current_user.id} %>
+                                                                <% if pre_save %> 
+                                                                    <%= link_to '<button class="save_btn_highlight"><i class="material-icons">turned_in</i> </button>'.html_safe, company_company_job_company_save_job_path(company.id, company_job.id, pre_save.id), method: :delete, remote: true %>
+                                                                <%else%>
+                                                                    <%= link_to '<button class="save_btn"><i class="material-icons-outlined">turned_in_not</i> </button>'.html_safe, company_company_job_company_save_jobs_path(company.id, company_job.id), method: :post, remote: true %>
+                                                                <%end%>
+                                                            <%else%>
+                                                                <%= link_to '<button class="save_btn"><i class="material-icons-outlined">turned_in_not</i> </button>'.html_safe, login_path%>
+                                                            <%end%>
+                                                        </div>
                                                     </div>
                                                 </div>
                                             </div>

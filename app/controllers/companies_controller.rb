@@ -2,7 +2,7 @@ class CompaniesController < ApplicationController
     def index
         @companies = Company.search(params[:search])
         @companies_all = Company.all
-        @companies_oder_name = Company.search(params[:search]).order('name DESC')
+        @companies_oder_name = Company.all.order('name DESC')
         @companies_oder_newest = Company.all.order('created_at DESC')
         @companies_most_recent = Company.all.order('created_at DESC').reverse
         @companies_best = []

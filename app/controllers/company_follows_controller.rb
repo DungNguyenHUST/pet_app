@@ -20,7 +20,7 @@ class CompanyFollowsController < ApplicationController
                 @company_follow = @company.company_follows.create(user_id: current_user.id)
             end
             respond_to do |format|
-                # format.html {redirect_to :back}
+                format.html
                 format.js
             end
         else
@@ -33,7 +33,7 @@ class CompanyFollowsController < ApplicationController
         @company_follow = @company.company_follows.find(params[:id])
         @company_follow.destroy
         respond_to do |format|
-            # format.html {redirect_to :back}
+            format.html
             format.js
         end
     end
