@@ -1,19 +1,12 @@
-<div id="job_<%=company_job.id%>">
-    <div class="user_job_hot_save">
-        <div class="user_job_button_save" id="job_<%=company_job.id%>">
-            <%if company_job.urgent%>
-                <a class="hot_label">Urgent</a>
-            <%end%>
-            <%if logged_in?%>
-                <% pre_save = company_job.company_save_jobs.find { |save| save.user_id == current_user.id} %>
-                <% if pre_save %> 
-                    <%= link_to '<button class="save_btn_highlight"><i class="material-icons">turned_in</i> </button>'.html_safe, company_company_job_company_save_job_path(@company.id, company_job.id, pre_save.id), method: :delete, remote: true %>
-                <%else%>
-                    <%= link_to '<button class="save_btn"><i class="material-icons-outlined">turned_in_not</i> </button>'.html_safe, company_company_job_company_save_jobs_path(@company.id, company_job.id), method: :post, remote: true %>
-                <%end%>
-            <%else%>
-                <%= link_to '<button class="save_btn"><i class="material-icons-outlined">turned_in_not</i> </button>'.html_safe, login_path%>
-            <%end%>
-        </div>
-    </div>
+<div id="save_job_<%=@company_job.id%>">
+    <% pre_save = @company_job.company_save_jobs.find { |save| save.user_id == current_user.id} %>
+    <% if pre_save %> 
+        <%= button_to company_company_job_company_save_job_path(@company, @company_job, pre_save), :method => :delete, remote: true, form_class: "save_btn_highlight" do%>
+            <i class="material-icons">turned_in_not</i> <span>L?u</span>
+        <%end%> 
+    <%else%>
+        <%= button_to company_company_job_company_save_jobs_path(@company, @company_job), :method => :post, remote: true, form_class: "save_btn" do%>
+            <i class="material-icons-outlined">turned_in_not</i> <span>H?y l?u</span>
+        <%end%>
+    <%end%>
 </div>

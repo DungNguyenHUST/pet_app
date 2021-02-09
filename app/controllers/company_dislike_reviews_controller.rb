@@ -21,6 +21,10 @@ class CompanyDislikeReviewsController < ApplicationController
                 @company_dislike_review = @company_review.company_dislike_reviews.create(user_id: current_user.id)
             end
             redirect_to company_path(@company)
+            # respond_to do |format|
+                # format.html {redirect_to :back}
+                # format.js
+            # end
         else
             redirect_to login_path
         end
@@ -32,6 +36,10 @@ class CompanyDislikeReviewsController < ApplicationController
         @company_dislike_review = @company_review.company_dislike_reviews.find(params[:id])
 
         @company_dislike_review.destroy
+        # respond_to do |format|
+            # format.html {redirect_to :back}
+            # format.js
+        # end
         redirect_to company_path(@company)
     end
 

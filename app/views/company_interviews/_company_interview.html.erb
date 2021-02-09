@@ -83,31 +83,47 @@
                                 <%= link_to'<button class="reply_btn"><i class="material-icons-outlined">chat_bubble</i> <span>Trả lời</span> </button>'.html_safe, login_path%>
                             <%end%>
                         </div>
-                        <div class="interview_like_button">
-                            <a><%= company_interview.company_like_interviews.count%></a>
+                        <div class="interview_like_button" id="like_interview_<%=company_interview.id%>">
+                            <div class="like_count">
+                                <a><%= company_interview.company_like_interviews.count%></a>
+                            </div>
                             <%if logged_in?%>
                                 <% pre_like = company_interview.company_like_interviews.find { |like| like.user_id == current_user.id} %>
-                                <% if pre_like %>  
-                                    <%= link_to '<button class="like_btn_highlight"><i class="material-icons">thumb_up</i> <span>Thích</span> </button>'.html_safe, company_company_interview_company_like_interview_path(@company, company_interview, pre_like), method: :delete%>
+                                <% if pre_like %>
+                                    <%= button_to company_company_interview_company_like_interview_path(@company, company_interview, pre_like), method: :delete, remote: true, form_class: "like_btn_highlight" do%>
+                                        <i class="material-icons">thumb_up</i> <span>Thích</span>
+                                    <%end%>   
                                 <%else%>
-                                    <%= link_to '<button class="like_btn"><i class="material-icons-outlined">thumb_up</i> <span>Thích</span> </button>'.html_safe, company_company_interview_company_like_interviews_path(@company, company_interview), method: :post%>
+                                    <%= button_to company_company_interview_company_like_interviews_path(@company, company_interview), method: :post, remote: true, form_class: "like_btn" do%>
+                                        <i class="material-icons-outlined">thumb_up</i> <span>Thích</span>
+                                    <%end%>
                                 <%end%>
                             <%else%>
-                                <%= link_to '<button class="like_btn"><i class="material-icons-outlined">thumb_up</i> <span>Thích</span> </button>'.html_safe, login_path%>
+                                <%= button_to login_path, form_class: "like_btn" do%>
+                                    <i class="material-icons-outlined">thumb_up</i> <span>Thích</span>
+                                <%end%>
                             <%end%>
                         </div>
 
-                        <div class="interview_dislike_button">
-                            <a><%= company_interview.company_dislike_interviews.count%></a>
+                        <div class="interview_dislike_button" id="dislike_interview_<%=company_interview.id%>">
+                            <div class="dislike_count">
+                                <a><%= company_interview.company_dislike_interviews.count%></a>
+                            </div>
                             <%if logged_in?%>
                                 <% pre_dislike = company_interview.company_dislike_interviews.find { |dislike| dislike.user_id == current_user.id} %>
                                 <% if pre_dislike %>
-                                    <%= link_to '<button class="dislike_btn_highlight"><i class="material-icons">thumb_down</i> <span>Không thích</span> </button>'.html_safe, company_company_interview_company_dislike_interview_path(@company, company_interview, pre_dislike), method: :delete%>
+                                    <%= button_to company_company_interview_company_dislike_interview_path(@company, company_interview, pre_dislike), method: :delete, remote: true, form_class: "dislike_btn_highlight" do%>
+                                        <i class="material-icons">thumb_down</i> <span>Không thích</span>
+                                    <%end%>  
                                 <%else%>
-                                    <%= link_to '<button class="dislike_btn"><i class="material-icons-outlined">thumb_down</i> <span>Không thích</span> </button>'.html_safe, company_company_interview_company_dislike_interviews_path(@company, company_interview), method: :post%>
+                                    <%= button_to company_company_interview_company_dislike_interviews_path(@company, company_interview), method: :post, remote: true, form_class: "dislike_btn" do%>
+                                        <i class="material-icons-outlined">thumb_down</i> <span>Không thích</span>
+                                    <%end%>
                                 <%end%>
                             <%else%>
-                                <%= link_to '<button class="dislike_btn"><i class="material-icons-outlined">thumb_down</i> <span>Không thích</span> </button>'.html_safe, login_path%>
+                                <%= button_to login_path, form_class: "dislike_btn" do%>
+                                    <i class="material-icons-outlined">thumb_down</i> <span>Không thích</span>
+                                <%end%>
                             <%end%>
                         </div>
                     </div>

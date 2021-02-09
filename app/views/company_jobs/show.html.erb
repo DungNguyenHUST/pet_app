@@ -46,8 +46,18 @@
                                     <div class="apply_button">
                                         <%= link_to '<button type="submit"><i class="material-icons-outlined">open_in_new</i>Nộp đơn</button>'.html_safe, new_company_apply_job_path(@company.id, @company_job.id)%>
                                     </div>
-                                    <div class="save_button">
-                                        <%= link_to '<button type="submit"><i class="material-icons-outlined">turned_in_not</i>Save</button>'.html_safe, new_company_apply_job_path(@company.id, @company_job.id)%>
+
+                                    <div class="save_button" id="save_job_<%=@company_job.id%>">
+                                        <% pre_save = @company_job.company_save_jobs.find { |save| save.user_id == current_user.id} %>
+                                        <% if pre_save %> 
+                                            <%= button_to company_company_job_company_save_job_path(@company, @company_job, pre_save), :method => :delete, remote: true, form_class: "save_btn_highlight" do%>
+                                                <i class="material-icons">turned_in_not</i> <span>Lưu</span>
+                                            <%end%> 
+                                        <%else%>
+                                            <%= button_to company_company_job_company_save_jobs_path(@company, @company_job), :method => :post, remote: true, form_class: "save_btn" do%>
+                                                <i class="material-icons-outlined">turned_in_not</i> <span>Hủy lưu</span>
+                                            <%end%>
+                                        <%end%>
                                     </div>
                                 <%else%>
                                     <div class="apply_button">

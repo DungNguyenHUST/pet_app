@@ -1,6 +1,6 @@
 class CompanyLikeReviewsController < ApplicationController
-    before_action :find_company_review
-    before_action :find_like, only: [:destroy]
+    # before_action :find_company_review
+    # before_action :find_like, only: [:destroy]
     
     def index 
         @company = Company.find(params[:company_id])
@@ -23,10 +23,11 @@ class CompanyLikeReviewsController < ApplicationController
             else
                 @company_like_review = @company_review.company_like_reviews.create(user_id: current_user.id)
             end
-            respond_to do |format|
+            redirect_to company_path(@company)
+            # respond_to do |format|
                 # format.html {redirect_to :back}
-                format.js
-            end
+                # format.js
+            # end
         else
             redirect_to login_path
         end
@@ -37,10 +38,11 @@ class CompanyLikeReviewsController < ApplicationController
         @company_review = @company.company_reviews.find(params[:company_review_id])
         @company_like_review = @company_review.company_like_reviews.find(params[:id])
         @company_like_review.destroy
-        respond_to do |format|
+        redirect_to company_path(@company)
+        # respond_to do |format|
             # format.html {redirect_to :back}
-            format.js
-        end
+            # format.js
+        # end
     end
 
     def show

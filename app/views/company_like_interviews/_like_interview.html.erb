@@ -1,19 +1,19 @@
-<div id="job_<%=company_job.id%>">
-    <div class="user_job_hot_save">
-        <div class="user_job_button_save" id="job_<%=company_job.id%>">
-            <%if company_job.urgent%>
-                <a class="hot_label">Urgent</a>
+<div id="like_interview_<%=company_interview.id%>">
+    <a><%= company_interview.company_like_interviews.count%></a>
+    <%if logged_in?%>
+        <% pre_like = company_interview.company_like_interviews.find { |like| like.user_id == current_user.id} %>
+        <% if pre_like %>
+            <%= button_to company_company_interview_company_like_interview_path(@company, company_interview, pre_like), method: :delete, remote: true, form_class: "like_btn_highlight" do%>
+                <i class="material-icons">thumb_up</i> <span>Th?ch</span>
+            <%end%>   
+        <%else%>
+            <%= button_to company_company_interview_company_like_interviews_path(@company, company_interview), method: :post, remote: true, form_class: "like_btn" do%>
+                <i class="material-icons-outlined">thumb_up</i> <span>Th?ch</span>
             <%end%>
-            <%if logged_in?%>
-                <% pre_save = company_job.company_save_jobs.find { |save| save.user_id == current_user.id} %>
-                <% if pre_save %> 
-                    <%= link_to '<button class="save_btn_highlight"><i class="material-icons">turned_in</i> </button>'.html_safe, company_company_job_company_save_job_path(@company.id, company_job.id, pre_save.id), method: :delete, remote: true %>
-                <%else%>
-                    <%= link_to '<button class="save_btn"><i class="material-icons-outlined">turned_in_not</i> </button>'.html_safe, company_company_job_company_save_jobs_path(@company.id, company_job.id), method: :post, remote: true %>
-                <%end%>
-            <%else%>
-                <%= link_to '<button class="save_btn"><i class="material-icons-outlined">turned_in_not</i> </button>'.html_safe, login_path%>
-            <%end%>
-        </div>
-    </div>
+        <%end%>
+    <%else%>
+        <%= button_to login_path, form_class: "like_btn" do%>
+            <i class="material-icons-outlined">thumb_up</i> <span>Th?ch</span>
+        <%end%>
+    <%end%>
 </div>

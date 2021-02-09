@@ -24,6 +24,10 @@ class ProblemUnvoteSolutionsController < ApplicationController
                 @problem_unvote_solution = @problem_solution.problem_unvote_solutions.create(user_id: current_user.id)
             end
             redirect_to problem_path(@problem)
+            # respond_to do |format|
+                # format.html {redirect_to :back}
+                # format.js
+            # end
         else
             redirect_to login_path
         end
@@ -35,6 +39,10 @@ class ProblemUnvoteSolutionsController < ApplicationController
         @problem_unvote_solution = @problem_solution.problem_unvote_solutions.find(params[:id])
         @problem_unvote_solution.destroy
         redirect_to problem_path(@problem)
+        # respond_to do |format|
+            # format.html {redirect_to :back}
+            # format.js
+        # end
     end
 
     def show

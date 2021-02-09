@@ -6,8 +6,8 @@
     height: 100%;
     margin-bottom: 20px;
     background-color: #fff;
-    border-top: 1px solid #dfe1e5;
-    padding-top: 20px;
+    // border-top: 1px solid #dfe1e5;
+    padding-top: 10px;
     .user_problem_solution_left
     {
         width: auto;
@@ -17,13 +17,13 @@
         float: left;
         .user_avatar {
             display: block;
-            margin-left: 5px;
+            margin-left: 10px;
             margin-right: auto;
             width: 50px;
             height: 50px;
             i{
                 text-align: center;
-                font-size: 30px;
+                font-size: 33px;
             }
             img {
                 width: 50px;
@@ -31,71 +31,86 @@
             }
         }
 
-        .problem_solution_like{
-            border: none;
-            background-color: #fff;
-            i{
-                text-align: left;
-                font-size: 36px;
-                color: #666;
-                position: relative;
-                left: -6px;
+        .user_vote_solution{
+            button{
+                border: none;
+                background-color: #fff;
+                &:focus {outline:none;}
             }
-            &:focus {outline:none;}
-        }
-
-        .problem_solution_like_highlight{
-            border: none;
-            background-color: #fff;
-            i{
-                color: #1877f2;
-                text-align: left;
-                font-size: 36px;
-                position: relative;
-                left: -6px;
+            .problem_solution_like{
+                border: none;
+                background-color: #fff;
+                i{
+                    text-align: left;
+                    font-size: 40px;
+                    color: #666;
+                    position: relative;
+                    // left: -3px;
+                }
+                &:focus {outline:none;}
             }
-            &:focus {outline:none;}
+    
+            .problem_solution_like_highlight{
+                border: none;
+                background-color: #fff;
+                i{
+                    color: #1877f2;
+                    text-align: left;
+                    font-size: 40px;
+                    position: relative;
+                    // left: -3px;
+                }
+                &:focus {outline:none;}
+            }
         }
 
         .problem_solution_like_info{
-            padding-left: 13px;
+            padding-left: 22px;
             a{
-                font-size: 16px;
-                text-align: left;
+                font-size: 14px;
+                text-align: center;
             }
         }
 
-        .problem_solution_dislike{
-            border: none;
-            background-color: #fff;
-            i{
-                text-align: left;
-                font-size: 36px;
-                color: #666;
-                position: relative;
-                left: -6px;
-            }
-            &:focus {outline:none;}
-        }
+        .user_unvote_solution{
 
-        .problem_solution_dislike_highlight{
-            border: none;
-            background-color: #fff;
-            i{
-                text-align: left;
-                font-size: 36px;
-                color: #1877f2;
-                position: relative;
-                left: -6px;
+            button{
+                background-color: #fff;
+                border: none;
+                &:focus {outline:none;}
             }
-            &:focus {outline:none;}
+            .problem_solution_dislike{
+                border: none;
+                background-color: #fff;
+                i{
+                    text-align: left;
+                    font-size: 40px;
+                    color: #666;
+                    position: relative;
+                    // left: -6px;
+                }
+                &:focus {outline:none;}
+            }
+    
+            .problem_solution_dislike_highlight{
+                border: none;
+                background-color: #fff;
+                i{
+                    text-align: left;
+                    font-size: 40px;
+                    color: #1877f2;
+                    position: relative;
+                    // left: -6px;
+                }
+                &:focus {outline:none;}
+            }
         }
     }
     
     .user_problem_solution_cotent
     {
         display: block;
-        margin-left: 50px;
+        margin-left: 60px;
         background-color: #f8f9fa;
         border-radius: 3px;
         padding: 10px;

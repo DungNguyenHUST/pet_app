@@ -3,11 +3,17 @@
     <%if logged_in?%>
         <% pre_like = company_review.company_like_reviews.find { |like| like.user_id == current_user.id} %>
         <% if pre_like %>  
-            <%= link_to '<button class="like_btn_highlight"><i class="material-icons">thumb_up</i> <span>Thích</span> </button>'.html_safe, company_company_review_company_like_review_path(@company, company_review, pre_like), method: :delete%>
+            <%= button_to company_company_review_company_like_review_path(@company, company_review, pre_like), method: :delete, remote: true, form_class: "like_btn_highlight" do %>
+                <i class="material-icons">thumb_up</i> <span>Thích</span>
+            <%end%>
         <%else%>
-            <%= link_to '<button class="like_btn"><i class="material-icons-outlined">thumb_up</i> <span>Thích</span> </button>'.html_safe, company_company_review_company_like_reviews_path(@company, company_review), method: :post%>
+            <%= button_to company_company_review_company_like_reviews_path(@company, company_review, pre_like), method: :post, remote: true, form_class: "like_btn" do %>
+                <i class="material-icons-outlined">thumb_up</i> <span>Thích</span>
+            <%end%>
         <%end%>
     <%else%>
-        <%= link_to '<button class="like_btn"><i class="material-icons-outlined">thumb_up</i> <span>Thích</span> </button>'.html_safe, login_path%>
+        <%= button_to login_path, method: :post, remote: true, form_class: "like_btn" do%>
+            <i class="material-icons-outlined">thumb_up</i> <span>Thích</span>
+        <%end%>
     <%end%>
 </div>
