@@ -85,12 +85,12 @@
                                 <div class="review_reply_button">
                                     <a><%= company_review.company_reply_reviews.count%></a>
                                     <%if logged_in?%>
-                                        <button class="reply_btn" onclick="myFunctionReplyReview(<%=company_review.id%>)"><i class="material-icons-outlined">chat_bubble</i> <span>Trả lời</span> </button>
+                                        <button class="reply_btn" onclick="myFunctionReplyReview(<%=company_review.id%>)"><i class="material-icons-outlined">chat_bubble_outline</i> <span>Trả lời</span> </button>
                                     <%else%>
-                                        <%= link_to '<button class="reply_btn"><i class="material-icons-outlined">chat_bubble</i> <span>Trả lời</span> </button>'.html_safe, login_path%>
+                                        <%= link_to '<button class="reply_btn"><i class="material-icons-outlined">chat_bubble_outline</i> <span>Trả lời</span> </button>'.html_safe, login_path%>
                                     <%end%>
                                 </div>
-                                <div class="review_like_button" id="like_review_<%=company_review.id%>">
+                                <div class="review_like_button" id="like_review_<%=@company_review.id%>">
                                     <div class="like_count">
                                         <a><%= company_review.company_like_reviews.count%></a>
                                     </div>

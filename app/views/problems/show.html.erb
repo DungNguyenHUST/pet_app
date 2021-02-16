@@ -33,11 +33,21 @@
                                         <div role="tabpanel" id="ProblemSolutionID" class="tab-pane"><br>
                                             <div class="problem_solution_tab">
                                                 <div class="problem_solution_best">
-                                                    <a class="problem_solution_best_title"> Câu trả lời hay nhất</a>
+                                                    <div class="problem_solution_best_title">
+                                                        <i class="material-icons-outlined">done</i>
+                                                        <a class="problem_solution_best_title"> Câu trả lời hay nhất</a>
+                                                    </div>
+                                                    <%if @problem_solutions_best != nil%>
+                                                        <%=render @problem_solutions_best%>
+                                                    <%else%>
+                                                        <a class="problem_solution_no_best_title">Rất tiếc, chưa có câu trả lời tốt nhất cho câu hỏi này...<a>
+                                                    <%end%>
                                                 </div>
 
                                                 <div class="problem_solution_normal">
-                                                    <a class="problem_solution_title"> <%=@problem.problem_solutions.count%> câu trả lời khác</a>
+                                                    <div class="problem_solution_title">
+                                                        <a>Xem thêm <%=@problem.problem_solutions.count%> câu trả lời khác</a>
+                                                    </div>
                                                     <%= render @problem.problem_solutions %>
                                                 </div>
                                             </div>
@@ -86,7 +96,7 @@
 
                         <div class="col-sm-4">
                             <div class="problem_related">
-                                <a><i class="material-icons-outlined">list</i>Câu hỏi liên quan</a>
+                                <a><i class="material-icons-outlined">format_list_numbered_rtl</i>Câu hỏi liên quan</a>
                                 <div class="problem_short">
                                     <%i = 0%>
                                     <% @problems.each do |problem| %>

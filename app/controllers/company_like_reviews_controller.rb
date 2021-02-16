@@ -1,6 +1,7 @@
 class CompanyLikeReviewsController < ApplicationController
     # before_action :find_company_review
     # before_action :find_like, only: [:destroy]
+    # respond_to :js, :json, :html
     
     def index 
         @company = Company.find(params[:company_id])
@@ -25,8 +26,8 @@ class CompanyLikeReviewsController < ApplicationController
             end
             redirect_to company_path(@company)
             # respond_to do |format|
-                # format.html {redirect_to :back}
-                # format.js
+            #     format.html { redirect_to company_company_review_url }
+            #     format.js
             # end
         else
             redirect_to login_path
@@ -40,8 +41,8 @@ class CompanyLikeReviewsController < ApplicationController
         @company_like_review.destroy
         redirect_to company_path(@company)
         # respond_to do |format|
-            # format.html {redirect_to :back}
-            # format.js
+        #     format.html { redirect_to company_company_review_url }
+        #     format.js
         # end
     end
 

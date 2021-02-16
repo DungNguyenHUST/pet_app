@@ -78,9 +78,9 @@
                         <div class="interview_reply_button">
                             <a><%= company_interview.company_reply_interviews.count%></a>
                             <%if logged_in?%>
-                                <button class="reply_btn" onclick="myFunctionReplyReview(<%=company_interview.id%>)"><i class="material-icons-outlined">chat_bubble</i> <span>Trả lời</span> </button>
+                                <button class="reply_btn" onclick="myFunctionReplyReview(<%=company_interview.id%>)"><i class="material-icons-outlined">chat_bubble_outline</i> <span>Trả lời</span> </button>
                             <%else%>
-                                <%= link_to'<button class="reply_btn"><i class="material-icons-outlined">chat_bubble</i> <span>Trả lời</span> </button>'.html_safe, login_path%>
+                                <%= link_to'<button class="reply_btn"><i class="material-icons-outlined">chat_bubble_outline</i> <span>Trả lời</span> </button>'.html_safe, login_path%>
                             <%end%>
                         </div>
                         <div class="interview_like_button" id="like_interview_<%=company_interview.id%>">

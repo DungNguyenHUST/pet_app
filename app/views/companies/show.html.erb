@@ -134,7 +134,11 @@
                                         <div class="row">
                                             <div class="col-sm-8">
                                                 <div class="company_review_left">
-                                                    <strong class="user_comment_heading"> Tất cả <%= @company.company_reviews.count%> đánh giá về <%= @company.name %> </strong>
+                                                    <%if @company.company_reviews.count > 0%>
+                                                        <strong class="user_comment_heading"> Tất cả <%= @company.company_reviews.count%> đánh giá về <%= @company.name %> </strong>
+                                                    <%else%>
+                                                        <strong class="user_comment_heading"> Chưa có dữ liệu thống kê, hãy là người đầu tiên đánh giá công ty này ...</strong>
+                                                    <%end%>
                                                     <div class="company_review_tab_des_left">
                                                         <%= render @company.company_reviews %>
                                                     </div>
@@ -184,8 +188,12 @@
                                         <div class="row">
                                             <div class="col-sm-8">
                                                 <div class="company_interview_tab_left">
-                                                    <strong class="user_comment_heading"> Tất cả <%= @company.company_interviews.count%> kinh nghiệm phỏng vấn tại <%= @company.name %></strong>
-                                                    <div class="company_interview_tab_des_left">
+                                                    <%if @company.company_interviews.count > 0%>
+                                                        <strong class="user_comment_heading"> Tất cả <%= @company.company_interviews.count%> kinh nghiệm phỏng vấn tại <%= @company.name %></strong>
+                                                    <%else%>
+                                                        <strong class="user_comment_heading"> Chưa có dữ liệu thống kê, hãy chia sẻ quá trình phỏng vấn của bạn tại công ty này ...</strong>
+                                                    <%end%>
+                                                   <div class="company_interview_tab_des_left">
                                                         <%= render @company.company_interviews %>
                                                     </div>
                                                 </div>
@@ -259,7 +267,11 @@
                                                 </div>
                                             </div>
                                             <div class="user_comment_heading_job">
-                                                <strong> Tìm thấy <%= @company.company_jobs.count%> việc làm tại <%= @company.name %> </strong>
+                                                <%if @company.company_jobs.count > 0%>
+                                                    <strong> Tìm thấy <%= @company.company_jobs.count%> việc làm tại <%= @company.name %> </strong>
+                                                <%else%>
+                                                    <strong> Rất tiếc, hiện tại chưa có việc làm đang tuyển dụng </strong>
+                                                <%end%>
                                             </div>
                                         </div>
                                         <div class="company_job_index">

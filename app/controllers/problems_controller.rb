@@ -50,7 +50,16 @@ class ProblemsController < ApplicationController
     def show
         @problem = Problem.find params[:id]
         @problems = Problem.all
-        @problem_solution = @problem.problem_solutions
+        @problem_solutions = @problem.problem_solutions
+        
+        @problem_solutions_best = []
+        count = 0
+        @problem_solutions.each do |problem_solution|
+            if problem_solution.problem_vote_solutions.count - problem_solution.problem_unvote_solutions.count >= count
+                count = problem_solution.problem_vote_solutions.count - problem_solution.problem_unvote_solutions.count
+                @problem_solutions_best = problem_solution
+            end
+        end
     end
 
     def edit
