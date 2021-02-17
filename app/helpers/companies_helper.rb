@@ -89,14 +89,10 @@ module CompaniesHelper
     end
 
     def rating_interview_offer_score
+        rate_offer = 0
+        offer_count = CompanyInterview.where(offer: true).count
         if(@company.company_interviews.count > 0)
-            count = 0
-            @company.company_interviews.each do |company_interview|
-                if company_interview.offer
-                    count += 1
-                end
-            end
-            rate_offer = count / @company.company_interviews.count
+            rate_offer = (offer_count / @company.company_interviews.count)
         else
             rate_offer = 0
         end

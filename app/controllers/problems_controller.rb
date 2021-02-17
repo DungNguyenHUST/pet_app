@@ -60,6 +60,13 @@ class ProblemsController < ApplicationController
                 @problem_solutions_best = problem_solution
             end
         end
+
+        @problem_submition = []
+        @problem_solutions.each do |problem_solution|
+            if problem_solution.user_id == current_user.id
+                @problem_submition.push(problem_solution)
+            end
+        end
     end
 
     def edit

@@ -323,6 +323,16 @@
 
                         <div class="new_company_content">
                             <div class="new_company_label">
+                                <a><%= f.label :values, "Doanh thu công ty*", class: "new_company_label_name" %></a>
+                            </div>
+
+                            <div class="new_company_input">
+                                <%= f.select(:values, options_for_select(['1-10 billion VND', '10-50 billion VND', '50-100 billion VND', '100-500 billion VND', '500-1000 billion VND', '1000+ billion VND'], "1-10 billion VND"), {include_blank: true}, { :class => 'my_style_class' }) %>
+                            </div>
+                        </div>
+
+                        <div class="new_company_content">
+                            <div class="new_company_label">
                                 <a><%= f.label :field_operetion, "Lĩnh vực hoạt động chính*", class: "new_company_label_name" %></a>
                             </div>
 

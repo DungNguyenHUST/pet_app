@@ -12,12 +12,15 @@
                         <div class="col-sm-8">
                             <div class="problem_area_left">
                                 <div class="problem_tab_link">
-                                    <ul class="nav nav-tabs nav-justified" role="tablist">
+                                    <ul class="nav nav-tabs nav-justified" id="problem_tabs" role="tablist">
                                         <li class="nav-item">
                                             <a class="nav-link active" data-toggle="tab" href="#ProblemDescriptionID"><i class="material-icons-outlined">content_paste</i>Mô tả</a>
                                         </li>
                                         <li class="nav-item">
                                             <a class="nav-link" data-toggle="tab" href="#ProblemSolutionID"><i class="material-icons-outlined">check_circle_outline</i>Giải pháp<span> <%= @problem.problem_solutions.count%><span></a>
+                                        </li>
+                                        <li class="nav-item">
+                                            <a class="nav-link" data-toggle="tab" href="#SubmitSolutionID"><i class="material-icons-outlined">check_circle_outline</i>Submission<span> <%= @problem_submition.count%><span></a>
                                         </li>
                                     </ul>
                                 </div>
@@ -52,6 +55,12 @@
                                                 </div>
                                             </div>
                                         </div>
+
+                                        <div role="tabpanel" id="SubmitSolutionID" class="tab-pane fade in active"><br>
+                                            <div class="problem_submit_tab">    
+                                                <%= render @problem_submition%>
+                                            </div>
+                                        </div>
                                     </div>
                                 </div>
 
@@ -67,6 +76,20 @@
                                         }
                                     });
                                 </script>
+
+                                <%if !@problem_submition.count%>
+                                    <script type="text/javascript">
+                                        $('#problem_tabs a[href="#ProblemSolutionID"').click(function (e) {
+                                            e.preventDefault()
+                                            var areYouSure = confirm('Bạn chưa có giải pháp nào cho câu hỏi này, bạn có muốn xem đáp án hay không?');
+                                            if (areYouSure === true) {
+                                                $(this).tab('show')
+                                            } else {
+                                                return false;
+                                            }
+                                        })
+                                    </script>
+                                <%end%>
                             </div>
 
                             <div class="problem_area_right">

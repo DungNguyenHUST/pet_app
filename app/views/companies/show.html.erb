@@ -77,7 +77,7 @@
                                             <%end%>
                                         <%end%>
                                     <%else%>
-                                        <%= button_to login_path, :method => :post, remote: true, form_class: "follow_btn" do%>
+                                        <%= button_to login_path, :method => :get, form_class: "follow_btn" do%>
                                             <i class="material-icons-outlined">favorite_border</i> <span>Theo dõi</span>
                                         <%end%>
                                     <%end%>
@@ -137,7 +137,7 @@
                                                     <%if @company.company_reviews.count > 0%>
                                                         <strong class="user_comment_heading"> Tất cả <%= @company.company_reviews.count%> đánh giá về <%= @company.name %> </strong>
                                                     <%else%>
-                                                        <strong class="user_comment_heading"> Chưa có dữ liệu thống kê, hãy là người đầu tiên đánh giá công ty này ...</strong>
+                                                        <strong class="user_comment_heading"> Chưa có đủ dữ liệu thống kê ...</strong>
                                                     <%end%>
                                                     <div class="company_review_tab_des_left">
                                                         <%= render @company.company_reviews %>
@@ -191,7 +191,7 @@
                                                     <%if @company.company_interviews.count > 0%>
                                                         <strong class="user_comment_heading"> Tất cả <%= @company.company_interviews.count%> kinh nghiệm phỏng vấn tại <%= @company.name %></strong>
                                                     <%else%>
-                                                        <strong class="user_comment_heading"> Chưa có dữ liệu thống kê, hãy chia sẻ quá trình phỏng vấn của bạn tại công ty này ...</strong>
+                                                        <strong class="user_comment_heading"> Chưa có đủ dữ liệu thống kê ...</strong>
                                                     <%end%>
                                                    <div class="company_interview_tab_des_left">
                                                         <%= render @company.company_interviews %>

@@ -22,7 +22,7 @@
                                 <a> <i class="material-icons-outlined">link</i> Website </a>
                             </div>
                             <div class="company_profile_content">
-                                <%= @company.website %>
+                                <%=h auto_link(simple_format(@company.website), :link => :urls) %>
                             </div>
 
                             <div class="company_profile_section">
@@ -34,7 +34,6 @@
                         </div>
 
                         <div class="col-sm-3">
-
                             <div class="company_profile_section">
                                 <a><i class="material-icons-outlined">people</i> Quy mô công ty </a>
                             </div>
@@ -46,19 +45,18 @@
                                 <a> <i class="material-icons-outlined">event_available</i> Năm thành lập </a>
                             </div>
                             <div class="company_profile_content">
-                                <%= @company.time_establish %>
+                                <%= @company.time_establish.strftime("%B %d, %Y")%>
                             </div>
 
                             <div class="company_profile_section">
                                 <a> <i class="material-icons-outlined">money</i> Doanh thu </a>
                             </div>
                             <div class="company_profile_content">
-                                <%= @company.time_end %>
+                                <%= @company.values%>
                             </div>
                         </div>
 
                         <div class="col-sm-3">
-
                             <div class="company_profile_section">
                                 <a> <i class="material-icons-outlined">flag</i> Quốc gia </a>
                             </div>
@@ -79,7 +77,7 @@
                                 <a> <i class="material-icons-outlined">history_toggle_off</i> Thời gian làm việc </a>
                             </div>
                             <div class="company_profile_content">
-                                <%= @company.time_start.to_formatted_s(:long) %> -> <%= @company.time_end.to_formatted_s(:long)%>
+                                <%= @company.time_start.strftime("%I:%M%p")%> -> <%= @company.time_end.strftime("%I:%M%p")%>
                             </div>
                         </div>
                     </div>

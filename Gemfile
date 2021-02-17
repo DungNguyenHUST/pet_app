@@ -88,3 +88,5 @@ gem 'bcrypt_pbkdf', '>= 1.0', '< 2.0'
 # gem 'puma'
 
 gem 'sitemap_generator'
+
+gem "rails_autolink"

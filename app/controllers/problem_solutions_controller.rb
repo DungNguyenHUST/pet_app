@@ -16,6 +16,7 @@ class ProblemSolutionsController < ApplicationController
 
         if logged_in?
             @problem_solution.user_name = @current_user.name
+            @problem_solution.user_id = @current_user.id
         else
             @problem_solution.user_name = "Ẩn danh"
         end
