@@ -17,10 +17,10 @@
                                             <a class="nav-link active" data-toggle="tab" href="#ProblemDescriptionID"><i class="material-icons-outlined">content_paste</i>Mô tả</a>
                                         </li>
                                         <li class="nav-item">
-                                            <a class="nav-link" data-toggle="tab" href="#ProblemSolutionID"><i class="material-icons-outlined">check_circle_outline</i>Giải pháp<span> <%= @problem.problem_solutions.count%><span></a>
+                                            <a class="nav-link" data-toggle="tab" href="#ProblemSolutionID"><i class="material-icons-outlined">lock_open</i>Giải pháp<span> <%= @problem.problem_solutions.count%><span></a>
                                         </li>
                                         <li class="nav-item">
-                                            <a class="nav-link" data-toggle="tab" href="#SubmitSolutionID"><i class="material-icons-outlined">check_circle_outline</i>Submission<span> <%= @problem_submition.count%><span></a>
+                                            <a class="nav-link" data-toggle="tab" href="#SubmitSolutionID"><i class="material-icons-outlined">bookmark_border</i>Submission<span> <%= @problem_submition.count%><span></a>
                                         </li>
                                     </ul>
                                 </div>
@@ -37,7 +37,7 @@
                                             <div class="problem_solution_tab">
                                                 <div class="problem_solution_best">
                                                     <div class="problem_solution_best_title">
-                                                        <i class="material-icons-outlined">done</i>
+                                                        <i class="material-icons-outlined">verified</i>
                                                         <a class="problem_solution_best_title"> Câu trả lời hay nhất</a>
                                                     </div>
                                                     <%if @problem_solutions_best != nil%>
@@ -51,14 +51,22 @@
                                                     <div class="problem_solution_title">
                                                         <a>Xem thêm <%=@problem.problem_solutions.count%> câu trả lời khác</a>
                                                     </div>
-                                                    <%= render @problem.problem_solutions %>
+                                                    <%if @problem.problem_solutions.count > 0%>
+                                                        <%= render @problem.problem_solutions %>
+                                                    <%else%>
+                                                        <a>Rất tiếc chưa có câu trả lời, hãy là người đầu tiên đưa ra giải pháp cho câu hỏi này ...</a>
+                                                    <%end%>
                                                 </div>
                                             </div>
                                         </div>
 
-                                        <div role="tabpanel" id="SubmitSolutionID" class="tab-pane fade in active"><br>
-                                            <div class="problem_submit_tab">    
-                                                <%= render @problem_submition%>
+                                        <div role="tabpanel" id="SubmitSolutionID" class="tab-pane"><br>
+                                            <div class="problem_submit_tab">  
+                                                <%if @problem_submition.count > 0%>  
+                                                    <%= render @problem_submition%>
+                                                <%else%>
+                                                    <a>Bạn chưa có câu trả lời cho câu hỏi này ...</a>
+                                                <%end%>
                                             </div>
                                         </div>
                                     </div>
@@ -77,7 +85,7 @@
                                     });
                                 </script>
 
-                                <%if !@problem_submition.count%>
+                                <%if @problem_submition.count < 1%>
                                     <script type="text/javascript">
                                         $('#problem_tabs a[href="#ProblemSolutionID"').click(function (e) {
                                             e.preventDefault()
@@ -97,7 +105,7 @@
                                     <div class="new_problem_solution_right_form">
                                         <%= form_for [@problem, ProblemSolution.new] do |f| %>
                                             <div class="new_problem_solution_right_title">
-                                                <a>Câu trả lời của bạn</a>
+                                                <a>Giải pháp của bạn</a>
                                             </div>
 
                                             <div class="new_problem_solution_right_section">
