@@ -89,7 +89,11 @@
                             <div class="interview_content">
                                 <div class="interview_point">
                                     <%offer_count = CompanyInterview.where(offer: true).count%>
-                                    <strong><%= (offer_count * 100)/@company.company_interviews.count %> %</strong>
+                                    <%if @company.company_interviews.count > 0%>
+                                        <strong><%= (offer_count * 100)/@company.company_interviews.count %>%</strong>
+                                    <%else%>
+                                        <strong>0%</strong>
+                                    <%end%>
                                 </div>
                                 <div class="interview_score_star">
                                     <i class="material-icons-outlined checked">work_outline</i>

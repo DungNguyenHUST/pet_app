@@ -20,7 +20,7 @@ class CompanyApplyJobsController < ApplicationController
         if @company_apply_job.save
             redirect_to company_path(@company)
         else
-            flash[:danger] = "Lỗi, Không thể trả lời *?"
+            flash[:error] = "Lỗi, Không thể trả lời *?"
             # render :new
         end
     end

@@ -59,7 +59,7 @@ class CompaniesController < ApplicationController
         if(@company.update(company_param))
             redirect_to companies_path
         else
-            flash[:danger] = "Không thể cập nhật thông tin"
+            flash[:error] = "Không thể cập nhật thông tin"
         end
     end
 
