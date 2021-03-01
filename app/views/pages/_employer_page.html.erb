@@ -45,7 +45,7 @@
                                                 <div class="single_company">
                                                     <div class="company_wall">
                                                         <div class="rounded">
-                                                            <%if @company_by_employer.wall_picture.attached?%>
+                                                            <%if @company_by_employer.wall_picture.nil?%>
                                                                 <%= link_to (image_tag(@company_by_employer.wall_picture)), image_path(url_for(@company_by_employer.wall_picture)), rel: "gallery" , :href => company_path(@company_by_employer)%>
                                                             <%end%>
                                                         </div>
@@ -53,7 +53,7 @@
 
                                                     <div class="company_thumbnail">
                                                         <div class="rounded">
-                                                            <%if @company_by_employer.avatar.attached?%>
+                                                            <%if @company_by_employer.avatar.nil?%>
                                                                 <%= link_to (image_tag(@company_by_employer.avatar)), image_path(url_for(@company_by_employer.avatar)), rel: "gallery" , :href => company_path(@company_by_employer)%>
                                                             <%end%>
                                                         </div>
@@ -161,7 +161,7 @@
                                                         <div class="user_employer_job_block">
                                                             <div class="user_job_left">
                                                                 <div class="company_avatar">
-                                                                    <%if @company_by_employer.avatar.attached?%>
+                                                                    <%if @company_by_employer.avatar.nil?%>
                                                                         <%= link_to (image_tag(@company_by_employer.avatar)), image_path(url_for(@company_by_employer.avatar)), rel: "gallery" , :href => company_path(@company_by_employer)%>
                                                                     <%end%>
                                                                 </div>
