@@ -10,7 +10,7 @@
             <div class="user_apply_job_block">
                 <div class="user_apply_job_left">
                     <div class="user_avatar">
-                        <%if @company.avatar.nil?%>
+                        <%if @company.avatar.attached?%>
                                 <%= link_to (image_tag(@company.avatar)), image_path(url_for(@company.avatar)), rel: "gallery" , :href => company_path(@company)%>
                         <%end%>
                     </div>    

@@ -31,7 +31,7 @@ class Company < ApplicationRecord
     private
 
     def image_type
-        if avatar.nil? == false
+        if avatar.attached? == false
             errors.add(:avatar, "is missing!")
         end
         if !avatar.content_type.in?(%('image/jpeg image/png'))
