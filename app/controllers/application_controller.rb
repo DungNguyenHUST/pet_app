@@ -1,6 +1,8 @@
+require 'action_text'
 class ApplicationController < ActionController::Base
     protect_from_forgery
     include ::SessionHelper
+    helper ActionText::Engine.helpers
 
     # before_action :require_login
 
@@ -10,3 +12,4 @@ class ApplicationController < ActionController::Base
         end
     end
 end
+
