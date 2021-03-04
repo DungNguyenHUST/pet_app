@@ -94,12 +94,17 @@ class UsersController < ApplicationController
 
     def update
         @user = User.find params[:id]
-        if(@user.update(user_params))
-            flash[:success] = "Update thành công"
-            redirect_to user_path(current_user)
-        else
-            flash[:danger] = "Không thể update thông tin, vui lòng thử lại"
-        end
+		if @user.update_column(:approved, true)
+			flash[:success] = "Approved"
+			redirect_to pages_path
+		else
+			if(@user.update(user_params))
+				flash[:success] = "Update thành công"
+				redirect_to user_path(current_user)
+			else
+				flash[:danger] = "Không thể update thông tin, vui lòng thử lại"
+			end
+		end
     end
 
     def try(arg)

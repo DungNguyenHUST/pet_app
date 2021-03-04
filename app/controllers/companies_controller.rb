@@ -56,11 +56,16 @@ class CompaniesController < ApplicationController
 
     def update
         @company = Company.find params[:id]
-        if(@company.update(company_param))
-            redirect_to companies_path
-        else
-            flash[:error] = "Không thể cập nhật thông tin"
-        end
+		if @company.update_column(:approved, true)
+			flash[:success] = "Approved"
+			redirect_to pages_path
+		else
+			if(@company.update(company_param))
+				redirect_to companies_path
+			else
+				flash[:error] = "Không thể cập nhật thông tin"
+			end
+		end
     end
 
     def destroy

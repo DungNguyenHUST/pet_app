@@ -75,11 +75,16 @@ class ProblemsController < ApplicationController
 
     def update
         @problem = Problem.find params[:id]
-        if(@problem.update(problem_param))
-            redirect_to problems_path
-        else
-            flash[:danger] = "Không thể cập nhật thông tin"
-        end
+		if @problem.update_column(:approved, true)
+			flash[:success] = "Approved"
+			redirect_to pages_path
+		else
+			if(@problem.update(problem_param))
+				redirect_to problems_path
+			else
+				flash[:danger] = "Không thể cập nhật thông tin"
+			end
+		end
     end
 
     def destroy

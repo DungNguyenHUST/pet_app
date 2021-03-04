@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_03_02_151226) do
+ActiveRecord::Schema.define(version: 2021_03_04_091514) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -81,6 +81,7 @@ ActiveRecord::Schema.define(version: 2021_03_02_151226) do
     t.text "policy"
     t.string "phone"
     t.string "values"
+    t.boolean "approved", default: false
   end
 
   create_table "company_apply_jobs", force: :cascade do |t|
@@ -154,6 +155,7 @@ ActiveRecord::Schema.define(version: 2021_03_02_151226) do
     t.datetime "end_date"
     t.string "job_type"
     t.boolean "urgent", default: false
+    t.boolean "approved", default: false
   end
 
   create_table "company_like_interviews", force: :cascade do |t|
@@ -244,6 +246,7 @@ ActiveRecord::Schema.define(version: 2021_03_02_151226) do
     t.string "title"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.boolean "approved", default: false
   end
 
   create_table "problem_reply_solutions", force: :cascade do |t|
@@ -295,6 +298,7 @@ ActiveRecord::Schema.define(version: 2021_03_02_151226) do
     t.boolean "iq_question"
     t.boolean "other_question"
     t.string "category"
+    t.boolean "approved", default: false
   end
 
   create_table "users", force: :cascade do |t|
@@ -324,6 +328,7 @@ ActiveRecord::Schema.define(version: 2021_03_02_151226) do
     t.boolean "employer", default: false
     t.string "company"
     t.integer "company_id"
+    t.boolean "approved", default: false
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
 

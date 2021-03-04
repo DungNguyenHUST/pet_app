@@ -37,11 +37,16 @@ class PostsController < ApplicationController
 
     def update
         @post = Post.find params[:id]
-        if(@post.update(post_param))
-            redirect_to posts_path
-        else
-            flash[:danger] = "Không thể cập nhật thông tin"
-        end
+		if @post.update_column(:approved, true)
+			flash[:success] = "Approved"
+			redirect_to pages_path
+		else
+			if(@post.update(post_param))
+				redirect_to posts_path
+			else
+				flash[:danger] = "Không thể cập nhật thông tin"
+			end
+		end
     end
 
     def destroy
