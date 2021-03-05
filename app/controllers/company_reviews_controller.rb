@@ -28,7 +28,7 @@ class CompanyReviewsController < ApplicationController
             redirect_to company_path(@company)
         else
             flash[:danger] = "Lỗi, hay điền đủ nội dung có dấu *?"
-            # render :new
+            render :new
         end
     end
     

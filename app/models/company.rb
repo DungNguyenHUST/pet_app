@@ -27,6 +27,10 @@ class Company < ApplicationRecord
             @companies = Company.all
         end
     end
+	
+	def self.approved
+		where(approved: :true)
+	end
 
     private
 

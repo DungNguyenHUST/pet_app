@@ -1,9 +1,9 @@
 class ProblemsController < ApplicationController
     def index
-        @problems = Problem.search(params[:search]).order("created_at DESC").reverse
-        @problems_all = Problem.all
-        @problems_newest = Problem.all.order("created_at DESC")
-        @problem_solutions = ProblemSolution.all
+        @problems = Problem.search(params[:search]).order("created_at DESC").approved.reverse
+        @problems_all = Problem.all.approved
+        @problems_newest = Problem.all.order("created_at DESC").approved
+        @problem_solutions = ProblemSolution.all.approved
 
         @problem_math = []
         @problem_eq_test = []
@@ -12,17 +12,19 @@ class ProblemsController < ApplicationController
         @problem_other = []
 
         @problems_all.each do |problem|
-            if(problem.category.to_i == 1 || problem.category.to_s == 'Thuật toán')
-                @problem_math.push(problem)
-            elsif(problem.category.to_i == 2 || problem.category.to_s == 'Câu hỏi phỏng vấn')
-                @problem_interview.push(problem)
-            elsif(problem.category.to_i == 3 || problem.category.to_s == 'EQ Test')
-                @problem_eq_test.push(problem)
-            elsif(problem.category.to_i == 4 || problem.category.to_s == 'IQ Test')
-                @problem_iq_test.push(problem)
-            elsif(problem.category.to_i == 5 || problem.category.to_s == 'Câu hỏi khác')
-                @problem_other.push(problem)
-            end 
+			if problem.category?
+				if(problem.category.to_i == 1 || problem.category.to_s == 'Thuật toán')
+					@problem_math.push(problem)
+				elsif(problem.category.to_i == 2 || problem.category.to_s == 'Câu hỏi phỏng vấn')
+					@problem_interview.push(problem)
+				elsif(problem.category.to_i == 3 || problem.category.to_s == 'EQ Test')
+					@problem_eq_test.push(problem)
+				elsif(problem.category.to_i == 4 || problem.category.to_s == 'IQ Test')
+					@problem_iq_test.push(problem)
+				elsif(problem.category.to_i == 5 || problem.category.to_s == 'Câu hỏi khác')
+					@problem_other.push(problem)
+				end 
+			end
         end
     end
 
@@ -40,9 +42,14 @@ class ProblemsController < ApplicationController
         end
 
         if @problem.save
-            redirect_to problems_path
+            if @problem.approved?
+				redirect_to problem_path(@problem)
+			else
+				flash[:success] = "Thông tin của bạn đã được tiếp nhận, vui lòng chờ quản trị viên sẽ xử lý trong 30min - 1h"
+				redirect_to problems_path
+			end
         else
-            flash[:danger] = "Hãy lưu lại thông tin của công ty"
+            flash[:danger] = "Lỗi, Không thể lưu thông tin"
             render :new
         end
     end
@@ -80,7 +87,12 @@ class ProblemsController < ApplicationController
 			redirect_to pages_path
 		else
 			if(@problem.update(problem_param))
-				redirect_to problems_path
+				if @problem.approved?
+					redirect_to problem_path(@problem)
+				else
+					flash[:success] = "Thông tin của bạn đã được tiếp nhận, vui lòng chờ quản trị viên sẽ xử lý trong 30min - 1h"
+					redirect_to problems_path
+				end
 			else
 				flash[:danger] = "Không thể cập nhật thông tin"
 			end

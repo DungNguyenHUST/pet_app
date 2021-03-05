@@ -13,6 +13,10 @@ class Problem < ApplicationRecord
             @problems = Problem.all
         end
     end
+	
+	def self.approved
+	  where(approved: :true)
+	end
 
     # def self.sort(soft_type)
     #     if soft_type

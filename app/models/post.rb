@@ -7,4 +7,8 @@ class Post < ApplicationRecord
     
     validates :content_rich_text, presence: true
     has_rich_text :content_rich_text
+	
+	def self.approved
+	  where(approved: :true)
+	end
 end

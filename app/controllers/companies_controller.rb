@@ -1,17 +1,19 @@
 class CompaniesController < ApplicationController
     def index
-        @companies = Company.search(params[:search])
-        @companies_all = Company.all
-        @companies_oder_name = Company.all.order('name DESC')
-        @companies_oder_newest = Company.all.order('created_at DESC')
-        @companies_most_recent = Company.all.order('created_at DESC').reverse
+        @companies = Company.search(params[:search]).approved
+        @companies_all = Company.all.approved
+        @companies_oder_name = Company.all.order('name DESC').approved
+        @companies_oder_newest = Company.all.order('created_at DESC').approved
+        @companies_most_recent = Company.all.order('created_at DESC').approved.reverse
         @companies_best = []
         count = 0
         @companies_all.each do |company|
-            if cal_company_score(company).to_f > count
-                @companies_best.push(company)
-                count = cal_company_score(company).to_f
-            end
+			if company.approved?
+				if cal_company_score(company).to_f > count
+					@companies_best.push(company)
+					count = cal_company_score(company).to_f
+				end
+			end
         end
         @company_reviews = CompanyReview.all
         @company_interviews = CompanyInterview.all
@@ -32,10 +34,15 @@ class CompaniesController < ApplicationController
         @company_job = CompanyJob.new
 
         if @company.save
-            redirect_to companies_path
+			if @company.approved?
+				redirect_to company_path(@company)
+			else
+				flash[:success] = "Thông tin của bạn đã được tiếp nhận, vui lòng chờ quản trị viên sẽ xử lý trong 30min - 1h"
+				redirect_to companies_path
+			end
         else
-            flash[:danger] = "Hãy lưu lại thông tin của công ty"
-            # render :new
+            flash[:danger] = "Lỗi, không thể lưu thông tin công ty"
+            render :new
         end
     end
 
@@ -61,9 +68,14 @@ class CompaniesController < ApplicationController
 			redirect_to pages_path
 		else
 			if(@company.update(company_param))
-				redirect_to companies_path
+				if @company.approved?
+					redirect_to company_path(@company)
+				else
+					flash[:success] = "Thông tin của bạn đã được tiếp nhận, vui lòng chờ quản trị viên xử lý trong 30min - 1h"
+					redirect_to companies_path
+				end
 			else
-				flash[:error] = "Không thể cập nhật thông tin"
+				flash[:error] = "Lỗi, không thể cập nhật thông tin"
 			end
 		end
     end

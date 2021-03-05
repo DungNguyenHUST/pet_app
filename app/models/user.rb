@@ -25,4 +25,8 @@ class User < ApplicationRecord
     has_many :company_save_jobs, dependent: :destroy
 
     belongs_to :company, optional: true
+	
+	def self.approved
+	  where(approved: :true)
+	end
 end

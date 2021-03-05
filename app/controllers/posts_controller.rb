@@ -1,6 +1,6 @@
 class PostsController < ApplicationController
     def index
-        @posts = Post.all
+        @posts = Post.all.approved
         @post_comments = PostComment.all
     end
 
@@ -18,7 +18,12 @@ class PostsController < ApplicationController
         end
 
         if @post.save
-            redirect_to posts_path
+            if @post.approved?
+				redirect_to post_path(@post)
+			else
+				flash[:success] = "Thông tin của bạn đã được tiếp nhận, vui lòng chờ quản trị viên sẽ xử lý trong 30min - 1h"
+				redirect_to posts_path
+			end
         else
             flash[:danger] = "[WARN]Can't save data"
             render :new
@@ -42,7 +47,12 @@ class PostsController < ApplicationController
 			redirect_to pages_path
 		else
 			if(@post.update(post_param))
-				redirect_to posts_path
+				if @post.approved?
+					redirect_to post_path(@post)
+				else
+					flash[:success] = "Thông tin của bạn đã được tiếp nhận, vui lòng chờ quản trị viên sẽ xử lý trong 30min - 1h"
+					redirect_to posts_path
+				end
 			else
 				flash[:danger] = "Không thể cập nhật thông tin"
 			end

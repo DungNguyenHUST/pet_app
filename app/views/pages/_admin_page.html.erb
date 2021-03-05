@@ -34,18 +34,24 @@
                                         <div class='company_name'>
                                             <a> <%=company.id%> | <%= link_to company.name, company_path(company), class: "company_name_label" %> </a>
 											
-											<%if company.approved?%>
-												<a>| Approved</a>
-											<%else%>
-												<%= form_for(company, remote: true, data: { confirm: "Are you sure??"}) do |f| %>
-													<%= f.hidden_field :approved, :value => true %>
-													<%= f.submit "Approve", class: "btn btn-large btn-success" %>
-												<% end %>
-											<%end%>
-                                        </div>
-                                        <div class='company_edit'>
-                                            <%= link_to "Update", edit_company_path(company), class: "btn btn-large btn-success" %>
-                                            <%= link_to 'Delete', [company], method: :delete, class: "btn btn-large btn-danger", data: { confirm: 'Are Are you sure??' } %>
+											<div class='approved'>
+												<%if company.approved?%>
+													<%= form_for(company, remote: true, data: { confirm: "Are you sure??"}) do |f| %>
+														<%= f.hidden_field :approved, :value => false %>
+														<%= f.submit "Reject", class: "btn btn-large btn-danger" %>
+													<% end %>
+												<%else%>
+													<%= form_for(company, remote: true, data: { confirm: "Are you sure??"}) do |f| %>
+														<%= f.hidden_field :approved, :value => true %>
+														<%= f.submit "Approve", class: "btn btn-large btn-success" %>
+													<% end %>
+												<%end%>
+											</div>
+											
+											<div class='company_edit'>
+												<%= link_to "Update", edit_company_path(company), class: "btn btn-large btn-success" %>
+												<%= link_to 'Delete', [company], method: :delete, class: "btn btn-large btn-danger", data: { confirm: 'Are Are you sure??' } %>
+											</div>
                                         </div>
 
                                         <div class='company_job_block'>
@@ -54,22 +60,34 @@
                                                 <div class='company_job_name'>
                                                     <a><%=company_job.id%> | <%= link_to (company_job.title), company_company_job_path(company, company_job) %> </a>
                                                 </div>
-												<%if company_job.approved?%>
-													<a>| Approved</a>
-												<%else%>
-													<%= form_for(company_job, remote: true, data: { confirm: "Are you sure??"}) do |f| %>
-														<%= f.hidden_field :approved, :value => true %>
-														<%= f.submit "Approve", class: "btn btn-large btn-success" %>
-													<% end %>
-												<%end%>
-                                                <div class='company_job_name'>
+												<div class='approved'>
+													<%if company_job.approved?%>
+														<%= form_for [company, company_job] do |f| %>
+															<%= f.hidden_field :approved, :value => false %>
+															<%= f.submit "Reject", class: "btn btn-large btn-danger" %>
+														<% end %>
+													<%else%>
+														<%= form_for [company, company_job] do |f| %>
+															<%= f.hidden_field :approved, :value => true %>
+															<%= f.submit "Approve", class: "btn btn-large btn-success" %>
+														<% end %>
+													<%end%>
+												</end>
+                                                <div class='company_job_edit'>
                                                     <%= link_to 'Update', edit_company_company_job_path(company, company_job), class: "btn btn-large btn-success" %>
                                                     <%= link_to 'Delete', [company, company_job], method: :delete, class: "btn btn-large btn-danger", data: { confirm: 'Are Are you sure??' } %>
                                                 </div>
                                             <%end%>
+											<div class="new_job">
+												<%= link_to '<button type="submit">Tạo job mới</button>'.html_safe, new_company_company_job_path(company)%>
+											</div>
                                         </div>
+										
                                     </div>
                                 <%end%>
+								<div class="new_company">
+									<%= link_to '<button type="submit">Tạo công ty mới</button>'.html_safe, new_company_path%>
+								</div>
                             </div>                        
                         </div>
 
@@ -79,16 +97,21 @@
                                 <% @users.each do |user| %>
                                     <a><%=user.id%> | <%= link_to user.name, user_path(user), class: "admin_name_label" %> </a>
 									
-									<%if user.approved?%>
-										<a>| Approved</a>
-									<%else%>
-										<%= form_for(user, remote: true, data: { confirm: "Are you sure??"}) do |f| %>
-											<%= f.hidden_field :approved, :value => true %>
-											<%= f.submit "Approve", class: "btn btn-large btn-success" %>
-										<% end %>
-									<%end%>
+									<div class='approved'>
+										<%if user.approved?%>
+											<%= form_for(user, remote: true, data: { confirm: "Are you sure??"}) do |f| %>
+												<%= f.hidden_field :approved, :value => false %>
+												<%= f.submit "Reject", class: "btn btn-large btn-danger" %>
+											<% end %>
+										<%else%>
+											<%= form_for(user, remote: true, data: { confirm: "Are you sure??"}) do |f| %>
+												<%= f.hidden_field :approved, :value => true %>
+												<%= f.submit "Approve", class: "btn btn-large btn-success" %>
+											<% end %>
+										<%end%>
+									</div>
 									
-                                    <div class='user_name'>
+                                    <div class='user_edit'>
                                         <%= link_to "Update", edit_user_path(user), class: "btn btn-large btn-success" %>
                                         <%= link_to 'Delete', [user], method: :delete, class: "btn btn-large btn-danger", data: { confirm: 'Are Are you sure??' } %>
                                     </div>
@@ -102,20 +125,28 @@
                                 <% @posts.each do |post| %>
                                     <a><%=post.id%> | <%= link_to post.title, post_path(post), class: "admin_name_label" %> </a>
 									
-									<%if post.approved?%>
-										<a>| Approved</a>
-									<%else%>
-										<%= form_for(post, remote: true, data: { confirm: "Are you sure??"}) do |f| %>
-											<%= f.hidden_field :approved, :value => true %>
-											<%= f.submit "Approve", class: "btn btn-large btn-success" %>
-										<% end %>
-									<%end%>
+									<div class='approved'>
+										<%if post.approved?%>
+											<%= form_for(post, remote: true, data: { confirm: "Are you sure??"}) do |f| %>
+												<%= f.hidden_field :approved, :value => false %>
+												<%= f.submit "Reject", class: "btn btn-large btn-danger" %>
+											<% end %>
+										<%else%>
+											<%= form_for(post, remote: true, data: { confirm: "Are you sure??"}) do |f| %>
+												<%= f.hidden_field :approved, :value => true %>
+												<%= f.submit "Approve", class: "btn btn-large btn-success" %>
+											<% end %>
+										<%end%>
+									</div>
 									
-                                    <div class='post_name'>
+                                    <div class='post_edit'>
                                         <%= link_to "Update", edit_post_path(post), class: "btn btn-large btn-success" %>
                                         <%= link_to 'Delete', [post], method: :delete, class: "btn btn-large btn-danger", data: { confirm: 'Are Are you sure??' } %>
                                     </div>
                                 <%end%>
+								<div class="new_post">
+									<%= link_to '<button type="submit">Tạo post mới</button>'.html_safe, new_post_path%>
+								</div>
                             </div>                        
                         </div>
 
@@ -125,20 +156,28 @@
                                 <% @problems.each do |problem| %>
                                     <a><%=problem.id%> | <%= link_to problem.title, problem_path(problem), class: "admin_name_label" %></a>
 									
-									<%if problem.approved?%>
-										<a>| Approved</a>
-									<%else%>
-										<%= form_for(problem, remote: true, data: { confirm: "Are you sure??"}) do |f| %>
-											<%= f.hidden_field :approved, :value => true %>
-											<%= f.submit "Approve", class: "btn btn-large btn-success" %>
-										<% end %>
-									<%end%>
+									<div class='approved'>
+										<%if problem.approved?%>
+											<%= form_for(problem, remote: true, data: { confirm: "Are you sure??"}) do |f| %>
+												<%= f.hidden_field :approved, :value => false %>
+												<%= f.submit "Reject", class: "btn btn-large btn-danger" %>
+											<% end %>
+										<%else%>
+											<%= form_for(problem, remote: true, data: { confirm: "Are you sure??"}) do |f| %>
+												<%= f.hidden_field :approved, :value => true %>
+												<%= f.submit "Approve", class: "btn btn-large btn-success" %>
+											<% end %>
+										<%end%>
+									</div>
 									
-                                    <div class='problem_name'>
+                                    <div class='problem_edit'>
                                         <%= link_to "Update", edit_problem_path(problem), class: "btn btn-large btn-success" %>
                                         <%= link_to 'Delete', [problem], method: :delete, class: "btn btn-large btn-danger", data: { confirm: 'Are Are you sure??' } %>
                                     </div>
                                 <%end%>
+								<div class="new_problem">
+									<%= link_to '<button type="submit">Tạo câu hỏi mới</button>'.html_safe, new_problem_path%>
+								</div>
                             </div>                        
                         </div>
                     </div>

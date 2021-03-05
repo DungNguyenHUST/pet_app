@@ -24,11 +24,11 @@ class CompanyLikeReviewsController < ApplicationController
             else
                 @company_like_review = @company_review.company_like_reviews.create(user_id: current_user.id)
             end
-            redirect_to company_path(@company)
-            # respond_to do |format|
-            #     format.html { redirect_to company_company_review_url }
-            #     format.js
-            # end
+            # redirect_to company_path(@company)
+            respond_to do |format|
+                format.html {}
+                format.js
+            end
         else
             redirect_to login_path
         end

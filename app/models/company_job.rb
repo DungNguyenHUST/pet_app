@@ -22,5 +22,9 @@ class CompanyJob < ApplicationRecord
             @company_jobs = CompanyJob.all
         end
     end
+	
+	def self.approved
+	  where(approved: :true)
+	end
 
 end

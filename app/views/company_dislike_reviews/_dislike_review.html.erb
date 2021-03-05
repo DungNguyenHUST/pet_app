@@ -1,19 +1,21 @@
 <div id="dislike_review_<%=company_review.id%>">
-    <a><%= company_review.company_dislike_reviews.count%></a>
-    <%if logged_in?%>
-        <% pre_dislike = company_review.company_dislike_reviews.find { |dislike| dislike.user_id == current_user.id} %>
-        <% if pre_dislike %>
-            <%= button_to company_company_review_company_dislike_review_path(@company, company_review, pre_dislike), :method => :delete, remote: true, form_class: "dislike_btn_highlight" do%>
-                <i class="material-icons">thumb_down</i> <span>Kh?ng th?ch</span>
-            <%end%> 
-        <%else%>
-            <%= button_to company_company_review_company_dislike_reviews_path(@company, company_review), method: :post, remote: true, form_class: "dislike_btn" do%>
-                <i class="material-icons-outlined">thumb_down</i> <span>Kh?ng th?ch</span>
-            <%end%> 
-        <%end%>
-    <%else%>
-        <%= button_to login_path, :method => :get, form_class: "dislike_btn" do%>
-            <i class="material-icons-outlined">thumb_down</i> <span>Kh?ng th?ch</span>
-        <%end%>
-    <%end%>
+	<div class="dislike_count">
+		<a><%= company_review.company_dislike_reviews.count%></a>
+	</div>
+	<%if logged_in?%>
+		<% pre_dislike = company_review.company_dislike_reviews.find { |dislike| dislike.user_id == current_user.id} %>
+		<% if pre_dislike %>
+			<%= button_to company_company_review_company_dislike_review_path(@company, company_review, pre_dislike), :method => :delete, remote: true, form_class: "dislike_btn_highlight" do%>
+				<i class="material-icons">thumb_down</i> <span>Không thích</span>
+			<%end%> 
+		<%else%>
+			<%= button_to company_company_review_company_dislike_reviews_path(@company, company_review), method: :post, remote: true, form_class: "dislike_btn" do%>
+				<i class="material-icons-outlined">thumb_down</i> <span>Không thích</span>
+			<%end%> 
+		<%end%>
+	<%else%>
+		<%= button_to login_path, :method => :get, form_class: "dislike_btn" do%>
+			<i class="material-icons-outlined">thumb_down</i> <span>Không thích</span>
+		<%end%>
+	<%end%>
 </div>
