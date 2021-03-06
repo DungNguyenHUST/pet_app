@@ -1,19 +1,21 @@
 <div id="like_interview_<%=company_interview.id%>">
-    <a><%= company_interview.company_like_interviews.count%></a>
+    <div class="like_count">
+        <a><%= company_interview.company_like_interviews.count%></a>
+    </div>
     <%if logged_in?%>
         <% pre_like = company_interview.company_like_interviews.find { |like| like.user_id == current_user.id} %>
         <% if pre_like %>
             <%= button_to company_company_interview_company_like_interview_path(@company, company_interview, pre_like), method: :delete, remote: true, form_class: "like_btn_highlight" do%>
-                <i class="material-icons">thumb_up</i> <span>Th?ch</span>
+                <i class="material-icons">thumb_up</i> <span>Thích</span>
             <%end%>   
         <%else%>
             <%= button_to company_company_interview_company_like_interviews_path(@company, company_interview), method: :post, remote: true, form_class: "like_btn" do%>
-                <i class="material-icons-outlined">thumb_up</i> <span>Th?ch</span>
+                <i class="material-icons-outlined">thumb_up</i> <span>Thích</span>
             <%end%>
         <%end%>
     <%else%>
         <%= button_to login_path, :method => :get, form_class: "like_btn" do%>
-            <i class="material-icons-outlined">thumb_up</i> <span>Th?ch</span>
+            <i class="material-icons-outlined">thumb_up</i> <span>Thích</span>
         <%end%>
     <%end%>
 </div>

@@ -19,15 +19,15 @@ class CompanyLikeInterviewsController < ApplicationController
         @company_interview = CompanyInterview.find(params[:company_interview_id])
         if logged_in?
             if already_liked?
-                flash[:notice] = "You can't like more than once"
+                # flash[:notice] = "You can't like more than once"
             else
                 @company_like_interview = @company_interview.company_like_interviews.create(user_id: current_user.id)
             end
-            redirect_to company_path(@company)
-            # respond_to do |format|
-                # format.html {redirect_to :back}
-                # format.js
-            # end
+            # redirect_to company_path(@company)
+            respond_to do |format|
+                format.html {}
+                format.js
+            end
         else
             redirect_to login_path
         end
@@ -38,11 +38,11 @@ class CompanyLikeInterviewsController < ApplicationController
         @company_interview = @company.company_interviews.find(params[:company_interview_id])
         @company_like_interview = @company_interview.company_like_interviews.find(params[:id])
         @company_like_interview.destroy
-        redirect_to company_path(@company)
-        # respond_to do |format|
-            # format.html {redirect_to :back}
-            # format.js
-        # end
+        # redirect_to company_path(@company)
+        respond_to do |format|
+            format.html {redirect_to :back}
+            format.js
+        end
     end
 
     def show

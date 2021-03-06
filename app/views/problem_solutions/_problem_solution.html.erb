@@ -11,7 +11,7 @@
                 <div class="user_avatar">
                     <i class="material-icons-outlined">perm_identity</i>
                 </div>
-                <div class="user_vote_solution" id = "vote_solution_<%=problem_solution.id%>">
+                <div class="user_vote_solution" id="vote_solution_<%=problem_solution.id%>">
                     <%if logged_in?%>
                         <% pre_vote = problem_solution.problem_vote_solutions.find { |vote| vote.user_id == current_user.id} %>
                         <% if pre_vote %>  
@@ -30,10 +30,11 @@
                     <%end%>
                 </div>
 
-                <div class="problem_solution_like_info">
+                <div class="problem_solution_like_info" id="solution_<%=problem_solution.id%>">
                     <a><%= problem_solution.problem_vote_solutions.count - problem_solution.problem_unvote_solutions.count%></a>
                 </div>
-                <div class="user_unvote_solution" id = "unvote_solution_<%=problem_solution.id%>">
+
+                <div class="user_unvote_solution" id="unvote_solution_<%=problem_solution.id%>">
                     <%if logged_in?%>
                         <% pre_unvote = problem_solution.problem_unvote_solutions.find { |unvote| unvote.user_id == current_user.id} %>
                         <% if pre_unvote %>

@@ -26,8 +26,8 @@ class CompanyLikeReviewsController < ApplicationController
             end
             # redirect_to company_path(@company)
             respond_to do |format|
-                format.html {}
-                format.js
+				format.html {}
+				format.js
             end
         else
             redirect_to login_path
@@ -39,11 +39,11 @@ class CompanyLikeReviewsController < ApplicationController
         @company_review = @company.company_reviews.find(params[:company_review_id])
         @company_like_review = @company_review.company_like_reviews.find(params[:id])
         @company_like_review.destroy
-        redirect_to company_path(@company)
-        # respond_to do |format|
-        #     format.html { redirect_to company_company_review_url }
-        #     format.js
-        # end
+        # redirect_to company_path(@company)
+        respond_to do |format|
+            format.html {}
+            format.js
+        end
     end
 
     def show

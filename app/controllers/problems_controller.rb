@@ -3,7 +3,7 @@ class ProblemsController < ApplicationController
         @problems = Problem.search(params[:search]).order("created_at DESC").approved.reverse
         @problems_all = Problem.all.approved
         @problems_newest = Problem.all.order("created_at DESC").approved
-        @problem_solutions = ProblemSolution.all.approved
+        @problem_solutions = ProblemSolution.all
 
         @problem_math = []
         @problem_eq_test = []

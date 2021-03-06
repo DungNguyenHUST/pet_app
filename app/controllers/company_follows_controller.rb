@@ -19,11 +19,11 @@ class CompanyFollowsController < ApplicationController
             else                
                 @company_follow = @company.company_follows.create(user_id: current_user.id)
             end
-            redirect_to company_path(@company)
-            # respond_to do |format|
-            #     format.html
-            #     format.js
-            # end
+            # redirect_to company_path(@company)
+            respond_to do |format|
+                format.html {}
+                format.js
+            end
         else
             redirect_to login_path
         end
@@ -33,11 +33,11 @@ class CompanyFollowsController < ApplicationController
         @company = Company.find(params[:company_id])
         @company_follow = @company.company_follows.find(params[:id])
         @company_follow.destroy
-        redirect_to company_path(@company)
-        # respond_to do |format|
-        #     format.html
-        #     format.js
-        # end
+        # redirect_to company_path(@company)
+        respond_to do |format|
+            format.html {}
+            format.js
+        end
     end
 
     def show

@@ -64,7 +64,7 @@
                             </div>
                             
                             <div class="col-sm-6">
-                                <div class="company_follow" id =<%=@company.id%>>
+                                <div class="company_follow" id =company_follow_<%=@company.id%>>
                                     <%if logged_in?%>
                                         <% pre_follow = @company.company_follows.find { |follow| follow.user_id == current_user.id} %>
                                         <% if pre_follow %> 
