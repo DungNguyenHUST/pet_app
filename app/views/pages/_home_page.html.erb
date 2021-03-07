@@ -35,7 +35,9 @@
                             <div class="input-group mb-3">
                                 <%= text_field_tag :search, params[:search], class: 'form-control', placeholder: "Tìm kiếm theo công việc, kĩ năng hoặc tên công ty" %>
                                 <div class="input-group-addon">
-                                    <i class="material-icons-outlined checked">search</i>
+                                    <%= button_to "", form_class: "search_button", :name => nil do%>
+                                        <i class="material-icons-outlined">search</i>
+                                    <%end%> 
                                 </div>
                             </div>
                             

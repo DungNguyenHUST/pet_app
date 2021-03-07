@@ -11,46 +11,48 @@
                 <div class="user_avatar">
                     <i class="material-icons-outlined">perm_identity</i>
                 </div>
-                <div class="user_vote_solution" id="vote_solution_<%=problem_solution.id%>">
-                    <%if logged_in?%>
-                        <% pre_vote = problem_solution.problem_vote_solutions.find { |vote| vote.user_id == current_user.id} %>
-                        <% if pre_vote %>  
-                            <%= button_to problem_problem_solution_problem_vote_solution_path(@problem, problem_solution, pre_vote), method: :delete, remote: true, form_class: "problem_solution_like_highlight" do%>
+                <div class="user_vote_toolbar" id="solution_<%=problem_solution.id%>">
+                    <div class="user_vote_solution">
+                        <%if logged_in?%>
+                            <% pre_vote = problem_solution.problem_vote_solutions.find { |vote| vote.user_id == current_user.id} %>
+                            <% if pre_vote %>  
+                                <%= button_to problem_problem_solution_problem_vote_solution_path(@problem, problem_solution, pre_vote), method: :delete, remote: true, form_class: "problem_solution_like_highlight" do%>
+                                    <i class="material-icons-outlined">arrow_drop_up</i>
+                                <%end%> 
+                            <%else%>
+                                <%= button_to problem_problem_solution_problem_vote_solutions_path(@problem, problem_solution), method: :post, remote: true, form_class: "problem_solution_like" do%>
+                                    <i class="material-icons-outlined">arrow_drop_up</i>
+                                <%end%> 
+                            <%end%>
+                        <%else%>
+                            <%= button_to login_path, :method => :get, form_class: "problem_solution_like" do%>
                                 <i class="material-icons-outlined">arrow_drop_up</i>
                             <%end%> 
-                        <%else%>
-                            <%= button_to problem_problem_solution_problem_vote_solutions_path(@problem, problem_solution), method: :post, remote: true, form_class: "problem_solution_like" do%>
-                                <i class="material-icons-outlined">arrow_drop_up</i>
-                            <%end%> 
                         <%end%>
-                    <%else%>
-                        <%= button_to login_path, :method => :get, form_class: "problem_solution_like" do%>
-                            <i class="material-icons-outlined">arrow_drop_up</i>
-                        <%end%> 
-                    <%end%>
-                </div>
+                    </div>
 
-                <div class="problem_solution_like_info" id="solution_<%=problem_solution.id%>">
-                    <a><%= problem_solution.problem_vote_solutions.count - problem_solution.problem_unvote_solutions.count%></a>
-                </div>
+                    <div class="problem_solution_like_info">
+                        <a><%= problem_solution.problem_vote_solutions.count - problem_solution.problem_unvote_solutions.count%></a>
+                    </div>
 
-                <div class="user_unvote_solution" id="unvote_solution_<%=problem_solution.id%>">
-                    <%if logged_in?%>
-                        <% pre_unvote = problem_solution.problem_unvote_solutions.find { |unvote| unvote.user_id == current_user.id} %>
-                        <% if pre_unvote %>
-                            <%= button_to problem_problem_solution_problem_unvote_solution_path(@problem, problem_solution, pre_unvote), method: :delete, remote: true, form_class: "problem_solution_dislike_highlight" do%>
-                                <i class="material-icons-outlined">arrow_drop_down</i>
-                            <%end%> 
+                    <div class="user_unvote_solution">
+                        <%if logged_in?%>
+                            <% pre_unvote = problem_solution.problem_unvote_solutions.find { |unvote| unvote.user_id == current_user.id} %>
+                            <% if pre_unvote %>
+                                <%= button_to problem_problem_solution_problem_unvote_solution_path(@problem, problem_solution, pre_unvote), method: :delete, remote: true, form_class: "problem_solution_dislike_highlight" do%>
+                                    <i class="material-icons-outlined">arrow_drop_down</i>
+                                <%end%> 
+                            <%else%>
+                                <%= button_to problem_problem_solution_problem_unvote_solutions_path(@problem, problem_solution), method: :post, remote: true, form_class: "problem_solution_dislike" do%>
+                                    <i class="material-icons-outlined">arrow_drop_down</i>
+                                <%end%> 
+                            <%end%>
                         <%else%>
-                            <%= button_to problem_problem_solution_problem_unvote_solutions_path(@problem, problem_solution), method: :post, remote: true, form_class: "problem_solution_dislike" do%>
+                            <%= button_to login_path, :method => :get, form_class: "problem_solution_dislike" do%>
                                 <i class="material-icons-outlined">arrow_drop_down</i>
-                            <%end%> 
+                            <%end%>
                         <%end%>
-                    <%else%>
-                        <%= button_to login_path, :method => :get, form_class: "problem_solution_dislike" do%>
-                            <i class="material-icons-outlined">arrow_drop_down</i>
-                        <%end%>
-                    <%end%>
+                    </div>
                 </div>
             </div>
 
@@ -77,7 +79,7 @@
                 <%= form_for [@problem, problem_solution, ProblemReplySolution.new] do |f| %>
                     <div class="new_reply_problem_solution_content">
                         <div class="new_reply_problem_solution_input_problem_solution">
-                            <%= f.text_area :reply_content, class: "new_reply_problem_solution_form_input_problem_solution", placeholder: "Gửi trả lời" %>
+                            <%= f.text_area :reply_content, class: "form-control-text", placeholder: "Gửi trả lời" %>
                         </div>
                     </div>
 

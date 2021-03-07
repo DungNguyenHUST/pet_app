@@ -1,6 +1,6 @@
 class PagesController < ApplicationController
     def index
-		if current_user.admin?
+		if logged_in? && current_user.admin?
 			@users = User.all
 			@companies = Company.all
 			@company_jobs = CompanyJob.all

@@ -30,7 +30,7 @@
                                 <%= form_for [@post, PostComment.new] do |f| %>
                                     <div class="new_post_show_comment_section">
                                         <div class="new_post_show_comment_input">
-                                            <%= f.text_area :comment_content, class: "new_post_comment_form_input", placeholder: "Nhập bình luận" %>
+                                            <%= f.text_area :comment_content, class: "form-control-text", placeholder: "Nhập bình luận" %>
                                         </div>
                                     </div>
 
@@ -50,28 +50,29 @@
                                     <span>Xem thêm</span>
                                 </div>
                                 <% @posts.each do |post| %>
-                                    <div class="post_container">
-
-                                        <div class="post_left">
-                                            <%if post.wall_picture.attached?%>
-                                                <%= link_to (image_tag(post.wall_picture)), image_path(url_for(post.wall_picture)), rel: "gallery" , :href => post_path(post)%>
-                                            <%else%>
-                                                <img src="<%= "/assets/illustration.png" %>" alt="Snow" style="width:100%;">
-                                            <%end%>
-                                        </div>
-
-                                        <div class="post_right">
-                                            <div class="post_header">
-                                                <strong><%= link_to (post.title), post_path(post) %></strong>
+                                    <%if post.approved?%>
+                                        <div class="post_container">
+                                            <div class="post_left">
+                                                <%if post.wall_picture.attached?%>
+                                                    <%= link_to (image_tag(post.wall_picture)), image_path(url_for(post.wall_picture)), rel: "gallery" , :href => post_path(post)%>
+                                                <%else%>
+                                                    <img src="<%= "/assets/illustration.png" %>" alt="Snow" style="width:100%;">
+                                                <%end%>
                                             </div>
 
-                                            <div class="post_info">
-                                                <div class="post_username">
-                                                    <strong><%=post.username%></strong> . <span><%=time_ago_in_words(post.created_at)%></span>
+                                            <div class="post_right">
+                                                <div class="post_header">
+                                                    <strong><%= link_to (post.title), post_path(post) %></strong>
+                                                </div>
+
+                                                <div class="post_info">
+                                                    <div class="post_username">
+                                                        <strong><%=post.username%></strong> . <span><%=time_ago_in_words(post.created_at)%></span>
+                                                    </div>
                                                 </div>
                                             </div>
                                         </div>
-                                    </div>
+                                    <%end%>
                                 <% end %>
                             </div>
                         </div>
