@@ -25,7 +25,7 @@ class ProblemReplySolutionsController < ApplicationController
         if @problem_reply_solution.save
             redirect_to problem_path(@problem)
         else
-            flash[:danger] = "Lỗi, Không thể trả lời *?"
+            flash[:danger] = "Lỗi, Không thể trả lời "
             # render :new
         end
     end

@@ -18,10 +18,11 @@ class CompanyApplyJobsController < ApplicationController
         @company_apply_job.user_id = current_user.id
 
         if @company_apply_job.save
+            flash[:success] = "Thông tin của bạn đã được tiếp nhận và gửi tới nhà tuyển dụng..."
             redirect_to company_path(@company)
         else
-            flash[:error] = "Lỗi, Không thể trả lời *?"
-            # render :new
+            flash[:error] = "Lỗi, Không thể upload thông tin "
+            render :new
         end
     end
     

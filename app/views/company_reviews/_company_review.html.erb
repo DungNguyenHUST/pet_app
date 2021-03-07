@@ -52,7 +52,7 @@
                             <%else%>
                                 <a> • Đã nghỉ việc</a>
                             <%end%>
-                            <a> • <%= company_review.working_time%></a>
+                            <a> • Làm việc <%= company_review.working_time%></a>
                     </div>
 
                     <div class="user_review_cotent">
@@ -142,7 +142,7 @@
                 <%= form_for [@company, company_review, CompanyReplyReview.new] do |f| %>
                     <div class="new_reply_review_content">
                         <div class="new_reply_review_input_review">
-                            <%= f.text_area :reply_content, class: "form-control-text", placeholder: "Nhập vào câu trả lời của bạn" %>
+                            <%= f.text_area :reply_content, class: "form-control-text", placeholder: "Nhập câu trả lời của bạn tại đây" %>
                         </div>
                     </div>
 

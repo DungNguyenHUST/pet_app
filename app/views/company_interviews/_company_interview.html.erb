@@ -78,7 +78,7 @@
                         <div class="interview_reply_button">
                             <a><%= company_interview.company_reply_interviews.count%></a>
                             <%if logged_in?%>
-                                <button class="reply_btn" onclick="myFunctionReplyReview(<%=company_interview.id%>)"><i class="material-icons-outlined">chat_bubble_outline</i> <span>Trả lời</span> </button>
+                                <button class="reply_btn" onclick="myFunctionReplyInterview(<%=company_interview.id%>)"><i class="material-icons-outlined">chat_bubble_outline</i> <span>Trả lời</span> </button>
                             <%else%>
                                 <%= link_to'<button class="reply_btn"><i class="material-icons-outlined">chat_bubble_outline</i> <span>Trả lời</span> </button>'.html_safe, login_path%>
                             <%end%>
@@ -130,12 +130,11 @@
                 </div>
             </div>
 
-            <div class="new_reply_interview_form" id = "<%=company_interview.id%>">
+            <div class="new_reply_interview_form" id ="<%=company_interview.id%>">
                 <%= form_for [@company, company_interview, CompanyReplyInterview.new] do |f| %>
-
                     <div class="new_reply_interview_content">
                         <div class="new_reply_interview_input_interview">
-                            <%= f.text_area :reply_content, class: "form-control-text", placeholder: "Nhập vào câu trả lời của bạn" %>
+                            <%= f.text_area :reply_content, :required =>true, class: "form-control-text", placeholder: "Nhập câu trả lời của bạn tại đây" %>
                         </div>
                     </div>
 
@@ -150,9 +149,12 @@
             <script>
                 function myFunctionReplyInterview(interview_id) {
                     var x = document.getElementById(interview_id);
-                    if (x.style.display == "none") {
+                    if (x.style.display == "none") 
+                    {
                         x.style.display = "block";
-                    } else {
+                    } 
+                    else 
+                    {
                         x.style.display = "none";
                     }
                 }

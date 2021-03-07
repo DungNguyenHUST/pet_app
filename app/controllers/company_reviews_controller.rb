@@ -27,7 +27,7 @@ class CompanyReviewsController < ApplicationController
         if @company_review.save
             redirect_to company_path(@company)
         else
-            flash[:danger] = "Lỗi, hay điền đủ nội dung có dấu *?"
+            flash[:danger] = "Lỗi, hay điền đủ nội dung có dấu "
             render :new
         end
     end

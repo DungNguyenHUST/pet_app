@@ -25,8 +25,8 @@ class CompanyInterviewsController < ApplicationController
         if @company_interview.save
             redirect_to company_path(@company)
         else
-            flash[:error] = "Lỗi, hay điền đủ nội dung có dấu *?"
-            # render :new
+            flash[:error] = "Lỗi, hay điền đủ nội dung có dấu "
+            render :new
         end
     end
     

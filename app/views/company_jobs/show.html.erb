@@ -31,8 +31,16 @@
                                         <span><i class="material-icons-outlined">local_offer</i><%= @company_job.salary %></span>
                                     </div>
                                     <div class="job_shoft_info">
-                                        <a><i class="material-icons-outlined">schedule</i> Đã đăng <%= time_ago_in_words(@company_job.created_at) %></a>
-                                        <a> - Hết hạn sau <%= time_ago_in_words(@company_job.created_at) %></a>
+                                        <%if @company_job.end_date%>
+                                            <%cal_date = ((@company_job.end_date - Time.now)/(24*60*60))%>
+                                            <%if cal_date > 0%>
+                                                <a><i class="material-icons-outlined">schedule</i> Đã đăng <%= time_ago_in_words(@company_job.created_at) %> • Hết hạn sau <%=cal_date.to_i%> ngày</a>
+                                            <%else%>
+                                                <a><i class="material-icons-outlined">schedule</i> Đã đăng <%= time_ago_in_words(@company_job.created_at) %> • </a><span>Đã hết hạn<span>
+                                            <%end%>
+                                        <%else%>
+                                            <a><i class="material-icons-outlined">schedule</i> Đã đăng <%= time_ago_in_words(@company_job.created_at) %> </a>
+                                        <%end%>
                                     </div>
                                 </div>
                             </div>
@@ -146,7 +154,7 @@
                                     <div class="job_right_title">
                                         <a> <i class="material-icons-outlined">timer</i> NGÀY HẾT HẠN</a>
                                     </div>
-                                    <span> <%= @company_job.end_date %></span>
+                                    <span> <%= @company_job.end_date.strftime("%B %d, %Y") %></span>
                                 </div>
                             </div>
                             <div class='job_block_right_company'>

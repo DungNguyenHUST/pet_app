@@ -25,7 +25,7 @@ class CompanyReplyReviewsController < ApplicationController
         if @company_reply_review.save
             redirect_to company_path(@company)
         else
-            flash[:danger] = "Lỗi, Không thể trả lời *?"
+            flash[:danger] = "Lỗi, Không thể trả lời "
             # render :new
         end
     end

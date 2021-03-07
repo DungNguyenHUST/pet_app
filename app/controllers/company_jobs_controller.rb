@@ -35,7 +35,7 @@ class CompanyJobsController < ApplicationController
 				redirect_to company_path(@company)
 			end
         else
-            flash[:danger] = "Lỗi, hãy điền đủ nội dung có dấu *?"
+            flash[:danger] = "Lỗi, hãy điền đủ nội dung có dấu "
             render :new
         end
     end

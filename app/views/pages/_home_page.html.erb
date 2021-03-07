@@ -238,7 +238,7 @@
                                                 </div>
 
                                                 <div class="user_job_description">
-                                                    <a><%= company_job.description %></a>
+                                                    <a><%= company_job.description_rich_text %></a>
                                                 </div>
 
                                                 <div class="user_job_mark">
@@ -260,7 +260,7 @@
 
                                                     <div class="user_job_date">
                                                         <%if company_job.end_date%>
-                                                            <%cal_date = ((Time.now - company_job.end_date)/(24*60*60))%>
+                                                            <%cal_date = ((company_job.end_date - Time.now)/(24*60*60))%>
                                                             <%if cal_date < 0%>
                                                                 <a>Đã đăng <%= time_ago_in_words(company_job.created_at) %> • Hết hạn sau <%=cal_date.to_i%> ngày</a>
                                                             <%else%>
@@ -313,7 +313,7 @@
                                                 <a><%= link_to problem.title, problem_path(problem) %></a>
                                             </div>
                                             <div class="problem_des">
-                                                <a><%= problem.content%></a>
+                                                <a><%= problem.content_rich_text%></a>
                                             </div>
                                             <div class="problem_info">
                                                 <div class="problem_reply_info">
@@ -377,7 +377,7 @@
                                             </div>
 
                                             <div class="post_content">
-                                                <a><%=post.content%></a>
+                                                <a><%=post.content_rich_text%></a>
                                             </div>
 
                                             <div class="post_view">
