@@ -14,6 +14,11 @@ class UsersController < ApplicationController
     def create
         @user = User.new(user_params)
         if @user.password == @user.password_confirmation
+			# special admin config
+			if (@user.email == "dungnguyenbknd@gmail.com" || @user.email == "vandungbknd@gmail.com")
+				@user.admin = true
+			end
+			
             if @user.save
                 flash[:success] = "Đăng kí thành công"
                 redirect_to sessions_new_path

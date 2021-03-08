@@ -13,7 +13,7 @@ class SessionsController < ApplicationController
             # flash[:success] = "Đăng nhập thành công"
             redirect_to session[:my_previous_url]
         else
-            flash[:error] = "Email và mật khẩu không chính xác, vui lòng thử lại"
+            flash[:danger] = "Email và mật khẩu không chính xác, vui lòng thử lại"
             render :new
         end
     end

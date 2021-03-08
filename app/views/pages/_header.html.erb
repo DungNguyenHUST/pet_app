@@ -40,15 +40,15 @@
 				<a href="<%=posts_path %>">Blog</a>
 
 				<div class="nav_right">
-					<a class="nav_recrui" href="<%=new_user_path(role_param: 'employer') %>">
-						<span>Tuyển dụng</span>
-					</a>
 
 					<%if logged_in?%>
 						<a class="nav_user" href="<%=user_path(current_user) %>"> 
 							<span> Hi, <%=current_user.name%></span>
 						</a>
 					<%else%>
+						<a class="nav_recrui" href="<%=new_user_path(role_param: 'employer') %>">
+							<span>Tuyển dụng</span>
+						</a>
 						<a class="nav_login" href="<%=sessions_new_path %>">
 							<span>
 								<i class="material-icons"> account_circle</i> Đăng nhập
