@@ -1,6 +1,6 @@
 class CompaniesController < ApplicationController
     def index
-        @companies = Company.search(params[:search]).approved
+        @companies = Company.friendly.search(params[:search]).approved
         @companies_all = Company.all.approved
         @companies_oder_name = Company.all.order('name DESC').approved
         @companies_oder_newest = Company.all.order('created_at DESC').approved
@@ -47,7 +47,7 @@ class CompaniesController < ApplicationController
     end
 
     def show
-        @company = Company.find params[:id]
+        @company = Company.friendly.find params[:id]
         @company_review = CompanyReview.new(company_id: params[:company_id])
         @company_reply_review = CompanyReplyReview.new(company_review_id: params[:company_review_id])
         @company_interview = CompanyInterview.new(company_id: params[:company_id])
@@ -58,11 +58,11 @@ class CompaniesController < ApplicationController
     end
 
     def edit
-        @company = Company.find params[:id]
+        @company = Company.friendly.find params[:id]
     end
 
     def update
-        @company = Company.find params[:id]
+        @company = Company.friendly.find params[:id]
 		if @company.update_column(:approved, true)
 			flash[:success] = "Approved"
 			redirect_to pages_path
@@ -81,7 +81,7 @@ class CompaniesController < ApplicationController
     end
 
     def destroy
-        @company = Company.find params[:id]
+        @company = Company.friendly.find params[:id]
         @company.destroy
         redirect_to pages_path
     end

@@ -1,4 +1,7 @@
 class CompanyJob < ApplicationRecord
+	extend FriendlyId
+	friendly_id :title, use: :slugged
+	
     belongs_to :company, optional: true
     has_many :company_apply_jobs, dependent: :destroy
     has_many :company_save_jobs, dependent: :destroy

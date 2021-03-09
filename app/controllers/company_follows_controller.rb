@@ -2,17 +2,17 @@ class CompanyFollowsController < ApplicationController
     # before_action :find_company_follow
     
     def index 
-        @company = Company.find(params[:company_id])
+        @company = Company.friendly.find(params[:company_id])
         @company_follows = @company.company_follows
     end
 
     def new
-        @company = Company.find(params[:company_id])
+        @company = Company.friendly.find(params[:company_id])
         @company_follow = CompanyFollow.new
     end
 
     def create
-        @company = Company.find(params[:company_id])
+        @company = Company.friendly.find(params[:company_id])
         if logged_in?
             if already_followed?
                 # flash[:notice] = "You can't like more than once"
@@ -30,7 +30,7 @@ class CompanyFollowsController < ApplicationController
     end
     
     def destroy
-        @company = Company.find(params[:company_id])
+        @company = Company.friendly.find(params[:company_id])
         @company_follow = @company.company_follows.find(params[:id])
         @company_follow.destroy
         # redirect_to company_path(@company)
@@ -41,7 +41,7 @@ class CompanyFollowsController < ApplicationController
     end
 
     def show
-        @company = Company.find(params[:company_id])
+        @company = Company.friendly.find(params[:company_id])
         @company_follow = @company.company_follows.find(params[:id])
     end
 
@@ -56,7 +56,7 @@ class CompanyFollowsController < ApplicationController
     end
 
     def find_company_follow
-        @company = Company.find(params[:company_id])
+        @company = Company.friendly.find(params[:company_id])
         @company_follow = CompanyFollow.find(params[:id])
     end
 end

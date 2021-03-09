@@ -90,3 +90,5 @@ gem 'bcrypt_pbkdf', '>= 1.0', '< 2.0'
 gem 'sitemap_generator'
 
 gem "rails_autolink"
+
+gem 'friendly_id', '~> 5.4.0'

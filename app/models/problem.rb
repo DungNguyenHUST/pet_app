@@ -1,4 +1,7 @@
 class Problem < ApplicationRecord
+	extend FriendlyId
+	friendly_id :title, use: :slugged
+	
     has_many :problem_solutions, dependent: :destroy
 
     def self.search(search)

@@ -2,8 +2,8 @@ class CompanyJobsController < ApplicationController
     def index 
         @companie_all = Company.all.approved
         @company_job_all = CompanyJob.all.approved
-        @companies = Company.search(params[:search]).approved
-        @company_jobs = CompanyJob.search(params[:search]).approved
+        @companies = Company.friendly.search(params[:search]).approved
+        @company_jobs = CompanyJob.friendly.search(params[:search]).approved
         
         # find company which incude job
         @company_by_jobs = []
@@ -19,12 +19,12 @@ class CompanyJobsController < ApplicationController
     end
 
     def new
-        @company = Company.find(params[:company_id])
+        @company = Company.friendly.find(params[:company_id])
         @company_job = CompanyJob.new
     end
 
     def create
-        @company = Company.find(params[:company_id])
+        @company = Company.friendly.find(params[:company_id])
         @company_job = @company.company_jobs.build(company_job_param)
 
         if @company_job.save
@@ -41,13 +41,13 @@ class CompanyJobsController < ApplicationController
     end
 
     def edit
-        @company = Company.find params[:company_id]
-        @company_job = @company.company_jobs.find(params[:id])
+        @company = Company.friendly.find params[:company_id]
+        @company_job = @company.company_jobs.friendly.find(params[:id])
     end
 
     def update
-        @company = Company.find params[:company_id]
-        @company_job = @company.company_jobs.find(params[:id])
+        @company = Company.friendly.find params[:company_id]
+        @company_job = @company.company_jobs.friendly.find(params[:id])
 		if @company_job.update_column(:approved, true)
 			flash[:success] = "Approved"
 			redirect_to pages_path
@@ -66,15 +66,15 @@ class CompanyJobsController < ApplicationController
     end
     
     def destroy
-        @company = Company.find(params[:company_id])
-        @company_job = @company.company_jobs.find(params[:id])
+        @company = Company.friendly.find(params[:company_id])
+        @company_job = @company.company_jobs.friendly.find(params[:id])
         @company_job.destroy
         redirect_to company_path(@company)
     end
 
     def show
-        @company = Company.find(params[:company_id])
-        @company_job = @company.company_jobs.find(params[:id])
+        @company = Company.friendly.find(params[:company_id])
+        @company_job = @company.company_jobs.friendly.find(params[:id])
     end
 
     private

@@ -1,6 +1,6 @@
 class ProblemsController < ApplicationController
     def index
-        @problems = Problem.search(params[:search]).order("created_at DESC").approved.reverse
+        @problems = Problem.friendly.search(params[:search]).order("created_at DESC").approved.reverse
         @problems_all = Problem.all.approved
         @problems_newest = Problem.all.order("created_at DESC").approved
         @problem_solutions = ProblemSolution.all
@@ -55,7 +55,7 @@ class ProblemsController < ApplicationController
     end
 
     def show
-        @problem = Problem.find params[:id]
+        @problem = Problem.friendly.find params[:id]
         @problems = Problem.all
         @problem_solutions = @problem.problem_solutions
         
@@ -77,11 +77,11 @@ class ProblemsController < ApplicationController
     end
 
     def edit
-        @problem = Problem.find params[:id]
+        @problem = Problem.friendly.find params[:id]
     end
 
     def update
-        @problem = Problem.find params[:id]
+        @problem = Problem.friendly.find params[:id]
 		if @problem.update_column(:approved, true)
 			flash[:success] = "Approved"
 			redirect_to pages_path
@@ -100,7 +100,7 @@ class ProblemsController < ApplicationController
     end
 
     def destroy
-        @problem = Problem.find params[:id]
+        @problem = Problem.friendly.find params[:id]
         @problem.destroy
         redirect_to pages_path
     end

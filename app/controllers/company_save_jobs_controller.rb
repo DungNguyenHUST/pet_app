@@ -2,20 +2,20 @@ class CompanySaveJobsController < ApplicationController
     # before_action :find_company_save_job
         
     def index 
-        @company = Company.find(params[:company_id])
-        @company_job = @company.company_jobs.find(params[:company_job_id])
+        @company = Company.friendly.find(params[:company_id])
+        @company_job = @company.company_jobs.friendly.find(params[:company_job_id])
         @company_save_job = @company_job.company_save_jobs
     end
 
     def new
-        @company = Company.find(params[:company_id])
-        @company_job = @company.company_jobs.find(params[:company_job_id])
+        @company = Company.friendly.find(params[:company_id])
+        @company_job = @company.company_jobs.friendly.find(params[:company_job_id])
         @company_save_job = CompanySaveJob.new
     end
 
     def create
-        @company = Company.find(params[:company_id])
-        @company_job = @company.company_jobs.find(params[:company_job_id])
+        @company = Company.friendly.find(params[:company_id])
+        @company_job = @company.company_jobs.friendly.find(params[:company_job_id])
         @company_save_job = CompanySaveJob.new
         if logged_in?
             if already_saved?
@@ -34,8 +34,8 @@ class CompanySaveJobsController < ApplicationController
     end
 
     def destroy 
-        @company = Company.find(params[:company_id])
-        @company_job = @company.company_jobs.find(params[:company_job_id])
+        @company = Company.friendly.find(params[:company_id])
+        @company_job = @company.company_jobs.friendly.find(params[:company_job_id])
         @company_save_job = @company_job.company_save_jobs.find(params[:id])
         @company_save_job.destroy
         # redirect_to company_company_job_path(@company, @company_job)
@@ -46,8 +46,8 @@ class CompanySaveJobsController < ApplicationController
     end
 
     def show
-        @company = Company.find(params[:company_id])
-        @company_job = @company.company_jobs.find(params[:company_job_id])
+        @company = Company.friendly.find(params[:company_id])
+        @company_job = @company.company_jobs.friendly.find(params[:company_job_id])
         @company_save_job = @company_job.company_save_jobs.find(params[:id])
     end
 
@@ -62,7 +62,7 @@ class CompanySaveJobsController < ApplicationController
     end
 
     def find_company_save_job
-        @company_job = CompanyJob.find(params[:company_job_id])
+        @company_job = CompanyJob.friendly.find(params[:company_job_id])
         @company_save_job = CompanySaveJob.find(params[:id])
     end
 end

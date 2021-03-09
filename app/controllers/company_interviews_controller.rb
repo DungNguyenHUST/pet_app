@@ -1,16 +1,16 @@
 class CompanyInterviewsController < ApplicationController
     def index 
-        @company = Company.find(params[:company_id])
+        @company = Company.friendly.find(params[:company_id])
         @company_interviews = @company.company_interviews
     end
 
     def new
-        @company = Company.find(params[:company_id])
+        @company = Company.friendly.find(params[:company_id])
         @company_interview = CompanyInterview.new
     end
 
     def create
-        @company = Company.find(params[:company_id])
+        @company = Company.friendly.find(params[:company_id])
 
         @company_interview = @company.company_interviews.build(company_interview_param)
 
@@ -31,15 +31,15 @@ class CompanyInterviewsController < ApplicationController
     end
     
     def destroy
-        @company = Company.find(params[:company_id])
-        @company_interview = @company.company_interviews.find(params[:id])
+        @company = Company.friendly.find(params[:company_id])
+        @company_interview = @company.company_interviews.friendly.find(params[:id])
         @company_interview.destroy
         redirect_to company_path(@company)
     end
 
     def show
-        @company = Company.find(params[:company_id])
-        @company_interview = @company.company_interviews.find(params[:id])
+        @company = Company.friendly.find(params[:company_id])
+        @company_interview = @company.company_interviews.friendly.find(params[:id])
     end
 
     private

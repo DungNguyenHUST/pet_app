@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_03_04_091514) do
+ActiveRecord::Schema.define(version: 2021_03_09_102421) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -82,6 +82,8 @@ ActiveRecord::Schema.define(version: 2021_03_04_091514) do
     t.string "phone"
     t.string "values"
     t.boolean "approved", default: false
+    t.string "slug"
+    t.index ["slug"], name: "index_companies_on_slug", unique: true
   end
 
   create_table "company_apply_jobs", force: :cascade do |t|
@@ -92,6 +94,8 @@ ActiveRecord::Schema.define(version: 2021_03_04_091514) do
     t.datetime "updated_at", precision: 6, null: false
     t.text "cover_letter"
     t.integer "user_id"
+    t.string "slug"
+    t.index ["slug"], name: "index_company_apply_jobs_on_slug", unique: true
   end
 
   create_table "company_dislike_interviews", force: :cascade do |t|
@@ -133,6 +137,8 @@ ActiveRecord::Schema.define(version: 2021_03_04_091514) do
     t.string "get_interview"
     t.string "companyName"
     t.boolean "privacy", default: false
+    t.string "slug"
+    t.index ["slug"], name: "index_company_interviews_on_slug", unique: true
   end
 
   create_table "company_jobs", force: :cascade do |t|
@@ -156,6 +162,8 @@ ActiveRecord::Schema.define(version: 2021_03_04_091514) do
     t.string "job_type"
     t.boolean "urgent", default: false
     t.boolean "approved", default: false
+    t.string "slug"
+    t.index ["slug"], name: "index_company_jobs_on_slug", unique: true
   end
 
   create_table "company_like_interviews", force: :cascade do |t|
@@ -182,6 +190,8 @@ ActiveRecord::Schema.define(version: 2021_03_04_091514) do
     t.integer "company_interview_id"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.string "slug"
+    t.index ["slug"], name: "index_company_reply_interviews_on_slug", unique: true
   end
 
   create_table "company_reply_reviews", force: :cascade do |t|
@@ -190,6 +200,8 @@ ActiveRecord::Schema.define(version: 2021_03_04_091514) do
     t.integer "company_review_id"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.string "slug"
+    t.index ["slug"], name: "index_company_reply_reviews_on_slug", unique: true
   end
 
   create_table "company_reviews", force: :cascade do |t|
@@ -215,6 +227,8 @@ ActiveRecord::Schema.define(version: 2021_03_04_091514) do
     t.integer "average_score"
     t.boolean "privacy", default: false
     t.string "working_time"
+    t.string "slug"
+    t.index ["slug"], name: "index_company_reviews_on_slug", unique: true
   end
 
   create_table "company_save_jobs", force: :cascade do |t|
@@ -224,12 +238,25 @@ ActiveRecord::Schema.define(version: 2021_03_04_091514) do
     t.integer "company_job_id"
   end
 
+  create_table "friendly_id_slugs", force: :cascade do |t|
+    t.string "slug", null: false
+    t.integer "sluggable_id", null: false
+    t.string "sluggable_type", limit: 50
+    t.string "scope"
+    t.datetime "created_at"
+    t.index ["slug", "sluggable_type", "scope"], name: "index_friendly_id_slugs_on_slug_and_sluggable_type_and_scope", unique: true
+    t.index ["slug", "sluggable_type"], name: "index_friendly_id_slugs_on_slug_and_sluggable_type"
+    t.index ["sluggable_type", "sluggable_id"], name: "index_friendly_id_slugs_on_sluggable_type_and_sluggable_id"
+  end
+
   create_table "post_comments", force: :cascade do |t|
     t.string "user_name"
     t.text "comment_content"
     t.integer "post_id"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.string "slug"
+    t.index ["slug"], name: "index_post_comments_on_slug", unique: true
   end
 
   create_table "post_reply_comments", force: :cascade do |t|
@@ -238,6 +265,8 @@ ActiveRecord::Schema.define(version: 2021_03_04_091514) do
     t.integer "post_comment_id"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.string "slug"
+    t.index ["slug"], name: "index_post_reply_comments_on_slug", unique: true
   end
 
   create_table "posts", force: :cascade do |t|
@@ -247,6 +276,8 @@ ActiveRecord::Schema.define(version: 2021_03_04_091514) do
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.boolean "approved", default: false
+    t.string "slug"
+    t.index ["slug"], name: "index_posts_on_slug", unique: true
   end
 
   create_table "problem_reply_solutions", force: :cascade do |t|
@@ -255,6 +286,8 @@ ActiveRecord::Schema.define(version: 2021_03_04_091514) do
     t.integer "problem_solution_id"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.string "slug"
+    t.index ["slug"], name: "index_problem_reply_solutions_on_slug", unique: true
   end
 
   create_table "problem_solutions", force: :cascade do |t|
@@ -266,6 +299,8 @@ ActiveRecord::Schema.define(version: 2021_03_04_091514) do
     t.datetime "updated_at", precision: 6, null: false
     t.integer "problem_id"
     t.integer "user_id"
+    t.string "slug"
+    t.index ["slug"], name: "index_problem_solutions_on_slug", unique: true
   end
 
   create_table "problem_unvote_solutions", force: :cascade do |t|
@@ -299,6 +334,8 @@ ActiveRecord::Schema.define(version: 2021_03_04_091514) do
     t.boolean "other_question"
     t.string "category"
     t.boolean "approved", default: false
+    t.string "slug"
+    t.index ["slug"], name: "index_problems_on_slug", unique: true
   end
 
   create_table "users", force: :cascade do |t|
@@ -329,7 +366,9 @@ ActiveRecord::Schema.define(version: 2021_03_04_091514) do
     t.string "company"
     t.integer "company_id"
     t.boolean "approved", default: false
+    t.string "slug"
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
+    t.index ["slug"], name: "index_users_on_slug", unique: true
   end
 
   add_foreign_key "active_storage_attachments", "active_storage_blobs", column: "blob_id"

@@ -1,19 +1,19 @@
 class CompanyReplyReviewsController < ApplicationController
     def index 
-        @company = Company.find(params[:company_id])
+        @company = Company.friendly.find(params[:company_id])
         @company_reviews = @company.company_reviews
         @company_reply_reviews = @company_reviews.company_reply_reviews
     end
 
     def new
-        @company = Company.find(params[:company_id])
-        @company_review = @company.company_reviews.find(params[:company_review_id])
+        @company = Company.friendly.find(params[:company_id])
+        @company_review = @company.company_reviews.friendly.find(params[:company_review_id])
         @company_reply_review = CompanyReplyReview.new
     end
 
     def create
-        @company = Company.find(params[:company_id])
-        @company_review = @company.company_reviews.find(params[:company_review_id])
+        @company = Company.friendly.find(params[:company_id])
+        @company_review = @company.company_reviews.friendly.find(params[:company_review_id])
         @company_reply_review = @company_review.company_reply_reviews.build(company_reply_review_param)
 
         if logged_in?
@@ -31,18 +31,18 @@ class CompanyReplyReviewsController < ApplicationController
     end
     
     def destroy
-        @company = Company.find(params[:company_id])
-        @company_review = @company.company_reviews.find(params[:company_review_id])
-        @company_reply_review = @company_review.company_reply_reviews.find(params[:id])
+        @company = Company.friendly.find(params[:company_id])
+        @company_review = @company.company_reviews.friendly.find(params[:company_review_id])
+        @company_reply_review = @company_review.company_reply_reviews.friendly.find(params[:id])
 
         @company_reply_review.destroy
         redirect_to company_path(@company)
     end
 
     def show
-        @company = Company.find(params[:company_id])
-        @company_review = @company.company_reviews.find(params[:company_review_id])
-        @company_reply_review = @company_review.company_reply_reviews.find(params[:id])
+        @company = Company.friendly.find(params[:company_id])
+        @company_review = @company.company_reviews.friendly.find(params[:company_review_id])
+        @company_reply_review = @company_review.company_reply_reviews.friendly.find(params[:id])
     end
 
     private

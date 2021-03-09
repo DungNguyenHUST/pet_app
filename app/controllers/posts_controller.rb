@@ -31,17 +31,17 @@ class PostsController < ApplicationController
     end
 
     def show
-        @post = Post.find params[:id]
+        @post = Post.friendly.find(params[:id])
         @post_comment = PostComment.new
         @posts = Post.all
     end
 
     def edit
-        @post = Post.find params[:id]
+        @post = Post.friendly.find params[:id]
     end
 
     def update
-        @post = Post.find params[:id]
+        @post = Post.friendly.find params[:id]
 		if @post.update_column(:approved, true)
 			flash[:success] = "Approved"
 			redirect_to pages_path
@@ -60,7 +60,7 @@ class PostsController < ApplicationController
     end
 
     def destroy
-        @post = Post.find params[:id]
+        @post = Post.friendly.find params[:id]
         @post.destroy
         redirect_to pages_path
     end

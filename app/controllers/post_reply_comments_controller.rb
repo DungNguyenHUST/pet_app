@@ -1,19 +1,19 @@
 class PostReplyCommentsController < ApplicationController
     def index 
-        @post = Post.find(params[:post_id])
+        @post = Post.friendly.find(params[:post_id])
         @post_comments = @post.post_comments
         @post_reply_comments = @post_comments.post_reply_comments
     end
 
     def new
-        @post = Post.find(params[:post_id])
-        @post_comment = @post.post_comments.find(params[:post_comment_id])
+        @post = Post.friendly.find(params[:post_id])
+        @post_comment = @post.post_comments.friendly.find(params[:post_comment_id])
         @post_reply_comment = PostReplyComment.new
     end
 
     def create
-        @post = Post.find(params[:post_id])
-        @post_comment = @post.post_comments.find(params[:post_comment_id])
+        @post = Post.friendly.find(params[:post_id])
+        @post_comment = @post.post_comments.friendly.find(params[:post_comment_id])
         @post_reply_comment = @post_comment.post_reply_comments.build(post_reply_comment_param)
 
         if logged_in?
@@ -31,18 +31,18 @@ class PostReplyCommentsController < ApplicationController
     end
     
     def destroy
-        @post = Post.find(params[:post_id])
-        @post_comment = @post.post_comments.find(params[:post_comment_id])
-        @post_reply_comment = @post_comment.post_reply_comments.find(params[:id])
+        @post = Post.friendly.find(params[:post_id])
+        @post_comment = @post.post_comments.friendly.find(params[:post_comment_id])
+        @post_reply_comment = @post_comment.post_reply_comments.friendly.find(params[:id])
 
         @post_reply_comment.destroy
         redirect_to post_path(@post)
     end
 
     def show
-        @post = Post.find(params[:post_id])
-        @post_comment = @post.post_comments.find(params[:post_comment_id])
-        @post_reply_comment = @post_comment.post_reply_comments.find(params[:id])
+        @post = Post.friendly.find(params[:post_id])
+        @post_comment = @post.post_comments.friendly.find(params[:post_comment_id])
+        @post_reply_comment = @post_comment.post_reply_comments.friendly.find(params[:id])
     end
 
     private

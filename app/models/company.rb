@@ -1,4 +1,7 @@
 class Company < ApplicationRecord
+	extend FriendlyId
+	friendly_id :name, use: :slugged
+	
     has_many :company_reviews, dependent: :destroy
     has_many :company_interviews, dependent: :destroy
     has_many :company_jobs, dependent: :destroy

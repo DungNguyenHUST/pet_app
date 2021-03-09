@@ -3,20 +3,20 @@ class ProblemVoteSolutionsController < ApplicationController
     before_action :find_vote, only: [:destroy]
     
     def index 
-        @problem = Problem.find(params[:problem_id])
+        @problem = Problem.friendly.find(params[:problem_id])
         @problem_solutions = @problem.problem_solutions
         @problem_vote_solutions = @problem_solutions.problem_vote_solutions
     end
 
     def new
-        @problem = Problem.find(params[:problem_id])
-        @problem_solution = @problem.problem_solutions.find(params[:problem_solution_id])
+        @problem = Problem.friendly.find(params[:problem_id])
+        @problem_solution = @problem.problem_solutions.friendly.find(params[:problem_solution_id])
         @problem_vote_solution = ProblemVoteSolution.new
     end
 
     def create
-        @problem = Problem.find(params[:problem_id])
-        @problem_solution = ProblemSolution.find(params[:problem_solution_id])
+        @problem = Problem.friendly.find(params[:problem_id])
+        @problem_solution = ProblemSolution.friendly.find(params[:problem_solution_id])
         if logged_in?
             if already_voted?
                 # flash[:notice] = "You can't vote more than once"
@@ -34,8 +34,8 @@ class ProblemVoteSolutionsController < ApplicationController
     end
     
     def destroy
-        @problem = Problem.find(params[:problem_id])
-        @problem_solution = @problem.problem_solutions.find(params[:problem_solution_id])
+        @problem = Problem.friendly.find(params[:problem_id])
+        @problem_solution = @problem.problem_solutions.friendly.find(params[:problem_solution_id])
         @problem_vote_solution = @problem_solution.problem_vote_solutions.find(params[:id])
         @problem_vote_solution.destroy
         # redirect_to problem_path(@problem)
@@ -46,8 +46,8 @@ class ProblemVoteSolutionsController < ApplicationController
     end
 
     def show
-        @problem = Problem.find(params[:problem_id])
-        @problem_solution = @problem.problem_solutions.find(params[:problem_solution_id])
+        @problem = Problem.friendly.find(params[:problem_id])
+        @problem_solution = @problem.problem_solutions.friendly.find(params[:problem_solution_id])
         @problem_vote_solution = @problem_solution.problem_vote_solutions.find(params[:id])
     end
 
@@ -62,7 +62,7 @@ class ProblemVoteSolutionsController < ApplicationController
     end
 
     def find_problem_solution
-        @problem_solution = ProblemSolution.find(params[:problem_solution_id])
+        @problem_solution = ProblemSolution.friendly.find(params[:problem_solution_id])
     end
 
     def find_vote

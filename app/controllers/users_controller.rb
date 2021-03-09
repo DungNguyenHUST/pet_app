@@ -33,7 +33,7 @@ class UsersController < ApplicationController
     end
 
     def show
-        @user = User.find_by id: params[:id]
+        @user = User.friendly.find_by id: params[:id]
         # find all apply job by current user
         @company_apply_jobs = CompanyApplyJob.all
         @company_apply_job_current = []
@@ -88,17 +88,17 @@ class UsersController < ApplicationController
     end
 
     def edit
-        @user = User.find params[:id]
+        @user = User.friendly.find params[:id]
     end
 
     def destroy
-        @user = User.find params[:id]
+        @user = User.friendly.find params[:id]
         @user.destroy
         redirect_to pages_path
     end
 
     def update
-        @user = User.find params[:id]
+        @user = User.friendly.find params[:id]
 		if @user.update_column(:approved, true)
 			flash[:success] = "Approved"
 			redirect_to pages_path

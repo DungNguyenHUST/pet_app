@@ -1,19 +1,19 @@
 class CompanyReplyInterviewsController < ApplicationController
     def index 
-        @company = Company.find(params[:company_id])
+        @company = Company.friendly.find(params[:company_id])
         @company_interviews = @company.company_interviews
         @company_reply_interviews = @company_interviews.company_reply_interviews
     end
 
     def new
-        @company = Company.find(params[:company_id])
-        @company_interview = @company.company_interviews.find(params[:company_interview_id])
+        @company = Company.friendly.find(params[:company_id])
+        @company_interview = @company.company_interviews.friendly.find(params[:company_interview_id])
         @company_reply_interview = CompanyReplyInterview.new
     end
 
     def create
-        @company = Company.find(params[:company_id])
-        @company_interview = @company.company_interviews.find(params[:company_interview_id])
+        @company = Company.friendly.find(params[:company_id])
+        @company_interview = @company.company_interviews.friendly.find(params[:company_interview_id])
         @company_reply_interview = @company_interview.company_reply_interviews.build(company_reply_interview_param)
 
         if logged_in?
@@ -31,18 +31,18 @@ class CompanyReplyInterviewsController < ApplicationController
     end
     
     def destroy
-        @company = Company.find(params[:company_id])
-        @company_interview = @company.company_interviews.find(params[:company_interview_id])
-        @company_reply_interview = @company_interview.company_reply_interviews.find(params[:id])
+        @company = Company.friendly.find(params[:company_id])
+        @company_interview = @company.company_interviews.friendly.find(params[:company_interview_id])
+        @company_reply_interview = @company_interview.company_reply_interviews.friendly.find(params[:id])
 
         @company_reply_interview.destroy
         redirect_to company_path(@company)
     end
 
     def show
-        @company = Company.find(params[:company_id])
-        @company_interview = @company.company_interviews.find(params[:company_interview_id])
-        @company_reply_interview = @company_interview.company_reply_interviews.find(params[:id])
+        @company = Company.friendly.find(params[:company_id])
+        @company_interview = @company.company_interviews.friendly.find(params[:company_interview_id])
+        @company_reply_interview = @company_interview.company_reply_interviews.friendly.find(params[:id])
     end
 
     private

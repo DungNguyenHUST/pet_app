@@ -1,4 +1,7 @@
 class User < ApplicationRecord
+	extend FriendlyId
+	friendly_id :name, use: :slugged
+	
     # using encryt pass
     has_secure_password
     
