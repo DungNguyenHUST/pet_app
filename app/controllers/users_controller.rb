@@ -13,22 +13,30 @@ class UsersController < ApplicationController
     
     def create
         @user = User.new(user_params)
-        if @user.password == @user.password_confirmation
-			# special admin config
-			if (@user.email == "dungnguyenbknd@gmail.com" || @user.email == "vandungbknd@gmail.com")
-				@user.admin = true
-			end
-			
-            if @user.save
-                flash[:success] = "Đăng kí thành công"
-                redirect_to sessions_new_path
+        user_present = User.friendly.find_by(email: user_params[:email].downcase)
+        
+        if user_present.present?
+            flash[:danger] = "Email đã được đăng kí, vui lòng thử đăng nhập lại hoặc thay đổi mật khẩu... "
+            redirect_to login_path
+        else
+            if @user.password == @user.password_confirmation
+                # special admin config
+                if (@user.email == "dungnguyenbknd@gmail.com" || @user.email == "vandungbknd@gmail.com")
+                    @user.admin = true
+                    flash[:success] = "Admin user created"
+                end
+                
+                if @user.save
+                    flash[:success] = "Đăng kí thành công"
+                    redirect_to sessions_new_path
+                else
+                    flash[:danger] = "Đăng kí không thành công"
+                    render :new
+                end
             else
-                flash[:danger] = "Email này đã được đăng ký, hãy đăng nhập hoặc thử một email khác"
+                flash[:danger] = "Mật khẩu không khớp, vui lòng nhập lại mật khẩu"
                 render :new
             end
-        else
-            flash[:danger] = "Mật khẩu không khớp, vui lòng nhập lại"
-            render :new
         end
     end
 

@@ -8,19 +8,23 @@ class SessionsController < ApplicationController
 
     def create
         user = User.friendly.find_by(email: params[:session][:email].downcase)
-        if user && user.authenticate(params[:session][:password])
-            log_in user
-            # flash[:success] = "Đăng nhập thành công"
-            redirect_to session[:my_previous_url]
+        if user.present?
+            if user.authenticate(params[:session][:password])
+                log_in user
+                redirect_to session[:my_previous_url]
+            else
+                flash[:danger] = "Email và mật khẩu không chính xác, vui lòng thử lại với mật khẩu khác..."
+                redirect_to login_path
+            end
         else
-            flash[:danger] = "Email và mật khẩu không chính xác, vui lòng thử lại"
-            render :new
+            flash[:danger] = "Email của bạn chưa được đăng kí, vui lòng đăng kí tài khoản mới tại đây..."
+            redirect_to new_user_path
         end
     end
 
     def destroy
         log_out
-        flash[:danger] = "Bạn đã thoát, hãy đăng nhập lại để tiếp tục sử dụng dịch vụ ..."
+        flash[:danger] = "Bạn đã thoát, hãy đăng nhập lại để tiếp tục sử dụng dịch vụ..."
         redirect_to login_path
     end
 
