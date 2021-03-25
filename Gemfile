@@ -92,3 +92,5 @@ gem 'sitemap_generator'
 gem "rails_autolink"
 
 gem 'friendly_id', '~> 5.4.0'
+
+gem 'google-cloud-storage'
