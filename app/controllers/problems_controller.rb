@@ -41,7 +41,7 @@ class ProblemsController < ApplicationController
             @problem.user_name = "Ẩn danh"
         end
 
-        if @problem.save
+        if @problem.save!
             if @problem.approved?
 				redirect_to problem_path(@problem)
 			else

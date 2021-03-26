@@ -33,7 +33,7 @@ class CompaniesController < ApplicationController
         @company_interview = CompanyInterview.new
         @company_job = CompanyJob.new
 
-        if @company.save
+        if @company.save!
 			if @company.approved?
 				redirect_to company_path(@company)
 			else

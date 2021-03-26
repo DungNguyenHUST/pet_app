@@ -17,7 +17,7 @@ class PostsController < ApplicationController
             @post.username = "Ẩn danh"
         end
 
-        if @post.save
+        if @post.save!
             if @post.approved?
 				redirect_to post_path(@post)
 			else

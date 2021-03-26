@@ -17,7 +17,7 @@ class CompanyApplyJobsController < ApplicationController
         @company_apply_job = @company_job.company_apply_jobs.build(company_apply_job_param)
         @company_apply_job.user_id = current_user.id
 
-        if @company_apply_job.save
+        if @company_apply_job.save!
             flash[:success] = "Thông tin của bạn đã được tiếp nhận và gửi tới nhà tuyển dụng..."
             redirect_to company_path(@company)
         else
