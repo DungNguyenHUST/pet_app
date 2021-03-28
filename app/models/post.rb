@@ -8,7 +8,7 @@ class Post < ApplicationRecord
 
     has_one_attached :wall_picture
     
-    validates :content_rich_text, presence: true
+    # validates :content_rich_text, presence: true
     has_rich_text :content_rich_text
 	
 	def self.approved
