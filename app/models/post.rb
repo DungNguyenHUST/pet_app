@@ -14,4 +14,6 @@ class Post < ApplicationRecord
 	def self.approved
 	  where(approved: :true)
 	end
+
+  mount_uploader :avatar, AvatarUploader
 end
