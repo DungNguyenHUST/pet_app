@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_03_29_153237) do
+ActiveRecord::Schema.define(version: 2021_03_31_145858) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -76,6 +76,8 @@ ActiveRecord::Schema.define(version: 2021_03_29_153237) do
     t.string "values"
     t.boolean "approved", default: false
     t.string "slug"
+    t.string "wall_picture"
+    t.string "avatar"
     t.index ["slug"], name: "index_companies_on_slug", unique: true
   end
 
@@ -88,6 +90,7 @@ ActiveRecord::Schema.define(version: 2021_03_29_153237) do
     t.text "cover_letter"
     t.integer "user_id"
     t.string "slug"
+    t.string "cover_vitate"
     t.index ["slug"], name: "index_company_apply_jobs_on_slug", unique: true
   end
 
@@ -271,6 +274,7 @@ ActiveRecord::Schema.define(version: 2021_03_29_153237) do
     t.boolean "approved", default: false
     t.string "slug"
     t.string "avatar"
+    t.string "wall_picture"
     t.index ["slug"], name: "index_posts_on_slug", unique: true
   end
 
@@ -361,6 +365,9 @@ ActiveRecord::Schema.define(version: 2021_03_29_153237) do
     t.integer "company_id"
     t.boolean "approved", default: false
     t.string "slug"
+    t.string "wall_picture"
+    t.string "avatar"
+    t.string "cover_letter_attach"
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
     t.index ["slug"], name: "index_users_on_slug", unique: true
   end

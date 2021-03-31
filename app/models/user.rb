@@ -11,8 +11,10 @@ class User < ApplicationRecord
     validates :email, presence: true, format: { with: VALID_EMAIL_REGEX }, uniqueness: { case_sensitive: false }
     # validates :password, presence: true, length: { minimum: 6 }
 
-    has_one_attached :avatar
-    has_one_attached :cover_letter_attach
+    # has_one_attached :avatar
+    # has_one_attached :cover_letter_attach
+    mount_uploader :avatar, ImageUploader
+    mount_uploader :cover_letter_attach, FileUploader
 
     has_many :company_like_reviews, dependent: :destroy
     has_many :company_dislike_reviews, dependent: :destroy
