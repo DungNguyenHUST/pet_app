@@ -9,25 +9,26 @@ class PostsController < ApplicationController
     end
 
     def create
-		@post = Post.create!(post_param)
+        @post = Post.new(post_param)
+        @post.save!
+        redirect_to posts_path
+        # if logged_in?
+        #     @post.username = @current_user.name
+        # else
+        #     @post.username = "Ẩn danh"
+        # end
 
-        if logged_in?
-            @post.username = @current_user.name
-        else
-            @post.username = "Ẩn danh"
-        end
-
-        if @post.save
-            if @post.approved?
-				redirect_to post_path(@post)
-			else
-				flash[:success] = "Thông tin của bạn đã được tiếp nhận, vui lòng chờ quản trị viên sẽ xử lý trong 30min - 1h"
-				redirect_to posts_path
-			end
-        else
-            flash[:danger] = "[WARN]Can't save data"
-            render :new
-        end
+        # if @post.save
+        #     if @post.approved?
+		# 		redirect_to post_path(@post)
+		# 	else
+		# 		flash[:success] = "Thông tin của bạn đã được tiếp nhận, vui lòng chờ quản trị viên sẽ xử lý trong 30min - 1h"
+		# 		redirect_to posts_path
+		# 	end
+        # else
+        #     flash[:danger] = "[WARN]Can't save data"
+        #     render :new
+        # end
     end
 
     def show
@@ -68,6 +69,6 @@ class PostsController < ApplicationController
     private
     # define param for each post
     def post_param
-        params.require(:post).permit(:id, :wall_picture, :title, :content_rich_text)
+        params.require(:post).permit(:id, :avatar, :title, :content_rich_text)
     end
 end
