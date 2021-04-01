@@ -96,7 +96,7 @@ gem 'friendly_id', '~> 5.4.0'
 
 gem 'google-cloud-storage'
 
-gem 'carrierwave'
+gem 'carrierwave', '2.0.0'
 
 gem "mimemagic"
 
