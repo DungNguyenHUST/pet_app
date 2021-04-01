@@ -99,3 +99,5 @@ gem 'google-cloud-storage'
 gem 'carrierwave'
 
 gem "mimemagic"
+
+gem "fog-google"

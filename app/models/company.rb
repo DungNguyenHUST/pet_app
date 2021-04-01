@@ -8,10 +8,12 @@ class Company < ApplicationRecord
     has_many :company_follows, dependent: :destroy
     has_many :user, dependent: :destroy
     
-    has_one_attached :avatar
-    has_one_attached :wall_picture
+    # has_one_attached :avatar
+    # has_one_attached :wall_picture
 
-    validate :image_type
+    # validate :image_type
+    mount_uploader :avatar, ImageUploader
+    mount_uploader :wall_picture, ImageUploader
 
     validates :overview_rich_text, presence: true
     validates :policy_rich_text, presence: true

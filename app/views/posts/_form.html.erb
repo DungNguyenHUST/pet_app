@@ -15,11 +15,11 @@
                     <div class="new_post_section">
                         <div class="new_post_content">
                             <div class="new_post_label">
-                                <a><%= f.label :avatar, "Ảnh bìa :", class: "new_post_label" %></a>
+                                <a><%= f.label :wall_picture, "Ảnh bìa :", class: "new_post_label" %></a>
                             </div>
                             
                             <div class="new_post_input">
-                                <%= f.file_field :avatar, :required => true%>
+                                <%= f.file_field :wall_picture, :required => true%>
                             </div>
                         </div>
                     </div>
@@ -33,6 +33,16 @@
                             <div class="new_post_input">
                                 <%= f.text_field :title, :required => true, class: "new_post_form_input", placeholder: " Nhập tiêu đề bài viết" %>
                             </div>
+                        </div>
+                    </div>
+
+                    <div class="new_post_content">
+                        <div class="new_post_label">
+                            <a><%= f.label :content_rich_text, "Giới thiệu bản thân*", class: "new_post_label_content" %></a>
+                        </div>
+                        
+                        <div class="new_post_input">
+                            <%= f.rich_text_area :content_rich_text, :required => true, class: "form-control-rich-text customized-min-height", placeholder: "Nhập nội dung bài viết (ít nhất 3000 từ)" %>
                         </div>
                     </div>
 
