@@ -70,8 +70,10 @@ class ProblemsController < ApplicationController
 
         @problem_submition = []
         @problem_solutions.each do |problem_solution|
-            if problem_solution.user_id == current_user.id
-                @problem_submition.push(problem_solution)
+            if logged_in?
+                if problem_solution.user_id == current_user.id
+                    @problem_submition.push(problem_solution)
+                end
             end
         end
     end
@@ -108,6 +110,6 @@ class ProblemsController < ApplicationController
     private
     # define param for each problem
     def problem_param
-        params.require(:problem).permit(:id, :title, :content_rich_text, :difficult, :category, :search)
+        params.require(:problem).permit(:id, :title, :content, :difficult, :category, :search)
     end
 end

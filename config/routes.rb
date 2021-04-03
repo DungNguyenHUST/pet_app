@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  mount Ckeditor::Engine => '/ckeditor'
   get     "login"    => "sessions#new"
   post    "login"    => "sessions#create"
   delete     "logout"   => "sessions#destroy"
@@ -54,7 +55,7 @@ Rails.application.routes.draw do
   # New post
   get 'posts/new' => 'posts#new'
 
-  # list các posts
+  # list posts
   get 'posts' => 'posts#index'
 
   resources :posts do

@@ -20,3 +20,6 @@ import "bootstrap"
 // application.js
 require("trix")
 require("@rails/actiontext")
+
+//= require ckeditor/init
+//= require_tree ./ckeditor

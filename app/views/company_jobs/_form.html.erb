@@ -114,31 +114,31 @@
 
                         <div class="new_job_content">
                             <div class="new_job_label">
-                                <a><%= f.label :description_rich_text, "Mô tả chung*", class: "new_job_label" %></a>
+                                <a><%= f.label :description, "Mô tả chung*", class: "new_job_label" %></a>
                             </div>
                             
                             <div class="new_job_input">
-                                <%= f.rich_text_area :description_rich_text, :required => true, class: "form-control-rich-text customized-min-height", placeholder: "Nhập mô tả chung về công việc" %>
+                                <%= f.cktext_area :description, :required => true, class: "form-control-rich-text customized-min-height", ckeditor: { language: 'us', toolbar: "mini"}, placeholder: "Nhập mô tả chung về công việc" %>
                             </div>
                         </div>
 
                         <div class="new_job_content">
                             <div class="new_job_label">
-                                <a><%= f.label :requirement_rich_text, "Yêu câu công việc*", class: "new_job_label" %></a>
+                                <a><%= f.label :requirement, "Yêu câu công việc*", class: "new_job_label" %></a>
                             </div>
                             
                             <div class="new_job_input">
-                                <%= f.rich_text_area :requirement_rich_text, :required => true, class: "form-control-rich-text customized-min-height", placeholder: "Nhập yêu cầu công việc" %>
+                                <%= f.cktext_area :requirement, :required => true, class: "form-control-rich-text customized-min-height", ckeditor: { language: 'us', toolbar: "mini"}, placeholder: "Nhập yêu cầu công việc" %>
                             </div>
                         </div>
 
                         <div class="new_job_content">
                             <div class="new_job_label">
-                                <a><%= f.label :benefit_rich_text, "Chế độ đãi ngộ*", class: "new_job_label" %></a>
+                                <a><%= f.label :benefit, "Chế độ đãi ngộ*", class: "new_job_label" %></a>
                             </div>
                             
                             <div class="new_job_input">
-                                <%= f.rich_text_area :benefit_rich_text, :required => true, class: "form-control-rich-text customized-min-height", placeholder: "Chế độ đãi ngộ của công ty, hãy cho biết ít nhất 3 lý do" %>
+                                <%= f.cktext_area :benefit, :required => true, class: "form-control-rich-text customized-min-height", ckeditor: { language: 'us', toolbar: "mini"}, placeholder: "Chế độ đãi ngộ của công ty, hãy cho biết ít nhất 3 lý do" %>
                             </div>
                         </div>
                     </div>

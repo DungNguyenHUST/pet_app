@@ -34,6 +34,5 @@ class Problem < ApplicationRecord
     #     end
     # end
 
-    validates :content_rich_text, presence: true
-    has_rich_text :content_rich_text
+    validates :content, presence: true
 end

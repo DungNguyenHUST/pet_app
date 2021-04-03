@@ -97,7 +97,7 @@
                                         <div class="company_wall">
                                             <div class="rounded">
                                                 <%if company.avatar?%>
-                                                    <%= link_to (image_tag(company.wall_picture.url)), image_path(url_for(company.wall_picture.url)), rel: "gallery" , :href => company_path(company)%>
+                                                    <%= link_to (image_tag(company.wall_picture.large.url)), image_path(url_for(company.wall_picture.large.url)), rel: "gallery" , :href => company_path(company)%>
                                                 <%end%>
                                             </div>
                                         </div>
@@ -105,7 +105,7 @@
                                         <div class="company_thumbnail">
                                             <div class="rounded">
                                                 <%if company.avatar?%>
-                                                    <%= link_to (image_tag(company.avatar.url)), image_path(url_for(company.avatar.url)), rel: "gallery" , :href => company_path(company)%>
+                                                    <%= link_to (image_tag(company.avatar.thumb.url)), image_path(url_for(company.avatar.thumb.url)), rel: "gallery" , :href => company_path(company)%>
                                                 <%end%>
                                             </div>
                                         </div>
@@ -211,7 +211,7 @@
                                         <div class="user_job_left">
                                             <div class="company_avatar">
                                                 <%if company.avatar?%>
-                                                    <%= link_to (image_tag(company.avatar.url)), image_path(url_for(company.avatar.url)), rel: "gallery" , :href => company_path(company)%>
+                                                    <%= link_to (image_tag(company.avatar.thumb.url)), image_path(url_for(company.avatar.thumb.url)), rel: "gallery" , :href => company_path(company)%>
                                                 <%end%>
                                             </div>
                                         </div>
@@ -238,7 +238,7 @@
                                                 </div>
 
                                                 <div class="user_job_description">
-                                                    <a><%= company_job.description_rich_text %></a>
+                                                    <a><%= company_job.description.html_safe %></a>
                                                 </div>
 
                                                 <div class="user_job_mark">
@@ -313,7 +313,7 @@
                                                 <a><%= link_to problem.title, problem_path(problem) %></a>
                                             </div>
                                             <div class="problem_des">
-                                                <a><%= problem.content_rich_text%></a>
+                                                <a><%= problem.content.html_safe%></a>
                                             </div>
                                             <div class="problem_info">
                                                 <div class="problem_reply_info">
@@ -358,7 +358,7 @@
                                         <div class="post_left">
                                             <div class="post_cover">
                                                 <%if post.wall_picture?%>
-                                                    <%= link_to (image_tag(post.wall_picture.url)), image_path(url_for(post.wall_picture.url)), rel: "gallery" , :href => post_path(post)%>
+                                                    <%= link_to (image_tag(post.wall_picture.medium.url)), image_path(url_for(post.wall_picture.medium.url)), rel: "gallery" , :href => post_path(post)%>
                                                 <%else%>
                                                     <img src="<%= "/assets/illustration.png" %>" alt="Snow" style="width:100%;">
                                                 <%end%>
@@ -377,7 +377,7 @@
                                             </div>
 
                                             <div class="post_content">
-                                                <a><%=post.content_rich_text%></a>
+                                                <a><%=post.content.html_safe%></a>
                                             </div>
 
                                             <div class="post_view">

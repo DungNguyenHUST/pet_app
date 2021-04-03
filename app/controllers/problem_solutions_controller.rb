@@ -59,6 +59,6 @@ class ProblemSolutionsController < ApplicationController
     private
 
     def problem_solution_param
-        params.require(:problem_solution).permit(:user_name, :title , :content_rich_text, :vote)
+        params.require(:problem_solution).permit(:user_name, :title , :content, :vote)
     end
 end

@@ -6,12 +6,9 @@ class CompanyJob < ApplicationRecord
     has_many :company_apply_jobs, dependent: :destroy
     has_many :company_save_jobs, dependent: :destroy
 
-    validates :description_rich_text, presence: true
-    validates :requirement_rich_text, presence: true
-    validates :benefit_rich_text, presence: true
-    has_rich_text :benefit_rich_text
-    has_rich_text :description_rich_text
-    has_rich_text :requirement_rich_text
+    validates :description, presence: true
+    validates :requirement, presence: true
+    validates :benefit, presence: true
 
     def self.search(search)
         if search

@@ -70,7 +70,7 @@ gem "bcrypt"
 gem "bootstrap-sass", ">= 3.4.1"
 
 # For editor in post
-gem 'ckeditor_rails'
+gem 'ckeditor'
 gem "twitter-bootstrap-rails"
 
 # For resize image
@@ -94,10 +94,11 @@ gem "rails_autolink"
 
 gem 'friendly_id', '~> 5.4.0'
 
-gem 'google-cloud-storage'
+# gem 'google-cloud-storage'
 
 gem 'carrierwave', '2.0.0'
+gem 'mini_magick'
 
-gem "mimemagic"
+# gem "mimemagic"
 
-gem "fog-google"
+# gem "fog-google"

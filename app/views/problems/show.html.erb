@@ -29,7 +29,7 @@
                                     <div class="tab-content">
                                         <div role="tabpanel" id="ProblemDescriptionID" class="tab-pane fade in active"><br>
                                             <div class="problem_des_tab">
-                                                <%= @problem.content_rich_text %>
+                                                <%= @problem.content.html_safe %>
                                             </div>
                                         </div>
 
@@ -111,7 +111,7 @@
                                             <div class="new_problem_solution_right_section">
                                                 <div class="new_problem_solution_right_content">
                                                     <div class="new_problem_solution_right_input_review">
-                                                        <%= f.rich_text_area :content_rich_text, :required => true, class: "form-control-rich-text customized-min-height", placeholder: "Mô tả câu trả lời của bạn tại đây ..." %>
+                                                        <%= f.cktext_area :content, :required => true, class: "form-control-rich-text customized-min-height", ckeditor: { language: 'us'}, placeholder: "Mô tả câu trả lời của bạn tại đây ..." %>
                                                     </div>
                                                 </div>
                                             </div>

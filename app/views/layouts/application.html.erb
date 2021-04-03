@@ -10,25 +10,6 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
 
-    <%# TinyMCE editor %>
-    <%# <script src="https://cdn.tiny.cloud/1/s6hcsriq5ucxv2safuvjvupn8zv7tcx116q3nzgzvumzqg0r/tinymce/5/tinymce.min.js" referrerpolicy="origin"></script>
-    <script>
-      tinymce.init({
-        selector: '.tinymce',
-        height: 500,
-        menubar: false,
-        plugins: [
-          'advlist autolink lists link image charmap print preview anchor',
-          'searchreplace visualblocks code fullscreen',
-          'insertdatetime media table paste code help wordcount'
-        ],
-          toolbar: 'undo redo | formatselect | ' +
-          ' bold italic backcolor | alignleft aligncenter ' +
-          ' alignright alignjustify | bullist numlist outdent indent | ' +
-          ' removeformat | help'
-      });
-    </script> %>
-
     <%= javascript_pack_tag 'application' %>
     
     <!-- Google Tag Manager -->
@@ -47,6 +28,7 @@
       </script>
     <% end %>
     <!-- End Google Tag Manager -->
+
     <!-- Font Icon -->    
     <link href="https://fonts.googleapis.com/css?family=Material+Icons|Material+Icons+Outlined|Material+Icons+Two+Tone|Material+Icons+Round|Material+Icons+Sharp" rel="stylesheet">
 		<!-- Font -->
@@ -62,6 +44,9 @@
   </head>
 
   <body>
+    <%# For Ckeditor %>
+    <%= javascript_include_tag Ckeditor.cdn_url%>
+
     <!-- Google Tag Manager (noscript) -->
     <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-TP9TWNJ"
     height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>

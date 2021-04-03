@@ -15,10 +15,8 @@ class Company < ApplicationRecord
     mount_uploader :avatar, ImageUploader
     mount_uploader :wall_picture, ImageUploader
 
-    validates :overview_rich_text, presence: true
-    validates :policy_rich_text, presence: true
-    has_rich_text :overview_rich_text
-    has_rich_text :policy_rich_text
+    validates :overview, presence: true
+    validates :policy, presence: true
 
     def self.search(search)
         if search

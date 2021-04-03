@@ -588,11 +588,11 @@
                     <div class="new_company_section">
                         <div class="new_company_content">
                             <div class="new_company_label">
-                                <a><%= f.label :overview_rich_text, "Mô tả chung về công ty* ", class: "new_company_label" %></a>
+                                <a><%= f.label :overview, "Mô tả chung về công ty* ", class: "new_company_label" %></a>
                             </div>
                             
                             <div class="new_company_input">
-                                <%= f.rich_text_area :overview_rich_text,  :required => true, class: "form-control-rich-text customized-min-height", placeholder: "Nhập mô tả chính, giới thiệu, lịch sử hoạt động ..." %>
+                                <%= f.cktext_area :overview,  :required => true, class: "form-control-rich-text customized-min-height", ckeditor: { language: 'us', toolbar: "mini"}, placeholder: "Nhập mô tả chính, giới thiệu, lịch sử hoạt động ..." %>
                             </div>
                         </div>
                     </div>
@@ -600,11 +600,11 @@
                     <div class="new_company_section">
                         <div class="new_company_content">
                             <div class="new_company_label">
-                                <a><%= f.label :policy_rich_text, "Chính sách nổi bật* ", class: "new_company_label" %></a>
+                                <a><%= f.label :policy, "Chính sách nổi bật* ", class: "new_company_label" %></a>
                             </div>
                             
                             <div class="new_company_input">
-                                <%= f.rich_text_area :policy_rich_text,  :required => true, class: "form-control-rich-text customized-min-height", placeholder: "Nhập ít nhất 3 chính sách nổi bật của công ty" %>
+                                <%= f.cktext_area :policy,  :required => true, class: "form-control-rich-text customized-min-height", ckeditor: { language: 'us', toolbar: "mini"}, placeholder: "Nhập ít nhất 3 chính sách nổi bật của công ty" %>
                             </div>
                         </div>
                     </div>
