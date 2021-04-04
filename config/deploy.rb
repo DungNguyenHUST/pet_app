@@ -45,3 +45,9 @@ set :keep_releases, 5
 
 # Uncomment the following to require manually verifying the host key before first deploy.
 # set :ssh_options, verify_host_key: :secure
+
+# For deploy carrierwave image
+task :symlink_uploads, roles: :app do
+    run "ln -nfs #{shared_path}/uploads #{release_path}/public/uploads"
+end
+# after 'deploy:update_code', 'deploy:symlink_uploads'
