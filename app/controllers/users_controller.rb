@@ -103,8 +103,11 @@ class UsersController < ApplicationController
 
     def update
         @user = User.friendly.find params[:id]
-		if @user.update_column(:approved, true)
+		if (!@user.approved? && @user.update_column(:approved, true))
 			flash[:success] = "Approved"
+			redirect_to pages_path
+        elsif (@user.approved? && @user.update_column(:approved, false))
+            flash[:danger] = "Rejected"
 			redirect_to pages_path
 		else
 			if(@user.update(user_params))

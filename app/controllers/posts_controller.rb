@@ -41,8 +41,11 @@ class PostsController < ApplicationController
 
     def update
         @post = Post.friendly.find params[:id]
-		if @post.update_column(:approved, true)
+		if (!@post.approved? && @post.update_column(:approved, true))
 			flash[:success] = "Approved"
+			redirect_to pages_path
+        elsif (@post.approved? && @post.update_column(:approved, false))
+            flash[:danger] = "Rejected"
 			redirect_to pages_path
 		else
 			if(@post.update(post_param))

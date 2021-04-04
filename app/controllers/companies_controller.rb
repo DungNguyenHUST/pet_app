@@ -63,8 +63,11 @@ class CompaniesController < ApplicationController
 
     def update
         @company = Company.friendly.find params[:id]
-		if @company.update_column(:approved, true)
+		if (!@company.approved? && @company.update_column(:approved, true))
 			flash[:success] = "Approved"
+			redirect_to pages_path
+        elsif (@company.approved? && @company.update_column(:approved, false))
+            flash[:danger] = "Rejected"
 			redirect_to pages_path
 		else
 			if(@company.update(company_param))
@@ -75,7 +78,7 @@ class CompaniesController < ApplicationController
 					redirect_to companies_path
 				end
 			else
-				flash[:error] = "Lỗi, không thể cập nhật thông tin"
+				flash[:error] = "Lỗi, không thể cập nhật thông tin vui lòng kiểm tra lại ..."
 			end
 		end
     end
