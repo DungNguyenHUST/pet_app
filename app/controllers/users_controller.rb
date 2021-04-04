@@ -103,20 +103,23 @@ class UsersController < ApplicationController
 
     def update
         @user = User.friendly.find params[:id]
-		if (!@user.approved? && @user.update_column(:approved, true))
-			flash[:success] = "Approved"
-			redirect_to pages_path
-        elsif (@user.approved? && @user.update_column(:approved, false))
-            flash[:danger] = "Rejected"
-			redirect_to pages_path
-		else
+
+        if user_params.present? && !(user_params.has_key?(:approved))
 			if(@user.update(user_params))
 				flash[:success] = "Update thành công"
 				redirect_to user_path(current_user)
 			else
 				flash[:danger] = "Không thể update thông tin, vui lòng thử lại"
 			end
-		end
+        else
+            if (!@user.approved? && @user.update_column(:approved, true))
+                flash[:success] = "Approved"
+                redirect_to pages_path
+            elsif (@user.approved? && @user.update_column(:approved, false))
+                flash[:danger] = "Rejected"
+                redirect_to pages_path
+            end
+        end
     end
 
     def try(arg)

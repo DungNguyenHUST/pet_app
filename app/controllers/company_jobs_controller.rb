@@ -48,14 +48,9 @@ class CompanyJobsController < ApplicationController
     def update
         @company = Company.friendly.find params[:company_id]
         @company_job = @company.company_jobs.friendly.find(params[:id])
-		if (!@company_job.approved? && @company_job.update_column(:approved, true))
-			flash[:success] = "Approved"
-			redirect_to pages_path
-        elsif (@company_job.approved? && @company_job.update_column(:approved, false))
-            flash[:danger] = "Rejected"
-			redirect_to pages_path
-		else
-			if(@company_job.update(company_job_param))
+
+        if company_job_param.present? && !(company_job_param.has_key?(:approved))
+            if(@company_job.update(company_job_param))
 				if @company_job.approved?
 					redirect_to company_company_job_path(@company)
 				else
@@ -65,6 +60,14 @@ class CompanyJobsController < ApplicationController
 			else
 				flash[:danger] = "Không thể cập nhật thông tin"
 			end
+        else
+            if (!@company_job.approved? && @company_job.update_column(:approved, true))
+                flash[:success] = "Approved"
+                redirect_to pages_path
+            elsif (@company_job.approved? && @company_job.update_column(:approved, false))
+                flash[:danger] = "Rejected"
+                redirect_to pages_path
+            end
 		end
     end
     

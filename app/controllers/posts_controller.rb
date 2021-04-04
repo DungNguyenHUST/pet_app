@@ -41,13 +41,8 @@ class PostsController < ApplicationController
 
     def update
         @post = Post.friendly.find params[:id]
-		if (!@post.approved? && @post.update_column(:approved, true))
-			flash[:success] = "Approved"
-			redirect_to pages_path
-        elsif (@post.approved? && @post.update_column(:approved, false))
-            flash[:danger] = "Rejected"
-			redirect_to pages_path
-		else
+
+        if post_param.present? && !(post_param.has_key?(:approved))
 			if(@post.update(post_param))
 				if @post.approved?
 					redirect_to post_path(@post)
@@ -58,7 +53,15 @@ class PostsController < ApplicationController
 			else
 				flash[:danger] = "Không thể cập nhật thông tin"
 			end
-		end
+        else
+            if (!@post.approved? && @post.update_column(:approved, true))
+                flash[:success] = "Approved"
+                redirect_to pages_path
+            elsif (@post.approved? && @post.update_column(:approved, false))
+                flash[:danger] = "Rejected"
+                redirect_to pages_path
+            end
+        end
     end
 
     def destroy

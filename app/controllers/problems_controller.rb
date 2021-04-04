@@ -84,14 +84,9 @@ class ProblemsController < ApplicationController
 
     def update
         @problem = Problem.friendly.find params[:id]
-		if (!@problem.approved? && @problem.update_column(:approved, true))
-			flash[:success] = "Approved"
-			redirect_to pages_path
-        elsif (@problem.approved? && @problem.update_column(:approved, false))
-            flash[:danger] = "Rejected"
-			redirect_to pages_path
-		else
-			if(@problem.update(problem_param))
+
+        if problem_param.present? && !(problem_param.has_key?(:approved))
+            if(@problem.update(problem_param))
 				if @problem.approved?
 					redirect_to problem_path(@problem)
 				else
@@ -101,7 +96,15 @@ class ProblemsController < ApplicationController
 			else
 				flash[:danger] = "Không thể cập nhật thông tin"
 			end
-		end
+        else
+            if (!@problem.approved? && @problem.update_column(:approved, true))
+                flash[:success] = "Approved"
+                redirect_to pages_path
+            elsif (@problem.approved? && @problem.update_column(:approved, false))
+                flash[:danger] = "Rejected"
+                redirect_to pages_path
+            end
+        end
     end
 
     def destroy
