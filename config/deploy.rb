@@ -47,7 +47,9 @@ set :keep_releases, 5
 # set :ssh_options, verify_host_key: :secure
 
 # For deploy carrierwave image
-task :symlink_uploads, roles: :app do
-    run "ln -nfs #{shared_path}/uploads #{release_path}/public/uploads"
+task :symlink_uploads do 
+    on roles: :app do
+        run "ln -nfs #{shared_path}/uploads #{release_path}/public/uploads"
+    end
 end
 # after 'deploy:update_code', 'deploy:symlink_uploads'
