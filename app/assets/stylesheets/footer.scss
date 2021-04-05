@@ -36,11 +36,15 @@
                     li{
                         display: block;
                         padding-left: 0px !important;
-                        padding-bottom: 5px;
+                        padding-bottom: 8px;
                         a{
                             font-size: 14px;
                             text-decoration: none;
                             color: #333;
+                            i{
+                                font-size: 18px;
+                                padding-right: 5px;
+                            }
                         }
                         a:hover{
                             color: #1877f2;
@@ -52,6 +56,10 @@
 
         .footer_container_bottom{
             background-color: #f6f9fc;
+            padding-bottom: 30px;
+            @media screen and (max-width: 600px){
+                padding-bottom: 10px;
+            }
             .container{
                 border-top: 1px solid #dfe1e5;
                 @media screen and (max-width: 600px){
@@ -59,15 +67,20 @@
                 }
                 .footer_links
                 {
-                    font-size: 14px;
+                    a{
+                        font-size: 14px;
+                        color: #333;
+                    }
                     @media screen and (max-width: 600px){
                         text-align: center;
-                    }
+                    };
                 }
                 
                 .footer_copyright{
-                    font-size: 14px;
-                    color: #333 ;
+                    a{
+                        font-size: 14px;
+                        color: #333;
+                    }
                     text-align: center;
                     @media screen and (max-width: 600px){
                         text-align: center;
@@ -78,45 +91,20 @@
                     }
                 }
 
-                .footer_socail_links{
+                .footer_bottom_links{
                     text-align: right;
                     position: relative;
-                    top: -10px;
                     @media screen and (max-width: 600px){
-                        text-align: center;
                         display: none;
                     }
-                    ul{
-                        li{
-                            display: inline-block;
-                            a{
-                                font-size: 14px;
-                                width: 35px;
-                                height: 35px;
-                                display: inline-block;
-                                text-align: center;
-                                background: transparent;
-                                margin-right: 10px;
-                                color: #1877f2 !important;
-                                line-height: 40px !important;
-                                border: 1px solid #dfe1e5 ;
-                                border-radius: 3px;
-                                background-color: #fff;
-                                i{
-                                    font-size: 18px;
-                                    line-height: 40px;
-                                    position: relative;
-                                    top: -1px;
-                                }
-                                
-                            }
-                            &:hover a{
-                                color: #fff !important;
-                                background: #1877f2;
-                                border-color: transparent;
-                                border: 1px solid #dfe1e5 ;
-                            }
-                        }
+                    
+                    a{
+                        font-size: 14px;
+                        text-decoration: none;
+                        color: #333;
+                    }
+                    a:hover{
+                        color: #1877f2;
                     }
                 }
             }
