@@ -21,28 +21,31 @@
                         color: #1877f2;
                     }
                 }
-                margin-bottom: 50px;
+                margin-bottom: 30px;
             }
 
             .post_block{
-                padding-top: 10px;
-                min-height: 240px;
-                @media screen and (max-width: 600px){
-                    min-height: 220px;
+                margin-top: 20px;
+                padding-bottom: 20px;
+                min-height: 200px;
+                &:hover{
+                    // box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.1), 0 6px 20px 0 rgba(0, 0, 0, 0.09);
                 }
                 .post_left{
                     float: left;
                     padding-right: 20px;
-                    width: 45%;
+                    width: 50%;
+                    @media screen and (max-width: 600px){
+                        float: none;
+                        padding-right: 0px;
+                        width: 100%;
+                    }
                     .post_cover{
                         border-radius: 5px;
                         img{
                             display: block;
                             width: 100%;
-                            height: 200px;
-                            @media screen and (max-width: 600px){
-                                height: 180px;
-                            }
+                            height: 180px;
                             border-radius: 5px;
                         }
                         background-color: #fff;
@@ -51,30 +54,38 @@
                 }
 
                 .post_right{
-                    width: 55%;
+                    width: 50%;
                     float: right;
+                    @media screen and (max-width: 600px){
+                        padding-top: 20px;
+                        float: none;
+                        width: 100%;
+                    }
                     .post_header{
                         a{
                             font-size: 20px;
-                            font-weight: 600;
-                            overflow: hidden;
+                            font-weight: 550;
+                            text-decoration: none !important;overflow: hidden;
                             text-overflow: ellipsis;
                             display: -webkit-box;
-                            -webkit-line-clamp: 2; /* number of lines to show */
+                            -webkit-line-clamp: 3; /* number of lines to show */
                             -webkit-box-orient: vertical;
                             color: #333;
-                            &:hover{
-                                color: #1877f2;
-                            }
                         }
                         a:link{
                             text-decoration: none !important ;
                         }
+                        a:hover{
+                            color: #1877f2;
+                        }
                     }
 
                     .post_info{
-                        padding-bottom: 10px;
-                        padding-top: 0px;
+                        @media screen and (max-width: 600px){
+                            display: none;  
+                        }
+                        padding-top: 20px;
+                        // padding-bottom: 20px;
                         font-size: 14px;
                         i{
                             font-size: 20px;
@@ -95,15 +106,20 @@
                         overflow: hidden;
                         text-overflow: ellipsis;
                         display: -webkit-box;
-                        -webkit-line-clamp: 3; /* number of lines to show */
+                        -webkit-line-clamp: 4; /* number of lines to show */
                         -webkit-box-orient: vertical;
+                        display: none; 
                         @media screen and (max-width: 600px){
-                            // display: none;
+                            display: none;  
                         }
                     }
 
                     .post_view{
                         padding-left: 0px;
+                        display: none;  
+                        @media screen and (max-width: 600px){
+                            display: none;  
+                        }
                         button {
                             width: 100px;
                             height: 25px;
@@ -118,7 +134,7 @@
                                 position: relative;
                                 top: 7px;
                             }
-                            &:hover{
+                            &:hover {
                                 color: #369;
                             }
                         }
