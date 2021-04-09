@@ -132,8 +132,8 @@
                                 <div class="user_search_job_block">
                                     <div class="user_job_left">
                                         <div class="company_avatar">
-                                            <%if company_by_job.avatar.attached?%>
-                                                <%= link_to (image_tag(company_by_job.avatar)), image_path(url_for(company_by_job.avatar)), rel: "gallery" , :href => company_path(company_by_job)%>
+                                            <%if company_by_job.avatar%>
+                                                <%= link_to (image_tag(company_by_job.avatar.thumb.url)), image_path(url_for(company_by_job.avatar.thumb.url)), rel: "gallery" , :href => company_path(company_by_job)%>
                                             <%end%>
                                         </div>
                                     </div>

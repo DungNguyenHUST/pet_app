@@ -2,7 +2,7 @@
 <%if (!current_user.nil?)%>
     <%if current_user.admin?%>
         <%= render :partial => 'pages/admin_page' %>
-    <%elsif current_user.employer?%>
+    <%elsif current_user.approved? && current_user.employer?%>
         <%= render :partial => 'pages/employer_page' %>
     <%else%>
         <%= render :partial => 'pages/home_page' %>

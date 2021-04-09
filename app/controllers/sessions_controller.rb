@@ -10,8 +10,17 @@ class SessionsController < ApplicationController
         user = User.friendly.find_by(email: params[:session][:email].downcase)
         if user.present?
             if user.authenticate(params[:session][:password])
-                log_in user
-                redirect_to session[:my_previous_url]
+                if user.employer? && !user.approved?
+                    flash[:danger] = "Tài khoản nhà tuyển dụng của bạn đang được xử lý, vui lòng đăng nhập lại sau 30 min..."
+                    redirect_to pages_path
+                else
+                    log_in user
+                    if (session[:my_previous_url] != login_path) && (session[:my_previous_url] != new_user_path)
+                        redirect_to session[:my_previous_url]
+                    else
+                        redirect_to pages_path
+                    end
+                end
             else
                 flash[:danger] = "Email và mật khẩu không chính xác, vui lòng thử lại với mật khẩu khác..."
                 redirect_to login_path

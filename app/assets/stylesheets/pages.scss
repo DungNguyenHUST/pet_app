@@ -531,312 +531,330 @@
         
                 .employer_top_job_employer_container{
                     .company_job_block{
-                        border-bottom: 3px dashed #dfe1e5;
-                        padding-bottom: 30px;
+                        border: 2px solid #dfe1e5;
+                        padding: 20px;
+                        margin-bottom: 20px;
                         .company_job_employer_block {
                             clear: left;
-                            min-height: 200px;
-                            background-color: #f8f9fa;
+                            height: auto;
                             padding: 0px !important;
-                            &:hover{
-                                box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
-                                background-color: #fff;
-                            }
+                            display: block;
                         
-                            .row{
-                                .user_employer_job_block {
-                                    height: 220px;
-                                    @media screen and (max-width: 600px){
-                                        height: 250px;
-                                    }
-                                    padding: 20px;
+                            .user_employer_job_block {
+                                height: 220px;
+                                @media screen and (max-width: 600px){
+                                    height: 250px;
+                                }
+                                padding: 20px;
+                                background-color: #fff;
+                                border-top: 1px solid #ecedee;
+                                border-bottom: 1px solid #ecedee;
+                                display: block;
+                                &:hover{
+                                    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
                                     background-color: #fff;
-                                    border-top: 1px solid #ecedee;
-                                    border-bottom: 1px solid #ecedee;
-                                    display: block;
-                                    &:hover{
-                                        box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
-                                        background-color: #fff;
-                                    }
+                                }
 
-                                    .user_job_left
-                                    {
-                                        height: 200px;
-                                        float: left;
-                                        .company_avatar {
-                                            img{ 
-                                                border-radius: 3px;
-                                                max-width: 100px;
-                                                max-height: 100px;
-                                                @media screen and (max-width: 600px){
-                                                    max-width: 60px;
-                                                    max-height: 60px;
-                                                }
+                                .user_job_left
+                                {
+                                    height: 200px;
+                                    float: left;
+                                    .company_avatar {
+                                        img{ 
+                                            border-radius: 3px;
+                                            max-width: 100px;
+                                            max-height: 100px;
+                                            @media screen and (max-width: 600px){
+                                                max-width: 60px;
+                                                max-height: 60px;
                                             }
                                         }
                                     }
-                                    
-                                    .user_job_right{
-                                        @media screen and (max-width: 600px){
-                                            margin-left: 80px;
+                                }
+                                
+                                .user_job_right{
+                                    @media screen and (max-width: 600px){
+                                        margin-left: 80px;
+                                    }
+                                    margin-left: 120px;
+                                    .user_job_des{
+                                        .user_job_title{
+                                            a{
+                                                text-decoration: none !important ;
+                                                font-size: 20px;
+                                                position: relative;
+                                                top: -5px;
+                                                color: #333;
+                                                font-weight: 550;
+                                            }
+                                            a:hover{
+                                                color: #1877f2;
+                                            }
+                                            overflow: hidden;
+                                            text-overflow: ellipsis;
+                                            display: -webkit-box;
+                                            -webkit-line-clamp: 2; /* number of lines to show */
+                                            -webkit-box-orient: vertical;
                                         }
-                                        margin-left: 120px;
-                                        .user_job_des{
-                                            .user_job_title{
-                                                a{
-                                                    text-decoration: none !important ;
-                                                    font-size: 20px;
+
+                                        .user_job_company_name{
+                                            a{
+                                                font-size: 15px;
+                                                color: #333;
+                                                overflow: hidden;
+                                                text-overflow: ellipsis;
+                                                display: -webkit-box;
+                                                -webkit-line-clamp: 1; /* number of lines to show */
+                                                -webkit-box-orient: vertical;
+                                                i{
+                                                    color: #ffc500;
+                                                    font-size: 18px;
                                                     position: relative;
-                                                    top: -5px;
-                                                    color: #333;
-                                                    font-weight: 550;
+                                                    top: 3px;
+                                                    padding-left: 3px;
+                                                    // background-color: #ffc500;
                                                 }
-                                                a:hover{
+                                            }
+                                        }
+
+                                        .user_job_description{
+                                            overflow: hidden;
+                                            text-overflow: ellipsis;
+                                            display: -webkit-box;
+                                            -webkit-line-clamp: 2; /* number of lines to show */
+                                            -webkit-box-orient: vertical;
+                                            font-size: 14px;
+                                            // margin-bottom: 10px;
+                                            color: #555;
+                                            display: none;
+                                            @media screen and (max-width: 600px){
+                                                display: none;
+                                            }
+                                        }
+                                        
+                                        .user_job_mark{
+                                            margin-top: 10px;
+                                            .user_job_location{
+                                                float: left;
+                                                font-size: 13px;
+                                                a{
+                                                    padding-top: 4px;
+                                                    padding-bottom: 4px;
+                                                    padding-left: 8px;
+                                                    padding-right: 8px;
+                                                    margin-right: 6px;
+                                                    border: 1px solid #dfe1e5;
+                                                    border-radius: 30px;
+                                                    background-color: #fff;
+                                                    color: #333;
+                                                    i{
+                                                        font-size: 18px;
+                                                        margin-right: 3px;
+                                                        color: #8a8888;
+                                                        position: relative;
+                                                        position: relative;
+                                                        top: 5px;
+                                                    }
+                                                }
+                                            }
+
+                                            .user_job_tech{
+                                                float: none;
+                                                font-size: 13px;
+                                                a{
+                                                    padding-top: 4px;
+                                                    padding-bottom: 4px;
+                                                    padding-left: 8px;
+                                                    padding-right: 8px;
+                                                    margin-right: 10px;
+                                                    border: 1px solid #dfe1e5;
+                                                    border-radius: 30px;
+                                                    background-color: #fff;
+                                                    color: #333;
+                                                    i{
+                                                        font-size: 18px;
+                                                        margin-right: 3px;
+                                                        color: #8a8888;
+                                                        position: relative;
+                                                        position: relative;
+                                                        top: 5px;
+                                                    }
+                                                }
+                                            }
+                                
+                                            .user_job_salary{
+                                                float: left;
+                                                margin-top: 10px;
+                                                margin-right: 6px;
+                                                font-size: 13px;
+                                                color: #333;
+                                                a{
+                                                    padding-top: 4px;
+                                                    padding-bottom: 4px;
+                                                    padding-right: 8px;
+                                                    border: 1px solid #dfe1e5;
+                                                    border-radius: 30px;
+                                                    background-color: #fff;
+                                                    // margin-left: 10px;
+                                                    i{
+                                                        padding-left: 8px;
+                                                        margin-right: 3px;
+                                                        font-size: 18px;
+                                                        color: #8a8888;
+                                                        position: relative;
+                                                        top: 4px;
+                                                    }
+                                                }
+                                            }
+
+                                            .user_job_type{
+                                                font-size: 13px;
+                                                color: #333;
+                                                float: none;
+                                                margin-top: 10px;
+                                                a{
+                                                    padding-top: 4px;
+                                                    padding-bottom: 4px;
+                                                    padding-right: 8px;
+                                                    border: 1px solid #dfe1e5;
+                                                    border-radius: 30px;
+                                                    background-color: #fff;
+                                                    // margin-left: 10px;
+                                                    i{
+                                                        padding-left: 8px;
+                                                        margin-right: 3px;
+                                                        font-size: 18px;
+                                                        color: #8a8888;
+                                                        position: relative;
+                                                        top: 4px;
+                                                    }
+                                                }
+                                            }
+
+                                            .user_job_date{
+                                                margin-top: 20px;
+                                                font-size: 13px;
+                                                a{
+                                                    font-size: 13px;
                                                     color: #1877f2;
                                                 }
-                                                overflow: hidden;
-                                                text-overflow: ellipsis;
-                                                display: -webkit-box;
-                                                -webkit-line-clamp: 2; /* number of lines to show */
-                                                -webkit-box-orient: vertical;
-                                            }
-
-                                            .user_job_company_name{
-                                                a{
-                                                    font-size: 15px;
-                                                    color: #333;
-                                                    overflow: hidden;
-                                                    text-overflow: ellipsis;
-                                                    display: -webkit-box;
-                                                    -webkit-line-clamp: 1; /* number of lines to show */
-                                                    -webkit-box-orient: vertical;
-                                                    i{
-                                                        color: #ffc500;
-                                                        font-size: 18px;
-                                                        position: relative;
-                                                        top: 3px;
-                                                        padding-left: 3px;
-                                                        // background-color: #ffc500;
-                                                    }
+                                                span{
+                                                    font-size: 13px;
+                                                    color: #ea1e30;
                                                 }
-                                            }
-
-                                            .user_job_description{
-                                                overflow: hidden;
-                                                text-overflow: ellipsis;
-                                                display: -webkit-box;
-                                                -webkit-line-clamp: 2; /* number of lines to show */
-                                                -webkit-box-orient: vertical;
-                                                font-size: 14px;
-                                                // margin-bottom: 10px;
-                                                color: #555;
-                                                display: none;
                                                 @media screen and (max-width: 600px){
-                                                    display: none;
+                                                    float: left;
+                                                    // padding-top: 18px;
                                                 }
                                             }
-                                            
-                                            .user_job_mark{
-                                                margin-top: 10px;
-                                                .user_job_location{
-                                                    float: left;
-                                                    font-size: 13px;
-                                                    a{
-                                                        padding-top: 4px;
-                                                        padding-bottom: 4px;
+                                            .user_job_hot_save{
+                                                display: none;
+                                                float: right;
+                                                padding-top: 8px;
+                                                .user_job_button_save{
+                                                    text-align: right;
+                                                    .hot_label{
+                                                        padding-top: 2px;
+                                                        padding-bottom: 2px;
                                                         padding-left: 8px;
                                                         padding-right: 8px;
-                                                        margin-right: 6px;
-                                                        border: 1px solid #dfe1e5;
-                                                        border-radius: 30px;
-                                                        background-color: #fff;
-                                                        color: #333;
+                                                        border-radius: 2px;
+                                                        font-size: 12px;
+                                                        color: #fff;
+                                                        background-color: #ff5a5f;
+                                                    }
+                                                    button{
+                                                        border: none;
+                                                        background-color: transparent;
                                                         i{
-                                                            font-size: 18px;
-                                                            margin-right: 3px;
                                                             color: #8a8888;
+                                                            font-size: 24px;
                                                             position: relative;
-                                                            position: relative;
-                                                            top: 5px;
+                                                            top: 8px;
                                                         }
                                                     }
-                                                }
-
-                                                .user_job_tech{
-                                                    float: none;
-                                                    font-size: 13px;
-                                                    a{
-                                                        padding-top: 4px;
-                                                        padding-bottom: 4px;
-                                                        padding-left: 8px;
-                                                        padding-right: 8px;
-                                                        margin-right: 10px;
-                                                        border: 1px solid #dfe1e5;
-                                                        border-radius: 30px;
-                                                        background-color: #fff;
-                                                        color: #333;
+                                                    
+                                                    .save_btn_highlight{ 
                                                         i{
-                                                            font-size: 18px;
-                                                            margin-right: 3px;
-                                                            color: #8a8888;
-                                                            position: relative;
-                                                            position: relative;
-                                                            top: 5px;
+                                                            color: #1877f2;
                                                         }
+                                                        &:focus {outline:none;}
                                                     }
-                                                }
-                                    
-                                                .user_job_salary{
-                                                    float: left;
-                                                    margin-top: 10px;
-                                                    margin-right: 6px;
-                                                    font-size: 13px;
-                                                    color: #333;
-                                                    a{
-                                                        padding-top: 4px;
-                                                        padding-bottom: 4px;
-                                                        padding-right: 8px;
-                                                        border: 1px solid #dfe1e5;
-                                                        border-radius: 30px;
-                                                        background-color: #fff;
-                                                        // margin-left: 10px;
+
+                                                    .save_btn{
                                                         i{
-                                                            padding-left: 8px;
-                                                            margin-right: 3px;
-                                                            font-size: 18px;
-                                                            color: #8a8888;
-                                                            position: relative;
-                                                            top: 4px;
+                                                            color: #999;
                                                         }
+                                                        &:focus {outline:none;}
                                                     }
-                                                }
-
-                                                .user_job_type{
-                                                    font-size: 13px;
-                                                    color: #333;
-                                                    float: none;
-                                                    margin-top: 10px;
-                                                    a{
-                                                        padding-top: 4px;
-                                                        padding-bottom: 4px;
-                                                        padding-right: 8px;
-                                                        border: 1px solid #dfe1e5;
-                                                        border-radius: 30px;
-                                                        background-color: #fff;
-                                                        // margin-left: 10px;
-                                                        i{
-                                                            padding-left: 8px;
-                                                            margin-right: 3px;
-                                                            font-size: 18px;
-                                                            color: #8a8888;
-                                                            position: relative;
-                                                            top: 4px;
-                                                        }
-                                                    }
-                                                }
-
-                                                .user_job_date{
-                                                    margin-top: 20px;
-                                                    font-size: 13px;
-                                                    a{
-                                                        font-size: 13px;
-                                                        color: #1877f2;
-                                                    }
-                                                    span{
-                                                        font-size: 13px;
-                                                        color: #ea1e30;
-                                                    }
-                                                    @media screen and (max-width: 600px){
-                                                        float: left;
-                                                        // padding-top: 18px;
-                                                    }
-                                                }
-                                                .user_job_hot_save{
-                                                    display: none;
-                                                    float: right;
-                                                    padding-top: 8px;
-                                                    .user_job_button_save{
-                                                        text-align: right;
-                                                        .hot_label{
-                                                            padding-top: 2px;
-                                                            padding-bottom: 2px;
-                                                            padding-left: 8px;
-                                                            padding-right: 8px;
-                                                            border-radius: 2px;
-                                                            font-size: 12px;
-                                                            color: #fff;
-                                                            background-color: #ff5a5f;
-                                                        }
-                                                        button{
-                                                            border: none;
-                                                            background-color: transparent;
-                                                            i{
-                                                                color: #8a8888;
-                                                                font-size: 24px;
-                                                                position: relative;
-                                                                top: 8px;
-                                                            }
-                                                        }
-                                                        
-                                                        .save_btn_highlight{ 
-                                                            i{
-                                                                color: #1877f2;
-                                                            }
-                                                            &:focus {outline:none;}
-                                                        }
-
-                                                        .save_btn{
-                                                            i{
-                                                                color: #999;
-                                                            }
-                                                            &:focus {outline:none;}
-                                                        }
-                                                    }
-
                                                 }
 
                                             }
+
                                         }
                                     }
-                                    clear: left;
-                                    clear: right;
                                 }
+                                clear: left;
+                                clear: right;
                             }
-                        }
 
-                        .company_job_apply_count{
-                            font-size: 20px;
-                            padding-top: 20px;
-                            padding-bottom: 10px;
-                        }
-
-                        .company_job_apply_block{
-                            margin-top: 10px;
-                            // margin-left: 20px;
-                            padding: 10px;
-                            box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.1), 0 6px 20px 0 rgba(0, 0, 0, 0.09);
-                            .company_job_apply_label{
-
+                            .company_job_apply_count{
+                                font-size: 20px;
+                                padding-top: 30px;
+                                padding-bottom: 10px;
                             }
-                            .company_job_apply_info{
-                                .company_job_apply_name{
-                                    padding-top: 10px;
-                                }
-                                .company_job_apply_email{
-                                    padding-top: 10px;
-                                }
-                                .company_job_apply_letter{
-                                    padding-top: 10px;   
-                                }
-                                .company_job_apply_download{
-                                    padding-top: 10px;
-                                    i{
-                                        position: relative;
-                                        top: 5px;
+    
+                            .company_job_apply_block{
+                                border: 2px dashed #dfe1e5;
+                                margin-bottom: 20px;
+                                padding: 20px;
+                                min-height: 150px;
+                                display: block;
+                                .company_job_apply_info{
+                                    .company_job_apply_name{
+                                        padding-top: 10px;
+                                        font-size: 16px;
+                                    }
+                                    .company_job_apply_email{
+                                        padding-top: 10px;
+                                        font-size: 16px;
+                                    }
+                                    .company_job_apply_letter{
+                                        padding-top: 10px;
+                                        padding-bottom: 10px;
+                                        font-size: 16px;
+                                        // display: none;
+                                        .company_job_apply_sumary{
+                                            padding-top: 10px;
+                                            a{
+                                                display: block; 
+                                                font-size: 14px;
+                                                text-overflow: ellipsis;
+                                            }
+                                            // font-weight: 500;
+                                            // text-decoration: none !important;
+                                            // overflow: hidden;
+                                            // text-overflow: ellipsis;
+                                            // display: -webkit-box;
+                                            // -webkit-line-clamp: 3; /* number of lines to show */  
+                                        }
+                                    }
+                                    .company_job_apply_time{
+                                        padding-top: 10px;
+                                        font-size: 14px;
+                                        font-weight: 400px;
+                                    }
+                                    .company_job_apply_download{
+                                        padding-top: 10px;
+                                        i{
+                                            position: relative;
+                                            top: 5px;
+                                        }
                                     }
                                 }
                             }
                         }
+
                     }
                 }
             }

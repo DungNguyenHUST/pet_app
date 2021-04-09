@@ -23,3 +23,8 @@ require("@rails/actiontext")
 
 //= require ckeditor/init
 //= require_tree ./ckeditor
+
+//= require jquery
+//= require jquery_ujs
+//= require turbolinks
+//= require_tree .
