@@ -24,13 +24,13 @@
                             <a class="nav-link active" data-toggle="tab" href="#PersonalID">Thông tin cá nhân</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" data-toggle="tab" href="#CVID">Cover Letter</a>
+                            <a class="nav-link" data-toggle="tab" href="#SaveJobID">Việc làm đang theo dõi <span><%= @company_job_save.count%><span> </a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" data-toggle="tab" href="#JobID">Việc làm đã ứng tuyển</a>
+                            <a class="nav-link" data-toggle="tab" href="#JobID">Việc làm đã ứng tuyển <span><%= @company_job_current.count%><span> </a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" data-toggle="tab" href="#CompanyFollowID">Công ty đang theo dõi</a>
+                            <a class="nav-link" data-toggle="tab" href="#CompanyFollowID">Công ty đang theo dõi <span><%= @company_current_follower.count%><span> </a>
                         </li>
                     </ul>
                 </div>
@@ -114,20 +114,23 @@
                             </div>
                         </div>
 
-                        <div role="tabpanel" id="CVID" class="tab-pane"><br>
-                            <div class="user_cv_tab">
-                                <div class="user_cover_letter_label">
-                                    <strong>Giới thiệu bản thân</strong>
+                        <div role="tabpanel" id="SaveJobID" class="tab-pane"><br>
+                            <div class="user_save_job_tab">
+                                <div class="user_save_job_label">
+                                    <strong>Việc làm đang theo dõi</strong>
                                 </div>
 
-                                <div class="user_cover_letter">
-                                    <div class="user_cv_des">
-                                        <%=current_user.cover_letter %>
-                                    </div>
-
-                                    <div class="user_info_edit_button">
-                                        <i class="fa fa-upload"></i><%= link_to " Tải CV lên", edit_user_path(current_user), class: "user_info_edit_link_to"  %>
-                                    </div>
+                                <div class="user_save_job">
+                                    <%@company_all = Company.all%>
+									<%@company_job_save.each do |company_job_save|%>
+										<%@company_all.each do |company|%>
+											<%if company_job_save.company_id == company.id%>
+												<div class="user_job_title">
+													<a><%= link_to (company_job_save.title), company_company_job_path(company, company_job_save) %></a>
+												</div>
+											<%end%>
+										<%end%>
+									<%end%>
                                 </div>
                             </div>
                         </div>
@@ -137,11 +140,16 @@
                                 <div class="user_job_tab_title">
                                     <strong>Việc làm đã ứng tuyển</strong>
                                 </div>
-                                <%@company_job_current.each do |company_job|%>
-                                    <div class="user_job_title">
-                                        <a><%= link_to (company_job.title), company_company_job_path(company_job) %></a>
-                                    </div>
-                                <%end%>
+								<%@company_all = Company.all%>
+								<%@company_job_current.each do |company_job_current|%>
+									<%@company_all.each do |company|%>
+										<%if company_job_current.company_id == company.id%>
+											<div class="user_job_title">
+												<a><%= link_to (company_job_current.title), company_company_job_path(company, company_job_current) %></a>
+											</div>
+										<%end%>
+									<%end%>
+								<%end%>
                             </div>
                         </div>
 

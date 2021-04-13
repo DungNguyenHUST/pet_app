@@ -14,7 +14,7 @@
                         </div>
                         
                         <div class="new_apply_job_input_job">
-                            <%= f.text_field :name, :required => true, class: "new_apply_job_form_input_job", placeholder: "Nhập tên đầy đủ của bạn" %>
+                            <%= f.text_field :name, :required => true, class: "new_apply_job_form_input_job", value: current_user.name %>
                         </div>
                     </div>
 
@@ -24,7 +24,7 @@
                         </div>
                         
                         <div class="new_apply_job_input_job">
-                            <%= f.text_field :email, :required => true, class: "new_apply_job_form_input_job", placeholder: "Nhập địa chỉ email của bạn" %>
+                            <%= f.text_field :email, :required => true, class: "new_apply_job_form_input_job", value: current_user.email%>
                         </div>
                     </div>
 

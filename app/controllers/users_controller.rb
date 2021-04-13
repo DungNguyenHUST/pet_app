@@ -38,7 +38,8 @@ class UsersController < ApplicationController
 
     def show
         @user = User.friendly.find_by id: params[:id]
-        # find all apply job by current user
+		
+        # find job apply by current user
         @company_apply_jobs = CompanyApplyJob.all
         @company_apply_job_current = []
         @company_apply_jobs.each do |company_apply_job|
@@ -46,8 +47,7 @@ class UsersController < ApplicationController
                 @company_apply_job_current.push(company_apply_job)
             end
         end
-
-        # find all job of apply job by user
+		
         @company_jobs = CompanyJob.all
         @company_job_current = []
 
@@ -58,19 +58,9 @@ class UsersController < ApplicationController
                 end
             end
         end
+		#############################
 
-        #find all company which include job
-        @companies = Company.all
-        @company_current = []
-
-        @companies.each do |comapny|
-            @company_job_current.each do |company_job_current|
-                if company_job_current.company_id = comapny.id
-                    @company_current.push(comapny)
-                end
-            end
-        end
-
+        #find all company folow by user 
         @company_follows = CompanyFollow.all
         @company_current_follow = []
         @company_follows.each do |company_follow|
@@ -89,6 +79,29 @@ class UsersController < ApplicationController
                 end
             end
         end
+		#############################
+		
+		# find job save by user
+		@company_save_jobs = CompanySaveJob.all
+		@company_save_job = []
+		@company_save_jobs.each do |company_save_job|
+			if company_save_job.user_id = current_user.id
+				@company_save_job.push(company_save_job)
+			end
+		end
+		
+		@company_job_saves = CompanyJob.all
+        @company_job_save = []
+
+        @company_job_saves.each do |company_job_save|
+            @company_save_job.each do |company_save_job|
+                if company_save_job.company_job_id = company_job_save.id
+                    @company_job_save.push(company_job_save)
+                end
+            end
+        end
+		#############################
+		
     end
 
     def edit

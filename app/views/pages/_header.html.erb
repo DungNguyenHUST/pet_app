@@ -22,9 +22,15 @@
 
 				<%if logged_in?%>
 					<div class="nav_login_moblie" >
-						<%= link_to user_path(current_user) do %>
-							<i class="material-icons-outlined">account_circle</i>
-						<% end %>
+						<%if current_user.employer?%>
+							<%= link_to pages_path do %>
+								<i class="material-icons-outlined">account_circle</i>
+							<% end %>
+						<%else%>
+							<%= link_to user_path(current_user) do %>
+								<i class="material-icons-outlined">account_circle</i>
+							<% end %>
+						<%end%>
 					</div>
 				<%else%>
 					<div class="nav_login_moblie">
@@ -42,9 +48,15 @@
 				<div class="nav_right">
 
 					<%if logged_in?%>
-						<a class="nav_user" href="<%=user_path(current_user) %>"> 
-							<span> Hi, <%=current_user.name%></span>
-						</a>
+						<%if current_user.employer?%>
+							<a class="nav_user" href="<%=pages_path%>"> 
+								<span> Hi, <%=current_user.name%></span>
+							</a>
+						<%else%>
+							<a class="nav_user" href="<%=user_path(current_user) %>"> 
+								<span> Hi, <%=current_user.name%></span>
+							</a>
+						<%end%>
 					<%else%>
 						<a class="nav_recrui" href="<%=new_user_path(role_param: 'employer') %>">
 							<span>Tuyển dụng</span>
