@@ -48,10 +48,7 @@
 										<%= f.select(:get_interview, options_for_select(['Mạng xã hội','Bạn bè người thân', 'Kênh tuyển dụng', 'Quảng cáo', 'Kênh khác'], 'Kênh khác'), {include_blank: true}, { :class => 'my_style_class' }) %>
 									</div>
 								</div>
-							</div>
-						</div>
-						<div class="col-sm-6">
-							<div class="new_interview_section">
+								
 								<div class="new_interview_content">
 									<div class="new_interview_label">
 										<a><%= f.label :process, "Số vòng phỏng vấn*", class: "new_interview_label_name" %></a>
@@ -61,7 +58,10 @@
 										<%= f.select(:process, options_for_select(['1','2', '3', '4', '5'], '1'), {include_blank: true}, { :class => 'my_style_class' }) %>
 									</div>
 								</div>
-
+							</div>
+						</div>
+						<div class="col-sm-6">
+							<div class="new_interview_section">
 								<div class="new_interview_difficultly_content">
 									<div class="new_interview_difficultly_label">
 										<a><%= f.label :difficultly, "Bạn cảm nhận thế nào về độ khó bài phỏng vấn ?*:", class: "new_interview_label_name" %></a>
@@ -194,10 +194,10 @@
 							</div>
 						</div>
 					</div>
-					<div class="new_interview_section">
+					<div class="new_interview_section_content">
 						<div class="new_interview_content">
 							<div class="new_interview_label">
-								<a><%= f.label :content, "Nội dung phỏng vấn*", class: "new_interview_label_name" %></a>
+								<a><%= f.label :content, "Chia sẻ nội dung phỏng vấn*", class: "new_interview_label_name" %></a>
 							</div>
 
 							<div class="new_interview_input">
