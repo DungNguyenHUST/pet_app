@@ -321,10 +321,17 @@
 
     .new_interview_section
     {
-        border-top: 1px solid #e5e7ec;
-        padding: 20px;
-        padding-left: 0px;
-        padding-top: 50px;
+        border: 1px solid #e5e7ec;
+		padding: 20px;
+		border-radius: 3px;
+		margin-bottom: 20px;
+		@media screen and (max-width: 600px){
+			border: none;
+			border-top: 1px solid #e5e7ec;
+			padding: 0px;
+			padding-top: 20px;
+			border-radius: 0px;
+		}
         .new_interview_content{
             .new_interview_label{
                 font-weight: 600;
@@ -353,6 +360,10 @@
                     font-size: 14px;
                     color: #333;
                 }
+				
+				.my_style_class{
+					width: 100%;
+				}
 
                 .new_interview_form_input{
                     margin-left: 0px;
@@ -497,7 +508,7 @@
             border-radius: 3px;
             padding: 6px;
             background: #1877f2;
-            font-size: 14px;
+            font-size: 16px;
             border: none;
             cursor: pointer;
             text-align: center;

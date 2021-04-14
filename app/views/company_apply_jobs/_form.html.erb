@@ -8,6 +8,10 @@
         <div class="container">
             <div class="new_apply_job_form">
                 <%= form_for [@company, @company_job, CompanyApplyJob.new] do |f| %>
+					<div class="new_apply_job_title">
+                        <strong>Ứng tuyển vị trí "<%=@company_job.title%>" </strong>
+                    </div>
+					
                     <div class="new_apply_job_content">
                         <div class="new_apply_job_label">
                             <a><%= f.label :name, "Họ và tên*", class: "new_apply_job_label_content" %></a>

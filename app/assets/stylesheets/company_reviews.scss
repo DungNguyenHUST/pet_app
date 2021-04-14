@@ -325,14 +325,21 @@
 
     .new_review_section
     {
-        border-top: 1px solid #e5e7ec;
+        border: 1px solid #e5e7ec;
+		padding: 20px;
+		border-radius: 3px;
+		@media screen and (max-width: 600px){
+			border: none;
+			border-top: 1px solid #e5e7ec;
+			padding: 0px;
+			padding-top: 20px;
+			border-radius: 0px;
+		}
         width: 100%;
         height: auto;
-        padding: 20px;
-        padding-top: 30px;
-        padding-left: 0px;
+        margin-top: 20px;
         .new_review_content{
-            padding-bottom: 10px;
+		
             .new_review_label{
                 font-weight: 600;
                 font-size: 16px;
@@ -360,6 +367,11 @@
                     font-size: 14px;
                     color: #333;
                 }
+				
+				.my_style_class{
+					width: 100%;
+				}
+				
                 .new_review_form_input{
                     margin-left: 0px;
                     height: 40px;
@@ -385,12 +397,23 @@
                     overflow: auto;
                 }
             }
+			
+			.form-control-text{
+				min-height: 100px;
+				height: auto;
+				margin-left: 0px;
+				width: 100%;
+				border: 1px solid #dfe1e5;
+				border-radius: 3px;
+				overflow: auto;
+			}
 
-            .new_review_input_time{
+            .new_review_input_title{
                 left: 0px;
                 margin-top: 5px;
                 margin-bottom: 20px;
-                width: 300px;
+                width: 100%;
+				height: 50px;
                 .new_review_form_input{
                     margin-left: 0px;
                     height: 40px;
@@ -662,7 +685,7 @@
             width: 100%;
             border-radius: 3px;
             background: #1877f2;
-            font-size: 14px;
+            font-size: 16px;
             border: none;
             cursor: pointer;
             text-align: center;

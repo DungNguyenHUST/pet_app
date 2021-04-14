@@ -11,96 +11,107 @@
                     <div class="user_update_title">
                         <a>Thay đổi thông tin tài khoản, <%= @user.name%></a>
                     </div>
+					
+					<div class="row">
+						<div class="col-sm-6">
+							<div class="user_update_section">
+								<div class="user_update_content">
+									<div class="user_update_label">
+										<a><%= f.label :name, "Tên đăng nhập", class: "user_update_label_name" %></a>
+									</div>
 
-                    <div class="user_update_content">
-                        <div class="user_update_label">
-                            <a><%= f.label :name, "Tên đăng nhập", class: "user_update_label_name" %></a>
-                        </div>
+									<div class="user_update_input">
+										<%= f.text_field :name, class: "form-control", placeholder: "Nhập tên hoặc email của bạn" %>
+									</div>
+								</div>
 
-                        <div class="user_update_input">
-                            <%= f.text_field :name, class: "form-control", placeholder: "Nhập tên hoặc email của bạn" %>
-                        </div>
-                    </div>
+								<div class="user_update_content">
+									<div class="user_update_label">
+										<a><%= f.label :email, "Địa chỉ email", class: "user_update_label_name" %></a>
+									</div>
 
-                    <div class="user_update_content">
-                        <div class="user_update_label">
-                            <a><%= f.label :email, "Địa chỉ email", class: "user_update_label_name" %></a>
-                        </div>
+									<div class="user_update_input">
+										<%= f.text_field :email, class: "form-control", placeholder: "Nhập tên hoặc email của bạn" %>
+									</div>
+								</div>
 
-                        <div class="user_update_input">
-                            <%= f.text_field :email, class: "form-control", placeholder: "Nhập tên hoặc email của bạn" %>
-                        </div>
-                    </div>
+								<div class="user_update_content">
+									<div class="user_update_label">
+										<a><%= f.label :password, "Mật khẩu", class: "user_update_label" %></a>
+									</div>
+									
+									<div class="user_update_input">
+										<%= f.password_field :password, class: "form-control", placeholder: "Nhập mật khẩu của bạn" %>
+									</div>
+								</div>
 
-                    <div class="user_update_content">
-                        <div class="user_update_label">
-                            <a><%= f.label :password, "Mật khẩu", class: "user_update_label" %></a>
-                        </div>
-                        
-                        <div class="user_update_input">
-                            <%= f.password_field :password, class: "form-control", placeholder: "Nhập mật khẩu của bạn" %>
-                        </div>
-                    </div>
+								<div class="user_update_content">
+									<div class="user_update_label">
+										<a><%= f.label :password_confirmation, "Xác nhận mật khẩu", class: "user_update_label" %></a>
+									</div>
 
-                    <div class="user_update_content">
-                        <div class="user_update_label">
-                            <a><%= f.label :password_confirmation, "Xác nhận mật khẩu", class: "user_update_label" %></a>
-                        </div>
+									<div class="user_update_input">
+										<%= f.password_field :password_confirmation, class: "form-control", placeholder: "Nhập lại mật khẩu" %>
+									</div>
+								</div>
+							</div>
+						</div>
+						<div class="col-sm-6">
+							<div class="user_update_section">
+								<div class="user_update_content">
+									<div class="user_update_label">
+										<a><%= f.label :phone, "Số điện thoại", class: "user_update_label_name" %></a>
+									</div>
 
-                        <div class="user_update_input">
-                            <%= f.password_field :password_confirmation, class: "form-control", placeholder: "Nhập lại mật khẩu" %>
-                        </div>
-                    </div>
+									<div class="user_update_input">
+										<%= f.text_field :phone, class: "form-control", placeholder: "Nhập số điện thoại của bạn" %>
+									</div>
+								</div>
 
-                    <div class="user_update_content">
-                        <div class="user_update_label">
-                            <a><%= f.label :phone, "Số điện thoại", class: "user_update_label_name" %></a>
-                        </div>
+								<div class="user_update_content">
+									<div class="user_update_label">
+										<a><%= f.label :address, "Địa chỉ liên hệ", class: "user_update_label_name" %></a>
+									</div>
 
-                        <div class="user_update_input">
-                            <%= f.text_field :phone, class: "form-control", placeholder: "Nhập số điện thoại của bạn" %>
-                        </div>
-                    </div>
+									<div class="user_update_input">
+										<%= f.text_field :address, class: "form-control", placeholder: "Nhập địa chỉ liên hệ của bạn" %>
+									</div>
+								</div>
 
-                    <div class="user_update_content">
-                        <div class="user_update_label">
-                            <a><%= f.label :address, "Địa chỉ liên hệ", class: "user_update_label_name" %></a>
-                        </div>
+								<div class="user_update_content">
+									<div class="user_update_label">
+										<a><%= f.label :cover_letter_attach, "Upload CV", class: "user_update_label" %></a>
+									</div>
 
-                        <div class="user_update_input">
-                            <%= f.text_field :address, class: "form-control", placeholder: "Nhập địa chỉ liên hệ của bạn" %>
-                        </div>
-                    </div>
+									<div class="user_update_input">
+										<%= f.file_field :cover_letter_attach, class: "form-control"%>
+									</div>
+								</div>
 
-                    <div class="user_update_content">
-                        <div class="user_update_label">
-                            <a><%= f.label :cover_letter, "Giới thiệu ngắn về bản thân", class: "user_update_label_name" %></a>
-                        </div>
+								<div class="user_update_content">
+									<div class="user_update_label">
+										<a><%= f.label :avatar, "Ảnh đại diện", class: "user_update_label" %></a>
+									</div>
 
-                        <div class="user_update_input">
-                            <%= f.text_area :cover_letter, class: "form-control-text", placeholder: "Viết một đoạn giới thiệu ngắn về bản thân" %>
-                        </div>
-                    </div>
+									<div class="user_update_input">
+										<%= f.file_field :avatar, class: "form-control"%>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+					
+					<div class="user_update_section">
+						<div class="user_update_content">
+							<div class="user_update_label">
+								<a><%= f.label :cover_letter, "Giới thiệu bản thân", class: "user_update_label_name" %></a>
+							</div>
 
-                    <div class="user_update_content">
-                        <div class="user_update_label">
-                            <a><%= f.label :cover_letter_attach, "Upload CV", class: "user_update_label" %></a>
-                        </div>
-
-                        <div class="user_update_input">
-                            <%= f.file_field :cover_letter_attach, class: "form-control"%>
-                        </div>
-                    </div>
-
-                    <div class="user_update_content">
-                        <div class="user_update_label">
-                            <a><%= f.label :avatar, "Ảnh đại diện", class: "user_update_label" %></a>
-                        </div>
-
-                        <div class="user_update_input">
-                            <%= f.file_field :avatar, class: "form-control"%>
-                        </div>
-                    </div>
+							<div class="user_update_input">
+								<%= f.cktext_area :cover_letter, :required => true, class: "form-control-rich-text customized-min-height", ckeditor: { language: 'us', toolbar: "full"}, placeholder: "Nhập đoạn ngắn mô tả về bản thân bạn" %>
+							</div>
+						</div>
+					</div>
 
                     <div class="user_update_submit">
                         <%= f.submit "Lưu thay đổi", class: "user_update_form_submit" %>

@@ -12,195 +12,203 @@
                     <div class="new_interview_title">
                         <strong>Chia sẻ kinh nghiệm phỏng vấn của bạn tại <%=@company.name%> </strong>
                     </div>
+					
+					<div class="row">
+						<div class="col-sm-6">
+							<%if logged_in?%>
+								<div class="new_interview_section">
+									<div class="new_interview_content">
+										<div class="new_interview_label">
+											<a><%= f.label :privacy, "Bạn có muốn ẩn thông tin cá nhân (thông tin cá nhân của bạn sẽ không được hiển thị)*", class: "new_interview_label_name" %></a>
+										</div>
+										<div class="new_interview_input">
+											<%= f.select(:privacy, options_for_select([['Không, tôi không muốn ẩn thông tin cá nhân', false], ['Có, tôi muốn ẩn thông tin cá nhân', true]]), {include_blank: true}, { :class => 'my_style_class' }) %>
+										</div>
+									</div>
+								</div>
+							<%end%>
 
-                    <%if logged_in?%>
-                        <div class="new_interview_section">
-                            <div class="new_interview_content">
-                                <div class="new_interview_label">
-                                    <a><%= f.label :privacy, "Bạn có muốn ẩn thông tin cá nhân*", class: "new_interview_label_name" %></a>
-                                </div>
-                                <div class="new_interview_input">
-                                    <%= f.select(:privacy, options_for_select([['Không, tôi không muốn ẩn thông tin cá nhân', false], ['Có, tôi muốn ẩn thông tin cá nhân', true]]), {include_blank: true}, { :class => 'my_style_class' }) %>
-                                </div>
-                            </div>
-                        </div>
-                    <%end%>
+							<div class="new_interview_section">
+								<div class="new_interview_content">
+									<div class="new_interview_label">
+										<a><%= f.label :position, "Vị trí phỏng vấn*", class: "new_interview_label_name" %></a>
+									</div>
 
-                    <div class="new_interview_section">
-                        <div class="new_interview_content">
-                            <div class="new_interview_label">
-                                <a><%= f.label :position, "Vị trí phỏng vấn*", class: "new_interview_label_name" %></a>
-                            </div>
+									<div class="new_interview_input">
+										<%= f.text_field :position, :required => true, class: "new_interview_form_input", placeholder: "Nhập vị trí mà bạn phỏng vấn" %>
+									</div>
+								</div>
 
-                            <div class="new_interview_input">
-                                <%= f.text_field :position, :required => true, class: "new_interview_form_input", placeholder: "Nhập vị trí mà bạn phỏng vấn" %>
-                            </div>
-                        </div>
+								<div class="new_interview_content">
+									<div class="new_interview_label">
+										<a><%= f.label :get_interview, "Bạn tìm đến công ty từ đâu*", class: "new_interview_label_name" %></a>
+									</div>
 
-                        <div class="new_interview_content">
-                            <div class="new_interview_label">
-                                <a><%= f.label :get_interview, "Bạn tìm đến công ty từ đâu*", class: "new_interview_label_name" %></a>
-                            </div>
+									<div class="new_interview_input">
+										<%= f.select(:get_interview, options_for_select(['Mạng xã hội','Bạn bè người thân', 'Kênh tuyển dụng', 'Quảng cáo', 'Kênh khác'], 'Kênh khác'), {include_blank: true}, { :class => 'my_style_class' }) %>
+									</div>
+								</div>
+							</div>
+						</div>
+						<div class="col-sm-6">
+							<div class="new_interview_section">
+								<div class="new_interview_content">
+									<div class="new_interview_label">
+										<a><%= f.label :process, "Số vòng phỏng vấn*", class: "new_interview_label_name" %></a>
+									</div>
 
-                            <div class="new_interview_input">
-                                <%= f.select(:get_interview, options_for_select(['Mạng xã hội','Bạn bè người thân', 'Kênh tuyển dụng', 'Quảng cáo', 'Kênh khác'], 'Kênh khác'), {include_blank: true}, { :class => 'my_style_class' }) %>
-                            </div>
-                        </div>
+									<div class="new_interview_input">
+										<%= f.select(:process, options_for_select(['1','2', '3', '4', '5'], '1'), {include_blank: true}, { :class => 'my_style_class' }) %>
+									</div>
+								</div>
 
-                        <div class="new_interview_content">
-                            <div class="new_interview_label">
-                                <a><%= f.label :process, "Số vòng phỏng vấn*", class: "new_interview_label_name" %></a>
-                            </div>
+								<div class="new_interview_difficultly_content">
+									<div class="new_interview_difficultly_label">
+										<a><%= f.label :difficultly, "Bạn cảm nhận thế nào về độ khó bài phỏng vấn ?*:", class: "new_interview_label_name" %></a>
+									</div>
 
-                            <div class="new_interview_input">
-                                <%= f.select(:process, options_for_select(['1','2', '3', '4', '5'], '1'), {include_blank: true}, { :class => 'my_style_class' }) %>
-                            </div>
-                        </div>
+									<div class="new_interview_difficultly_input">
+										<div class="new_interview_form_difficultly_input">
+											<%= f.number_field :difficultly, :required => true, readonly: true, :id => "difficultly_id", :value => ''%>
+										</div>
 
-                        <div class="new_interview_difficultly_content">
-                            <div class="new_interview_difficultly_label">
-                                <a><%= f.label :difficultly, "Bạn cảm nhận thế nào về độ khó bài phỏng vấn ?*:", class: "new_interview_label_name" %></a>
-                            </div>
+										<div class="new_interview_difficultly_star_block">
+											<button type="button" class="btnrating_difficultly" data-attr="1" id="rating-star-difficultly-1">
+												<i class="material-icons-outlined">wb_incandescent </i>
+											</button>
 
-                            <div class="new_interview_difficultly_input">
-                                <div class="new_interview_form_difficultly_input">
-                                    <%= f.number_field :difficultly, :required => true, readonly: true, :id => "difficultly_id", :value => ''%>
-                                </div>
+											<button type="button" class="btnrating_difficultly" data-attr="2" id="rating-star-difficultly-2">
+												<i class="material-icons-outlined">wb_incandescent </i>
+											</button>
 
-                                <div class="new_interview_difficultly_star_block">
-                                    <button type="button" class="btnrating_difficultly" data-attr="1" id="rating-star-difficultly-1">
-                                        <i class="material-icons-outlined">wb_incandescent </i>
-                                    </button>
+											<button type="button" class="btnrating_difficultly" data-attr="3" id="rating-star-difficultly-3">
+												<i class="material-icons-outlined">wb_incandescent </i>
+											</button>
 
-                                    <button type="button" class="btnrating_difficultly" data-attr="2" id="rating-star-difficultly-2">
-                                        <i class="material-icons-outlined">wb_incandescent </i>
-                                    </button>
+											<button type="button" class="btnrating_difficultly" data-attr="4" id="rating-star-difficultly-4">
+												<i class="material-icons-outlined">wb_incandescent </i>
+											</button>
+											
+											<button type="button" class="btnrating_difficultly" data-attr="5" id="rating-star-difficultly-5">
+												<i class="material-icons-outlined">wb_incandescent </i>
+											</button>
+										</div>
 
-                                    <button type="button" class="btnrating_difficultly" data-attr="3" id="rating-star-difficultly-3">
-                                        <i class="material-icons-outlined">wb_incandescent </i>
-                                    </button>
+										<script>
+											jQuery(document).ready(function($){
+					
+												$(".btnrating_difficultly").on('click',(function(e) {
+												
+												var previous_value = $("#selected_rating").val();
+												
+												var selected_value = $(this).attr("data-attr");
+												$("#selected_rating").val(selected_value);
 
-                                    <button type="button" class="btnrating_difficultly" data-attr="4" id="rating-star-difficultly-4">
-                                        <i class="material-icons-outlined">wb_incandescent </i>
-                                    </button>
-                                    
-                                    <button type="button" class="btnrating_difficultly" data-attr="5" id="rating-star-difficultly-5">
-                                        <i class="material-icons-outlined">wb_incandescent </i>
-                                    </button>
-                                </div>
+												$("#difficultly_id").val(selected_value).attr("disable","false");
+												
+												for (i = 1; i <= selected_value; ++i) {
+													$("#rating-star-difficultly-"+i).toggleClass('btn-warning');
+													$("#rating-star-difficultly-"+i).toggleClass('btn-default');
+												}
+												
+												for (ix = 1; ix <= previous_value; ++ix) {
+													$("#rating-star-difficultly-"+ix).toggleClass('btn-warning');
+													$("#rating-star-difficultly-"+ix).toggleClass('btn-default');
+												}
+												
+												}));
+											});
+										</script>
+									</div>
+								</div>
 
-                                <script>
-                                    jQuery(document).ready(function($){
-            
-                                        $(".btnrating_difficultly").on('click',(function(e) {
-                                        
-                                        var previous_value = $("#selected_rating").val();
-                                        
-                                        var selected_value = $(this).attr("data-attr");
-                                        $("#selected_rating").val(selected_value);
+								<div class="new_interview_satisfied_content">
+									<div class="new_interview_satisfied_label">
+										<a><%= f.label :satisfied, "Bạn có hài lòng với buổi phỏng vấn không?*:", class: "new_interview_label_name" %></a>
+									</div>
 
-                                        $("#difficultly_id").val(selected_value).attr("disable","false");
-                                        
-                                        for (i = 1; i <= selected_value; ++i) {
-                                            $("#rating-star-difficultly-"+i).toggleClass('btn-warning');
-                                            $("#rating-star-difficultly-"+i).toggleClass('btn-default');
-                                        }
-                                        
-                                        for (ix = 1; ix <= previous_value; ++ix) {
-                                            $("#rating-star-difficultly-"+ix).toggleClass('btn-warning');
-                                            $("#rating-star-difficultly-"+ix).toggleClass('btn-default');
-                                        }
-                                        
-                                        }));
-                                    });
-                                </script>
-                            </div>
-                        </div>
+									<div class="new_interview_satisfied_input">
+										<div class="new_interview_form_satisfied_input">
+											<%= f.number_field :satisfied, :required => true, readonly: true, :id => "satisfied_id", :value => ''%>
+										</div>
 
-                        <div class="new_interview_satisfied_content">
-                            <div class="new_interview_satisfied_label">
-                                <a><%= f.label :satisfied, "Bạn có hài lòng với buổi phỏng vấn không?*:", class: "new_interview_label_name" %></a>
-                            </div>
+										<div class="new_interview_satisfied_star_block">
+											<button type="button" class="btnrating_satisfied" data-attr="1" id="rating-star-satisfied-1">
+												<i class="material-icons-outlined">star_outline </i>
+											</button>
 
-                            <div class="new_interview_satisfied_input">
-                                <div class="new_interview_form_satisfied_input">
-                                    <%= f.number_field :satisfied, :required => true, readonly: true, :id => "satisfied_id", :value => ''%>
-                                </div>
+											<button type="button" class="btnrating_satisfied" data-attr="2" id="rating-star-satisfied-2">
+												<i class="material-icons-outlined">star_outline </i>
+											</button>
 
-                                <div class="new_interview_satisfied_star_block">
-                                    <button type="button" class="btnrating_satisfied" data-attr="1" id="rating-star-satisfied-1">
-                                        <i class="material-icons-outlined">star_outline </i>
-                                    </button>
+											<button type="button" class="btnrating_satisfied" data-attr="3" id="rating-star-satisfied-3">
+												<i class="material-icons-outlined">star_outline </i>
+											</button>
 
-                                    <button type="button" class="btnrating_satisfied" data-attr="2" id="rating-star-satisfied-2">
-                                        <i class="material-icons-outlined">star_outline </i>
-                                    </button>
+											<button type="button" class="btnrating_satisfied" data-attr="4" id="rating-star-satisfied-4">
+												<i class="material-icons-outlined">star_outline </i>
+											</button>
+											
+											<button type="button" class="btnrating_satisfied" data-attr="5" id="rating-star-satisfied-5">
+												<i class="material-icons-outlined">star_outline </i>
+											</button>
+										</div>
 
-                                    <button type="button" class="btnrating_satisfied" data-attr="3" id="rating-star-satisfied-3">
-                                        <i class="material-icons-outlined">star_outline </i>
-                                    </button>
+										<script>
+											jQuery(document).ready(function($){
+					
+												$(".btnrating_satisfied").on('click',(function(e) {
+												
+												var previous_value = $("#selected_rating").val();
+												
+												var selected_value = $(this).attr("data-attr");
+												$("#selected_rating").val(selected_value);
 
-                                    <button type="button" class="btnrating_satisfied" data-attr="4" id="rating-star-satisfied-4">
-                                        <i class="material-icons-outlined">star_outline </i>
-                                    </button>
-                                    
-                                    <button type="button" class="btnrating_satisfied" data-attr="5" id="rating-star-satisfied-5">
-                                        <i class="material-icons-outlined">star_outline </i>
-                                    </button>
-                                </div>
+												$("#satisfied_id").val(selected_value).attr("disable","false");
+												
+												for (i = 1; i <= selected_value; ++i) {
+													$("#rating-star-satisfied-"+i).toggleClass('btn-warning');
+													$("#rating-star-satisfied-"+i).toggleClass('btn-default');
+												}
+												
+												for (ix = 1; ix <= previous_value; ++ix) {
+													$("#rating-star-satisfied-"+ix).toggleClass('btn-warning');
+													$("#rating-star-satisfied-"+ix).toggleClass('btn-default');
+												}
+												
+												}));
+											});
+										</script>
+									</div>
+								</div>
 
-                                <script>
-                                    jQuery(document).ready(function($){
-            
-                                        $(".btnrating_satisfied").on('click',(function(e) {
-                                        
-                                        var previous_value = $("#selected_rating").val();
-                                        
-                                        var selected_value = $(this).attr("data-attr");
-                                        $("#selected_rating").val(selected_value);
+								<div class="new_interview_content">
+									<div class="new_interview_label">
+										<a><%= f.label :offer, "Bạn có chấp nhận offer không*", class: "new_interview_label_name" %></a>
+									</div>
 
-                                        $("#satisfied_id").val(selected_value).attr("disable","false");
-                                        
-                                        for (i = 1; i <= selected_value; ++i) {
-                                            $("#rating-star-satisfied-"+i).toggleClass('btn-warning');
-                                            $("#rating-star-satisfied-"+i).toggleClass('btn-default');
-                                        }
-                                        
-                                        for (ix = 1; ix <= previous_value; ++ix) {
-                                            $("#rating-star-satisfied-"+ix).toggleClass('btn-warning');
-                                            $("#rating-star-satisfied-"+ix).toggleClass('btn-default');
-                                        }
-                                        
-                                        }));
-                                    });
-                                </script>
-                            </div>
-                        </div>
+									<div class="new_interview_input">
+										<%= f.select(:offer, options_for_select([['Không', false], ['Có', true]]), {include_blank: true}, { :class => 'my_style_class' }) %>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+					<div class="new_interview_section">
+						<div class="new_interview_content">
+							<div class="new_interview_label">
+								<a><%= f.label :content, "Nội dung phỏng vấn*", class: "new_interview_label_name" %></a>
+							</div>
 
-                        <div class="new_interview_content">
-                            <div class="new_interview_label">
-                                <a><%= f.label :offer, "Bạn có chấp nhận offer không*", class: "new_interview_label_name" %></a>
-                            </div>
+							<div class="new_interview_input">
+								<%= f.cktext_area :content, :required => true, class: "form-control-rich-text customized-min-height", ckeditor: { language: 'us', toolbar: "full"}, placeholder: "Chia sẻ nội dung phỏng vấn, câu hỏi hay cho mọi người nào" %>
+							</div>
+						</div>
+					</div>
 
-                            <div class="new_interview_input">
-                                <%= f.select(:offer, options_for_select([['Không', false], ['Có', true]]), {include_blank: true}, { :class => 'my_style_class' }) %>
-                            </div>
-                        </div>
-
-                        <div class="new_interview_content">
-                            <div class="new_interview_label">
-                                <a><%= f.label :content, "Nội dung phỏng vấn*", class: "new_interview_label_name" %></a>
-                            </div>
-
-                            <div class="new_interview_input">
-                                <%= f.cktext_area :content, :required => true, class: "form-control-rich-text customized-min-height", ckeditor: { language: 'us', toolbar: "full"}, placeholder: "Chia sẻ nội dung phỏng vấn, câu hỏi hay cho mọi người nào" %>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="new_interview_submit">
-                        <%= f.submit "Gửi phản hồi", class: "new_interview_form_submit" %>
-                    </div>
+					<div class="new_interview_submit">
+						<%= f.submit "Gửi phản hồi", class: "new_interview_form_submit" %>
+					</div>
                 <%end%>
             </div>
         </div>

@@ -11,12 +11,12 @@
                     <div class="employer_add_new_form">
                         <%= form_for @user, html: {class: "form-horizontal"} do |f| %>
                             <div class="employer_add_new_title">
-                                <a>Dành cho nhà tuyển dụng</a>
+                                <a>Đăng kí thông tin nhà tuyển dụng</a>
                             </div>
 
                             <div class="employer_add_new_content">
                                 <div class="employer_add_new_label">
-                                    <a>Vui lòng chọn công ty bạn đang làm việc*</a>
+                                    <a>Vui lòng chọn công ty mà bạn đang làm việc*</a>
                                 </div>
 
                                 <div class="employer_add_new_input">
@@ -36,11 +36,11 @@
 
                             <div class="employer_add_new_content">
                                 <div class="employer_add_new_label">
-                                    <a><%= f.label :phone, "Số điện thoại*", class: "employer_add_new_label_name" %></a>
+                                    <a><%= f.label :phone, "Số điện thoại (sử dụng số điện thoại công ty)*", class: "employer_add_new_label_name" %></a>
                                 </div>
 
                                 <div class="employer_add_new_input">
-                                    <%= f.text_field :phone, :required => true,  class: 'form-control', placeholder: "Nhập địa chỉ công ty" %>
+                                    <%= f.text_field :phone, :required => true,  class: 'form-control', placeholder: "Vui lòng sử dụng số điện thoại liên lạc của công ty" %>
                                 </div>
                             </div>
 
@@ -60,7 +60,7 @@
                                 </div>
 
                                 <div class="employer_add_new_input">
-                                    <%= f.text_field :address, :required => true,  class: 'form-control', placeholder: "Nhập địa chỉ công ty" %>
+                                    <%= f.text_field :address, :required => true,  class: 'form-control', placeholder: "Nhập địa chỉ liên hệ của công ty bạn" %>
                                 </div>
                             </div>
 
