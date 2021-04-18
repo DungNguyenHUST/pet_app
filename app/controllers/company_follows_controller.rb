@@ -21,8 +21,8 @@ class CompanyFollowsController < ApplicationController
             end
             # redirect_to company_path(@company)
             respond_to do |format|
-                format.html {render nothing: true}
-                format.js {render nothing: true}
+                format.html {}
+                format.js
             end
         else
             redirect_to login_path

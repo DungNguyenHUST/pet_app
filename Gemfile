@@ -104,3 +104,6 @@ gem 'mini_magick'
 # gem "fog-google"
 
 gem 'jquery-rails'
+
+gem 'coffee-rails'
+gem 'uglifier'
