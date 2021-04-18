@@ -102,3 +102,5 @@ gem 'mini_magick'
 # gem "mimemagic"
 
 # gem "fog-google"
+
+gem 'jquery-rails'
