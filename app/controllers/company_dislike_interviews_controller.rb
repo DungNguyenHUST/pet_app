@@ -20,11 +20,11 @@ class CompanyDislikeInterviewsController < ApplicationController
             else
                 @company_dislike_interview = @company_interview.company_dislike_interviews.create(user_id: current_user.id)
             end
-            # redirect_to company_path(@company)
-            respond_to do |format|
-                format.html {}
-                format.js
-            end
+            redirect_to company_path(@company)
+            # respond_to do |format|
+            #     format.html {}
+            #     format.js
+            # end
         else
             redirect_to login_path
         end
@@ -36,11 +36,11 @@ class CompanyDislikeInterviewsController < ApplicationController
         @company_dislike_interview = @company_interview.company_dislike_interviews.find(params[:id])
 
         @company_dislike_interview.destroy
-        respond_to do |format|
-            format.html {}
-            format.js
-        end
-        # redirect_to company_path(@company)
+        # respond_to do |format|
+        #     format.html {}
+        #     format.js
+        # end
+        redirect_to company_path(@company)
     end
 
     def show
