@@ -105,5 +105,4 @@ gem 'mini_magick'
 
 gem 'jquery-rails'
 
-gem 'coffee-rails'
-gem 'uglifier'
+gem 'meta-tags'
