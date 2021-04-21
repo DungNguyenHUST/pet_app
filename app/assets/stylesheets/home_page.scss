@@ -391,9 +391,11 @@
             .user_home_job_block {
                 height: 250px;
                 padding: 20px;
+                margin-bottom: 20px;
                 background-color: #fff;
-                border-top: 1px solid #ecedee;
-                border-bottom: 1px solid #ecedee;
+                border: 1px solid #ecedee;
+                border-radius: 3px;
+                // border-bottom: 1px solid #ecedee;
                 display: block;
                 &:hover{
                     box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
@@ -672,6 +674,7 @@
             .home_top_question_block{
                 background-color: #f8f9fa;
                 border-radius: 3px;
+                border: 1px solid #dfe1e5;
                 // box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.1), 0 6px 20px 0 rgba(0, 0, 0, 0.09);
                 padding: 20px;
                 // margin-bottom: 20px;
@@ -680,6 +683,7 @@
                     box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.1), 0 6px 20px 0 rgba(0, 0, 0, 0.09);
                 }
                 .problem_label{
+                    padding-top: 5px;
                     a{
                         font-size: 20px;
                         font-weight: 600;
@@ -724,7 +728,7 @@
                             }   
                         }
                     }
-                    .problem_history_info{
+                    .problem_category_info{
                         a{
                             font-size: 13px;
                             padding-right: 20px;
@@ -739,7 +743,8 @@
                         }
                     }
                     .problem_difficult_info{
-                        float: left;
+                        position: absolute;
+                        top: 20px;
                         margin-right: 20px;
                         .problem_difficult{
                             border-radius: 3px;
@@ -750,16 +755,15 @@
                                 padding-right: 5px;
                             }
                         }
-                        .easy {                             
+                        .easy {     
+                            background-color: #5cb85c;   
+                            border-radius: 20px; 
+                            width: 80px; 
+                            height: 25px;   
+                            padding-top: 2px;  
+                            padding-left: 10px;              
                             a{
-                                border: none;
-                                border-radius: 20px;
                                 color: #fff;
-                                background-color: #5cb85c;
-                                padding-top: 4px;
-                                padding-bottom: 4px;
-                                padding-left: 10px;
-                                padding-right: 10px;
                                 font-size: 13px;
                                 i{
                                     font-size: 20px;
@@ -769,15 +773,14 @@
                             }
                         }
                         .average { 
+                            border-radius: 20px; 
+                            width: 80px; 
+                            height: 25px;   
+                            padding-top: 2px; 
+                            background-color:#f0ad4e;
+                            padding-left: 10px;
                             a{
-                                border: none;
-                                border-radius: 20px;
                                 color: #fff;
-                                background-color:#f0ad4e;
-                                padding-top: 4px;
-                                padding-bottom: 4px;
-                                padding-left: 10px;
-                                padding-right: 10px;
                                 font-size: 13px;
                                 i{
                                     font-size: 20px;
@@ -787,15 +790,14 @@
                             }
                         }
                         .hard{
+                            border-radius: 20px; 
+                            width: 80px; 
+                            height: 25px;   
+                            padding-top: 2px; 
+                            background-color: #d9534f;
+                            padding-left: 10px;
                             a{
-                                border: none;
-                                border-radius: 20px;
                                 color: #fff;
-                                background-color: #d9534f;
-                                padding-top: 4px;
-                                padding-bottom: 4px;
-                                padding-left: 10px;
-                                padding-right: 10px;
                                 font-size: 13px;
                                 i{
                                     font-size: 20px;
@@ -849,12 +851,12 @@
                 padding-right: 20px;
                 width: 45%;
                 .post_cover{
-                    border-radius: 5px;
+                    border-radius: 3px;
                     img{
                         display: block;
                         width: 100%;
-                        height: 160px;
-                        border-radius: 5px;
+                        height: 150px;
+                        border-radius: 3px;
                         @media screen and (max-width: 600px){
                             height: 120px;
                         }
@@ -890,20 +892,24 @@
                 }
 
                 .post_info{
-                    padding-top: 20px;
+                    padding-top: 10px;
                     @media screen and (max-width: 600px){
                         padding-top: 10px;
                     }
-                    font-size: 14px;
-                    i{
-                        font-size: 20px;
-                        position: relative;
-                        top: 5px;
-                    }
-                    span{
-                        margin-left: 3px;
+                    .post_user{
                         font-size: 13px;
-                        margin-right: 10px;
+                        float: left;
+                        color: #1877f2;
+                    }
+                    .post_category_info{
+                        font-size: 13px;
+                        color: #555;
+                    }
+                    .post_time{
+                        // float: left;
+                        font-size: 13px;
+                        padding-top: 10px;
+                        color: #555;
                     }
                 }
 
