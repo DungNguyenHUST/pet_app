@@ -31,9 +31,6 @@
                                     </div>
 
                                     <div class="post_info">
-                                        <div class="post_user">
-                                            <span><%=post.username%></span>
-                                        </div>
                                         <div class="post_category_info">
                                             <%post_category=''%>
                                             <%if(post.category.to_i == 1) %>
@@ -49,11 +46,11 @@
                                                 <a><%= post_category %></a>
                                             </div>
                                         </div>
-                                        <div class="post_time">
-                                            <span><%=post.created_at.strftime("%B %d, %Y")%></span>
-                                        </div>
                                         <div class="post_comment">
                                             <a><i class="material-icons-outlined">chat_bubble_outline</i><span><%=post.post_comments.count%></span></a>
+                                        </div>
+                                        <div class="post_time">
+                                            <span><%=post.created_at.strftime("%B %d, %Y")%></span>
                                         </div>
 									</div>
 
@@ -101,8 +98,8 @@
                                         </div>
                                         
                                         <div class="post_info">
-                                            <div class="post_username">
-                                                <strong><%=post.username%></strong> • <span><%=time_ago_in_words(post.created_at)%></span>
+                                            <div class="post_date">
+                                                <span><%=time_ago_in_words(post.created_at)%></span>
                                             </div>
                                         </div>
                                     </div>

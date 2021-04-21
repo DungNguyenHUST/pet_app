@@ -16,9 +16,6 @@
                                     <strong><%=@post.title%></strong>
                                 </div>
                                 <div class="post_info">
-									<div class="post_user">
-                                        <span><i class="material-icons-outlined">person_outline</i><%=@post.username%></span>
-                                    </div>
                                     <div class="post_category_info">
                                         <%post_category=''%>
                                         <%if(@post.category.to_i == 1) %>
@@ -88,8 +85,8 @@
                                                 </div>
 
                                                 <div class="post_info">
-                                                    <div class="post_username">
-                                                        <strong><%=post.username%></strong> • <span><%=time_ago_in_words(post.created_at)%></span>
+                                                    <div class="post_date">
+                                                        <span><%=time_ago_in_words(post.created_at)%></span>
                                                     </div>
                                                 </div>
                                             </div>
