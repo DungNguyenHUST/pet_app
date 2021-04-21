@@ -46,11 +46,14 @@
                                                 <% post_category = "Danh mục khác" %>
                                             <%end%>
                                             <div class="post_category">
-                                                <a>  •  <%= post_category %></a>
+                                                <a><%= post_category %></a>
                                             </div>
                                         </div>
                                         <div class="post_time">
                                             <span><%=post.created_at.strftime("%B %d, %Y")%></span>
+                                        </div>
+                                        <div class="post_comment">
+                                            <a><i class="material-icons-outlined">chat_bubble_outline</i><span><%=post.post_comments.count%></span></a>
                                         </div>
 									</div>
 
