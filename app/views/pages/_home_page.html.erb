@@ -31,9 +31,9 @@
                             <a>Nền tảng đánh giá công ty, chia sẻ kinh nghiệm phỏng vấn và giải đáp câu hỏi trong tìm kiếm việc làm</a>
                         </div>
                         
-                        <%=form_tag company_company_jobs_path(@companies, @company_jobs), :method => "get" do%>
+                        <%=form_tag search_index_path, :method => "get" do%>
                             <div class="input-group mb-3">
-                                <%= text_field_tag :search, params[:search], class: 'form-control', placeholder: "Tìm kiếm theo công việc, kĩ năng hoặc tên công ty" %>
+                                <%= text_field_tag :search, params[:search], class: 'form-control', placeholder: "Tìm kiếm theo tên công việc hoặc công ty" %>
                                 <div class="input-group-addon">
                                     <%= button_to "", form_class: "search_button", :name => nil do%>
                                         <i class="material-icons-outlined">search</i>

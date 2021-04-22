@@ -4,18 +4,6 @@ class CompanyJobsController < ApplicationController
         @company_job_all = CompanyJob.all.approved
         @companies = Company.friendly.search(params[:search]).approved
         @company_jobs = CompanyJob.friendly.search(params[:search]).approved
-        
-        # find company which incude job
-        @company_by_jobs = []
-        @companie_all.each do |company|
-            @company_jobs.each do |company_job|
-				if company_job.approved?
-					if (company.id = company_job.company_id)
-						@company_by_jobs.push(company)
-					end
-				end
-            end
-        end
     end
 
     def new
