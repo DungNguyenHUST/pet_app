@@ -7,6 +7,9 @@
 		background-image: url('back_ground.png');
         .home_search_bar_label{
             padding-top: 80px;
+			@media screen and (max-width: 600px){
+				padding-top: 60px;
+			}
             text-align: left;
             h3{  
                 font-size: 40px;
@@ -22,6 +25,9 @@
                 font-size: 24px;
                 color: #444;
                 line-break: auto;
+				@media screen and (max-width: 600px){
+					display: none;
+				}
             }
             span.textbox{
                 color: #fff;
@@ -42,45 +48,90 @@
 			}
         }
 
-        .input-group{
-            background-color: #fff;
-            border-radius: 30px;
-            border: 1px solid #dfe1e5;
-            .form-control{
-                background-color: #fff;
-                border-radius: 30px;
-                height: 50px;
+        .home_search_input{
+			display: block;
+			height: 50px;
+			.home_search_what{
+				float: left;
+				background-color: #fff;
+				border: 1px solid #dfe1e5;
+				width: 60%;
+				@media screen and (max-width: 600px){
+					width: 100%;
+					float: none;
+				}
+				border-radius: 3px;
+				i{
+					font-size: 24px;
+					position: relative;
+					top: 5px;
+					color: #888;
+					width: 50px;
+					padding-left: 15px;
+				}
+				.search_input{
+					width: 80%;
+					height: 50px;
+					border: none;
+					box-shadow: none;
+					color: #333;
+					font-size:16px;
+					outline:none;
+				}
+			}
+			.home_search_where{
+				float: left;
+				margin-left: 10px;
+				margin-right: 15px;
+				background-color: #fff;
+				border: 1px solid #dfe1e5;
+				width: 24%;
+				border-radius: 3px;
+				@media screen and (max-width: 600px){
+					width: 100%;
+					float: none;
+					margin-left: 0px;
+					margin-right: 0px;
+					margin-top: 10px;
+					margin-bottom: 15px;
+				}
+				i{
+					font-size: 24px;
+					position: relative;
+					top: 5px;
+					color: #888;
+					width: 50px;
+					padding-left: 15px;
+				}
+				.search_input{
+					width: 70%;
+					height: 50px;
+					border: none;
+					box-shadow: none;
+					color: #333;
+					font-size:16px;
+					outline:none;
+				}
+				button:focus{
+					border: none;
+				}
+			}
+			
+            .home_search_button{
                 border: none;
-                box-shadow: none;
-                color: #333;
-				font-size:16px;
-            }
-            .input-group-addon{
-                border-radius: 30px;
-                border: none;
-                background-color: #fff;
-                box-shadow: none;
-                i{
-                    border: none;
-                    font-size: 30px;
-                    color: #666;
-                    position: relative;
-                    color: #ffc500;
-                }
                 button{
                     border: none;
-                    border-radius: 30px;
-                    background-color: #fff;
+                    border-radius: 3px;
+					background-color: #1877f2;
+					height: 50px;
+					width: 150px;
+					color: #fff;
+					font-size:16px;
+					@media screen and (max-width: 600px){
+						width: 100%;
+						float: none;
+					}
                 }
-                button:focus{
-                    border: none;
-                    border-radius: 30px;
-                    background-color: #fff;
-                }
-
-            }
-            &:hover{
-                box-shadow: 0 1px 4px 0 rgba(60, 60, 60, 0.1), 0 2px 4px 0 rgba(30, 30, 30, 0.09);
             }
         }
 

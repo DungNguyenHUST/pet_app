@@ -23,6 +23,19 @@ class CompanyJob < ApplicationRecord
         end
     end
 	
+	def self.search_adv(search, location)
+        if search && location
+            job_type = CompanyJob.where("title ILIKE? OR location ILIKE?", "%#{search}%", "%#{location}%")
+            if(job_type)
+                self.where(id: job_type)
+            else
+                @company_jobs = CompanyJob.all
+            end
+        else
+            @company_jobs = CompanyJob.all
+        end
+    end
+	
 	def self.approved
 	  where(approved: :true)
 	end

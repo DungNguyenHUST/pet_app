@@ -1,7 +1,7 @@
 class SearchController < ApplicationController
 	def index
-		@company_searchs = Company.friendly.search(params[:search]).approved
-		@job_searchs = CompanyJob.friendly.search(params[:search]).approved
+		@company_searchs = Company.friendly.search_adv(:search, :location).approved
+		@job_searchs = CompanyJob.friendly.search_adv(:search, :location).approved
 		
 		# find company which incude job search
         @company_by_jobs = []
