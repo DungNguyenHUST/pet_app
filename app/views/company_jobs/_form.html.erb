@@ -30,7 +30,7 @@
 										<a><%= f.label :urgent, "Bạn cần tuyển gấp hay không?*", class: "new_job_label" %></a>
 									</div>
 									<div class="new_job_input">
-										<%= f.select(:urgent, options_for_select([['Có, tôi cần tuyển gấp', true], ['Không, tôi không cần tuyển gấp', true]]), {include_blank: true}, { :class => 'my_style_class' }) %>
+										<%= f.select(:urgent, options_for_select([['Không, tôi không cần tuyển gấp', false], ['Có, tôi cần tuyển gấp', true]]), {include_blank: false}, { :class => 'my_style_class' }) %>
 									</div>
 								</div>
 								
@@ -50,7 +50,7 @@
 									</div>
 									
 									<div class="new_job_input">
-										<%= f.select(:job_type, options_for_select(['Full Time', 'Part Time', 'Remote'], 'Full Time'), {include_blank: true}, { :class => 'my_style_class' }) %>
+										<%= f.select(:job_type, options_for_select(['Full Time', 'Part Time', 'Remote'], 'Full Time'), {include_blank: false}, { :class => 'my_style_class' }) %>
 									</div>
 								</div>
 

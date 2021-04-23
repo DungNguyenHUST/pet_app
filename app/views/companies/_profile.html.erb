@@ -65,7 +65,18 @@
                             </div>
 
                             <div class="company_profile_section">
-                                <a> <i class="material-icons-outlined">emoji_objects</i> Lĩnh vực chính </a>
+                                <a> <i class="material-icons-outlined">local_police</i> Loại hình hoạt động </a>
+                            </div>
+                            <div class="company_profile_content">
+                                <%if @company.company_type.present?%>
+                                    <%= @company.company_type%>
+                                <%else%>
+                                    Không xác định
+                                <%end%>
+                            </div>
+
+                            <div class="company_profile_section">
+                                <a> <i class="material-icons-outlined">turned_in_not</i> Lĩnh vực hoạt động </a>
                             </div>
                             <div class="company_profile_content">
                                 <%= @company.field_operetion %>
@@ -74,10 +85,32 @@
 
                         <div class="col-sm-3">
                             <div class="company_profile_section">
+                                <a> <i class="material-icons-outlined">date_range</i> Ngày làm việc trong tuần </a>
+                            </div>
+                            <div class="company_profile_content">
+                                <%if @company.working_date.present?%>
+                                    <%= @company.working_date%>
+                                <%else%>
+                                    Mon - Fri
+                                <%end%>
+                            </div>
+
+                            <div class="company_profile_section">
                                 <a> <i class="material-icons-outlined">history_toggle_off</i> Thời gian làm việc </a>
                             </div>
                             <div class="company_profile_content">
-                                Từ <%= @company.time_start.strftime("%I:%M%p")%> đến <%= @company.time_end.strftime("%I:%M%p")%>
+                                <%if @company.working_time.present?%>
+                                    <%= @company.working_time%>
+                                <%else%>
+                                    8h00 - 17h00
+                                <%end%>
+                            </div>
+
+                            <div class="company_profile_section">
+                                <a> <i class="material-icons-outlined">history</i> Cập nhật lần cuối </a>
+                            </div>
+                            <div class="company_profile_content">
+                                <%= @company.created_at.strftime("%B %d, %Y")%>
                             </div>
                         </div>
                     </div>

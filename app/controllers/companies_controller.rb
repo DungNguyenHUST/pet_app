@@ -96,7 +96,7 @@ class CompaniesController < ApplicationController
     private
     # define param for each company
     def company_param
-        params.require(:company).permit(:name, :location, :address, :country, :website, :phone, :time_establish, :time_start, :time_end, :size, :field_operetion, :avatar, :wall_picture, :search, :overview, :policy, :values)
+        params.require(:company).permit(:name, :location, :address, :country, :website, :phone, :time_establish, :working_time, :working_date, :size, :field_operetion, :avatar, :wall_picture, :search, :overview, :policy, :values, :company_type)
     end
 
     def cal_company_score(company)

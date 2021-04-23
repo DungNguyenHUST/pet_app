@@ -22,7 +22,7 @@
 											<a><%= f.label :privacy, "Bạn có muốn ẩn thông tin cá nhân (thông tin cá nhân của bạn sẽ không được hiển thị)*", class: "new_interview_label_name" %></a>
 										</div>
 										<div class="new_interview_input">
-											<%= f.select(:privacy, options_for_select([['Không, tôi không muốn ẩn thông tin cá nhân', false], ['Có, tôi muốn ẩn thông tin cá nhân', true]]), {include_blank: true}, { :class => 'my_style_class' }) %>
+											<%= f.select(:privacy, options_for_select([['Không, tôi không muốn ẩn thông tin cá nhân', false], ['Có, tôi muốn ẩn thông tin cá nhân', true]]), {include_blank: false}, { :class => 'my_style_class' }) %>
 										</div>
 									</div>
 								</div>
@@ -45,7 +45,7 @@
 									</div>
 
 									<div class="new_interview_input">
-										<%= f.select(:get_interview, options_for_select(['Mạng xã hội','Bạn bè người thân', 'Kênh tuyển dụng', 'Quảng cáo', 'Kênh khác'], 'Kênh khác'), {include_blank: true}, { :class => 'my_style_class' }) %>
+										<%= f.select(:get_interview, options_for_select(['Mạng xã hội','Bạn bè người thân', 'Kênh tuyển dụng', 'Quảng cáo', 'Kênh khác'], 'Kênh khác'), {include_blank: false}, { :class => 'my_style_class' }) %>
 									</div>
 								</div>
 								
@@ -55,7 +55,7 @@
 									</div>
 
 									<div class="new_interview_input">
-										<%= f.select(:process, options_for_select(['1','2', '3', '4', '5'], '1'), {include_blank: true}, { :class => 'my_style_class' }) %>
+										<%= f.select(:process, options_for_select(['1','2', '3', '4', '5'], '1'), {include_blank: false}, { :class => 'my_style_class' }) %>
 									</div>
 								</div>
 							</div>
@@ -188,7 +188,7 @@
 									</div>
 
 									<div class="new_interview_input">
-										<%= f.select(:offer, options_for_select([['Không', false], ['Có', true]]), {include_blank: true}, { :class => 'my_style_class' }) %>
+										<%= f.select(:offer, options_for_select([['Không', false], ['Có', true]]), {include_blank: false}, { :class => 'my_style_class' }) %>
 									</div>
 								</div>
 							</div>
