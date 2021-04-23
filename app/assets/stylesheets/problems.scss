@@ -6,49 +6,73 @@
         .problem_search{
             padding-top: 30px;
             padding-bottom: 30px;
-            .input-group{
-                background-color: #fff;
-                border-radius: 30px;
-                border: 1px solid #dfe1e5;
-                .form-control{
-                    background-color: #fff;
-                    border-radius: 30px;
-                    height: 50px;
-                    border: none;
-                    box-shadow: none;
-                    color: #333;
-					font-size:16px;
-                }
-                .input-group-addon{
-                    border-radius: 30px;
-                    border: none;
-                    background-color: #fff;
-                    box-shadow: none;
-                    i{
-                        border: none;
-                        font-size: 30px;
-                        color: #666;
-                        position: relative;
-                        color: #ffc500;
-                    }
-                    button{
-                        border: none;
-                        border-radius: 30px;
-                        background-color: #fff;
-                    }
-                    button:focus{
-                        border: none;
-                        border-radius: 30px;
-                        background-color: #fff;
-                    }
-    
-                }
-                &:hover{
-                    box-shadow: 0 1px 4px 0 rgba(60, 60, 60, 0.1), 0 2px 4px 0 rgba(30, 30, 30, 0.09);
-                }
-            }
+            .problem_search_input{
+				display: block;
+				min-height: 50px;
+				.padding_customize_right{
+					@media screen and (min-width: 600px){
+						padding-right: 0px !important;
+					}
+				}
+				.problem_search_what{
+					background-color: #fff;
+					border: 1px solid #dfe1e5;
+					width: 100%;
+					border-radius: 3px;
+					i{
+						font-size: 24px;
+						position: relative;
+						top: 5px;
+						color: #888;
+						padding-left: 15px;
+					}
+					.search_input{
+						height: 50px;
+						width: 90%;
+						border: none;
+						box-shadow: none;
+						color: #333;
+						font-size:16px;
+						outline:none;
+					}
+				}
+				
+				.problem_search_button{
+					border: none;
+					width: 100%;
+					@media screen and (max-width: 600px){
+						padding-top: 20px;
+					}
+					button{
+						width: 100%;
+						border: none;
+						border-radius: 3px;
+						background-color: #1877f2;
+						height: 50px;
+						color: #fff;
+						font-size:16px;
+					}
+				}
+			}
         }
-
+        .problem_search_label
+        {
+            font-size: 22px;
+            margin-right: 13px;
+            border-top-right-radius: 1px;
+            border-top-left-radius: 1px;
+            margin-bottom: 20px;
+            font-weight: 550;
+            span{
+                border-left: 5px solid #ffc500;
+                padding-left: 5px;
+            }
+            @media screen and (max-width: 600px){
+                margin-top: 10px;
+                width: 100%;
+            }
+    
+        }
         .search_question_result{
             background-color: #fff;
             margin-bottom: 20px;
@@ -61,6 +85,7 @@
                 padding: 20px;
                 // margin-bottom: 20px;
                 height: 200px;
+				margin-bottom: 20px;
                 &:hover{
                     box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.1), 0 6px 20px 0 rgba(0, 0, 0, 0.09);
                 }
@@ -109,41 +134,9 @@
                             }   
                         }
                     }
-                    .problem_category_info{
-                        float: left;
-                        // margin-right: 10px;
-                        a{
-                            font-size: 13px;
-                            padding-right: 20px;
-                            color: #666;
-                            i{
-                                font-size: 20px;
-                                position: relative;
-                                top: 5px;
-                                padding-right: 3px;
-                                color: #1877f2;
-                            }   
-                        }
-                    }
-
-                    .problem_history_info{
-                        a{
-                            font-size: 13px;
-                            padding-right: 20px;
-                            color: #666;
-                            i{
-                                font-size: 20px;
-                                position: relative;
-                                top: 5px;
-                                padding-right: 3px;
-                                color: #1877f2;
-                            }   
-                        }
-                    }
-
-                    .problem_difficult_info{
+					.problem_difficult_info{
                         // float: left;
-                        margin-right: 20px;
+						padding-top: 5px;
                         .problem_difficult{
                             border-radius: 3px;
                             a{
@@ -208,26 +201,43 @@
                             }
                         }
                     }
+					
+                    .problem_category_info{
+						clear: both;
+                        float: left;
+                        padding-top: 10px;
+                        a{
+                            font-size: 13px;
+                            padding-right: 20px;
+                            color: #666;
+                            i{
+                                font-size: 20px;
+                                position: relative;
+                                top: 5px;
+                                padding-right: 3px;
+                                color: #1877f2;
+                            }   
+                        }
+                    }
+
+                    .problem_history_info{
+						padding-top: 10px;
+                        a{
+                            font-size: 13px;
+                            padding-right: 20px;
+                            color: #666;
+                            i{
+                                font-size: 20px;
+                                position: relative;
+                                top: 5px;
+                                padding-right: 3px;
+                                color: #1877f2;
+                            }   
+                        }
+                    }
+
                 }
             }
-        }
-        .section_search_title
-        {
-            font-size: 24px;
-            margin-right: 13px;
-            border-top-right-radius: 1px;
-            border-top-left-radius: 1px;
-            margin-bottom: 20px;
-            font-weight: 550;
-            span{
-                border-left: 5px solid #ffc500;
-                padding-left: 5px;
-            }
-            @media screen and (max-width: 600px){
-                margin-top: 10px;
-                width: 100%;
-            }
-    
         }
 
         .section_title
@@ -524,7 +534,7 @@
             }
         }
 
-        .problem_company{
+        .problem_problem{
             width: 100%;
             border: 1px solid #dfe1e5;
             background-color: #fff;

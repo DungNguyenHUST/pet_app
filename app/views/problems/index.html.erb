@@ -11,84 +11,30 @@
                 <div class="row">
                     <div class="col-sm-8">
                         <div class="problem_search">
-                            <%=form_tag problems_path, :method => "get" do%>
-                                <div class="input-group mb-3">
-                                    <%= text_field_tag :search, params[:search], class: 'form-control', placeholder: "Tìm kiếm câu hỏi" %>
-                                    <div class="input-group-addon">
-                                        <%= button_to "", form_class: "search_button", :name => nil do%>
-                                            <i class="material-icons-outlined">search</i>
-                                        <%end%> 
-                                    </div>
-                                </div>
-                            <%end%>
+							<%=form_tag problems_path, :method => "get" do%>
+								<div class="problem_search_input">
+									<div class='row'>
+										<div class="col-sm-9 padding_customize_right">
+											<div class="problem_search_what">
+												<i class="material-icons-outlined">search</i></button>
+												<%= text_field_tag :search, params[:search], required: true, class: 'search_input', placeholder: "Nhập tên câu hỏi cần tìm kiếm"%>
+											</div>
+										</div>
+										
+										<div class="col-sm-3">
+											<div class="problem_search_button">
+												<%= button_to "", form_class: "search_button", :name => nil do%>
+													<a>Tìm kiếm</a>
+												<%end%> 
+											</div>
+										</div>
+									</div>
+								</div>
+							<%end%>
                         </div>
                         
-                        <%if (@problems.count < @problems_all.count)%>
-                            <div class="section_search_title">
-                                <%if @problems.count > 0%>
-                                    <span>Tìm được <%=@problems.count%> kết quả phù hợp với từ khóa "<%= params[:search]%>"</span>
-                                <%else%>
-                                    <span>Không tìm được kết quả phù hợp với từ khóa "<%= params[:search]%>"</span>
-                                <%end%>
-
-                                <div class="search_question_result">
-                                    <div class="row">
-                                        <%i = 0%>
-                                        <% @problems.each do |problem| %>
-                                            <%i += 1%>
-                                            <%break if i > 6%>
-                                            <div class="col-sm-6">
-                                                <div class="question_block">
-                                                    <div class="problem_label">
-                                                        <a><%= link_to problem.title, problem_path(problem) %></a>
-                                                    </div>
-                                                    <div class="problem_des">
-                                                        <a><%= problem.content.html_safe%></a>
-                                                    </div>
-                                                    <div class="problem_info">
-                                                        <div class="problem_reply_info">
-                                                            <a><i class="material-icons-outlined checked">lightbulb</i><%= problem.problem_solutions.count%> Giải pháp</a>
-                                                        </div>
-                                                        <div class="problem_difficult_info">
-                                                            <%problem_difficult = ""%>
-                                                            <%if(problem.difficult.to_i == 1 || problem.difficult.to_s == 'Dễ') %>
-                                                                <% problem_difficult = "easy" %>
-                                                            <% elsif (problem.difficult.to_i == 2 || problem.difficult.to_s == 'Trung bình') %>
-                                                                <% problem_difficult = "average" %>
-                                                            <% elsif (problem.difficult.to_i == 3 || problem.difficult.to_s == 'Khó') %>
-                                                                <% problem_difficult = "hard" %>
-                                                            <%end%>
-                                                            <div class=<%= problem_difficult %>>
-                                                                <a><%= problem.difficult %></a>
-                                                            </div>
-                                                        </div>
-                                                        
-                                                        <div class="problem_category_info">
-                                                            <% problem_category = ""%>
-                                                            <%if problem.category.to_i == 1%>
-                                                                <%problem_category = "Thuật toán"%>
-                                                            <%elsif problem.category.to_i == 2%>
-                                                                <%problem_category = "Câu hỏi phỏng vấn"%>
-                                                            <%elsif problem.category.to_i == 3%>
-                                                                <%problem_category = "IQ Test"%>
-                                                            <%elsif problem.category.to_i == 4%>
-                                                                <%problem_category = "EQ Test"%>
-                                                            <%elsif problem.category.to_i == 5%>
-                                                                <%problem_category = "Câu hỏi khác"%>
-                                                            <%end%>															
-                                                            <a><i class="material-icons-outlined checked">open_in_new</i><%= problem_category%></a>
-                                                        </div>
-                                                        
-                                                        <div class="problem_history_info">
-                                                            <a><i class="material-icons-outlined checked">history_toggle_off</i><%= time_ago_in_words(problem.created_at)%></a>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        <%end%>
-                                    </div>
-                                </div>
-                            </div>
+                        <%if @problem_searchs.present?%>
+                            <%= render :partial => 'problems/search', :object => @problem_searchs %>
                         <%end%>
 
                         <div class="section_title">
@@ -368,11 +314,11 @@
                                 <% end %>
                             </div>
                         </div>
-                        <div class="problem_company">
+                        <div class="problem_problem">
                             <a><i class="material-icons-outlined">corporate_fare</i>Câu hỏi theo công ty</a>
                             <div class="problem_short">
                                 <%i = 0%>
-                                <% @problems.each do |problem| %>
+                                <% @problems_all.each do |problem| %>
                                     <%i += 1%>
                                     <%break if i > 10%>
                                     <%if problem.approved?%>

@@ -35,14 +35,14 @@
 																'Bắc Ninh','Bến Tre','Bình Dương','Bình Định','Bình Phước',
 																'Bình Thuận','Cà Mau','Cao Bằng','Cần Thơ','Đà Nẵng','Đắk Lắk','Đắk Nông','Điện Biên',
 																'Đồng Nai','Đồng Tháp','Gia Lai','Hà Giang','Hà Nam','Hà Nội','Hà Tây','Hà Tĩnh',
-																'Hải Dương','Hải Phòng','Hòa Bình','Hồ Chí Minh','Hậu Giang','Hưng Yên','Khánh Hòa',
+																'Hải Dương','Hải Phòng','Hòa Bình','TP Hồ Chí Minh','Hậu Giang','Hưng Yên','Khánh Hòa',
 																'Kiên Giang','Kon Tum','Lai Châu','Lào Cai',
 																'Lạng Sơn','Lâm Đồng','Long An','Nam Định','Nghệ An',
 																'Ninh Bình','Ninh Thuận','Phú Thọ','Phú Yên','Quảng Bình',
 																'Quảng Nam','Quảng Ngãi','Quảng Ninh','Quảng Trị',
 																'Sóc Trăng','Sơn La','Tây Ninh','Thái Bình','Thái Nguyên' ,
 																'Thanh Hóa','Thừa Thiên – Huế','Tiền Giang','Trà Vinh',
-																'Tuyên Quang','Vĩnh Long','Vĩnh Phúc','Yên Bái' ], "Hà Nội"), {include_blank: true}, { :class => 'my_style_class' }) %>
+																'Tuyên Quang','Vĩnh Long','Vĩnh Phúc','Yên Bái' ], "Hà Nội"), {include_blank: false}, { :class => 'my_style_class' }) %>
 									</div>
 								</div>
 
@@ -103,7 +103,7 @@
 																					'Congo',
 																					'Costa Rica',
 																					'Côte d Ivoire',
-																					'(Bờ Biển Ngà)',
+																					'Bờ Biển Ngà',
 																					'Croatia',
 																					'Cuba',
 																					'Cyprus (Đảo Síp)',
@@ -257,7 +257,7 @@
 																					'Việt Nam',
 																					'Yemen',
 																					'Zambia',
-																					'Zimbabwe'], "Việt Nam"), {include_blank: true}, { :class => 'my_style_class' }) %>
+																					'Zimbabwe'], "Việt Nam"), {include_blank: false}, { :class => 'my_style_class' }) %>
 									</div>
 								</div>
 
@@ -331,7 +331,7 @@
 									</div>
 
 									<div class="new_company_input">
-										<%= f.select(:size, options_for_select(['10', '10-50', '50-100', '100-500', '500-1000', '1000+'], "10"), {include_blank: true}, { :class => 'my_style_class' }) %>
+										<%= f.select(:size, options_for_select(['10', '10-50', '50-100', '100-500', '500-1000', '1000+'], "Không xác định"), {include_blank: false}, { :class => 'my_style_class' }) %>
 									</div>
 								</div>
 
@@ -341,13 +341,13 @@
 									</div>
 
 									<div class="new_company_input">
-										<%= f.select(:values, options_for_select(['1-10 billion VND', '10-50 billion VND', '50-100 billion VND', '100-500 billion VND', '500-1000 billion VND', '1000+ billion VND'], "1-10 billion VND"), {include_blank: true}, { :class => 'my_style_class' }) %>
+										<%= f.select(:values, options_for_select(['1-10 million USD', '10-50 million USD', '50-100 million USD', '100-500 million USD', '500-1000 million USD', '1-10 billion USD', '10-50 billion USD', '50-100 billion USD', '100-500 billion USD', '500-1000 billion USD', '1000+ billion USD'], "Không xác định"), {include_blank: false}, { :class => 'my_style_class' }) %>
 									</div>
 								</div>
 								
 								<div class="new_company_content">
 									<div class="new_company_label">
-										<a><%= f.label :avatar, "Ảnh đại diện công ty( ảnh nhỏ kích thước min 120x120 )* ", class: "new_company_label" %></a>
+										<a><%= f.label :avatar, "Ảnh đại diện công ty( hình ảnh nhỏ kích thước min 120x120 )* ", class: "new_company_label" %></a>
 									</div>
 									
 									<div class="new_company_input">
@@ -357,7 +357,7 @@
 								
 								<div class="new_company_content">
 									<div class="new_company_label">
-										<a><%= f.label :wall_picture, "Ảnh bìa công ty( ảnh lớn kích thước min 900x600 )* ", class: "new_company_label" %></a>
+										<a><%= f.label :wall_picture, "Ảnh bìa công ty( hình ảnh lớn kích thước min 900x600 )* ", class: "new_company_label" %></a>
 									</div>
 									
 									<div class="new_company_input">

@@ -1,7 +1,9 @@
 class ProblemsController < ApplicationController
     def index
-        @problems = Problem.friendly.search(params[:search]).order("created_at DESC").approved.reverse
-        @problems_all = Problem.all.approved
+		if(params.has_key?(:search))
+			@problem_searchs = Problem.friendly.search(params[:search]).order("created_at DESC").approved.reverse
+        end
+		@problems_all = Problem.all.approved
         @problems_newest = Problem.all.order("created_at DESC").approved
         @problem_solutions = ProblemSolution.all
 

@@ -1,6 +1,8 @@
 class CompaniesController < ApplicationController
     def index
-        @companies = Company.friendly.search(params[:search]).approved
+		if(params.has_key?(:search))
+			@company_searchs = Company.friendly.search(params[:search]).approved
+		end
         @companies_all = Company.all.approved
         @companies_oder_name = Company.all.order('name DESC').approved
         @companies_oder_newest = Company.all.order('created_at DESC').approved

@@ -31,9 +31,9 @@ class Company < ApplicationRecord
         end
     end
 	
-	def self.search_adv(search, location)
+	def self.search_advance(search, location)
         if search && location
-            company_type = Company.where("name ILIKE? OR location ILIKE?", "%#{search}%", "%#{location}%")
+            company_type = Company.where("name ILIKE? AND location ILIKE?", "%#{search}%", "%#{location}%")
             if(company_type)
                 self.where(id: company_type)
             else
