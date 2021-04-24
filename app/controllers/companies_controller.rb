@@ -1,6 +1,8 @@
 class CompaniesController < ApplicationController
     def index
+        @is_company_searched = false
 		if(params.has_key?(:search))
+            @is_company_searched = true
 			@company_searchs = Company.friendly.search(params[:search]).approved
 		end
         @companies_all = Company.all.approved

@@ -15,113 +15,107 @@
 			</div>
 			<div class="company_search_result">
 				<div class="row">
-					<% @company_searchs.each do |company| %>
-						<div class="col-sm-3">
-							<div class="single_company">
-								<div class="company_wall">
-									<div class="rounded">
-										<%if company.wall_picture?%>
-											<%= link_to (image_tag(company.wall_picture.large.url)), image_path(url_for(company.wall_picture.large.url)), rel: "gallery" , :href => company_path(company)%>
-										<%end%>
-									</div>
-								</div>
-
-								<div class="company_thumbnail">
-									<div class="rounded">
-										<%if company.avatar?%>
-											<%= link_to (image_tag(company.avatar.thumb.url)), image_path(url_for(company.avatar.thumb.url)), rel: "gallery" , :href => company_path(company)%>
-										<%end%>
-									</div>
-								</div>
-
-								<div class="company_love_button" id ="<%=company.id%>">
-									<%if logged_in?%>
-										<% pre_follow = company.company_follows.find { |follow| follow.user_id == current_user.id} %>
-										<% if pre_follow %> 
-											<%= link_to '<button class="follow_btn_highlight"><i class="material-icons">favorite</i></button>'.html_safe, company_company_follow_path(company, pre_follow), remote: true, method: :delete%>
-										<%else%>
-											<%= link_to '<button class="follow_btn"><i class="material-icons-outlined">favorite_border</i></button>'.html_safe, company_company_follows_path(company), remote: true, method: :post%>
-										<%end%>
-									<%else%>
-										<%= link_to '<button class="follow_btn"><i class="material-icons-outlined">favorite_border</i></button>'.html_safe, login_path%>
-									<%end%>
-								</div>
-
-								<div class="company_title">
-									<div class="company_name">
-										<a> <%= link_to company.name, company_path(company), class: "company_name_label" %></a>
-									</div>
-
-									<div class="company_rating">
-										<%# Cal culate rating score %>
-										<%if(company.company_reviews.count > 0)%>
-											<%rate_work_env = company.company_reviews.sum('work_env_score').to_f / company.company_reviews.count%>
-											<%rate_salary = company.company_reviews.sum('salary_score').to_f / company.company_reviews.count%>
-											<%rate_ot = company.company_reviews.sum('ot_score').to_f / company.company_reviews.count%>
-											<%rate_manager = company.company_reviews.sum('manager_score').to_f / company.company_reviews.count%>
-											<%rate_career = company.company_reviews.sum('career_score').to_f / company.company_reviews.count%>
-											<%total_rate = (rate_work_env + rate_salary + rate_ot + rate_manager + rate_career)/5%>
-										<%else%>
-											<%total_rate = 0%>
-										<%end%>
-										<div class="review_score_star">
-											<%if total_rate > 0%>
-												<%total_rate.to_i.times do%>
-													<i class="material-icons checked">circle</i>
-												<%end%>
-												<%(5 - total_rate.to_i).to_i.times do%>
-													<i class="material-icons checked_out">radio_button_unchecked</i>
-												<%end%>
-											<%else%>
-												<%5.times do%>
-													<i class="material-icons checked_out">radio_button_unchecked</i>
-												<%end%>
+					<%if @company_searchs.present?%>
+						<% @company_searchs.each do |company| %>
+							<div class="col-sm-3">
+								<div class="single_company">
+									<div class="company_wall">
+										<div class="rounded">
+											<%if company.wall_picture?%>
+												<%= link_to (image_tag(company.wall_picture.large.url)), image_path(url_for(company.wall_picture.large.url)), rel: "gallery" , :href => company_path(company)%>
 											<%end%>
 										</div>
 									</div>
-								</div>
-								
-								<div class="company_summary">
 
-									<%# <div class="company_location">
-										<p><i class="material-icons-outlined">place</i> <%= company.location %></p>
-									<%# </div> %>
+									<div class="company_thumbnail">
+										<div class="rounded">
+											<%if company.avatar?%>
+												<%= link_to (image_tag(company.avatar.thumb.url)), image_path(url_for(company.avatar.thumb.url)), rel: "gallery" , :href => company_path(company)%>
+											<%end%>
+										</div>
+									</div>
 
-									<div class="review_point">
+									<div class="company_love_button" id ="<%=company.id%>">
+										<%if logged_in?%>
+											<% pre_follow = company.company_follows.find { |follow| follow.user_id == current_user.id} %>
+											<% if pre_follow %> 
+												<%= link_to '<button class="follow_btn_highlight"><i class="material-icons">favorite</i></button>'.html_safe, company_company_follow_path(company, pre_follow), remote: true, method: :delete%>
+											<%else%>
+												<%= link_to '<button class="follow_btn"><i class="material-icons-outlined">favorite_border</i></button>'.html_safe, company_company_follows_path(company), remote: true, method: :post%>
+											<%end%>
+										<%else%>
+											<%= link_to '<button class="follow_btn"><i class="material-icons-outlined">favorite_border</i></button>'.html_safe, login_path%>
+										<%end%>
+									</div>
 
-										<div class="review_point_review_content">
-											<a><%= company.company_reviews.count%></a>
+									<div class="company_title">
+										<div class="company_name">
+											<a> <%= link_to company.name, company_path(company), class: "company_name_label" %></a>
 										</div>
 
-										<div class="review_point_review_content">
-											<a><%= company.company_interviews.count %></a>
+										<div class="company_rating">
+											<%# Cal culate rating score %>
+											<%if(company.company_reviews.count > 0)%>
+												<%rate_work_env = company.company_reviews.sum('work_env_score').to_f / company.company_reviews.count%>
+												<%rate_salary = company.company_reviews.sum('salary_score').to_f / company.company_reviews.count%>
+												<%rate_ot = company.company_reviews.sum('ot_score').to_f / company.company_reviews.count%>
+												<%rate_manager = company.company_reviews.sum('manager_score').to_f / company.company_reviews.count%>
+												<%rate_career = company.company_reviews.sum('career_score').to_f / company.company_reviews.count%>
+												<%total_rate = (rate_work_env + rate_salary + rate_ot + rate_manager + rate_career)/5%>
+											<%else%>
+												<%total_rate = 0%>
+											<%end%>
+											<div class="review_score_star">
+												<%if total_rate > 0%>
+													<%total_rate.to_i.times do%>
+														<i class="material-icons checked">circle</i>
+													<%end%>
+													<%(5 - total_rate.to_i).to_i.times do%>
+														<i class="material-icons checked_out">radio_button_unchecked</i>
+													<%end%>
+												<%else%>
+													<%5.times do%>
+														<i class="material-icons checked_out">radio_button_unchecked</i>
+													<%end%>
+												<%end%>
+											</div>
 										</div>
+									</div>
+									
+									<div class="company_summary">
 
-										<div class="review_point_review_content">
-											<a><%= company.company_jobs.count %></a>
-										</div>
+										<%# <div class="company_location">
+											<p><i class="material-icons-outlined">place</i> <%= company.location %></p>
+										<%# </div> %>
 
-										<div class="review_point_label">
-											<span> <i class="material-icons-outlined">insert_emoticon</i><%= link_to " Đánh giá", company_path(company), class: "review_point_review_label" %></span>
-										</div>
+										<div class="review_point">
 
-										<div class="review_point_label">
-											<span> <i class="material-icons-outlined">people_outline</i><%= link_to " Phỏng vấn", company_path(company), class: "review_point_review_label" %></span>
-										</div>
+											<div class="review_point_review_content">
+												<a><%= company.company_reviews.count%></a>
+											</div>
 
-										<div class="review_point_label">
-											<span> <i class="material-icons-outlined">work_outline</i><%= link_to " Việc làm", company_path(company), class: "review_point_review_label" %></span>
+											<div class="review_point_review_content">
+												<a><%= company.company_interviews.count %></a>
+											</div>
+
+											<div class="review_point_review_content">
+												<a><%= company.company_jobs.count %></a>
+											</div>
+
+											<div class="review_point_label">
+												<span> <i class="material-icons-outlined">insert_emoticon</i><%= link_to " Đánh giá", company_path(company), class: "review_point_review_label" %></span>
+											</div>
+
+											<div class="review_point_label">
+												<span> <i class="material-icons-outlined">people_outline</i><%= link_to " Phỏng vấn", company_path(company), class: "review_point_review_label" %></span>
+											</div>
+
+											<div class="review_point_label">
+												<span> <i class="material-icons-outlined">work_outline</i><%= link_to " Việc làm", company_path(company), class: "review_point_review_label" %></span>
+											</div>
 										</div>
 									</div>
 								</div>
-							</div>
-						</div>
-					<%end%>
-
-					<%if logged_in?%>
-						<%if current_user.admin?%>
-							<div class="new-company">
-								<%= link_to '<button type="submit"> <i class="material-icons-outlined">add</i>Tạo công ty mới</button>'.html_safe, new_company_path %>
 							</div>
 						<%end%>
 					<%end%>

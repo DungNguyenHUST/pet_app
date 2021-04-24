@@ -34,4 +34,14 @@ class User < ApplicationRecord
 	def self.approved
 	  where(approved: :true)
 	end
+
+  def self.search(search)
+    if search
+      user_type = User.where("name ILIKE? OR email ILIKE?", "%#{search}%", "%#{search}%")
+      if(user_type)
+        self.where(id: user_type)
+      end
+    end
+  end
+
 end

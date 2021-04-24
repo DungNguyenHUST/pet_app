@@ -43,5 +43,44 @@ class PagesController < ApplicationController
                 @company_job_by_employer = @company_by_employer.company_jobs.all
             end
         end
+
+		if(params.has_key?(:company_search))
+		    @company_search = params[:company_search]
+            @company_searchs = Company.friendly.search(@company_search)
+        end
+
+        if(params.has_key?(:job_search))
+		    @job_search = params[:job_search]
+            @job_searchs = CompanyJob.friendly.search(@job_search)
+        end
+
+        if(params.has_key?(:user_search))
+            @user_search = params[:user_search]
+            @user_searchs = User.friendly.search(@user_search)
+        end
+
+        if(params.has_key?(:post_search))
+            @post_search = params[:post_search]
+            @post_searchs = Post.friendly.search(@post_search)
+        end
+
+        if(params.has_key?(:problem_search))
+            @problem_search = params[:problem_search]
+            @problem_searchs = Problem.friendly.search(@problem_search)
+        end
+
+		# find company which incude job search
+        @company_by_jobs = []
+        Company.all.each do |company|
+            if @job_searchs.present?
+                @job_searchs.each do |job_search|
+                    if job_search?
+                        if (company.id = job_search.company_id)
+                            @company_by_jobs.push(company)
+                        end
+                    end
+                end
+            end
+        end
     end
 end

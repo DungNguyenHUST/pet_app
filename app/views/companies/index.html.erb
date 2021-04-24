@@ -21,7 +21,7 @@
 								<div class='row'>
 									<div class="col-sm-10 padding_customize_right">
 										<div class="company_search_what">
-											<i class="material-icons-outlined">search</i></button>
+											<i class="material-icons-outlined">search</i>
 											<%= text_field_tag :search, params[:search], required: true, class: 'search_input', placeholder: "Nhập tên công ty cần tìm kiếm"%>
 										</div>
 									</div>
@@ -53,7 +53,7 @@
 
             <div class="companies_area">
                 <div class="container">
-                    <%if (@company_searchs.present?)%>
+                    <%if (@is_company_searched)%>
                         <%= render :partial => 'companies/search', :object => @company_searchs %>
                     <%end%>
 

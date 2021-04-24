@@ -1,9 +1,7 @@
 class CompanyJobsController < ApplicationController
     def index 
-        @companie_all = Company.all.approved
-        @company_job_all = CompanyJob.all.approved
-        @companies = Company.friendly.search(params[:search]).approved
-        @company_jobs = CompanyJob.friendly.search(params[:search]).approved
+        @companies = Company.all.approved
+        @company_jobs = CompanyJob.all.approved
     end
 
     def new

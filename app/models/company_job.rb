@@ -12,27 +12,19 @@ class CompanyJob < ApplicationRecord
 
     def self.search(search)
         if search
-            job_type = CompanyJob.where("title ILIKE? OR location ILIKE?", "%#{search}%", "%#{search}%")
-            if(job_type)
-                self.where(id: job_type)
-            else
-                @company_jobs = CompanyJob.all
+            job_search = CompanyJob.where("title ILIKE? OR location ILIKE?", "%#{search}%", "%#{search}%")
+            if(job_search)
+                self.where(id: job_search)
             end
-        else
-            @company_jobs = CompanyJob.all
         end
     end
 	
 	def self.search_advance(search, location)
         if search && location
-            job_type = CompanyJob.where("title ILIKE? AND location ILIKE?", "%#{search}%", "%#{location}%")
-            if(job_type)
-                self.where(id: job_type)
-            else
-                @company_jobs = CompanyJob.all
+            job_search = CompanyJob.where("title ILIKE? AND location ILIKE?", "%#{search}%", "%#{location}%")
+            if(job_search)
+                self.where(id: job_search)
             end
-        else
-            @company_jobs = CompanyJob.all
         end
     end
 	

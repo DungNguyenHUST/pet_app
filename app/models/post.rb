@@ -14,5 +14,14 @@ class Post < ApplicationRecord
 	  where(approved: :true)
 	end
 
+  def self.search(search)
+    if search
+      post_search = Post.where("title ILIKE?", "%#{search}%")
+      if(post_search)
+        self.where(id: post_search)
+      end
+    end
+  end
+
   mount_uploader :wall_picture, ImageUploader
 end

@@ -6,14 +6,10 @@ class Problem < ApplicationRecord
 
     def self.search(search)
         if search
-            problem_type = Problem.where("title ILIKE ?", "%#{search}%")
-            if(problem_type)
-                self.where(id: problem_type)
-            else
-                @problems = Problem.all
+            problem_search = Problem.where("title ILIKE ?", "%#{search}%")
+            if(problem_search)
+                self.where(id: problem_search)
             end
-        else
-            @problems = Problem.all
         end
     end
 	
@@ -23,9 +19,9 @@ class Problem < ApplicationRecord
 
     # def self.sort(soft_type)
     #     if soft_type
-    #         problem_type = Problem.all(:order => 'DATE(updated_at), difficult')
-    #         if (problem_type)
-    #             self.where(id: problem_type)
+    #         problem_search = Problem.all(:order => 'DATE(updated_at), difficult')
+    #         if (problem_search)
+    #             self.where(id: problem_search)
     #         else
     #             @problems = Problem.all
     #         end

@@ -16,7 +16,7 @@
 									<div class='row'>
 										<div class="col-sm-9 padding_customize_right">
 											<div class="problem_search_what">
-												<i class="material-icons-outlined">search</i></button>
+												<i class="material-icons-outlined">search</i>
 												<%= text_field_tag :search, params[:search], required: true, class: 'search_input', placeholder: "Nhập tên câu hỏi cần tìm kiếm"%>
 											</div>
 										</div>
@@ -33,7 +33,7 @@
 							<%end%>
                         </div>
                         
-                        <%if @problem_searchs.present?%>
+                        <%if @is_problem_searched%>
                             <%= render :partial => 'problems/search', :object => @problem_searchs %>
                         <%end%>
 
