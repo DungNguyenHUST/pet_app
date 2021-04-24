@@ -7,6 +7,12 @@
 	min-height: 900px;
 	.home_search_input{
 		display: block;
+		.padding_customize{
+			@media screen and (min-width: 600px){
+				padding-left: 0px !important;
+				padding-right: 0px !important;
+			}
+		}
 		.home_search_what{
 			background-color: #fff;
 			border: 1px solid #dfe1e5;
@@ -17,16 +23,19 @@
 				position: relative;
 				top: 5px;
 				color: #888;
-				width: 50px;
-				padding-left: 15px;
+				position: absolute;
+				left: 25px;
+				top: 14px;
 			}
 			.search_input{
-				width: 80%;
+				padding-left: 40px;
+				padding-right: 10px;
+				width: 100%;
 				height: 50px;
 				border: none;
 				box-shadow: none;
 				color: #333;
-				font-size:16px;
+				font-size: 16px;
 				outline:none;
 			}
 		}
@@ -41,26 +50,30 @@
 			}
 			i{
 				font-size: 24px;
-				position: relative;
 				top: 5px;
 				color: #888;
-				width: 50px;
-				padding-left: 15px;
-			}
-			.search_input{
-				width: 70%;
+				position: absolute;
+				left: 15px;
+				top: 14px;
 				@media screen and (max-width: 600px){
-					width: 80%;
+					top: 24px;
+					left: 25px;
 				}
+			}
+			.search_select_input{
+				padding-left: 40px;
+				width: 100%;
 				height: 50px;
 				border: none;
 				box-shadow: none;
 				color: #333;
 				font-size:16px;
 				outline:none;
+				background: none;
 			}
 			button:focus{
 				border: none;
+				background: none;
 			}
 		}
 		
@@ -82,6 +95,7 @@
 			}
 		}
 	}
+
 	.home_search_index{
 		.job_search{
 			margin-top: 50px;
