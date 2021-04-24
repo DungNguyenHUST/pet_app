@@ -85,29 +85,32 @@
                                         </div>
                                     
                                         <div class="company_summary">
-                                            <div class="review_point">
-                                                <div class="review_point_review_content">
-                                                    <a><%= company.company_reviews.count%></a>
+                                            <div class="company_point">
+                                                <div class="review_point">
+                                                    <div class="company_point_content">
+                                                        <a><%= company.company_reviews.count%></a>
+                                                    </div>
+                                                    <div class="company_point_label">
+                                                        <span><%= link_to "Đánh giá", company_path(company), class: "company_point_review_label" %></span>
+                                                    </div>
                                                 </div>
-
-                                                <div class="review_point_review_content">
-                                                    <a><%= company.company_interviews.count %></a>
+                                                
+                                                <div class="interview_point">
+                                                    <div class="company_point_content">
+                                                        <a><%= company.company_interviews.count %></a>
+                                                    </div>
+                                                    <div class="company_point_label">
+                                                        <span><%= link_to "Phỏng vấn", company_path(company), class: "company_point_review_label" %></span>
+                                                    </div>
                                                 </div>
-
-                                                <div class="review_point_review_content">
-                                                    <a><%= company.company_jobs.count %></a>
-                                                </div>
-
-                                                <div class="review_point_label">
-                                                    <span> <i class="material-icons-outlined">insert_emoticon</i><%= link_to " Đánh giá", company_path(company), class: "review_point_review_label" %></span>
-                                                </div>
-
-                                                <div class="review_point_label">
-                                                    <span> <i class="material-icons-outlined">people_outline</i><%= link_to " Phỏng vấn", company_path(company), class: "review_point_review_label" %></span>
-                                                </div>
-
-                                                <div class="review_point_label">
-                                                    <span> <i class="material-icons-outlined">work_outline</i><%= link_to " Việc làm", company_path(company), class: "review_point_review_label" %></span>
+                                                
+                                                <div class="job_point">
+                                                    <div class="company_point_content">
+                                                        <a><%= company.company_jobs.count %></a>
+                                                    </div>
+                                                    <div class="company_point_label">
+                                                        <span><%= link_to "Việc làm", company_path(company), class: "company_point_review_label" %></span>
+                                                    </div>
                                                 </div>
                                             </div>
                                         </div>

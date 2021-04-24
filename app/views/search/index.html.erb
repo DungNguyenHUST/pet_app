@@ -2,40 +2,277 @@
 <html>
     <head>
         <meta name="viewport" content="width=device-width, height=device-height, initial-scale=1.0"/>
+		<% set_meta_tags title: "Kết quả tìm kiếm"%>
     </head>
 
     <body>
         <div class="container">
-			<div class="admin_search_block">
-				<div class="search_label">
-					<span><%=@company_searchs.count%> việc làm cho từ khóa "<%= params[:company_search]%>"</span>
-				</div>
-				<% @company_searchs.reverse.each do |company| %>
-					<div class='company_block'>
-						<div class='company_name'>
-							<a> <%=company.id%> | <%= link_to company.name, company_path(company), class: "company_name_label" %> </a>
-							
-							<div class='approved'>
-								<%if company.approved?%>
-									<%= form_for(company) do |f| %>
-										<%= f.hidden_field :approved, :value => false %>
-										<%= f.submit "Reject", class: "btn btn-large btn-danger" %>
-									<% end %>
-								<%else%>
-									<%= form_for(company) do |f| %>
-										<%= f.hidden_field :approved, :value => true %>
-										<%= f.submit "Approve", class: "btn btn-large btn-success" %>
-									<% end %>
-								<%end%>
-							</div>
-							
-							<div class='company_edit'>
-								<%= link_to "Update", edit_company_path(company), class: "btn btn-large btn-warning" %>
-								<%= link_to 'Delete', company_path(company), method: :delete, class: "btn btn-large btn-danger", data: { confirm: 'Are you sure???' } %>
+			<div class="home_search_block">
+				<div class="home_search_input">
+					<%=form_tag search_index_path, :method => "get" do%>
+						<div class="home_search_input">
+							<div class='row'>
+								<div class='col-sm-7'>
+									<div class="home_search_what">
+										<i class="material-icons-outlined">search</i></button>
+										<%= text_field_tag :search, params[:search], required: true, class: 'search_input', placeholder: "Tìm kiếm theo tên công việc hoặc công ty"%>
+									</div>
+								</div>
+								
+								<div class='col-sm-3 padding_customize'>
+									<div class="home_search_where">
+										<i class="material-icons-outlined">place</i></button>
+										<%= select_tag :location, options_for_select(['An Giang','Bà Rịa-Vũng Tàu','Bạc Liêu','Bắc Kạn','Bắc Giang',
+																	'Bắc Ninh','Bến Tre','Bình Dương','Bình Định','Bình Phước',
+																	'Bình Thuận','Cà Mau','Cao Bằng','Cần Thơ','Đà Nẵng','Đắk Lắk','Đắk Nông','Điện Biên',
+																	'Đồng Nai','Đồng Tháp','Gia Lai','Hà Giang','Hà Nam','Hà Nội','Hà Tây','Hà Tĩnh',
+																	'Hải Dương','Hải Phòng','Hòa Bình','TP Hồ Chí Minh','Hậu Giang','Hưng Yên','Khánh Hòa',
+																	'Kiên Giang','Kon Tum','Lai Châu','Lào Cai',
+																	'Lạng Sơn','Lâm Đồng','Long An','Nam Định','Nghệ An',
+																	'Ninh Bình','Ninh Thuận','Phú Thọ','Phú Yên','Quảng Bình',
+																	'Quảng Nam','Quảng Ngãi','Quảng Ninh','Quảng Trị',
+																	'Sóc Trăng','Sơn La','Tây Ninh','Thái Bình','Thái Nguyên' ,
+																	'Thanh Hóa','Thừa Thiên – Huế','Tiền Giang','Trà Vinh',
+																	'Tuyên Quang','Vĩnh Long','Vĩnh Phúc','Yên Bái' ], "Hà Nội"), class: 'search_select_input'%> 
+									</div>
+								</div>
+								
+								<div class='col-sm-2'>
+									<div class="home_search_button">
+										<%= button_to "", form_class: "search_button", :name => nil do%>
+											<a>Tìm kiếm</a>
+										<%end%> 
+									</div>
+								</div>
 							</div>
 						</div>
+					<%end%>
+				</div>
+				
+				<div class="home_search_index">
+					<div class="job_search">
+						<div class="job_label">
+							<%if @job_searchs.count > 0%>
+								<span><%=@job_searchs.count%> việc làm cho từ khóa "<%= params[:search]%>" và địa điểm "<%= params[:location]%>"</span>
+							<%else%>
+								<span>Rất tiếc, không tìm được công việc nào phù hợp với từ khóa "<%= params[:search]%>" và địa điểm "<%= params[:location]%>"</span>
+							<%end%>
+						</div>
+						<div class="row">
+							<%if @company_by_jobs != nil%>
+								<% @company_by_jobs.each do |company_by_job| %>
+									<%company_by_job.company_jobs.each do |company_job|%>
+										<%@job_searchs.each do |job_search|%>
+											<%if job_search.id == company_job.id%>
+												<div class="col-sm-6">
+													<div class="user_search_job_block">
+														<div class="user_job_left">
+															<div class="company_avatar">
+																<%if company_by_job.avatar%>
+																	<%= link_to (image_tag(company_by_job.avatar.thumb.url)), image_path(url_for(company_by_job.avatar.thumb.url)), rel: "gallery" , :href => company_path(company_by_job)%>
+																<%end%>
+															</div>
+														</div>
+
+														<div class="user_job_right">
+															<div class="user_job_des">
+																<div class="user_job_title">
+																	<a><%= link_to (company_job.title), company_company_job_path(company_by_job, company_job) %></a>
+																</div>
+
+																<div class="user_job_company_name">
+																	<%if(company_by_job.company_reviews.count > 0)%>
+																		<%rate_work_env = company_by_job.company_reviews.sum('work_env_score').to_f / company_by_job.company_reviews.count%>
+																		<%rate_salary = company_by_job.company_reviews.sum('salary_score').to_f / company_by_job.company_reviews.count%>
+																		<%rate_ot = company_by_job.company_reviews.sum('ot_score').to_f / company_by_job.company_reviews.count%>
+																		<%rate_manager = company_by_job.company_reviews.sum('manager_score').to_f / company_by_job.company_reviews.count%>
+																		<%rate_career = company_by_job.company_reviews.sum('career_score').to_f / company_by_job.company_reviews.count%>
+																		<%total_rate = (rate_work_env + rate_salary + rate_ot + rate_manager + rate_career)/5%>
+																	<%else%>
+																		<%total_rate = 0%>
+																	<%end%>
+																	<a><%= link_to (company_by_job.name), company_path(company_by_job)%> </a>
+																	<a><%=total_rate%><i class="material-icons checked">circle</i></a>
+																</div>
+
+																<div class="user_job_description">
+																	<a><%= company_job.description.html_safe %></a>
+																</div>
+
+																<div class="user_job_mark">
+																	<div class="user_job_location">
+																		<a><i class="material-icons-outlined">location_on</i><%= company_job.location %></a>
+																	</div>
+
+																	<div class="user_job_tech">
+																		<a><i class="material-icons-outlined">book</i><%= company_job.category %></a>
+																	</div>
+
+																	<div class="user_job_salary">
+																		<a><i class="material-icons-outlined">local_offer</i><%= company_job.salary %></a>
+																	</div>
+
+																	<div class="user_job_type">
+																		<a><i class="material-icons-outlined">rss_feed</i><%= company_job.job_type %></a>
+																	</div>
+
+																	<div class="user_job_date">
+																		<%if company_job.end_date%>
+																			<%cal_date = ((company_job.end_date - Time.now)/(24*60*60))%>
+																			<%if cal_date < 0%>
+																				<a>Đã đăng <%= time_ago_in_words(company_job.created_at) %> • Hết hạn sau <%=cal_date.to_i%> ngày</a>
+																			<%else%>
+																				<a>Đã đăng <%= time_ago_in_words(company_job.created_at) %> • </a><span>Đã hết hạn<span>
+																			<%end%>
+																		<%else%>
+																			<a>Đã đăng <%= time_ago_in_words(company_job.created_at) %> </a>
+																		<%end%>
+																	</div>
+
+																	<div class="user_job_hot_save">
+																		<div class="user_job_button_save" id="job_<%=company_job.id%>">
+																			<%if company_job.urgent%>
+																				<a class="hot_label">Urgent</a>
+																			<%end%>
+																			<%if logged_in?%>
+																				<% pre_save = company_job.company_save_jobs.find { |save| save.user_id == current_user.id} %>
+																				<% if pre_save %> 
+																					<%= link_to '<button class="save_btn_highlight"><i class="material-icons">turned_in</i> </button>'.html_safe, company_company_job_company_save_job_path(company_by_job.id, company_job.id, pre_save.id), method: :delete, remote: true %>
+																				<%else%>
+																					<%= link_to '<button class="save_btn"><i class="material-icons-outlined">turned_in_not</i> </button>'.html_safe, company_company_job_company_save_jobs_path(company_by_job.id, company_job.id), method: :post, remote: true %>
+																				<%end%>
+																			<%else%>
+																				<%= link_to '<button class="save_btn"><i class="material-icons-outlined">turned_in_not</i> </button>'.html_safe, login_path%>
+																			<%end%>
+																		</div>
+																	</div>
+																</div>
+															</div>
+														</div>
+													</div>
+												</div>
+											<%end%>
+										<%end%>
+									<%end%>
+								<%end%>
+							<%end%>
+						</div>
 					</div>
-				<%end%>
+					
+					<div class="company_search">
+						<div class="company_label">
+							<%if @company_searchs.count > 0%>
+								<span><%=@company_searchs.count%> công ty cho từ khóa "<%= params[:search]%>" và địa điểm "<%= params[:location]%>"</span>
+							<%else%>
+								<span>Rất tiếc, không tìm được công ty nào phù hợp với từ khóa "<%= params[:search]%>" và địa điểm "<%= params[:location]%>"</span>
+							<%end%>
+						</div>
+
+						<div class="row">
+							<%if @company_searchs != nil%>
+								<% @company_searchs.each do |company| %>
+									<div class="col-sm-3">
+										<div class="single_company">
+											<div class="company_wall">
+												<div class="rounded">
+													<%if company.wall_picture?%>
+														<%= link_to (image_tag(company.wall_picture.large.url)), image_path(url_for(company.wall_picture.large.url)), rel: "gallery" , :href => company_path(company)%>
+													<%end%>
+												</div>
+											</div>
+
+											<div class="company_thumbnail">
+												<div class="rounded">
+													<%if company.avatar?%>
+														<%= link_to (image_tag(company.avatar.thumb.url)), image_path(url_for(company.avatar.thumb.url)), rel: "gallery" , :href => company_path(company)%>
+													<%end%>
+												</div>
+											</div>
+
+											<div class="company_love_button" id ="<%=company.id%>">
+												<%if logged_in?%>
+													<% pre_follow = company.company_follows.find { |follow| follow.user_id == current_user.id} %>
+													<% if pre_follow %> 
+														<%= link_to '<button class="follow_btn_highlight"><i class="material-icons">favorite</i></button>'.html_safe, company_company_follow_path(company, pre_follow), remote: true, method: :delete%>
+													<%else%>
+														<%= link_to '<button class="follow_btn"><i class="material-icons-outlined">favorite_border</i></button>'.html_safe, company_company_follows_path(company), remote: true, method: :post%>
+													<%end%>
+												<%else%>
+													<%= link_to '<button class="follow_btn"><i class="material-icons-outlined">favorite_border</i></button>'.html_safe, login_path%>
+												<%end%>
+											</div>
+											
+											<div class="company_title">
+												<div class="company_name">
+													<a> <%= link_to company.name, company_path(company), class: "company_name_label" %></a>
+												</div>
+
+												<div class="company_rating">
+													<%# Cal culate rating score %>
+													<%if(company.company_reviews.count > 0)%>
+														<%rate_work_env = company.company_reviews.sum('work_env_score').to_f / company.company_reviews.count%>
+														<%rate_salary = company.company_reviews.sum('salary_score').to_f / company.company_reviews.count%>
+														<%rate_ot = company.company_reviews.sum('ot_score').to_f / company.company_reviews.count%>
+														<%rate_manager = company.company_reviews.sum('manager_score').to_f / company.company_reviews.count%>
+														<%rate_career = company.company_reviews.sum('career_score').to_f / company.company_reviews.count%>
+														<%total_rate = (rate_work_env + rate_salary + rate_ot + rate_manager + rate_career)/5%>
+													<%else%>
+														<%total_rate = 0%>
+													<%end%>
+													<div class="review_score_star">
+														<%if total_rate > 0%>
+															<%total_rate.to_i.times do%>
+																<i class="material-icons checked">circle</i>
+															<%end%>
+															<%(5 - total_rate.to_i).to_i.times do%>
+																<i class="material-icons checked_out">radio_button_unchecked</i>
+															<%end%>
+														<%else%>
+															<%5.times do%>
+																<i class="material-icons checked_out">radio_button_unchecked</i>
+															<%end%>
+														<%end%>
+													</div>
+												</div>
+											</div>
+										
+											<div class="company_summary">
+												<div class="company_point">
+													<div class="review_point">
+														<div class="company_point_content">
+															<a><%= company.company_reviews.count%></a>
+														</div>
+														<div class="company_point_label">
+															<span><%= link_to "Đánh giá", company_path(company), class: "company_point_review_label" %></span>
+														</div>
+													</div>
+													
+													<div class="interview_point">
+														<div class="company_point_content">
+															<a><%= company.company_interviews.count %></a>
+														</div>
+														<div class="company_point_label">
+															<span><%= link_to "Phỏng vấn", company_path(company), class: "company_point_review_label" %></span>
+														</div>
+													</div>
+													
+													<div class="job_point">
+														<div class="company_point_content">
+															<a><%= company.company_jobs.count %></a>
+														</div>
+														<div class="company_point_label">
+															<span><%= link_to "Việc làm", company_path(company), class: "company_point_review_label" %></span>
+														</div>
+													</div>
+												</div>
+											</div>
+										</div>
+									</div>
+								<%end%>
+							<%end%>
+						</div>
+					</div>
+				</div>
 			</div>
 		</div>
     <body>
