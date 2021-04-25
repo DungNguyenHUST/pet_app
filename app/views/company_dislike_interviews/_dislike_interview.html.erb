@@ -1,21 +1,18 @@
 <div id="dislike_interview_<%=company_interview.id%>">
-    <div class="dislike_count">
-        <a><%= company_interview.company_dislike_interviews.count%></a>
-    </div>
     <%if logged_in?%>
         <% pre_dislike = company_interview.company_dislike_interviews.find { |dislike| dislike.user_id == current_user.id} %>
         <% if pre_dislike %>
-            <%= button_to company_company_interview_company_dislike_interview_path(@company, company_interview, pre_dislike), method: :delete, remote: true, form_class: "dislike_btn_highlight" do%>
-                <i class="material-icons">thumb_down</i> <span>Không thích</span>
-            <%end%>  
+            <%= button_to company_company_interview_company_dislike_interview_path(@company, company_interview, pre_dislike), :method => :delete, remote: true, form_class: "dislike_btn_highlight" do%>
+                <i class="material-icons">thumb_down</i> <span><%= company_interview.company_dislike_interviews.count%></span> <a>Không thích</a>
+            <%end%> 
         <%else%>
             <%= button_to company_company_interview_company_dislike_interviews_path(@company, company_interview), method: :post, remote: true, form_class: "dislike_btn" do%>
-                <i class="material-icons-outlined">thumb_down</i> <span>Không thích</span>
-            <%end%>
+                <i class="material-icons-outlined">thumb_down</i> <span><%= company_interview.company_dislike_interviews.count%></span> <a>Không thích</a>
+            <%end%> 
         <%end%>
     <%else%>
         <%= button_to login_path, :method => :get, form_class: "dislike_btn" do%>
-            <i class="material-icons-outlined">thumb_down</i> <span>Không thích</span>
+            <i class="material-icons-outlined">thumb_down</i> <span><%= company_interview.company_dislike_interviews.count%></span> <a>Không thích</a>
         <%end%>
     <%end%>
 </div>

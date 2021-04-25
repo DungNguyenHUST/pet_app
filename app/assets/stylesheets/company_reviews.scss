@@ -116,10 +116,11 @@
                 display: block;
                 height: auto;
                 background-color: #f8f9fa;
-                border-radius: 3px;
+                margin-top: 10px;
+                border-top: 1px solid #eeeddd;
                 .user_review_pros
                 {
-                    padding-top: 10px;
+                    padding-top: 15px;
                     .user_review_pros_label{
                         i {
                             position: relative;
@@ -181,126 +182,145 @@
         
                 .review_info{
                     margin-top: 10px;
-                    padding-bottom: 5px;
+                    border-top: 1px solid #eeeddd;
+                    padding-bottom: 10px;
+                    padding-top: 10px;
                     .review_toolbar {
-                        display: block;
-                        font-size: 13px;
-                        color: #a8a3a3;
-                        a{
-                            // margin-right: -3px;
-                        }
-                        button{
-                            margin-right: 3px;
-                            font-size: 13px;
-                            border: none;
-                            background-color: #f8f9fa;
-                            i{
-                                position: relative;
-                                margin-right: 2px;
-                                font-size: 16px;
-                                top: 3px;
-                                @media screen and (max-width: 600px){
-                                    margin-right: 0px;
-                                }
+                        .review_reply_block{
+                            display: block;
+                            @media screen and (max-width: 600px){
+                                width: 33%;
                             }
-                            span{
-                                color: #1877f2;
-                                @media screen and (max-width: 600px){
-                                    // display: none;
-                                }
-                            }
-                
-                            .checked {
-                                color: #ffc500;
-                            }
-        
-                            .checked_out {
-                                color: #a8a3a3;
-                            }
-                        }
-                        
-                        .review_reply_button{
+                            width: 120px;
                             float: left;
                             .reply_btn
                             {
-                                color: #a8a3a3;
+                                border: none;
+                                background-color: #f8f9fa;
+                                color: #555;
+                                font-size: 14px;
+                                &:focus {outline:none;}
+
+                                button{
+                                    border: none;
+                                    background-color: #f8f9fa;
+                                    color: #555;
+                                    font-size: 14px;
+                                    &:focus {outline:none;}
+                                } 
                                 a{
-                                    color: #a8a3a3;
-                                    margin-right: 5px;
+                                    font-size: 14px;
+                                    color: #666;
                                 }
+
                                 i{
-                                    color: #a8a3a3;
+                                    font-size: 20px;
+                                    position: relative;
+                                    top: 5px;
                                 }
-                                &:hover{
-                                    border-radius: 3px;
-                                    background-color: #369;
-                                    a{
-                                        color: #fff;
-                                    }
+                                span{
+                                    font-size: 14px;
+                                    color: #666;
                                 }
                             }
                         }
 
-                        .review_like_button{
-                            // float: left;
-                            padding-left: 10px;
-                            margin-right: 10px;
-                            border-left: 1px solid #dfe1e5;
-                            border-right: 1px solid #dfe1e5;
-                            .like_count{
-                                float: left;
-                                padding-left: 10px;
-                                a{
-                                    position: relative;
-                                    top: 3px;
-                                }
+                        .review_like_block{
+                            width: 120px;
+                            @media screen and (max-width: 600px){
+                                width: 33%;
                             }
+                            float: left;
+                            button{
+                                border: none;
+                                background-color: #f8f9fa;
+                                color: #555;
+                                font-size: 14px;
+                                &:focus {outline:none;}
+                            } 
                             .like_btn_highlight
                             {
-                                float: left;
+                                a{
+                                    font-size: 14px;
+                                    color: #666;
+                                }
+
                                 i{
+                                    font-size: 20px;
+                                    position: relative;
+                                    top: 5px;
                                     color: #1877f2;
                                 }
-                                &:focus {outline:none;}
+                                span{
+                                    font-size: 14px;
+                                    color: #666;
+                                }
                             }
     
                             .like_btn
                             {
-                                float: left;
-                                color: #a8a3a3;
-                                i{
-                                    color: #a8a3a3;
+                                a{
+                                    font-size: 14px;
+                                    color: #666;
                                 }
-                                &:focus {outline:none;}
-                            }
-                            a{
-                                font-size: 13px;
+
+                                i{
+                                    font-size: 20px;
+                                    position: relative;
+                                    top: 5px;
+                                    color: #666;
+                                }
+                                span{
+                                    font-size: 14px;
+                                    color: #666;
+                                }
                             }
                         }
                         
-                        .review_dislike_button{
-                            .dislike_count{
-                                float: left;
-                                padding-left: 10px;
-                                a{
-                                    position: relative;
-                                    top: 3px;
-                                }
-                            }
+                        .review_dislike_block{
+                            button{
+                                border: none;
+                                background-color: #f8f9fa;
+                                color: #555;
+                                font-size: 14px;
+                                &:focus {outline:none;}
+                            } 
                             .dislike_btn_highlight
                             {
+                                a{
+                                    font-size: 14px;
+                                    color: #666;
+                                }
+
                                 i{
+                                    font-size: 20px;
+                                    position: relative;
+                                    top: 5px;
                                     color: #1877f2;
                                 }
-                                &:focus {outline:none;}
+                                span{
+                                    font-size: 14px;
+                                    color: #666;
+                                }
                             }
             
                             .dislike_btn
                             {
-                                i{
-                                    color: #a8a3a3;
+                                a{
+                                    font-size: 14px;
+                                    color: #666;
                                 }
-                                &:focus {outline:none;}
+
+                                i{
+                                    font-size: 20px;
+                                    position: relative;
+                                    top: 5px;
+                                    color: #666;
+                                }
+                                span{
+                                    font-size: 14px;
+                                    color: #666;
+                                }
                             }
                         }
                     }
