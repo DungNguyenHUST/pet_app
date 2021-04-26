@@ -15,10 +15,16 @@ class SessionsController < ApplicationController
                     redirect_to pages_path
                 else
                     log_in user
-                    if ((session[:my_previous_url] != login_path) && (session[:my_previous_url] != new_user_path) && (session[:my_previous_url] != users_path)&& (session[:my_previous_url] != user_path))
-                        redirect_to session[:my_previous_url]
-                    else
+
+                    case session[:my_previous_url]
+                    when login_path
                         redirect_to pages_path
+                    when new_user_path
+                        redirect_to pages_path
+                    when users_path
+                        redirect_to pages_path
+                    else 
+                        redirect_to session[:my_previous_url]
                     end
                 end
             else

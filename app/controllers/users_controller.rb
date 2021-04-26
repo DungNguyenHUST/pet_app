@@ -47,59 +47,26 @@ class UsersController < ApplicationController
                 @company_apply_job_current.push(company_apply_job)
             end
         end
-		
-        @company_jobs = CompanyJob.all
-        @company_job_current = []
-
-        @company_jobs.each do |company_job|
-            @company_apply_job_current.each do |company_apply_job_current|
-                if company_apply_job_current.company_job_id = company_job.id
-                    @company_job_current.push(company_job)
-                end
-            end
-        end
 		#############################
 
         #find all company folow by user 
         @company_follows = CompanyFollow.all
-        @company_current_follow = []
+        @company_follow_current = []
         @company_follows.each do |company_follow|
             if company_follow.user_id = current_user.id
-                @company_current_follow.push(company_follow)
-            end
-        end
-
-        @company_all = Company.all
-        @company_current_follower = []
-
-        @company_all.each do |company|
-            @company_current_follow.each do |company_current_follow|
-                if company_current_follow.company_id = company.id
-                    @company_current_follower.push(company)
-                end
+                @company_follow_current.push(company_follow)
             end
         end
 		#############################
 		
 		# find job save by user
 		@company_save_jobs = CompanySaveJob.all
-		@company_save_job = []
+		@company_save_job_current = []
 		@company_save_jobs.each do |company_save_job|
 			if company_save_job.user_id = current_user.id
-				@company_save_job.push(company_save_job)
+				@company_save_job_current.push(company_save_job)
 			end
 		end
-		
-		@company_job_saves = CompanyJob.all
-        @company_job_save = []
-
-        @company_job_saves.each do |company_job_save|
-            @company_save_job.each do |company_save_job|
-                if company_save_job.company_job_id = company_job_save.id
-                    @company_job_save.push(company_job_save)
-                end
-            end
-        end
 		#############################
 		
     end
