@@ -68,6 +68,19 @@ class CompanyJobsController < ApplicationController
         @company = Company.friendly.find(params[:company_id])
         @company_job = @company.company_jobs.friendly.find(params[:id])
     end
+	
+	def list
+        @companies = Company.all.approved
+		@company_jobs = CompanyJob.all.approved
+		
+		@is_job_searched = false
+		if(params.has_key?(:search) && params.has_key?(:location))
+			@is_job_searched = true
+			@search = params[:search]
+			@location = params[:location]
+			@job_searchs = CompanyJob.friendly.search_advance(@search, @location).approved
+		end
+    end
 
     private
 

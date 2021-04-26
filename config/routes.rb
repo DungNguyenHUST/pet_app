@@ -34,6 +34,8 @@ Rails.application.routes.draw do
 
     resources :company_follows
   end
+  
+  get 'company_job_list' => 'company_jobs#list'
 
   get '/company_reply_reviews/new/(:company_id, :company_review_id)', to: 'company_reply_reviews#new', as: :new_company_reply_review
 
