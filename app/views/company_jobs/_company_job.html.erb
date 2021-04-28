@@ -59,9 +59,8 @@
 
                         <div class="user_job_date">
                             <%if company_job.end_date%>
-                                <%cal_date = ((company_job.end_date - Time.now)/(24*60*60))%>
-                                <%if cal_date > 0%>
-                                    <a>Đã đăng <%= time_ago_in_words(company_job.created_at) %> • Hết hạn sau <%=cal_date.to_i%> ngày</a>
+                                <%if since_date(company_job.end_date).to_i > 0%>
+                                    <a>Đã đăng <%= time_ago_in_words(company_job.created_at) %> • Hết hạn sau <%=since_date(company_job.end_date).to_i%> ngày</a>
                                 <%else%>
                                     <a>Đã đăng <%= time_ago_in_words(company_job.created_at) %> • </a><span>Đã hết hạn<span>
                                 <%end%>
