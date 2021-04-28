@@ -13,7 +13,7 @@
                         <span href="<%=user_path(current_user)%>">Good morning, nhà tuyển dụng <%=current_user.name%>!</span>
                     <%elsif (12..18).cover? now.hour %>
                         <span href="<%=user_path(current_user)%>">Good afternoon, nhà tuyển dụng <%=current_user.name%>!</span>
-                    <%else%>
+                    <%elsif (18..24).cover? now.hour %>
                         <span href="<%=user_path(current_user)%>">Good evening, nhà tuyển dụng <%=current_user.name%>!</span>
                     <%end%>
                 </div>
@@ -24,7 +24,7 @@
                             <a class="nav-link active" data-toggle="tab" href="#CompanyID">Công ty</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" data-toggle="tab" href="#JobID">Tin tuyển dụng</a>
+                            <a class="nav-link" data-toggle="tab" href="#JobID">Tin tuyển dụng <span><%= @company_job_by_employer.count%><span></a>
                         </li>
                         <li class="nav-item">
                             <a class="nav-link" data-toggle="tab" href="#PersonalID">Thông tin cá nhân</a>
@@ -145,6 +145,9 @@
 
                         <div role="tabpanel" id="JobID" class="tab-pane"><br>
                             <div class="employer_job_tab">
+                                <div class="employer_top_job_new">
+                                    <%= link_to '<button type="submit"><i class="material-icons-outlined">add</i><span>Đăng tin tuyển dụng miễn phí<span></button>'.html_safe, new_company_company_job_path(@company_by_employer) %>
+                                </div>  
                                 <div class="employer_top_job_employer">
                                     <div class="employer_top_job_employer_label">
                                         <span>Bạn đang có <%=@company_job_by_employer.count%> việc làm đang tuyển dụng</span>
@@ -293,9 +296,6 @@
 
                         <div role="tabpanel" id="PersonalID" class="tab-pane"><br>
                             <div class="employer_info_tab">
-                                <div class="employer_info_wellcome_label">
-                                    <strong>Xin chào, <%= current_user.name %></strong>
-                                </div> 
                                 
                                 <div class="employer_info_des_label">
                                     <strong>Cài đặt tài khoản</strong>
@@ -361,22 +361,6 @@
 
                                     <div class="employer_info_edit_button">
                                         <i class="fa fa-edit"></i><%= link_to " Thay đổi địa chỉ", edit_user_path(current_user), class: "employer_info_edit_link_to"  %>
-                                    </div>
-                                </div>
-
-                                
-                                <div class="user_cover_letter_label">
-                                    <strong>Giới thiệu bản thân</strong>
-                                </div>
-
-                                <div class="user_cover_letter">
-
-                                    <div class="user_cv_des">
-                                        <%= current_user.cover_letter %>
-                                    </div>
-
-                                    <div class="employer_info_edit_button">
-                                        <i class="fa fa-upload"></i><%= link_to " Tải CV lên", edit_user_path(current_user), class: "employer_info_edit_link_to"  %>
                                     </div>
                                 </div>
 

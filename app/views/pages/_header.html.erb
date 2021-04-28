@@ -46,15 +46,16 @@
 				<a href="<%=posts_path %>">Blog</a>
 
 				<div class="nav_right">
-
 					<%if logged_in?%>
 						<%if current_user.employer?%>
 							<a class="nav_user" href="<%=pages_path%>"> 
 								<span> Hi, <%=current_user.name%></span>
+								<span><%= link_to 'Đăng xuất'.html_safe, logout_path(current_user), :data => { :confirm => "Bạn có chắc chắn muốn đăng xuất không?" } %></span>
 							</a>
 						<%else%>
 							<a class="nav_user" href="<%=user_path(current_user) %>"> 
 								<span> Hi, <%=current_user.name%></span>
+								<span><%= link_to 'Đăng xuất'.html_safe, logout_path(current_user), :data => { :confirm => "Bạn có chắc chắn muốn đăng xuất không?" } %></span>
 							</a>
 						<%end%>
 					<%else%>

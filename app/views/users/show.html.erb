@@ -13,7 +13,7 @@
                         <span href="<%=user_path(current_user)%>">Good morning, <%=current_user.name%>!</span>
                     <%elsif (12..18).cover? now.hour %>
                         <span href="<%=user_path(current_user)%>">Good afternoon, <%=current_user.name%>!</span>
-                    <%else%>
+                    <%elsif (18..24).cover? now.hour %>
                         <span href="<%=user_path(current_user)%>">Good evening, <%=current_user.name%>!</span>
                     <%end%>
                 </div>
@@ -27,7 +27,7 @@
                             <a class="nav-link" data-toggle="tab" href="#SaveJobID">Việc làm đang theo dõi <span><%= @company_save_job_current.count%><span> </a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" data-toggle="tab" href="#JobID">Việc làm đã ứng tuyển <span><%= @company_apply_job_current.count%><span> </a>
+                            <a class="nav-link" data-toggle="tab" href="#ApplyJobID">Việc làm đã ứng tuyển <span><%= @company_apply_job_current.count%><span> </a>
                         </li>
                         <li class="nav-item">
                             <a class="nav-link" data-toggle="tab" href="#CompanyFollowID">Công ty đang theo dõi <span><%= @company_follow_current.count%><span> </a>
@@ -121,14 +121,198 @@
                                 </div>
 
                                 <div class="user_save_job">
+                                    <%if @company_save_job_current != nil%>
+                                        <%@company_save_job_current.each do |company_job|%>
+                                            <%company_by_job = company_job.company%>
+                                            <div class="col-sm-6">
+                                                <div class="user_save_job_block">
+                                                    <div class="user_job_left">
+                                                        <div class="company_avatar">
+                                                            <%if company_by_job.avatar%>
+                                                                <%= link_to (image_tag(company_by_job.avatar.thumb.url)), image_path(url_for(company_by_job.avatar.thumb.url)), rel: "gallery" , :href => company_path(company_by_job)%>
+                                                            <%end%>
+                                                        </div>
+                                                    </div>
+
+                                                    <div class="user_job_right">
+                                                        <div class="user_job_des">
+                                                            <div class="user_job_title">
+                                                                <a><%= link_to (company_job.title), company_company_job_path(company_by_job, company_job) %></a>
+                                                            </div>
+
+                                                            <div class="user_job_company_name">
+                                                                <%if(company_by_job.company_reviews.count > 0)%>
+                                                                    <%rate_work_env = company_by_job.company_reviews.sum('work_env_score').to_f / company_by_job.company_reviews.count%>
+                                                                    <%rate_salary = company_by_job.company_reviews.sum('salary_score').to_f / company_by_job.company_reviews.count%>
+                                                                    <%rate_ot = company_by_job.company_reviews.sum('ot_score').to_f / company_by_job.company_reviews.count%>
+                                                                    <%rate_manager = company_by_job.company_reviews.sum('manager_score').to_f / company_by_job.company_reviews.count%>
+                                                                    <%rate_career = company_by_job.company_reviews.sum('career_score').to_f / company_by_job.company_reviews.count%>
+                                                                    <%total_rate = (rate_work_env + rate_salary + rate_ot + rate_manager + rate_career)/5%>
+                                                                <%else%>
+                                                                    <%total_rate = 0%>
+                                                                <%end%>
+                                                                <a><%= link_to (company_by_job.name), company_path(company_by_job)%> </a>
+                                                                <a><%=total_rate%><i class="material-icons checked">circle</i></a>
+                                                            </div>
+
+                                                            <div class="user_job_description">
+                                                                <a><%= company_job.description.html_safe %></a>
+                                                            </div>
+
+                                                            <div class="user_job_mark">
+                                                                <div class="user_job_location">
+                                                                    <a><i class="material-icons-outlined">location_on</i><%= company_job.location %></a>
+                                                                </div>
+
+                                                                <div class="user_job_tech">
+                                                                    <a><i class="material-icons-outlined">book</i><%= company_job.category %></a>
+                                                                </div>
+
+                                                                <div class="user_job_salary">
+                                                                    <a><i class="material-icons-outlined">local_offer</i><%= company_job.salary %></a>
+                                                                </div>
+
+                                                                <div class="user_job_type">
+                                                                    <a><i class="material-icons-outlined">rss_feed</i><%= company_job.job_type %></a>
+                                                                </div>
+
+                                                                <div class="user_job_date">
+                                                                    <%if company_job.end_date%>
+                                                                        <%if since_date(company_job.end_date).to_i > 0%>
+                                                                            <a>Đã đăng <%= time_ago_in_words(company_job.created_at) %> • Hết hạn sau <%=since_date(company_job.end_date).to_i%> ngày</a>
+                                                                        <%else%>
+                                                                            <a>Đã đăng <%= time_ago_in_words(company_job.created_at) %> • </a><span>Đã hết hạn<span>
+                                                                        <%end%>
+                                                                    <%else%>
+                                                                        <a>Đã đăng <%= time_ago_in_words(company_job.created_at) %> </a>
+                                                                    <%end%>
+                                                                </div>  
+
+                                                                <div class="user_job_hot_save">
+                                                                    <div class="user_job_button_save" id="job_<%=company_job.id%>">
+                                                                        <%if company_job.urgent%>
+                                                                            <a class="hot_label">Urgent</a>
+                                                                        <%end%>
+                                                                        <%if logged_in?%>
+                                                                            <% pre_save = company_job.company_save_jobs.find { |save| save.user_id == current_user.id} %>
+                                                                            <% if pre_save %> 
+                                                                                <%= link_to '<button class="save_btn_highlight"><i class="material-icons">turned_in</i> </button>'.html_safe, company_company_job_company_save_job_path(company_by_job.id, company_job.id, pre_save.id), method: :delete, remote: true %>
+                                                                            <%else%>
+                                                                                <%= link_to '<button class="save_btn"><i class="material-icons-outlined">turned_in_not</i> </button>'.html_safe, company_company_job_company_save_jobs_path(company_by_job.id, company_job.id), method: :post, remote: true %>
+                                                                            <%end%>
+                                                                        <%else%>
+                                                                            <%= link_to '<button class="save_btn"><i class="material-icons-outlined">turned_in_not</i> </button>'.html_safe, login_path%>
+                                                                        <%end%>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        <%end%>
+                                    <%end%>
                                 </div>
                             </div>
                         </div>
 
-                        <div role="tabpanel" id="JobID" class="tab-pane"><br>
-                            <div class="user_job_tab">
-                                <div class="user_job_tab_title">
+                        <div role="tabpanel" id="ApplyJobID" class="tab-pane"><br>
+                            <div class="user_apply_job_tab">
+                                <div class="user_apply_job_tab_title">
                                     <strong>Việc làm đã ứng tuyển</strong>
+                                </div>
+                                <div class="user_apply_job">
+                                    <%if @company_save_job_current != nil%>
+                                        <%@company_save_job_current.each do |company_job|%>
+                                            <%company_by_job = company_job.company%>
+                                            <div class="col-sm-6">
+                                                <div class="user_apply_job_block">
+                                                    <div class="user_job_left">
+                                                        <div class="company_avatar">
+                                                            <%if company_by_job.avatar%>
+                                                                <%= link_to (image_tag(company_by_job.avatar.thumb.url)), image_path(url_for(company_by_job.avatar.thumb.url)), rel: "gallery" , :href => company_path(company_by_job)%>
+                                                            <%end%>
+                                                        </div>
+                                                    </div>
+
+                                                    <div class="user_job_right">
+                                                        <div class="user_job_des">
+                                                            <div class="user_job_title">
+                                                                <a><%= link_to (company_job.title), company_company_job_path(company_by_job, company_job) %></a>
+                                                            </div>
+
+                                                            <div class="user_job_company_name">
+                                                                <%if(company_by_job.company_reviews.count > 0)%>
+                                                                    <%rate_work_env = company_by_job.company_reviews.sum('work_env_score').to_f / company_by_job.company_reviews.count%>
+                                                                    <%rate_salary = company_by_job.company_reviews.sum('salary_score').to_f / company_by_job.company_reviews.count%>
+                                                                    <%rate_ot = company_by_job.company_reviews.sum('ot_score').to_f / company_by_job.company_reviews.count%>
+                                                                    <%rate_manager = company_by_job.company_reviews.sum('manager_score').to_f / company_by_job.company_reviews.count%>
+                                                                    <%rate_career = company_by_job.company_reviews.sum('career_score').to_f / company_by_job.company_reviews.count%>
+                                                                    <%total_rate = (rate_work_env + rate_salary + rate_ot + rate_manager + rate_career)/5%>
+                                                                <%else%>
+                                                                    <%total_rate = 0%>
+                                                                <%end%>
+                                                                <a><%= link_to (company_by_job.name), company_path(company_by_job)%> </a>
+                                                                <a><%=total_rate%><i class="material-icons checked">circle</i></a>
+                                                            </div>
+
+                                                            <div class="user_job_description">
+                                                                <a><%= company_job.description.html_safe %></a>
+                                                            </div>
+
+                                                            <div class="user_job_mark">
+                                                                <div class="user_job_location">
+                                                                    <a><i class="material-icons-outlined">location_on</i><%= company_job.location %></a>
+                                                                </div>
+
+                                                                <div class="user_job_tech">
+                                                                    <a><i class="material-icons-outlined">book</i><%= company_job.category %></a>
+                                                                </div>
+
+                                                                <div class="user_job_salary">
+                                                                    <a><i class="material-icons-outlined">local_offer</i><%= company_job.salary %></a>
+                                                                </div>
+
+                                                                <div class="user_job_type">
+                                                                    <a><i class="material-icons-outlined">rss_feed</i><%= company_job.job_type %></a>
+                                                                </div>
+
+                                                                <div class="user_job_date">
+                                                                    <%if company_job.end_date%>
+                                                                        <%if since_date(company_job.end_date).to_i > 0%>
+                                                                            <a>Đã đăng <%= time_ago_in_words(company_job.created_at) %> • Hết hạn sau <%=since_date(company_job.end_date).to_i%> ngày</a>
+                                                                        <%else%>
+                                                                            <a>Đã đăng <%= time_ago_in_words(company_job.created_at) %> • </a><span>Đã hết hạn<span>
+                                                                        <%end%>
+                                                                    <%else%>
+                                                                        <a>Đã đăng <%= time_ago_in_words(company_job.created_at) %> </a>
+                                                                    <%end%>
+                                                                </div>  
+
+                                                                <div class="user_job_hot_save">
+                                                                    <div class="user_job_button_save" id="job_<%=company_job.id%>">
+                                                                        <%if company_job.urgent%>
+                                                                            <a class="hot_label">Urgent</a>
+                                                                        <%end%>
+                                                                        <%if logged_in?%>
+                                                                            <% pre_save = company_job.company_save_jobs.find { |save| save.user_id == current_user.id} %>
+                                                                            <% if pre_save %> 
+                                                                                <%= link_to '<button class="save_btn_highlight"><i class="material-icons">turned_in</i> </button>'.html_safe, company_company_job_company_save_job_path(company_by_job.id, company_job.id, pre_save.id), method: :delete, remote: true %>
+                                                                            <%else%>
+                                                                                <%= link_to '<button class="save_btn"><i class="material-icons-outlined">turned_in_not</i> </button>'.html_safe, company_company_job_company_save_jobs_path(company_by_job.id, company_job.id), method: :post, remote: true %>
+                                                                            <%end%>
+                                                                        <%else%>
+                                                                            <%= link_to '<button class="save_btn"><i class="material-icons-outlined">turned_in_not</i> </button>'.html_safe, login_path%>
+                                                                        <%end%>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        <%end%>
+                                    <%end%>
                                 </div>
                             </div>
                         </div>
@@ -140,8 +324,7 @@
                                 </div>
                                 <div class="user_follow_company_list">
                                     <div class="row">
-                                        <%@company_follow_current.each do |company_follow_current|%>
-                                        <%company= company_follow_current.company%>
+                                        <%@company_follow_current.each do |company|%>
                                             <div class="col-sm-3">
                                                 <div class="single_company">
                                                     <div class="company_wall">

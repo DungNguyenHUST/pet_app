@@ -37,36 +37,35 @@ class UsersController < ApplicationController
     end
 
     def show
-        @user = User.friendly.find_by id: params[:id]
+        @user = current_user
 		
-        # find job apply by current user
-        @company_apply_jobs = CompanyApplyJob.all
+        #############################
+        @company_jobs = CompanyJob.all
         @company_apply_job_current = []
-        @company_apply_jobs.each do |company_apply_job|
-            if company_apply_job.user_id = current_user.id
-                @company_apply_job_current.push(company_apply_job)
+        @company_save_job_current = []
+
+        @company_jobs.each do |company_job|
+            # find job apply by current user
+            if company_job.company_apply_jobs.find { |apply| apply.user_id == current_user.id}
+                @company_apply_job_current.push(company_job)
+            end
+
+            # find job save by user
+            if (company_job.company_save_jobs.find { |save| save.user_id == current_user.id})
+                @company_save_job_current.push(company_job)
             end
         end
+
 		#############################
 
         #find all company folow by user 
-        @company_follows = CompanyFollow.all
+        @company_all = Company.all
         @company_follow_current = []
-        @company_follows.each do |company_follow|
-            if company_follow.user_id = current_user.id
-                @company_follow_current.push(company_follow)
+        @company_all.each do |company|
+            if (company.company_follows.find { |follow| follow.user_id})
+                @company_follow_current.push(company)
             end
         end
-		#############################
-		
-		# find job save by user
-		@company_save_jobs = CompanySaveJob.all
-		@company_save_job_current = []
-		@company_save_jobs.each do |company_save_job|
-			if company_save_job.user_id = current_user.id
-				@company_save_job_current.push(company_save_job)
-			end
-		end
 		#############################
 		
     end

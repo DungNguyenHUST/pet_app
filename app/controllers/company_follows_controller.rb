@@ -13,6 +13,7 @@ class CompanyFollowsController < ApplicationController
 
     def create
         @company = Company.friendly.find(params[:company_id])
+        @company_follow = CompanyFollow.new
         if logged_in?
             if already_followed?
                 # flash[:notice] = "You can't like more than once"
