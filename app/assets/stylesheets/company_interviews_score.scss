@@ -5,50 +5,47 @@
 //////////////////interview//////////////////
 .interview_score_content{
     background-color: #fff;
-    margin-bottom: 20px;
     border-radius: 3px;
     border: 1px solid #dfe1e5;
-    padding: 20px;
-    min-height: 400px;
-    .interview_score_title{
-        display: inline-block;
-        font-size: 24px;
-        font-weight: 550;
-        float: left;
-        margin-bottom: 20px;
-    }
-    .interview_new_button_side{
-        display: block;
-        .interview_new_button button {
-            float: right;
+    .interview_score_title_block{
+        padding: 20px;
+        padding-top: 10px;
+        padding-bottom: 10px;
+        .interview_score_title{
+            font-size: 22px;
+            font-weight: 550;
+        }
+        .interview_new_button_side{
             @media screen and (max-width: 600px){
-                float: none;
+                padding-top: 20px;
+            }
+            display: block;
+            .interview_new_button button {
                 width: 100%;
-            }
-            padding: 14px;
-            width: 200px;
-            height: 50px;
-            background: #1877f2;
-            font-size: 16px;
-            border: none;
-            cursor: pointer;
-            text-align: center;
-            color: #fff;
-            border-radius: 3px;
-            i{
-                font-size: 20px;
-                position: relative;
-                top: 3px;
-                color: #fff;
-                margin-right: 3px;
-            }
-            span{
+                padding: 14px;
+                height: 50px;
+                background: #1877f2;
                 font-size: 16px;
-                position: relative;
-                top: -2px;
-            }
-            &:hover {
-                background-color: #369;
+                border: none;
+                cursor: pointer;
+                text-align: center;
+                color: #fff;
+                border-radius: 3px;
+                i{
+                    font-size: 20px;
+                    position: relative;
+                    top: 3px;
+                    color: #fff;
+                    margin-right: 3px;
+                }
+                span{
+                    font-size: 16px;
+                    position: relative;
+                    top: -2px;
+                }
+                &:hover {
+                    background-color: #369;
+                }
             }
         }
     }
@@ -56,17 +53,18 @@
     .interview_score
     {
         clear: both;
-        min-height: 300px;
         background-color: #fff;
-        margin-top: 20px;
+        padding: 20px;
         display: block;
+        @media screen and (max-width: 600px){
+            border-top: none;
+        }
+        border-top: 1px solid #dfe1e5;
         .interview_score_difficult{
             text-align: center;
-            margin-top: 60px;
-            border-right: 1px solid #e6e6e6;
             @media screen and (max-width: 600px){
                 border: none;
-                margin-top: 30px;
+                margin-top: 10px;
                 padding-top: 10px;
                 border-top: 1px solid #dfe1e5;
             }
@@ -74,10 +72,11 @@
                 font-size: 40px;
                 margin-bottom: 5px;
                 color: #353434;
+                text-align: center;
             }
             .interview_score_star{
                 i{
-                    font-size: 25px;
+                    font-size: 28px;
                     margin-right: 3px;
                     position: relative;
                 }
@@ -90,29 +89,28 @@
             }
             
             .interview_score_label{
-                margin-top: 20px;
-                font-size: 17px;
+                margin-top: 10px;
+                font-size: 18px;
             }
         }
 
         .interview_score_satisfied{
             text-align: center;
-            margin-top: 60px;
-            border-right: 1px solid #e6e6e6;
             @media screen and (max-width: 600px){
                 border: none;
-                margin-top: 30px;
+                margin-top: 20px;
                 padding-top: 10px;
                 border-top: 1px solid #dfe1e5;
             }
             .interview_point{
+                text-align: center;
                 font-size: 40px;
                 margin-bottom: 5px;
                 color: #353434;
             }
             .interview_score_star{
                 i{
-                    font-size: 25px;
+                    font-size: 28px;
                     margin-right: 3px;
                     position: relative;
                 }
@@ -125,29 +123,30 @@
             }
             
             .interview_score_label{
-                margin-top: 20px;
-                font-size: 17px;
+                text-align: center;
+                margin-top: 10px;
+                font-size: 18px;
             }
         }
 
         .interview_score_process{
             text-align: center;
-            margin-top: 60px;
-            border-right: 1px solid #e6e6e6;
             @media screen and (max-width: 600px){
                 border: none;
-                margin-top: 30px;
+                margin-top: 20px;
                 padding-top: 10px;
                 border-top: 1px solid #dfe1e5;
             }
             .interview_point{
+                text-align: center;
                 font-size: 40px;
                 margin-bottom: 5px;
                 color: #353434;
             }
             .interview_score_star{
+                text-align: center;
                 i{
-                    font-size: 40px;
+                    font-size: 28px;
                     margin-right: 3px;
                     position: relative;
                     top:-3px;
@@ -161,17 +160,17 @@
             }
             
             .interview_score_label{
-                margin-top: 8px;
-                font-size: 17px;
+                text-align: center;
+                margin-top: 10px;
+                font-size: 18px;
             }
         }
 
         .interview_score_interview{
             text-align: center;
-            margin-top: 60px;
             @media screen and (max-width: 600px){
                 border: none;
-                margin-top: 30px;
+                margin-top: 20px;
                 padding-top: 10px;
                 border-top: 1px solid #dfe1e5;
             }
@@ -179,10 +178,12 @@
                 font-size: 40px;
                 margin-bottom: 5px;
                 color: #353434;
+                text-align: center;
             }
             .interview_score_star{
+                text-align: center;
                 i{
-                    font-size: 40px;
+                    font-size: 28px;
                     margin-right: 3px;
                     position: relative;
                     top:-3px;
@@ -196,8 +197,9 @@
             }
             
             .interview_score_label{
-                margin-top: 8px;
-                font-size: 17px;
+                text-align: center;
+                margin-top: 10px;
+                font-size: 18px;
             }
         }
         

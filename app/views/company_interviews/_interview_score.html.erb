@@ -6,15 +6,23 @@
 
     <body>
         <div class="interview_score_content">
-            <div class="interview_score_title">
-                <a>Kinh nghiệm phỏng vấn tại <%=@company.name%></a>
-            </div>
+            <div class="interview_score_title_block">
+                <div class="row">
+                    <div class="col-sm-9">
+                        <div class="interview_score_title">
+                            <a><%= @company.company_interviews.count%> kinh nghiệm phỏng vấn tại <%=@company.name%></a>
+                        </div>
+                    </div>
 
-            <div class="interview_new_button_side">
-                <div class="interview_new_button">
-                    <%= link_to '<button type="submit"> <i class="material-icons-outlined">edit</i> <span> Chia sẻ kinh nghiệm </span> </button>'.html_safe, new_company_company_interview_path(@company) %>
+                    <div class="col-sm-3">
+                        <div class="interview_new_button_side">
+                            <div class="interview_new_button">
+                                <%= link_to '<button type="submit"> <i class="material-icons-outlined">edit</i> <span> Chia sẻ kinh nghiệm </span> </button>'.html_safe, new_company_company_interview_path(@company) %>
+                            </div>
+                        </div>
+                    </div>
                 </div>
-            </div>
+            </div>  
 
             <div class="interview_score">
                 <div class="row">
@@ -75,7 +83,7 @@
                                     <strong><%=rating_interview_process_score.round(1)%></strong>
                                 </div>
                                 <div class="interview_score_star">
-                                    <i class="material-icons-outlined checked">people_outline</i>
+                                    <i class="material-icons-outlined checked">settings_input_svideo</i>
                                 </div>
                                 <div class="interview_score_label">
                                     <a>Vòng phỏng vấn trung bình</a>
@@ -99,7 +107,7 @@
                                     <i class="material-icons-outlined checked">work_outline</i>
                                 </div>
                                 <div class="interview_score_label">
-                                    <a>Chấp nhận offer</a>
+                                    <a>Ứng viên chấp nhận offer</a>
                                 </div>
                             </div>
                         </div>

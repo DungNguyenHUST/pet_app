@@ -5,71 +5,67 @@
 //////////////////review//////////////////
 .review_score_content{
     background-color: #fff;
-    margin-bottom: 20px;
     border-radius: 3px;
     border: 1px solid #dfe1e5;
-    padding: 20px;
-    min-height: 400px;
-    .review_score_title{
-        display: inline-block;
-        font-size: 24px;
-        font-weight: 550;
-        float: left;
-        margin-bottom: 20px;
-    }
-    .review_new_button_side{
-        display: block;
-        button {
-            float: right;
+    .review_score_title_block{
+        padding: 20px;
+        padding-top: 10px;
+        padding-bottom: 10px;
+        .review_score_title{
+            display: inline-block;
+            font-size: 22px;
+            font-weight: 550;
+        }
+
+        .review_new_button_side{
+            display: block;
             @media screen and (max-width: 600px){
-                float: none;
+                padding-top:20px;
+            }
+            button {
                 width: 100%;
-            }
-            width: 200px;
-            height: 50px;
-            background: #1877f2;
-            border-radius: 3px;
-            border: none;
-            cursor: pointer;
-            text-align: center;
-            color: #fff;
-            font-size: 16px;
-            i{
-                font-size: 20px;
-                position: relative;
-                top: 3px;
+                height: 50px;
+                background: #1877f2;
+                border-radius: 3px;
+                border: none;
+                cursor: pointer;
+                text-align: center;
                 color: #fff;
-                margin-right: 3px;
-            }
-            span{
                 font-size: 16px;
-                position: relative;
-                top: -2px;
-            }
-            &:hover {
-                background-color: #369;
-                color: #fff;
+                i{
+                    font-size: 20px;
+                    position: relative;
+                    top: 3px;
+                    color: #fff;
+                    margin-right: 3px;
+                }
+                span{
+                    font-size: 16px;
+                    position: relative;
+                    top: -2px;
+                }
+                &:hover {
+                    background-color: #369;
+                    color: #fff;
+                }
             }
         }
     }
 
     .review_score{
         clear: both;
-        margin-top: 20px;
-        border-radius: 3px;
+        border-top: 1px solid #dfe1e5;
+        @media screen and (max-width: 600px){
+            border-top:none;
+        }
         background-color: #fff;
-        border-radius: 3px;
-        min-height: 300px;
         .review_score_total{
             @media screen and (max-width: 600px){
                 border-top: 1px solid #dfe1e5;
             }
             .review_score_label{
-                @media screen and (max-width: 600px){
-                    padding-top: 20px;
-                }
+                padding-top: 20px;
                 text-align: center;
-                padding-top: 60px;
                 font-size: 22px;
                 font-weight: 600;
             }
@@ -89,6 +85,9 @@
                     margin-top: 10px;
                     font-size: 25px;
                     margin-left: 25%;
+                     @media screen and (max-width: 600px){
+                        margin-left: 30%;
+                    }
                     text-align: center;
                     i {
                         float: left;
@@ -113,6 +112,7 @@
                 font-size: 14px;
                 text-align: center;
                 color: #535153;
+                text-align: center;
             }
         }
 
@@ -122,15 +122,13 @@
             padding-right: 20px;
             @media screen and (max-width: 600px){
                 border: none;
-                margin-top: 30px;
-                padding-top: 20px;
+                padding-top: 30px;
                 border-top: 1px solid #dfe1e5;
             }
-            margin-top: 30px;
 
             .review_score_overview{
                 display: block;
-                margin-bottom: 15px;
+                margin-bottom: 10px;
                 @media screen and (max-width: 600px){
                     // margin-left: 18%;
                 }
@@ -182,17 +180,14 @@
 
         .review_score_recommand{
             @media screen and (max-width: 600px){
-                margin-top: 20px;
+                padding-top: 20px;
                 border-top: 1px solid #dfe1e5;
             }
             .review_score_recommand_title{
                 text-align: center;
                 font-size: 22px;
                 font-weight: 600;
-                padding-top: 55px;
-                @media screen and (max-width: 600px){
-                    padding-top: 20px;
-                }
+                padding-top: 20px;
             }
 
             .circle-wrap {
