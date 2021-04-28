@@ -129,27 +129,33 @@
 
             <div class="company_profile_review">
                 <div class="review_content">
-                    <%= render :partial => 'company_reviews/review_score' %>
+                    <%if(@company.company_reviews.count > 0)%>
+                        <%= render :partial => 'company_reviews/review_score' %>
+                    <%end%>
                 </div>
             </div>    
 
             <div class="company_profile_interview">
                 <div class="interview_content">
-                    <%= render :partial => 'company_interviews/interview_score' %>
+                    <%if(@company.company_interviews.count > 0)%>
+                        <%= render :partial => 'company_interviews/interview_score' %>
+                    <%end%>
                 </div>
             </div> 
 
             <div class="company_job">
-                <div class="company_job_title">
-                    <a> Việc làm mới từ <%= @company.name %></a>
-                </div>
-                <div class="row">
-                    <div class="col-sm-12">
-                        <div class="job_content">
-                            <%= render @company.company_jobs %>
+                <%if(@company.company_jobs.count > 0)%>
+                    <div class="company_job_title">
+                        <a>Việc làm mới từ <%= @company.name %></a>
+                    </div>
+                    <div class="row">
+                        <div class="col-sm-12">
+                            <div class="job_content">
+                                <%= render @company.company_jobs %>
+                            </div>
                         </div>
                     </div>
-                </div>
+                <%end%>
             </div> 
         </div>
     </body>
