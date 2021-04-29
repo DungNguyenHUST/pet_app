@@ -211,7 +211,7 @@
             position: relative;
             display: block;
             background-color: #fff;
-            // border-bottom: 1px solid #dfe1e5;
+            border-bottom: 1px solid #dfe1e5;
             .nav-tabs {
                 overflow-x: auto;
                 overflow-y: hidden;
@@ -241,7 +241,7 @@
             .nav-tabs .nav-link.active {
                 border-radius: 0;
                 border-bottom: 4px solid #1877f2;
-                font-weight: 550;
+                font-weight: 500;
                 color: #1877f2;
             }
         }
@@ -677,13 +677,13 @@
     
     /* Style the tab */
     .company_tab_link {
-        padding-top: 40px;
+        padding-top: 20px;
         clear: left;
         overflow: hidden;
         position: relative;
         display: block;
         background-color: #fff;
-        border-bottom: 1px solid #dfe1e5;
+        border-bottom: 2px solid #dfe1e5;
         .nav-tabs {
             overflow-x: auto;
             overflow-y: hidden;
@@ -713,7 +713,7 @@
         .nav-tabs .nav-link.active {
             border-radius: 0;
             border-bottom: 4px solid #1877f2;
-            font-weight: 550;
+            font-weight: 500;
             color: #1877f2;
             font-size: 16px;
             span{
@@ -725,12 +725,16 @@
     /* Style the tab content */
     .company_tab_content{
         background-color: #f7f8fa;
-        min-height: 500px;
-        padding-bottom: 20px;
+        min-height: 750px;
+        padding-bottom: 30px;
         .tab-content{
             .company_profile_tab{
                 .company_profile_left
                 {
+                    margin-top: 30px;
+                    @media screen and (max-width: 600px){
+                        margin-top: 20px;
+                    }
                     width: 100%;
                     .company_profile_overview
                     {
@@ -800,8 +804,8 @@
                         margin-top: 20px;
                         .company_profile_title{
                             padding: 15px;
-                            font-size: 20px;
-                            font-weight: 500;
+                            font-size: 22px;
+                            font-weight: 550;
                             border-bottom: 1px solid #dfe1e5;
                         }
                         .review_content{
@@ -816,8 +820,8 @@
                         margin-top: 20px;
                         .company_profile_title{
                             padding: 15px;
-                            font-size: 20px;
-                            font-weight: 500;
+                            font-size: 22px;
+                            font-weight: 550;
                             border-bottom: 1px solid #dfe1e5;
                         }
                         .interview_content{
@@ -888,6 +892,10 @@
                 width: 100%;
                 .company_policy_overview_left
                 {
+                    margin-top: 30px;
+                    @media screen and (max-width: 600px){
+                        margin-top: 20px;
+                    }
                     background-color: #fff;
                     border: 1px solid #dfe1e5;
                     border-radius: 3px;
@@ -1013,6 +1021,10 @@
                 display: block;
                 height: auto;               
                 .company_review_tab_des_left{
+                    margin-top: 30px;
+                    @media screen and (max-width: 600px){
+                        margin-top: 20px;
+                    }
                     .company_review_score{
                         border-radius: 3px;
                         border: 1px solid #dfe1e5;
@@ -1094,18 +1106,17 @@
                         @media screen and (max-width: 600px){
                             margin-top: 20px;
                         }
-                        padding: 10px;
+                        padding: 20px;
                         background-color: #fff;
                         border-radius: 3px;
                         border: 1px solid #dfe1e5;
-                        background-color: #fff;
+                        background-color: #ebfeff;
                         .review_score_title{
                             font-size: 18px;
                             font-weight: 550;
                         }
 
                         .review_new_button_side{
-                            padding-top: 20px;
                             display: block;
                             .review_new_button button {
                                 width: 100%;
@@ -1137,7 +1148,7 @@
                         }
                     }
                     .review_score_detail
-                    {   
+                    {   display: none;
                         margin-top: 20px;
                         padding: 10px;
                         background-color: #fff;
@@ -1256,6 +1267,10 @@
             .company_interview_tab{
                 display: block;
                 .company_interview_tab_des_left{
+                    margin-top: 30px;
+                    @media screen and (max-width: 600px){
+                        margin-top: 20px;
+                    }
                     .user_comment_heading{
                         font-size: 22px;
                     }
@@ -1335,6 +1350,67 @@
                             }
                         }
                     }
+                    .new_interview_question
+                    {
+                        width: 100%;
+                        min-height: 90px;
+                        background-color: #ebfeff;
+                        border-top: 5px solid #ffc500;
+                        padding: 10px;
+                        border-radius: 3px;
+                        margin-top: 30px;
+                        .new_interview_question_title{
+                            margin-top: 10px;
+                            margin-bottom: 20px;
+                            font-size: 20px;
+                            @media screen and (min-width: 600px){
+                                float: left;
+                                font-size: 22px;
+                            }
+                            i {
+                                font-size: 30px;
+                                margin: 3px;
+                                color: #ffc500;
+                                position: relative;
+                                top: 2px;
+                            }
+                        }
+        
+                        .new_interview_question_button button {
+                            float: right;
+                            @media screen and (max-width: 600px){
+                                float: none;
+                                width: 100%;
+                            }
+                            padding: 14px;
+                            width: 300px;
+                            height: 50px;
+                            background: #1877f2;
+                            font-size: 14px;
+                            border: none;
+                            cursor: pointer;
+                            text-align: center;
+                            color: #fff;
+                            border-radius: 3px;
+                            i{
+                                font-size: 20px;
+                                position: relative;
+                                top: 3px;
+                                color: #fff;
+                                margin-right: 3px;
+                            }
+                            span{
+                                font-size: 14px;
+                                position: relative;
+                                top: -2px;
+                            }
+                            
+                            &:hover {
+                                background-color: #369;
+                                color: #fff;
+                            }
+                        }
+                    }
                 }
 
                 .company_interview_tab_des_right{
@@ -1342,17 +1418,16 @@
                         margin-top: 20px;
                     }
                     .interview_score_title_block{
-                        padding: 10px;
+                        padding: 20px;
                         background-color: #fff;
                         border-radius: 3px;
                         border: 1px solid #dfe1e5;
-                        background-color: #fff;
+                        background-color: #ebfeff;  
                         .interview_score_title{
                             font-size: 18px;
                             font-weight: 550;
                         }
                         .interview_new_button_side{
-                            padding-top: 20px;
                             display: block;
                             .interview_new_button button {
                                 width: 100%;
@@ -1439,83 +1514,22 @@
                         }
                     }
                 }
-                
-                .new_interview_question
-                {
-                    width: 100%;
-                    min-height: 90px;
-                    background-color: #ebfeff;
-                    border-top: 5px solid #ffc500;
-                    padding: 10px;
-                    border-radius: 3px;
-                    margin-top: 30px;
-                    margin-bottom: 30px;
-                    .new_interview_question_title{
-                        margin-top: 10px;
-                        margin-bottom: 20px;
-                        font-size: 20px;
-                        @media screen and (min-width: 600px){
-                            float: left;
-                            font-size: 22px;
-                        }
-                        i {
-                            font-size: 30px;
-                            margin: 3px;
-                            color: #ffc500;
-                            position: relative;
-                            top: 2px;
-                        }
-                    }
-    
-                    .new_interview_question_button button {
-                        float: right;
-                        @media screen and (max-width: 600px){
-                            float: none;
-                            width: 100%;
-                        }
-                        padding: 14px;
-                        width: 300px;
-                        height: 50px;
-                        background: #1877f2;
-                        font-size: 14px;
-                        border: none;
-                        cursor: pointer;
-                        text-align: center;
-                        color: #fff;
-                        border-radius: 3px;
-                        i{
-                            font-size: 20px;
-                            position: relative;
-                            top: 3px;
-                            color: #fff;
-                            margin-right: 3px;
-                        }
-                        span{
-                            font-size: 14px;
-                            position: relative;
-                            top: -2px;
-                        }
-                        
-                        &:hover {
-                            background-color: #369;
-                            color: #fff;
-                        }
-                    }
-                }
             }
     
             .company_job_tab
             {
                 display: block;
                 .company_job_tab_des_left{
+                    margin-top: 30px;
+                    @media screen and (max-width: 600px){
+                        margin-top: 20px;
+                    }
                     .user_comment_heading{
                         font-size: 22px;
                     }
-        
                     .company_tab_heading{
                         .user_comment_heading_job{
                             font-size: 22px;
-                            padding-bottom: 20px;
                             @media screen and (max-width: 600px){
                                 padding-top: 0px;
                             }
@@ -1532,12 +1546,12 @@
                         width: 100%;
                         min-height: 100px;
                         margin-bottom: 30px;
+                        border: 1px solid #dfe1e5;
                         background-color: #ebfeff;
-                        border: 1px solid #ebfeff;
                         border-radius: 3px;
                         .new_job_title{
                             font-size: 22px;
-                            padding-top:20px;
+                            padding-top: 20px;
                             padding-left: 20px;    
                         }
                         .new_job_button{

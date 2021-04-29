@@ -29,15 +29,15 @@
                 <div class="user_review_intro_right">
                     <div class="user_review_score_star">
                         <div class="review_point">
-                            <strong><%=company_review.average_score.to_i%>.0 </strong>
                         </div>
                         <div class="review_score_star">
-                                <%company_review.average_score.to_i.times do%>
-                                    <i class="material-icons checked">circle</i>
-                                <%end%>
-                                <%(5 - company_review.average_score.to_i).to_i.times do%>
-                                    <i class="material-icons checked_out">radio_button_unchecked</i>
-                                <%end%>
+                            <a><%=company_review.average_score.to_f.round(1)%> </a>
+                            <%company_review.average_score.to_i.times do%>
+                                <i class="material-icons checked">circle</i>
+                            <%end%>
+                            <%(5 - company_review.average_score.to_i).to_i.times do%>
+                                <i class="material-icons checked_out">radio_button_unchecked</i>
+                            <%end%>
                         </div>
                     </div>
 
