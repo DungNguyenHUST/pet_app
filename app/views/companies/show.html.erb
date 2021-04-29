@@ -17,7 +17,7 @@
                         </div>
 
                         <div class='row'>
-                            <div class="col-sm-6">
+                            <div class="col-sm-10">
                                 <div class="company_title_summary">
                                     <div class="company_title_image">
                                         <%if @company.avatar?%>
@@ -64,24 +64,30 @@
                                 </div>
                             </div>
                             
-                            <div class="col-sm-6">
-                                <div class="company_follow" id =company_follow_<%=@company.id%>>
-                                    <%if logged_in?%>
-                                        <% pre_follow = @company.company_follows.find { |follow| follow.user_id == current_user.id} %>
-                                        <% if pre_follow %> 
-                                            <%= button_to company_company_follow_path(@company, pre_follow), :method => :delete, remote: true, form_class: "follow_btn_highlight" do%>
-                                                <i class="material-icons">favorite</i> <span>Bỏ theo dõi</span>
-                                            <%end%> 
+                            <div class="col-sm-2">
+                                <div class="company_action">
+                                    <div class="company_follow" id =company_follow_<%=@company.id%>>
+                                        <%if logged_in?%>
+                                            <% pre_follow = @company.company_follows.find { |follow| follow.user_id == current_user.id} %>
+                                            <% if pre_follow %> 
+                                                <%= button_to company_company_follow_path(@company, pre_follow), :method => :delete, remote: true, form_class: "follow_btn_highlight" do%>
+                                                    <i class="material-icons">favorite</i> <span>Bỏ theo dõi</span>
+                                                <%end%> 
+                                            <%else%>
+                                                <%= button_to company_company_follows_path(@company), :method => :post, remote: true, form_class: "follow_btn" do%>
+                                                    <i class="material-icons-outlined">favorite_border</i> <span>Theo dõi</span>
+                                                <%end%>
+                                            <%end%>
                                         <%else%>
-                                            <%= button_to company_company_follows_path(@company), :method => :post, remote: true, form_class: "follow_btn" do%>
+                                            <%= button_to login_path, :method => :get, form_class: "follow_btn" do%>
                                                 <i class="material-icons-outlined">favorite_border</i> <span>Theo dõi</span>
                                             <%end%>
                                         <%end%>
-                                    <%else%>
-                                        <%= button_to login_path, :method => :get, form_class: "follow_btn" do%>
-                                            <i class="material-icons-outlined">favorite_border</i> <span>Theo dõi</span>
-                                        <%end%>
-                                    <%end%>
+                                    </div>
+
+                                    <div class="review_new_button">
+                                        <%= link_to '<button type="submit"> <i class="material-icons-outlined">edit</i> <span> Viết review</span> </button>'.html_safe, new_company_company_review_path(@company) %>
+                                    </div>
                                 </div>
                             </div>
                         </div>
@@ -116,139 +122,430 @@
                         <div class="tab-content">
                             <div role="tabpanel" id="CompanyID" class="tab-pane fade in active"><br>
                                 <div class="company_profile_tab">
-                                    <%= render :partial => 'companies/profile' %>
+                                    <div class="row">
+                                        <div class="col-sm-8">
+                                            <div class="company_profile_left">
+                                                <div class="company_profile_overview">
+                                                    <div class="company_profile_block">
+                                                        <div class="row">
+                                                            <div class="col-sm-4">
+                                                                <div class="company_profile_section">
+                                                                    <a> <i class="material-icons-outlined">foundation</i> Trụ sở chính </a>
+                                                                </div>
+                                                                <div class="company_profile_content">
+                                                                    <%= @company.location %>
+                                                                </div>
+
+                                                                <div class="company_profile_section">
+                                                                    <a> <i class="material-icons-outlined">link</i> Website </a>
+                                                                </div>
+                                                                <div class="company_profile_content">
+                                                                    <%=h auto_link(simple_format(@company.website), :link => :urls) %>
+                                                                </div>
+
+                                                                <div class="company_profile_section">
+                                                                    <a> <i class="material-icons-outlined">phone</i> Số điện thoại </a>
+                                                                </div>
+                                                                <div class="company_profile_content">
+                                                                    <%= @company.phone %>
+                                                                </div>
+                                                                <div class="company_profile_section">
+                                                                    <a><i class="material-icons-outlined">people</i> Quy mô công ty </a>
+                                                                </div>
+                                                                <div class="company_profile_content">
+                                                                    <%= @company.size %>
+                                                                </div>
+                                                            </div>
+
+                                                            <div class="col-sm-4">
+                                                                <div class="company_profile_section">
+                                                                    <a> <i class="material-icons-outlined">event_available</i> Năm thành lập </a>
+                                                                </div>
+                                                                <div class="company_profile_content">
+                                                                    <%= @company.time_establish.strftime("%B %d, %Y")%>
+                                                                </div>
+
+                                                                <div class="company_profile_section">
+                                                                    <a> <i class="material-icons-outlined">money</i> Doanh thu </a>
+                                                                </div>
+                                                                <div class="company_profile_content">
+                                                                    <%= @company.values%>
+                                                                </div>
+                                                                <div class="company_profile_section">
+                                                                    <a> <i class="material-icons-outlined">flag</i> Quốc gia </a>
+                                                                </div>
+                                                                <div class="company_profile_content">
+                                                                    <%= @company.country %>
+                                                                </div>
+
+                                                                <div class="company_profile_section">
+                                                                    <a> <i class="material-icons-outlined">local_police</i> Loại hình hoạt động </a>
+                                                                </div>
+                                                                <div class="company_profile_content">
+                                                                    <%if @company.company_type.present?%>
+                                                                        <%= @company.company_type%>
+                                                                    <%else%>
+                                                                        Không xác định
+                                                                    <%end%>
+                                                                </div>
+                                                            </div>
+
+                                                            <div class="col-sm-4">
+
+                                                                <div class="company_profile_section">
+                                                                    <a> <i class="material-icons-outlined">turned_in_not</i> Lĩnh vực hoạt động </a>
+                                                                </div>
+                                                                <div class="company_profile_content">
+                                                                    <%= @company.field_operetion %>
+                                                                </div>
+                                                                <div class="company_profile_section">
+                                                                    <a> <i class="material-icons-outlined">date_range</i> Ngày làm việc trong tuần </a>
+                                                                </div>
+                                                                <div class="company_profile_content">
+                                                                    <%if @company.working_date.present?%>
+                                                                        <%= @company.working_date%>
+                                                                    <%else%>
+                                                                        Mon - Fri
+                                                                    <%end%>
+                                                                </div>
+
+                                                                <div class="company_profile_section">
+                                                                    <a> <i class="material-icons-outlined">history_toggle_off</i> Thời gian làm việc </a>
+                                                                </div>
+                                                                <div class="company_profile_content">
+                                                                    <%if @company.working_time.present?%>
+                                                                        <%= @company.working_time%>
+                                                                    <%else%>
+                                                                        8h00 - 17h00
+                                                                    <%end%>
+                                                                </div>
+
+                                                                <div class="company_profile_section">
+                                                                    <a> <i class="material-icons-outlined">history</i> Cập nhật lần cuối </a>
+                                                                </div>
+                                                                <div class="company_profile_content">
+                                                                    <%= @company.created_at.strftime("%B %d, %Y")%>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+
+                                                <div class="company_profile_summary_block">
+                                                    <div class="company_profile_title">
+                                                        <a>Giới thiệu <%= @company.name %></a>
+                                                    </div>
+
+                                                    <div class="company_profile_summary">
+                                                        <a><%= @company.overview.html_safe %></a>
+                                                    </div>
+                                                </div>
+
+                                                <%if(@company.company_reviews.count > 0)%>
+                                                    <div class="company_profile_review">
+                                                        <div class="company_profile_title">
+                                                            <a>Review <%= @company.name %></a>
+                                                        </div>
+                                                        <div class="review_content">
+                                                            <%if(@company.company_reviews.count > 0)%>
+                                                                <%= render :partial => 'company_reviews/review_score' %>
+                                                            <%end%>
+                                                        </div>
+                                                    </div>
+                                                <%end%>
+
+                                                <%if(@company.company_interviews.count > 0)%>
+                                                    <div class="company_profile_interview">
+                                                        <div class="company_profile_title">
+                                                            <a>Kinh nghiệm phỏng vấn tại <%= @company.name %></a>
+                                                        </div>
+                                                        <div class="interview_content">
+                                                            <%if(@company.company_interviews.count > 0)%>
+                                                                <%= render :partial => 'company_interviews/interview_score' %>
+                                                            <%end%>
+                                                        </div>
+                                                    </div>
+                                                <%end%>
+                                            </div>
+                                        </div>
+                                        <div class="col-sm-4">
+                                            <div class="company_profile_right">
+                                                <%if(@company.company_jobs.count > 0)%>
+                                                    <div class="company_job_mini_block">
+                                                        <div class="company_job_label">
+                                                            <a> Việc làm</a>
+                                                        </div>
+                                                        <div class="company_job_des">
+                                                            <%@company.company_jobs.each do |company_job|%>
+                                                                <div class="company_job_block">
+                                                                    <div class="company_avatar">
+                                                                        <%if @company.avatar?%>
+                                                                            <img><%= link_to (image_tag(@company.avatar.thumb.url)), image_path(url_for(@company.avatar.thumb.url)), rel: "gallery" , :href => company_path(@company)%>
+                                                                        <%end%>
+                                                                    </div>
+
+                                                                    <div class="company_job_info">
+                                                                        <div class="company_job_title">
+                                                                            <%= link_to (company_job.title), company_company_job_path(@company, company_job) %>
+                                                                        </div>
+                                                                        <div class="user_job_date">
+                                                                            <a><%= time_ago_in_words(company_job.created_at) %></a>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                            <%end%>
+                                                        </div>
+                                                    </div>
+                                                <%end%>
+                                            </div>
+                                        </div>
+                                    </div>
                                 </div>                        
                             </div>
 
                             <div role="tabpanel" id="CompanyJoinsID" class="tab-pane"><br>
                                 <div class="company_policy_tab">
-                                    <%= render :partial => 'companies/policy' %>
+                                    <div class="row">
+                                        <div class="col-sm-8">
+                                            <div class="company_policy_overview_left">
+                                                <div class="company_policy_title">
+                                                    <a> Những chính sách nổi bật tại <%= @company.name %></a>
+                                                </div>
+
+                                                <div class="company_policy_policy">
+                                                    <a><%= @company.policy.html_safe %></a>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <div class="col-sm-4">
+                                            <div class='company_policy_overview_block_right'>
+                                                <div class='company_policy_overview_block_right_overview'>
+                                                    <div class="company_policy_overview_label">
+                                                        <span> Giới thiệu</span>
+                                                    </div>
+
+                                                    <div class="company_policy_overview_right">
+                                                        <div class="company_policy_overview_right_title">
+                                                            <i class="material-icons-outlined">place</i><a>  Địa chỉ </a>
+                                                        </div>
+                                                        <div class="company_policy_overview_right_des">
+                                                            <a><%= @company.location %></a>
+                                                        </div>
+                                                    </div>
+                                                    <div class="company_policy_overview_right">
+                                                        <div class="company_policy_overview_right_title">
+                                                            <i class="material-icons-outlined">people</i> <a> Nhân viên </a>
+                                                        </div>
+                                                        <div class="company_policy_overview_right_des">
+                                                            <a><%= @company.size %></a>
+                                                        </div>
+                                                    </div>
+                                                    <div class="company_policy_overview_right">
+                                                        <div class="company_policy_overview_right_title">
+                                                            <i class="material-icons-outlined">grading</i> <a> Lĩnh vực hoạt động </a>
+                                                        </div>
+                                                        <div class="company_policy_overview_right_des">
+                                                            <a><%= @company.field_operetion %></a>
+                                                        </div>
+                                                    </div>
+                                                    <div class="company_policy_overview_right">
+                                                        <div class="company_policy_overview_right_title">
+                                                            <i class="material-icons-outlined">http</i><a> Liên hệ </a>
+                                                        </div>
+                                                        <div class="company_policy_overview_right_des">
+                                                            <a><%= @company.website %></a>
+                                                        </div>
+                                                    </div>
+                                                    <div class="company_policy_overview_right">
+                                                        <div class="company_policy_overview_right_title">
+                                                            <i class="material-icons-outlined">history</i><a> Cập nhật lần cuối </a>
+                                                        </div>
+                                                        <div class="company_policy_overview_right_des">
+                                                            <a><%= @company.created_at.strftime("%B %d, %Y") %></a>
+                                                        </div>
+                                                    </div>
+                                                </div>
+
+                                                <div class='company_policy_overview_block_right_job'>
+                                                    <%if(@company.company_jobs.count > 0)%>
+                                                        <div class="company_job_mini_block">
+                                                            <div class="company_job_label">
+                                                                <a> Việc làm</a>
+                                                            </div>
+                                                            <div class="company_job_des">
+                                                                <%@company.company_jobs.each do |company_job|%>
+                                                                    <div class="company_job_block">
+                                                                        <div class="company_avatar">
+                                                                            <%if @company.avatar?%>
+                                                                                <img><%= link_to (image_tag(@company.avatar.thumb.url)), image_path(url_for(@company.avatar.thumb.url)), rel: "gallery" , :href => company_path(@company)%>
+                                                                            <%end%>
+                                                                        </div>
+
+                                                                        <div class="company_job_info">
+                                                                            <div class="company_job_title">
+                                                                                <%= link_to (company_job.title), company_company_job_path(@company, company_job) %>
+                                                                            </div>
+                                                                            <div class="user_job_date">
+                                                                                <a><%= time_ago_in_words(company_job.created_at) %></a>
+                                                                            </div>
+                                                                        </div>
+                                                                    </div>
+                                                                <%end%>
+                                                            </div>
+                                                        </div>
+                                                    <%end%>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
                                 </div>
                             </div>
 
                             <div role="tabpanel" id="CompanyReviewsID" class="tab-pane"><br>
                                 <div class="company_review_tab">
-                                    <%if(@company.company_reviews.count > 0)%>
-                                        <div class="company_review_score">
-                                            <%= render :partial => 'company_reviews/review_score' %>
-                                        </div>
-                                        <div class="company_review_tab_des">
-                                            <div class="row">
-                                                <div class="col-sm-8">
-                                                    <div class="company_review_left">
-                                                        <div class="company_review_tab_des_left">
-                                                            <%= render @company.company_reviews %>
+                                    <div class="row">
+                                        <div class="col-sm-8">
+                                            <div class="company_review_tab_des_left">
+                                                <%if(@company.company_reviews.count > 0)%>
+                                                    <div class="company_review_score">
+                                                        <%= render :partial => 'company_reviews/review_score' %>
+                                                    </div>
+                                                    <div class="company_review">
+                                                        <%= render @company.company_reviews %>
+                                                    </div>
+                                                <%else%>
+                                                    <div class="review_new_not_found">
+                                                        <span>Rất tiếc, chưa có đủ dữ liệu thống kê. Bạn sẽ chỉ mất 1 phút để hoàn thành bài review, chia sẻ của bạn sẽ rất hữu ích cho mọi người</span>
+                                                    </div>
+                                                    <div class="no_review_found">
+                                                        <div class="review_new_label">
+                                                            <a>Viết bài review ngay</a>
+                                                        </div>
+                                                        <div class="review_new_button">
+                                                            <%= link_to '<button type="submit"> <i class="material-icons-outlined">edit</i> <span> Viết Review</span> </button>'.html_safe, new_company_company_review_path(@company) %>
                                                         </div>
                                                     </div>
-                                                </div>
-                                                
-                                                <div class="col-sm-4">
-                                                    <div class="company_review_tab_des_right">
-                                                        <div class="company_job_mini_block">
-                                                            <div class="company_job_label">
-                                                                <a> Việc làm </a>
-                                                            </div>
-                                                            <div class="company_job_des">
-                                                                <%@company.company_jobs.each do |company_job|%>
-                                                                    <div class="company_job_block">
-                                                                        <div class="company_avatar">
-                                                                            <%if @company.avatar?%>
-                                                                                <img><%= link_to (image_tag(@company.avatar.thumb.url)), image_path(url_for(@company.avatar.thumb.url)), rel: "gallery" , :href => company_path(@company)%>
-                                                                            <%end%>
-                                                                        </div>
+                                                <%end%>
+                                            </div>
+                                        </div>
 
-                                                                        <div class="company_job_info">
-                                                                            <div class="company_job_title">
-                                                                                <%= link_to (company_job.title), company_company_job_path(@company, company_job) %>
-                                                                            </div>
-                                                                            <div class="user_job_date">
-                                                                                <a><%= time_ago_in_words(company_job.created_at) %></a>
-                                                                            </div>
-                                                                        </div>
-                                                                    </div>
-                                                                <%end%>
+                                        <div class="col-sm-4">
+                                            <div class="company_review_tab_des_right">
+                                                <%if @company.company_reviews.count > 0%>
+                                                    <div class="review_score_title_block">
+                                                        <div class="review_score_title">
+                                                            <a><%= @company.company_reviews.count%> review <%=@company.name%></a>
+                                                        </div>
+                                                        <div class="review_new_button_side">
+                                                            <div class="review_new_button">
+                                                                <%= link_to '<button type="submit"> <i class="material-icons-outlined">edit</i> <span> Review ngay </span> </button>'.html_safe, new_company_company_review_path(@company) %>
                                                             </div>
                                                         </div>
+                                                    </div>
+                                                <%end%>
+                                                <div class="company_job_mini_block">
+                                                    <div class="company_job_label">
+                                                        <a> Việc làm </a>
+                                                    </div>
+                                                    <div class="company_job_des">
+                                                        <%@company.company_jobs.each do |company_job|%>
+                                                            <div class="company_job_block">
+                                                                <div class="company_avatar">
+                                                                    <%if @company.avatar?%>
+                                                                        <img><%= link_to (image_tag(@company.avatar.thumb.url)), image_path(url_for(@company.avatar.thumb.url)), rel: "gallery" , :href => company_path(@company)%>
+                                                                    <%end%>
+                                                                </div>
+
+                                                                <div class="company_job_info">
+                                                                    <div class="company_job_title">
+                                                                        <%= link_to (company_job.title), company_company_job_path(@company, company_job) %>
+                                                                    </div>
+                                                                    <div class="user_job_date">
+                                                                        <a><%= time_ago_in_words(company_job.created_at) %></a>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        <%end%>
                                                     </div>
                                                 </div>
                                             </div>
                                         </div>
-                                    <%else%>
-                                        <div class="review_new_not_found">
-                                            <span>Rất tiếc, chưa có đủ dữ liệu thống kê. Bạn sẽ chỉ mất 1 phút để hoàn thành bài review, chia sẻ của bạn sẽ rất hữu ích cho mọi người</span>
-                                        </div>
-                                        <div class="no_review_found">
-                                            <div class="review_new_label">
-                                                <a>Viết bài review ngay</a>
-                                            </div>
-                                            <div class="review_new_button">
-                                                <%= link_to '<button type="submit"> <i class="material-icons-outlined">edit</i> <span> Viết Review</span> </button>'.html_safe, new_company_company_review_path(@company) %>
-                                            </div>
-                                        </div>
-                                    <%end%>
+                                    </div>
                                 </div>
                             </div>
 
                             <div role="tabpanel" id="CompanyInterviewsID" class="tab-pane"><br>
                                 <div class="company_interview_tab">
-                                    <%if @company.company_interviews.count > 0%>
-                                        <div class="company_interview_score">
-                                            <%= render :partial => 'company_interviews/interview_score' %>
-                                        </div>
-                                        <div class="company_interview_tab_des">
-                                            <div class="row">
-                                                <div class="col-sm-8">
-                                                    <div class="company_interview_tab_left">
-                                                       <div class="company_interview_tab_des_left">
-                                                            <%= render @company.company_interviews %>
+                                    <div class="row">
+                                        <div class="col-sm-8">
+                                            <div class="company_interview_tab_des_left">
+                                                <%if @company.company_interviews.count > 0%>
+                                                    <div class="company_interview_score">
+                                                        <%= render :partial => 'company_interviews/interview_score' %>
+                                                    </div>
+                                                    <div class="company_interview">
+                                                        <%= render @company.company_interviews %>
+                                                    </div>
+                                                <%else%>
+                                                    <div class="interview_new_not_found">
+                                                        <span>Rất tiếc, chưa có đủ dữ liệu thống kê. Bạn sẽ chỉ mất 1 phút để hoàn thành bài chia sẻ phỏng vấn, kinh nghiệm của bạn của bạn sẽ rất hữu ích cho mọi người</span>
+                                                    </div>
+                                                    <div class="no_interview_found">
+                                                        <div class="interview_new_label">
+                                                            <a>Viết bài chia sẻ ngay</a>
+                                                        </div>
+                                                        <div class="interview_new_button">
+                                                            <%= link_to '<button type="submit"> <i class="material-icons-outlined">edit</i> <span> Review phỏng vấn</span> </button>'.html_safe, new_company_company_interview_path(@company) %>
                                                         </div>
                                                     </div>
-                                                </div>
+                                                <%end%>
+                                            </div>
+                                        </div>
 
-                                                <div class="col-sm-4">
-                                                    <div class="company_interview_tab_des_right">
-                                                        <div class="company_job_mini_block">
-                                                            <div class="company_job_label">
-                                                                <a> Việc làm </a>
+                                        <div class="col-sm-4"> 
+                                            <div class="company_interview_tab_des_right">
+                                                <%if @company.company_interviews.count > 0%>
+                                                    <div class="interview_score_title_block">
+                                                        <div class="interview_score_title">
+                                                            <a><%= @company.company_interviews.count%> kinh nghiệm phỏng vấn tại <%=@company.name%></a>
+                                                        </div>
+                                                        <div class="interview_new_button_side">
+                                                            <div class="interview_new_button">
+                                                                <%= link_to '<button type="submit"> <i class="material-icons-outlined">edit</i> <span> Chia sẻ kinh nghiệm ngay </span> </button>'.html_safe, new_company_company_interview_path(@company) %>
                                                             </div>
-                                                            <div class="company_job_des">
-                                                                <%@company.company_jobs.each do |company_job|%>
-                                                                    <div class="company_job_block">
-                                                                        <div class="company_avatar">
-                                                                            <%if @company.avatar?%>
-                                                                                <img><%= link_to (image_tag(@company.avatar.thumb.url)), image_path(url_for(@company.avatar.thumb.url)), rel: "gallery" , :href => company_path(@company)%>
-                                                                            <%end%>
-                                                                        </div>
+                                                        </div>
+                                                    </div> 
+                                                <%end%>
 
-                                                                        <div class="company_job_info">
-                                                                            <div class="company_job_title">
-                                                                                <%= link_to (company_job.title), company_company_job_path(@company, company_job) %>
-                                                                            </div>
-                                                                            <div class="user_job_date">
-                                                                                <a><%= time_ago_in_words(company_job.created_at) %></a>
-                                                                            </div>
-                                                                        </div>
+                                                <div class="company_job_mini_block">
+                                                    <div class="company_job_label">
+                                                        <a> Việc làm </a>
+                                                    </div>
+                                                    <div class="company_job_des">
+                                                        <%@company.company_jobs.each do |company_job|%>
+                                                            <div class="company_job_block">
+                                                                <div class="company_avatar">
+                                                                    <%if @company.avatar?%>
+                                                                        <img><%= link_to (image_tag(@company.avatar.thumb.url)), image_path(url_for(@company.avatar.thumb.url)), rel: "gallery" , :href => company_path(@company)%>
+                                                                    <%end%>
+                                                                </div>
+
+                                                                <div class="company_job_info">
+                                                                    <div class="company_job_title">
+                                                                        <%= link_to (company_job.title), company_company_job_path(@company, company_job) %>
                                                                     </div>
-                                                                <%end%>
+                                                                    <div class="user_job_date">
+                                                                        <a><%= time_ago_in_words(company_job.created_at) %></a>
+                                                                    </div>
+                                                                </div>
                                                             </div>
-                                                        </div>
+                                                        <%end%>
                                                     </div>
                                                 </div>
                                             </div>
                                         </div>
-                                    <%else%>
-                                        <div class="interview_new_not_found">
-                                            <span>Rất tiếc, chưa có đủ dữ liệu thống kê. Bạn sẽ chỉ mất 1 phút để hoàn thành bài chia sẻ phỏng vấn, kinh nghiệm của bạn của bạn sẽ rất hữu ích cho mọi người</span>
-                                        </div>
-                                        <div class="no_interview_found">
-                                            <div class="interview_new_label">
-                                                <a>Viết bài chia sẻ ngay</a>
-                                            </div>
-                                            <div class="interview_new_button">
-                                                <%= link_to '<button type="submit"> <i class="material-icons-outlined">edit</i> <span> Review phỏng vấn</span> </button>'.html_safe, new_company_company_interview_path(@company) %>
-                                            </div>
-                                        </div>
-                                    <%end%>
+                                    </div>
 
                                     <div class="new_interview_question">
                                         <div class="new_interview_question_title">
@@ -266,37 +563,88 @@
                             </div>
 
                             <div role="tabpanel" id="CompanyJobsID" class="tab-pane"><br>
-                                <div class="company_job_tab_des">
-                                    <div class="company_job_tab">
-                                        <div class="company_tab_job">
-                                            <div class="new_job">
-                                                <div class="new_job_title">
-                                                    <strong>Bạn là nhà tuyển dụng</strong>
+                                <div class="company_job_tab">
+                                    <div class="row"> 
+                                        <div class="col-sm-8"> 
+                                            <div class="company_job_tab_des_left">
+                                                <div class="company_tab_heading">
+                                                    <div class="user_comment_heading_job">
+                                                        <%if @company.company_jobs.count > 0%>
+                                                            <strong><%= @company.company_jobs.count%> việc làm tại <%= @company.name %> </strong>
+                                                        <%else%>
+                                                            <strong> Rất tiếc, hiện tại chưa có việc làm đang tuyển dụng </strong>
+                                                        <%end%>
+                                                    </div>
                                                 </div>
-                                                <div class="new_job_button">
-                                                    <%if logged_in?%>
-                                                        <%if current_user.employer? || current_user.admin?%>
-                                                            <%= link_to '<button type="submit"><i class="material-icons-outlined">add</i><span>Đăng tin tuyển dụng miễn phí<span></button>'.html_safe, new_company_company_job_path(@company) %>
+                                                <div class="company_job_index">
+                                                    <%= render @company.company_jobs%>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <div class="col-sm-4">
+                                            <div class='company_job_tab_des_right'>
+                                                <div class="new_job">
+                                                    <div class="new_job_title">
+                                                        <strong>Bạn là nhà tuyển dụng</strong>
+                                                    </div>
+                                                    <div class="new_job_button">
+                                                        <%if logged_in?%>
+                                                            <%if current_user.employer? || current_user.admin?%>
+                                                                <%= link_to '<button type="submit"><i class="material-icons-outlined">add</i><span>Đăng tin tuyển dụng miễn phí<span></button>'.html_safe, new_company_company_job_path(@company) %>
+                                                            <%else%>
+                                                                <%= link_to '<button type="submit"><i class="material-icons-outlined">add</i><span>Đăng tin tuyển dụng miễn phí<span></button>'.html_safe, login_path %>
+                                                            <%end%>
                                                         <%else%>
                                                             <%= link_to '<button type="submit"><i class="material-icons-outlined">add</i><span>Đăng tin tuyển dụng miễn phí<span></button>'.html_safe, login_path %>
                                                         <%end%>
-                                                    <%else%>
-                                                        <%= link_to '<button type="submit"><i class="material-icons-outlined">add</i><span>Đăng tin tuyển dụng miễn phí<span></button>'.html_safe, login_path %>
-                                                    <%end%>
+                                                    </div>
                                                 </div>
-                                            </div>
-                                            <div class="user_comment_heading_job">
-                                                <%if @company.company_jobs.count > 0%>
-                                                    <strong><%= @company.company_jobs.count%> việc làm tại <%= @company.name %> </strong>
-                                                <%else%>
-                                                    <strong> Rất tiếc, hiện tại chưa có việc làm đang tuyển dụng </strong>
-                                                <%end%>
-                                            </div>
-                                        </div>
-                                        <div class="row">
-                                            <div class="col-sm-12">
-                                                <div class="company_job_index">
-                                                    <%= render @company.company_jobs%>
+                                                <div class='company_policy_overview_block_right_overview'>
+                                                    <div class="company_policy_overview_label">
+                                                        <span> Giới thiệu</span>
+                                                    </div>
+
+                                                    <div class="company_policy_overview_right">
+                                                        <div class="company_policy_overview_right_title">
+                                                            <i class="material-icons-outlined">place</i><a>  Địa chỉ </a>
+                                                        </div>
+                                                        <div class="company_policy_overview_right_des">
+                                                            <a><%= @company.location %></a>
+                                                        </div>
+                                                    </div>
+                                                    <div class="company_policy_overview_right">
+                                                        <div class="company_policy_overview_right_title">
+                                                            <i class="material-icons-outlined">people</i> <a> Nhân viên </a>
+                                                        </div>
+                                                        <div class="company_policy_overview_right_des">
+                                                            <a><%= @company.size %></a>
+                                                        </div>
+                                                    </div>
+                                                    <div class="company_policy_overview_right">
+                                                        <div class="company_policy_overview_right_title">
+                                                            <i class="material-icons-outlined">grading</i> <a> Lĩnh vực hoạt động </a>
+                                                        </div>
+                                                        <div class="company_policy_overview_right_des">
+                                                            <a><%= @company.field_operetion %></a>
+                                                        </div>
+                                                    </div>
+                                                    <div class="company_policy_overview_right">
+                                                        <div class="company_policy_overview_right_title">
+                                                            <i class="material-icons-outlined">http</i><a> Liên hệ </a>
+                                                        </div>
+                                                        <div class="company_policy_overview_right_des">
+                                                            <a><%= @company.website %></a>
+                                                        </div>
+                                                    </div>
+                                                    <div class="company_policy_overview_right">
+                                                        <div class="company_policy_overview_right_title">
+                                                            <i class="material-icons-outlined">history</i><a> Cập nhật lần cuối </a>
+                                                        </div>
+                                                        <div class="company_policy_overview_right_des">
+                                                            <a><%= @company.created_at.strftime("%B %d, %Y") %></a>
+                                                        </div>
+                                                    </div>
                                                 </div>
                                             </div>
                                         </div>
