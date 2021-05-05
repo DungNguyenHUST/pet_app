@@ -169,33 +169,40 @@
                                                                 </div>
 
                                                                 <div class="company_job_salary">
-                                                                    <a><i class="material-icons-outlined">local_offer</i><%= company_job.salary %></a>
+                                                                    <%if logged_in?%>
+                                                                        <a><i class="material-icons-outlined">local_offer</i><%= company_job.salary%>$</a>
+                                                                    <%else%>
+                                                                        <%= link_to login_path, form_class: "job_salary_login" do%>
+                                                                            <i class="material-icons-outlined">local_offer</i> <span>Đăng nhập để xem mức lương</span>
+                                                                        <%end%>
+                                                                    <%end%>
                                                                 </div>
 
                                                                 <div class="company_job_type">
                                                                     <a><i class="material-icons-outlined">rss_feed</i><%= company_job.job_type %></a>
                                                                 </div>
-
-                                                                <div class="company_job_date">
-                                                                    <a><%= time_ago_in_words(company_job.created_at) %> </a>
-                                                                </div>
+                                                            </div>
+                                                        </div>
                                                                                 
-                                                                <div class="company_job_hot_save">
-                                                                    <div class="company_job_button_save" id="job_<%=company_job.id%>">
-                                                                        <%if company_job.urgent%>
-                                                                            <a class="hot_label">HOT</a>
-                                                                        <%end%>
-                                                                        <%if logged_in?%>
-                                                                            <% pre_save = company_job.company_save_jobs.find { |save| save.user_id == current_user.id} %>
-                                                                            <% if pre_save %> 
-                                                                                <%= link_to '<button class="save_btn_highlight"><i class="material-icons">turned_in</i> </button>'.html_safe, company_company_job_company_save_job_path(company_by_job.id, company_job.id, pre_save.id, type_param: 'mini'), method: :delete, remote: true %>
-                                                                            <%else%>
-                                                                                <%= link_to '<button class="save_btn"><i class="material-icons-outlined">turned_in_not</i> </button>'.html_safe, company_company_job_company_save_jobs_path(company_by_job.id, company_job.id, type_param: 'mini'), method: :post, remote: true %>
-                                                                            <%end%>
+                                                        <div class="company_job_info">
+                                                            <div class="company_job_date">
+                                                                <a><%= time_ago_in_words(company_job.created_at) %> </a>
+                                                            </div>
+                                                            <div class="company_job_hot_save">
+                                                                <div class="company_job_button_save" id="job_<%=company_job.id%>">
+                                                                    <%if company_job.urgent%>
+                                                                        <a class="hot_label">Urgent</a>
+                                                                    <%end%>
+                                                                    <%if logged_in?%>
+                                                                        <% pre_save = company_job.company_save_jobs.find { |save| save.user_id == current_user.id} %>
+                                                                        <% if pre_save %> 
+                                                                            <%= link_to '<button class="save_btn_highlight"><i class="material-icons">turned_in</i> </button>'.html_safe, company_company_job_company_save_job_path(company_by_job.id, company_job.id, pre_save.id, type_param: 'mini'), method: :delete, remote: true %>
                                                                         <%else%>
-                                                                            <%= link_to '<button class="save_btn"><i class="material-icons-outlined">turned_in_not</i> </button>'.html_safe, login_path%>
+                                                                            <%= link_to '<button class="save_btn"><i class="material-icons-outlined">turned_in_not</i> </button>'.html_safe, company_company_job_company_save_jobs_path(company_by_job.id, company_job.id, type_param: 'mini'), method: :post, remote: true %>
                                                                         <%end%>
-                                                                    </div>
+                                                                    <%else%>
+                                                                        <%= link_to '<button class="save_btn"><i class="material-icons-outlined">turned_in_not</i> </button>'.html_safe, login_path%>
+                                                                    <%end%>
                                                                 </div>
                                                             </div>
                                                         </div>
@@ -262,33 +269,40 @@
                                                                 </div>
 
                                                                 <div class="company_job_salary">
-                                                                    <a><i class="material-icons-outlined">local_offer</i><%= company_job.salary %></a>
+                                                                    <%if logged_in?%>
+                                                                        <a><i class="material-icons-outlined">local_offer</i><%= company_job.salary%>$</a>
+                                                                    <%else%>
+                                                                        <%= link_to login_path, form_class: "job_salary_login" do%>
+                                                                            <i class="material-icons-outlined">local_offer</i> <span>Đăng nhập để xem mức lương</span>
+                                                                        <%end%>
+                                                                    <%end%>
                                                                 </div>
 
                                                                 <div class="company_job_type">
                                                                     <a><i class="material-icons-outlined">rss_feed</i><%= company_job.job_type %></a>
                                                                 </div>
-
-                                                                <div class="company_job_date">
-                                                                    <a><%= time_ago_in_words(company_job.created_at) %> </a>
-                                                                </div>
+                                                            </div>
+                                                        </div>
                                                                                 
-                                                                <div class="company_job_hot_save">
-                                                                    <div class="company_job_button_save" id="job_<%=company_job.id%>">
-                                                                        <%if company_job.urgent%>
-                                                                            <a class="hot_label">HOT</a>
-                                                                        <%end%>
-                                                                        <%if logged_in?%>
-                                                                            <% pre_save = company_job.company_save_jobs.find { |save| save.user_id == current_user.id} %>
-                                                                            <% if pre_save %> 
-                                                                                <%= link_to '<button class="save_btn_highlight"><i class="material-icons">turned_in</i> </button>'.html_safe, company_company_job_company_save_job_path(company_by_job.id, company_job.id, pre_save.id, type_param: 'mini'), method: :delete, remote: true %>
-                                                                            <%else%>
-                                                                                <%= link_to '<button class="save_btn"><i class="material-icons-outlined">turned_in_not</i> </button>'.html_safe, company_company_job_company_save_jobs_path(company_by_job.id, company_job.id, type_param: 'mini'), method: :post, remote: true %>
-                                                                            <%end%>
+                                                        <div class="company_job_info">
+                                                            <div class="company_job_date">
+                                                                <a><%= time_ago_in_words(company_job.created_at) %> </a>
+                                                            </div>
+                                                            <div class="company_job_hot_save">
+                                                                <div class="company_job_button_save" id="job_<%=company_job.id%>">
+                                                                    <%if company_job.urgent%>
+                                                                        <a class="hot_label">Urgent</a>
+                                                                    <%end%>
+                                                                    <%if logged_in?%>
+                                                                        <% pre_save = company_job.company_save_jobs.find { |save| save.user_id == current_user.id} %>
+                                                                        <% if pre_save %> 
+                                                                            <%= link_to '<button class="save_btn_highlight"><i class="material-icons">turned_in</i> </button>'.html_safe, company_company_job_company_save_job_path(company_by_job.id, company_job.id, pre_save.id, type_param: 'mini'), method: :delete, remote: true %>
                                                                         <%else%>
-                                                                            <%= link_to '<button class="save_btn"><i class="material-icons-outlined">turned_in_not</i> </button>'.html_safe, login_path%>
+                                                                            <%= link_to '<button class="save_btn"><i class="material-icons-outlined">turned_in_not</i> </button>'.html_safe, company_company_job_company_save_jobs_path(company_by_job.id, company_job.id, type_param: 'mini'), method: :post, remote: true %>
                                                                         <%end%>
-                                                                    </div>
+                                                                    <%else%>
+                                                                        <%= link_to '<button class="save_btn"><i class="material-icons-outlined">turned_in_not</i> </button>'.html_safe, login_path%>
+                                                                    <%end%>
                                                                 </div>
                                                             </div>
                                                         </div>

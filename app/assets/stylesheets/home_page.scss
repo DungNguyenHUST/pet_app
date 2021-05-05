@@ -493,6 +493,7 @@
                     }
                     margin-left: 100px;
                     .company_job_des{
+                        min-height: 160px;
                         .company_job_title{
                             a{
                                 text-decoration: none !important ;
@@ -550,6 +551,9 @@
                         .company_job_mark{
                             margin-top: 10px;
                             .company_job_location{
+                                @media screen and (max-width: 600px){
+                                    float: none;
+                                }
                                 float: left;
                                 font-size: 13px;
                                 a{
@@ -574,6 +578,9 @@
                             }
 
                             .company_job_tech{
+                                @media screen and (max-width: 600px){
+                                    display: none;
+                                }
                                 float: none;
                                 font-size: 13px;
                                 a{
@@ -599,6 +606,9 @@
                 
                             .company_job_salary{
                                 float: left;
+                                @media screen and (max-width: 600px){
+                                    float: none;
+                                }
                                 margin-top: 10px;
                                 margin-right: 6px;
                                 font-size: 13px;
@@ -627,6 +637,9 @@
                                 color: #333;
                                 float: none;
                                 margin-top: 10px;
+                                @media screen and (max-width: 600px){
+                                    display: none;
+                                }
                                 a{
                                     padding-top: 4px;
                                     padding-bottom: 4px;
@@ -645,62 +658,63 @@
                                     }
                                 }
                             }
-
-                            .company_job_date{
-                                width: 60%;
-                                margin-top: 20px;
+                        }
+                    }
+                    .company_job_info{
+                        .company_job_date{
+                            width: 60%;
+                            margin-top: 20px;
+                            font-size: 13px;
+                            float: left;
+                            a{
                                 font-size: 13px;
-                                float: left;
-                                a{
-                                    font-size: 13px;
-                                    color: #1877f2;
-                                }
-                                span{
-                                    font-size: 13px;
-                                    color: #ea1e30;
-                                }
+                                color: #1877f2;
                             }
-                            .company_job_hot_save{
-                                /*display: none;*/
-                                float: right;
-                                width: 40%;
-                                padding-top: 10px;
-                                .company_job_button_save{
-                                    text-align: right;
-                                    .hot_label{
-                                        padding-top: 2px;
-                                        padding-bottom: 2px;
-                                        padding-left: 8px;
-                                        padding-right: 8px;
-                                        border-radius: 2px;
-                                        font-size: 12px;
-                                        color: #fff;
-                                        background-color: #ff5a5f;
+                            span{
+                                font-size: 13px;
+                                color: #ea1e30;
+                            }
+                        }
+                        .company_job_hot_save{
+                            /*display: none;*/
+                            float: right;
+                            width: 40%;
+                            padding-top: 10px;
+                            .company_job_button_save{
+                                text-align: right;
+                                .hot_label{
+                                    padding-top: 2px;
+                                    padding-bottom: 2px;
+                                    padding-left: 8px;
+                                    padding-right: 8px;
+                                    border-radius: 2px;
+                                    font-size: 12px;
+                                    color: #fff;
+                                    background-color: #ff5a5f;
+                                }
+                                button{
+                                    border: none;
+                                    background-color: transparent;
+                                    i{
+                                        color: #8a8888;
+                                        font-size: 22px;
+                                        position: relative;
+                                        top: 7px;
                                     }
-                                    button{
-                                        border: none;
-                                        background-color: transparent;
-                                        i{
-                                            color: #8a8888;
-                                            font-size: 22px;
-                                            position: relative;
-                                            top: 7px;
-                                        }
+                                }
+                                
+                                .save_btn_highlight{ 
+                                    i{
+                                        color: #1877f2;
                                     }
-                                    
-                                    .save_btn_highlight{ 
-                                        i{
-                                            color: #1877f2;
-                                        }
-                                        &:focus {outline:none;}
+                                    &:focus {outline:none;}
+                                }
+    
+                                .save_btn{
+                                    i{
+                                        color: #888;
                                     }
-        
-                                    .save_btn{
-                                        i{
-                                            color: #888;
-                                        }
-                                        &:focus {outline:none;}
-                                    }
+                                    &:focus {outline:none;}
                                 }
                             }
                         }
