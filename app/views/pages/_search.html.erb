@@ -15,6 +15,10 @@
                         <div class='company_block'>
                             <div class='company_name'>
                                 <a> <%=company.id%> | <%= link_to company.name, company_path(company), class: "company_name_label" %> </a>
+
+                                <div class="new_job">
+                                    <%= link_to '<button type="submit">Tạo job mới</button>'.html_safe, new_company_company_job_path(company)%>
+                                </div>
                                 
                                 <div class='approved'>
                                     <%if company.approved?%>

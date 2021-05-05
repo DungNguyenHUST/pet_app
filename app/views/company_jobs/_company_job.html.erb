@@ -58,28 +58,20 @@
                         </div>
 
                         <div class="company_job_date">
-                            <%if company_job.end_date%>
-                                <%if since_date(company_job.end_date).to_i > 0%>
-                                    <a>Đã đăng <%= time_ago_in_words(company_job.created_at) %> • Hết hạn sau <%=since_date(company_job.end_date).to_i%> ngày</a>
-                                <%else%>
-                                    <a>Đã đăng <%= time_ago_in_words(company_job.created_at) %> • </a><span>Đã hết hạn<span>
-                                <%end%>
-                            <%else%>
-                                <a>Đã đăng <%= time_ago_in_words(company_job.created_at) %> </a>
-                            <%end%>
+                            <a><%= time_ago_in_words(company_job.created_at) %> </a>
                         </div>
-
+                                        
                         <div class="company_job_hot_save">
                             <div class="company_job_button_save" id="job_<%=company_job.id%>">
                                 <%if company_job.urgent%>
-                                    <a class="hot_label">Urgent</a>
+                                    <a class="hot_label">HOT</a>
                                 <%end%>
                                 <%if logged_in?%>
                                     <% pre_save = company_job.company_save_jobs.find { |save| save.user_id == current_user.id} %>
                                     <% if pre_save %> 
-                                        <%= link_to '<button class="save_btn_highlight"><i class="material-icons">turned_in</i> </button>'.html_safe, company_company_job_company_save_job_path(@company.id, company_job.id, pre_save.id), method: :delete, remote: true %>
+                                        <%= link_to '<button class="save_btn_highlight"><i class="material-icons">turned_in</i> </button>'.html_safe, company_company_job_company_save_job_path(@company.id, company_job.id, pre_save.id, type_param: 'mini'), method: :delete, remote: true %>
                                     <%else%>
-                                        <%= link_to '<button class="save_btn"><i class="material-icons-outlined">turned_in_not</i> </button>'.html_safe, company_company_job_company_save_jobs_path(@company.id, company_job.id), method: :post, remote: true %>
+                                        <%= link_to '<button class="save_btn"><i class="material-icons-outlined">turned_in_not</i> </button>'.html_safe, company_company_job_company_save_jobs_path(@company.id, company_job.id, type_param: 'mini'), method: :post, remote: true %>
                                     <%end%>
                                 <%else%>
                                     <%= link_to '<button class="save_btn"><i class="material-icons-outlined">turned_in_not</i> </button>'.html_safe, login_path%>

@@ -273,11 +273,11 @@
 
 								<div class="new_company_content">
 									<div class="new_company_label">
-										<a><%= f.label :field_operetion, "Lĩnh vực hoạt động chính*", class: "new_company_label_name" %></a>
+										<a><%= f.label :field_operetion, "Lĩnh vực hoạt động chính của công ty*", class: "new_company_label_name" %></a>
 									</div>
 
 									<div class="new_company_input">
-										<%= f.text_field :field_operetion, :required => true, class: "form-control", placeholder: "Nhập lĩnh vực hoạt động chính của công ty" %>
+										<%= f.select(:field_operetion, options_for_select(['Công nghệ thông tin - IT', 'Viễn thông - Telecommunication', 'Hàng không - Aerospace', 'Vận tải - Transport', 'Bán dẫn - Computer', 'Nông nghiệp - Agriculture', 'Xây dựng - Construction', 'Giáo dục - Education', 'Dược phẩm - Pharmaceutical', 'Ăn uống - Food', 'Chăm sóc sức khỏe - Health care', 'Bệnh viện - Hospitality', 'Giải trí - Entertainment ', 'Truyền thông - Media', 'Năng lượng - Energy', 'Sản xuất - Manufacturing', 'Âm nhạc - Music', 'Khai thác mỏ, dầu khí - Mining', 'Worldwide web, hosting', 'Không xác định'], 'Không xác định'), {include_blank: false}, { :class => 'my_style_class' }) %>
 									</div>
 								</div>
 
