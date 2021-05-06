@@ -27,15 +27,15 @@
                                 <div class='job_block_info'>
                                     <div class="job_shoft_info">
                                         <%if @company_job.address.present?%>
-                                            <span><i class="material-icons-outlined">room</i><%= @company_job.address %></span>
+                                            <a><i class="material-icons-outlined">room</i><%= @company_job.address %></a>
                                         <%elsif @company.address.present? %>
-                                            <span><i class="material-icons-outlined">room</i><%= @company.address %></span>
+                                            <a><i class="material-icons-outlined">room</i><%= @company.address %></a>
                                         <%else%>
-                                            <span><i class="material-icons-outlined">room</i><%= @company_job.location %></span>
+                                            <a><i class="material-icons-outlined">room</i><%= @company_job.location %></a>
                                         <%end%>
                                     </div>
                                     <div class="job_shoft_info">
-                                        <span><i class="material-icons-outlined">local_offer</i><%= @company_job.salary %></span>
+                                        <a><i class="material-icons-outlined">local_offer</i><%= convert_salary_to_string(@company_job) %></a>
                                     </div>
                                     <div class="job_shoft_info">
                                         <%if @company_job.end_date%>
@@ -43,7 +43,7 @@
                                             <%if cal_date > 0%>
                                                 <a><i class="material-icons-outlined">schedule</i> Đã đăng <%= time_ago_in_words(@company_job.created_at) %> • Hết hạn sau <%=cal_date.to_i%> ngày</a>
                                             <%else%>
-                                                <a><i class="material-icons-outlined">schedule</i> Đã đăng <%= time_ago_in_words(@company_job.created_at) %> • </a><span>Đã hết hạn<span>
+                                                <a><i class="material-icons-outlined">schedule</i> Đã đăng <%= time_ago_in_words(@company_job.created_at) %> • </a><span class="warning">Đã hết hạn<span>
                                             <%end%>
                                         <%else%>
                                             <a><i class="material-icons-outlined">schedule</i> Đã đăng <%= time_ago_in_words(@company_job.created_at) %> </a>

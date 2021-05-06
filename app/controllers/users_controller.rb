@@ -62,7 +62,7 @@ class UsersController < ApplicationController
         @company_all = Company.all
         @company_follow_current = []
         @company_all.each do |company|
-            if (company.company_follows.find { |follow| follow.user_id})
+            if (company.company_follows.find { |follow| follow.user_id == current_user.id})
                 @company_follow_current.push(company)
             end
         end

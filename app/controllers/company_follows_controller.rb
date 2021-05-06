@@ -20,6 +20,7 @@ class CompanyFollowsController < ApplicationController
             else                
                 @company_follow = @company.company_follows.create(user_id: current_user.id)
             end
+            @type_param = params[:type_param]
             # redirect_to company_path(@company)
             respond_to do |format|
                 format.html {}
@@ -34,6 +35,7 @@ class CompanyFollowsController < ApplicationController
         @company = Company.friendly.find(params[:company_id])
         @company_follow = @company.company_follows.find(params[:id])
         @company_follow.destroy
+        @type_param = params[:type_param]
         # redirect_to company_path(@company)
         respond_to do |format|
             format.html {}
