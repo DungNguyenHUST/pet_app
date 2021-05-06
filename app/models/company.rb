@@ -7,6 +7,8 @@ class Company < ApplicationRecord
     has_many :company_jobs, dependent: :destroy
     has_many :company_follows, dependent: :destroy
     has_many :user, dependent: :destroy
+    has_many :company_images
+    accepts_nested_attributes_for :company_images
     
     # has_one_attached :avatar
     # has_one_attached :wall_picture

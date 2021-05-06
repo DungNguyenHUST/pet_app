@@ -33,6 +33,8 @@ Rails.application.routes.draw do
     end
 
     resources :company_follows
+	
+	resources :company_images
   end
   
   get 'company_job_list' => 'company_jobs#list'

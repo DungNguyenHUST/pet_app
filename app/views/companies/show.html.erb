@@ -112,6 +112,12 @@
                             <li class="nav-item">
                                 <a class="nav-link" data-toggle="tab" href="#CompanyJobsID"><i class="material-icons-outlined">work_outline</i>Tuyển dụng <span> <%= @company.company_jobs.count%><span></a>
                             </li>
+                            <!-- <li class="nav-item">
+                                <a class="nav-link" data-toggle="tab" href="#CompanySalarysID"><i class="material-icons-outlined">paid</i>Lương<span> <%= @company.company_jobs.count%><span></a>
+                            </li> -->
+                            <li class="nav-item">
+                                <a class="nav-link" data-toggle="tab" href="#CompanyImagesID"><i class="material-icons-outlined">image</i>Hình ảnh<span> <%= @company.company_images.count%><span></a>
+                            </li>
                         </ul>
                     </div>
                 </div>
@@ -596,7 +602,7 @@
                                                 <%end%>
                                                 
                                                 <%if @company.company_jobs.count >0%>
-                                                    <div class="company_job_mini_block">
+                                                    <div class="company_interview_job_mini_block">
                                                         <div class="company_job_label">
                                                             <a> Việc làm </a>
                                                         </div>
@@ -712,6 +718,89 @@
                                                         </div>
                                                     </div>
                                                 </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- <div role="tabpanel" id="CompanySalarysID" class="tab-pane">
+                                <div class="company_salary_tab">
+                                </div>
+                            </div> -->
+
+                            <div role="tabpanel" id="CompanyImagesID" class="tab-pane">
+                                <div class="company_image_tab">
+                                    <div class="row"> 
+                                        <div class="col-sm-8">
+                                            <div class="company_image_tab_left">
+                                                <div class="company_image_upload"> 
+                                                    <%= form_for [@company, CompanyImage.new] do |f| %>
+                                                        <div class="new_company_image_content">
+                                                            <div class="new_company_image_label">
+                                                                <a><i class="material-icons-outlined">photo_camera</i> Upload picture</a>
+                                                            </div>
+                                                            
+                                                            <%if logged_in?%>
+                                                                <div class="new_company_image_input">
+                                                                    <div class="new_company_input">
+                                                                        <%= f.file_field :image, :required => true%>
+                                                                    </div>
+                                                                </div>
+                                                            <%end%>
+                                                        </div>
+                                                        <div class="new_company_image_submit">
+                                                            <%if logged_in?%>
+                                                                <%= f.submit "Đăng ảnh", class: "new_company_image_form_submit" %>
+                                                            <%else%>
+                                                                <%= link_to '<button type="submit"> <span> Đăng ảnh </span> </button>'.html_safe, login_path %>
+                                                            <%end%>
+                                                        </div>
+                                                    <%end%>
+                                                </div>
+
+                                                <div class="company_image_block"> 
+                                                    <div class="row"> 
+                                                        <%@company.company_images.each do |company_image|%>
+                                                            <div class="col-sm-4">
+                                                                <%if company_image.image?%>
+                                                                    <img><%= image_tag company_image.image.url %>
+                                                                <%end%>
+                                                            </div>
+                                                        <%end%> 
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-sm-4">
+                                            <div class="company_image_tab_right">
+                                                <%if @company.company_jobs.count >0%>
+                                                    <div class="company_image_mini_block">
+                                                        <div class="company_job_label">
+                                                            <a> Việc làm </a>
+                                                        </div>
+                                                        <div class="company_job_des">
+                                                            <%@company.company_jobs.each do |company_job|%>
+                                                                <div class="company_job_block_mini">
+                                                                    <div class="company_avatar">
+                                                                        <%if @company.avatar?%>
+                                                                            <img><%= link_to (image_tag(@company.avatar.thumb.url)), image_path(url_for(@company.avatar.thumb.url)), rel: "gallery" , :href => company_path(@company)%>
+                                                                        <%end%>
+                                                                    </div>
+
+                                                                    <div class="company_job_info">
+                                                                        <div class="company_job_title">
+                                                                            <%= link_to (company_job.title), company_company_job_path(@company, company_job) %>
+                                                                        </div>
+                                                                        <div class="company_job_date">
+                                                                            <a><%= time_ago_in_words(company_job.created_at) %></a>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                            <%end%>
+                                                        </div>
+                                                    </div>
+                                                <%end%>
                                             </div>
                                         </div>
                                     </div>
