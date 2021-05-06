@@ -50,17 +50,7 @@
 									</div>
 									
 									<div class="new_job_input">
-										<%= f.select(:category, options_for_select(['IT', 'Online Media', 'Dịch vụ ăn uống', 'Giải trí', 'Giáo dục', 'Government', 'Sức khỏe', 'Sản xuất', 'Nghiên cứu', 'Kiến trúc', 'Xây dựng', 'Business Management', 'Finance', 'Health Science', 'Tuyển dụng - HR', 'Luật', 'Dịch vụ bảo vệ', 'Marketing and Sales', 'Logistics', 'Lĩnh vực khác'], 'Lĩnh vực khác'), {include_blank: false}, { :class => 'my_style_class'}) %>
-									</div>
-								</div>
-								
-								<div class="new_job_content">
-									<div class="new_job_label">
-										<a><%= f.label :job_type, "Loại hình công việc*", class: "new_job_label" %></a>
-									</div>
-									
-									<div class="new_job_input">
-										<%= f.select(:job_type, options_for_select(['Full Time', 'Part Time', 'Remote'], 'Full Time'), {include_blank: false}, { :class => 'my_style_class' }) %>
+										<%= f.select(:category, options_for_select(['IT - Phần mềm', 'IT - Phần cứng', 'Viễn thông', 'Kiến trúc', 'Xây dựng', 'Sức khỏe', 'Online Media', 'Dịch vụ', 'Giải trí', 'Du lịch', 'Giáo dục', 'Government', 'Sản xuất', 'Nghiên cứu', 'Business Management', 'Ngân hàng', 'Nhân sự', 'Luật', 'Marketing and Sales', 'Logistics', 'Lĩnh vực khác'], 'Lĩnh vực khác'), {include_blank: false}, { :class => 'my_style_class'}) %>
 									</div>
 								</div>
 
@@ -84,17 +74,36 @@
 																'Tuyên Quang','Vĩnh Long','Vĩnh Phúc','Yên Bái' ], "Hà Nội"), {include_blank: false}, { :class => 'my_style_class' }) %>
 									</div>
 								</div>
+
+								<div class="new_job_content">
+									<div class="new_job_label">
+										<a><%= f.label :address, "Địa chỉ cụ thể nơi làm việc(tùy chọn)", class: "new_job_label" %></a>
+									</div>
+									
+									<div class="new_job_input">
+										<%= f.text_field :address, class: "new_job_form_input", placeholder: "Nhập địa chỉ làm việc bao gồm tên đường, quận, huyện,..." %>
+									</div>
+								</div>
 							</div>
 						</div>
 						<div class="col-sm-6">
 							<div class="new_job_section">
 								<div class="new_job_content">
 									<div class="new_job_label">
-										<a><%= f.label :salary, "Lương thưởng*", class: "new_job_label" %></a>
+										<a><%= f.label :job_type, "Loại hình công việc*", class: "new_job_label" %></a>
 									</div>
 									
 									<div class="new_job_input">
-										<%= f.number_field :salary, :required => true, class: "new_job_form_input", placeholder: "Mức lương cho công việc này" %>
+										<%= f.select(:job_type, options_for_select(['Full Time', 'Part Time', 'Remote'], 'Full Time'), {include_blank: false}, { :class => 'my_style_class' }) %>
+									</div>
+								</div>
+								<div class="new_job_content">
+									<div class="new_job_label">
+										<a><%= f.label :salary, "Mức lương*", class: "new_job_label" %></a>
+									</div>
+									
+									<div class="new_job_input">
+										<%= f.select(:salary, options_for_select([['Thương lượng', 0], ['1000000đ-5000000đ', 1], ['5000000đ-10000000đ', 2], ['10000000đ-15000000đ', 3], ['15000000đ-20000000đ', 4], ['20000000đ-25000000đ', 5], ['25000000đ-30000000đ', 6], ['30000000đ-35000000đ', 7], ['35000000đ-40000000đ', 8], ['40000000đ-45000000đ', 9], ['45000000đ-50000000đ', 9], ['50000000đ-60000000đ', 10], ['600000000đ-70000000đ', 11], ['70000000đ-80000000đ', 12], ['800000000đ-90000000đ', 13], ['90000000đ-100000000đ', 14], ['hơn 100000000đ', 15]], ['Thương lượng', 0]), {include_blank: false}, { :class => 'my_style_class' }) %>
 									</div>
 								</div>
 
@@ -124,7 +133,7 @@
 									</div>
 									
 									<div class="new_job_input">
-										<%= f.select(:language, options_for_select(['English', 'Tiếng Việt'], 'English'), {include_blank: false}, { :class => 'my_style_class' }) %>
+										<%= f.select(:language, options_for_select(['English', 'Tiếng Việt', 'Tùy chọn'], 'Tùy chọn'), {include_blank: false}, { :class => 'my_style_class' }) %>
 									</div>
 								</div>
 

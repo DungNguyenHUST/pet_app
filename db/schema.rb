@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_05_06_070938) do
+ActiveRecord::Schema.define(version: 2021_05_06_103327) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -152,7 +152,7 @@ ActiveRecord::Schema.define(version: 2021_05_06_070938) do
     t.text "description"
     t.text "requirement"
     t.text "benefit"
-    t.integer "salary"
+    t.string "salary"
     t.string "quantity"
     t.string "category"
     t.datetime "created_at", precision: 6, null: false
@@ -171,6 +171,7 @@ ActiveRecord::Schema.define(version: 2021_05_06_070938) do
     t.string "slug"
     t.boolean "apply_another_site_flag", default: false
     t.string "apply_site"
+    t.string "address"
     t.index ["slug"], name: "index_company_jobs_on_slug", unique: true
   end
 

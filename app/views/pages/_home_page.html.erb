@@ -241,7 +241,7 @@
 
                                                             <div class="company_job_salary">
                                                                 <%if logged_in?%>
-                                                                    <a><i class="material-icons-outlined">local_offer</i><%= company_job.salary%>$</a>
+                                                                    <a><i class="material-icons-outlined">local_offer</i><%= convert_salary_to_string(company_job)%></a>
                                                                 <%else%>
                                                                     <%= link_to login_path, form_class: "job_salary_login" do%>
                                                                         <i class="material-icons-outlined">local_offer</i> <span>Đăng nhập để xem mức lương</span>
