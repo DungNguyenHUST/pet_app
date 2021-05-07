@@ -101,4 +101,83 @@ module CompaniesHelper
     def find_top_company
     end
 
+    def convert_benefit_to_string(benefit)
+        benefit_string = ""
+        case benefit.to_i
+        when 0
+            benefit_string = "Lương thưởng hấp dẫn"
+        when 1
+            benefit_string = "Bảo hiểm cho nhân viên"
+        when 2
+            benefit_string = "Bảo hiểm cho người thân"
+        when 3
+            benefit_string = "Team building"
+        when 4
+            benefit_string = "Nghỉ phép"
+        when 5
+            benefit_string = "Kiểm tra sức khỏe"
+        when 6
+            benefit_string = "Review lương hàng năm"
+        when 7
+            benefit_string = "Môi trường quốc tế"
+        when 8
+            benefit_string = "Flexible time"
+        when 9
+            benefit_string = "Nghỉ hè"
+        when 10
+            benefit_string = "Onsite nước ngoài"
+        when 11
+            benefit_string = "Thử việc 100% lương"
+        when 12
+            benefit_string = "Hỗ trợ gửi xe, ăn trưa"
+        when 13
+            benefit_string = "CLB thể thao"
+        when 14
+            benefit_string = "Câu lạc bộ âm nhạc"
+        when 15
+            benefit_string = "Laptop, màn hình xịn"
+        else
+            benefit_string = "Đang cập nhật"
+        end
+    end
+
+    def convert_benefit_to_icon(benefit)
+        benefit_icon = ""
+        case benefit.to_i
+        when 0
+            benefit_icon = "paid"
+        when 1
+            benefit_icon = "settings_accessibility"
+        when 2
+            benefit_icon = "people_alt"
+        when 3
+            benefit_icon = "villa"
+        when 4
+            benefit_icon = "night_shelter"
+        when 5
+            benefit_icon = "health_and_safety"
+        when 6
+            benefit_icon = "history_edu"
+        when 7
+            benefit_icon = "emoji_flags"
+        when 8
+            benefit_icon = "tune"
+        when 9
+            benefit_icon = "beach_access"
+        when 10
+            benefit_icon = "airplane_ticket"
+        when 11
+            benefit_icon = "paid"
+        when 12
+            benefit_icon = "paid"
+        when 13
+            benefit_icon = "sports_soccer"
+        when 14
+            benefit_icon = "headphones"
+        when 15
+            benefit_icon = "laptop"
+        else
+            benefit_icon = "scatter_plot"
+        end
+    end
 end

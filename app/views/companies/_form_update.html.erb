@@ -391,11 +391,24 @@
 						
                         <div class="new_company_content">
                             <div class="new_company_label">
-                                <a><%= f.label :policy, "Chính sách nổi bật* ", class: "new_company_label" %></a>
+                                <a><%= f.label :benefit, "Chọn chính sách công ty(bạn có thể chọn 1 hoặc nhiều chính sách)* ", class: "new_company_label" %></a>
+                            </div>
+                            
+                            <div class="new_company_input_checkbox">
+                            	<%select_datas = [0,1,2,3,4,5,6,7,8,9,10,11,12,13,14,15]%>
+                            	<%select_datas.each do |select_data|%>
+                            		<a><%= f.check_box :benefit, { multiple: true, required: true, class: "check_box_style"}, select_data, nil %> <%=convert_benefit_to_string(select_data)%></a>
+								<%end%>
+                            </div>
+                        </div>
+						
+                        <div class="new_company_content">
+                            <div class="new_company_label">
+                                <a><%= f.label :policy, "Thêm chính sách nổi bật khác(tùy chọn)", class: "new_company_label" %></a>
                             </div>
                             
                             <div class="new_company_input">
-                                <%= f.cktext_area :policy, :required => true, class: "form-control-rich-text customized-min-height", ckeditor: { language: 'us', toolbar: "full"}, placeholder: "Nhập ít nhất 3 chính sách nổi bật của công ty" %>
+                                <%= f.cktext_area :policy, class: "form-control-rich-text customized-min-height", ckeditor: { language: 'us', toolbar: "full"}, placeholder: "Nhập ít nhất 3 lý do tại sao nên join công ty" %>
                             </div>
                         </div>
                     </div>

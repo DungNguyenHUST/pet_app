@@ -8,14 +8,13 @@
     <body>
         <%- model_class = Company -%>
             <div class="company_area">
+                <div class="company_wall_image">
+                    <%if @company.wall_picture?%>
+                        <%= image_tag @company.wall_picture.large.url %>
+                    <%end%>
+                </div>
                 <div class="container">
                     <div class="company_overview">
-                        <div class="company_wall_image">
-                            <%if @company.wall_picture?%>
-                                <%= image_tag @company.wall_picture.large.url %>
-                            <%end%>
-                        </div>
-
                         <div class='row'>
                             <div class="col-sm-10">
                                 <div class="company_title_summary">
@@ -312,12 +311,29 @@
                                     <div class="row">
                                         <div class="col-sm-8">
                                             <div class="company_policy_overview_left">
-                                                <div class="company_policy_title">
-                                                    <a> Những chính sách nổi bật tại <%= @company.name %></a>
+                                                <div class="company_policy_block">
+                                                    <div class="company_policy_title">
+                                                        <a> Những chính sách nổi bật tại <%= @company.name %></a>
+                                                    </div>
+
+                                                    <div class="company_policy_policy">
+                                                        <a><%= @company.policy.html_safe %></a>
+                                                    </div>
                                                 </div>
 
-                                                <div class="company_policy_policy">
-                                                    <a><%= @company.policy.html_safe %></a>
+                                                <div class="company_policy_benefit_block">
+                                                    <div class="row">
+                                                        <%@company.benefit.each do |benefit|%>
+                                                            <div class="col-sm-3">
+                                                                <div class="company_policy_benefit">
+                                                                    <div class="benefit_icon">
+                                                                        <i class="material-icons"><%=convert_benefit_to_icon(benefit)%></i>
+                                                                    </div>
+                                                                    <a><%=convert_benefit_to_string(benefit)%></a>
+                                                                </div>
+                                                            </div>
+                                                        <%end%>
+                                                    </div>
                                                 </div>
                                             </div>
                                         </div>
