@@ -9,8 +9,12 @@
             <div class="new_job_form">
                 <%= form_for [@company, CompanyJob.new] do |f| %>
                     <div class="new_job_title">
-                        <strong>Tạo một công việc mới cho <%=@company.name%></strong>
+                        <a>Tạo một công việc mới cho <%=@company.name%></a>
                     </div>
+
+					<div class="new_job_title_sub">
+						<span>Note: Mục có dấu '*' là bắt buộc</span>
+					</div>
 					
 					<div class="row">
 						<div class="col-sm-6">

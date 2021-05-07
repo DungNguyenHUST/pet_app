@@ -342,6 +342,10 @@ ActiveRecord::Schema.define(version: 2021_05_07_092802) do
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.string "difficult"
+    t.boolean "algorithms_question"
+    t.boolean "interview_question"
+    t.boolean "iq_question"
+    t.boolean "other_question"
     t.string "category"
     t.boolean "approved", default: false
     t.string "slug"
@@ -361,13 +365,26 @@ ActiveRecord::Schema.define(version: 2021_05_07_092802) do
     t.boolean "root", default: false
     t.boolean "admin", default: false
     t.boolean "user", default: true
+    t.string "encrypted_password", default: "", null: false
+    t.string "reset_password_token"
+    t.datetime "reset_password_sent_at"
+    t.datetime "remember_created_at"
+    t.string "provider"
+    t.string "uid"
+    t.string "token"
+    t.integer "expires_at"
+    t.boolean "expires"
+    t.string "refresh_token"
+    t.string "image_url"
     t.boolean "employer", default: false
+    t.string "company"
     t.integer "company_id"
     t.boolean "approved", default: false
     t.string "slug"
     t.string "wall_picture"
     t.string "avatar"
     t.string "cover_letter_attach"
+    t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
     t.index ["slug"], name: "index_users_on_slug", unique: true
   end
 

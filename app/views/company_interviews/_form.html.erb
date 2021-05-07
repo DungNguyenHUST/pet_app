@@ -10,8 +10,12 @@
             <div class="new_interview_form">
                 <%= form_for [@company, CompanyInterview.new] do |f| %>
                     <div class="new_interview_title">
-                        <strong>Chia sẻ kinh nghiệm phỏng vấn của bạn tại <%=@company.name%> </strong>
+                        <a>Chia sẻ kinh nghiệm phỏng vấn của bạn tại <%=@company.name%> </a>
                     </div>
+
+					<div class="new_interview_title_sub">
+						<span>Note: Mục có dấu '*' là bắt buộc</span>
+					</div>
 					
 					<div class="row">
 						<div class="col-sm-6">
@@ -64,7 +68,7 @@
 							<div class="new_interview_section">
 								<div class="new_interview_difficultly_content">
 									<div class="new_interview_difficultly_label">
-										<a><%= f.label :difficultly, "Bạn cảm nhận thế nào về độ khó bài phỏng vấn ?*:", class: "new_interview_label_name" %></a>
+										<a><%= f.label :difficultly, "Bạn cảm nhận thế nào về độ khó bài phỏng vấn ?*", class: "new_interview_label_name" %></a>
 									</div>
 
 									<div class="new_interview_difficultly_input">
@@ -124,7 +128,7 @@
 
 								<div class="new_interview_satisfied_content">
 									<div class="new_interview_satisfied_label">
-										<a><%= f.label :satisfied, "Bạn có hài lòng với buổi phỏng vấn không?*:", class: "new_interview_label_name" %></a>
+										<a><%= f.label :satisfied, "Bạn có hài lòng với buổi phỏng vấn không?*", class: "new_interview_label_name" %></a>
 									</div>
 
 									<div class="new_interview_satisfied_input">
