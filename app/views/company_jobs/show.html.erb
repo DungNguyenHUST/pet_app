@@ -102,6 +102,15 @@
                 <div class='row'>
                     <div class="col-sm-8">
                         <div class='job_block_left'>
+                            <%if @company_job.skill.present?%>
+                                <div class="job_skill">
+                                    <div class="job_content">
+                                        <%@company_job.skill.each do |skill|%>
+                                            <a><%= convert_skill_to_string(skill)%></a>
+                                        <%end%>
+                                    </div>
+                                </div>
+                            <%end%>
                             <div class="job_description">
                                 <div class="job_section">
                                     <strong>Mô tả công việc</strong>

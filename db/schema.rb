@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_05_07_024643) do
+ActiveRecord::Schema.define(version: 2021_05_07_092802) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -173,6 +173,7 @@ ActiveRecord::Schema.define(version: 2021_05_07_024643) do
     t.boolean "apply_another_site_flag", default: false
     t.string "apply_site"
     t.string "address"
+    t.text "skill", default: [], array: true
     t.index ["slug"], name: "index_company_jobs_on_slug", unique: true
   end
 
