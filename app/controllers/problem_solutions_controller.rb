@@ -24,8 +24,8 @@ class ProblemSolutionsController < ApplicationController
         if @problem_solution.save
             redirect_to problem_path(@problem)
         else
-            flash[:danger] = "Comment lỗi?"
-            render :new
+            flash[:danger] = "Lỗi, hãy điền nội dung câu trả lời của bạn ..."
+            redirect_to problem_path(@problem)
         end
     end
 
@@ -40,7 +40,7 @@ class ProblemSolutionsController < ApplicationController
         if(@problem_solution.update(problem_solution_param))
             redirect_to pages_path
         else
-            flash[:danger] = "Không thể cập nhật thông tin"
+            flash[:danger] = "Lỗi, hãy điền đủ nội dung có dấu '*'"
         end
     end
     

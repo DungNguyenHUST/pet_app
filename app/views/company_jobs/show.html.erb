@@ -194,14 +194,14 @@
                                 <div class='job_block_right_overview'>
                                     <div class="review_job_score_star">
                                         <div class="review_job_point">
-                                            <strong><%=rating_review_total_score.to_f.round(1)%> </strong>
+                                            <strong><%=cal_rating_review_total_score(@company).to_f.round(1)%> </strong>
                                         </div>
                                         <div class="review_job_score_star_des">
-                                            <%if rating_review_total_score > 0%>
-                                                <%rating_review_total_score.to_i.times do%>
+                                            <%if cal_rating_review_total_score(@company) > 0%>
+                                                <%cal_rating_review_total_score(@company).to_i.times do%>
                                                     <i class="material-icons checked">circle</i>
                                                 <%end%>
-                                                <%(5 - rating_review_total_score.to_i).to_i.times do%>
+                                                <%(5 - cal_rating_review_total_score(@company).to_i).to_i.times do%>
                                                     <i class="material-icons checked_out">radio_button_unchecked</i>
                                                 <%end%>
                                             <%else%>
@@ -233,7 +233,7 @@
                                                 </div>
                                                 
                                                 <div class="inside-circle">
-                                                    <%= rating_review_total_score.to_i * 20%>%
+                                                    <%= cal_rating_review_total_score(@company).to_i * 20%>%
                                                 </div>
                                             </div>
                                         </div>
@@ -245,7 +245,7 @@
                                             .circle-wrap .circle .mask.full,
                                             .circle-wrap .circle .fill {
                                                 animation: fill ease-in-out 3s;
-                                                transform: rotate(<%= rating_review_total_score.to_i * 36%>deg);
+                                                transform: rotate(<%= cal_rating_review_total_score(@company).to_i * 36%>deg);
                                             }
                                             
                                             @keyframes fill {
@@ -253,7 +253,7 @@
                                                 transform: rotate(0deg);
                                             }
                                             100% {
-                                                transform: rotate(<%= rating_review_total_score.to_i * 36%>deg);
+                                                transform: rotate(<%= cal_rating_review_total_score(@company).to_i * 36%>deg);
                                             }
                                         }
                                         </style>

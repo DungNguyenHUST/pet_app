@@ -22,12 +22,12 @@ class CompanyReviewsController < ApplicationController
 
         @company_review.companyName = @company.name
 
-        @company_review.average_score = (@company_review.work_env_score + @company_review.salary_score + @company_review.ot_score + @company_review.manager_score + @company_review.career_score + @company_review.score) / 6
+        # @company_review.average_score = (@company_review.work_env_score + @company_review.salary_score + @company_review.ot_score + @company_review.manager_score + @company_review.career_score + @company_review.score) / 6
 
         if @company_review.save
             redirect_to company_path(@company)
         else
-            flash[:danger] = "Lỗi, hay điền đủ nội dung có dấu "
+            flash[:danger] = "Lỗi, hãy điền đủ nội dung có dấu '*' "
             render :new
         end
     end

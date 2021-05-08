@@ -53,7 +53,7 @@ class ProblemsController < ApplicationController
 				redirect_to problems_path
 			end
         else
-            flash[:danger] = "Lỗi, Không thể lưu thông tin"
+            flash[:danger] = "Lỗi, hãy điền đủ nội dung có dấu '*'"
             render :new
         end
     end
@@ -98,7 +98,7 @@ class ProblemsController < ApplicationController
 					redirect_to problems_path
 				end
 			else
-				flash[:danger] = "Không thể cập nhật thông tin"
+				flash[:danger] = "Lỗi, hãy điền đủ nội dung có dấu '*'"
 			end
         else
             if (!@problem.approved? && @problem.update_column(:approved, true))

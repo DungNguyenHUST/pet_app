@@ -28,7 +28,7 @@ class CompanyImagesController < ApplicationController
     if @company_image.save
             redirect_to company_path(@company)
     else
-      flash[:danger] = "Lỗi, hay điền đủ nội dung có dấu "
+      flash[:danger] = "Lỗi, hãy điền đủ nội dung có dấu '*' "
     end
   end
 

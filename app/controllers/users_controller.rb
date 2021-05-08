@@ -85,10 +85,10 @@ class UsersController < ApplicationController
 
         if user_params.present? && !(user_params.has_key?(:approved))
 			if(@user.update(user_params))
-				flash[:success] = "Update thành công"
+				flash[:success] = "Update thông tin thành công"
 				redirect_to user_path(current_user)
 			else
-				flash[:danger] = "Không thể update thông tin, vui lòng thử lại"
+				flash[:danger] = "Lỗi, hãy điền đủ nội dung có dấu '*'"
 			end
         else
             if (!@user.approved? && @user.update_column(:approved, true))

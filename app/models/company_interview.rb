@@ -7,5 +7,5 @@ class CompanyInterview < ApplicationRecord
     has_many :company_like_interviews, dependent: :destroy
     has_many :company_dislike_interviews, dependent: :destroy
     
-    validates :content, presence: true
+    # validates :content, presence: true
 end

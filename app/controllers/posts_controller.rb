@@ -24,7 +24,7 @@ class PostsController < ApplicationController
 				redirect_to posts_path
 			end
         else
-            flash[:danger] = "[WARN]Can't save data"
+            flash[:danger] = "Lỗi, hãy điền đủ nội dung có dấu '*'"
             render :new
         end
     end
@@ -51,7 +51,7 @@ class PostsController < ApplicationController
 					redirect_to posts_path
 				end
 			else
-				flash[:danger] = "Không thể cập nhật thông tin"
+				flash[:danger] = "Lỗi, hãy điền đủ nội dung có dấu '*'"
 			end
         else
             if (!@post.approved? && @post.update_column(:approved, true))

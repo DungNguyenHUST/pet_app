@@ -79,19 +79,9 @@
 														<a><%= link_to (company_job.title), company_company_job_path(company_by_job, company_job) %></a>
 													</div>
 
-													<div class="company_job_company_name">
-														<%if(company_by_job.company_reviews.count > 0)%>
-															<%rate_work_env = company_by_job.company_reviews.sum('work_env_score').to_f / company_by_job.company_reviews.count%>
-															<%rate_salary = company_by_job.company_reviews.sum('salary_score').to_f / company_by_job.company_reviews.count%>
-															<%rate_ot = company_by_job.company_reviews.sum('ot_score').to_f / company_by_job.company_reviews.count%>
-															<%rate_manager = company_by_job.company_reviews.sum('manager_score').to_f / company_by_job.company_reviews.count%>
-															<%rate_career = company_by_job.company_reviews.sum('career_score').to_f / company_by_job.company_reviews.count%>
-															<%total_rate = (rate_work_env + rate_salary + rate_ot + rate_manager + rate_career)/5%>
-														<%else%>
-															<%total_rate = 0%>
-														<%end%>
+													<div class="company_job_company_rate">
 														<a><%= link_to (company_by_job.name), company_path(company_by_job)%> </a>
-														<a><%=total_rate.to_f.round(1)%><i class="material-icons checked">circle</i></a>
+														<a><%=cal_rating_review_total_score(company_by_job).to_f.round(1)%><i class="material-icons checked">circle</i></a>
 													</div>
 
 													<div class="company_job_description">
@@ -202,17 +192,7 @@
 												</div>
 
 												<div class="company_rating">
-													<%# Cal culate rating score %>
-													<%if(company.company_reviews.count > 0)%>
-														<%rate_work_env = company.company_reviews.sum('work_env_score').to_f / company.company_reviews.count%>
-														<%rate_salary = company.company_reviews.sum('salary_score').to_f / company.company_reviews.count%>
-														<%rate_ot = company.company_reviews.sum('ot_score').to_f / company.company_reviews.count%>
-														<%rate_manager = company.company_reviews.sum('manager_score').to_f / company.company_reviews.count%>
-														<%rate_career = company.company_reviews.sum('career_score').to_f / company.company_reviews.count%>
-														<%total_rate = (rate_work_env + rate_salary + rate_ot + rate_manager + rate_career)/5%>
-													<%else%>
-														<%total_rate = 0%>
-													<%end%>
+													<%total_rate = cal_rating_review_total_score(company)%>
 													<div class="review_score_star">
 														<%if total_rate > 0%>
 															<%total_rate.to_i.times do%>

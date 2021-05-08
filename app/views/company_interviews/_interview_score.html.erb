@@ -11,14 +11,14 @@
                     <div class="col-sm-3">
                         <div class="interview_score_difficult">
                             <div class="interview_point">
-                                <strong><%=rating_interview_difficultly_score.round(1)%></strong>
+                                <strong><%=cal_rating_interview_difficultly_score(@company).round(1)%></strong>
                             </div>
                             <div class="interview_score_star">
-                                <%if rating_interview_difficultly_score > 0%>
-                                    <%rating_interview_difficultly_score.to_i.times do%>
+                                <%if cal_rating_interview_difficultly_score(@company) > 0%>
+                                    <%cal_rating_interview_difficultly_score(@company).to_i.times do%>
                                         <i class="material-icons checked">circle</i>
                                     <%end%>
-                                    <%(5 - rating_interview_difficultly_score.to_i).to_i.times do%>
+                                    <%(5 - cal_rating_interview_difficultly_score(@company).to_i).to_i.times do%>
                                         <i class="material-icons checked_out">radio_button_unchecked</i>
                                     <%end%>
                                 <%else%>
@@ -36,14 +36,14 @@
                     <div class="col-sm-3">
                         <div class="interview_score_satisfied">
                             <div class="interview_point">
-                                <strong><%=rating_interview_satisfied_score.round(1)%></strong>
+                                <strong><%=cal_rating_interview_satisfied_score(@company).round(1)%></strong>
                             </div>
                             <div class="interview_score_star">
-                                <%if rating_interview_satisfied_score > 0%>
-                                    <%rating_interview_satisfied_score.to_i.times do%>
+                                <%if cal_rating_interview_satisfied_score(@company) > 0%>
+                                    <%cal_rating_interview_satisfied_score(@company).to_i.times do%>
                                         <i class="material-icons checked">circle</i>
                                     <%end%>
-                                    <%(5 - rating_interview_satisfied_score.to_i).to_i.times do%>
+                                    <%(5 - cal_rating_interview_satisfied_score(@company).to_i).to_i.times do%>
                                         <i class="material-icons checked_out">radio_button_unchecked</i>
                                     <%end%>
                                 <%else%>
@@ -62,7 +62,7 @@
                         <div class="interview_score_process">
                             <div class="interview_content">
                                 <div class="interview_point">
-                                    <strong><%=rating_interview_process_score.round(1)%></strong>
+                                    <strong><%=cal_rating_interview_process_score(@company).round(1)%></strong>
                                 </div>
                                 <div class="interview_score_star">
                                     <i class="material-icons-outlined checked">settings_input_svideo</i>

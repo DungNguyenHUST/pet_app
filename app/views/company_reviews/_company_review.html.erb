@@ -31,18 +31,22 @@
                         <div class="review_point">
                         </div>
                         <div class="review_score_star">
-                            <a><%=company_review.average_score.to_f.round(1)%> </a>
-                            <%company_review.average_score.to_i.times do%>
+                            <a><%=cal_rating_review_score(company_review).to_f.round(1)%> </a>
+                            <%cal_rating_review_score(company_review).to_i.times do%>
                                 <i class="material-icons checked">circle</i>
                             <%end%>
-                            <%(5 - company_review.average_score.to_i).to_i.times do%>
+                            <%(5 - cal_rating_review_score(company_review).to_i).to_i.times do%>
                                 <i class="material-icons checked_out">radio_button_unchecked</i>
                             <%end%>
                         </div>
                     </div>
 
                     <div class="user_review_title">
-                        <a><%= company_review.review_title %></a>
+                        <%if company_review.review_title.present?%>
+                            <a><%= company_review.review_title%></a>
+                        <%else%>
+                            <a><%= company_review.position%></a>
+                        <%end%>
                     </div>
 
                     <div class="user_review_status">
@@ -56,16 +60,20 @@
                     </div>
 
                     <div class="user_review_cotent">
-                        <div class="user_review_body">
-                            <a><%= company_review.review.html_safe %></a>
-                        </div>
+                        <%if company_review.review.present?%>
+                            <div class="user_review_body">
+                                <a><%= company_review.review.html_safe %></a>
+                            </div>
+                        <%end%>
                         <div class="user_review_pros">
                             <div class="user_review_pros_label">
                                 <i class="material-icons-outlined checked">check_circle_outline</i>
                                 <strong>Ưu điểm</strong>
                             </div>
                             <div class="user_review_pros_content">
-                                <a><%= company_review.pros %></a>
+                                <%if company_review.pros.present?%>
+                                    <a><%= company_review.pros.html_safe %></a>
+                                <%end%>
                             </div>
                         </div>
 
@@ -75,7 +83,9 @@
                                 <strong>Nhược điểm</strong>
                             </div>
                             <div class="user_review_cons_content">
-                                <a><%= company_review.cons %></a>
+                                <%if company_review.cons.present?%>
+                                    <a><%= company_review.cons.html_safe %></a>
+                                <%end%>
                             </div>
                         </div>
 
@@ -138,7 +148,7 @@
                 <%= form_for [@company, company_review, CompanyReplyReview.new] do |f| %>
                     <div class="new_reply_review_content">
                         <div class="new_reply_review_input_review">
-                            <%= f.text_area :reply_content, class: "form-control-text", placeholder: "Nhập câu trả lời của bạn tại đây" %>
+                            <%= f.text_area :reply_content, :required =>true, class: "form-control-text", placeholder: "Nhập câu trả lời của bạn tại đây" %>
                         </div>
                     </div>
 

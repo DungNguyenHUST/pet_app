@@ -1,14 +1,13 @@
 class Post < ApplicationRecord
 	extend FriendlyId
 	friendly_id :title, use: :slugged
-	
-    validates :title, presence: true
     
-    has_many :post_comments, dependent: :destroy
+  has_many :post_comments, dependent: :destroy
 
-    # has_one_attached :wall_picture
-	
-    validates :content, presence: true
+  # has_one_attached :wall_picture
+
+  validates :title, presence: true
+  validates :content, presence: true
 	
 	def self.approved
 	  where(approved: :true)

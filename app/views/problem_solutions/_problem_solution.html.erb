@@ -79,7 +79,7 @@
                 <%= form_for [@problem, problem_solution, ProblemReplySolution.new] do |f| %>
                     <div class="new_reply_problem_solution_content">
                         <div class="new_reply_problem_solution_input_problem_solution">
-                            <%= f.text_area :reply_content, class: "form-control-text", placeholder: "Gửi trả lời" %>
+                            <%= f.text_area :reply_content, :required =>true, class: "form-control-text", placeholder: "Gửi trả lời" %>
                         </div>
                     </div>
 

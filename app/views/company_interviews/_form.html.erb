@@ -10,7 +10,7 @@
             <div class="new_interview_form">
                 <%= form_for [@company, CompanyInterview.new] do |f| %>
                     <div class="new_interview_title">
-                        <a>Chia sẻ kinh nghiệm phỏng vấn của bạn tại <%=@company.name%> </a>
+                        <a>Sẽ chỉ mất 1 phút, kinh nghiệm phỏng vấn của bạn tại <%=@company.name%> sẽ giúp ích cho rất nhiều người ...</a>
                     </div>
 
 					<div class="new_interview_title_sub">
@@ -18,7 +18,7 @@
 					</div>
 					
 					<div class="row">
-						<div class="col-sm-6">
+						<div class="col-sm-8">
 							<%if logged_in?%>
 								<div class="new_interview_section">
 									<div class="new_interview_content">
@@ -26,45 +26,19 @@
 											<a><%= f.label :privacy, "Bạn có muốn ẩn thông tin cá nhân (thông tin cá nhân của bạn sẽ không được hiển thị)*", class: "new_interview_label_name" %></a>
 										</div>
 										<div class="new_interview_input">
-											<%= f.select(:privacy, options_for_select([['Không, tôi không muốn ẩn thông tin cá nhân', false], ['Có, tôi muốn ẩn thông tin cá nhân', true]]), {include_blank: false}, { :class => 'my_style_class' }) %>
+											<div class="new_interview_input_radio">
+												<%= f.radio_button :privacy, true %>
+												<a>Có, tôi muốn ẩn thông tin cá nhân</a>
+											</div>
+											<div class="new_interview_input_radio">
+												<%= f.radio_button :privacy, false, :checked => true %>
+												<a>Không</a>
+											</div>
 										</div>
 									</div>
 								</div>
 							<%end%>
 
-							<div class="new_interview_section">
-								<div class="new_interview_content">
-									<div class="new_interview_label">
-										<a><%= f.label :position, "Vị trí phỏng vấn*", class: "new_interview_label_name" %></a>
-									</div>
-
-									<div class="new_interview_input">
-										<%= f.text_field :position, :required => true, class: "new_interview_form_input", placeholder: "Nhập vị trí mà bạn phỏng vấn" %>
-									</div>
-								</div>
-
-								<div class="new_interview_content">
-									<div class="new_interview_label">
-										<a><%= f.label :get_interview, "Bạn tìm đến công ty từ đâu*", class: "new_interview_label_name" %></a>
-									</div>
-
-									<div class="new_interview_input">
-										<%= f.select(:get_interview, options_for_select(['Mạng xã hội','Bạn bè người thân', 'Kênh tuyển dụng', 'Quảng cáo', 'Kênh khác'], 'Kênh khác'), {include_blank: false}, { :class => 'my_style_class' }) %>
-									</div>
-								</div>
-								
-								<div class="new_interview_content">
-									<div class="new_interview_label">
-										<a><%= f.label :process, "Số vòng phỏng vấn*", class: "new_interview_label_name" %></a>
-									</div>
-
-									<div class="new_interview_input">
-										<%= f.select(:process, options_for_select(['1','2', '3', '4', '5'], '1'), {include_blank: false}, { :class => 'my_style_class' }) %>
-									</div>
-								</div>
-							</div>
-						</div>
-						<div class="col-sm-6">
 							<div class="new_interview_section">
 								<div class="new_interview_difficultly_content">
 									<div class="new_interview_difficultly_label">
@@ -192,26 +166,69 @@
 									</div>
 
 									<div class="new_interview_input">
-										<%= f.select(:offer, options_for_select([['Không', false], ['Có', true]]), {include_blank: false}, { :class => 'my_style_class' }) %>
+										<div class="new_interview_input_radio">
+											<%= f.radio_button :offer, true %>
+											<a>Có</a>
+										</div>
+										<div class="new_interview_input_radio">
+											<%= f.radio_button :offer, false, :checked => true %>
+											<a>Không</a>
+										</div>
 									</div>
 								</div>
 							</div>
-						</div>
-					</div>
-					<div class="new_interview_section_content">
-						<div class="new_interview_content">
-							<div class="new_interview_label">
-								<a><%= f.label :content, "Chia sẻ nội dung phỏng vấn*", class: "new_interview_label_name" %></a>
+
+							<div class="new_interview_section">
+								<div class="new_interview_content">
+									<div class="new_interview_label">
+										<a><%= f.label :position, "Vị trí phỏng vấn*", class: "new_interview_label_name" %></a>
+									</div>
+
+									<div class="new_interview_input">
+										<%= f.text_field :position, :required => true, class: "new_interview_form_input", placeholder: "Nhập vị trí mà bạn phỏng vấn" %>
+									</div>
+								</div>
+
+								<div class="new_interview_content">
+									<div class="new_interview_label">
+										<a><%= f.label :get_interview, "Bạn tìm đến công ty từ đâu*", class: "new_interview_label_name" %></a>
+									</div>
+
+									<div class="new_interview_input">
+										<%= f.select(:get_interview, options_for_select(['Mạng xã hội','Bạn bè người thân', 'Kênh tuyển dụng', 'Quảng cáo', 'Kênh khác'], 'Kênh khác'), {include_blank: false}, { :class => 'my_style_class' }) %>
+									</div>
+								</div>
+								
+								<div class="new_interview_content">
+									<div class="new_interview_label">
+										<a><%= f.label :process, "Số vòng phỏng vấn*", class: "new_interview_label_name" %></a>
+									</div>
+
+									<div class="new_interview_input">
+										<%= f.select(:process, options_for_select(['1','2', '3', '4', '5'], '1'), {include_blank: false}, { :class => 'my_style_class' }) %>
+									</div>
+								</div>
+							</div>
+							
+							<div class="new_interview_section_content">
+								<div class="new_interview_label_sub">
+									<span>Chia sẻ thêm của bạn về quá trình phỏng vấn tại <%=@company.name%>(tùy chọn) </span>
+								</div>
+								<div class="new_interview_content">
+									<div class="new_interview_label">
+										<a><%= f.label :content, "Chia sẻ nội dung phỏng vấn", class: "new_interview_label_name" %></a>
+									</div>
+
+									<div class="new_interview_input">
+										<%= f.cktext_area :content, class: "form-control-rich-text customized-min-height", ckeditor: { language: 'us', toolbar: "full"}, placeholder: "Chia sẻ nội dung phỏng vấn, câu hỏi hay cho mọi người nào" %>
+									</div>
+								</div>
 							</div>
 
-							<div class="new_interview_input">
-								<%= f.cktext_area :content, :required => true, class: "form-control-rich-text customized-min-height", ckeditor: { language: 'us', toolbar: "full"}, placeholder: "Chia sẻ nội dung phỏng vấn, câu hỏi hay cho mọi người nào" %>
+							<div class="new_interview_submit">
+								<%= f.submit "Gửi phản hồi", class: "new_interview_form_submit" %>
 							</div>
 						</div>
-					</div>
-
-					<div class="new_interview_submit">
-						<%= f.submit "Gửi phản hồi", class: "new_interview_form_submit" %>
 					</div>
                 <%end%>
             </div>

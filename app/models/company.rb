@@ -18,7 +18,7 @@ class Company < ApplicationRecord
     mount_uploader :wall_picture, ImageUploader
 
     validates :overview, presence: true
-    # validates :policy, presence: true
+    validates :policy, presence: true
 
     def self.search(search)
         if search

@@ -23,7 +23,7 @@ class PostCommentsController < ApplicationController
         if @post_comment.save
             redirect_to post_path(@post)
         else
-            flash[:danger] = "Comment lỗi?"
+            flash[:danger] = "Lỗi, hãy điền đủ nội dung có dấu '*'"
             render :new
         end
     end
