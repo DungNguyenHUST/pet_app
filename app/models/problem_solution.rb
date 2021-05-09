@@ -7,5 +7,5 @@ class ProblemSolution < ApplicationRecord
     has_many :problem_vote_solutions, dependent: :destroy
     has_many :problem_unvote_solutions, dependent: :destroy
     
-    validates :content, presence: true
+    # validates :content, presence: true
 end

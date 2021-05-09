@@ -6,5 +6,5 @@ class CompanyApplyJob < ApplicationRecord
     # has_one_attached :cover_vitate
     mount_uploader :cover_vitate, FileUploader
 
-    validates :cover_letter, presence: true
+    # validates :cover_letter, presence: true
 end

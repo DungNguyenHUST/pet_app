@@ -6,8 +6,8 @@ class Post < ApplicationRecord
 
   # has_one_attached :wall_picture
 
-  validates :title, presence: true
-  validates :content, presence: true
+  # validates :title, presence: true
+  # validates :content, presence: true
 	
 	def self.approved
 	  where(approved: :true)
