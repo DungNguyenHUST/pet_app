@@ -211,18 +211,18 @@
             position: relative;
             display: block;
             background-color: #fff;
-            //border-bottom: 1px solid #dfe1e5;
-            .nav-tabs {
+            border-bottom: 1px solid #dfe1e5;
+            .nav {
                 overflow-x: auto;
                 overflow-y: hidden;
                 flex-wrap: nowrap;
             }
-            .nav-tabs .nav-link {
+            .nav .nav-link {
                 white-space: nowrap;
                 font-size: 16px;
                 color: #333;
             }
-            .nav-tabs .nav-link, .nav-tabs .nav-link.active, .nav-tabs .nav-link:hover {
+            .nav .nav-link, .nav .nav-link.active, .nav .nav-link:hover {
                 border: none;
                 color: #333;
                 font-size: 16px;
@@ -238,21 +238,19 @@
                     color: #666;
                 }
             }
-            .nav-tabs .nav-link.active {
+            .nav .nav-link.active {
                 border-radius: 0;
-                border-bottom: 4px solid #1877f2;
+                border-bottom: 3px solid #1877f2;
                 font-weight: 500;
                 color: #1877f2;
             }
         }
 
         .company_index_tab_content{
-            .tab-content{
-                padding-left: 0px;
-                background-color: #fff;
-                padding-top: 20px;
-                min-height: 600px;
-            }
+            padding-left: 0px;
+            background-color: #fff;
+            padding-top: 20px;
+            min-height: 600px;
         }
     
         .row{
@@ -529,178 +527,178 @@
     clear: both;
     margin-top: 0px !important;
     position: static;
-    // background-color: #fff;
-    .company_wall_image{
-        img{
-            width: 100%;
-            max-height: 350px;
-        }
-    }
-
     .company_overview{
-        height: auto;
-        padding-bottom: 10px;
-        background-color: #fff;
-        border-radius: 5px;
-
-        .company_title_summary
-        {
-            padding-top: 20px;
-            .company_title_image{
-                padding-left: 0px;
-                padding-right: 20px;
-                img{
-                    max-width: 90px;
-                    height: 90px;
-                    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.1), 0 6px 20px 0 rgba(0, 0, 0, 0.06);
-                    border-radius: 3px;
-                }
-                float: left;
+        .company_wall_image{
+            img{
+                width: 100%;
+                max-height: 350px;
             }
-            .company_title_name
+        }
+    
+        .company_short_des{
+            height: auto;
+            padding-bottom: 10px;
+            background-color: #fff;
+            border-radius: 5px;
+    
+            .company_title_summary
             {
-                font-size: 20px;
-                font-weight: 550;
-                text-align: left;
-                margin-left: 10px;
-                text-decoration: none !important;
-                overflow: hidden;
-                text-overflow: ellipsis;
-                display: -webkit-box;
-                -webkit-line-clamp: 1; /* number of lines to show */
-                -webkit-box-orient: vertical;
-            }
-
-            .company_score_star_overview{
-                padding-top: 5px;
-                .company_rating{
+                padding-top: 20px;
+                .company_title_image{
+                    padding-left: 0px;
+                    padding-right: 20px;
+                    img{
+                        max-width: 90px;
+                        height: 90px;
+                        box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.1), 0 6px 20px 0 rgba(0, 0, 0, 0.06);
+                        border-radius: 3px;
+                    }
+                    float: left;
+                }
+                .company_title_name
+                {
                     font-size: 20px;
+                    font-weight: 550;
+                    text-align: left;
                     margin-left: 10px;
-                    margin-right: 15px;
+                    text-decoration: none !important;
+                    overflow: hidden;
+                    text-overflow: ellipsis;
+                    display: -webkit-box;
+                    -webkit-line-clamp: 1; /* number of lines to show */
+                    -webkit-box-orient: vertical;
+                }
+    
+                .company_score_star_overview{
+                    padding-top: 5px;
+                    .company_rating{
+                        font-size: 20px;
+                        margin-left: 10px;
+                        margin-right: 15px;
+                        i{
+                            margin-right: 0px;
+                            font-size: 22px;
+                            position: relative;
+                            top: 4px;
+                            margin-right: -5px !important;
+                        }
+    
+                        .checked{
+                            color: #febb02;
+                        }
+                        .checked_out{
+                            color: #999;
+                        }
+                    }
+                }
+    
+                .company_title_short_des{
+                    margin-left: 10px;
+                    padding-top: 5px;
+                    font-size: 13px;
+                    color: #666;
+                }
+            }
+            
+            .company_action{
+                .company_follow_large{
+                    margin-top: 20px;
+                    button{
+                        height: 40px;
+                        width: 100%;
+                        background: #fff;
+                        font-size: 16px;
+                        border: none;
+                        cursor: pointer;
+                        text-align: center;
+                        color: #333;
+                        border-radius: 3px;
+                        border: 1px solid #1877f2;
+                             
+                        &:hover{
+                            background-color: #1877f2;
+                            color: #fff;
+                            i{
+                                color: #fff;
+                            }
+                        }
+                    }
                     i{
-                        margin-right: 0px;
+                        margin-right: 5px;
                         font-size: 22px;
                         position: relative;
-                        top: 4px;
-                        margin-right: -5px !important;
+                        top: 5px;
                     }
-
-                    .checked{
-                        color: #febb02;
+                    
+                    .follow_btn_large_highlight{ 
+                        i{
+                            color: #1877f2;
+                        }
+                        &:focus {outline:none;}
                     }
-                    .checked_out{
-                        color: #999;
+    
+                    .follow_btn_large{
+                        i{
+                            color: #333;
+                        }
+                        &:focus {outline:none;}
                     }
                 }
             }
-
-            .company_title_short_des{
-                margin-left: 10px;
-                padding-top: 5px;
-                font-size: 13px;
-                color: #666;
-            }
-        }
-        
-        .company_action{
-            .company_follow_large{
-                margin-top: 20px;
+            .review_new_button{
+                margin-top: 10px;
                 button{
                     height: 40px;
                     width: 100%;
-                    background: #fff;
+                    background: #1877f2;
                     font-size: 16px;
                     border: none;
                     cursor: pointer;
                     text-align: center;
-                    color: #333;
-                    border-radius: 3px;
-                    border: 1px solid #1877f2;
-                         
-                    &:hover{
-                        background-color: #1877f2;
-                        color: #fff;
-                        i{
-                            color: #fff;
-                        }
-                    }
-                }
-                i{
-                    margin-right: 5px;
-                    font-size: 22px;
-                    position: relative;
-                    top: 5px;
-                }
-                
-                .follow_btn_large_highlight{ 
-                    i{
-                        color: #1877f2;
-                    }
-                    &:focus {outline:none;}
-                }
-
-                .follow_btn_large{
-                    i{
-                        color: #333;
-                    }
-                    &:focus {outline:none;}
-                }
-            }
-        }
-        .review_new_button{
-            margin-top: 10px;
-            button{
-                height: 40px;
-                width: 100%;
-                background: #1877f2;
-                font-size: 16px;
-                border: none;
-                cursor: pointer;
-                text-align: center;
-                color: #fff;
-                border-radius: 3px;
-                i{
-                    position: relative;
-                    top: 2px;
-                    font-size: 20px;
-                    margin-right: 3px;
-                }
-
-                span{
-                    font-size: 16px;
-                    position: relative;
-                    top: -2px;
-                }
-                
-                &:hover{
-                    background-color: #369;
                     color: #fff;
+                    border-radius: 3px;
+                    i{
+                        position: relative;
+                        top: 2px;
+                        font-size: 20px;
+                        margin-right: 3px;
+                    }
+    
+                    span{
+                        font-size: 16px;
+                        position: relative;
+                        top: -2px;
+                    }
+                    
+                    &:hover{
+                        background-color: #369;
+                        color: #fff;
+                    }
                 }
             }
         }
-        
     }
     
-    /* Style the tab */
-    .company_tab_link {
-        padding-top: 20px;
+    .company_nav_link {
         clear: left;
         overflow: hidden;
         position: relative;
         display: block;
         background-color: #fff;
         border-bottom: 2px solid #dfe1e5;
-        .nav-tabs {
+        padding-top: 10px;
+        .nav {
             overflow-x: auto;
             overflow-y: hidden;
             flex-wrap: nowrap;
             border: none;
         }
-        .nav-tabs .nav-link {
+        .nav .nav-link {
             white-space: nowrap;
             font-size: 16px;
+
         }
-        .nav-tabs .nav-link, .nav-tabs .nav-link.active, .nav-tabs .nav-link:hover {
+        .nav .nav-link, .nav .nav-link.active, .nav .nav-link:hover {
             border: none;
             color: #333;
             text-align: left;
@@ -716,9 +714,9 @@
                 color: #999;
             }
         }
-        .nav-tabs .nav-link.active {
+        .nav .nav-link.active {
             border-radius: 0;
-            border-bottom: 4px solid #1877f2;
+            border-bottom: 3px solid #1877f2;
             font-weight: 500;
             color: #1877f2;
             font-size: 16px;
@@ -728,520 +726,275 @@
         }
     }
 
-    /* Style the tab content */
-    .company_tab_content{
+    .company_nav_content{
         background-color: #f7f8fa;
         min-height: 750px;
         padding-bottom: 20px;
-        .tab-content{
-            .company_profile_tab{
-                .company_profile_left
+        .company_profile_tab{
+            .company_profile_left
+            {
+                margin-top: 30px;
+                @media screen and (max-width: 600px){
+                    margin-top: 20px;
+                }
+                width: 100%;
+                .company_profile_overview
                 {
-                    margin-top: 30px;
-                    @media screen and (max-width: 600px){
-                        margin-top: 20px;
-                    }
-                    width: 100%;
-                    .company_profile_overview
-                    {
-                        border: 1px solid #dfe1e5;
-                        background-color: #fff;
-                        border-radius: 3px;
-                        padding-right: 15px;
-                        padding-left: 15px;
-                        .company_profile_block{
-                            .col-sm-4{
-                                @media screen and (max-width: 600px){
-                                    border-top: 1px solid #dfe1e5;
+                    border: 1px solid #dfe1e5;
+                    background-color: #fff;
+                    border-radius: 3px;
+                    padding-right: 15px;
+                    padding-left: 15px;
+                    .company_profile_block{
+                        .col-sm-4{
+                            @media screen and (max-width: 600px){
+                                border-top: 1px solid #dfe1e5;
+                            }
+                            .company_profile_section{
+                                min-height: 20px;
+                                a{
+                                    font-size: 16px;
+                                    i{
+                                        font-size: 24px;
+                                        position: relative;
+                                        top: 15px;
+                                    }
+                                    span{
+                                        font-weight: 550;
+                                    }
                                 }
-                                .company_profile_section{
-                                    min-height: 20px;
-                                    a{
+                            }
+
+                            .company_profile_content{
+                                font-size: 13px;
+                                padding-bottom: 15px;
+                                padding-left: 28px;
+                                color: #444;
+                            }
+                        }
+                    }
+                }
+
+                .company_profile_summary_block{
+                    border: 1px solid #dfe1e5;
+                    padding: 15px;
+                    margin-top: 20px;
+                    background-color: #fff;
+                    border-radius: 3px;
+                    .company_profile_title
+                    {
+                        font-size: 22px;
+                        font-weight: 550;
+                        i{
+                            font-size: 25px;
+                            position: relative;
+                            top: 3px;
+                            margin-right: 3px;
+                        }
+                    }
+                        
+                    .company_profile_summary
+                    {
+                        font-size: 14px;
+                        padding-top: 20px;
+                    }
+                }
+
+                .company_profile_review{
+                    background-color: #fff;
+                    border-radius: 3px;
+                    border: 1px solid #dfe1e5;
+                    margin-top: 20px;
+                    .company_profile_title{
+                        padding: 15px;
+                        font-size: 22px;
+                        font-weight: 550;
+                        border-bottom: 1px solid #dfe1e5;
+                    }
+                    .review_content{
+
+                    }
+                }
+
+                .company_profile_interview{
+                    background-color: #fff;
+                    border-radius: 3px;
+                    border: 1px solid #dfe1e5;
+                    margin-top: 20px;
+                    .company_profile_title{
+                        padding: 15px;
+                        font-size: 22px;
+                        font-weight: 550;
+                        border-bottom: 1px solid #dfe1e5;
+                    }
+                    .interview_content{
+                        
+                    }
+                }
+            }
+
+            .company_profile_right{
+                display: block;
+                .company_job_mini_block{
+                    padding: 10px;
+                    border: 1px solid #dfe1e5;
+                    background-color: #fff;
+                    border-radius: 3px;
+                    .company_job_label{
+                        border-bottom: 1px solid #dfe1e5;
+                        a{
+                            font-size: 20px;
+                            font-weight: 550;
+                            color: #333;
+                        }
+                    }
+                    .company_job_des{
+                        margin-bottom: 10px;
+                        .company_job_block_mini{
+                            padding-top: 15px;
+                            padding-bottom: 10px;
+                            .company_avatar{
+                                border-radius: 3px;
+                                border: 1px solid #dfe1e5;
+                                img{
+                                    max-width: 60px;
+                                    max-height: 60px;
+                                }
+                                float: left;
+                            }
+                            .company_job_info{
+                                margin-left: 70px;
+                                .company_job_title{
+                                    a:link{
                                         font-size: 16px;
                                         font-weight: 550;
-                                        i{
-                                            font-size: 24px;
-                                            position: relative;
-                                            top: 15px;
-                                            font-weight: 300;
-                                        }
+                                        text-decoration: none !important;overflow: hidden;
+                                        text-overflow: ellipsis;
+                                        display: -webkit-box;
+                                        -webkit-line-clamp: 1; /* number of lines to show */
+                                        -webkit-box-orient: vertical;
                                     }
                                 }
-
-                                .company_profile_content{
+                                .company_job_date{
+                                    padding-top: 5px;
                                     font-size: 13px;
-                                    padding-bottom: 15px;
-                                    padding-left: 28px;
-                                    color: #444;
-                                }
-                            }
-                        }
-                    }
-
-                    .company_profile_summary_block{
-                        border: 1px solid #dfe1e5;
-                        padding: 15px;
-                        margin-top: 20px;
-                        background-color: #fff;
-                        border-radius: 3px;
-                        .company_profile_title
-                        {
-                            font-size: 22px;
-                            font-weight: 550;
-                            i{
-                                font-size: 25px;
-                                position: relative;
-                                top: 3px;
-                                margin-right: 3px;
-                            }
-                        }
-                            
-                        .company_profile_summary
-                        {
-                            font-size: 14px;
-                            padding-top: 20px;
-                        }
-                    }
-
-                    .company_profile_review{
-                        background-color: #fff;
-                        border-radius: 3px;
-                        border: 1px solid #dfe1e5;
-                        margin-top: 20px;
-                        .company_profile_title{
-                            padding: 15px;
-                            font-size: 22px;
-                            font-weight: 550;
-                            border-bottom: 1px solid #dfe1e5;
-                        }
-                        .review_content{
-
-                        }
-                    }
-
-                    .company_profile_interview{
-                        background-color: #fff;
-                        border-radius: 3px;
-                        border: 1px solid #dfe1e5;
-                        margin-top: 20px;
-                        .company_profile_title{
-                            padding: 15px;
-                            font-size: 22px;
-                            font-weight: 550;
-                            border-bottom: 1px solid #dfe1e5;
-                        }
-                        .interview_content{
-                            
-                        }
-                    }
-                }
-
-                .company_profile_right{
-                    display: block;
-                    .company_job_mini_block{
-                        padding: 10px;
-                        border: 1px solid #dfe1e5;
-                        background-color: #fff;
-                        border-radius: 3px;
-                        .company_job_label{
-                            border-bottom: 1px solid #dfe1e5;
-                            a{
-                                font-size: 20px;
-                                font-weight: 550;
-                                color: #333;
-                            }
-                        }
-                        .company_job_des{
-                            margin-bottom: 10px;
-                            .company_job_block_mini{
-                                padding-top: 15px;
-                                padding-bottom: 10px;
-                                .company_avatar{
-                                    border-radius: 3px;
-                                    border: 1px solid #dfe1e5;
-                                    img{
-                                        max-width: 60px;
-                                        max-height: 60px;
-                                    }
-                                    float: left;
-                                }
-                                .company_job_info{
-                                    margin-left: 70px;
-                                    .company_job_title{
-                                        a:link{
-                                            font-size: 16px;
-                                            font-weight: 550;
-                                            text-decoration: none !important;overflow: hidden;
-                                            text-overflow: ellipsis;
-                                            display: -webkit-box;
-                                            -webkit-line-clamp: 1; /* number of lines to show */
-                                            -webkit-box-orient: vertical;
-                                        }
-                                    }
-                                    .company_job_date{
-                                        padding-top: 5px;
-                                        font-size: 13px;
-                                        color: #666;
-                                    }
+                                    color: #666;
                                 }
                             }
                         }
                     }
                 }
             }
-            .company_policy_tab{
-                display: block;
-                width: 100%;
-                .company_policy_overview_left
+        }
+        .company_policy_tab{
+            display: block;
+            width: 100%;
+            .company_policy_overview_left
+            {
+                margin-top: 30px;
+                @media screen and (max-width: 600px){
+                    margin-top: 20px;
+                }
+                .company_policy_block
                 {
-                    margin-top: 30px;
-                    @media screen and (max-width: 600px){
-                        margin-top: 20px;
-                    }
-                    .company_policy_block
+                    background-color: #fff;
+                    border: 1px solid #dfe1e5;
+                    border-radius: 3px;
+                    padding: 15px;
+                    .company_policy_title
                     {
-                        background-color: #fff;
-                        border: 1px solid #dfe1e5;
-                        border-radius: 3px;
-                        padding: 15px;
-                        .company_policy_title
-                        {
-                            font-size: 22px;
-                            margin-left: 0;
-                            margin-bottom: 10px;
-                            font-weight: 550;
-                        }
-
-                        .company_policy_policy{
-                            font-size: 14px;
-                            height: auto;
-                        }
+                        font-size: 22px;
+                        margin-left: 0;
+                        margin-bottom: 10px;
+                        font-weight: 550;
                     }
 
-                    .company_policy_benefit_block{
-                        margin-top: 10px;
-                        .company_policy_benefit{
-                            width: 100%;
-                            height: 100px;
-                            /*border: 1px solid #dfe1e5;*/
-                            box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.1), 0 6px 20px 0 rgba(0, 0, 0, 0.09);
-                            text-align: center;
-                            border-radius: 3px;
-                            background-color: #fff;
-                            padding: 10px;
-                            margin-top: 20px;
+                    .company_policy_policy{
+                        font-size: 14px;
+                        height: auto;
+                    }
+                }
+
+                .company_policy_benefit_block{
+                    margin-top: 10px;
+                    .company_policy_benefit{
+                        width: 100%;
+                        height: 100px;
+                        /*border: 1px solid #dfe1e5;*/
+                        box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.1), 0 6px 20px 0 rgba(0, 0, 0, 0.09);
+                        text-align: center;
+                        border-radius: 3px;
+                        background-color: #fff;
+                        padding: 10px;
+                        margin-top: 20px;
+                        @media screen and (max-width: 600px){
+                            margin-top: 10px;
+                            padding-top: 10px;
+                        }
+                        .benefit_icon{ 
                             @media screen and (max-width: 600px){
-                                margin-top: 10px;
                                 padding-top: 10px;
                             }
-                            .benefit_icon{ 
-                                @media screen and (max-width: 600px){
-                                    padding-top: 10px;
-                                }
-                                i{
-                                    font-size: 28px;
-                                    color: #1877f2;
-                                }
-                            }
-                            a{
-                                font-size: 18px;
+                            i{
+                                font-size: 28px;
+                                color: #1877f2;
                             }
                         }
-                    }
-                }
-
-                .company_policy_overview_block_right{
-                    .company_policy_overview_block_right_overview{
-                        padding: 15px;
-                        display: block;
-                        background-color: #fff;
-                        border: 1px solid #dfe1e5;
-                        border-radius: 3px;
-                        .company_policy_overview_label{
-                            span{
-                                border-bottom: 3px solid #febb02;
-                                font-size: 20px;
-                                padding-top: 5px;
-                                padding-right: 5px;
-                                color: #333;
-                                font-weight: 550;
-                            }
-                            margin-bottom: 10px;
-                        }
-
-                        .company_policy_overview_right{
-                            .company_policy_overview_right_title{
-                                a{
-                                    font-weight: 550;
-                                    font-size: 16px;
-                                }
-                                
-                                i{
-                                    position: relative;
-                                    top: 20px;
-                                    color: #1877f2;
-                                    font-size: 28px;
-                                    margin-right: 12px;
-                                }
-                            }
-                            .company_policy_overview_right_des{
-                                font-size: 14px;
-                                padding-left: 45px;
-                                padding-bottom: 10px;
-                                color: #515353;
-                            }
-                        }
-                    }
-
-                    .company_policy_overview_block_right_job{
-                        display: block;
-                        margin-top: 20px;
-                        .company_job_mini_block
-                        {
-                            padding: 10px;
-                            border: 1px solid #dfe1e5;
-                            background-color: #fff;
-                            border-radius: 3px;
-                            .company_job_label{
-                                border-bottom: 1px solid #dfe1e5;
-                                a{
-                                    font-size: 20px;
-                                    font-weight: 550;
-                                    color: #333;
-                                }
-                            }
-                            .company_job_des{
-                                margin-bottom: 10px;
-                                .company_job_block_mini{
-                                    padding-top: 15px;
-                                    padding-bottom: 10px;
-                                    .company_avatar{
-                                        border-radius: 3px;
-                                        border: 1px solid #dfe1e5;
-                                        img{
-                                            max-width: 60px;
-                                            max-height: 60px;
-                                        }
-                                        float: left;
-                                    }
-                                    .company_job_info{
-                                        margin-left: 70px;
-                                        .company_job_title{
-                                            a:link{
-                                                font-size: 16px;
-                                                font-weight: 550;
-                                                text-decoration: none !important;overflow: hidden;
-                                                text-overflow: ellipsis;
-                                                display: -webkit-box;
-                                                -webkit-line-clamp: 1; /* number of lines to show */
-                                                -webkit-box-orient: vertical;
-                                            }
-                                        }
-                                        .company_job_date{
-                                            padding-top: 5px;
-                                            font-size: 13px;
-                                            color: #666;
-                                        }
-                                    }
-                                }
-                            }
+                        a{
+                            font-size: 18px;
                         }
                     }
                 }
             }
 
-            .company_review_tab{
-                display: block;
-                height: auto;               
-                .company_review_tab_des_left{
-                    margin-top: 30px;
-                    @media screen and (max-width: 600px){
-                        margin-top: 20px;
-                    }
-                    .company_review_score{
-                        border-radius: 3px;
-                        border: 1px solid #dfe1e5;
-                    }
-                    .company_review{
-                    }
-                    .review_new_not_found{
-                        font-size: 20px;
-                        font-weight: 550;
-                        padding-top: 10px;
-                        padding-bottom: 10px;
-                    }
-                    .no_review_found{
+            .company_policy_overview_block_right{
+                .company_policy_overview_block_right_overview{
+                    padding: 15px;
+                    display: block;
+                    background-color: #fff;
+                    border: 1px solid #dfe1e5;
+                    border-radius: 3px;
+                    .company_policy_overview_label{
                         span{
+                            border-bottom: 3px solid #febb02;
                             font-size: 20px;
+                            padding-top: 5px;
+                            padding-right: 5px;
+                            color: #333;
                             font-weight: 550;
                         }
-                        width: 100%;
-                        min-height: 100px;
-                        margin-top: 20px;
-                        margin-bottom: 30px;
-                        background-color: #ebfeff;
-                        border: 1px solid #ebfeff;
-                        border-radius: 3px;
-                        .review_new_label{
-                            font-size: 22px;
-                            float: left;
-                            @media screen and (max-width: 600px){
-                                float: none;
-                            }
-                            padding-top:30px;
-                            padding-left: 20px;    
-                        }
-                        .review_new_button{
-                            float: right;
-                            padding: 15px;
-                            @media screen and (max-width: 600px){
-                                float: none;
-                                padding-bottom: 30px;
-                            }
-                            button{
-                                height: 50px;
-                                @media screen and (max-width: 600px){
-                                    width: 100%;
-                                }
-                                width: 250px;
-                                margin-right: 10px;
-                                background: #1877f2;
+                        margin-bottom: 10px;
+                    }
+
+                    .company_policy_overview_right{
+                        .company_policy_overview_right_title{
+                            a{
+                                font-weight: 550;
                                 font-size: 16px;
-                                border: none;
-                                cursor: pointer;
-                                text-align: center;
-                                color: #fff;
-                                border-radius: 3px;
-                                i{
-                                    position: relative;
-                                    top: 2px;
-                                    font-size: 20px;
-                                    margin-right: 3px;
-                                }
-        
-                                span{
-                                    font-size: 16px;
-                                    position: relative;
-                                    top: -2px;
-                                }
-                                
-                                &:hover{
-                                    background-color: #369;
-                                    color: #fff;
-                                }
                             }
+                            
+                            i{
+                                position: relative;
+                                top: 20px;
+                                color: #1877f2;
+                                font-size: 28px;
+                                margin-right: 12px;
+                            }
+                        }
+                        .company_policy_overview_right_des{
+                            font-size: 14px;
+                            padding-left: 45px;
+                            padding-bottom: 10px;
+                            color: #515353;
                         }
                     }
                 }
 
-                .company_review_tab_des_right{
-                    .review_score_title_block{
-                        @media screen and (max-width: 600px){
-                            margin-top: 20px;
-                        }
-                        padding: 15px;
-                        background-color: #fff;
-                        border-radius: 3px;
-                        border: 1px solid #dfe1e5;
-                        background-color: #ebfeff;
-                        .review_score_title{
-                            font-size: 18px;
-                            font-weight: 550;
-                        }
-
-                        .review_new_button_side{
-                            display: block;
-                            .review_new_button button {
-                                width: 100%;
-                                padding: 14px;
-                                height: 50px;
-                                background: #1877f2;
-                                font-size: 16px;
-                                border: none;
-                                cursor: pointer;
-                                text-align: center;
-                                color: #fff;
-                                border-radius: 3px;
-                                i{
-                                    font-size: 20px;
-                                    position: relative;
-                                    top: 3px;
-                                    color: #fff;
-                                    margin-right: 3px;
-                                }
-                                span{
-                                    font-size: 16px;
-                                    position: relative;
-                                    top: -2px;
-                                }
-                                &:hover {
-                                    background-color: #369;
-                                }
-                            }
-                        }
-                    }
-                    .review_score_detail
-                    {   display: none;
-                        margin-top: 20px;
-                        padding: 10px;
-                        background-color: #fff;
-                        border-radius: 3px;
-                        border: 1px solid #dfe1e5;
-                        background-color: #fff;
-                        .review_score_overview{
-                            display: block;
-                            margin-bottom: 10px;
-                            @media screen and (max-width: 600px){
-                                // margin-left: 18%;
-                            }
-                            .review_content
-                            {
-                                height: 40px;
-                                border: 2px solid #e6e6e6;
-                                border-radius: 20px;
-                                background-color: #fff;
-                                .review_point
-                                {
-                                    float: left;
-                                    font-size: 16px;
-                                    font-weight: 600px;
-                                    text-align: center;
-                                    color: rgb(75, 71, 71);
-                                    margin-right: 3px;
-                                    margin-top: 7px;
-                                    margin-left: 40px;
-                                }
-                        
-                                .review_score_star
-                                {
-                                    float: left;
-                                    margin-right: 15px;
-                                    margin-top: 4px;
-                                    i {
-                                        font-size: 22px;
-                                        position: relative;
-                                        top: 2px;
-                                    }
-                        
-                                    .checked {
-                                        color: #febb02;
-                                    }
-                        
-                                    .checked_out {
-                                        color: #999;
-                                    }
-                                }
-
-                                .review_score_label{
-                                    font-size: 16px;
-                                    margin-top: 6px;
-                                }
-                            }
-                        }
-                    }
+                .company_policy_overview_block_right_job{
+                    display: block;
+                    margin-top: 20px;
                     .company_job_mini_block
                     {
-                        margin-top: 20px;
                         padding: 10px;
                         border: 1px solid #dfe1e5;
                         background-color: #fff;
@@ -1292,130 +1045,115 @@
                     }
                 }
             }
+        }
+
+        .company_review_tab{
+            display: block;
+            height: auto;               
+            .company_review_tab_des_left{
+                margin-top: 30px;
+                @media screen and (max-width: 600px){
+                    margin-top: 20px;
+                }
+                .company_review_score{
+                    border-radius: 3px;
+                    border: 1px solid #dfe1e5;
+                }
+                .company_review{
+                }
+                .review_new_not_found{
+                    font-size: 20px;
+                    font-weight: 550;
+                    padding-top: 10px;
+                    padding-bottom: 10px;
+                }
+                .no_review_found{
+                    span{
+                        font-size: 20px;
+                        font-weight: 550;
+                    }
+                    width: 100%;
+                    min-height: 100px;
+                    margin-top: 20px;
+                    margin-bottom: 30px;
+                    background-color: #ebfeff;
+                    border: 1px solid #ebfeff;
+                    border-radius: 3px;
+                    .review_new_label{
+                        font-size: 22px;
+                        float: left;
+                        @media screen and (max-width: 600px){
+                            float: none;
+                        }
+                        padding-top:30px;
+                        padding-left: 20px;    
+                    }
+                    .review_new_button{
+                        float: right;
+                        padding: 15px;
+                        @media screen and (max-width: 600px){
+                            float: none;
+                            padding-bottom: 30px;
+                        }
+                        button{
+                            height: 50px;
+                            @media screen and (max-width: 600px){
+                                width: 100%;
+                            }
+                            width: 250px;
+                            margin-right: 10px;
+                            background: #1877f2;
+                            font-size: 16px;
+                            border: none;
+                            cursor: pointer;
+                            text-align: center;
+                            color: #fff;
+                            border-radius: 3px;
+                            i{
+                                position: relative;
+                                top: 2px;
+                                font-size: 20px;
+                                margin-right: 3px;
+                            }
     
-            .company_interview_tab{
-                display: block;
-                .company_interview_tab_des_left{
-                    margin-top: 30px;
+                            span{
+                                font-size: 16px;
+                                position: relative;
+                                top: -2px;
+                            }
+                            
+                            &:hover{
+                                background-color: #369;
+                                color: #fff;
+                            }
+                        }
+                    }
+                }
+            }
+
+            .company_review_tab_des_right{
+                .review_score_title_block{
                     @media screen and (max-width: 600px){
                         margin-top: 20px;
                     }
-                    .user_comment_heading{
-                        font-size: 22px;
-                    }
-                    .company_interview_score{
-                        border-radius: 3px;
-                        border: 1px solid #dfe1e5;
-                    }
-                    .company_interview_tab_des_left{
-                        width: 100%;
-                        padding-top: 10px;
-                    }
-                    .interview_new_not_found{
-                        font-size: 20px;
+                    padding: 15px;
+                    background-color: #fff;
+                    border-radius: 3px;
+                    border: 1px solid #dfe1e5;
+                    background-color: #ebfeff;
+                    .review_score_title{
+                        font-size: 18px;
                         font-weight: 550;
-                        padding-top: 10px;
-                        padding-bottom: 10px;
                     }
-                    .no_interview_found{
-                        span{
-                            font-size: 20px;
-                            font-weight: 550;
-                        }
-                        width: 100%;
-                        min-height: 100px;
-                        margin-top: 20px;
-                        margin-bottom: 30px;
-                        background-color: #ebfeff;
-                        border: 1px solid #ebfeff;
-                        border-radius: 3px;
-                        .interview_new_label{
-                            font-size: 22px;
-                            float: left;
-                            @media screen and (max-width: 600px){
-                                float: none;
-                            }
-                            padding-top:30px;
-                            padding-left: 20px;    
-                        }
-                        .interview_new_button{
-                            float: right;
-                            padding: 15px;
-                            @media screen and (max-width: 600px){
-                                float: none;
-                                padding-bottom: 30px;
-                            }
-                            button{
-                                height: 50px;
-                                @media screen and (max-width: 600px){
-                                    width: 100%;
-                                }
-                                width: 250px;
-                                margin-right: 10px;
-                                background: #1877f2;
-                                font-size: 16px;
-                                border: none;
-                                cursor: pointer;
-                                text-align: center;
-                                color: #fff;
-                                border-radius: 3px;
-                                i{
-                                    position: relative;
-                                    top: 2px;
-                                    font-size: 20px;
-                                    margin-right: 3px;
-                                }
-        
-                                span{
-                                    font-size: 16px;
-                                    position: relative;
-                                    top: -2px;
-                                }
-                                
-                                &:hover{
-                                    background-color: #369;
-                                    color: #fff;
-                                }
-                            }
-                        }
-                    }
-                    .new_interview_question
-                    {
-                        width: 100%;
-                        min-height: 90px;
-                        background-color: #ebfeff;
-                        border-top: 5px solid #febb02;
-                        padding: 10px;
-                        border-radius: 3px;
-                        margin-top: 30px;
-                        .new_interview_question_title{
-                            margin-top: 10px;
-                            margin-bottom: 20px;
-                            font-size: 20px;
-                            @media screen and (min-width: 600px){
-                                float: left;
-                                font-size: 22px;
-                            }
-                            i {
-                                font-size: 30px;
-                                margin: 3px;
-                                color: #febb02;
-                                position: relative;
-                                top: 2px;
-                            }
-                        }
-        
-                        .new_interview_question_button button {
-                            float: right;
-                            @media screen and (max-width: 600px){
-                                float: none;
-                                width: 100%;
-                            }
+
+                    .review_new_button_side{
+                        display: block;
+                        .review_new_button button {
+                            width: 100%;
                             padding: 14px;
-                            width: 300px;
                             height: 50px;
                             background: #1877f2;
-                            font-size: 14px;
+                            font-size: 16px;
                             border: none;
                             cursor: pointer;
                             text-align: center;
@@ -1429,365 +1167,497 @@
                                 margin-right: 3px;
                             }
                             span{
-                                font-size: 14px;
+                                font-size: 16px;
+                                position: relative;
+                                top: -2px;
+                            }
+                            &:hover {
+                                background-color: #369;
+                            }
+                        }
+                    }
+                }
+                .review_score_detail
+                {   display: none;
+                    margin-top: 20px;
+                    padding: 10px;
+                    background-color: #fff;
+                    border-radius: 3px;
+                    border: 1px solid #dfe1e5;
+                    background-color: #fff;
+                    .review_score_overview{
+                        display: block;
+                        margin-bottom: 10px;
+                        @media screen and (max-width: 600px){
+                            // margin-left: 18%;
+                        }
+                        .review_content
+                        {
+                            height: 40px;
+                            border: 2px solid #e6e6e6;
+                            border-radius: 20px;
+                            background-color: #fff;
+                            .review_point
+                            {
+                                float: left;
+                                font-size: 16px;
+                                font-weight: 600px;
+                                text-align: center;
+                                color: rgb(75, 71, 71);
+                                margin-right: 3px;
+                                margin-top: 7px;
+                                margin-left: 40px;
+                            }
+                    
+                            .review_score_star
+                            {
+                                float: left;
+                                margin-right: 15px;
+                                margin-top: 4px;
+                                i {
+                                    font-size: 22px;
+                                    position: relative;
+                                    top: 2px;
+                                }
+                    
+                                .checked {
+                                    color: #febb02;
+                                }
+                    
+                                .checked_out {
+                                    color: #999;
+                                }
+                            }
+
+                            .review_score_label{
+                                font-size: 16px;
+                                margin-top: 6px;
+                            }
+                        }
+                    }
+                }
+                .company_job_mini_block
+                {
+                    margin-top: 20px;
+                    padding: 10px;
+                    border: 1px solid #dfe1e5;
+                    background-color: #fff;
+                    border-radius: 3px;
+                    .company_job_label{
+                        border-bottom: 1px solid #dfe1e5;
+                        a{
+                            font-size: 20px;
+                            font-weight: 550;
+                            color: #333;
+                        }
+                    }
+                    .company_job_des{
+                        margin-bottom: 10px;
+                        .company_job_block_mini{
+                            padding-top: 15px;
+                            padding-bottom: 10px;
+                            .company_avatar{
+                                border-radius: 3px;
+                                border: 1px solid #dfe1e5;
+                                img{
+                                    max-width: 60px;
+                                    max-height: 60px;
+                                }
+                                float: left;
+                            }
+                            .company_job_info{
+                                margin-left: 70px;
+                                .company_job_title{
+                                    a:link{
+                                        font-size: 16px;
+                                        font-weight: 550;
+                                        text-decoration: none !important;overflow: hidden;
+                                        text-overflow: ellipsis;
+                                        display: -webkit-box;
+                                        -webkit-line-clamp: 1; /* number of lines to show */
+                                        -webkit-box-orient: vertical;
+                                    }
+                                }
+                                .company_job_date{
+                                    padding-top: 5px;
+                                    font-size: 13px;
+                                    color: #666;
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+
+        .company_interview_tab{
+            display: block;
+            .company_interview_tab_des_left{
+                margin-top: 30px;
+                @media screen and (max-width: 600px){
+                    margin-top: 20px;
+                }
+                .user_comment_heading{
+                    font-size: 22px;
+                }
+                .company_interview_score{
+                    border-radius: 3px;
+                    border: 1px solid #dfe1e5;
+                }
+                .company_interview_tab_des_left{
+                    width: 100%;
+                    padding-top: 10px;
+                }
+                .interview_new_not_found{
+                    font-size: 20px;
+                    font-weight: 550;
+                    padding-top: 10px;
+                    padding-bottom: 10px;
+                }
+                .no_interview_found{
+                    span{
+                        font-size: 20px;
+                        font-weight: 550;
+                    }
+                    width: 100%;
+                    min-height: 100px;
+                    margin-top: 20px;
+                    margin-bottom: 30px;
+                    background-color: #ebfeff;
+                    border: 1px solid #ebfeff;
+                    border-radius: 3px;
+                    .interview_new_label{
+                        font-size: 22px;
+                        float: left;
+                        @media screen and (max-width: 600px){
+                            float: none;
+                        }
+                        padding-top:30px;
+                        padding-left: 20px;    
+                    }
+                    .interview_new_button{
+                        float: right;
+                        padding: 15px;
+                        @media screen and (max-width: 600px){
+                            float: none;
+                            padding-bottom: 30px;
+                        }
+                        button{
+                            height: 50px;
+                            @media screen and (max-width: 600px){
+                                width: 100%;
+                            }
+                            width: 250px;
+                            margin-right: 10px;
+                            background: #1877f2;
+                            font-size: 16px;
+                            border: none;
+                            cursor: pointer;
+                            text-align: center;
+                            color: #fff;
+                            border-radius: 3px;
+                            i{
+                                position: relative;
+                                top: 2px;
+                                font-size: 20px;
+                                margin-right: 3px;
+                            }
+    
+                            span{
+                                font-size: 16px;
                                 position: relative;
                                 top: -2px;
                             }
                             
-                            &:hover {
+                            &:hover{
                                 background-color: #369;
                                 color: #fff;
                             }
                         }
                     }
                 }
-
-                .company_interview_tab_des_right{
-                    @media screen and (max-width: 600px){
-                        margin-top: 20px;
-                    }
-                    .interview_score_title_block{
-                        padding: 15px;
-                        background-color: #fff;
-                        border-radius: 3px;
-                        border: 1px solid #dfe1e5;
-                        background-color: #ebfeff;  
-                        .interview_score_title{
-                            font-size: 18px;
-                            font-weight: 550;
-                        }
-                        .interview_new_button_side{
-                            display: block;
-                            .interview_new_button button {
-                                width: 100%;
-                                padding: 14px;
-                                height: 50px;
-                                background: #1877f2;
-                                font-size: 16px;
-                                border: none;
-                                cursor: pointer;
-                                text-align: center;
-                                color: #fff;
-                                border-radius: 3px;
-                                i{
-                                    font-size: 20px;
-                                    position: relative;
-                                    top: 3px;
-                                    color: #fff;
-                                    margin-right: 3px;
-                                }
-                                span{
-                                    font-size: 16px;
-                                    position: relative;
-                                    top: -2px;
-                                }
-                                &:hover {
-                                    background-color: #369;
-                                }
-                            }
-                        }
-                    }
-                    .company_interview_job_mini_block
-                    {
-                        margin-top: 20px;
-                        padding: 10px;
-                        border: 1px solid #dfe1e5;
-                        background-color: #fff;
-                        border-radius: 3px;
-                        .company_job_label{
-                            border-bottom: 1px solid #dfe1e5;
-                            a{
-                                font-size: 20px;
-                                font-weight: 550;
-                                color: #333;
-                            }
-                        }
-                        .company_job_des{
-                            margin-bottom: 10px;
-                            .company_job_block_mini{
-                                padding-top: 15px;
-                                padding-bottom: 10px;
-                                .company_avatar{
-                                    border-radius: 3px;
-                                    border: 1px solid #dfe1e5;
-                                    img{
-                                        max-width: 60px;
-                                        max-height: 60px;
-                                    }
-                                    float: left;
-                                }
-                                .company_job_info{
-                                    margin-left: 70px;
-                                    .company_job_title{
-                                        a:link{
-                                            font-size: 16px;
-                                            font-weight: 550;
-                                            text-decoration: none !important;overflow: hidden;
-                                            text-overflow: ellipsis;
-                                            display: -webkit-box;
-                                            -webkit-line-clamp: 1; /* number of lines to show */
-                                            -webkit-box-orient: vertical;
-                                        }
-                                    }
-                                    .company_job_date{
-                                        padding-top: 5px;
-                                        font-size: 13px;
-                                        color: #666;
-                                    }
-                                }
-                            }
-                        }
-                    }
-                }
-            }
-    
-            .company_job_tab
-            {
-                display: block;
-                .company_job_tab_des_left{
+                .new_interview_question
+                {
+                    width: 100%;
+                    min-height: 90px;
+                    background-color: #ebfeff;
+                    border-top: 5px solid #febb02;
+                    padding: 10px;
+                    border-radius: 3px;
                     margin-top: 30px;
-                    @media screen and (max-width: 600px){
-                        margin-top: 20px;
-                    }
-                    .user_comment_heading{
-                        font-size: 22px;
-                    }
-                    .company_job_tab_heading{
-                        .user_comment_heading_job{
-                            font-size: 20px;
-                            @media screen and (max-width: 600px){
-                                padding-top: 0px;
-                            }
+                    .new_interview_question_title{
+                        margin-top: 10px;
+                        margin-bottom: 20px;
+                        font-size: 20px;
+                        @media screen and (min-width: 600px){
+                            float: left;
+                            font-size: 22px;
                         }
-        
-                        .company_job_index{
-                            // margin-top: 10px;
-                            margin-bottom: 20px;
+                        i {
+                            font-size: 30px;
+                            margin: 3px;
+                            color: #febb02;
+                            position: relative;
+                            top: 2px;
+                        }
+                    }
+    
+                    .new_interview_question_button button {
+                        float: right;
+                        @media screen and (max-width: 600px){
+                            float: none;
+                            width: 100%;
+                        }
+                        padding: 14px;
+                        width: 300px;
+                        height: 50px;
+                        background: #1877f2;
+                        font-size: 14px;
+                        border: none;
+                        cursor: pointer;
+                        text-align: center;
+                        color: #fff;
+                        border-radius: 3px;
+                        i{
+                            font-size: 20px;
+                            position: relative;
+                            top: 3px;
+                            color: #fff;
+                            margin-right: 3px;
+                        }
+                        span{
+                            font-size: 14px;
+                            position: relative;
+                            top: -2px;
+                        }
+                        
+                        &:hover {
+                            background-color: #369;
+                            color: #fff;
                         }
                     }
                 }
-                .company_job_tab_des_right{
-                    .new_job{
-                        width: 100%;
-                        min-height: 100px;
-                        margin-bottom: 30px;
-                        border: 1px solid #dfe1e5;
-                        background-color: #ebfeff;
-                        border-radius: 3px;
-                        .new_job_title{
-                            font-size: 22px;
-                            padding-top: 20px;
-                            padding-left: 20px;    
-                        }
-                        .new_job_button{
-                            padding: 15px;
-                            padding-bottom: 30px;
-                            button{
-                                height: 50px;
-                                width: 100%;
-                                margin-right: 10px;
-                                background: #1877f2;
-                                font-size: 16px;
-                                border: none;
-                                cursor: pointer;
-                                text-align: center;
-                                color: #fff;
-                                border-radius: 3px;
-                                i{
-                                    position: relative;
-                                    top: 2px;
-                                    font-size: 20px;
-                                    margin-right: 3px;
-                                }
-        
-                                span{
-                                    font-size: 16px;
-                                    position: relative;
-                                    top: -2px;
-                                }
-                                
-                                &:hover{
-                                    background-color: #369;
-                                    color: #fff;
-                                }
-                            }
-                        }
-                    }
-        
-                    .company_policy_overview_block_right_overview{
-                        padding: 15px;
-                        display: block;
-                        background-color: #fff;
-                        border: 1px solid #dfe1e5;
-                        border-radius: 3px;
-                        .company_policy_overview_label{
-                            span{
-                                border-bottom: 3px solid #febb02;
-                                font-size: 20px;
-                                padding-top: 5px;
-                                padding-right: 5px;
-                                color: #333;
-                                font-weight: 550;
-                            }
-                            margin-bottom: 10px;
-                        }
+            }
 
-                        .company_policy_overview_right{
-                            .company_policy_overview_right_title{
-                                a{
-                                    font-weight: 550;
-                                    font-size: 16px;
-                                }
-                                
-                                i{
-                                    position: relative;
-                                    top: 20px;
-                                    color: #1877f2;
-                                    font-size: 28px;
-                                    margin-right: 12px;
-                                }
-                            }
-                            .company_policy_overview_right_des{
-                                font-size: 14px;
-                                padding-left: 45px;
-                                padding-bottom: 10px;
-                                color: #515353;
-                            }
-                        }
+            .company_interview_tab_des_right{
+                @media screen and (max-width: 600px){
+                    margin-top: 20px;
+                }
+                .interview_score_title_block{
+                    padding: 15px;
+                    background-color: #fff;
+                    border-radius: 3px;
+                    border: 1px solid #dfe1e5;
+                    background-color: #ebfeff;  
+                    .interview_score_title{
+                        font-size: 18px;
+                        font-weight: 550;
                     }
-
-                    .company_policy_overview_block_right_job{
+                    .interview_new_button_side{
                         display: block;
-                        margin-top: 20px;
-                        .company_job_mini_block
-                        {
-                            padding: 10px;
-                            border: 1px solid #dfe1e5;
-                            background-color: #fff;
+                        .interview_new_button button {
+                            width: 100%;
+                            padding: 14px;
+                            height: 50px;
+                            background: #1877f2;
+                            font-size: 16px;
+                            border: none;
+                            cursor: pointer;
+                            text-align: center;
+                            color: #fff;
                             border-radius: 3px;
-                            .company_job_label{
-                                border-bottom: 1px solid #dfe1e5;
-                                a{
-                                    font-size: 20px;
-                                    font-weight: 550;
-                                    color: #333;
-                                }
+                            i{
+                                font-size: 20px;
+                                position: relative;
+                                top: 3px;
+                                color: #fff;
+                                margin-right: 3px;
                             }
-                            .company_job_des{
-                                margin-bottom: 10px;
-                                .company_job_block_mini{
-                                    padding-top: 15px;
-                                    padding-bottom: 10px;
-                                    .company_avatar{
-                                        border-radius: 3px;
-                                        border: 1px solid #dfe1e5;
-                                        img{
-                                            max-width: 60px;
-                                            max-height: 60px;
-                                        }
-                                        float: left;
+                            span{
+                                font-size: 16px;
+                                position: relative;
+                                top: -2px;
+                            }
+                            &:hover {
+                                background-color: #369;
+                            }
+                        }
+                    }
+                }
+                .company_interview_job_mini_block
+                {
+                    margin-top: 20px;
+                    padding: 10px;
+                    border: 1px solid #dfe1e5;
+                    background-color: #fff;
+                    border-radius: 3px;
+                    .company_job_label{
+                        border-bottom: 1px solid #dfe1e5;
+                        a{
+                            font-size: 20px;
+                            font-weight: 550;
+                            color: #333;
+                        }
+                    }
+                    .company_job_des{
+                        margin-bottom: 10px;
+                        .company_job_block_mini{
+                            padding-top: 15px;
+                            padding-bottom: 10px;
+                            .company_avatar{
+                                border-radius: 3px;
+                                border: 1px solid #dfe1e5;
+                                img{
+                                    max-width: 60px;
+                                    max-height: 60px;
+                                }
+                                float: left;
+                            }
+                            .company_job_info{
+                                margin-left: 70px;
+                                .company_job_title{
+                                    a:link{
+                                        font-size: 16px;
+                                        font-weight: 550;
+                                        text-decoration: none !important;overflow: hidden;
+                                        text-overflow: ellipsis;
+                                        display: -webkit-box;
+                                        -webkit-line-clamp: 1; /* number of lines to show */
+                                        -webkit-box-orient: vertical;
                                     }
-                                    .company_job_info{
-                                        margin-left: 70px;
-                                        .company_job_title{
-                                            a:link{
-                                                font-size: 16px;
-                                                font-weight: 550;
-                                                text-decoration: none !important;overflow: hidden;
-                                                text-overflow: ellipsis;
-                                                display: -webkit-box;
-                                                -webkit-line-clamp: 1; /* number of lines to show */
-                                                -webkit-box-orient: vertical;
-                                            }
-                                        }
-                                        .company_job_date{
-                                            padding-top: 5px;
-                                            font-size: 13px;
-                                            color: #666;
-                                        }
-                                    }
+                                }
+                                .company_job_date{
+                                    padding-top: 5px;
+                                    font-size: 13px;
+                                    color: #666;
                                 }
                             }
                         }
                     }
                 }
             }
+        }
 
-            .company_image_tab{
-                .company_image_tab_left{
+        .company_job_tab
+        {
+            display: block;
+            .company_job_tab_des_left{
+                margin-top: 30px;
+                @media screen and (max-width: 600px){
+                    margin-top: 20px;
+                }
+                .user_comment_heading{
+                    font-size: 22px;
+                }
+                .company_job_tab_heading{
+                    .user_comment_heading_job{
+                        font-size: 20px;
+                        @media screen and (max-width: 600px){
+                            padding-top: 0px;
+                        }
+                    }
+    
+                    .company_job_index{
+                        // margin-top: 10px;
+                        margin-bottom: 20px;
+                    }
+                }
+            }
+            .company_job_tab_des_right{
+                .new_job{
+                    width: 100%;
+                    min-height: 100px;
+                    margin-bottom: 30px;
+                    border: 1px solid #dfe1e5;
+                    background-color: #ebfeff;
+                    border-radius: 3px;
+                    .new_job_title{
+                        font-size: 22px;
+                        padding-top: 20px;
+                        padding-left: 20px;    
+                    }
+                    .new_job_button{
+                        padding: 15px;
+                        padding-bottom: 30px;
+                        button{
+                            height: 50px;
+                            width: 100%;
+                            margin-right: 10px;
+                            background: #1877f2;
+                            font-size: 16px;
+                            border: none;
+                            cursor: pointer;
+                            text-align: center;
+                            color: #fff;
+                            border-radius: 3px;
+                            i{
+                                position: relative;
+                                top: 2px;
+                                font-size: 20px;
+                                margin-right: 3px;
+                            }
+    
+                            span{
+                                font-size: 16px;
+                                position: relative;
+                                top: -2px;
+                            }
+                            
+                            &:hover{
+                                background-color: #369;
+                                color: #fff;
+                            }
+                        }
+                    }
+                }
+    
+                .company_policy_overview_block_right_overview{
+                    padding: 15px;
+                    display: block;
+                    background-color: #fff;
                     border: 1px solid #dfe1e5;
                     border-radius: 3px;
-                    margin-top: 30px; 
-                    background-color: #fff;
-                    padding: 15px;
-                    .company_image_upload{
-                        text-align: center;
-                        .new_company_image_content{
-                            .new_company_image_label{
-                                font-size: 20px;
-                                font-weight: 550;
-                                i{
-                                    font-size: 24px;
-                                    position: relative;
-                                    top: 5px;
-                                }
-                            }
-                            .new_company_image_input{
-                                padding-top: 10px;
-                                .new_company_input{
-                                    border: 1px solid #dfe1e5;
-                                    padding: 5px;
-                                    border-radius: 3px;
-                                }
-                            }
+                    .company_policy_overview_label{
+                        span{
+                            border-bottom: 3px solid #febb02;
+                            font-size: 20px;
+                            padding-top: 5px;
+                            padding-right: 5px;
+                            color: #333;
+                            font-weight: 550;
                         }
-                        .new_company_image_submit{
-                            width: 100%;
-                            padding-top: 20px;
-
-                            button{
-                                height: 50px;
-                                width: 100%;
-                                border-radius: 3px;
-                                padding: 6px;
-                                background: #1877f2;
-                                font-size: 16px;
-                                border: none;
-                                cursor: pointer;
-                                text-align: center;
-                                color: #fff;
-                            }
-                            .new_company_image_form_submit{
-                                height: 50px;
-                                width: 100%;
-                                border-radius: 3px;
-                                padding: 6px;
-                                background: #1877f2;
-                                font-size: 16px;
-                                border: none;
-                                cursor: pointer;
-                                text-align: center;
-                                color: #fff;
-                                
-                                &:hover{
-                                    background-color: #1877f2;
-                                }
-                            }
-                        }
+                        margin-bottom: 10px;
                     }
-                    .company_image_block{
-                        margin-top: 30px;
-                        border: none;
-                        img{ 
-                            display: block;
-                            max-width:100%;
-                            max-height:100%;
-                            border: none;
+
+                    .company_policy_overview_right{
+                        .company_policy_overview_right_title{
+                            a{
+                                font-weight: 550;
+                                font-size: 16px;
+                            }
+                            
+                            i{
+                                position: relative;
+                                top: 20px;
+                                color: #1877f2;
+                                font-size: 28px;
+                                margin-right: 12px;
+                            }
+                        }
+                        .company_policy_overview_right_des{
+                            font-size: 14px;
+                            padding-left: 45px;
+                            padding-bottom: 10px;
+                            color: #515353;
                         }
                     }
                 }
-                .company_image_tab_right{
-                    .company_image_mini_block{
+
+                .company_policy_overview_block_right_job{
+                    display: block;
+                    margin-top: 20px;
+                    .company_job_mini_block
+                    {
                         padding: 10px;
                         border: 1px solid #dfe1e5;
                         background-color: #fff;
@@ -1832,6 +1702,132 @@
                                         font-size: 13px;
                                         color: #666;
                                     }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+
+        .company_image_tab{
+            .company_image_tab_left{
+                border: 1px solid #dfe1e5;
+                border-radius: 3px;
+                margin-top: 30px; 
+                background-color: #fff;
+                padding: 15px;
+                .company_image_upload{
+                    text-align: center;
+                    .new_company_image_content{
+                        .new_company_image_label{
+                            font-size: 20px;
+                            font-weight: 550;
+                            i{
+                                font-size: 24px;
+                                position: relative;
+                                top: 5px;
+                            }
+                        }
+                        .new_company_image_input{
+                            padding-top: 10px;
+                            .new_company_input{
+                                border: 1px solid #dfe1e5;
+                                padding: 5px;
+                                border-radius: 3px;
+                            }
+                        }
+                    }
+                    .new_company_image_submit{
+                        width: 100%;
+                        padding-top: 20px;
+
+                        button{
+                            height: 50px;
+                            width: 100%;
+                            border-radius: 3px;
+                            padding: 6px;
+                            background: #1877f2;
+                            font-size: 16px;
+                            border: none;
+                            cursor: pointer;
+                            text-align: center;
+                            color: #fff;
+                        }
+                        .new_company_image_form_submit{
+                            height: 50px;
+                            width: 100%;
+                            border-radius: 3px;
+                            padding: 6px;
+                            background: #1877f2;
+                            font-size: 16px;
+                            border: none;
+                            cursor: pointer;
+                            text-align: center;
+                            color: #fff;
+                            
+                            &:hover{
+                                background-color: #1877f2;
+                            }
+                        }
+                    }
+                }
+                .company_image_block{
+                    margin-top: 30px;
+                    border: none;
+                    img{ 
+                        display: block;
+                        max-width:100%;
+                        max-height:100%;
+                        border: none;
+                    }
+                }
+            }
+            .company_image_tab_right{
+                .company_image_mini_block{
+                    padding: 10px;
+                    border: 1px solid #dfe1e5;
+                    background-color: #fff;
+                    border-radius: 3px;
+                    .company_job_label{
+                        border-bottom: 1px solid #dfe1e5;
+                        a{
+                            font-size: 20px;
+                            font-weight: 550;
+                            color: #333;
+                        }
+                    }
+                    .company_job_des{
+                        margin-bottom: 10px;
+                        .company_job_block_mini{
+                            padding-top: 15px;
+                            padding-bottom: 10px;
+                            .company_avatar{
+                                border-radius: 3px;
+                                border: 1px solid #dfe1e5;
+                                img{
+                                    max-width: 60px;
+                                    max-height: 60px;
+                                }
+                                float: left;
+                            }
+                            .company_job_info{
+                                margin-left: 70px;
+                                .company_job_title{
+                                    a:link{
+                                        font-size: 16px;
+                                        font-weight: 550;
+                                        text-decoration: none !important;overflow: hidden;
+                                        text-overflow: ellipsis;
+                                        display: -webkit-box;
+                                        -webkit-line-clamp: 1; /* number of lines to show */
+                                        -webkit-box-orient: vertical;
+                                    }
+                                }
+                                .company_job_date{
+                                    padding-top: 5px;
+                                    font-size: 13px;
+                                    color: #666;
                                 }
                             }
                         }

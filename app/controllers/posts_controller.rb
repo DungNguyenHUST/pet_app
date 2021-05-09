@@ -56,10 +56,10 @@ class PostsController < ApplicationController
         else
             if (!@post.approved? && @post.update_column(:approved, true))
                 flash[:success] = "Approved"
-                redirect_to pages_path
+                redirect_to pages_path(tab_id: 'PostID')
             elsif (@post.approved? && @post.update_column(:approved, false))
                 flash[:danger] = "Rejected"
-                redirect_to pages_path
+                redirect_to pages_path(tab_id: 'PostID')
             end
         end
     end
@@ -67,7 +67,7 @@ class PostsController < ApplicationController
     def destroy
         @post = Post.friendly.find params[:id]
         @post.destroy
-        redirect_to pages_path
+        redirect_to pages_path(tab_id: 'PostID')
     end
 
     private

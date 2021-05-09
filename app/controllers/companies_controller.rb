@@ -25,6 +25,12 @@ class CompaniesController < ApplicationController
         @company_apply_jobs = CompanyApplyJob.all
         @company_reply_reviews = CompanyReplyReview.all
         @company_reply_interviews = CompanyReplyInterview.all
+        
+        if(params.has_key?(:tab_id))
+            @tab_id = params[:tab_id]
+        else
+            @tab_id = "default"
+        end
     end
 
     def new
@@ -59,6 +65,11 @@ class CompaniesController < ApplicationController
         @company_job = CompanyJob.new(company_id: params[:company_id])
         @company_apply_job = CompanyApplyJob.new(company_job_id: params[:company_job_id])
 
+        if(params.has_key?(:tab_id))
+            @tab_id = params[:tab_id]
+        else
+            @tab_id = "default"
+        end
     end
 
     def edit
@@ -81,10 +92,10 @@ class CompaniesController < ApplicationController
         else
             if (!@company.approved? && @company.update_column(:approved, true))
                 flash[:success] = "Approved"
-                redirect_to pages_path
+                redirect_to pages_path(tab_id: 'CompanyID')
             elsif (@company.approved? && @company.update_column(:approved, false))
                 flash[:danger] = "Rejected"
-                redirect_to pages_path
+                redirect_to pages_path(tab_id: 'CompanyID')
             end
         end
     end
@@ -92,7 +103,7 @@ class CompaniesController < ApplicationController
     def destroy
         @company = Company.friendly.find params[:id]
         @company.destroy
-        redirect_to pages_path
+        redirect_to pages_path(tab_id: 'CompanyID')
     end
 
     private

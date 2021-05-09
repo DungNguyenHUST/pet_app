@@ -68,5 +68,11 @@ class PagesController < ApplicationController
             @problem_search = params[:problem_search]
             @problem_searchs = Problem.friendly.search(@problem_search)
         end
+
+		if(params.has_key?(:tab_id))
+            @tab_id = params[:tab_id]
+        else
+            @tab_id = "default"
+        end
     end
 end

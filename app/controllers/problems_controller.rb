@@ -30,6 +30,12 @@ class ProblemsController < ApplicationController
 				end 
 			end
         end
+
+        if(params.has_key?(:tab_id))
+            @tab_id = params[:tab_id]
+        else
+            @tab_id = "default"
+        end
     end
 
     def new
@@ -80,6 +86,12 @@ class ProblemsController < ApplicationController
                 end
             end
         end
+
+        if(params.has_key?(:tab_id))
+            @tab_id = params[:tab_id]
+        else
+            @tab_id = "default"
+        end
     end
 
     def edit
@@ -103,10 +115,10 @@ class ProblemsController < ApplicationController
         else
             if (!@problem.approved? && @problem.update_column(:approved, true))
                 flash[:success] = "Approved"
-                redirect_to pages_path
+                redirect_to pages_path(tab_id: 'ProblemID')
             elsif (@problem.approved? && @problem.update_column(:approved, false))
                 flash[:danger] = "Rejected"
-                redirect_to pages_path
+                redirect_to pages_path(tab_id: 'ProblemID')
             end
         end
     end
@@ -114,7 +126,7 @@ class ProblemsController < ApplicationController
     def destroy
         @problem = Problem.friendly.find params[:id]
         @problem.destroy
-        redirect_to pages_path
+        redirect_to pages_path(tab_id: 'ProblemID')
     end
 
     private

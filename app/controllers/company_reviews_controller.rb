@@ -25,7 +25,7 @@ class CompanyReviewsController < ApplicationController
         # @company_review.average_score = (@company_review.work_env_score + @company_review.salary_score + @company_review.ot_score + @company_review.manager_score + @company_review.career_score + @company_review.score) / 6
 
         if @company_review.save
-            redirect_to company_path(@company)
+            redirect_to company_path(@company, tab_id: 'CompanyReviewsID')
         else
             flash[:danger] = "Lỗi, hãy điền đủ nội dung có dấu '*' "
             render :new
@@ -36,7 +36,7 @@ class CompanyReviewsController < ApplicationController
         @company = Company.friendly.find(params[:company_id])
         @company_review = @company.company_reviews.friendly.find(params[:id])
         @company_review.destroy
-        redirect_to company_path(@company)
+        redirect_to company_path(@company, tab_id: 'CompanyReviewsID')
     end
 
     def show

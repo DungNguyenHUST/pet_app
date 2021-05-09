@@ -17,17 +17,17 @@
         display: block;
         background-color: #fff;
         border-bottom: 2px solid #dfe1e5;
-        .nav-tabs {
+        .nav {
             overflow-x: auto;
             overflow-y: hidden;
             flex-wrap: nowrap;
             border: none;
         }
-        .nav-tabs .nav-link {
+        .nav .nav-link {
             white-space: nowrap;
             font-size: 16px;
         }
-        .nav-tabs .nav-link, .nav-tabs .nav-link.active, .nav-tabs .nav-link:hover {
+        .nav .nav-link, .nav .nav-link.active, .nav .nav-link:hover {
             border: none;
             color: #333;
             text-align: left;
@@ -43,9 +43,9 @@
                 color: #999;
             }
         }
-        .nav-tabs .nav-link.active {
+        .nav .nav-link.active {
             border-radius: 0;
-            border-bottom: 5px solid #1877f2;
+            border-bottom: 3px solid #1877f2;
             font-weight: 500;
             color: #1877f2;
             font-size: 16px;
@@ -55,78 +55,123 @@
         }
     }
     .admin_tab_content{
+        padding-top: 20px;
+        padding-bottom: 20px;
         min-height: 900px;
-        .tab-content{
-            .company_tab{
-                .admin_search_input{
-                    display: block;
-                    min-height: 50px;
-                    margin-bottom: 10px;
-                    .admin_search_what{
-                        background-color: #fff;
-                        border: 1px solid #dfe1e5;
+        .company_tab{
+            .admin_search_input{
+                display: block;
+                min-height: 50px;
+                margin-bottom: 10px;
+                .admin_search_what{
+                    background-color: #fff;
+                    border: 1px solid #dfe1e5;
+                    width: 100%;
+                    border-radius: 3px;
+                    i{
+                        font-size: 22px;
+                        position: relative;
+                        top: 5px;
+                        color: #888;
+                        position: absolute;
+                        left: 25px;
+                        top: 14px;
+                    }
+                    .search_input{
+                        padding-left: 10px;
+                        padding-right: 10px;
                         width: 100%;
+                        height: 50px;
+                        border: none;
+                        box-shadow: none;
+                        color: #333;
+                        font-size: 16px;
+                        outline:none;
+                    }
+                }
+                
+                .admin_search_button{
+                    border: none;
+                    width: 100%;
+                    @media screen and (max-width: 600px){
+                        padding-top: 20px;
+                    }
+                    button{
+                        width: 100%;
+                        border: none;
                         border-radius: 3px;
-                        i{
-                            font-size: 22px;
-                            position: relative;
-                            top: 5px;
-                            color: #888;
-                            position: absolute;
-                            left: 25px;
-                            top: 14px;
-                        }
-                        .search_input{
-                            padding-left: 10px;
-                            padding-right: 10px;
-                            width: 100%;
-                            height: 50px;
-                            border: none;
-                            box-shadow: none;
-                            color: #333;
+                        background-color: #42b72a;
+                        height: 50px;
+                        color: #fff;
+                        font-size:16px;
+                    }
+                }
+            }
+            .search_label{
+                font-size: 20px;
+                font-weight: 550;
+                padding-top: 10px;
+                padding-bottom: 10px;
+            }
+            .company_block{
+                border: 1px solid #999;
+                padding: 10px;
+                .company_name{
+                    .company_name_label{
+                        font-size: 17px;
+                        font-weight: 550;
+                    }
+                    a:hover{
+                        color: #1877f2;
+                    }
+                    i{
+                        padding-left: 20px;
+                    }
+                }
+                .new_job{
+                    button{
+                        margin-top: 10px;
+                        margin-bottom: 10px;
+                        padding: 10px;
+                        width: 200px;
+                        background-color: #1877f2;
+                        border: none;
+                        color: #fff;
+                    }
+                }
+                .approved{
+                    padding-top: 10px;
+                    padding-bottom: 10px;
+                    button{
+                        padding: 10px;
+                        width: 200px;
+                        background-color: #1877f2;
+                        border: none;
+                        color: #fff;
+                    }
+                }
+                .company_job_dash{
+                    padding-top: 10px;
+                    margin-left: 50px;
+                    .company_job_count{
+                        a{
                             font-size: 16px;
-                            outline:none;
+                            font-weight: 600px;
+                        }
+                        padding-bottom: 10px;
+                    }
+                    .admin_company_job_block{
+                        border: 1px solid #999;
+                        padding: 10px;
+                        .company_job_name{
+                            a{
+                                // float: left;
+                                font-size: 16px;
+                                margin-right: 10px;
+                            }
                         }
                     }
                     
-                    .admin_search_button{
-                        border: none;
-                        width: 100%;
-                        @media screen and (max-width: 600px){
-                            padding-top: 20px;
-                        }
-                        button{
-                            width: 100%;
-                            border: none;
-                            border-radius: 3px;
-                            background-color: #42b72a;
-                            height: 50px;
-                            color: #fff;
-                            font-size:16px;
-                        }
-                    }
-                }
-                .search_label{
-                    font-size: 20px;
-                    font-weight: 550;
-                    padding-top: 10px;
-                    padding-bottom: 10px;
-                }
-                .company_block{
-                    border: 1px solid #999;
-                    padding: 10px;
-                    .company_name{
-                        .company_name_label{
-                            font-size: 17px;
-                            font-weight: 550;
-                        }
-                        a:hover{
-                            color: #1877f2;
-                        }
-                        i{
-                            padding-left: 20px;
-                        }
-                    }
                     .new_job{
                         button{
                             margin-top: 10px;
@@ -138,220 +183,88 @@
                             color: #fff;
                         }
                     }
-					.approved{
-						padding-top: 10px;
-						padding-bottom: 10px;
-						button{
-							padding: 10px;
-							width: 200px;
-							background-color: #1877f2;
-							border: none;
-							color: #fff;
-						}
-					}
-                    .company_job_dash{
-                        padding-top: 10px;
-                        margin-left: 50px;
-                        .company_job_count{
-                            a{
-                                font-size: 16px;
-                                font-weight: 600px;
-                            }
-                            padding-bottom: 10px;
-                        }
-                        .admin_company_job_block{
-                            border: 1px solid #999;
-                            padding: 10px;
-                            .company_job_name{
-                                a{
-                                    // float: left;
-                                    font-size: 16px;
-                                    margin-right: 10px;
-                                }
-                            }
-                        }
-                        
-						.new_job{
-							button{
-                                margin-top: 10px;
-								margin-bottom: 10px;
-								padding: 10px;
-								width: 200px;
-								background-color: #1877f2;
-								border: none;
-								color: #fff;
-							}
-						}
-                    }
-                    
-                    clear: both;
                 }
-				.new_company{
-					padding-top: 20px;
-					button{
-						padding: 10px;
-						width: 200px;
-						background-color: #1877f2;
-						border: none;
-						color: #fff;
-					}
-				}
-            } 
-
-            .user_tab{
-                .admin_search_input{
-                    display: block;
-                    min-height: 50px;
-                    margin-bottom: 10px;
-                    .admin_search_what{
-                        background-color: #fff;
-                        border: 1px solid #dfe1e5;
-                        width: 100%;
-                        border-radius: 3px;
-                        i{
-                            font-size: 22px;
-                            position: relative;
-                            top: 5px;
-                            color: #888;
-                            position: absolute;
-                            left: 25px;
-                            top: 14px;
-                        }
-                        .search_input{
-                            padding-left: 10px;
-                            padding-right: 10px;
-                            width: 100%;
-                            height: 50px;
-                            border: none;
-                            box-shadow: none;
-                            color: #333;
-                            font-size: 16px;
-                            outline:none;
-                        }
-                    }
-                    
-                    .admin_search_button{
-                        border: none;
-                        width: 100%;
-                        @media screen and (max-width: 600px){
-                            padding-top: 20px;
-                        }
-                        button{
-                            width: 100%;
-                            border: none;
-                            border-radius: 3px;
-                            background-color: #42b72a;
-                            height: 50px;
-                            color: #fff;
-                            font-size:16px;
-                        }
-                    }
-                }
-
-                .search_label{
-                    font-size: 20px;
-                    font-weight: 550;
-                    padding-top: 10px;
-                    padding-bottom: 10px;
-                }
-                .user_block{
-                    border: 1px solid #999;
+                
+                clear: both;
+            }
+            .new_company{
+                padding-top: 20px;
+                button{
                     padding: 10px;
-                    .user_name{
-                        padding: 10px;
+                    width: 200px;
+                    background-color: #1877f2;
+                    border: none;
+                    color: #fff;
+                }
+            }
+        } 
+
+        .user_tab{
+            .admin_search_input{
+                display: block;
+                min-height: 50px;
+                margin-bottom: 10px;
+                .admin_search_what{
+                    background-color: #fff;
+                    border: 1px solid #dfe1e5;
+                    width: 100%;
+                    border-radius: 3px;
+                    i{
+                        font-size: 22px;
+                        position: relative;
+                        top: 5px;
+                        color: #888;
+                        position: absolute;
+                        left: 25px;
+                        top: 14px;
                     }
-                    
-					.approved{
-						padding-top: 10px;
-						padding-bottom: 10px;
-						button{
-							padding: 10px;
-							width: 200px;
-							background-color: #1877f2;
-							border: none;
-							color: #fff;
-						}
-					}
+                    .search_input{
+                        padding-left: 10px;
+                        padding-right: 10px;
+                        width: 100%;
+                        height: 50px;
+                        border: none;
+                        box-shadow: none;
+                        color: #333;
+                        font-size: 16px;
+                        outline:none;
+                    }
+                }
+                
+                .admin_search_button{
+                    border: none;
+                    width: 100%;
+                    @media screen and (max-width: 600px){
+                        padding-top: 20px;
+                    }
+                    button{
+                        width: 100%;
+                        border: none;
+                        border-radius: 3px;
+                        background-color: #42b72a;
+                        height: 50px;
+                        color: #fff;
+                        font-size:16px;
+                    }
                 }
             }
 
-            .post_tab{
-                .admin_search_input{
-                    display: block;
-                    min-height: 50px;
-                    margin-bottom: 10px;
-                    .admin_search_what{
-                        background-color: #fff;
-                        border: 1px solid #dfe1e5;
-                        width: 100%;
-                        border-radius: 3px;
-                        i{
-                            font-size: 22px;
-                            position: relative;
-                            top: 5px;
-                            color: #888;
-                            position: absolute;
-                            left: 25px;
-                            top: 14px;
-                        }
-                        .search_input{
-                            padding-left: 10px;
-                            padding-right: 10px;
-                            width: 100%;
-                            height: 50px;
-                            border: none;
-                            box-shadow: none;
-                            color: #333;
-                            font-size: 16px;
-                            outline:none;
-                        }
-                    }
-                    
-                    .admin_search_button{
-                        border: none;
-                        width: 100%;
-                        @media screen and (max-width: 600px){
-                            padding-top: 20px;
-                        }
-                        button{
-                            width: 100%;
-                            border: none;
-                            border-radius: 3px;
-                            background-color: #42b72a;
-                            height: 50px;
-                            color: #fff;
-                            font-size:16px;
-                        }
-                    }
+            .search_label{
+                font-size: 20px;
+                font-weight: 550;
+                padding-top: 10px;
+                padding-bottom: 10px;
+            }
+            .user_block{
+                border: 1px solid #999;
+                padding: 10px;
+                .user_name{
+                    padding: 10px;
                 }
-
-                .search_label{
-                    font-size: 20px;
-                    font-weight: 550;
+                
+                .approved{
                     padding-top: 10px;
                     padding-bottom: 10px;
-                }
-                .post_block{
-                    border: 1px solid #999;
-                    padding: 10px;
-                    .post_name{
-                        padding: 10px;
-                    }
-                    
-					.approved{
-						padding-top: 10px;
-						padding-bottom: 10px;
-						button{
-							padding: 10px;
-							width: 200px;
-							background-color: #1877f2;
-							border: none;
-							color: #fff;
-						}
-					}
-                }
-                .new_post{
-                    padding-top: 20px;
                     button{
                         padding: 10px;
                         width: 200px;
@@ -361,85 +274,74 @@
                     }
                 }
             }
+        }
 
-            .problem_tab{
-                .admin_search_input{
-                    display: block;
-                    min-height: 50px;
-                    margin-bottom: 10px;
-                    .admin_search_what{
-                        background-color: #fff;
-                        border: 1px solid #dfe1e5;
-                        width: 100%;
-                        border-radius: 3px;
-                        i{
-                            font-size: 22px;
-                            position: relative;
-                            top: 5px;
-                            color: #888;
-                            position: absolute;
-                            left: 25px;
-                            top: 14px;
-                        }
-                        .search_input{
-                            padding-left: 10px;
-                            padding-right: 10px;
-                            width: 100%;
-                            height: 50px;
-                            border: none;
-                            box-shadow: none;
-                            color: #333;
-                            font-size: 16px;
-                            outline:none;
-                        }
+        .post_tab{
+            .admin_search_input{
+                display: block;
+                min-height: 50px;
+                margin-bottom: 10px;
+                .admin_search_what{
+                    background-color: #fff;
+                    border: 1px solid #dfe1e5;
+                    width: 100%;
+                    border-radius: 3px;
+                    i{
+                        font-size: 22px;
+                        position: relative;
+                        top: 5px;
+                        color: #888;
+                        position: absolute;
+                        left: 25px;
+                        top: 14px;
                     }
-                    
-                    .admin_search_button{
-                        border: none;
+                    .search_input{
+                        padding-left: 10px;
+                        padding-right: 10px;
                         width: 100%;
-                        @media screen and (max-width: 600px){
-                            padding-top: 20px;
-                        }
-                        button{
-                            width: 100%;
-                            border: none;
-                            border-radius: 3px;
-                            background-color: #42b72a;
-                            height: 50px;
-                            color: #fff;
-                            font-size:16px;
-                        }
+                        height: 50px;
+                        border: none;
+                        box-shadow: none;
+                        color: #333;
+                        font-size: 16px;
+                        outline:none;
                     }
                 }
+                
+                .admin_search_button{
+                    border: none;
+                    width: 100%;
+                    @media screen and (max-width: 600px){
+                        padding-top: 20px;
+                    }
+                    button{
+                        width: 100%;
+                        border: none;
+                        border-radius: 3px;
+                        background-color: #42b72a;
+                        height: 50px;
+                        color: #fff;
+                        font-size:16px;
+                    }
+                }
+            }
 
-                .search_label{
-                    font-size: 20px;
-                    font-weight: 550;
+            .search_label{
+                font-size: 20px;
+                font-weight: 550;
+                padding-top: 10px;
+                padding-bottom: 10px;
+            }
+            .post_block{
+                border: 1px solid #999;
+                padding: 10px;
+                .post_name{
+                    padding: 10px;
+                }
+                
+                .approved{
                     padding-top: 10px;
                     padding-bottom: 10px;
-                }
-
-                .problem_block{
-                    border: 1px solid #999;
-                    padding: 10px;
-                    .problem_name{
-                        padding: 10px;
-                    }
-                    
-					.approved{
-						padding-top: 10px;
-						padding-bottom: 10px;
-						button{
-							padding: 10px;
-							width: 200px;
-							background-color: #1877f2;
-							border: none;
-							color: #fff;
-						}
-					}
-                }
-                .new_problem{
-                    padding-top: 20px;
                     button{
                         padding: 10px;
                         width: 200px;
@@ -447,6 +349,104 @@
                         border: none;
                         color: #fff;
                     }
+                }
+            }
+            .new_post{
+                padding-top: 20px;
+                button{
+                    padding: 10px;
+                    width: 200px;
+                    background-color: #1877f2;
+                    border: none;
+                    color: #fff;
+                }
+            }
+        }
+
+        .problem_tab{
+            .admin_search_input{
+                display: block;
+                min-height: 50px;
+                margin-bottom: 10px;
+                .admin_search_what{
+                    background-color: #fff;
+                    border: 1px solid #dfe1e5;
+                    width: 100%;
+                    border-radius: 3px;
+                    i{
+                        font-size: 22px;
+                        position: relative;
+                        top: 5px;
+                        color: #888;
+                        position: absolute;
+                        left: 25px;
+                        top: 14px;
+                    }
+                    .search_input{
+                        padding-left: 10px;
+                        padding-right: 10px;
+                        width: 100%;
+                        height: 50px;
+                        border: none;
+                        box-shadow: none;
+                        color: #333;
+                        font-size: 16px;
+                        outline:none;
+                    }
+                }
+                
+                .admin_search_button{
+                    border: none;
+                    width: 100%;
+                    @media screen and (max-width: 600px){
+                        padding-top: 20px;
+                    }
+                    button{
+                        width: 100%;
+                        border: none;
+                        border-radius: 3px;
+                        background-color: #42b72a;
+                        height: 50px;
+                        color: #fff;
+                        font-size:16px;
+                    }
+                }
+            }
+
+            .search_label{
+                font-size: 20px;
+                font-weight: 550;
+                padding-top: 10px;
+                padding-bottom: 10px;
+            }
+
+            .problem_block{
+                border: 1px solid #999;
+                padding: 10px;
+                .problem_name{
+                    padding: 10px;
+                }
+                
+                .approved{
+                    padding-top: 10px;
+                    padding-bottom: 10px;
+                    button{
+                        padding: 10px;
+                        width: 200px;
+                        background-color: #1877f2;
+                        border: none;
+                        color: #fff;
+                    }
+                }
+            }
+            .new_problem{
+                padding-top: 20px;
+                button{
+                    padding: 10px;
+                    width: 200px;
+                    background-color: #1877f2;
+                    border: none;
+                    color: #fff;
                 }
             }
         }
@@ -476,17 +476,17 @@
         display: block;
         background-color: #fff;
         border-bottom: 1px solid #dfe1e5;
-        .nav-tabs {
+        .nav {
             overflow-x: auto;
             overflow-y: hidden;
             flex-wrap: nowrap;
             border: none;
         }
-        .nav-tabs .nav-link {
+        .nav .nav-link {
             white-space: nowrap;
             font-size: 16px;
         }
-        .nav-tabs .nav-link, .nav-tabs .nav-link.active, .nav-tabs .nav-link:hover {
+        .nav .nav-link, .nav .nav-link.active, .nav .nav-link:hover {
             border: none;
             color: #333;
             text-align: left;
@@ -502,9 +502,9 @@
                 color: #999;
             }
         }
-        .nav-tabs .nav-link.active {
+        .nav .nav-link.active {
             border-radius: 0;
-            border-bottom: 4px solid #1877f2;
+            border-bottom: 3px solid #1877f2;
             font-weight: 500;
             color: #1877f2;
             font-size: 16px;
@@ -516,6 +516,8 @@
 
     .employer_tab_content{
         min-height: 1080px;
+        padding-top: 10px;
+        padding-bottom: 20px;
         .employer_company_tab{
             .employer_top_company{
                 clear: both;

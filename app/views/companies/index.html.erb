@@ -60,459 +60,462 @@
                     <div class="section_title">
                         <span>Danh sách công ty</span>
                     </div>
-                    <div class="company_index_tab_link">  
-                        <ul class="nav nav-tabs" role="tablist">
+                    
+                    <div class="company_index_tab_link">
+                        <ul class="nav">
                             <li class="nav-item">
-                                <a class="nav-link active" data-toggle="tab" href="#CompanyAllID"><i class="material-icons-outlined">sort</i>Tất cả <span> <%= @companies_all.count%><span></a>
+                                <%if @tab_id == "default" || @tab_id == "CompanyAllID"%>
+                                    <%active = "active"%>
+                                <%else%> 
+                                    <%active = ""%>
+                                <%end%> 
+                                <a class="nav-link <%=active%>" href="<%=companies_path(tab_id: 'CompanyAllID')%>"><i class="material-icons-outlined">sort</i>Tất cả<span> <%= @companies_all.count%><span></a>
                             </li>
-                            
                             <li class="nav-item">
-                                <a class="nav-link" data-toggle="tab" href="#CompanyNewestID"><i class="material-icons-outlined">query_builder</i>Công ty mới nhất </a>
+                                <%if @tab_id == "CompanyNewestID"%>
+                                    <%active = "active"%>
+                                <%else%> 
+                                    <%active = ""%>
+                                <%end%>
+                                <a class="nav-link <%=active%>" href="<%=companies_path(tab_id: 'CompanyNewestID')%>"><i class="material-icons-outlined">query_builder</i>Công ty mới nhất </a>
                             </li>
-
                             <li class="nav-item">
-                                <a class="nav-link" data-toggle="tab" href="#CompanyMostRecentID"><i class="material-icons-outlined">record_voice_over</i>Nhiều người quan tâm nhất</a>
+                                <%if @tab_id == "CompanyMostRecentID"%>
+                                    <%active = "active"%>
+                                <%else%> 
+                                    <%active = ""%>
+                                <%end%>
+                                <a class="nav-link <%=active%>" href="<%=companies_path(tab_id: 'CompanyMostRecentID')%>"><i class="material-icons-outlined">record_voice_over</i>Nhiều người quan tâm nhất</a>
                             </li>
-
                             <li class="nav-item">
-                                <a class="nav-link" data-toggle="tab" href="#CompanyBestID"><i class="material-icons-outlined">thumb_up</i>Công ty tốt nhất</a>
+                                <%if @tab_id == "CompanyBestID"%>
+                                    <%active = "active"%>
+                                <%else%> 
+                                    <%active = ""%>
+                                <%end%>
+                                <a class="nav-link <%=active%>" href="<%=companies_path(tab_id: 'CompanyBestID')%>"><i class="material-icons-outlined">thumb_up</i>Công ty tốt nhất</a>
                             </li>
                         </ul>
                     </div>
 
                     <div class="company_index_tab_content">
-                        <div class="tab-content">
-                            <div role="tabpanel" id="CompanyAllID" class="tab-pane fade in active"><br>
-                                <div class="company_all_tab">
-                                    <div class="row">
-                                        <% @companies_oder_name.each do |company| %>
-                                            <div class="col-sm-3">
-                                                <div class="single_company">
-                                                    <div class="company_wall">
-                                                        <div class="rounded">
-                                                            <%if company.wall_picture?%>
-                                                                <%= link_to (image_tag(company.wall_picture.large.url)), image_path(url_for(company.wall_picture.large.url)), rel: "gallery" , :href => company_path(company)%>
-                                                            <%end%>
-                                                        </div>
-                                                    </div>
-
-                                                    <div class="company_thumbnail">
-                                                        <div class="rounded">
-                                                            <%if company.avatar?%>
-                                                                <%= link_to (image_tag(company.avatar.thumb.url)), image_path(url_for(company.avatar.thumb.url)), rel: "gallery" , :href => company_path(company)%>
-                                                            <%end%>
-                                                        </div>
-                                                    </div>
-
-                                                    <div class="company_love_button" id ="company_love_<%=company.id%>">
-                                                        <%if logged_in?%>
-                                                            <% pre_follow = company.company_follows.find { |follow| follow.user_id == current_user.id} %>
-                                                            <% if pre_follow %> 
-                                                                <%= link_to '<button class="follow_btn_highlight"><i class="material-icons">favorite</i></button>'.html_safe, company_company_follow_path(company, pre_follow, type_param: 'mini'), remote: true, method: :delete%>
-                                                            <%else%>
-                                                                <%= link_to '<button class="follow_btn"><i class="material-icons-outlined">favorite_border</i></button>'.html_safe, company_company_follows_path(company, type_param: 'mini'), remote: true, method: :post%>
-                                                            <%end%>
-                                                        <%else%>
-                                                            <%= link_to '<button class="follow_btn"><i class="material-icons-outlined">favorite_border</i></button>'.html_safe, login_path%>
+                        <%if @tab_id == "default" || @tab_id == "CompanyAllID"%>
+                            <div class="company_all_tab">
+                                <div class="row">
+                                    <% @companies_oder_name.each do |company| %>
+                                        <div class="col-sm-3">
+                                            <div class="single_company">
+                                                <div class="company_wall">
+                                                    <div class="rounded">
+                                                        <%if company.wall_picture?%>
+                                                            <%= link_to (image_tag(company.wall_picture.large.url)), image_path(url_for(company.wall_picture.large.url)), rel: "gallery" , :href => company_path(company)%>
                                                         <%end%>
                                                     </div>
+                                                </div>
 
-                                                    <div class="company_title">
-                                                        <div class="company_name">
-                                                            <a> <%= link_to company.name, company_path(company), class: "company_name_label" %></a>
-                                                        </div>
+                                                <div class="company_thumbnail">
+                                                    <div class="rounded">
+                                                        <%if company.avatar?%>
+                                                            <%= link_to (image_tag(company.avatar.thumb.url)), image_path(url_for(company.avatar.thumb.url)), rel: "gallery" , :href => company_path(company)%>
+                                                        <%end%>
+                                                    </div>
+                                                </div>
 
-                                                        <div class="company_rating">
-                                                            <%total_rate = cal_rating_review_total_score(company)%>
-                                                            <div class="review_score_star">
-                                                                <%if total_rate > 0%>
-                                                                    <%total_rate.to_i.times do%>
-                                                                        <i class="material-icons checked">circle</i>
-                                                                    <%end%>
-                                                                    <%(5 - total_rate.to_i).to_i.times do%>
-                                                                        <i class="material-icons checked_out">radio_button_unchecked</i>
-                                                                    <%end%>
-                                                                <%else%>
-                                                                    <%5.times do%>
-                                                                        <i class="material-icons checked_out">radio_button_unchecked</i>
-                                                                    <%end%>
+                                                <div class="company_love_button" id ="company_love_<%=company.id%>">
+                                                    <%if logged_in?%>
+                                                        <% pre_follow = company.company_follows.find { |follow| follow.user_id == current_user.id} %>
+                                                        <% if pre_follow %> 
+                                                            <%= link_to '<button class="follow_btn_highlight"><i class="material-icons">favorite</i></button>'.html_safe, company_company_follow_path(company, pre_follow, type_param: 'mini'), remote: true, method: :delete%>
+                                                        <%else%>
+                                                            <%= link_to '<button class="follow_btn"><i class="material-icons-outlined">favorite_border</i></button>'.html_safe, company_company_follows_path(company, type_param: 'mini'), remote: true, method: :post%>
+                                                        <%end%>
+                                                    <%else%>
+                                                        <%= link_to '<button class="follow_btn"><i class="material-icons-outlined">favorite_border</i></button>'.html_safe, login_path%>
+                                                    <%end%>
+                                                </div>
+
+                                                <div class="company_title">
+                                                    <div class="company_name">
+                                                        <a> <%= link_to company.name, company_path(company), class: "company_name_label" %></a>
+                                                    </div>
+
+                                                    <div class="company_rating">
+                                                        <%total_rate = cal_rating_review_total_score(company)%>
+                                                        <div class="review_score_star">
+                                                            <%if total_rate > 0%>
+                                                                <%total_rate.to_i.times do%>
+                                                                    <i class="material-icons checked">circle</i>
                                                                 <%end%>
-                                                            </div>
+                                                                <%(5 - total_rate.to_i).to_i.times do%>
+                                                                    <i class="material-icons checked_out">radio_button_unchecked</i>
+                                                                <%end%>
+                                                            <%else%>
+                                                                <%5.times do%>
+                                                                    <i class="material-icons checked_out">radio_button_unchecked</i>
+                                                                <%end%>
+                                                            <%end%>
                                                         </div>
                                                     </div>
-                                                    
-                                                    <div class="company_summary">
-                                                        <div class="company_point">
-                                                            <div class="review_point">
-                                                                <div class="company_point_content">
-                                                                    <a><%= company.company_reviews.count%></a>
-                                                                </div>
-                                                                <div class="company_point_label">
-                                                                    <a>Đánh giá</a>
-                                                                </div>
+                                                </div>
+                                                
+                                                <div class="company_summary">
+                                                    <div class="company_point">
+                                                        <div class="review_point">
+                                                            <div class="company_point_content">
+                                                                <a><%= company.company_reviews.count%></a>
                                                             </div>
-                                                            
-                                                            <div class="interview_point">
-                                                                <div class="company_point_content">
-                                                                    <a><%= company.company_interviews.count %></a>
-                                                                </div>
-                                                                <div class="company_point_label">
-                                                                    <a>Phỏng vấn</a>
-                                                                </div>
+                                                            <div class="company_point_label">
+                                                                <a>Đánh giá</a>
                                                             </div>
-                                                            
-                                                            <div class="job_point">
-                                                                <div class="company_point_content">
-                                                                    <a><%= company.company_jobs.count %></a>
-                                                                </div>
-                                                                <div class="company_point_label">
-                                                                    <a>Việc làm</a>
-                                                                </div>
+                                                        </div>
+                                                        
+                                                        <div class="interview_point">
+                                                            <div class="company_point_content">
+                                                                <a><%= company.company_interviews.count %></a>
+                                                            </div>
+                                                            <div class="company_point_label">
+                                                                <a>Phỏng vấn</a>
+                                                            </div>
+                                                        </div>
+                                                        
+                                                        <div class="job_point">
+                                                            <div class="company_point_content">
+                                                                <a><%= company.company_jobs.count %></a>
+                                                            </div>
+                                                            <div class="company_point_label">
+                                                                <a>Việc làm</a>
                                                             </div>
                                                         </div>
                                                     </div>
                                                 </div>
                                             </div>
-                                        <%end%>
+                                        </div>
+                                    <%end%>
 
-                                        <%if logged_in?%>
-                                            <%if current_user.admin?%>
-                                                <div class="new-company">
-                                                    <%= link_to '<button type="submit"> <i class="material-icons-outlined">add</i>Tạo công ty mới</button>'.html_safe, new_company_path %>
-                                                </div>
-                                            <%end%>
-                                        <%end%>
-                                    </div>
-                                </div>
-                            </div>
-                            
-                            <div role="tabpanel" id="CompanyNewestID" class="tab-pane"><br>
-                                <div class="company_newest_tab">
-                                    <div class="row">
-                                        <% @companies_oder_newest.each do |company| %>
-                                            <div class="col-sm-3">
-                                                <div class="single_company">
-                                                    <div class="company_wall">
-                                                        <div class="rounded">
-                                                            <%if company.wall_picture?%>
-                                                                <%= link_to (image_tag(company.wall_picture.large.url)), image_path(url_for(company.wall_picture.large.url)), rel: "gallery" , :href => company_path(company)%>
-                                                            <%end%>
-                                                        </div>
-                                                    </div>
-
-                                                    <div class="company_thumbnail">
-                                                        <div class="rounded">
-                                                            <%if company.avatar?%>
-                                                                <%= link_to (image_tag(company.avatar.thumb.url)), image_path(url_for(company.avatar.thumb.url)), rel: "gallery" , :href => company_path(company)%>
-                                                            <%end%>
-                                                        </div>
-                                                    </div>
-
-                                                    <div class="company_love_button" id ="company_love_<%=company.id%>">
-                                                        <%if logged_in?%>
-                                                            <% pre_follow = company.company_follows.find { |follow| follow.user_id == current_user.id} %>
-                                                            <% if pre_follow %> 
-                                                                <%= link_to '<button class="follow_btn_highlight"><i class="material-icons">favorite</i></button>'.html_safe, company_company_follow_path(company, pre_follow, type_param: 'mini'), remote: true, method: :delete%>
-                                                            <%else%>
-                                                                <%= link_to '<button class="follow_btn"><i class="material-icons-outlined">favorite_border</i></button>'.html_safe, company_company_follows_path(company, type_param: 'mini'), remote: true, method: :post%>
-                                                            <%end%>
-                                                        <%else%>
-                                                            <%= link_to '<button class="follow_btn"><i class="material-icons-outlined">favorite_border</i></button>'.html_safe, login_path%>
-                                                        <%end%>
-                                                    </div>
-
-                                                    <div class="company_title">
-                                                        <div class="company_name">
-                                                            <a> <%= link_to company.name, company_path(company), class: "company_name_label" %></a>
-                                                        </div>
-
-                                                        <div class="company_rating">
-                                                            <%total_rate = cal_rating_review_total_score(company)%>
-                                                            <div class="review_score_star">
-                                                                <%if total_rate > 0%>
-                                                                    <%total_rate.to_i.times do%>
-                                                                        <i class="material-icons checked">circle</i>
-                                                                    <%end%>
-                                                                    <%(5 - total_rate.to_i).to_i.times do%>
-                                                                        <i class="material-icons checked_out">radio_button_unchecked</i>
-                                                                    <%end%>
-                                                                <%else%>
-                                                                    <%5.times do%>
-                                                                        <i class="material-icons checked_out">radio_button_unchecked</i>
-                                                                    <%end%>
-                                                                <%end%>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                    
-                                                    <div class="company_summary">
-                                                        <div class="company_point">
-                                                            <div class="review_point">
-                                                                <div class="company_point_content">
-                                                                    <a><%= company.company_reviews.count%></a>
-                                                                </div>
-                                                                <div class="company_point_label">
-                                                                    <a>Đánh giá</a>
-                                                                </div>
-                                                            </div>
-                                                            
-                                                            <div class="interview_point">
-                                                                <div class="company_point_content">
-                                                                    <a><%= company.company_interviews.count %></a>
-                                                                </div>
-                                                                <div class="company_point_label">
-                                                                    <a>Phỏng vấn</a>
-                                                                </div>
-                                                            </div>
-                                                            
-                                                            <div class="job_point">
-                                                                <div class="company_point_content">
-                                                                    <a><%= company.company_jobs.count %></a>
-                                                                </div>
-                                                                <div class="company_point_label">
-                                                                    <a>Việc làm</a>
-                                                                </div>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                </div>
+                                    <%if logged_in?%>
+                                        <%if current_user.admin?%>
+                                            <div class="new-company">
+                                                <%= link_to '<button type="submit"> <i class="material-icons-outlined">add</i>Tạo công ty mới</button>'.html_safe, new_company_path %>
                                             </div>
                                         <%end%>
-
-                                        <%if logged_in?%>
-                                            <%if current_user.admin?%>
-                                                <%# add new template%>
-                                                <div class="new-company">
-                                                    <%= link_to '<button type="submit"> <i class="material-icons-outlined">add</i>Tạo công ty mới</button>'.html_safe, new_company_path %>
-                                                </div>
-                                            <%end%>
-                                        <%end%>
-                                    </div>
+                                    <%end%>
                                 </div>
                             </div>
-
-                            <div role="tabpanel" id="CompanyMostRecentID" class="tab-pane"><br>
-                                <div class="company_most_recent_tab">
-                                    <div class="row">
-                                        <% @companies_most_recent.each do |company| %>
-                                            <div class="col-sm-3">
-                                                <div class="single_company">
-                                                    <div class="company_wall">
-                                                        <div class="rounded">
-                                                            <%if company.wall_picture?%>
-                                                                <%= link_to (image_tag(company.wall_picture.large.url)), image_path(url_for(company.wall_picture.large.url)), rel: "gallery" , :href => company_path(company)%>
-                                                            <%end%>
-                                                        </div>
-                                                    </div>
-
-                                                    <div class="company_thumbnail">
-                                                        <div class="rounded">
-                                                            <%if company.avatar?%>
-                                                                <%= link_to (image_tag(company.avatar.thumb.url)), image_path(url_for(company.avatar.thumb.url)), rel: "gallery" , :href => company_path(company)%>
-                                                            <%end%>
-                                                        </div>
-                                                    </div>
-
-                                                    <div class="company_love_button" id ="company_love_<%=company.id%>">
-                                                        <%if logged_in?%>
-                                                            <% pre_follow = company.company_follows.find { |follow| follow.user_id == current_user.id} %>
-                                                            <% if pre_follow %> 
-                                                                <%= link_to '<button class="follow_btn_highlight"><i class="material-icons">favorite</i></button>'.html_safe, company_company_follow_path(company, pre_follow, type_param: 'mini'), remote: true, method: :delete%>
-                                                            <%else%>
-                                                                <%= link_to '<button class="follow_btn"><i class="material-icons-outlined">favorite_border</i></button>'.html_safe, company_company_follows_path(company, type_param: 'mini'), remote: true, method: :post%>
-                                                            <%end%>
-                                                        <%else%>
-                                                            <%= link_to '<button class="follow_btn"><i class="material-icons-outlined">favorite_border</i></button>'.html_safe, login_path%>
-                                                        <%end%>
-                                                    </div>
-
-                                                    <div class="company_title">
-                                                        <div class="company_name">
-                                                            <a> <%= link_to company.name, company_path(company), class: "company_name_label" %></a>
-                                                        </div>
-
-                                                        <div class="company_rating">
-                                                            <%total_rate = cal_rating_review_total_score(company)%>
-                                                            <div class="review_score_star">
-                                                                <%if total_rate > 0%>
-                                                                    <%total_rate.to_i.times do%>
-                                                                        <i class="material-icons checked">circle</i>
-                                                                    <%end%>
-                                                                    <%(5 - total_rate.to_i).to_i.times do%>
-                                                                        <i class="material-icons checked_out">radio_button_unchecked</i>
-                                                                    <%end%>
-                                                                <%else%>
-                                                                    <%5.times do%>
-                                                                        <i class="material-icons checked_out">radio_button_unchecked</i>
-                                                                    <%end%>
-                                                                <%end%>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                    
-                                                    <div class="company_summary">
-                                                        <div class="company_point">
-                                                            <div class="review_point">
-                                                                <div class="company_point_content">
-                                                                    <a><%= company.company_reviews.count%></a>
-                                                                </div>
-                                                                <div class="company_point_label">
-                                                                    <a>Đánh giá</a>
-                                                                </div>
-                                                            </div>
-                                                            
-                                                            <div class="interview_point">
-                                                                <div class="company_point_content">
-                                                                    <a><%= company.company_interviews.count %></a>
-                                                                </div>
-                                                                <div class="company_point_label">
-                                                                    <a>Phỏng vấn</a>
-                                                                </div>
-                                                            </div>
-                                                            
-                                                            <div class="job_point">
-                                                                <div class="company_point_content">
-                                                                    <a><%= company.company_jobs.count %></a>
-                                                                </div>
-                                                                <div class="company_point_label">
-                                                                    <a>Việc làm</a>
-                                                                </div>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        <%end%>
-
-                                        <%if logged_in?%>
-                                            <%if current_user.admin?%>
-                                                <%# add new template%>
-                                                <div class="new-company">
-                                                    <%= link_to '<button type="submit"> <i class="material-icons-outlined">add</i>Tạo công ty mới</button>'.html_safe, new_company_path %>
-                                                </div>
-                                            <%end%>
-                                        <%end%>
-                                    </div>
-                                </div>
-                            </div>
-
-                            <div role="tabpanel" id="CompanyBestID" class="tab-pane"><br>
-                                <div class="company_best_tab">
-                                    <div class="row">
-                                        <% @companies_best.each do |company| %>
-                                            <div class="col-sm-3">
-                                                <div class="single_company">
-                                                    <div class="company_wall">
-                                                        <div class="rounded">
-                                                            <%if company.wall_picture?%>
-                                                                <%= link_to (image_tag(company.wall_picture.large.url)), image_path(url_for(company.wall_picture.large.url)), rel: "gallery" , :href => company_path(company)%>
-                                                            <%end%>
-                                                        </div>
-                                                    </div>
-
-                                                    <div class="company_thumbnail">
-                                                        <div class="rounded">
-                                                            <%if company.avatar?%>
-                                                                <%= link_to (image_tag(company.avatar.thumb.url)), image_path(url_for(company.avatar.thumb.url)), rel: "gallery" , :href => company_path(company)%>
-                                                            <%end%>
-                                                        </div>
-                                                    </div>
-
-                                                    <div class="company_love_button" id ="company_love_<%=company.id%>">
-                                                        <%if logged_in?%>
-                                                            <% pre_follow = company.company_follows.find { |follow| follow.user_id == current_user.id} %>
-                                                            <% if pre_follow %> 
-                                                                <%= link_to '<button class="follow_btn_highlight"><i class="material-icons">favorite</i></button>'.html_safe, company_company_follow_path(company, pre_follow, type_param: 'mini'), remote: true, method: :delete%>
-                                                            <%else%>
-                                                                <%= link_to '<button class="follow_btn"><i class="material-icons-outlined">favorite_border</i></button>'.html_safe, company_company_follows_path(company, type_param: 'mini'), remote: true, method: :post%>
-                                                            <%end%>
-                                                        <%else%>
-                                                            <%= link_to '<button class="follow_btn"><i class="material-icons-outlined">favorite_border</i></button>'.html_safe, login_path%>
-                                                        <%end%>
-                                                    </div>
-
-                                                    <div class="company_title">
-                                                        <div class="company_name">
-                                                            <a> <%= link_to company.name, company_path(company), class: "company_name_label" %></a>
-                                                        </div>
-
-                                                        <div class="company_rating">
-                                                            <%total_rate = cal_rating_review_total_score(company)%>
-                                                            <div class="review_score_star">
-                                                                <%if total_rate > 0%>
-                                                                    <%total_rate.to_i.times do%>
-                                                                        <i class="material-icons checked">circle</i>
-                                                                    <%end%>
-                                                                    <%(5 - total_rate.to_i).to_i.times do%>
-                                                                        <i class="material-icons checked_out">radio_button_unchecked</i>
-                                                                    <%end%>
-                                                                <%else%>
-                                                                    <%5.times do%>
-                                                                        <i class="material-icons checked_out">radio_button_unchecked</i>
-                                                                    <%end%>
-                                                                <%end%>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                    
-                                                    <div class="company_summary">
-                                                        <div class="company_point">
-                                                            <div class="review_point">
-                                                                <div class="company_point_content">
-                                                                    <a><%= company.company_reviews.count%></a>
-                                                                </div>
-                                                                <div class="company_point_label">
-                                                                    <a>Đánh giá</a>
-                                                                </div>
-                                                            </div>
-                                                            
-                                                            <div class="interview_point">
-                                                                <div class="company_point_content">
-                                                                    <a><%= company.company_interviews.count %></a>
-                                                                </div>
-                                                                <div class="company_point_label">
-                                                                    <a>Phỏng vấn</a>
-                                                                </div>
-                                                            </div>
-                                                            
-                                                            <div class="job_point">
-                                                                <div class="company_point_content">
-                                                                    <a><%= company.company_jobs.count %></a>
-                                                                </div>
-                                                                <div class="company_point_label">
-                                                                    <a>Việc làm</a>
-                                                                </div>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        <%end%>
-
-                                        <%if logged_in?%>
-                                            <%if current_user.admin?%>
-                                                <div class="new-company">
-                                                    <%= link_to '<button type="submit"> <i class="material-icons-outlined">add</i>Tạo công ty mới</button>'.html_safe, new_company_path %>
-                                                </div>
-                                            <%end%>
-                                        <%end%>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
+                        <%end%>
                         
-                        <script type="text/javascript">
-                            $(function() { 
-                                $('a[data-toggle="tab"]').on('shown.bs.tab', function (e) {
-                                    localStorage.setItem('lastTab', $(this).attr('href'));
-                                });
+                        <%if @tab_id == "CompanyNewestID"%>
+                            <div class="company_newest_tab">
+                                <div class="row">
+                                    <% @companies_oder_newest.each do |company| %>
+                                        <div class="col-sm-3">
+                                            <div class="single_company">
+                                                <div class="company_wall">
+                                                    <div class="rounded">
+                                                        <%if company.wall_picture?%>
+                                                            <%= link_to (image_tag(company.wall_picture.large.url)), image_path(url_for(company.wall_picture.large.url)), rel: "gallery" , :href => company_path(company)%>
+                                                        <%end%>
+                                                    </div>
+                                                </div>
 
-                                var lastTab = localStorage.getItem('lastTab');
-                                if (lastTab) {
-                                    $('[href="' + lastTab + '"]').tab('show');
-                                }
-                            });
-                        </script>
+                                                <div class="company_thumbnail">
+                                                    <div class="rounded">
+                                                        <%if company.avatar?%>
+                                                            <%= link_to (image_tag(company.avatar.thumb.url)), image_path(url_for(company.avatar.thumb.url)), rel: "gallery" , :href => company_path(company)%>
+                                                        <%end%>
+                                                    </div>
+                                                </div>
+
+                                                <div class="company_love_button" id ="company_love_<%=company.id%>">
+                                                    <%if logged_in?%>
+                                                        <% pre_follow = company.company_follows.find { |follow| follow.user_id == current_user.id} %>
+                                                        <% if pre_follow %> 
+                                                            <%= link_to '<button class="follow_btn_highlight"><i class="material-icons">favorite</i></button>'.html_safe, company_company_follow_path(company, pre_follow, type_param: 'mini'), remote: true, method: :delete%>
+                                                        <%else%>
+                                                            <%= link_to '<button class="follow_btn"><i class="material-icons-outlined">favorite_border</i></button>'.html_safe, company_company_follows_path(company, type_param: 'mini'), remote: true, method: :post%>
+                                                        <%end%>
+                                                    <%else%>
+                                                        <%= link_to '<button class="follow_btn"><i class="material-icons-outlined">favorite_border</i></button>'.html_safe, login_path%>
+                                                    <%end%>
+                                                </div>
+
+                                                <div class="company_title">
+                                                    <div class="company_name">
+                                                        <a> <%= link_to company.name, company_path(company), class: "company_name_label" %></a>
+                                                    </div>
+
+                                                    <div class="company_rating">
+                                                        <%total_rate = cal_rating_review_total_score(company)%>
+                                                        <div class="review_score_star">
+                                                            <%if total_rate > 0%>
+                                                                <%total_rate.to_i.times do%>
+                                                                    <i class="material-icons checked">circle</i>
+                                                                <%end%>
+                                                                <%(5 - total_rate.to_i).to_i.times do%>
+                                                                    <i class="material-icons checked_out">radio_button_unchecked</i>
+                                                                <%end%>
+                                                            <%else%>
+                                                                <%5.times do%>
+                                                                    <i class="material-icons checked_out">radio_button_unchecked</i>
+                                                                <%end%>
+                                                            <%end%>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                
+                                                <div class="company_summary">
+                                                    <div class="company_point">
+                                                        <div class="review_point">
+                                                            <div class="company_point_content">
+                                                                <a><%= company.company_reviews.count%></a>
+                                                            </div>
+                                                            <div class="company_point_label">
+                                                                <a>Đánh giá</a>
+                                                            </div>
+                                                        </div>
+                                                        
+                                                        <div class="interview_point">
+                                                            <div class="company_point_content">
+                                                                <a><%= company.company_interviews.count %></a>
+                                                            </div>
+                                                            <div class="company_point_label">
+                                                                <a>Phỏng vấn</a>
+                                                            </div>
+                                                        </div>
+                                                        
+                                                        <div class="job_point">
+                                                            <div class="company_point_content">
+                                                                <a><%= company.company_jobs.count %></a>
+                                                            </div>
+                                                            <div class="company_point_label">
+                                                                <a>Việc làm</a>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    <%end%>
+
+                                    <%if logged_in?%>
+                                        <%if current_user.admin?%>
+                                            <%# add new template%>
+                                            <div class="new-company">
+                                                <%= link_to '<button type="submit"> <i class="material-icons-outlined">add</i>Tạo công ty mới</button>'.html_safe, new_company_path %>
+                                            </div>
+                                        <%end%>
+                                    <%end%>
+                                </div>
+                            <%end%>
+                        </div>
+
+                        <%if @tab_id == "CompanyMostRecentID"%>
+                            <div class="company_most_recent_tab">
+                                <div class="row">
+                                    <% @companies_most_recent.each do |company| %>
+                                        <div class="col-sm-3">
+                                            <div class="single_company">
+                                                <div class="company_wall">
+                                                    <div class="rounded">
+                                                        <%if company.wall_picture?%>
+                                                            <%= link_to (image_tag(company.wall_picture.large.url)), image_path(url_for(company.wall_picture.large.url)), rel: "gallery" , :href => company_path(company)%>
+                                                        <%end%>
+                                                    </div>
+                                                </div>
+
+                                                <div class="company_thumbnail">
+                                                    <div class="rounded">
+                                                        <%if company.avatar?%>
+                                                            <%= link_to (image_tag(company.avatar.thumb.url)), image_path(url_for(company.avatar.thumb.url)), rel: "gallery" , :href => company_path(company)%>
+                                                        <%end%>
+                                                    </div>
+                                                </div>
+
+                                                <div class="company_love_button" id ="company_love_<%=company.id%>">
+                                                    <%if logged_in?%>
+                                                        <% pre_follow = company.company_follows.find { |follow| follow.user_id == current_user.id} %>
+                                                        <% if pre_follow %> 
+                                                            <%= link_to '<button class="follow_btn_highlight"><i class="material-icons">favorite</i></button>'.html_safe, company_company_follow_path(company, pre_follow, type_param: 'mini'), remote: true, method: :delete%>
+                                                        <%else%>
+                                                            <%= link_to '<button class="follow_btn"><i class="material-icons-outlined">favorite_border</i></button>'.html_safe, company_company_follows_path(company, type_param: 'mini'), remote: true, method: :post%>
+                                                        <%end%>
+                                                    <%else%>
+                                                        <%= link_to '<button class="follow_btn"><i class="material-icons-outlined">favorite_border</i></button>'.html_safe, login_path%>
+                                                    <%end%>
+                                                </div>
+
+                                                <div class="company_title">
+                                                    <div class="company_name">
+                                                        <a> <%= link_to company.name, company_path(company), class: "company_name_label" %></a>
+                                                    </div>
+
+                                                    <div class="company_rating">
+                                                        <%total_rate = cal_rating_review_total_score(company)%>
+                                                        <div class="review_score_star">
+                                                            <%if total_rate > 0%>
+                                                                <%total_rate.to_i.times do%>
+                                                                    <i class="material-icons checked">circle</i>
+                                                                <%end%>
+                                                                <%(5 - total_rate.to_i).to_i.times do%>
+                                                                    <i class="material-icons checked_out">radio_button_unchecked</i>
+                                                                <%end%>
+                                                            <%else%>
+                                                                <%5.times do%>
+                                                                    <i class="material-icons checked_out">radio_button_unchecked</i>
+                                                                <%end%>
+                                                            <%end%>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                
+                                                <div class="company_summary">
+                                                    <div class="company_point">
+                                                        <div class="review_point">
+                                                            <div class="company_point_content">
+                                                                <a><%= company.company_reviews.count%></a>
+                                                            </div>
+                                                            <div class="company_point_label">
+                                                                <a>Đánh giá</a>
+                                                            </div>
+                                                        </div>
+                                                        
+                                                        <div class="interview_point">
+                                                            <div class="company_point_content">
+                                                                <a><%= company.company_interviews.count %></a>
+                                                            </div>
+                                                            <div class="company_point_label">
+                                                                <a>Phỏng vấn</a>
+                                                            </div>
+                                                        </div>
+                                                        
+                                                        <div class="job_point">
+                                                            <div class="company_point_content">
+                                                                <a><%= company.company_jobs.count %></a>
+                                                            </div>
+                                                            <div class="company_point_label">
+                                                                <a>Việc làm</a>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    <%end%>
+
+                                    <%if logged_in?%>
+                                        <%if current_user.admin?%>
+                                            <%# add new template%>
+                                            <div class="new-company">
+                                                <%= link_to '<button type="submit"> <i class="material-icons-outlined">add</i>Tạo công ty mới</button>'.html_safe, new_company_path %>
+                                            </div>
+                                        <%end%>
+                                    <%end%>
+                                </div>
+                            </div>
+                        <%end%>
+
+                        <%if @tab_id == "CompanyBestID"%>
+                            <div class="company_best_tab">
+                                <div class="row">
+                                    <% @companies_best.each do |company| %>
+                                        <div class="col-sm-3">
+                                            <div class="single_company">
+                                                <div class="company_wall">
+                                                    <div class="rounded">
+                                                        <%if company.wall_picture?%>
+                                                            <%= link_to (image_tag(company.wall_picture.large.url)), image_path(url_for(company.wall_picture.large.url)), rel: "gallery" , :href => company_path(company)%>
+                                                        <%end%>
+                                                    </div>
+                                                </div>
+
+                                                <div class="company_thumbnail">
+                                                    <div class="rounded">
+                                                        <%if company.avatar?%>
+                                                            <%= link_to (image_tag(company.avatar.thumb.url)), image_path(url_for(company.avatar.thumb.url)), rel: "gallery" , :href => company_path(company)%>
+                                                        <%end%>
+                                                    </div>
+                                                </div>
+
+                                                <div class="company_love_button" id ="company_love_<%=company.id%>">
+                                                    <%if logged_in?%>
+                                                        <% pre_follow = company.company_follows.find { |follow| follow.user_id == current_user.id} %>
+                                                        <% if pre_follow %> 
+                                                            <%= link_to '<button class="follow_btn_highlight"><i class="material-icons">favorite</i></button>'.html_safe, company_company_follow_path(company, pre_follow, type_param: 'mini'), remote: true, method: :delete%>
+                                                        <%else%>
+                                                            <%= link_to '<button class="follow_btn"><i class="material-icons-outlined">favorite_border</i></button>'.html_safe, company_company_follows_path(company, type_param: 'mini'), remote: true, method: :post%>
+                                                        <%end%>
+                                                    <%else%>
+                                                        <%= link_to '<button class="follow_btn"><i class="material-icons-outlined">favorite_border</i></button>'.html_safe, login_path%>
+                                                    <%end%>
+                                                </div>
+
+                                                <div class="company_title">
+                                                    <div class="company_name">
+                                                        <a> <%= link_to company.name, company_path(company), class: "company_name_label" %></a>
+                                                    </div>
+
+                                                    <div class="company_rating">
+                                                        <%total_rate = cal_rating_review_total_score(company)%>
+                                                        <div class="review_score_star">
+                                                            <%if total_rate > 0%>
+                                                                <%total_rate.to_i.times do%>
+                                                                    <i class="material-icons checked">circle</i>
+                                                                <%end%>
+                                                                <%(5 - total_rate.to_i).to_i.times do%>
+                                                                    <i class="material-icons checked_out">radio_button_unchecked</i>
+                                                                <%end%>
+                                                            <%else%>
+                                                                <%5.times do%>
+                                                                    <i class="material-icons checked_out">radio_button_unchecked</i>
+                                                                <%end%>
+                                                            <%end%>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                
+                                                <div class="company_summary">
+                                                    <div class="company_point">
+                                                        <div class="review_point">
+                                                            <div class="company_point_content">
+                                                                <a><%= company.company_reviews.count%></a>
+                                                            </div>
+                                                            <div class="company_point_label">
+                                                                <a>Đánh giá</a>
+                                                            </div>
+                                                        </div>
+                                                        
+                                                        <div class="interview_point">
+                                                            <div class="company_point_content">
+                                                                <a><%= company.company_interviews.count %></a>
+                                                            </div>
+                                                            <div class="company_point_label">
+                                                                <a>Phỏng vấn</a>
+                                                            </div>
+                                                        </div>
+                                                        
+                                                        <div class="job_point">
+                                                            <div class="company_point_content">
+                                                                <a><%= company.company_jobs.count %></a>
+                                                            </div>
+                                                            <div class="company_point_label">
+                                                                <a>Việc làm</a>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    <%end%>
+
+                                    <%if logged_in?%>
+                                        <%if current_user.admin?%>
+                                            <div class="new-company">
+                                                <%= link_to '<button type="submit"> <i class="material-icons-outlined">add</i>Tạo công ty mới</button>'.html_safe, new_company_path %>
+                                            </div>
+                                        <%end%>
+                                    <%end%>
+                                </div>
+                            </div>
+                        <%end%>
                     </div>
                 </div>
                 <div class="resume_upload">

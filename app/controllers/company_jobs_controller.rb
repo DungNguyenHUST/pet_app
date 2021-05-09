@@ -18,7 +18,7 @@ class CompanyJobsController < ApplicationController
 				redirect_to company_company_job_path(@company)
 			else
 				flash[:success] = "Thông tin của bạn đã được tiếp nhận, vui lòng chờ quản trị viên sẽ xử lý trong 30min - 1h"
-				redirect_to company_path(@company)
+				redirect_to company_path(@company, tab_id: 'CompanyJobsID')
 			end
         else
             flash[:danger] = "Lỗi, hãy điền đủ nội dung có dấu "
@@ -41,7 +41,7 @@ class CompanyJobsController < ApplicationController
 					redirect_to company_company_job_path(@company)
 				else
 					flash[:success] = "Thông tin của bạn đã được tiếp nhận, vui lòng chờ quản trị viên sẽ xử lý trong 30min - 1h"
-					redirect_to company_path(@company)
+					redirect_to company_path(@company, tab_id: 'CompanyJobsID')
 				end
 			else
 				flash[:danger] = "Không thể cập nhật thông tin"
@@ -49,10 +49,10 @@ class CompanyJobsController < ApplicationController
         else
             if (!@company_job.approved? && @company_job.update_column(:approved, true))
                 flash[:success] = "Approved"
-                redirect_to pages_path
+                redirect_to pages_path(tab_id: 'CompanyID')
             elsif (@company_job.approved? && @company_job.update_column(:approved, false))
                 flash[:danger] = "Rejected"
-                redirect_to pages_path
+                redirect_to pages_path(tab_id: 'CompanyID')
             end
 		end
     end
@@ -61,7 +61,7 @@ class CompanyJobsController < ApplicationController
         @company = Company.friendly.find(params[:company_id])
         @company_job = @company.company_jobs.friendly.find(params[:id])
         @company_job.destroy
-        redirect_to company_path(@company)
+        redirect_to company_path(@company, tab_id: 'CompanyJobsID')
     end
 
     def show

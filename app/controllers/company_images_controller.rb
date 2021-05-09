@@ -26,7 +26,7 @@ class CompanyImagesController < ApplicationController
     @company = Company.friendly.find(params[:company_id])
     @company_image = @company.company_images.build(company_image_params)
     if @company_image.save
-            redirect_to company_path(@company)
+      redirect_to company_path(@company, tab_id: 'CompanyImagesID')
     else
       flash[:danger] = "Lỗi, hãy điền đủ nội dung có dấu '*' "
     end

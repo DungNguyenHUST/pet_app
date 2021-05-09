@@ -67,6 +67,12 @@ class UsersController < ApplicationController
             end
         end
 		#############################
+
+        if(params.has_key?(:tab_id))
+            @tab_id = params[:tab_id]
+        else
+            @tab_id = "default"
+        end
 		
     end
 
@@ -77,7 +83,7 @@ class UsersController < ApplicationController
     def destroy
         @user = User.friendly.find params[:id]
         @user.destroy
-        redirect_to pages_path
+        redirect_to pages_path(tab_id: 'UserID')
     end
 
     def update
@@ -93,10 +99,10 @@ class UsersController < ApplicationController
         else
             if (!@user.approved? && @user.update_column(:approved, true))
                 flash[:success] = "Approved"
-                redirect_to pages_path
+                redirect_to pages_path(tab_id: 'UserID')
             elsif (@user.approved? && @user.update_column(:approved, false))
                 flash[:danger] = "Rejected"
-                redirect_to pages_path
+                redirect_to pages_path(tab_id: 'UserID')
             end
         end
     end

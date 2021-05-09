@@ -142,24 +142,24 @@
                         </div>
                     </div>
                 </div>
+                
+                <div class="new_reply_review_form_internal" id ="<%=company_review.id%>">
+                    <%= form_for [@company, company_review, CompanyReplyReview.new] do |f| %>
+                        <div class="new_reply_review_content">
+                            <div class="new_reply_review_input_review">
+                                <%= f.text_area :reply_content, :required =>true, class: "form-control-text", placeholder: "Nhập câu trả lời của bạn tại đây" %>
+                            </div>
+                        </div>
+
+                        <div class="new_reply_review_submit">
+                            <button type="submit" class="new_reply_review_form_submit">
+                                <i class="material-icons-outlined">send</i>
+                            </button>
+                        </div>
+                    <%end%>
+                </div>
             </div>
             
-            <div class="new_reply_review_form" id ="<%=company_review.id%>">
-                <%= form_for [@company, company_review, CompanyReplyReview.new] do |f| %>
-                    <div class="new_reply_review_content">
-                        <div class="new_reply_review_input_review">
-                            <%= f.text_area :reply_content, :required =>true, class: "form-control-text", placeholder: "Nhập câu trả lời của bạn tại đây" %>
-                        </div>
-                    </div>
-
-                    <div class="new_reply_review_submit">
-                        <button type="submit" class="new_reply_review_form_submit">
-                            <i class="material-icons-outlined">send</i>
-                        </button>
-                    </div>
-                <%end%>
-            </div>
-
             <script>
                 function myFunctionReplyReview(review_id) {
                     var x = document.getElementById(review_id);

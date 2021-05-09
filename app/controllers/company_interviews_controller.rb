@@ -23,7 +23,7 @@ class CompanyInterviewsController < ApplicationController
         @company_interview.companyName = @company.name
 
         if @company_interview.save
-            redirect_to company_path(@company)
+            redirect_to company_path(@company, tab_id: 'CompanyInterviewsID')
         else
             flash[:error] = "Lỗi, hãy điền đủ nội dung có dấu '*' "
             render :new
@@ -34,7 +34,7 @@ class CompanyInterviewsController < ApplicationController
         @company = Company.friendly.find(params[:company_id])
         @company_interview = @company.company_interviews.friendly.find(params[:id])
         @company_interview.destroy
-        redirect_to company_path(@company)
+        redirect_to company_path(@company, tab_id: 'CompanyInterviewsID')
     end
 
     def show
