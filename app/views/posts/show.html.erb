@@ -2,7 +2,8 @@
 <html>
     <head>
         <meta name="viewport" content="width=device-width, height=device-height, initial-scale=1.0"/>
-		<% set_meta_tags title: @post.title, description: @post.content%>
+        <% content_for :meta_title, @post.title %>
+        <% content_for :meta_description, @post.content %>
     </head>
 
     <body>
