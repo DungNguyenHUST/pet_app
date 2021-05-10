@@ -62,7 +62,7 @@
                     </div>
                     
                     <div class="company_index_tab_link">
-                        <ul class="nav">
+                        <ul class="nav nav-justified">
                             <li class="nav-item">
                                 <%if @tab_id == "default" || @tab_id == "CompanyAllID"%>
                                     <%active = "active"%>
@@ -191,14 +191,6 @@
                                             </div>
                                         </div>
                                     <%end%>
-
-                                    <%if logged_in?%>
-                                        <%if current_user.admin?%>
-                                            <div class="new-company">
-                                                <%= link_to '<button type="submit"> <i class="material-icons-outlined">add</i>Tạo công ty mới</button>'.html_safe, new_company_path %>
-                                            </div>
-                                        <%end%>
-                                    <%end%>
                                 </div>
                             </div>
                         <%end%>
@@ -295,18 +287,9 @@
                                             </div>
                                         </div>
                                     <%end%>
-
-                                    <%if logged_in?%>
-                                        <%if current_user.admin?%>
-                                            <%# add new template%>
-                                            <div class="new-company">
-                                                <%= link_to '<button type="submit"> <i class="material-icons-outlined">add</i>Tạo công ty mới</button>'.html_safe, new_company_path %>
-                                            </div>
-                                        <%end%>
-                                    <%end%>
                                 </div>
-                            <%end%>
-                        </div>
+                            </div>
+                        <%end%>
 
                         <%if @tab_id == "CompanyMostRecentID"%>
                             <div class="company_most_recent_tab">
@@ -399,15 +382,6 @@
                                                 </div>
                                             </div>
                                         </div>
-                                    <%end%>
-
-                                    <%if logged_in?%>
-                                        <%if current_user.admin?%>
-                                            <%# add new template%>
-                                            <div class="new-company">
-                                                <%= link_to '<button type="submit"> <i class="material-icons-outlined">add</i>Tạo công ty mới</button>'.html_safe, new_company_path %>
-                                            </div>
-                                        <%end%>
                                     <%end%>
                                 </div>
                             </div>
@@ -504,14 +478,6 @@
                                                 </div>
                                             </div>
                                         </div>
-                                    <%end%>
-
-                                    <%if logged_in?%>
-                                        <%if current_user.admin?%>
-                                            <div class="new-company">
-                                                <%= link_to '<button type="submit"> <i class="material-icons-outlined">add</i>Tạo công ty mới</button>'.html_safe, new_company_path %>
-                                            </div>
-                                        <%end%>
                                     <%end%>
                                 </div>
                             </div>
