@@ -1,72 +1,63 @@
-<!DOCTYPE html>
-<html>
-    <head>
-        <meta name="viewport" content="width=device-width, height=device-height, initial-scale=1.0"/>
-    </head>
-
-    <body>
-        <div class="container">
-            <div class="new_post_form">
-                <%= form_for @post, :html => { :class => "form-horizontal post" } do |f| %>
-                    <div class="new_post_title">
-                        <a>Hãy tạo một bài viết mới</a>
-                    </div>
-
-                    <div class="new_post_title_sub">
-						<span>Note: Mục có dấu '*' là bắt buộc</span>
-					</div>
-
-                    <div class="new_post_section">
-                        <div class="new_post_content">
-                            <div class="new_post_label">
-                                <a><%= f.label :wall_picture, "Ảnh bìa*", class: "new_post_label" %></a>
-                            </div>
-                            
-                            <div class="new_post_input">
-                                <%= f.file_field :wall_picture, :required => true%>
-                            </div>
-                        </div>
-                    </div>
-					
-					<div class="new_post_section">
-						<div class="new_post_content">
-                            <div class="new_post_label">
-                                <a><%= f.label :category, "Danh mục*", class: "new_post_label" %></a>
-                            </div>
-
-                            <div class="new_post_input">
-                                <%= f.select(:category, options_for_select([['Con đường sự nghiệp', 1], ['Khoa học công nghệ', 2], ['Blog', 3], ['Danh mục khác', 4]], ['Danh mục khác', 4]), {include_blank: false}, { :class => 'my_style_class' }) %>
-                            </div>
-                        </div>
-					</div>
-
-                    <div class="new_post_section">
-                        <div class="new_post_content">
-                            <div class="new_post_label">
-                                <a><%= f.label :title, "Tiêu đề*", class: "new_post_label_name" %></a>
-                            </div>
-
-                            <div class="new_post_input">
-                                <%= f.text_field :title, :required => true, class: "new_post_form_input", placeholder: " Nhập tiêu đề bài viết" %>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="new_post_content">
-                        <div class="new_post_label">
-                            <a><%= f.label :content, "Nội dung bài viết*", class: "new_post_label_content" %></a>
-                        </div>
-                        
-                        <div class="new_post_input">
-                            <%= f.cktext_area :content, :required => true, class: "form-control-rich-text customized-min-height", ckeditor: { language: 'us', toolbar: "full"}, placeholder: "Nhập nội dung bài viết (ít nhất 3000 từ)" %>
-                        </div>
-                    </div>
-
-                    <div class="new_post_submit">
-                        <%= f.submit "Gửi nội dung", class: "new_post_form_submit" %>
-                    </div>
-                <%end%>
+<div class="container">
+    <div class="new_post_form">
+        <%= form_for @post, :html => { :class => "form-horizontal post" } do |f| %>
+            <div class="new_post_title">
+                <a>Hãy tạo một bài viết mới</a>
             </div>
-        </div>
-    </body>
-</html>
+
+            <div class="new_post_title_sub">
+                <span>Note: Mục có dấu '*' là bắt buộc</span>
+            </div>
+
+            <div class="new_post_section">
+                <div class="new_post_content">
+                    <div class="new_post_label">
+                        <a><%= f.label :wall_picture, "Ảnh bìa*", class: "new_post_label" %></a>
+                    </div>
+                    
+                    <div class="new_post_input">
+                        <%= f.file_field :wall_picture, :required => true%>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="new_post_section">
+                <div class="new_post_content">
+                    <div class="new_post_label">
+                        <a><%= f.label :category, "Danh mục*", class: "new_post_label" %></a>
+                    </div>
+
+                    <div class="new_post_input">
+                        <%= f.select(:category, options_for_select([['Con đường sự nghiệp', 1], ['Khoa học công nghệ', 2], ['Blog', 3], ['Danh mục khác', 4]], ['Danh mục khác', 4]), {include_blank: false}, { :class => 'my_style_class' }) %>
+                    </div>
+                </div>
+            </div>
+
+            <div class="new_post_section">
+                <div class="new_post_content">
+                    <div class="new_post_label">
+                        <a><%= f.label :title, "Tiêu đề*", class: "new_post_label_name" %></a>
+                    </div>
+
+                    <div class="new_post_input">
+                        <%= f.text_field :title, :required => true, class: "new_post_form_input", placeholder: " Nhập tiêu đề bài viết" %>
+                    </div>
+                </div>
+            </div>
+
+            <div class="new_post_content">
+                <div class="new_post_label">
+                    <a><%= f.label :content, "Nội dung bài viết*", class: "new_post_label_content" %></a>
+                </div>
+                
+                <div class="new_post_input">
+                    <%= f.cktext_area :content, :required => true, class: "form-control-rich-text customized-min-height", ckeditor: { language: 'us', toolbar: "full"}, placeholder: "Nhập nội dung bài viết (ít nhất 3000 từ)" %>
+                </div>
+            </div>
+
+            <div class="new_post_submit">
+                <%= f.submit "Gửi nội dung", class: "new_post_form_submit" %>
+            </div>
+        <%end%>
+    </div>
+</div>

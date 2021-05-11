@@ -1,29 +1,20 @@
-<!DOCTYPE html>
-<html>
-    <head>
-        <meta name="viewport" content="width=device-width, height=device-height, initial-scale=1.0"/>
-    </head>
+<div class="container">
+    <div class="new_reply_review_form">
+        <%= form_for [@company, @company_review, CompanyReplyReview.new] do |f| %>
 
-    <body>
-        <div class="container">
-            <div class="new_reply_review_form">
-                <%= form_for [@company, @company_review, CompanyReplyReview.new] do |f| %>
-
-                    <div class="new_reply_review_content">
-                        <div class="new_reply_review_label">
-                            <a><%= f.label :reply_content, "Nội dung", class: "new_reply_review_label_content" %></a>
-                        </div>
-                        
-                        <div class="new_reply_review_input_review">
-                            <%= f.text_area :reply_content, :required => true, class: "form-control-text", placeholder: "Nhập nội dung" %>
-                        </div>
-                    </div>
-
-                    <div class="new_reply_review_submit">
-                        <%= f.submit "Gửi trả lời", class: "new_reply_review_form_submit" %>
-                    </div>
-                <%end%>
+            <div class="new_reply_review_content">
+                <div class="new_reply_review_label">
+                    <a><%= f.label :reply_content, "Nội dung", class: "new_reply_review_label_content" %></a>
+                </div>
+                
+                <div class="new_reply_review_input_review">
+                    <%= f.text_area :reply_content, :required => true, class: "form-control-text", placeholder: "Nhập nội dung" %>
+                </div>
             </div>
-        </div>
-    </body>
-</html>
+
+            <div class="new_reply_review_submit">
+                <%= f.submit "Gửi trả lời", class: "new_reply_review_form_submit" %>
+            </div>
+        <%end%>
+    </div>
+</div>

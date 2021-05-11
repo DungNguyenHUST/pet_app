@@ -1,48 +1,39 @@
-<!DOCTYPE html>
-<html>
-    <head>
-        <meta name="viewport" content="width=device-width, height=device-height, initial-scale=1.0"/>
-    </head>
-
-    <body>
-        <div class="container">
-            <div class="new_problem_solution_form">
-                <%= form_for [@problem, ProblemSolution.new] do |f| %>
-                    <div class="new_problem_solution_title">
-                        <a>Cho mọi người biết giải pháp của bạn</a>
-                    </div>
-
-                    <div class="new_problem_solution_title_sub">
-						<span>Note: Mục có dấu '*' là bắt buộc</span>
-					</div>
-
-                    <div class="new_problem_solution_section">
-                        <div class="new_problem_solution_content">
-                            <div class="new_problem_solution_label">
-                                <a><%= f.label :title, "Tiêu đề*", class: "new_problem_solution_label_name" %></a>
-                            </div>
-
-                            <div class="new_problem_solution_input_time">
-                                <%= f.text_field :title, :required => true, class: "new_problem_solution_form_input", placeholder: "Nhập tên hoặc email của bạn" %>
-                            </div>
-                        </div>
-
-                        <div class="new_problem_solution_content">
-                            <div class="new_problem_solution_label">
-                                <a><%= f.label :content, "Giải pháp chính*", class: "new_problem_solution_label_name" %></a>
-                            </div>
-
-                            <div class="new_problem_solution_input_time">
-                                <%= f.text_area :content, :required => true, class: "form-control-text", placeholder: "Nhập tên hoặc email của bạn" %>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="new_problem_solution_submit">
-                        <%= f.submit "Gửi đánh giá", class: "new_problem_solution_form_submit" %>
-                    </div>
-                <%end%>
+<div class="container">
+    <div class="new_problem_solution_form">
+        <%= form_for [@problem, ProblemSolution.new] do |f| %>
+            <div class="new_problem_solution_title">
+                <a>Cho mọi người biết giải pháp của bạn</a>
             </div>
-        </div>
-    </body>
-</html>
+
+            <div class="new_problem_solution_title_sub">
+                <span>Note: Mục có dấu '*' là bắt buộc</span>
+            </div>
+
+            <div class="new_problem_solution_section">
+                <div class="new_problem_solution_content">
+                    <div class="new_problem_solution_label">
+                        <a><%= f.label :title, "Tiêu đề*", class: "new_problem_solution_label_name" %></a>
+                    </div>
+
+                    <div class="new_problem_solution_input_time">
+                        <%= f.text_field :title, :required => true, class: "new_problem_solution_form_input", placeholder: "Nhập tên hoặc email của bạn" %>
+                    </div>
+                </div>
+
+                <div class="new_problem_solution_content">
+                    <div class="new_problem_solution_label">
+                        <a><%= f.label :content, "Giải pháp chính*", class: "new_problem_solution_label_name" %></a>
+                    </div>
+
+                    <div class="new_problem_solution_input_time">
+                        <%= f.text_area :content, :required => true, class: "form-control-text", placeholder: "Nhập tên hoặc email của bạn" %>
+                    </div>
+                </div>
+            </div>
+
+            <div class="new_problem_solution_submit">
+                <%= f.submit "Gửi đánh giá", class: "new_problem_solution_form_submit" %>
+            </div>
+        <%end%>
+    </div>
+</div>

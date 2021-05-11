@@ -1,28 +1,17 @@
-<!-- comments container -->
-<!DOCTYPE html>
-<html>
-    <head>
-        <meta name="viewport" content="width=device-width, initial-scale=1">
-        
-    </head>
-
-    <body>
-        <div class="user_reply_solution_block">
-            <div class="user_reply_solution_left">
-                <div class="user_avatar">
-                    <i class="material-icons-outlined">perm_identity</i>
-                </div>
-            </div>
-
-            <div class="user_reply_solution_cotent">
-                <div class="user_reply_solution_body">
-                    <a><%= problem_reply_solution.reply_content %></a>
-                </div>
-
-                <div class="user_reply_solution_time">
-                    <a><%= problem_reply_solution.user_name %> . <%= time_ago_in_words(problem_reply_solution.created_at) %></a>
-                </div>
-            </div>
+<div class="user_reply_solution_block">
+    <div class="user_reply_solution_left">
+        <div class="user_avatar">
+            <i class="material-icons-outlined">perm_identity</i>
         </div>
-    </body>
-</html>
+    </div>
+
+    <div class="user_reply_solution_cotent">
+        <div class="user_reply_solution_body">
+            <a><%= problem_reply_solution.reply_content %></a>
+        </div>
+
+        <div class="user_reply_solution_time">
+            <a><%= problem_reply_solution.user_name %> . <%= time_ago_in_words(problem_reply_solution.created_at) %></a>
+        </div>
+    </div>
+</div>

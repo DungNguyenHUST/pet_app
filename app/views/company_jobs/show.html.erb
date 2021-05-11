@@ -1,287 +1,278 @@
-<!DOCTYPE html>
-<html>
-    <head>
-        <meta name="viewport" content="width=device-width, height=device-height, initial-scale=1.0"/>
-        <% content_for :meta_title, @company.name + " tuyển dụng " + @company_job.title %>
-        <% content_for :meta_description, @company_job.description %>
-    </head>
-
-    <body>
-        <div class="container">
-            <div class="job_overview">
-                <div class='row'>
-                    <div class="col-sm-8">
-                        <div class="job_overview_left">
-                            <div class="company_avatar">
-                                <%if @company.avatar?%>
-                                    <%= link_to (image_tag(@company.avatar.thumb.url)), image_path(url_for(@company.avatar.thumb.url)), rel: "gallery" , :href => company_path(@company)%>
-                                <%end%>
-                            </div>
-                            <div class="job_des">
-                                <div class="job_title">
-                                    <strong><%= @company_job.title %></strong>
-                                </div>
-                                <div class="company_name">
-                                    <a><%= @company.name %></a>
-                                </div>
-
-                                <div class='job_block_info'>
-                                    <div class="job_shoft_info">
-                                        <%if @company_job.address.present?%>
-                                            <a><i class="material-icons-outlined">room</i><%= @company_job.address %></a>
-                                        <%elsif @company.address.present? %>
-                                            <a><i class="material-icons-outlined">room</i><%= @company.address %></a>
-                                        <%else%>
-                                            <a><i class="material-icons-outlined">room</i><%= @company_job.location %></a>
-                                        <%end%>
-                                    </div>
-                                    <div class="job_shoft_info">
-                                        <a><i class="material-icons-outlined">local_offer</i><%= convert_salary_to_string(@company_job) %></a>
-                                    </div>
-                                    <div class="job_shoft_info">
-                                        <%if @company_job.end_date%>
-                                            <%cal_date = ((@company_job.end_date - Time.now)/(24*60*60))%>
-                                            <%if cal_date > 0%>
-                                                <a><i class="material-icons-outlined">schedule</i> Đã đăng <%= time_ago_in_words(@company_job.created_at) %> • Hết hạn sau <%=cal_date.to_i%> ngày</a>
-                                            <%else%>
-                                                <a><i class="material-icons-outlined">schedule</i> Đã đăng <%= time_ago_in_words(@company_job.created_at) %> • </a><span class="warning">Đã hết hạn<span>
-                                            <%end%>
-                                        <%else%>
-                                            <a><i class="material-icons-outlined">schedule</i> Đã đăng <%= time_ago_in_words(@company_job.created_at) %> </a>
-                                        <%end%>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>  
+<% content_for :meta_title, @company.name + " tuyển dụng " + @company_job.title %>
+<% content_for :meta_description, @company_job.description %>
+<div class="container">
+    <div class="job_overview">
+        <div class='row'>
+            <div class="col-sm-8">
+                <div class="job_overview_left">
+                    <div class="company_avatar">
+                        <%if @company.avatar?%>
+                            <%= link_to (image_tag(@company.avatar.thumb.url)), image_path(url_for(@company.avatar.thumb.url)), rel: "gallery" , :href => company_path(@company)%>
+                        <%end%>
                     </div>
-
-                    <div class="col-sm-4">
-                        <div class="job_overview_right">
-                            <div class="apply_job_button">
-                                <%if logged_in?%>
-                                    <div class="apply_button">
-                                        <%if @company_job.apply_another_site_flag?%>
-                                            <%= link_to '<button type="submit">Apply On Company Site</button>'.html_safe, @company_job.apply_site%>
-                                        <%else%>
-                                            <%= link_to '<button type="submit"><i class="material-icons-outlined">open_in_new</i>Nộp đơn</button>'.html_safe, new_company_apply_job_path(@company.id, @company_job.id)%>
-                                        <%end%>
-                                    </div>
-
-                                    <div class="save_button" id="save_job_<%=@company_job.id%>">
-                                        <% pre_save = @company_job.company_save_jobs.find { |save| save.user_id == current_user.id} %>
-                                        <%if logged_in?%>
-											<% if pre_save %> 
-												<%= button_to company_company_job_company_save_job_path(@company, @company_job, pre_save), :method => :delete, remote: true, form_class: "save_btn_highlight" do%>
-													<i class="material-icons-outlined">turned_in_not</i> <span>Hủy lưu</span>
-												<%end%> 
-											<%else%>
-												<%= button_to company_company_job_company_save_jobs_path(@company, @company_job), :method => :post, remote: true, form_class: "save_btn" do%>
-													<i class="material-icons">turned_in_not</i> <span>Lưu Job</span>
-												<%end%>
-											<%end%>
-										<%else%>
-											<%= button_to login_path, form_class: "save_btn" do%>
-												<i class="material-icons-outlined">turned_in_not</i> <span>Lưu Job</span>
-											<%end%>
-										<%end%>
-                                    </div>
-                                <%else%>
-                                    <div class="apply_button">
-                                        <%= link_to '<button type="submit"><i class="material-icons-outlined">open_in_new</i>Nộp đơn</button>'.html_safe, login_path%>
-                                    </div>
-                                    <div class="save_button">
-                                        <%= link_to '<button type="submit"><i class="material-icons-outlined">turned_in_not</i>Lưu Job</button>'.html_safe, login_path%>
-                                    </div>
-                                <%end%>
-                            </div>
+                    <div class="job_des">
+                        <div class="job_title">
+                            <strong><%= @company_job.title %></strong>
                         </div>
-                    </div>
-                </div>
-            </div>
-            
-            <div class='job_block_total'>
-                <div class='row'>
-                    <div class="col-sm-8">
-                        <div class='job_block_left'>
-                            <%if @company_job.skill.present?%>
-                                <div class="job_skill">
-                                    <div class="job_content">
-                                        <%@company_job.skill.each do |skill|%>
-                                            <a><%= convert_skill_to_string(skill)%></a>
-                                        <%end%>
-                                    </div>
-                                </div>
-                            <%end%>
-                            <div class="job_description">
-                                <div class="job_section">
-                                    <strong>Mô tả công việc</strong>
-                                </div>
-                                <div class="job_content">
-                                    <%= @company_job.description.html_safe %>
-                                </div>
-                            </div>
+                        <div class="company_name">
+                            <a><%= @company.name %></a>
+                        </div>
 
-                            <div class="job_requirement">
-                                <div class="job_section">
-                                    <strong>Yêu cầu công việc</strong>
-                                </div>
-                                <div class="job_content">
-                                    <%= @company_job.requirement.html_safe %>
-                                </div>
+                        <div class='job_block_info'>
+                            <div class="job_shoft_info">
+                                <%if @company_job.address.present?%>
+                                    <a><i class="material-icons-outlined">room</i><%= @company_job.address %></a>
+                                <%elsif @company.address.present? %>
+                                    <a><i class="material-icons-outlined">room</i><%= @company.address %></a>
+                                <%else%>
+                                    <a><i class="material-icons-outlined">room</i><%= @company_job.location %></a>
+                                <%end%>
                             </div>
-                            
-                            <div class="job_benefit">
-                                <div class="job_section">
-                                    <strong>Chế độ đãi ngộ bạn sẽ nhận được</strong>
-                                </div>
-                                <div class="job_content">
-                                    <div class="job_benefit_block">
-                                        <span><%= @company_job.benefit.html_safe %></span>
-                                    </div>
-                                </div>
+                            <div class="job_shoft_info">
+                                <a><i class="material-icons-outlined">local_offer</i><%= convert_salary_to_string(@company_job) %></a>
                             </div>
-                            
-                            <div class="apply_job_button">
-                                <%if logged_in?%>
-                                    <%if @company_job.apply_another_site_flag?%>
-                                        <%= link_to '<button type="submit">Nộp đơn tại Company Site</button>'.html_safe, @company_job.apply_site%>
+                            <div class="job_shoft_info">
+                                <%if @company_job.end_date%>
+                                    <%cal_date = ((@company_job.end_date - Time.now)/(24*60*60))%>
+                                    <%if cal_date > 0%>
+                                        <a><i class="material-icons-outlined">schedule</i> Đã đăng <%= time_ago_in_words(@company_job.created_at) %> • Hết hạn sau <%=cal_date.to_i%> ngày</a>
                                     <%else%>
-                                        <%= link_to '<button type="submit"><i class="material-icons-outlined">open_in_new</i>Nộp đơn</button>'.html_safe, new_company_apply_job_path(@company.id, @company_job.id)%>
+                                        <a><i class="material-icons-outlined">schedule</i> Đã đăng <%= time_ago_in_words(@company_job.created_at) %> • </a><span class="warning">Đã hết hạn<span>
                                     <%end%>
                                 <%else%>
-                                    <%= link_to '<button type="submit"><i class="material-icons-outlined">open_in_new</i>Nộp đơn</button>'.html_safe, login_path%>
+                                    <a><i class="material-icons-outlined">schedule</i> Đã đăng <%= time_ago_in_words(@company_job.created_at) %> </a>
                                 <%end%>
                             </div>
                         </div>
                     </div>
-                    <div class="col-sm-4">
-                        <div class='job_block_right'>
-                            <div class='job_block_right_des'>
-                                <div class="job_right">
-                                    <div class="job_right_title">
-                                        <a> <i class="material-icons-outlined">calendar_today</i> NGÀY ĐĂNG TUYỂN</a>
-                                    </div>
-                                    <span><%= time_ago_in_words(@company_job.created_at) %></span>
-                                </div>
-                                <div class="job_right">
-                                    <div class="job_right_title">
-                                        <a> <i class="material-icons-outlined">check_circle_outline</i> LĨNH VỰC CHÍNH</a>
-                                    </div>
-                                    <span> <%= @company_job.category %></span>
-                                </div>
-                                <div class="job_right">
-                                    <div class="job_right_title">
-                                        <a> <i class="material-icons-outlined">work_outline</i> CẤP BẬC</a>
-                                    </div>
-                                    <span> <%= @company_job.level %></span>
-                                </div>
-                                <div class="job_right">
-                                    <div class="job_right_title">
-                                        <a><i class="material-icons-outlined">translate</i> NGÔN NGỮ HỒ SƠ</a>
-                                    </div>
-                                    <span> <%= @company_job.language %></span>
-                                </div>
-                                <div class="job_right_end">
-                                    <div class="job_right_title">
-                                        <a> <i class="material-icons-outlined">timer</i> NGÀY HẾT HẠN</a>
-                                    </div>
-                                    <span> <%= @company_job.end_date.strftime("%B %d, %Y") %></span>
-                                </div>
+                </div>  
+            </div>
+
+            <div class="col-sm-4">
+                <div class="job_overview_right">
+                    <div class="apply_job_button">
+                        <%if logged_in?%>
+                            <div class="apply_button">
+                                <%if @company_job.apply_another_site_flag?%>
+                                    <%= link_to '<button type="submit">Apply On Company Site</button>'.html_safe, @company_job.apply_site%>
+                                <%else%>
+                                    <%= link_to '<button type="submit"><i class="material-icons-outlined">open_in_new</i>Nộp đơn</button>'.html_safe, new_company_apply_job_path(@company.id, @company_job.id)%>
+                                <%end%>
                             </div>
-                            <div class='job_block_right_company'>
-                                <div class='job_block_right_label'>
-                                    <a>Mọi người nói gì về <%=@company.name%></a>
-                                </div>
-                                <div class='job_block_right_overview'>
-                                    <div class="review_job_score_star">
-                                        <div class="review_job_point">
-                                            <strong><%=cal_rating_review_total_score(@company).to_f.round(1)%> </strong>
-                                        </div>
-                                        <div class="review_job_score_star_des">
-                                            <%if cal_rating_review_total_score(@company) > 0%>
-                                                <%cal_rating_review_total_score(@company).to_i.times do%>
-                                                    <i class="material-icons checked">circle</i>
-                                                <%end%>
-                                                <%(5 - cal_rating_review_total_score(@company).to_i).to_i.times do%>
-                                                    <i class="material-icons checked_out">radio_button_unchecked</i>
-                                                <%end%>
-                                            <%else%>
-                                                <%5.times do%>
-                                                    <i class="material-icons checked_out">radio_button_unchecked</i>
-                                                <%end%>
-                                            <%end%>
-                                        </div>
-                                    </div>
 
-                                    <div class="review_job_total_des">
-                                        <a>Dựa trên <%= @company.company_reviews.count%> đánh giá từ nhân viên</a>
-                                    </div>
-
-                                    <div class="review_job_score_recommand">  
-                                        <div class="review_job_score_recommand_title">
-                                            <a>Khuyến khích làm việc tại đây</a>
-                                        </div>
-
-                                        <div class="circle-wrap">
-                                            <div class="circle">
-                                                
-                                                <div class="mask full">
-                                                    <div class="fill"></div>
-                                                </div>
-                                            
-                                                <div class="mask half">
-                                                    <div class="fill"></div>
-                                                </div>
-                                                
-                                                <div class="inside-circle">
-                                                    <%= cal_rating_review_total_score(@company).to_i * 20%>%
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <style>
-                                            .circle-wrap .circle .mask .fill {
-                                                clip: rect(0px, 75px, 150px, 0px);
-                                                background-color: #febb02;
-                                            }
-                                            .circle-wrap .circle .mask.full,
-                                            .circle-wrap .circle .fill {
-                                                animation: fill ease-in-out 3s;
-                                                transform: rotate(<%= cal_rating_review_total_score(@company).to_i * 36%>deg);
-                                            }
-                                            
-                                            @keyframes fill {
-                                            0% {
-                                                transform: rotate(0deg);
-                                            }
-                                            100% {
-                                                transform: rotate(<%= cal_rating_review_total_score(@company).to_i * 36%>deg);
-                                            }
-                                        }
-                                        </style>
-                                    </div>
-                                    <div class="review_job_more">
-                                        <%= link_to '<button type="submit"> Xem thêm review <i class="material-icons-outlined">chevron_right</i></button>'.html_safe, company_path(@company) %>
-                                    </div>
-                                </div>
+                            <div class="save_button" id="save_job_<%=@company_job.id%>">
+                                <% pre_save = @company_job.company_save_jobs.find { |save| save.user_id == current_user.id} %>
+                                <%if logged_in?%>
+                                    <% if pre_save %> 
+                                        <%= button_to company_company_job_company_save_job_path(@company, @company_job, pre_save), :method => :delete, remote: true, form_class: "save_btn_highlight" do%>
+                                            <i class="material-icons-outlined">turned_in_not</i> <span>Hủy lưu</span>
+                                        <%end%> 
+                                    <%else%>
+                                        <%= button_to company_company_job_company_save_jobs_path(@company, @company_job), :method => :post, remote: true, form_class: "save_btn" do%>
+                                            <i class="material-icons">turned_in_not</i> <span>Lưu Job</span>
+                                        <%end%>
+                                    <%end%>
+                                <%else%>
+                                    <%= button_to login_path, form_class: "save_btn" do%>
+                                        <i class="material-icons-outlined">turned_in_not</i> <span>Lưu Job</span>
+                                    <%end%>
+                                <%end%>
                             </div>
-                        </div>
+                        <%else%>
+                            <div class="apply_button">
+                                <%= link_to '<button type="submit"><i class="material-icons-outlined">open_in_new</i>Nộp đơn</button>'.html_safe, login_path%>
+                            </div>
+                            <div class="save_button">
+                                <%= link_to '<button type="submit"><i class="material-icons-outlined">turned_in_not</i>Lưu Job</button>'.html_safe, login_path%>
+                            </div>
+                        <%end%>
                     </div>
                 </div>
             </div>
-
-            
-            <div class="row">
-                <div class="col-sm-8">
-                    <div class="company_job_index">
+        </div>
+    </div>
+    
+    <div class='job_block_total'>
+        <div class='row'>
+            <div class="col-sm-8">
+                <div class='job_block_left'>
+                    <%if @company_job.skill.present?%>
+                        <div class="job_skill">
+                            <div class="job_content">
+                                <%@company_job.skill.each do |skill|%>
+                                    <a><%= convert_skill_to_string(skill)%></a>
+                                <%end%>
+                            </div>
+                        </div>
+                    <%end%>
+                    <div class="job_description">
                         <div class="job_section">
-                            <strong>Việc làm khác cùng công ty <%=@company.name%></strong>
+                            <strong>Mô tả công việc</strong>
                         </div>
                         <div class="job_content">
-                            <%= render @company.company_jobs %>
+                            <%= @company_job.description.html_safe %>
+                        </div>
+                    </div>
+
+                    <div class="job_requirement">
+                        <div class="job_section">
+                            <strong>Yêu cầu công việc</strong>
+                        </div>
+                        <div class="job_content">
+                            <%= @company_job.requirement.html_safe %>
+                        </div>
+                    </div>
+                    
+                    <div class="job_benefit">
+                        <div class="job_section">
+                            <strong>Chế độ đãi ngộ bạn sẽ nhận được</strong>
+                        </div>
+                        <div class="job_content">
+                            <div class="job_benefit_block">
+                                <span><%= @company_job.benefit.html_safe %></span>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="apply_job_button">
+                        <%if logged_in?%>
+                            <%if @company_job.apply_another_site_flag?%>
+                                <%= link_to '<button type="submit">Nộp đơn tại Company Site</button>'.html_safe, @company_job.apply_site%>
+                            <%else%>
+                                <%= link_to '<button type="submit"><i class="material-icons-outlined">open_in_new</i>Nộp đơn</button>'.html_safe, new_company_apply_job_path(@company.id, @company_job.id)%>
+                            <%end%>
+                        <%else%>
+                            <%= link_to '<button type="submit"><i class="material-icons-outlined">open_in_new</i>Nộp đơn</button>'.html_safe, login_path%>
+                        <%end%>
+                    </div>
+                </div>
+            </div>
+            <div class="col-sm-4">
+                <div class='job_block_right'>
+                    <div class='job_block_right_des'>
+                        <div class="job_right">
+                            <div class="job_right_title">
+                                <a> <i class="material-icons-outlined">calendar_today</i> NGÀY ĐĂNG TUYỂN</a>
+                            </div>
+                            <span><%= time_ago_in_words(@company_job.created_at) %></span>
+                        </div>
+                        <div class="job_right">
+                            <div class="job_right_title">
+                                <a> <i class="material-icons-outlined">check_circle_outline</i> LĨNH VỰC CHÍNH</a>
+                            </div>
+                            <span> <%= @company_job.category %></span>
+                        </div>
+                        <div class="job_right">
+                            <div class="job_right_title">
+                                <a> <i class="material-icons-outlined">work_outline</i> CẤP BẬC</a>
+                            </div>
+                            <span> <%= @company_job.level %></span>
+                        </div>
+                        <div class="job_right">
+                            <div class="job_right_title">
+                                <a><i class="material-icons-outlined">translate</i> NGÔN NGỮ HỒ SƠ</a>
+                            </div>
+                            <span> <%= @company_job.language %></span>
+                        </div>
+                        <div class="job_right_end">
+                            <div class="job_right_title">
+                                <a> <i class="material-icons-outlined">timer</i> NGÀY HẾT HẠN</a>
+                            </div>
+                            <span> <%= @company_job.end_date.strftime("%B %d, %Y") %></span>
+                        </div>
+                    </div>
+                    <div class='job_block_right_company'>
+                        <div class='job_block_right_label'>
+                            <a>Mọi người nói gì về <%=@company.name%></a>
+                        </div>
+                        <div class='job_block_right_overview'>
+                            <div class="review_job_score_star">
+                                <div class="review_job_point">
+                                    <strong><%=cal_rating_review_total_score(@company).to_f.round(1)%> </strong>
+                                </div>
+                                <div class="review_job_score_star_des">
+                                    <%if cal_rating_review_total_score(@company) > 0%>
+                                        <%cal_rating_review_total_score(@company).to_i.times do%>
+                                            <i class="material-icons checked">circle</i>
+                                        <%end%>
+                                        <%(5 - cal_rating_review_total_score(@company).to_i).to_i.times do%>
+                                            <i class="material-icons checked_out">radio_button_unchecked</i>
+                                        <%end%>
+                                    <%else%>
+                                        <%5.times do%>
+                                            <i class="material-icons checked_out">radio_button_unchecked</i>
+                                        <%end%>
+                                    <%end%>
+                                </div>
+                            </div>
+
+                            <div class="review_job_total_des">
+                                <a>Dựa trên <%= @company.company_reviews.count%> đánh giá từ nhân viên</a>
+                            </div>
+
+                            <div class="review_job_score_recommand">  
+                                <div class="review_job_score_recommand_title">
+                                    <a>Khuyến khích làm việc tại đây</a>
+                                </div>
+
+                                <div class="circle-wrap">
+                                    <div class="circle">
+                                        
+                                        <div class="mask full">
+                                            <div class="fill"></div>
+                                        </div>
+                                    
+                                        <div class="mask half">
+                                            <div class="fill"></div>
+                                        </div>
+                                        
+                                        <div class="inside-circle">
+                                            <%= cal_rating_review_total_score(@company).to_i * 20%>%
+                                        </div>
+                                    </div>
+                                </div>
+                                <style>
+                                    .circle-wrap .circle .mask .fill {
+                                        clip: rect(0px, 75px, 150px, 0px);
+                                        background-color: #febb02;
+                                    }
+                                    .circle-wrap .circle .mask.full,
+                                    .circle-wrap .circle .fill {
+                                        animation: fill ease-in-out 3s;
+                                        transform: rotate(<%= cal_rating_review_total_score(@company).to_i * 36%>deg);
+                                    }
+                                    
+                                    @keyframes fill {
+                                    0% {
+                                        transform: rotate(0deg);
+                                    }
+                                    100% {
+                                        transform: rotate(<%= cal_rating_review_total_score(@company).to_i * 36%>deg);
+                                    }
+                                }
+                                </style>
+                            </div>
+                            <div class="review_job_more">
+                                <%= link_to '<button type="submit"> Xem thêm review <i class="material-icons-outlined">chevron_right</i></button>'.html_safe, company_path(@company) %>
+                            </div>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
-    <body>
-<html>
+    </div>
+
+    
+    <div class="row">
+        <div class="col-sm-8">
+            <div class="company_job_index">
+                <div class="job_section">
+                    <strong>Việc làm khác cùng công ty <%=@company.name%></strong>
+                </div>
+                <div class="job_content">
+                    <%= render @company.company_jobs %>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

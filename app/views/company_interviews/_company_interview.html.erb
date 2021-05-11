@@ -1,168 +1,159 @@
-<!DOCTYPE html>
-<html>
-    <head>
-        <meta name="viewport" content="width=device-width, height=device-height, initial-scale=1.0"/>
-    </head>
+<div class="company_interview_block">
+    <div class="company_interview_left">
+        <div class="company_avatar">
+            <%if @company.avatar?%>
+                <%= link_to (image_tag(@company.avatar.thumb.url)), image_path(url_for(@company.avatar.thumb.url)), rel: "gallery" , :href => company_path(@company)%>
+            <%end%>
+        </div>
 
-    <body>
-        <div class="company_interview_block">
-            <div class="company_interview_left">
-                <div class="company_avatar">
-                    <%if @company.avatar?%>
-                        <%= link_to (image_tag(@company.avatar.thumb.url)), image_path(url_for(@company.avatar.thumb.url)), rel: "gallery" , :href => company_path(@company)%>
+        <div class="user_info">
+            <div class="user_name">
+                <a><%=company_interview.user_name%></a>
+            </div>
+            <div class="user_time_interview">
+                <a><%= time_ago_in_words(company_interview.created_at) %></a>
+            </div>
+        </div>
+    </div>
+
+    <div class="company_interview_right">
+        <div class="company_interview_title">
+            <strong><%= company_interview.position %></strong>
+        </div>
+
+        <div class="user_interview_status">
+            <a>Phỏng vấn qua <%= company_interview.get_interview %> • </a>
+            <a><%= company_interview.process %> vòng phỏng vấn • </a>
+            <a><%= time_ago_in_words(company_interview.created_at) %></a>
+        </div>
+
+        <div class="interview_satisfied_overview">
+            <div class="interview_content">
+                <div class="interview_satisfied_label">
+                    <a>Hài lòng với buổi phỏng vấn: </a>
+                </div>
+                <div class="interview_score_star">
+                    <%if company_interview.satisfied.to_i > 0%>
+                        <%company_interview.satisfied.to_i.times do%>
+                            <i class="material-icons checked">circle</i>
+                        <%end%>
+                        <%(5 - company_interview.satisfied.to_i).to_i.times do%>
+                            <i class="material-icons checked_out">radio_button_unchecked</i>
+                        <%end%>
+                    <%else%>
+                        <%5.times do%>
+                            <i class="material-icons checked_out">radio_button_unchecked</i>
+                        <%end%>
                     <%end%>
                 </div>
-
-                <div class="user_info">
-                    <div class="user_name">
-                        <a><%=company_interview.user_name%></a>
-                    </div>
-                    <div class="user_time_interview">
-                        <a><%= time_ago_in_words(company_interview.created_at) %></a>
-                    </div>
-                </div>
             </div>
+        </div>
 
-            <div class="company_interview_right">
-                <div class="company_interview_title">
-                    <strong><%= company_interview.position %></strong>
-                </div>
-
-                <div class="user_interview_status">
-                    <a>Phỏng vấn qua <%= company_interview.get_interview %> • </a>
-                    <a><%= company_interview.process %> vòng phỏng vấn • </a>
-                    <a><%= time_ago_in_words(company_interview.created_at) %></a>
-                </div>
-
-                <div class="interview_satisfied_overview">
-                    <div class="interview_content">
-                        <div class="interview_satisfied_label">
-                            <a>Hài lòng với buổi phỏng vấn: </a>
-                        </div>
-                        <div class="interview_score_star">
-                            <%if company_interview.satisfied.to_i > 0%>
-                                <%company_interview.satisfied.to_i.times do%>
-                                    <i class="material-icons checked">circle</i>
-                                <%end%>
-                                <%(5 - company_interview.satisfied.to_i).to_i.times do%>
-                                    <i class="material-icons checked_out">radio_button_unchecked</i>
-                                <%end%>
-                            <%else%>
-                                <%5.times do%>
-                                    <i class="material-icons checked_out">radio_button_unchecked</i>
-                                <%end%>
-                            <%end%>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="user_interview_offer">
-                    <div class="user_interview_offer_label">
-                        <a>Chấp nhận offer: </a>
-                    </div>
-                    <div class="user_interview_offer_content">
-                        <%if company_interview.offer%>
-                            <a><i class="material-icons-outlined checked">check_circle_outline</i> Có </a>
-                        <% else %>
-                            <a><i class="material-icons-outlined checked_out">clear</i> Không </a>
-                        <%end%>
-                    </div>
-                </div>
-
-                <div class="company_interview_body">
-                    <a><%= company_interview.content.html_safe %></a>
-                </div>
-            
-                <div class="interview_info">
-                    <div class="interview_toolbar">
-                        <div class="interview_reply_block">
-                            <%if logged_in?%>
-                                <button class="reply_btn" onclick="myFunctionReplyinterview(<%=company_interview.id%>)"><i class="material-icons-outlined">chat_bubble_outline</i> <span><%= company_interview.company_reply_interviews.count%></span> <a>Trả lời</a> </button>
-                            <%else%>
-                                <%= button_to login_path, :method => :get, form_class: "reply_btn" do%>
-                                    <i class="material-icons-outlined">chat_bubble_outline</i> <span><%= company_interview.company_reply_interviews.count%></span> <a>Trả lời</a>
-                                <%end%>
-                            <%end%>
-                        </div>
-
-                        <div class="interview_like_block" id="like_interview_<%=company_interview.id%>">
-                            <%if logged_in?%>
-                                <% pre_like = company_interview.company_like_interviews.find { |like| like.user_id == current_user.id} %>
-                                <% if pre_like %>  
-                                    <%= button_to company_company_interview_company_like_interview_path(@company, company_interview, pre_like), method: :delete, remote: true, form_class: "like_btn_highlight" do %>
-                                        <i class="material-icons">thumb_up</i> <span><%= company_interview.company_like_interviews.count%></span> <a>Thích</a>
-                                    <%end%>
-                                <%else%>
-                                    <%= button_to company_company_interview_company_like_interviews_path(@company, company_interview, pre_like), method: :post, remote: true, form_class: "like_btn" do %>
-                                        <i class="material-icons-outlined">thumb_up</i> <span><%= company_interview.company_like_interviews.count%></span> <a>Thích</a>
-                                    <%end%>
-                                <%end%>
-                            <%else%>
-                                <%= button_to login_path, :method => :get, form_class: "like_btn" do%>
-                                    <i class="material-icons-outlined">thumb_up</i> <span><%= company_interview.company_like_interviews.count%></span> <a>Thích</a>
-                                <%end%>
-                            <%end%>
-                        </div>
-
-                        <div class="interview_dislike_block" id="dislike_interview_<%=company_interview.id%>">
-                            <%if logged_in?%>
-                                <% pre_dislike = company_interview.company_dislike_interviews.find { |dislike| dislike.user_id == current_user.id} %>
-                                <% if pre_dislike %>
-                                    <%= button_to company_company_interview_company_dislike_interview_path(@company, company_interview, pre_dislike), :method => :delete, remote: true, form_class: "dislike_btn_highlight" do%>
-                                        <i class="material-icons">thumb_down</i> <span><%= company_interview.company_dislike_interviews.count%></span> <a>Không thích</a>
-                                    <%end%> 
-                                <%else%>
-                                    <%= button_to company_company_interview_company_dislike_interviews_path(@company, company_interview), method: :post, remote: true, form_class: "dislike_btn" do%>
-                                        <i class="material-icons-outlined">thumb_down</i> <span><%= company_interview.company_dislike_interviews.count%></span> <a>Không thích</a>
-                                    <%end%> 
-                                <%end%>
-                            <%else%>
-                                <%= button_to login_path, :method => :get, form_class: "dislike_btn" do%>
-                                    <i class="material-icons-outlined">thumb_down</i> <span><%= company_interview.company_dislike_interviews.count%></span> <a>Không thích</a>
-                                <%end%>
-                            <%end%>
-                        </div>
-                    </div>
-                </div>
+        <div class="user_interview_offer">
+            <div class="user_interview_offer_label">
+                <a>Chấp nhận offer: </a>
             </div>
-
-            <div class="new_reply_interview_form_internal" id ="<%=company_interview.id%>">
-                <%= form_for [@company, company_interview, CompanyReplyInterview.new] do |f| %>
-                    <div class="new_reply_interview_content">
-                        <div class="new_reply_interview_input_interview">
-                            <%= f.text_area :reply_content, :required =>true, class: "form-control-text", placeholder: "Nhập câu trả lời của bạn tại đây" %>
-                        </div>
-                    </div>
-
-                    <div class="new_reply_interview_submit">
-                        <button type="submit" class="new_reply_interview_form_submit">
-                            <i class="material-icons-outlined">send</i>
-                        </button>
-                    </div>
-                <%end%>
-            </div>
-
-            <script>
-                function myFunctionReplyInterview(interview_id) {
-                    var x = document.getElementById(interview_id);
-                    if (x.style.display == "none") 
-                    {
-                        x.style.display = "block";
-                    } 
-                    else 
-                    {
-                        x.style.display = "none";
-                    }
-                }
-            </script>
-    
-            <div class="reply_interview_content">
-                <%if company_interview.company_reply_interviews.count > 0%>
-                    <div class="interview_reply">
-                        <%= render company_interview.company_reply_interviews %>
-                    </div>
+            <div class="user_interview_offer_content">
+                <%if company_interview.offer%>
+                    <a><i class="material-icons-outlined checked">check_circle_outline</i> Có </a>
+                <% else %>
+                    <a><i class="material-icons-outlined checked_out">clear</i> Không </a>
                 <%end%>
             </div>
         </div>
-    </body>
-</html>
+
+        <div class="company_interview_body">
+            <a><%= company_interview.content.html_safe %></a>
+        </div>
+    
+        <div class="interview_info">
+            <div class="interview_toolbar">
+                <div class="interview_reply_block">
+                    <%if logged_in?%>
+                        <button class="reply_btn" onclick="myFunctionReplyinterview(<%=company_interview.id%>)"><i class="material-icons-outlined">chat_bubble_outline</i> <span><%= company_interview.company_reply_interviews.count%></span> <a>Trả lời</a> </button>
+                    <%else%>
+                        <%= button_to login_path, :method => :get, form_class: "reply_btn" do%>
+                            <i class="material-icons-outlined">chat_bubble_outline</i> <span><%= company_interview.company_reply_interviews.count%></span> <a>Trả lời</a>
+                        <%end%>
+                    <%end%>
+                </div>
+
+                <div class="interview_like_block" id="like_interview_<%=company_interview.id%>">
+                    <%if logged_in?%>
+                        <% pre_like = company_interview.company_like_interviews.find { |like| like.user_id == current_user.id} %>
+                        <% if pre_like %>  
+                            <%= button_to company_company_interview_company_like_interview_path(@company, company_interview, pre_like), method: :delete, remote: true, form_class: "like_btn_highlight" do %>
+                                <i class="material-icons">thumb_up</i> <span><%= company_interview.company_like_interviews.count%></span> <a>Thích</a>
+                            <%end%>
+                        <%else%>
+                            <%= button_to company_company_interview_company_like_interviews_path(@company, company_interview, pre_like), method: :post, remote: true, form_class: "like_btn" do %>
+                                <i class="material-icons-outlined">thumb_up</i> <span><%= company_interview.company_like_interviews.count%></span> <a>Thích</a>
+                            <%end%>
+                        <%end%>
+                    <%else%>
+                        <%= button_to login_path, :method => :get, form_class: "like_btn" do%>
+                            <i class="material-icons-outlined">thumb_up</i> <span><%= company_interview.company_like_interviews.count%></span> <a>Thích</a>
+                        <%end%>
+                    <%end%>
+                </div>
+
+                <div class="interview_dislike_block" id="dislike_interview_<%=company_interview.id%>">
+                    <%if logged_in?%>
+                        <% pre_dislike = company_interview.company_dislike_interviews.find { |dislike| dislike.user_id == current_user.id} %>
+                        <% if pre_dislike %>
+                            <%= button_to company_company_interview_company_dislike_interview_path(@company, company_interview, pre_dislike), :method => :delete, remote: true, form_class: "dislike_btn_highlight" do%>
+                                <i class="material-icons">thumb_down</i> <span><%= company_interview.company_dislike_interviews.count%></span> <a>Không thích</a>
+                            <%end%> 
+                        <%else%>
+                            <%= button_to company_company_interview_company_dislike_interviews_path(@company, company_interview), method: :post, remote: true, form_class: "dislike_btn" do%>
+                                <i class="material-icons-outlined">thumb_down</i> <span><%= company_interview.company_dislike_interviews.count%></span> <a>Không thích</a>
+                            <%end%> 
+                        <%end%>
+                    <%else%>
+                        <%= button_to login_path, :method => :get, form_class: "dislike_btn" do%>
+                            <i class="material-icons-outlined">thumb_down</i> <span><%= company_interview.company_dislike_interviews.count%></span> <a>Không thích</a>
+                        <%end%>
+                    <%end%>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="new_reply_interview_form_internal" id ="<%=company_interview.id%>">
+        <%= form_for [@company, company_interview, CompanyReplyInterview.new] do |f| %>
+            <div class="new_reply_interview_content">
+                <div class="new_reply_interview_input_interview">
+                    <%= f.text_area :reply_content, :required =>true, class: "form-control-text", placeholder: "Nhập câu trả lời của bạn tại đây" %>
+                </div>
+            </div>
+
+            <div class="new_reply_interview_submit">
+                <button type="submit" class="new_reply_interview_form_submit">
+                    <i class="material-icons-outlined">send</i>
+                </button>
+            </div>
+        <%end%>
+    </div>
+
+    <script>
+        function myFunctionReplyInterview(interview_id) {
+            var x = document.getElementById(interview_id);
+            if (x.style.display == "none") 
+            {
+                x.style.display = "block";
+            } 
+            else 
+            {
+                x.style.display = "none";
+            }
+        }
+    </script>
+
+    <div class="reply_interview_content">
+        <%if company_interview.company_reply_interviews.count > 0%>
+            <div class="interview_reply">
+                <%= render company_interview.company_reply_interviews %>
+            </div>
+        <%end%>
+    </div>
+</div>

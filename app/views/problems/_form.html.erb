@@ -1,68 +1,59 @@
-<!DOCTYPE html>
-<html>
-    <head>
-        <meta name="viewport" content="width=device-width, height=device-height, initial-scale=1.0"/>
-    </head>
-
-    <body>
-        <div class="container">
-            <div class="new_problem_form">
-                <%= form_for @problem, :html => { :class => "form-horizontal problem" } do |f| %>
-                    <div class="new_problem_title">
-                        <a>Hãy cho mọi người biết vấn đề của bạn</a>
-                    </div>
-
-                    <div class="new_problem_title_sub">
-						<span>Note: Mục có dấu '*' là bắt buộc</span>
-					</div>
-
-                    <div class="new_problem_section">
-                        <div class="new_problem_content">
-                            <div class="new_problem_label">
-                                <a><%= f.label :category, "Lĩnh vực chính*", class: "new_problem_label_name" %></a>
-                            </div>
-
-                            <div class="new_problem_input">
-                                <%= f.select(:category, options_for_select([['Thuật toán', 1], ['Câu hỏi phỏng vấn', 2], ['EQ Test', 3], ['IQ Test', 4], ['Câu hỏi khác', 5]], ["Câu hỏi khác", 5]), {include_blank: false}, { :class => 'my_style_class' }) %>
-                            </div>
-                        </div>
-
-                        <div class="new_problem_content">
-                            <div class="new_problem_label">
-                                <a><%= f.label :difficult, "Mức độ, độ khó*", class: "new_problem_label_name" %></a>
-                            </div>
-
-                            <div class="new_problem_input">
-                                <%= f.select(:difficult, options_for_select(['Dễ', 'Trung bình', 'Khó'], "Dễ"), {include_blank: false}, { :class => 'my_style_class' }) %>
-                            </div>
-                        </div>
-
-                        <div class="new_problem_content">
-                            <div class="new_problem_label">
-                                <a><%= f.label :title, "Tiêu đề*", class: "new_problem_label_name" %></a>
-                            </div>
-
-                            <div class="new_problem_input">
-                                <%= f.text_field :title, :required => true, class: "form-control", placeholder: "Nhập tên vấn đề cần giải quyết" %>
-                            </div>
-                        </div>
-
-                        <div class="new_problem_content">
-                            <div class="new_problem_label">
-                                <a><%= f.label :content, "Nội dung*", class: "new_problem_label_name" %></a>
-                            </div>
-
-                            <div class="new_problem_input">
-                                <%= f.cktext_area :content, :required => true, class: "form-control-rich-text customized-min-height", ckeditor: { language: 'us', toolbar: "full"}, placeholder: "Mô tả nội dung nội dung câu hỏi"%>
-                            </div>
-                        </div>
-                    </div>  
-
-                    <div class="new_problem_submit">
-                        <%= f.submit "Gửi nội dung", class: "new_problem_form_submit" %>
-                    </div>
-                <%end%>
+<div class="container">
+    <div class="new_problem_form">
+        <%= form_for @problem, :html => { :class => "form-horizontal problem" } do |f| %>
+            <div class="new_problem_title">
+                <a>Hãy cho mọi người biết vấn đề của bạn</a>
             </div>
-        </div>
-    </body>
-</html>
+
+            <div class="new_problem_title_sub">
+                <span>Note: Mục có dấu '*' là bắt buộc</span>
+            </div>
+
+            <div class="new_problem_section">
+                <div class="new_problem_content">
+                    <div class="new_problem_label">
+                        <a><%= f.label :category, "Lĩnh vực chính*", class: "new_problem_label_name" %></a>
+                    </div>
+
+                    <div class="new_problem_input">
+                        <%= f.select(:category, options_for_select([['Thuật toán', 1], ['Câu hỏi phỏng vấn', 2], ['EQ Test', 3], ['IQ Test', 4], ['Câu hỏi khác', 5]], ["Câu hỏi khác", 5]), {include_blank: false}, { :class => 'my_style_class' }) %>
+                    </div>
+                </div>
+
+                <div class="new_problem_content">
+                    <div class="new_problem_label">
+                        <a><%= f.label :difficult, "Mức độ, độ khó*", class: "new_problem_label_name" %></a>
+                    </div>
+
+                    <div class="new_problem_input">
+                        <%= f.select(:difficult, options_for_select(['Dễ', 'Trung bình', 'Khó'], "Dễ"), {include_blank: false}, { :class => 'my_style_class' }) %>
+                    </div>
+                </div>
+
+                <div class="new_problem_content">
+                    <div class="new_problem_label">
+                        <a><%= f.label :title, "Tiêu đề*", class: "new_problem_label_name" %></a>
+                    </div>
+
+                    <div class="new_problem_input">
+                        <%= f.text_field :title, :required => true, class: "form-control", placeholder: "Nhập tên vấn đề cần giải quyết" %>
+                    </div>
+                </div>
+
+                <div class="new_problem_content">
+                    <div class="new_problem_label">
+                        <a><%= f.label :content, "Nội dung*", class: "new_problem_label_name" %></a>
+                    </div>
+
+                    <div class="new_problem_input">
+                        <%= f.cktext_area :content, :required => true, class: "form-control-rich-text customized-min-height", ckeditor: { language: 'us', toolbar: "full"}, placeholder: "Mô tả nội dung nội dung câu hỏi"%>
+                    </div>
+                </div>
+            </div>  
+
+            <div class="new_problem_submit">
+                <%= f.submit "Gửi nội dung", class: "new_problem_form_submit" %>
+            </div>
+        <%end%>
+    </div>
+</div>

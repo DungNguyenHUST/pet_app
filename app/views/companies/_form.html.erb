@@ -1,426 +1,417 @@
-<!DOCTYPE html>
-<html>
-    <head>
-        <meta name="viewport" content="width=device-width, height=device-height, initial-scale=1.0"/>
-    </head>
+<div class="container">
+	<div class="new_company_form">
+		<%= form_for @company, :html => { :class => "form-horizontal company" } do |f| %>
+			<div class="new_company_title">
+				<a>Tạo thông tin công ty mới</a>
+			</div>
+			<div class="new_company_title_sub">
+				<span>Note: Mục có dấu '*' là bắt buộc</span>
+			</div>
+			
+			<div class="row">
+				<div class="col-sm-6">
+					<div class="new_company_section">
+						<div class="new_company_content">
+							<div class="new_company_label">
+								<a><%= f.label :name, "Tên công ty*", class: "new_company_label_name" %></a>
+							</div>
 
-    <body>
-        <div class="container">
-            <div class="new_company_form">
-                <%= form_for @company, :html => { :class => "form-horizontal company" } do |f| %>
-                    <div class="new_company_title">
-                        <a>Tạo thông tin công ty mới</a>
-                    </div>
-					<div class="new_company_title_sub">
-						<span>Note: Mục có dấu '*' là bắt buộc</span>
+							<div class="new_company_input">
+								<%= f.text_field :name, :required => true, class: "form-control", placeholder: "Nhập tên công ty" %>
+							</div>
+						</div>
+
+						<div class="new_company_content">
+							<div class="new_company_label">
+								<a><%= f.label :location, "Trụ sở chính*", class: "new_company_label_name" %></a>
+							</div>
+
+							<div class="new_company_input">
+								<%= f.select(:location, options_for_select(['An Giang','Bà Rịa-Vũng Tàu','Bạc Liêu','Bắc Kạn','Bắc Giang',
+														'Bắc Ninh','Bến Tre','Bình Dương','Bình Định','Bình Phước',
+														'Bình Thuận','Cà Mau','Cao Bằng','Cần Thơ','Đà Nẵng','Đắk Lắk','Đắk Nông','Điện Biên',
+														'Đồng Nai','Đồng Tháp','Gia Lai','Hà Giang','Hà Nam','Hà Nội','Hà Tây','Hà Tĩnh',
+														'Hải Dương','Hải Phòng','Hòa Bình','TP Hồ Chí Minh','Hậu Giang','Hưng Yên','Khánh Hòa',
+														'Kiên Giang','Kon Tum','Lai Châu','Lào Cai',
+														'Lạng Sơn','Lâm Đồng','Long An','Nam Định','Nghệ An',
+														'Ninh Bình','Ninh Thuận','Phú Thọ','Phú Yên','Quảng Bình',
+														'Quảng Nam','Quảng Ngãi','Quảng Ninh','Quảng Trị',
+														'Sóc Trăng','Sơn La','Tây Ninh','Thái Bình','Thái Nguyên' ,
+														'Thanh Hóa','Thừa Thiên – Huế','Tiền Giang','Trà Vinh',
+														'Tuyên Quang','Vĩnh Long','Vĩnh Phúc','Yên Bái' ], "Hà Nội"), {include_blank: false}, { :class => 'my_style_class' }) %>
+							</div>
+						</div>
+
+						<div class="new_company_content">
+							<div class="new_company_label">
+								<a><%= f.label :address, "Địa chỉ cụ thể của công ty*", class: "new_company_label_name" %></a>
+							</div>
+
+							<div class="new_company_input">
+								<%= f.text_field :address, :required => true, class: "form-control", placeholder: "Nhập địa chỉ công ty bao gồm số nhà, tên đường, phố ..." %>
+							</div>
+						</div>
+
+						<div class="new_company_content">
+							<div class="new_company_label">
+								<a><%= f.label :country, "Quốc gia*", class: "new_company_label_name" %></a>
+							</div>
+
+							<div class="new_company_input">
+								<%= f.select(:country, options_for_select(['Afghanistan',
+																			'Albania',
+																			'Algeria',
+																			'Andorra',
+																			'Angola',
+																			'Antigua and Barbuda',
+																			'Argentina',
+																			'Armenia',
+																			'Australia',
+																			'Áo',
+																			'Azerbaijan',
+																			'Bahamas',
+																			'Bahrain',
+																			'Bangladesh',
+																			'Barbados',
+																			'Belarus',
+																			'Belgium (Bỉ)',
+																			'Belize',
+																			'Benin',
+																			'Bhutan',
+																			'Bolivia',
+																			'Bosnia and Herzegovina',
+																			'Botswana',
+																			'Brazil',
+																			'Brunei',
+																			'Bulgaria',
+																			'Burkina Faso',
+																			'Burundi',
+																			'Cabo Verde',
+																			'Cambodia (Cam-pu-chia)',
+																			'Cameroon',
+																			'Canada',
+																			'Central African Republic (Cộng hòa Trung Phi)',
+																			'Chad',
+																			'Chile',
+																			'China (Trung Quốc)',
+																			'Colombia',
+																			'Comoros',
+																			'Congo',
+																			'Costa Rica',
+																			'Côte d Ivoire',
+																			'Bờ Biển Ngà',
+																			'Croatia',
+																			'Cuba',
+																			'Cyprus (Đảo Síp)',
+																			'Czechia (Séc)',
+																			'Denmark (Đan mạch)',
+																			'Djibouti',
+																			'Dominica',
+																			'Dominican Republic (Cộng hòa Đô-mi-ni-ca-na)',
+																			'DR Congo (Cộng hoà dân chủ Công-gô)',
+																			'Ecuador',
+																			'Egypt (Ai Cập)',
+																			'El Salvador',
+																			'Equatorial Guinea',
+																			'Eritrea',
+																			'Estonia',
+																			'Eswatini',
+																			'Ethiopia',
+																			'Fiji',
+																			'Finland (Phần Lan)',
+																			'France (Pháp)',
+																			'Gabon',
+																			'Gambia',
+																			'Georgia',
+																			'Germany (Đức)',
+																			'Ghana',
+																			'Greece (Hy Lạp)',
+																			'Grenada',
+																			'Guatemala',
+																			'Guinea',
+																			'Guinea-Bissau',
+																			'Guyana',
+																			'Haiti',
+																			'Holy See (Thành va-ti-can)',
+																			'Honduras',
+																			'Hungary',
+																			'Iceland',
+																			'India (Ấn Độ)',
+																			'Indonesia',
+																			'Iran',
+																			'Iraq',
+																			'Ireland',
+																			'Israel',
+																			'Italy',
+																			'Jamaica',
+																			'Japan',
+																			'Jordan',
+																			'Kazakhstan',
+																			'Kenya',
+																			'Kiribati',
+																			'Kuwait',
+																			'Kyrgyzstan',
+																			'Laos (Lào)',
+																			'Latvia',
+																			'Lebanon (Li-băng)',
+																			'Lesotho',
+																			'Liberia',
+																			'Libya',
+																			'Liechtenstein',
+																			'Lithuania',
+																			'Luxembourg',
+																			'Madagascar',
+																			'Malawi (Ma-rốc)',
+																			'Malaysia',
+																			'Maldives',
+																			'Mali',
+																			'Malta',
+																			'Marshall Islands',
+																			'Mauritania',
+																			'Mauritius',
+																			'Mexico',
+																			'Micronesia',
+																			'Moldova',
+																			'Monaco',
+																			'Mongolia (Mông Cổ)',
+																			'Montenegro',
+																			'Morocco (Ma-rốc)',
+																			'Mozambique',
+																			'Myanmar',
+																			'Namibia',
+																			'Nauru',
+																			'Nepal',
+																			'Netherlands (Hà Lan)',
+																			'New Zealand',
+																			'Nicaragua',
+																			'Niger',
+																			'Nigeria',
+																			'North Korea (Triều Tiên)',
+																			'North Macedonia',
+																			'Norway (Na Uy)',
+																			'Oman',
+																			'Pakistan',
+																			'Palau',
+																			'Panama',
+																			'Papua New Guinea',
+																			'Paraguay',
+																			'Peru',
+																			'Philippines',
+																			'Poland (Ba Lan)',
+																			'Portugal (Bồ Đào Nha)',
+																			'Qatar',
+																			'Romania',
+																			'Russia (Nga)',
+																			'Rwanda',
+																			'Saint Kitts & Nevis',
+																			'Saint Lucia',
+																			'Samoa',
+																			'San Marino',
+																			'Sao Tome & Principe',
+																			'Saudi Arabia (Ả Rập Xê-út)',
+																			'Senegal',
+																			'Serbia',
+																			'Seychelles',
+																			'Sierra Leone',
+																			'Singapore',
+																			'Slovakia',
+																			'Slovenia',
+																			'Solomon Islands',
+																			'Somalia',
+																			'South Africa (Nam Phi)',
+																			'South Korea (Hàn Quốc)',
+																			'South Sudan (Nam Sudan)',
+																			'Spain (Tây Ban Nha)',
+																			'Sri Lanka',
+																			'St. Vincent & Grenadines',
+																			'State of Palestine',
+																			'Sudan',
+																			'Suriname',
+																			'Sweden (Thụy Điển)',
+																			'Switzerland (Thụy sĩ)',
+																			'Syria',
+																			'Tajikistan',
+																			'Tanzania',
+																			'Thailand (Thái Lan)',
+																			'Timor-Leste (Đông Timor)',
+																			'Togo',
+																			'Tonga',
+																			'Trinidad and Tobago',
+																			'Tunisia',
+																			'Turkey (Thổ Nhĩ Kỳ)',
+																			'Turkmenistan',
+																			'Tuvalu',
+																			'Uganda',
+																			'Ukraine',
+																			'United Arab Emirates (Các Tiểu Vương Quốc Ả Rập Thống Nhất)',
+																			'United Kingdom (Vương quốc Anh)',
+																			'United States (Hoa Kỳ)',
+																			'Uruguay',
+																			'Uzbekistan',
+																			'Vanuatu',
+																			'Venezuela',
+																			'Việt Nam',
+																			'Yemen',
+																			'Zambia',
+																			'Zimbabwe'], "Việt Nam"), {include_blank: false}, { :class => 'my_style_class' }) %>
+							</div>
+						</div>
+						
+						<div class="new_company_content">
+							<div class="new_company_label">
+								<a><%= f.label :company_type, "Loại hình hoạt động của công ty*", class: "new_company_label_name" %></a>
+							</div>
+
+							<div class="new_company_input">
+								<%= f.select(:company_type, options_for_select(['Công ty TNHH', 'Công ty Cổ phần', 'Không xác định'], "Không xác định"), {include_blank: false}, { :class => 'my_style_class' }) %>
+							</div>
+						</div>
+
+						<div class="new_company_content">
+							<div class="new_company_label">
+								<a><%= f.label :field_operetion, "Lĩnh vực hoạt động chính của công ty*", class: "new_company_label_name" %></a>
+							</div>
+
+							<div class="new_company_input">
+								<%= f.select(:field_operetion, options_for_select(['Công nghệ thông tin - IT', 'Viễn thông - Telecommunication', 'Hàng không - Aerospace', 'Vận tải - Transport', 'Bán dẫn - Computer', 'Nông nghiệp - Agriculture', 'Xây dựng - Construction', 'Giáo dục - Education', 'Dược phẩm - Pharmaceutical', 'Ăn uống - Food', 'Chăm sóc sức khỏe - Health care','Bảo hiểm - Insurance' 'Bệnh viện - Hospitality', 'Giải trí - Entertainment ', 'Truyền thông - Media', 'Năng lượng - Energy', 'Sản xuất - Manufacturing', 'Âm nhạc - Music', 'Khai thác mỏ, dầu khí - Mining', 'Worldwide web, hosting', 'Không xác định'], 'Không xác định'), {include_blank: false}, { :class => 'my_style_class' }) %>
+							</div>
+						</div>
+
+						<div class="new_company_content">
+							<div class="new_company_label">
+								<a><%= f.label :website, "Địa chỉ website*", class: "new_company_label_name" %></a>
+							</div>
+
+							<div class="new_company_input">
+								<%= f.text_field :website, :required => true, class: "form-control", placeholder: "Nhập địa chỉ website or facebook của công ty" %>
+							</div>
+						</div>
+
+						<div class="new_company_content">
+							<div class="new_company_label">
+								<a><%= f.label :phone, "Số điện thoại liên hệ*", class: "new_company_label_name" %></a>
+							</div>
+
+							<div class="new_company_input">
+								<%= f.text_field :phone, :required => true, class: "form-control", placeholder: "Nhập địa số điện thoại liên hệ" %>
+							</div>
+						</div>
+					</div>
+				</div>
+				<div class="col-sm-6">
+					<div class="new_company_section">
+
+						<div class="new_company_content">
+							<div class="new_company_label">
+								<a><%= f.label :time_establish, "Năm thành lập*", class: "new_company_label_name" %></a>
+							</div>
+
+							<div class="new_company_input_year">
+								<a><%= f.date_select :time_establish, {discard_day: true, discard_month: true, start_year: 1900, end_year: Date.current.year} %></a>
+							</div>
+						</div>
+						
+						<div class="new_company_content">
+							<div class="new_company_label">
+								<a><%= f.label :working_time, "Thời gian làm việc*", class: "new_company_label_name" %></a>
+							</div>
+
+							<div class="new_company_input_time">
+								<%= f.select(:working_time, options_for_select(['6h00 - 15h00', '6h30 - 15h30', '7h00 - 16h00', '7h30 - 16h30', '8h00 - 17h00', '8h30 - 17h30', '9h00 - 18h00', '9h30 - 18h30', 'Không cố định(flexible)'] , '8h00 - 17h00'), {include_blank: false}, { :class => 'my_style_class' }) %>
+							</div>
+						</div>
+
+						<div class="new_company_content">
+							<div class="new_company_label">
+								<a><%= f.label :working_date, "Ngày làm việc trong tuần*", class: "new_company_label_name" %></a>
+							</div>
+
+							<div class="new_company_input_time">
+								<%= f.select(:working_date, options_for_select(['Mon-Fri', 'Mon-Sat', 'Không cố định(Flexible)']), {include_blank: false}, { :class => 'my_style_class' }) %>
+							</div>
+						</div>
+						
+						<div class="new_company_content">
+							<div class="new_company_label">
+								<a><%= f.label :size, "Quy mô công ty*", class: "new_company_label_name" %></a>
+							</div>
+
+							<div class="new_company_input">
+								<%= f.select(:size, options_for_select(['10', '10-50', '50-100', '100-500', '500-1000', '1000+'], "Không xác định"), {include_blank: false}, { :class => 'my_style_class' }) %>
+							</div>
+						</div>
+
+						<div class="new_company_content">
+							<div class="new_company_label">
+								<a><%= f.label :values, "Doanh thu công ty*", class: "new_company_label_name" %></a>
+							</div>
+
+							<div class="new_company_input">
+								<%= f.select(:values, options_for_select(['1-10 million USD', '10-50 million USD', '50-100 million USD', '100-500 million USD', '500-1000 million USD', '1-10 billion USD', '10-50 billion USD', '50-100 billion USD', '100-500 billion USD', '500-1000 billion USD', '1000+ billion USD'], "Không xác định"), {include_blank: false}, { :class => 'my_style_class' }) %>
+							</div>
+						</div>
+
+						<div class="new_company_content">
+							<div class="new_company_label">
+								<a><%= f.label :avatar, "Ảnh đại diện công ty( hình ảnh nhỏ kích thước min 120x120 )* ", class: "new_company_label" %></a>
+							</div>
+							
+							<div class="new_company_input">
+								<%= f.file_field :avatar, :required => true%>
+							</div>
+						</div>
+						
+						<div class="new_company_content">
+							<div class="new_company_label">
+								<a><%= f.label :wall_picture, "Ảnh bìa công ty( hình ảnh lớn kích thước min 900x600 )* ", class: "new_company_label" %></a>
+							</div>
+							
+							<div class="new_company_input">
+								<%= f.file_field :wall_picture, :required => true%>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+
+			<div class="new_company_section_content">
+				<div class="new_company_content">
+					<div class="new_company_label">
+						<a><%= f.label :overview, "Mô tả chung về công ty* ", class: "new_company_label" %></a>
 					</div>
 					
-					<div class="row">
-						<div class="col-sm-6">
-							<div class="new_company_section">
-								<div class="new_company_content">
-									<div class="new_company_label">
-										<a><%= f.label :name, "Tên công ty*", class: "new_company_label_name" %></a>
-									</div>
-
-									<div class="new_company_input">
-										<%= f.text_field :name, :required => true, class: "form-control", placeholder: "Nhập tên công ty" %>
-									</div>
-								</div>
-
-								<div class="new_company_content">
-									<div class="new_company_label">
-										<a><%= f.label :location, "Trụ sở chính*", class: "new_company_label_name" %></a>
-									</div>
-
-									<div class="new_company_input">
-										<%= f.select(:location, options_for_select(['An Giang','Bà Rịa-Vũng Tàu','Bạc Liêu','Bắc Kạn','Bắc Giang',
-																'Bắc Ninh','Bến Tre','Bình Dương','Bình Định','Bình Phước',
-																'Bình Thuận','Cà Mau','Cao Bằng','Cần Thơ','Đà Nẵng','Đắk Lắk','Đắk Nông','Điện Biên',
-																'Đồng Nai','Đồng Tháp','Gia Lai','Hà Giang','Hà Nam','Hà Nội','Hà Tây','Hà Tĩnh',
-																'Hải Dương','Hải Phòng','Hòa Bình','TP Hồ Chí Minh','Hậu Giang','Hưng Yên','Khánh Hòa',
-																'Kiên Giang','Kon Tum','Lai Châu','Lào Cai',
-																'Lạng Sơn','Lâm Đồng','Long An','Nam Định','Nghệ An',
-																'Ninh Bình','Ninh Thuận','Phú Thọ','Phú Yên','Quảng Bình',
-																'Quảng Nam','Quảng Ngãi','Quảng Ninh','Quảng Trị',
-																'Sóc Trăng','Sơn La','Tây Ninh','Thái Bình','Thái Nguyên' ,
-																'Thanh Hóa','Thừa Thiên – Huế','Tiền Giang','Trà Vinh',
-																'Tuyên Quang','Vĩnh Long','Vĩnh Phúc','Yên Bái' ], "Hà Nội"), {include_blank: false}, { :class => 'my_style_class' }) %>
-									</div>
-								</div>
-
-								<div class="new_company_content">
-									<div class="new_company_label">
-										<a><%= f.label :address, "Địa chỉ cụ thể của công ty*", class: "new_company_label_name" %></a>
-									</div>
-
-									<div class="new_company_input">
-										<%= f.text_field :address, :required => true, class: "form-control", placeholder: "Nhập địa chỉ công ty bao gồm số nhà, tên đường, phố ..." %>
-									</div>
-								</div>
-
-								<div class="new_company_content">
-									<div class="new_company_label">
-										<a><%= f.label :country, "Quốc gia*", class: "new_company_label_name" %></a>
-									</div>
-
-									<div class="new_company_input">
-										<%= f.select(:country, options_for_select(['Afghanistan',
-																					'Albania',
-																					'Algeria',
-																					'Andorra',
-																					'Angola',
-																					'Antigua and Barbuda',
-																					'Argentina',
-																					'Armenia',
-																					'Australia',
-																					'Áo',
-																					'Azerbaijan',
-																					'Bahamas',
-																					'Bahrain',
-																					'Bangladesh',
-																					'Barbados',
-																					'Belarus',
-																					'Belgium (Bỉ)',
-																					'Belize',
-																					'Benin',
-																					'Bhutan',
-																					'Bolivia',
-																					'Bosnia and Herzegovina',
-																					'Botswana',
-																					'Brazil',
-																					'Brunei',
-																					'Bulgaria',
-																					'Burkina Faso',
-																					'Burundi',
-																					'Cabo Verde',
-																					'Cambodia (Cam-pu-chia)',
-																					'Cameroon',
-																					'Canada',
-																					'Central African Republic (Cộng hòa Trung Phi)',
-																					'Chad',
-																					'Chile',
-																					'China (Trung Quốc)',
-																					'Colombia',
-																					'Comoros',
-																					'Congo',
-																					'Costa Rica',
-																					'Côte d Ivoire',
-																					'Bờ Biển Ngà',
-																					'Croatia',
-																					'Cuba',
-																					'Cyprus (Đảo Síp)',
-																					'Czechia (Séc)',
-																					'Denmark (Đan mạch)',
-																					'Djibouti',
-																					'Dominica',
-																					'Dominican Republic (Cộng hòa Đô-mi-ni-ca-na)',
-																					'DR Congo (Cộng hoà dân chủ Công-gô)',
-																					'Ecuador',
-																					'Egypt (Ai Cập)',
-																					'El Salvador',
-																					'Equatorial Guinea',
-																					'Eritrea',
-																					'Estonia',
-																					'Eswatini',
-																					'Ethiopia',
-																					'Fiji',
-																					'Finland (Phần Lan)',
-																					'France (Pháp)',
-																					'Gabon',
-																					'Gambia',
-																					'Georgia',
-																					'Germany (Đức)',
-																					'Ghana',
-																					'Greece (Hy Lạp)',
-																					'Grenada',
-																					'Guatemala',
-																					'Guinea',
-																					'Guinea-Bissau',
-																					'Guyana',
-																					'Haiti',
-																					'Holy See (Thành va-ti-can)',
-																					'Honduras',
-																					'Hungary',
-																					'Iceland',
-																					'India (Ấn Độ)',
-																					'Indonesia',
-																					'Iran',
-																					'Iraq',
-																					'Ireland',
-																					'Israel',
-																					'Italy',
-																					'Jamaica',
-																					'Japan',
-																					'Jordan',
-																					'Kazakhstan',
-																					'Kenya',
-																					'Kiribati',
-																					'Kuwait',
-																					'Kyrgyzstan',
-																					'Laos (Lào)',
-																					'Latvia',
-																					'Lebanon (Li-băng)',
-																					'Lesotho',
-																					'Liberia',
-																					'Libya',
-																					'Liechtenstein',
-																					'Lithuania',
-																					'Luxembourg',
-																					'Madagascar',
-																					'Malawi (Ma-rốc)',
-																					'Malaysia',
-																					'Maldives',
-																					'Mali',
-																					'Malta',
-																					'Marshall Islands',
-																					'Mauritania',
-																					'Mauritius',
-																					'Mexico',
-																					'Micronesia',
-																					'Moldova',
-																					'Monaco',
-																					'Mongolia (Mông Cổ)',
-																					'Montenegro',
-																					'Morocco (Ma-rốc)',
-																					'Mozambique',
-																					'Myanmar',
-																					'Namibia',
-																					'Nauru',
-																					'Nepal',
-																					'Netherlands (Hà Lan)',
-																					'New Zealand',
-																					'Nicaragua',
-																					'Niger',
-																					'Nigeria',
-																					'North Korea (Triều Tiên)',
-																					'North Macedonia',
-																					'Norway (Na Uy)',
-																					'Oman',
-																					'Pakistan',
-																					'Palau',
-																					'Panama',
-																					'Papua New Guinea',
-																					'Paraguay',
-																					'Peru',
-																					'Philippines',
-																					'Poland (Ba Lan)',
-																					'Portugal (Bồ Đào Nha)',
-																					'Qatar',
-																					'Romania',
-																					'Russia (Nga)',
-																					'Rwanda',
-																					'Saint Kitts & Nevis',
-																					'Saint Lucia',
-																					'Samoa',
-																					'San Marino',
-																					'Sao Tome & Principe',
-																					'Saudi Arabia (Ả Rập Xê-út)',
-																					'Senegal',
-																					'Serbia',
-																					'Seychelles',
-																					'Sierra Leone',
-																					'Singapore',
-																					'Slovakia',
-																					'Slovenia',
-																					'Solomon Islands',
-																					'Somalia',
-																					'South Africa (Nam Phi)',
-																					'South Korea (Hàn Quốc)',
-																					'South Sudan (Nam Sudan)',
-																					'Spain (Tây Ban Nha)',
-																					'Sri Lanka',
-																					'St. Vincent & Grenadines',
-																					'State of Palestine',
-																					'Sudan',
-																					'Suriname',
-																					'Sweden (Thụy Điển)',
-																					'Switzerland (Thụy sĩ)',
-																					'Syria',
-																					'Tajikistan',
-																					'Tanzania',
-																					'Thailand (Thái Lan)',
-																					'Timor-Leste (Đông Timor)',
-																					'Togo',
-																					'Tonga',
-																					'Trinidad and Tobago',
-																					'Tunisia',
-																					'Turkey (Thổ Nhĩ Kỳ)',
-																					'Turkmenistan',
-																					'Tuvalu',
-																					'Uganda',
-																					'Ukraine',
-																					'United Arab Emirates (Các Tiểu Vương Quốc Ả Rập Thống Nhất)',
-																					'United Kingdom (Vương quốc Anh)',
-																					'United States (Hoa Kỳ)',
-																					'Uruguay',
-																					'Uzbekistan',
-																					'Vanuatu',
-																					'Venezuela',
-																					'Việt Nam',
-																					'Yemen',
-																					'Zambia',
-																					'Zimbabwe'], "Việt Nam"), {include_blank: false}, { :class => 'my_style_class' }) %>
-									</div>
-								</div>
-								
-								<div class="new_company_content">
-									<div class="new_company_label">
-										<a><%= f.label :company_type, "Loại hình hoạt động của công ty*", class: "new_company_label_name" %></a>
-									</div>
-
-									<div class="new_company_input">
-										<%= f.select(:company_type, options_for_select(['Công ty TNHH', 'Công ty Cổ phần', 'Không xác định'], "Không xác định"), {include_blank: false}, { :class => 'my_style_class' }) %>
-									</div>
-								</div>
-
-								<div class="new_company_content">
-									<div class="new_company_label">
-										<a><%= f.label :field_operetion, "Lĩnh vực hoạt động chính của công ty*", class: "new_company_label_name" %></a>
-									</div>
-
-									<div class="new_company_input">
-										<%= f.select(:field_operetion, options_for_select(['Công nghệ thông tin - IT', 'Viễn thông - Telecommunication', 'Hàng không - Aerospace', 'Vận tải - Transport', 'Bán dẫn - Computer', 'Nông nghiệp - Agriculture', 'Xây dựng - Construction', 'Giáo dục - Education', 'Dược phẩm - Pharmaceutical', 'Ăn uống - Food', 'Chăm sóc sức khỏe - Health care','Bảo hiểm - Insurance' 'Bệnh viện - Hospitality', 'Giải trí - Entertainment ', 'Truyền thông - Media', 'Năng lượng - Energy', 'Sản xuất - Manufacturing', 'Âm nhạc - Music', 'Khai thác mỏ, dầu khí - Mining', 'Worldwide web, hosting', 'Không xác định'], 'Không xác định'), {include_blank: false}, { :class => 'my_style_class' }) %>
-									</div>
-								</div>
-
-								<div class="new_company_content">
-									<div class="new_company_label">
-										<a><%= f.label :website, "Địa chỉ website*", class: "new_company_label_name" %></a>
-									</div>
-
-									<div class="new_company_input">
-										<%= f.text_field :website, :required => true, class: "form-control", placeholder: "Nhập địa chỉ website or facebook của công ty" %>
-									</div>
-								</div>
-
-								<div class="new_company_content">
-									<div class="new_company_label">
-										<a><%= f.label :phone, "Số điện thoại liên hệ*", class: "new_company_label_name" %></a>
-									</div>
-
-									<div class="new_company_input">
-										<%= f.text_field :phone, :required => true, class: "form-control", placeholder: "Nhập địa số điện thoại liên hệ" %>
-									</div>
-								</div>
-							</div>
-						</div>
-						<div class="col-sm-6">
-							<div class="new_company_section">
-
-								<div class="new_company_content">
-									<div class="new_company_label">
-										<a><%= f.label :time_establish, "Năm thành lập*", class: "new_company_label_name" %></a>
-									</div>
-
-									<div class="new_company_input_year">
-										<a><%= f.date_select :time_establish, {discard_day: true, discard_month: true, start_year: 1900, end_year: Date.current.year} %></a>
-									</div>
-								</div>
-								
-								<div class="new_company_content">
-									<div class="new_company_label">
-										<a><%= f.label :working_time, "Thời gian làm việc*", class: "new_company_label_name" %></a>
-									</div>
-
-									<div class="new_company_input_time">
-										<%= f.select(:working_time, options_for_select(['6h00 - 15h00', '6h30 - 15h30', '7h00 - 16h00', '7h30 - 16h30', '8h00 - 17h00', '8h30 - 17h30', '9h00 - 18h00', '9h30 - 18h30', 'Không cố định(flexible)'] , '8h00 - 17h00'), {include_blank: false}, { :class => 'my_style_class' }) %>
-									</div>
-								</div>
-
-								<div class="new_company_content">
-									<div class="new_company_label">
-										<a><%= f.label :working_date, "Ngày làm việc trong tuần*", class: "new_company_label_name" %></a>
-									</div>
-
-									<div class="new_company_input_time">
-										<%= f.select(:working_date, options_for_select(['Mon-Fri', 'Mon-Sat', 'Không cố định(Flexible)']), {include_blank: false}, { :class => 'my_style_class' }) %>
-									</div>
-								</div>
-								
-								<div class="new_company_content">
-									<div class="new_company_label">
-										<a><%= f.label :size, "Quy mô công ty*", class: "new_company_label_name" %></a>
-									</div>
-
-									<div class="new_company_input">
-										<%= f.select(:size, options_for_select(['10', '10-50', '50-100', '100-500', '500-1000', '1000+'], "Không xác định"), {include_blank: false}, { :class => 'my_style_class' }) %>
-									</div>
-								</div>
-
-								<div class="new_company_content">
-									<div class="new_company_label">
-										<a><%= f.label :values, "Doanh thu công ty*", class: "new_company_label_name" %></a>
-									</div>
-
-									<div class="new_company_input">
-										<%= f.select(:values, options_for_select(['1-10 million USD', '10-50 million USD', '50-100 million USD', '100-500 million USD', '500-1000 million USD', '1-10 billion USD', '10-50 billion USD', '50-100 billion USD', '100-500 billion USD', '500-1000 billion USD', '1000+ billion USD'], "Không xác định"), {include_blank: false}, { :class => 'my_style_class' }) %>
-									</div>
-								</div>
-
-								<div class="new_company_content">
-									<div class="new_company_label">
-										<a><%= f.label :avatar, "Ảnh đại diện công ty( hình ảnh nhỏ kích thước min 120x120 )* ", class: "new_company_label" %></a>
-									</div>
-									
-									<div class="new_company_input">
-										<%= f.file_field :avatar, :required => true%>
-									</div>
-								</div>
-								
-								<div class="new_company_content">
-									<div class="new_company_label">
-										<a><%= f.label :wall_picture, "Ảnh bìa công ty( hình ảnh lớn kích thước min 900x600 )* ", class: "new_company_label" %></a>
-									</div>
-									
-									<div class="new_company_input">
-										<%= f.file_field :wall_picture, :required => true%>
-									</div>
-								</div>
-							</div>
-						</div>
+					<div class="new_company_input">
+						<%= f.cktext_area :overview, :required => true, class: "form-control-rich-text customized-min-height", ckeditor: { language: 'us', toolbar: "full"}, placeholder: "Nhập mô tả chính, giới thiệu, lịch sử hoạt động ..." %>
 					</div>
+				</div>
 
-                    <div class="new_company_section_content">
-                        <div class="new_company_content">
-                            <div class="new_company_label">
-                                <a><%= f.label :overview, "Mô tả chung về công ty* ", class: "new_company_label" %></a>
-                            </div>
-                            
-                            <div class="new_company_input">
-                                <%= f.cktext_area :overview, :required => true, class: "form-control-rich-text customized-min-height", ckeditor: { language: 'us', toolbar: "full"}, placeholder: "Nhập mô tả chính, giới thiệu, lịch sử hoạt động ..." %>
-                            </div>
-                        </div>
+				<div class="new_company_content">
+					<div class="new_company_label">
+						<a><%= f.label :benefit, "Chọn chính sách công ty(bạn có thể chọn 1 hoặc nhiều chính sách)* ", class: "new_company_label" %></a>
+					</div>
+					
+					<div class="new_company_input_checkbox">
+						<%select_datas = [0,1,2,3,4,5,6,7,8,9,10,11,12,13,14,15]%>
+						<%select_datas.each do |select_data|%>
+							<a><%= f.check_box :benefit, { multiple: true, class: "check_box_style"}, select_data, nil %> <%=convert_benefit_to_string(select_data)%></a>
+						<%end%>
+					</div>
+				</div>
+				
+				<div class="new_company_content">
+					<div class="new_company_label">
+						<a><%= f.label :policy, "Thêm chính sách nổi bật khác(tùy chọn)", class: "new_company_label" %></a>
+					</div>
+					
+					<div class="new_company_input">
+						<%= f.cktext_area :policy, class: "form-control-rich-text customized-min-height", ckeditor: { language: 'us', toolbar: "full"}, placeholder: "Nhập ít nhất 3 lý do tại sao nên join công ty" %>
+					</div>
+				</div>
+			</div>
 
-                        <div class="new_company_content">
-                            <div class="new_company_label">
-                                <a><%= f.label :benefit, "Chọn chính sách công ty(bạn có thể chọn 1 hoặc nhiều chính sách)* ", class: "new_company_label" %></a>
-                            </div>
-                            
-                            <div class="new_company_input_checkbox">
-                            	<%select_datas = [0,1,2,3,4,5,6,7,8,9,10,11,12,13,14,15]%>
-                            	<%select_datas.each do |select_data|%>
-                            		<a><%= f.check_box :benefit, { multiple: true, class: "check_box_style"}, select_data, nil %> <%=convert_benefit_to_string(select_data)%></a>
-								<%end%>
-                            </div>
-                        </div>
-						
-                        <div class="new_company_content">
-                            <div class="new_company_label">
-                                <a><%= f.label :policy, "Thêm chính sách nổi bật khác(tùy chọn)", class: "new_company_label" %></a>
-                            </div>
-                            
-                            <div class="new_company_input">
-                                <%= f.cktext_area :policy, class: "form-control-rich-text customized-min-height", ckeditor: { language: 'us', toolbar: "full"}, placeholder: "Nhập ít nhất 3 lý do tại sao nên join công ty" %>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="new_company_submit">
-                        <%= f.submit "Submit", class: "new_company_form_submit" %>
-                    </div>
-                <%end%>
-            </div>
-        </div>
-    </body>
-</html>
+			<div class="new_company_submit">
+				<%= f.submit "Submit", class: "new_company_form_submit" %>
+			</div>
+		<%end%>
+	</div>
+</div>

@@ -1,5 +1,6 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
+  <!-- header start -->
   <head>
     <!-- Meta tag start -->
     <meta name="viewport" content="width=device-width, height=device-height, initial-scale=1.0"/>
@@ -74,7 +75,9 @@
     <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
   </head>
+  <!-- header end -->
 
+  <!-- body start -->
   <body>
     <!-- For Ckeditor -->
     <%= javascript_include_tag Ckeditor.cdn_url%>
@@ -120,10 +123,15 @@
     </section>
     <!-- end -->
 
+    <!-- body render start -->
     <%= yield %>
+    <!-- body render end -->
   </body>
+  <!-- body end -->
 
+  <!-- footer start -->
   <footer>
     <%= render 'pages/footer'%>
   </footer>
+  <!-- footer end -->
 </html>

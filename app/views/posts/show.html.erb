@@ -1,104 +1,95 @@
-<!DOCTYPE html>
-<html>
-    <head>
-        <meta name="viewport" content="width=device-width, height=device-height, initial-scale=1.0"/>
-        <% content_for :meta_title, @post.title %>
-        <% content_for :meta_description, @post.content %>
-    </head>
-
-    <body>
-        <div class="container">
-            <%- model_class = Post -%>
-                <div class="post_area">
-                    <div class="row">
-                        <div class="col-sm-8">
-                            <div class="post_area_left">
-                                <div class="post_title">
-                                    <strong><%=@post.title%></strong>
-                                </div>
-                                <div class="post_info">
-                                    <div class="post_category_info">
-                                        <%post_category=''%>
-                                        <%if(@post.category.to_i == 1) %>
-                                            <% post_category = "Con đường sự nghiệp" %>
-                                        <% elsif (@post.category.to_i == 2) %>
-                                            <% post_category = "Khoa học công nghệ" %>
-                                        <% elsif (@post.category.to_i == 3) %>
-                                            <% post_category = "Blog" %>
-                                        <% else %>
-                                            <% post_category = "Danh mục khác" %>
-                                        <%end%>
-                                        <div class="post_category">
-                                            <a><i class="material-icons-outlined">article</i><%= post_category %></a>
-                                        </div>
-                                    </div>
-                                    <div class="post_comment">
-                                        <i class="material-icons-outlined">chat_bubble_outline</i><span><%=@post.post_comments.count%> bình luận</span> 
-                                    </div>
-                                    <div class="post_time">
-                                        <span><i class="material-icons-outlined">history_toggle_off</i><%=@post.created_at.strftime("%B %d, %Y")%></span>
-                                    </div>
-								</div>
-                                <div class="post_content">
-                                    <span><%=@post.content.html_safe%></span>
-                                </div>
-
-                                <div class="post_count">
-                                    <span><%= @post.post_comments.count%> Bình luận</span>
-                                </div>
-
-                                <%= form_for [@post, PostComment.new] do |f| %>
-                                    <div class="new_post_show_comment_section">
-                                        <div class="new_post_show_comment_input">
-                                            <%= f.text_area :comment_content, :required =>true, class: "form-control-text", placeholder: "Nhập bình luận" %>
-                                        </div>
-                                    </div>
-
-                                    <div class="new_post_show_comment_submit">
-                                        <%= f.submit "Gửi bình luận", class: "new_post_comment_form_submit" %>
-                                    </div>
+<% content_for :meta_title, @post.title %>
+<% content_for :meta_description, @post.content %>
+<div class="container">
+    <%- model_class = Post -%>
+        <div class="post_area">
+            <div class="row">
+                <div class="col-sm-8">
+                    <div class="post_area_left">
+                        <div class="post_title">
+                            <strong><%=@post.title%></strong>
+                        </div>
+                        <div class="post_info">
+                            <div class="post_category_info">
+                                <%post_category=''%>
+                                <%if(@post.category.to_i == 1) %>
+                                    <% post_category = "Con đường sự nghiệp" %>
+                                <% elsif (@post.category.to_i == 2) %>
+                                    <% post_category = "Khoa học công nghệ" %>
+                                <% elsif (@post.category.to_i == 3) %>
+                                    <% post_category = "Blog" %>
+                                <% else %>
+                                    <% post_category = "Danh mục khác" %>
                                 <%end%>
-                                <div class="post_comment">
-                                    <%= render @post.post_comments %>
+                                <div class="post_category">
+                                    <a><i class="material-icons-outlined">article</i><%= post_category %></a>
                                 </div>
+                            </div>
+                            <div class="post_comment">
+                                <i class="material-icons-outlined">chat_bubble_outline</i><span><%=@post.post_comments.count%> bình luận</span> 
+                            </div>
+                            <div class="post_time">
+                                <span><i class="material-icons-outlined">history_toggle_off</i><%=@post.created_at.strftime("%B %d, %Y")%></span>
                             </div>
                         </div>
+                        <div class="post_content">
+                            <span><%=@post.content.html_safe%></span>
+                        </div>
 
-                        <div class="col-sm-4">
-                            <div class="post_area_right">
-                                <div class="post_area_right_title">
-                                    <span>Xem thêm</span>
+                        <div class="post_count">
+                            <span><%= @post.post_comments.count%> Bình luận</span>
+                        </div>
+
+                        <%= form_for [@post, PostComment.new] do |f| %>
+                            <div class="new_post_show_comment_section">
+                                <div class="new_post_show_comment_input">
+                                    <%= f.text_area :comment_content, :required =>true, class: "form-control-text", placeholder: "Nhập bình luận" %>
                                 </div>
-                                <% @posts.each do |post| %>
-                                    <%if post.approved?%>
-                                        <div class="post_container">
-                                            <div class="post_left">
-                                                <%if post.wall_picture?%>
-                                                    <%= link_to (image_tag(post.wall_picture.medium.url)), image_path(url_for(post.wall_picture.medium.url)), rel: "gallery" , :href => post_path(post)%>
-                                                <%else%>
-                                                    <img src="<%= "/assets/illustration.png" %>" alt="Snow" style="width:100%;">
-                                                <%end%>
-                                            </div>
-
-                                            <div class="post_right">
-                                                <div class="post_header">
-                                                    <strong><%= link_to (post.title), post_path(post) %></strong>
-                                                </div>
-
-                                                <div class="post_info">
-                                                    <div class="post_date">
-                                                        <span><%=time_ago_in_words(post.created_at)%></span>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    <%end%>
-                                <% end %>
                             </div>
+
+                            <div class="new_post_show_comment_submit">
+                                <%= f.submit "Gửi bình luận", class: "new_post_comment_form_submit" %>
+                            </div>
+                        <%end%>
+                        <div class="post_comment">
+                            <%= render @post.post_comments %>
                         </div>
                     </div>
-                </div>  
+                </div>
+
+                <div class="col-sm-4">
+                    <div class="post_area_right">
+                        <div class="post_area_right_title">
+                            <span>Xem thêm</span>
+                        </div>
+                        <% @posts.each do |post| %>
+                            <%if post.approved?%>
+                                <div class="post_container">
+                                    <div class="post_left">
+                                        <%if post.wall_picture?%>
+                                            <%= link_to (image_tag(post.wall_picture.medium.url)), image_path(url_for(post.wall_picture.medium.url)), rel: "gallery" , :href => post_path(post)%>
+                                        <%else%>
+                                            <img src="<%= "/assets/illustration.png" %>" alt="Snow" style="width:100%;">
+                                        <%end%>
+                                    </div>
+
+                                    <div class="post_right">
+                                        <div class="post_header">
+                                            <strong><%= link_to (post.title), post_path(post) %></strong>
+                                        </div>
+
+                                        <div class="post_info">
+                                            <div class="post_date">
+                                                <span><%=time_ago_in_words(post.created_at)%></span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            <%end%>
+                        <% end %>
+                    </div>
+                </div>
             </div>
-        </div>
-    </body>
-</html>
+        </div>  
+    </div>
+</div>

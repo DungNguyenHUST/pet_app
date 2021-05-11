@@ -1,540 +1,531 @@
-<!DOCTYPE html>
-<html>
-    <head>
-        <meta name="viewport" content="width=device-width, height=device-height, initial-scale=1.0"/>
-    </head>
-
-    <body>
-        <div class="container">
-            <div class='admin_dasboard'>
-                <div class="admin_tab_link">
-					<ul class="nav">
-                        <li class="nav-item">
-                            <%if @tab_id == "default" || @tab_id == "CompanyID"%>
-                                <%active = "active"%>
-                            <%else%> 
-                                <%active = ""%>
-                            <%end%>                                 
-                            <a class="nav-link <%=active%>" href="<%=pages_path(tab_id: 'CompanyID')%>"><i class="material-icons-outlined">business</i>Company <span><%= @companies.count%><span></a>
-                        </li>
-                        <li class="nav-item">
-                            <%if @tab_id == "UserID"%>
-                                <%active = "active"%>
-                            <%else%> 
-                                <%active = ""%>
-                            <%end%>                                     
-                            <a class="nav-link <%=active%>" href="<%=pages_path(tab_id: 'UserID')%>"><i class="material-icons-outlined">person</i>User <span><%= @users.count%><span></a>
-                        </li>
-                        <li class="nav-item">
-                            <%if @tab_id == "PostID"%>
-                                <%active = "active"%>
-                            <%else%> 
-                                <%active = ""%>
-                            <%end%>                                     
-                            <a class="nav-link <%=active%>" href="<%=pages_path(tab_id: 'PostID')%>"><i class="material-icons-outlined">post_add</i>Post <span><%= @posts.count%><span></a>
-                        </li>
-                        <li class="nav-item">
-                            <%if @tab_id == "ProblemID"%>
-                                <%active = "active"%>
-                            <%else%> 
-                                <%active = ""%>
-                            <%end%>                                     
-                            <a class="nav-link <%=active%>" href="<%=pages_path(tab_id: 'ProblemID')%>"><i class="material-icons-outlined">lightbulb</i>Problem <span><%= @problems.count%><span></a>
-                        </li>
-                    </ul>
-                </div>
-
-                <div class="admin_tab_content">
+<div class="container">
+	<div class='admin_dasboard'>
+		<div class="admin_tab_link">
+			<ul class="nav">
+				<li class="nav-item">
 					<%if @tab_id == "default" || @tab_id == "CompanyID"%>
-						<div class="company_tab">
-							<%=form_tag admin_search_path, :method => "get" do%>
-								<div class="admin_search_input">
-									<div class='row'>
-										<div class="col-sm-10">
-											<div class="admin_search_what">
-												<%= text_field_tag :company_search, params[:search], required: true, class: 'search_input', placeholder: "Nhập tên công ty cần tìm kiếm"%>
-											</div>
-										</div>
-										
-										<div class="col-sm-2">
-											<div class="admin_search_button">
-												<%= button_to "", form_class: "search_button", :name => nil do%>
-													<a>Tìm kiếm</a>
-												<%end%> 
-											</div>
-										</div>
-									</div>
-								</div>
-							<%end%>
-
-							<%=form_tag admin_search_path, :method => "get" do%>
-								<div class="admin_search_input">
-									<div class='row'>
-										<div class="col-sm-10">
-											<div class="admin_search_what">
-												<%= text_field_tag :job_search, params[:search], required: true, class: 'search_input', placeholder: "Nhập tên công việc cần tìm kiếm"%>
-											</div>
-										</div>
-										
-										<div class="col-sm-2">
-											<div class="admin_search_button">
-												<%= button_to "", form_class: "search_button", :name => nil do%>
-													<a>Tìm kiếm</a>
-												<%end%> 
-											</div>
-										</div>
-									</div>
-								</div>
-							<%end%>
-
-							<%if @company_searchs.present?%>
-								<%= render :partial => 'pages/search', :object => @company_searchs %>
-							<%end%>
-
-							<%if @job_searchs.present?%>
-								<%= render :partial => 'pages/search', :object => @job_searchs %>
-							<%end%>
-							
-							<div class="new_company">
-								<%= link_to '<button type="submit">Tạo công ty mới</button>'.html_safe, new_company_path%>
-							</div>
-							
-							<h2>Tất cả <%=@companies.count%> công ty</h2>
-								
-							<% @companies.reverse.each do |company| %>
-								<%if company.approved?%>
-									<div class='company_block'>
-										<div class='company_name'>
-											<a> <%=company.id%> | <%= link_to company.name, company_path(company), class: "company_name_label" %> </a>
-											
-											<div class='approved'>
-												<%if company.approved?%>
-													<%= form_for(company) do |f| %>
-														<%= f.hidden_field :approved, :value => false %>
-														<%= f.submit "Reject", class: "btn btn-large btn-danger" %>
-													<% end %>
-												<%else%>
-													<%= form_for(company) do |f| %>
-														<%= f.hidden_field :approved, :value => true %>
-														<%= f.submit "Approve", class: "btn btn-large btn-success" %>
-													<% end %>
-												<%end%>
-											</div>
-											
-											<div class='company_edit'>
-												<%= link_to "Update", edit_company_path(company), class: "btn btn-large btn-warning" %>
-												<%= link_to 'Delete', company_path(company), method: :delete, class: "btn btn-large btn-danger", data: { confirm: 'Are you sure???' } %>
-											</div>
-										</div>
-
-										<div class='company_job_dash'>
-											<div class="new_job">
-												<%= link_to '<button type="submit">Tạo job mới</button>'.html_safe, new_company_company_job_path(company)%>
-											</div>
-											
-											<div class='company_job_count'>
-												<a><%=company.company_jobs.count%> jobs at <%=company.name%></a>
-											</div>
-
-											<%company.company_jobs.reverse.each do |company_job|%>
-												<%if company_job.approved?%>
-													<div class='admin_company_job_block'>
-														<div class='company_job_name'>
-															<a><%=company_job.id%> | <%= link_to (company_job.title), company_company_job_path(company, company_job) %> </a>
-														</div>
-														<div class='approved'>
-															<%if company_job.approved?%>
-																<%= form_for [company, company_job] do |f| %>
-																	<%= f.hidden_field :approved, :value => false %>
-																	<%= f.submit "Reject", class: "btn btn-large btn-danger" %>
-																<% end %>
-															<%else%>
-																<%= form_for [company, company_job] do |f| %>
-																	<%= f.hidden_field :approved, :value => true %>
-																	<%= f.submit "Approve", class: "btn btn-large btn-success" %>
-																<% end %>
-															<%end%>
-														</div>
-														<div class='company_job_edit'>
-															<%= link_to 'Update', edit_company_company_job_path(company, company_job), class: "btn btn-large btn-warning" %>
-															<%= link_to 'Delete', company_company_job_path(company, company_job), method: :delete, class: "btn btn-large btn-danger", data: { confirm: 'Are you sure???' } %>
-														</div>
-													</div>
-												<%else%>
-													<div class='company_job_block'>
-														<div class='company_job_name'>
-															<a><%=company_job.id%> | <%= link_to (company_job.title), company_company_job_path(company, company_job) %> </a>
-														</div>
-														<div class='approved'>
-															<%if company_job.approved?%>
-																<%= form_for [company, company_job] do |f| %>
-																	<%= f.hidden_field :approved, :value => false %>
-																	<%= f.submit "Reject", class: "btn btn-large btn-danger" %>
-																<% end %>
-															<%else%>
-																<%= form_for [company, company_job] do |f| %>
-																	<%= f.hidden_field :approved, :value => true %>
-																	<%= f.submit "Approve", class: "btn btn-large btn-success" %>
-																<% end %>
-															<%end%>
-														</div>
-														<div class='company_job_edit'>
-															<%= link_to 'Update', edit_company_company_job_path(company, company_job), class: "btn btn-large btn-warning" %>
-															<%= link_to 'Delete', company_company_job_path(company, company_job), method: :delete, class: "btn btn-large btn-danger", data: { confirm: 'Are you sure???' } %>
-														</div>
-													</div>
-												<%end%>
-											<%end%>
-										</div>
-									</div>
-								<%else%>
-									<div class='company_block'>
-										<div class='company_name'>
-											<a> <%=company.id%> | <%= link_to company.name, company_path(company), class: "company_name_label" %> </a>
-											
-											<div class='approved'>
-												<%if company.approved?%>
-													<%= form_for(company) do |f| %>
-														<%= f.hidden_field :approved, :value => false %>
-														<%= f.submit "Reject", class: "btn btn-large btn-danger" %>
-													<% end %>
-												<%else%>
-													<%= form_for(company) do |f| %>
-														<%= f.hidden_field :approved, :value => true %>
-														<%= f.submit "Approve", class: "btn btn-large btn-success" %>
-													<% end %>
-												<%end%>
-											</div>
-											
-											<div class='company_edit'>
-												<%= link_to "Update", edit_company_path(company), class: "btn btn-large btn-warning" %>
-												<%= link_to 'Delete', company_path(company), method: :delete, class: "btn btn-large btn-danger", data: { confirm: 'Are you sure???' } %>
-											</div>
-										</div>
-
-										<div class='company_job_dash'>
-											<div class="new_job">
-												<%= link_to '<button type="submit">Tạo job mới</button>'.html_safe, new_company_company_job_path(company)%>
-											</div>
-											
-											<div class='company_job_count'>
-												<a><%=company.company_jobs.count%> jobs at <%=company.name%></a>
-											</div>
-
-											<%company.company_jobs.reverse.each do |company_job|%>
-												<%if company_job.approved?%>
-													<div class='company_job_block'>
-														<div class='company_job_name'>
-															<a><%=company_job.id%> | <%= link_to (company_job.title), company_company_job_path(company, company_job) %> </a>
-														</div>
-														<div class='approved'>
-															<%if company_job.approved?%>
-																<%= form_for [company, company_job] do |f| %>
-																	<%= f.hidden_field :approved, :value => false %>
-																	<%= f.submit "Reject", class: "btn btn-large btn-danger" %>
-																<% end %>
-															<%else%>
-																<%= form_for [company, company_job] do |f| %>
-																	<%= f.hidden_field :approved, :value => true %>
-																	<%= f.submit "Approve", class: "btn btn-large btn-success" %>
-																<% end %>
-															<%end%>
-														</div>
-														<div class='company_job_edit'>
-															<%= link_to 'Update', edit_company_company_job_path(company, company_job), class: "btn btn-large btn-warning" %>
-															<%= link_to 'Delete', company_company_job_path(company, company_job), method: :delete, class: "btn btn-large btn-danger", data: { confirm: 'Are you sure???' } %>
-														</div>
-													</div>
-												<%else%>
-													<div class='company_job_block'>
-														<div class='company_job_name'>
-															<a><%=company_job.id%> | <%= link_to (company_job.title), company_company_job_path(company, company_job) %> </a>
-														</div>
-														<div class='approved'>
-															<%if company_job.approved?%>
-																<%= form_for [company, company_job] do |f| %>
-																	<%= f.hidden_field :approved, :value => false %>
-																	<%= f.submit "Reject", class: "btn btn-large btn-danger" %>
-																<% end %>
-															<%else%>
-																<%= form_for [company, company_job] do |f| %>
-																	<%= f.hidden_field :approved, :value => true %>
-																	<%= f.submit "Approve", class: "btn btn-large btn-success" %>
-																<% end %>
-															<%end%>
-														</div>
-														<div class='company_job_edit'>
-															<%= link_to 'Update', edit_company_company_job_path(company, company_job), class: "btn btn-large btn-warning" %>
-															<%= link_to 'Delete', company_company_job_path(company, company_job), method: :delete, class: "btn btn-large btn-danger", data: { confirm: 'Are you sure???' } %>
-														</div>
-													</div>
-												<%end%>
-											<%end%>
-										</div>
-									</div>
-								<%end%>
-							<%end%>
-						</div>                        
-					<%end%>
-
+						<%active = "active"%>
+					<%else%> 
+						<%active = ""%>
+					<%end%>                                 
+					<a class="nav-link <%=active%>" href="<%=pages_path(tab_id: 'CompanyID')%>"><i class="material-icons-outlined">business</i>Company <span><%= @companies.count%><span></a>
+				</li>
+				<li class="nav-item">
 					<%if @tab_id == "UserID"%>
-						<div class="user_tab">
-
-							<%=form_tag admin_search_path, :method => "get" do%>
-								<div class="admin_search_input">
-									<div class='row'>
-										<div class="col-sm-10">
-											<div class="admin_search_what">
-												<%= text_field_tag :user_search, params[:search], required: true, class: 'search_input', placeholder: "Nhập email user cần tìm kiếm"%>
-											</div>
-										</div>
-										
-										<div class="col-sm-2">
-											<div class="admin_search_button">
-												<%= button_to "", form_class: "search_button", :name => nil do%>
-													<a>Tìm kiếm</a>
-												<%end%> 
-											</div>
-										</div>
-									</div>
-								</div>
-							<%end%>
-
-							<%if @user_searchs.present?%>
-								<%= render :partial => 'pages/search', :object => @user_searchs %>
-							<%end%>
-							
-							<h2>Tất cả <%=@users.count%> user</h2>
-
-							<% @users.reverse.each do |user| %>
-								<%if user.approved?%>
-									<div class="user_block">
-										<div class='user_type'>
-											<%if user.admin?%>
-												<a><%=user.id%> | ADMIN USER | <%= link_to user.name, user_path(user), class: "admin_name_label" %> </a>
-											<%elsif user.employer?%>
-												<a><%=user.id%> | EMPLOYER USER | <%= link_to user.name, user_path(user), class: "admin_name_label" %> </a>
-											<%else%>
-												<a><%=user.id%> | NORMAL USER | <%= link_to user.name, user_path(user), class: "admin_name_label" %> </a>
-											<%end%>
-										</div>
-										
-										<div class='approved'>
-											<%if user.approved?%>
-												<%= form_for(user) do |f| %>
-													<%= f.hidden_field :approved, :value => false %>
-													<%= f.submit "Reject", class: "btn btn-large btn-danger" %>
-												<% end %>
-											<%else%>
-												<%= form_for(user) do |f| %>
-													<%= f.hidden_field :approved, :value => true %>
-													<%= f.submit "Approve", class: "btn btn-large btn-success" %>
-												<% end %>
-											<%end%>
-										</div>
-										
-										<div class='user_edit'>
-											<%= link_to "Update", edit_user_path(user), class: "btn btn-large btn-warning" %>
-											<%= link_to 'Delete', user_path(user), method: :delete, class: "btn btn-large btn-danger", data: { confirm: 'Are you sure???' } %>
-										</div>
-									</div>
-								<%else%>
-									<div class="user_block">
-										<a><%=user.id%> | <%= link_to user.name, user_path(user), class: "admin_name_label" %> </a>
-										
-										<div class='approved'>
-											<%if user.approved?%>
-												<%= form_for(user) do |f| %>
-													<%= f.hidden_field :approved, :value => false %>
-													<%= f.submit "Reject", class: "btn btn-large btn-danger" %>
-												<% end %>
-											<%else%>
-												<%= form_for(user) do |f| %>
-													<%= f.hidden_field :approved, :value => true %>
-													<%= f.submit "Approve", class: "btn btn-large btn-success" %>
-												<% end %>
-											<%end%>
-										</div>
-										
-										<div class='user_edit'>
-											<%= link_to "Update", edit_user_path(user), class: "btn btn-large btn-warning" %>
-											<%= link_to 'Delete', user_path(user), method: :delete, class: "btn btn-large btn-danger", data: { confirm: 'Are you sure???' } %>
-										</div>
-									</div>
-								<%end%>
-							<%end%>
-						</div>                        
-					<%end%>
-
+						<%active = "active"%>
+					<%else%> 
+						<%active = ""%>
+					<%end%>                                     
+					<a class="nav-link <%=active%>" href="<%=pages_path(tab_id: 'UserID')%>"><i class="material-icons-outlined">person</i>User <span><%= @users.count%><span></a>
+				</li>
+				<li class="nav-item">
 					<%if @tab_id == "PostID"%>
-						<div class="post_tab">
-							<%=form_tag admin_search_path, :method => "get" do%>
-								<div class="admin_search_input">
-									<div class='row'>
-										<div class="col-sm-10">
-											<div class="admin_search_what">
-												<%= text_field_tag :post_search, params[:search], required: true, class: 'search_input', placeholder: "Nhập tên bài viết cần tìm kiếm"%>
-											</div>
-										</div>
-										
-										<div class="col-sm-2">
-											<div class="admin_search_button">
-												<%= button_to "", form_class: "search_button", :name => nil do%>
-													<a>Tìm kiếm</a>
-												<%end%> 
-											</div>
-										</div>
-									</div>
-								</div>
-							<%end%>
-
-							<%if @post_searchs.present?%>
-								<%= render :partial => 'pages/search', :object => @post_searchs %>
-							<%end%>
-
-							<div class="new_post">
-								<%= link_to '<button type="submit">Tạo post mới</button>'.html_safe, new_post_path%>
-							</div>
-							
-							<h2>Tất cả <%=@posts.count%> bài viết</h2>
-
-							<% @posts.reverse.each do |post| %>
-								<%if post.approved?%>
-									<div class="post_block">
-										<a><%=post.id%> | <%= link_to post.title, post_path(post), class: "admin_name_label" %> </a>
-										
-										<div class='approved'>
-											<%if post.approved?%>
-												<%= form_for(post) do |f| %>
-													<%= f.hidden_field :approved, :value => false %>
-													<%= f.submit "Reject", class: "btn btn-large btn-danger" %>
-												<% end %>
-											<%else%>
-												<%= form_for(post) do |f| %>
-													<%= f.hidden_field :approved, :value => true %>
-													<%= f.submit "Approve", class: "btn btn-large btn-success" %>
-												<% end %>
-											<%end%>
-										</div>
-										
-										<div class='post_edit'>
-											<%= link_to "Update", edit_post_path(post), class: "btn btn-large btn-warning" %>
-											<%= link_to 'Delete', post_path(post), method: :delete, class: "btn btn-large btn-danger", data: { confirm: 'Are you sure???' } %>
-										</div>
-									</div>
-								<%else%>
-									<div class="post_block">
-										<a><%=post.id%> | <%= link_to post.title, post_path(post), class: "admin_name_label" %> </a>
-										
-										<div class='approved'>
-											<%if post.approved?%>
-												<%= form_for(post) do |f| %>
-													<%= f.hidden_field :approved, :value => false %>
-													<%= f.submit "Reject", class: "btn btn-large btn-danger" %>
-												<% end %>
-											<%else%>
-												<%= form_for(post) do |f| %>
-													<%= f.hidden_field :approved, :value => true %>
-													<%= f.submit "Approve", class: "btn btn-large btn-success" %>
-												<% end %>
-											<%end%>
-										</div>
-										
-										<div class='post_edit'>
-											<%= link_to "Update", edit_post_path(post), class: "btn btn-large btn-warning" %>
-											<%= link_to 'Delete', post_path(post), method: :delete, class: "btn btn-large btn-danger", data: { confirm: 'Are you sure???' } %>
-										</div>
-									</div>
-								<%end%>
-							<%end%>
-						</div>                        
-					<%end%>
-
+						<%active = "active"%>
+					<%else%> 
+						<%active = ""%>
+					<%end%>                                     
+					<a class="nav-link <%=active%>" href="<%=pages_path(tab_id: 'PostID')%>"><i class="material-icons-outlined">post_add</i>Post <span><%= @posts.count%><span></a>
+				</li>
+				<li class="nav-item">
 					<%if @tab_id == "ProblemID"%>
-						<div class="problem_tab">
-							<%=form_tag admin_search_path, :method => "get" do%>
-								<div class="admin_search_input">
-									<div class='row'>
-										<div class="col-sm-10">
-											<div class="admin_search_what">
-												<%= text_field_tag :problem_search, params[:search], required: true, class: 'search_input', placeholder: "Nhập tên câu hỏi cần tìm kiếm"%>
-											</div>
-										</div>
-										
-										<div class="col-sm-2">
-											<div class="admin_search_button">
-												<%= button_to "", form_class: "search_button", :name => nil do%>
-													<a>Tìm kiếm</a>
-												<%end%> 
-											</div>
-										</div>
+						<%active = "active"%>
+					<%else%> 
+						<%active = ""%>
+					<%end%>                                     
+					<a class="nav-link <%=active%>" href="<%=pages_path(tab_id: 'ProblemID')%>"><i class="material-icons-outlined">lightbulb</i>Problem <span><%= @problems.count%><span></a>
+				</li>
+			</ul>
+		</div>
+
+		<div class="admin_tab_content">
+			<%if @tab_id == "default" || @tab_id == "CompanyID"%>
+				<div class="company_tab">
+					<%=form_tag admin_search_path, :method => "get" do%>
+						<div class="admin_search_input">
+							<div class='row'>
+								<div class="col-sm-10">
+									<div class="admin_search_what">
+										<%= text_field_tag :company_search, params[:search], required: true, class: 'search_input', placeholder: "Nhập tên công ty cần tìm kiếm"%>
 									</div>
 								</div>
-							<%end%>
-
-							<%if @problem_searchs.present?%>
-								<%= render :partial => 'pages/search', :object => @problem_searchs %>
-							<%end%>
-
-							<div class="new_problem">
-								<%= link_to '<button type="submit">Tạo câu hỏi mới</button>'.html_safe, new_problem_path%>
+								
+								<div class="col-sm-2">
+									<div class="admin_search_button">
+										<%= button_to "", form_class: "search_button", :name => nil do%>
+											<a>Tìm kiếm</a>
+										<%end%> 
+									</div>
+								</div>
 							</div>
-							
-							<h2>Tất cả <%=@problems.count%> câu hỏi</h2>
-
-							<% @problems.reverse.each do |problem| %>
-								<%if problem.approved?%>
-									<div class="problem_block">
-										<a><%=problem.id%> | <%= link_to problem.title, problem_path(problem), class: "admin_name_label" %></a>
-										
-										<div class='approved'>
-											<%if problem.approved?%>
-												<%= form_for(problem) do |f| %>
-													<%= f.hidden_field :approved, :value => false %>
-													<%= f.submit "Reject", class: "btn btn-large btn-danger" %>
-												<% end %>
-											<%else%>
-												<%= form_for(problem) do |f| %>
-													<%= f.hidden_field :approved, :value => true %>
-													<%= f.submit "Approve", class: "btn btn-large btn-success" %>
-												<% end %>
-											<%end%>
-										</div>
-										
-										<div class='problem_edit'>
-											<%= link_to "Update", edit_problem_path(problem), class: "btn btn-large btn-warning" %>
-											<%= link_to 'Delete', problem_path(problem), method: :delete, class: "btn btn-large btn-danger", data: { confirm: 'Are you sure???' } %>
-										</div>
-									</div>
-								<%else%>
-									<div class="problem_block">
-										<a><%=problem.id%> | <%= link_to problem.title, problem_path(problem), class: "admin_name_label" %></a>
-										
-										<div class='approved'>
-											<%if problem.approved?%>
-												<%= form_for(problem) do |f| %>
-													<%= f.hidden_field :approved, :value => false %>
-													<%= f.submit "Reject", class: "btn btn-large btn-danger" %>
-												<% end %>
-											<%else%>
-												<%= form_for(problem) do |f| %>
-													<%= f.hidden_field :approved, :value => true %>
-													<%= f.submit "Approve", class: "btn btn-large btn-success" %>
-												<% end %>
-											<%end%>
-										</div>
-										
-										<div class='problem_edit'>
-											<%= link_to "Update", edit_problem_path(problem), class: "btn btn-large btn-warning" %>
-											<%= link_to 'Delete', problem_path(problem), method: :delete, class: "btn btn-large btn-danger", data: { confirm: 'Are you sure???' } %>
-										</div>
-									</div>
-								<%end%>
-							<%end%>
-						</div>                        
+						</div>
 					<%end%>
-                </div>
-            </div>
-        </div>
-    </body>
-</html>
+
+					<%=form_tag admin_search_path, :method => "get" do%>
+						<div class="admin_search_input">
+							<div class='row'>
+								<div class="col-sm-10">
+									<div class="admin_search_what">
+										<%= text_field_tag :job_search, params[:search], required: true, class: 'search_input', placeholder: "Nhập tên công việc cần tìm kiếm"%>
+									</div>
+								</div>
+								
+								<div class="col-sm-2">
+									<div class="admin_search_button">
+										<%= button_to "", form_class: "search_button", :name => nil do%>
+											<a>Tìm kiếm</a>
+										<%end%> 
+									</div>
+								</div>
+							</div>
+						</div>
+					<%end%>
+
+					<%if @company_searchs.present?%>
+						<%= render :partial => 'pages/search', :object => @company_searchs %>
+					<%end%>
+
+					<%if @job_searchs.present?%>
+						<%= render :partial => 'pages/search', :object => @job_searchs %>
+					<%end%>
+					
+					<div class="new_company">
+						<%= link_to '<button type="submit">Tạo công ty mới</button>'.html_safe, new_company_path%>
+					</div>
+					
+					<h2>Tất cả <%=@companies.count%> công ty</h2>
+						
+					<% @companies.reverse.each do |company| %>
+						<%if company.approved?%>
+							<div class='company_block'>
+								<div class='company_name'>
+									<a> <%=company.id%> | <%= link_to company.name, company_path(company), class: "company_name_label" %> </a>
+									
+									<div class='approved'>
+										<%if company.approved?%>
+											<%= form_for(company) do |f| %>
+												<%= f.hidden_field :approved, :value => false %>
+												<%= f.submit "Reject", class: "btn btn-large btn-danger" %>
+											<% end %>
+										<%else%>
+											<%= form_for(company) do |f| %>
+												<%= f.hidden_field :approved, :value => true %>
+												<%= f.submit "Approve", class: "btn btn-large btn-success" %>
+											<% end %>
+										<%end%>
+									</div>
+									
+									<div class='company_edit'>
+										<%= link_to "Update", edit_company_path(company), class: "btn btn-large btn-warning" %>
+										<%= link_to 'Delete', company_path(company), method: :delete, class: "btn btn-large btn-danger", data: { confirm: 'Are you sure???' } %>
+									</div>
+								</div>
+
+								<div class='company_job_dash'>
+									<div class="new_job">
+										<%= link_to '<button type="submit">Tạo job mới</button>'.html_safe, new_company_company_job_path(company)%>
+									</div>
+									
+									<div class='company_job_count'>
+										<a><%=company.company_jobs.count%> jobs at <%=company.name%></a>
+									</div>
+
+									<%company.company_jobs.reverse.each do |company_job|%>
+										<%if company_job.approved?%>
+											<div class='admin_company_job_block'>
+												<div class='company_job_name'>
+													<a><%=company_job.id%> | <%= link_to (company_job.title), company_company_job_path(company, company_job) %> </a>
+												</div>
+												<div class='approved'>
+													<%if company_job.approved?%>
+														<%= form_for [company, company_job] do |f| %>
+															<%= f.hidden_field :approved, :value => false %>
+															<%= f.submit "Reject", class: "btn btn-large btn-danger" %>
+														<% end %>
+													<%else%>
+														<%= form_for [company, company_job] do |f| %>
+															<%= f.hidden_field :approved, :value => true %>
+															<%= f.submit "Approve", class: "btn btn-large btn-success" %>
+														<% end %>
+													<%end%>
+												</div>
+												<div class='company_job_edit'>
+													<%= link_to 'Update', edit_company_company_job_path(company, company_job), class: "btn btn-large btn-warning" %>
+													<%= link_to 'Delete', company_company_job_path(company, company_job), method: :delete, class: "btn btn-large btn-danger", data: { confirm: 'Are you sure???' } %>
+												</div>
+											</div>
+										<%else%>
+											<div class='company_job_block'>
+												<div class='company_job_name'>
+													<a><%=company_job.id%> | <%= link_to (company_job.title), company_company_job_path(company, company_job) %> </a>
+												</div>
+												<div class='approved'>
+													<%if company_job.approved?%>
+														<%= form_for [company, company_job] do |f| %>
+															<%= f.hidden_field :approved, :value => false %>
+															<%= f.submit "Reject", class: "btn btn-large btn-danger" %>
+														<% end %>
+													<%else%>
+														<%= form_for [company, company_job] do |f| %>
+															<%= f.hidden_field :approved, :value => true %>
+															<%= f.submit "Approve", class: "btn btn-large btn-success" %>
+														<% end %>
+													<%end%>
+												</div>
+												<div class='company_job_edit'>
+													<%= link_to 'Update', edit_company_company_job_path(company, company_job), class: "btn btn-large btn-warning" %>
+													<%= link_to 'Delete', company_company_job_path(company, company_job), method: :delete, class: "btn btn-large btn-danger", data: { confirm: 'Are you sure???' } %>
+												</div>
+											</div>
+										<%end%>
+									<%end%>
+								</div>
+							</div>
+						<%else%>
+							<div class='company_block'>
+								<div class='company_name'>
+									<a> <%=company.id%> | <%= link_to company.name, company_path(company), class: "company_name_label" %> </a>
+									
+									<div class='approved'>
+										<%if company.approved?%>
+											<%= form_for(company) do |f| %>
+												<%= f.hidden_field :approved, :value => false %>
+												<%= f.submit "Reject", class: "btn btn-large btn-danger" %>
+											<% end %>
+										<%else%>
+											<%= form_for(company) do |f| %>
+												<%= f.hidden_field :approved, :value => true %>
+												<%= f.submit "Approve", class: "btn btn-large btn-success" %>
+											<% end %>
+										<%end%>
+									</div>
+									
+									<div class='company_edit'>
+										<%= link_to "Update", edit_company_path(company), class: "btn btn-large btn-warning" %>
+										<%= link_to 'Delete', company_path(company), method: :delete, class: "btn btn-large btn-danger", data: { confirm: 'Are you sure???' } %>
+									</div>
+								</div>
+
+								<div class='company_job_dash'>
+									<div class="new_job">
+										<%= link_to '<button type="submit">Tạo job mới</button>'.html_safe, new_company_company_job_path(company)%>
+									</div>
+									
+									<div class='company_job_count'>
+										<a><%=company.company_jobs.count%> jobs at <%=company.name%></a>
+									</div>
+
+									<%company.company_jobs.reverse.each do |company_job|%>
+										<%if company_job.approved?%>
+											<div class='company_job_block'>
+												<div class='company_job_name'>
+													<a><%=company_job.id%> | <%= link_to (company_job.title), company_company_job_path(company, company_job) %> </a>
+												</div>
+												<div class='approved'>
+													<%if company_job.approved?%>
+														<%= form_for [company, company_job] do |f| %>
+															<%= f.hidden_field :approved, :value => false %>
+															<%= f.submit "Reject", class: "btn btn-large btn-danger" %>
+														<% end %>
+													<%else%>
+														<%= form_for [company, company_job] do |f| %>
+															<%= f.hidden_field :approved, :value => true %>
+															<%= f.submit "Approve", class: "btn btn-large btn-success" %>
+														<% end %>
+													<%end%>
+												</div>
+												<div class='company_job_edit'>
+													<%= link_to 'Update', edit_company_company_job_path(company, company_job), class: "btn btn-large btn-warning" %>
+													<%= link_to 'Delete', company_company_job_path(company, company_job), method: :delete, class: "btn btn-large btn-danger", data: { confirm: 'Are you sure???' } %>
+												</div>
+											</div>
+										<%else%>
+											<div class='company_job_block'>
+												<div class='company_job_name'>
+													<a><%=company_job.id%> | <%= link_to (company_job.title), company_company_job_path(company, company_job) %> </a>
+												</div>
+												<div class='approved'>
+													<%if company_job.approved?%>
+														<%= form_for [company, company_job] do |f| %>
+															<%= f.hidden_field :approved, :value => false %>
+															<%= f.submit "Reject", class: "btn btn-large btn-danger" %>
+														<% end %>
+													<%else%>
+														<%= form_for [company, company_job] do |f| %>
+															<%= f.hidden_field :approved, :value => true %>
+															<%= f.submit "Approve", class: "btn btn-large btn-success" %>
+														<% end %>
+													<%end%>
+												</div>
+												<div class='company_job_edit'>
+													<%= link_to 'Update', edit_company_company_job_path(company, company_job), class: "btn btn-large btn-warning" %>
+													<%= link_to 'Delete', company_company_job_path(company, company_job), method: :delete, class: "btn btn-large btn-danger", data: { confirm: 'Are you sure???' } %>
+												</div>
+											</div>
+										<%end%>
+									<%end%>
+								</div>
+							</div>
+						<%end%>
+					<%end%>
+				</div>                        
+			<%end%>
+
+			<%if @tab_id == "UserID"%>
+				<div class="user_tab">
+
+					<%=form_tag admin_search_path, :method => "get" do%>
+						<div class="admin_search_input">
+							<div class='row'>
+								<div class="col-sm-10">
+									<div class="admin_search_what">
+										<%= text_field_tag :user_search, params[:search], required: true, class: 'search_input', placeholder: "Nhập email user cần tìm kiếm"%>
+									</div>
+								</div>
+								
+								<div class="col-sm-2">
+									<div class="admin_search_button">
+										<%= button_to "", form_class: "search_button", :name => nil do%>
+											<a>Tìm kiếm</a>
+										<%end%> 
+									</div>
+								</div>
+							</div>
+						</div>
+					<%end%>
+
+					<%if @user_searchs.present?%>
+						<%= render :partial => 'pages/search', :object => @user_searchs %>
+					<%end%>
+					
+					<h2>Tất cả <%=@users.count%> user</h2>
+
+					<% @users.reverse.each do |user| %>
+						<%if user.approved?%>
+							<div class="user_block">
+								<div class='user_type'>
+									<%if user.admin?%>
+										<a><%=user.id%> | ADMIN USER | <%= link_to user.name, user_path(user), class: "admin_name_label" %> </a>
+									<%elsif user.employer?%>
+										<a><%=user.id%> | EMPLOYER USER | <%= link_to user.name, user_path(user), class: "admin_name_label" %> </a>
+									<%else%>
+										<a><%=user.id%> | NORMAL USER | <%= link_to user.name, user_path(user), class: "admin_name_label" %> </a>
+									<%end%>
+								</div>
+								
+								<div class='approved'>
+									<%if user.approved?%>
+										<%= form_for(user) do |f| %>
+											<%= f.hidden_field :approved, :value => false %>
+											<%= f.submit "Reject", class: "btn btn-large btn-danger" %>
+										<% end %>
+									<%else%>
+										<%= form_for(user) do |f| %>
+											<%= f.hidden_field :approved, :value => true %>
+											<%= f.submit "Approve", class: "btn btn-large btn-success" %>
+										<% end %>
+									<%end%>
+								</div>
+								
+								<div class='user_edit'>
+									<%= link_to "Update", edit_user_path(user), class: "btn btn-large btn-warning" %>
+									<%= link_to 'Delete', user_path(user), method: :delete, class: "btn btn-large btn-danger", data: { confirm: 'Are you sure???' } %>
+								</div>
+							</div>
+						<%else%>
+							<div class="user_block">
+								<a><%=user.id%> | <%= link_to user.name, user_path(user), class: "admin_name_label" %> </a>
+								
+								<div class='approved'>
+									<%if user.approved?%>
+										<%= form_for(user) do |f| %>
+											<%= f.hidden_field :approved, :value => false %>
+											<%= f.submit "Reject", class: "btn btn-large btn-danger" %>
+										<% end %>
+									<%else%>
+										<%= form_for(user) do |f| %>
+											<%= f.hidden_field :approved, :value => true %>
+											<%= f.submit "Approve", class: "btn btn-large btn-success" %>
+										<% end %>
+									<%end%>
+								</div>
+								
+								<div class='user_edit'>
+									<%= link_to "Update", edit_user_path(user), class: "btn btn-large btn-warning" %>
+									<%= link_to 'Delete', user_path(user), method: :delete, class: "btn btn-large btn-danger", data: { confirm: 'Are you sure???' } %>
+								</div>
+							</div>
+						<%end%>
+					<%end%>
+				</div>                        
+			<%end%>
+
+			<%if @tab_id == "PostID"%>
+				<div class="post_tab">
+					<%=form_tag admin_search_path, :method => "get" do%>
+						<div class="admin_search_input">
+							<div class='row'>
+								<div class="col-sm-10">
+									<div class="admin_search_what">
+										<%= text_field_tag :post_search, params[:search], required: true, class: 'search_input', placeholder: "Nhập tên bài viết cần tìm kiếm"%>
+									</div>
+								</div>
+								
+								<div class="col-sm-2">
+									<div class="admin_search_button">
+										<%= button_to "", form_class: "search_button", :name => nil do%>
+											<a>Tìm kiếm</a>
+										<%end%> 
+									</div>
+								</div>
+							</div>
+						</div>
+					<%end%>
+
+					<%if @post_searchs.present?%>
+						<%= render :partial => 'pages/search', :object => @post_searchs %>
+					<%end%>
+
+					<div class="new_post">
+						<%= link_to '<button type="submit">Tạo post mới</button>'.html_safe, new_post_path%>
+					</div>
+					
+					<h2>Tất cả <%=@posts.count%> bài viết</h2>
+
+					<% @posts.reverse.each do |post| %>
+						<%if post.approved?%>
+							<div class="post_block">
+								<a><%=post.id%> | <%= link_to post.title, post_path(post), class: "admin_name_label" %> </a>
+								
+								<div class='approved'>
+									<%if post.approved?%>
+										<%= form_for(post) do |f| %>
+											<%= f.hidden_field :approved, :value => false %>
+											<%= f.submit "Reject", class: "btn btn-large btn-danger" %>
+										<% end %>
+									<%else%>
+										<%= form_for(post) do |f| %>
+											<%= f.hidden_field :approved, :value => true %>
+											<%= f.submit "Approve", class: "btn btn-large btn-success" %>
+										<% end %>
+									<%end%>
+								</div>
+								
+								<div class='post_edit'>
+									<%= link_to "Update", edit_post_path(post), class: "btn btn-large btn-warning" %>
+									<%= link_to 'Delete', post_path(post), method: :delete, class: "btn btn-large btn-danger", data: { confirm: 'Are you sure???' } %>
+								</div>
+							</div>
+						<%else%>
+							<div class="post_block">
+								<a><%=post.id%> | <%= link_to post.title, post_path(post), class: "admin_name_label" %> </a>
+								
+								<div class='approved'>
+									<%if post.approved?%>
+										<%= form_for(post) do |f| %>
+											<%= f.hidden_field :approved, :value => false %>
+											<%= f.submit "Reject", class: "btn btn-large btn-danger" %>
+										<% end %>
+									<%else%>
+										<%= form_for(post) do |f| %>
+											<%= f.hidden_field :approved, :value => true %>
+											<%= f.submit "Approve", class: "btn btn-large btn-success" %>
+										<% end %>
+									<%end%>
+								</div>
+								
+								<div class='post_edit'>
+									<%= link_to "Update", edit_post_path(post), class: "btn btn-large btn-warning" %>
+									<%= link_to 'Delete', post_path(post), method: :delete, class: "btn btn-large btn-danger", data: { confirm: 'Are you sure???' } %>
+								</div>
+							</div>
+						<%end%>
+					<%end%>
+				</div>                        
+			<%end%>
+
+			<%if @tab_id == "ProblemID"%>
+				<div class="problem_tab">
+					<%=form_tag admin_search_path, :method => "get" do%>
+						<div class="admin_search_input">
+							<div class='row'>
+								<div class="col-sm-10">
+									<div class="admin_search_what">
+										<%= text_field_tag :problem_search, params[:search], required: true, class: 'search_input', placeholder: "Nhập tên câu hỏi cần tìm kiếm"%>
+									</div>
+								</div>
+								
+								<div class="col-sm-2">
+									<div class="admin_search_button">
+										<%= button_to "", form_class: "search_button", :name => nil do%>
+											<a>Tìm kiếm</a>
+										<%end%> 
+									</div>
+								</div>
+							</div>
+						</div>
+					<%end%>
+
+					<%if @problem_searchs.present?%>
+						<%= render :partial => 'pages/search', :object => @problem_searchs %>
+					<%end%>
+
+					<div class="new_problem">
+						<%= link_to '<button type="submit">Tạo câu hỏi mới</button>'.html_safe, new_problem_path%>
+					</div>
+					
+					<h2>Tất cả <%=@problems.count%> câu hỏi</h2>
+
+					<% @problems.reverse.each do |problem| %>
+						<%if problem.approved?%>
+							<div class="problem_block">
+								<a><%=problem.id%> | <%= link_to problem.title, problem_path(problem), class: "admin_name_label" %></a>
+								
+								<div class='approved'>
+									<%if problem.approved?%>
+										<%= form_for(problem) do |f| %>
+											<%= f.hidden_field :approved, :value => false %>
+											<%= f.submit "Reject", class: "btn btn-large btn-danger" %>
+										<% end %>
+									<%else%>
+										<%= form_for(problem) do |f| %>
+											<%= f.hidden_field :approved, :value => true %>
+											<%= f.submit "Approve", class: "btn btn-large btn-success" %>
+										<% end %>
+									<%end%>
+								</div>
+								
+								<div class='problem_edit'>
+									<%= link_to "Update", edit_problem_path(problem), class: "btn btn-large btn-warning" %>
+									<%= link_to 'Delete', problem_path(problem), method: :delete, class: "btn btn-large btn-danger", data: { confirm: 'Are you sure???' } %>
+								</div>
+							</div>
+						<%else%>
+							<div class="problem_block">
+								<a><%=problem.id%> | <%= link_to problem.title, problem_path(problem), class: "admin_name_label" %></a>
+								
+								<div class='approved'>
+									<%if problem.approved?%>
+										<%= form_for(problem) do |f| %>
+											<%= f.hidden_field :approved, :value => false %>
+											<%= f.submit "Reject", class: "btn btn-large btn-danger" %>
+										<% end %>
+									<%else%>
+										<%= form_for(problem) do |f| %>
+											<%= f.hidden_field :approved, :value => true %>
+											<%= f.submit "Approve", class: "btn btn-large btn-success" %>
+										<% end %>
+									<%end%>
+								</div>
+								
+								<div class='problem_edit'>
+									<%= link_to "Update", edit_problem_path(problem), class: "btn btn-large btn-warning" %>
+									<%= link_to 'Delete', problem_path(problem), method: :delete, class: "btn btn-large btn-danger", data: { confirm: 'Are you sure???' } %>
+								</div>
+							</div>
+						<%end%>
+					<%end%>
+				</div>                        
+			<%end%>
+		</div>
+	</div>
+</div>

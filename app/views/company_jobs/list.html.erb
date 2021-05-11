@@ -1,246 +1,237 @@
 <%- model_class = CompanyJob -%>
-<!DOCTYPE html>
-<html>
-    <head>
-        <meta name="viewport" content="width=device-width, initial-scale=1">
-		<% content_for :meta_title, "Tìm kiếm việc làm"%>
-    </head>
-
-    <body>
-        <div class="company_job_list">
-            <div class="company_job_search">
-                <div class="container">
-                    <div class="company_job_bar">
-                        <div class="company_job_bar_label">
-                            <h3>Công việc tốt định hình tương lai của bạn.</h3>
-                            <a>Khám phá <%=@company_jobs.count%> cơ hội việc làm dành cho bạn.</a>
-                        </div>
-						
-						<%=form_tag company_job_list_path, :method => "get" do%>
-                            <div class="company_job_search_input">
-								<div class='row'>
-									<div class='col-sm-7'>
-										<div class="company_job_search_what">
-											<i class="material-icons-outlined">search</i>
-											<%= text_field_tag :search, params[:search], required: true, class: 'search_input', placeholder: "Tìm kiếm theo tên công việc, kĩ năng ..."%>
-										</div>
-									</div>
-										
-									<div class='col-sm-3 padding_customize'>
-										<div class="company_job_search_where">
-											<i class="material-icons-outlined">place</i></button>
-											<%= select_tag :location, options_for_select(['Hà Nội','TP Hồ Chí Minh','Đà Nẵng','An Giang','Bà Rịa-Vũng Tàu','Bạc Liêu','Bắc Kạn','Bắc Giang',
-																		'Bắc Ninh','Bến Tre','Bình Dương','Bình Định','Bình Phước',
-																		'Bình Thuận','Cà Mau','Cao Bằng','Cần Thơ','Đắk Lắk','Đắk Nông','Điện Biên',
-																		'Đồng Nai','Đồng Tháp','Gia Lai','Hà Giang','Hà Nam','Hà Tây','Hà Tĩnh',
-																		'Hải Dương','Hải Phòng','Hòa Bình','Hậu Giang','Hưng Yên','Khánh Hòa',
-																		'Kiên Giang','Kon Tum','Lai Châu','Lào Cai',
-																		'Lạng Sơn','Lâm Đồng','Long An','Nam Định','Nghệ An',
-																		'Ninh Bình','Ninh Thuận','Phú Thọ','Phú Yên','Quảng Bình',
-																		'Quảng Nam','Quảng Ngãi','Quảng Ninh','Quảng Trị',
-																		'Sóc Trăng','Sơn La','Tây Ninh','Thái Bình','Thái Nguyên' ,
-																		'Thanh Hóa','Thừa Thiên – Huế','Tiền Giang','Trà Vinh',
-																		'Tuyên Quang','Vĩnh Long','Vĩnh Phúc','Yên Bái' ], "Hà Nội"), class: 'search_select_input'%> 
-										</div>
-									</div>
-									
-									<div class='col-sm-2'>
-										<div class="company_job_search_button">
-											<%= button_to "", form_class: "search_button", :name => nil do%>
-												<a>Tìm kiếm</a>
-											<%end%> 
-										</div>
-									</div>
-								</div>
-                            </div>
-                        <%end%>
-					</div>
+<% content_for :meta_title, "Tìm kiếm việc làm"%>
+<div class="company_job_list">
+	<div class="company_job_search">
+		<div class="container">
+			<div class="company_job_bar">
+				<div class="company_job_bar_label">
+					<h3>Công việc tốt định hình tương lai của bạn.</h3>
+					<a>Khám phá <%=@company_jobs.count%> cơ hội việc làm dành cho bạn.</a>
 				</div>
-			</div>
-			
-			<div class="container">
-				<div class="company_job_area">
-					<%if (@is_job_searched)%>
-						<div class="job_search">
-							<div class="job_label">
-								<%if @job_searchs.count > 0%>
-									<span><%=@job_searchs.count%> việc làm cho từ khóa "<%= params[:search]%>" và địa điểm "<%= params[:location]%>"</span>
-								<%else%>
-									<span>Rất tiếc, không tìm được công việc nào phù hợp với từ khóa "<%= params[:search]%>" và địa điểm "<%= params[:location]%>"</span>
-								<%end%>
+				
+				<%=form_tag company_job_list_path, :method => "get" do%>
+					<div class="company_job_search_input">
+						<div class='row'>
+							<div class='col-sm-7'>
+								<div class="company_job_search_what">
+									<i class="material-icons-outlined">search</i>
+									<%= text_field_tag :search, params[:search], required: true, class: 'search_input', placeholder: "Tìm kiếm theo tên công việc, kĩ năng ..."%>
+								</div>
 							</div>
-							<div class="row">
-								<%if @job_searchs != nil%>
-									<%@job_searchs.each do |company_job|%>
-										<%company_by_job = company_job.company%>
-										<div class="col-sm-6">
-											<div class="user_search_job_block">
-												<div class="company_job_left">
-													<div class="company_avatar">
-														<%if company_by_job.avatar%>
-															<%= link_to (image_tag(company_by_job.avatar.thumb.url)), image_path(url_for(company_by_job.avatar.thumb.url)), rel: "gallery" , :href => company_path(company_by_job)%>
+								
+							<div class='col-sm-3 padding_customize'>
+								<div class="company_job_search_where">
+									<i class="material-icons-outlined">place</i></button>
+									<%= select_tag :location, options_for_select(['Hà Nội','TP Hồ Chí Minh','Đà Nẵng','An Giang','Bà Rịa-Vũng Tàu','Bạc Liêu','Bắc Kạn','Bắc Giang',
+																'Bắc Ninh','Bến Tre','Bình Dương','Bình Định','Bình Phước',
+																'Bình Thuận','Cà Mau','Cao Bằng','Cần Thơ','Đắk Lắk','Đắk Nông','Điện Biên',
+																'Đồng Nai','Đồng Tháp','Gia Lai','Hà Giang','Hà Nam','Hà Tây','Hà Tĩnh',
+																'Hải Dương','Hải Phòng','Hòa Bình','Hậu Giang','Hưng Yên','Khánh Hòa',
+																'Kiên Giang','Kon Tum','Lai Châu','Lào Cai',
+																'Lạng Sơn','Lâm Đồng','Long An','Nam Định','Nghệ An',
+																'Ninh Bình','Ninh Thuận','Phú Thọ','Phú Yên','Quảng Bình',
+																'Quảng Nam','Quảng Ngãi','Quảng Ninh','Quảng Trị',
+																'Sóc Trăng','Sơn La','Tây Ninh','Thái Bình','Thái Nguyên' ,
+																'Thanh Hóa','Thừa Thiên – Huế','Tiền Giang','Trà Vinh',
+																'Tuyên Quang','Vĩnh Long','Vĩnh Phúc','Yên Bái' ], "Hà Nội"), class: 'search_select_input'%> 
+								</div>
+							</div>
+							
+							<div class='col-sm-2'>
+								<div class="company_job_search_button">
+									<%= button_to "", form_class: "search_button", :name => nil do%>
+										<a>Tìm kiếm</a>
+									<%end%> 
+								</div>
+							</div>
+						</div>
+					</div>
+				<%end%>
+			</div>
+		</div>
+	</div>
+	
+	<div class="container">
+		<div class="company_job_area">
+			<%if (@is_job_searched)%>
+				<div class="job_search">
+					<div class="job_label">
+						<%if @job_searchs.count > 0%>
+							<span><%=@job_searchs.count%> việc làm cho từ khóa "<%= params[:search]%>" và địa điểm "<%= params[:location]%>"</span>
+						<%else%>
+							<span>Rất tiếc, không tìm được công việc nào phù hợp với từ khóa "<%= params[:search]%>" và địa điểm "<%= params[:location]%>"</span>
+						<%end%>
+					</div>
+					<div class="row">
+						<%if @job_searchs != nil%>
+							<%@job_searchs.each do |company_job|%>
+								<%company_by_job = company_job.company%>
+								<div class="col-sm-6">
+									<div class="user_search_job_block">
+										<div class="company_job_left">
+											<div class="company_avatar">
+												<%if company_by_job.avatar%>
+													<%= link_to (image_tag(company_by_job.avatar.thumb.url)), image_path(url_for(company_by_job.avatar.thumb.url)), rel: "gallery" , :href => company_path(company_by_job)%>
+												<%end%>
+											</div>
+										</div>
+
+										<div class="company_job_right">
+											<div class="company_job_des">
+												<div class="company_job_title">
+													<a><%= link_to (company_job.title), company_company_job_path(company_by_job, company_job) %></a>
+												</div>
+
+												<div class="company_job_company_rate">
+													<a><%= link_to (company_by_job.name), company_path(company_by_job)%> </a>
+													<a><%=cal_rating_review_total_score(company_by_job).to_f.round(1)%><i class="material-icons checked">circle</i></a>
+												</div>
+
+												<div class="company_job_description">
+													<a><%= company_job.description.html_safe %></a>
+												</div>
+
+												<div class="company_job_mark">
+													<div class="company_job_location">
+														<a><i class="material-icons-outlined">location_on</i><%= company_job.location %></a>
+													</div>
+
+													<div class="company_job_tech">
+														<a><i class="material-icons-outlined">book</i><%= company_job.category %></a>
+													</div>
+
+													<div class="company_job_salary">
+														<%if logged_in?%>
+															<a><i class="material-icons-outlined">local_offer</i><%= convert_salary_to_string(company_job)%></a>
+														<%else%>
+															<%= link_to login_path, form_class: "job_salary_login" do%>
+																<i class="material-icons-outlined">local_offer</i> <span>Đăng nhập để xem mức lương</span>
+															<%end%>
+														<%end%>
+													</div>
+
+													<div class="company_job_type">
+														<a><i class="material-icons-outlined">rss_feed</i><%= company_job.job_type %></a>
+													</div>
+												</div>
+											</div>
+																	
+											<div class="company_job_info">
+												<div class="company_job_date">
+													<a><%= time_ago_in_words(company_job.created_at) %> </a>
+												</div>
+												<div class="company_job_hot_save">
+													<div class="company_job_button_save" id="job_<%=company_job.id%>">
+														<%if company_job.urgent%>
+															<a class="hot_label">Urgent</a>
+														<%end%>
+														<%if logged_in?%>
+															<% pre_save = company_job.company_save_jobs.find { |save| save.user_id == current_user.id} %>
+															<% if pre_save %> 
+																<%= link_to '<button class="save_btn_highlight"><i class="material-icons">turned_in</i> </button>'.html_safe, company_company_job_company_save_job_path(company_by_job.id, company_job.id, pre_save.id, type_param: 'mini'), method: :delete, remote: true %>
+															<%else%>
+																<%= link_to '<button class="save_btn"><i class="material-icons-outlined">turned_in_not</i> </button>'.html_safe, company_company_job_company_save_jobs_path(company_by_job.id, company_job.id, type_param: 'mini'), method: :post, remote: true %>
+															<%end%>
+														<%else%>
+															<%= link_to '<button class="save_btn"><i class="material-icons-outlined">turned_in_not</i> </button>'.html_safe, login_path%>
 														<%end%>
 													</div>
 												</div>
-
-												<div class="company_job_right">
-                                                    <div class="company_job_des">
-                                                        <div class="company_job_title">
-                                                            <a><%= link_to (company_job.title), company_company_job_path(company_by_job, company_job) %></a>
-                                                        </div>
-
-                                                        <div class="company_job_company_rate">
-                                                            <a><%= link_to (company_by_job.name), company_path(company_by_job)%> </a>
-                                                            <a><%=cal_rating_review_total_score(company_by_job).to_f.round(1)%><i class="material-icons checked">circle</i></a>
-                                                        </div>
-
-                                                        <div class="company_job_description">
-                                                            <a><%= company_job.description.html_safe %></a>
-                                                        </div>
-
-                                                        <div class="company_job_mark">
-                                                            <div class="company_job_location">
-                                                                <a><i class="material-icons-outlined">location_on</i><%= company_job.location %></a>
-                                                            </div>
-
-                                                            <div class="company_job_tech">
-                                                                <a><i class="material-icons-outlined">book</i><%= company_job.category %></a>
-                                                            </div>
-
-                                                            <div class="company_job_salary">
-                                                                <%if logged_in?%>
-                                                                    <a><i class="material-icons-outlined">local_offer</i><%= convert_salary_to_string(company_job)%></a>
-                                                                <%else%>
-                                                                    <%= link_to login_path, form_class: "job_salary_login" do%>
-                                                                        <i class="material-icons-outlined">local_offer</i> <span>Đăng nhập để xem mức lương</span>
-                                                                    <%end%>
-                                                                <%end%>
-                                                            </div>
-
-                                                            <div class="company_job_type">
-                                                                <a><i class="material-icons-outlined">rss_feed</i><%= company_job.job_type %></a>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                                            
-                                                    <div class="company_job_info">
-                                                        <div class="company_job_date">
-                                                            <a><%= time_ago_in_words(company_job.created_at) %> </a>
-                                                        </div>
-                                                        <div class="company_job_hot_save">
-                                                            <div class="company_job_button_save" id="job_<%=company_job.id%>">
-                                                                <%if company_job.urgent%>
-                                                                    <a class="hot_label">Urgent</a>
-                                                                <%end%>
-                                                                <%if logged_in?%>
-                                                                    <% pre_save = company_job.company_save_jobs.find { |save| save.user_id == current_user.id} %>
-                                                                    <% if pre_save %> 
-                                                                        <%= link_to '<button class="save_btn_highlight"><i class="material-icons">turned_in</i> </button>'.html_safe, company_company_job_company_save_job_path(company_by_job.id, company_job.id, pre_save.id, type_param: 'mini'), method: :delete, remote: true %>
-                                                                    <%else%>
-                                                                        <%= link_to '<button class="save_btn"><i class="material-icons-outlined">turned_in_not</i> </button>'.html_safe, company_company_job_company_save_jobs_path(company_by_job.id, company_job.id, type_param: 'mini'), method: :post, remote: true %>
-                                                                    <%end%>
-                                                                <%else%>
-                                                                    <%= link_to '<button class="save_btn"><i class="material-icons-outlined">turned_in_not</i> </button>'.html_safe, login_path%>
-                                                                <%end%>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                </div>
-											</div>
-										</div>
-									<%end%>
-								<%end%>
-							</div>
-						</div>
-					<%end%>
-				</div>
-				
-				<div class="all_job_container">
-					<div class="job_label">
-						<span>Danh sách việc làm</span>
-					</div>
-					<div class="row">
-						<%@company_jobs.each do |company_job|%>
-							<%company = company_job.company%>
-							<div class="col-sm-6">
-								<div class="user_home_job_block">
-									<div class="company_job_left">
-										<div class="company_avatar">
-											<%if company.avatar?%>
-												<%= link_to (image_tag(company.avatar.thumb.url)), image_path(url_for(company.avatar.thumb.url)), rel: "gallery" , :href => company_path(company)%>
-											<%end%>
-										</div>
-									</div>
-
-									<div class="company_job_right">
-										<div class="company_job_des">
-											<div class="company_job_title">
-												<a><%= link_to (company_job.title), company_company_job_path(company, company_job) %></a>
-											</div>
-
-											<div class="company_job_company_rate">
-												<a><%= link_to (company.name), company_path(company)%> </a>
-												<a><%=cal_rating_review_total_score(company).to_f.round(1)%><i class="material-icons checked">circle</i></a>
-											</div>
-
-											<div class="company_job_description">
-												<a><%= company_job.description.html_safe %></a>
-											</div>
-
-											<div class="company_job_mark">
-												<div class="company_job_location">
-													<a><i class="material-icons-outlined">location_on</i><%= company_job.location %></a>
-												</div>
-
-												<div class="company_job_tech">
-													<a><i class="material-icons-outlined">book</i><%= company_job.category %></a>
-												</div>
-
-												<div class="company_job_salary">
-													<%if logged_in?%>
-														<a><i class="material-icons-outlined">local_offer</i><%= convert_salary_to_string(company_job)%></a>
-													<%else%>
-														<%= link_to login_path, form_class: "job_salary_login" do%>
-															<i class="material-icons-outlined">local_offer</i> <span>Đăng nhập để xem mức lương</span>
-														<%end%>
-													<%end%>
-												</div>
-
-												<div class="company_job_type">
-													<a><i class="material-icons-outlined">rss_feed</i><%= company_job.job_type %></a>
-												</div>
-											</div>
-										</div>
-																
-										<div class="company_job_info">
-											<div class="company_job_date">
-												<a><%= time_ago_in_words(company_job.created_at) %> </a>
-											</div>
-											<div class="company_job_hot_save">
-												<div class="company_job_button_save" id="job_<%=company_job.id%>">
-													<%if company_job.urgent%>
-														<a class="hot_label">Urgent</a>
-													<%end%>
-													<%if logged_in?%>
-														<% pre_save = company_job.company_save_jobs.find { |save| save.user_id == current_user.id} %>
-														<% if pre_save %> 
-															<%= link_to '<button class="save_btn_highlight"><i class="material-icons">turned_in</i> </button>'.html_safe, company_company_job_company_save_job_path(company.id, company_job.id, pre_save.id, type_param: 'mini'), method: :delete, remote: true %>
-														<%else%>
-															<%= link_to '<button class="save_btn"><i class="material-icons-outlined">turned_in_not</i> </button>'.html_safe, company_company_job_company_save_jobs_path(company.id, company_job.id, type_param: 'mini'), method: :post, remote: true %>
-														<%end%>
-													<%else%>
-														<%= link_to '<button class="save_btn"><i class="material-icons-outlined">turned_in_not</i> </button>'.html_safe, login_path%>
-													<%end%>
-												</div>
 											</div>
 										</div>
 									</div>
 								</div>
-							</div>
+							<%end%>
 						<%end%>
 					</div>
 				</div>
-            </div>
-        </div>
-    </body>
-</html>
+			<%end%>
+		</div>
+		
+		<div class="all_job_container">
+			<div class="job_label">
+				<span>Danh sách việc làm</span>
+			</div>
+			<div class="row">
+				<%@company_jobs.each do |company_job|%>
+					<%company = company_job.company%>
+					<div class="col-sm-6">
+						<div class="user_home_job_block">
+							<div class="company_job_left">
+								<div class="company_avatar">
+									<%if company.avatar?%>
+										<%= link_to (image_tag(company.avatar.thumb.url)), image_path(url_for(company.avatar.thumb.url)), rel: "gallery" , :href => company_path(company)%>
+									<%end%>
+								</div>
+							</div>
+
+							<div class="company_job_right">
+								<div class="company_job_des">
+									<div class="company_job_title">
+										<a><%= link_to (company_job.title), company_company_job_path(company, company_job) %></a>
+									</div>
+
+									<div class="company_job_company_rate">
+										<a><%= link_to (company.name), company_path(company)%> </a>
+										<a><%=cal_rating_review_total_score(company).to_f.round(1)%><i class="material-icons checked">circle</i></a>
+									</div>
+
+									<div class="company_job_description">
+										<a><%= company_job.description.html_safe %></a>
+									</div>
+
+									<div class="company_job_mark">
+										<div class="company_job_location">
+											<a><i class="material-icons-outlined">location_on</i><%= company_job.location %></a>
+										</div>
+
+										<div class="company_job_tech">
+											<a><i class="material-icons-outlined">book</i><%= company_job.category %></a>
+										</div>
+
+										<div class="company_job_salary">
+											<%if logged_in?%>
+												<a><i class="material-icons-outlined">local_offer</i><%= convert_salary_to_string(company_job)%></a>
+											<%else%>
+												<%= link_to login_path, form_class: "job_salary_login" do%>
+													<i class="material-icons-outlined">local_offer</i> <span>Đăng nhập để xem mức lương</span>
+												<%end%>
+											<%end%>
+										</div>
+
+										<div class="company_job_type">
+											<a><i class="material-icons-outlined">rss_feed</i><%= company_job.job_type %></a>
+										</div>
+									</div>
+								</div>
+														
+								<div class="company_job_info">
+									<div class="company_job_date">
+										<a><%= time_ago_in_words(company_job.created_at) %> </a>
+									</div>
+									<div class="company_job_hot_save">
+										<div class="company_job_button_save" id="job_<%=company_job.id%>">
+											<%if company_job.urgent%>
+												<a class="hot_label">Urgent</a>
+											<%end%>
+											<%if logged_in?%>
+												<% pre_save = company_job.company_save_jobs.find { |save| save.user_id == current_user.id} %>
+												<% if pre_save %> 
+													<%= link_to '<button class="save_btn_highlight"><i class="material-icons">turned_in</i> </button>'.html_safe, company_company_job_company_save_job_path(company.id, company_job.id, pre_save.id, type_param: 'mini'), method: :delete, remote: true %>
+												<%else%>
+													<%= link_to '<button class="save_btn"><i class="material-icons-outlined">turned_in_not</i> </button>'.html_safe, company_company_job_company_save_jobs_path(company.id, company_job.id, type_param: 'mini'), method: :post, remote: true %>
+												<%end%>
+											<%else%>
+												<%= link_to '<button class="save_btn"><i class="material-icons-outlined">turned_in_not</i> </button>'.html_safe, login_path%>
+											<%end%>
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+				<%end%>
+			</div>
+		</div>
+	</div>
+</div>

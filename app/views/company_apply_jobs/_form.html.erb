@@ -1,66 +1,57 @@
-<!DOCTYPE html>
-<html>
-    <head>
-        <meta name="viewport" content="width=device-width, height=device-height, initial-scale=1.0"/>
-    </head>
-
-    <body>
-        <div class="container">
-            <div class="new_apply_job_form">
-                <%= form_for [@company, @company_job, CompanyApplyJob.new] do |f| %>
-					<div class="new_apply_job_title">
-                        <a>Ứng tuyển vị trí "<%=@company_job.title%>" </a>
-                    </div>
-
-                    <div class="new_apply_job_title_sub">
-						<span>Note: Mục có dấu '*' là bắt buộc</span>
-					</div>
-					
-                    <div class="new_apply_job_content">
-                        <div class="new_apply_job_label">
-                            <a><%= f.label :name, "Họ và tên*", class: "new_apply_job_label_content" %></a>
-                        </div>
-                        
-                        <div class="new_apply_job_input_job">
-                            <%= f.text_field :name, :required => true, class: "new_apply_job_form_input_job", value: current_user.name %>
-                        </div>
-                    </div>
-
-                    <div class="new_apply_job_content">
-                        <div class="new_apply_job_label">
-                            <a><%= f.label :email, "Địa chỉ Email*", class: "new_apply_job_label_content" %></a>
-                        </div>
-                        
-                        <div class="new_apply_job_input_job">
-                            <%= f.text_field :email, :required => true, class: "new_apply_job_form_input_job", value: current_user.email%>
-                        </div>
-                    </div>
-
-                    <div class="new_apply_job_content">
-                        <div class="new_apply_job_label">
-                            <a><%= f.label :cover_vitate, "Upload CV*", class: "new_apply_job_label_content" %></a>
-                        </div>
-                        
-                        <div class="new_apply_job_input_job">
-                            <%= f.file_field :cover_vitate, :required => true, class: "new_apply_job_form_input_job", placeholder: "Nhập nội dung" %>
-                        </div>
-                    </div>
-
-                    <div class="new_apply_job_content">
-                        <div class="new_apply_job_label">
-                            <a><%= f.label :cover_letter, "Giới thiệu về bản thân(khoảng 3000 từ)*", class: "new_apply_job_label_content" %></a>
-                        </div>
-                        
-                        <div class="new_apply_job_input_job">
-                            <%= f.cktext_area :cover_letter, :required => true, class: "form-control-rich-text customized-min-height", ckeditor: { language: 'us', toolbar: "full"}, placeholder: "Giới thiệu bản thân( kinh nghiệm, học vấn, nghề nghiệp...) ít nhất 3000 từ" %>
-                        </div>
-                    </div>
-
-                    <div class="new_apply_job_submit">
-                        <%= f.submit "Nộp đơn", class: "new_apply_job_form_submit" %>
-                    </div>
-                <%end%>
+<div class="container">
+    <div class="new_apply_job_form">
+        <%= form_for [@company, @company_job, CompanyApplyJob.new] do |f| %>
+            <div class="new_apply_job_title">
+                <a>Ứng tuyển vị trí "<%=@company_job.title%>" </a>
             </div>
-        </div>
-    </body>
-</html>
+
+            <div class="new_apply_job_title_sub">
+                <span>Note: Mục có dấu '*' là bắt buộc</span>
+            </div>
+            
+            <div class="new_apply_job_content">
+                <div class="new_apply_job_label">
+                    <a><%= f.label :name, "Họ và tên*", class: "new_apply_job_label_content" %></a>
+                </div>
+                
+                <div class="new_apply_job_input_job">
+                    <%= f.text_field :name, :required => true, class: "new_apply_job_form_input_job", value: current_user.name %>
+                </div>
+            </div>
+
+            <div class="new_apply_job_content">
+                <div class="new_apply_job_label">
+                    <a><%= f.label :email, "Địa chỉ Email*", class: "new_apply_job_label_content" %></a>
+                </div>
+                
+                <div class="new_apply_job_input_job">
+                    <%= f.text_field :email, :required => true, class: "new_apply_job_form_input_job", value: current_user.email%>
+                </div>
+            </div>
+
+            <div class="new_apply_job_content">
+                <div class="new_apply_job_label">
+                    <a><%= f.label :cover_vitate, "Upload CV*", class: "new_apply_job_label_content" %></a>
+                </div>
+                
+                <div class="new_apply_job_input_job">
+                    <%= f.file_field :cover_vitate, :required => true, class: "new_apply_job_form_input_job", placeholder: "Nhập nội dung" %>
+                </div>
+            </div>
+
+            <div class="new_apply_job_content">
+                <div class="new_apply_job_label">
+                    <a><%= f.label :cover_letter, "Giới thiệu về bản thân(khoảng 3000 từ)*", class: "new_apply_job_label_content" %></a>
+                </div>
+                
+                <div class="new_apply_job_input_job">
+                    <%= f.cktext_area :cover_letter, :required => true, class: "form-control-rich-text customized-min-height", ckeditor: { language: 'us', toolbar: "full"}, placeholder: "Giới thiệu bản thân( kinh nghiệm, học vấn, nghề nghiệp...) ít nhất 3000 từ" %>
+                </div>
+            </div>
+
+            <div class="new_apply_job_submit">
+                <%= f.submit "Nộp đơn", class: "new_apply_job_form_submit" %>
+            </div>
+        <%end%>
+    </div>
+</div>

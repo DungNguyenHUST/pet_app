@@ -1,96 +1,87 @@
-<!DOCTYPE html>
-<html>
-	<head>
-		<meta name="viewport" content="width=device-width, initial-scale=1">
-	</head>
-	<body>
-		<div class="topnav" id="myTopnav">
-			<div class="container">
-				<a href="javascript:void(0);" class="menu_icon" onclick="openNav()">
-					<i class="material-icons-outlined"> menu</i> 
-				</a>
+<div class="topnav" id="myTopnav">
+	<div class="container">
+		<a href="javascript:void(0);" class="menu_icon" onclick="openNav()">
+			<i class="material-icons-outlined"> menu</i> 
+		</a>
 
-				<a href="javascript:void(0);" class="close_icon" onclick="closeNav()">
-					<i class="material-icons-outlined"> close</i> 
-				</a>
+		<a href="javascript:void(0);" class="close_icon" onclick="closeNav()">
+			<i class="material-icons-outlined"> close</i> 
+		</a>
 
-				<div class="nav_logo">
-					<div class="rounded">
-						<%= link_to (image_tag(("logo_offical.png"))), image_path(url_for(("logo_offical.png"))), rel: "gallery" , :href => pages_path%>
-					</div>
-				</div>
-
-				<%if logged_in?%>
-					<div class="nav_login_moblie" >
-						<%if current_user.employer?%>
-							<%= link_to pages_path do %>
-								<i class="material-icons-outlined">account_circle</i>
-							<% end %>
-						<%else%>
-							<%= link_to user_path(current_user) do %>
-								<i class="material-icons-outlined">account_circle</i>
-							<% end %>
-						<%end%>
-					</div>
-				<%else%>
-					<div class="nav_login_moblie">
-						<%= link_to sessions_new_path do %>
-							<i class="material-icons-outlined">account_circle</i>
-						<% end %>
-					</div>
-				<%end%>
-
-				<a href="<%=company_job_list_path %>">Việc làm </a>
-				<a href="<%=companies_path %>">Review công ty </a>
-				<a href="<%=problems_path %>">Câu hỏi phỏng vấn </a>
-				<a href="<%=posts_path %>">Blog</a>
-
-				<div class="nav_right">
-					<%if logged_in?%>
-						<%if current_user.employer?%>
-							<a class="nav_user" href="<%=pages_path%>"> 
-								<span> Hi, <%=current_user.name%></span>
-								<span><%= link_to 'Đăng xuất'.html_safe, logout_path(current_user), :data => { :confirm => "Bạn có chắc chắn muốn đăng xuất không?" } %></span>
-							</a>
-						<%else%>
-							<a class="nav_user" href="<%=user_path(current_user) %>"> 
-								<span> Hi, <%=current_user.name%></span>
-								<span><%= link_to 'Đăng xuất'.html_safe, logout_path(current_user), :data => { :confirm => "Bạn có chắc chắn muốn đăng xuất không?" } %></span>
-							</a>
-						<%end%>
-					<%else%>
-						<a class="nav_recrui" href="<%=new_user_path(role_param: 'employer') %>">
-							<span>Tuyển dụng</span>
-						</a>
-						<a class="nav_login" href="<%=sessions_new_path %>">
-							<span>
-								<i class="material-icons"> account_circle</i> Đăng nhập
-							</span>
-						</a>
-					<%end%>
-				</div>
+		<div class="nav_logo">
+			<div class="rounded">
+				<%= link_to (image_tag(("logo_offical.png"))), image_path(url_for(("logo_offical.png"))), rel: "gallery" , :href => pages_path%>
 			</div>
 		</div>
 
-		<script>
-			function openNav() {
-				var x = document.getElementById("myTopnav");
-				if (x.className === "topnav") {
-					x.className += " responsive";
-				} else {
-					x.className = "topnav";
-				}
-			}
+		<%if logged_in?%>
+			<div class="nav_login_moblie" >
+				<%if current_user.employer?%>
+					<%= link_to pages_path do %>
+						<i class="material-icons-outlined">account_circle</i>
+					<% end %>
+				<%else%>
+					<%= link_to user_path(current_user) do %>
+						<i class="material-icons-outlined">account_circle</i>
+					<% end %>
+				<%end%>
+			</div>
+		<%else%>
+			<div class="nav_login_moblie">
+				<%= link_to sessions_new_path do %>
+					<i class="material-icons-outlined">account_circle</i>
+				<% end %>
+			</div>
+		<%end%>
 
-			function closeNav() {
-				var x = document.getElementById("myTopnav");
-				if (x.className === "topnav") {
-					x.className += " responsive";
-				} else {
-					x.className = "topnav";
-				}
-			}
-		</script>
+		<a href="<%=company_job_list_path %>">Việc làm </a>
+		<a href="<%=companies_path %>">Review công ty </a>
+		<a href="<%=problems_path %>">Câu hỏi phỏng vấn </a>
+		<a href="<%=posts_path %>">Blog</a>
 
-	</body>
-</html>
+		<div class="nav_right">
+			<%if logged_in?%>
+				<%if current_user.employer?%>
+					<a class="nav_user" href="<%=pages_path%>"> 
+						<span> Hi, <%=current_user.name%></span>
+						<span><%= link_to 'Đăng xuất'.html_safe, logout_path(current_user), :data => { :confirm => "Bạn có chắc chắn muốn đăng xuất không?" } %></span>
+					</a>
+				<%else%>
+					<a class="nav_user" href="<%=user_path(current_user) %>"> 
+						<span> Hi, <%=current_user.name%></span>
+						<span><%= link_to 'Đăng xuất'.html_safe, logout_path(current_user), :data => { :confirm => "Bạn có chắc chắn muốn đăng xuất không?" } %></span>
+					</a>
+				<%end%>
+			<%else%>
+				<a class="nav_recrui" href="<%=new_user_path(role_param: 'employer') %>">
+					<span>Tuyển dụng</span>
+				</a>
+				<a class="nav_login" href="<%=sessions_new_path %>">
+					<span>
+						<i class="material-icons"> account_circle</i> Đăng nhập
+					</span>
+				</a>
+			<%end%>
+		</div>
+	</div>
+</div>
+
+<script>
+	function openNav() {
+		var x = document.getElementById("myTopnav");
+		if (x.className === "topnav") {
+			x.className += " responsive";
+		} else {
+			x.className = "topnav";
+		}
+	}
+
+	function closeNav() {
+		var x = document.getElementById("myTopnav");
+		if (x.className === "topnav") {
+			x.className += " responsive";
+		} else {
+			x.className = "topnav";
+		}
+	}
+</script>
