@@ -1,5 +1,8 @@
 # Set the host name for URL creation
-SitemapGenerator::Sitemap.default_host = "https://firework.vn"
+require 'rubygems'
+require 'sitemap_generator'
+
+SitemapGenerator::Sitemap.default_host = "https://www.firework.vn/"
 
 SitemapGenerator::Sitemap.create do
   # Put links creation logic here.
@@ -25,6 +28,7 @@ SitemapGenerator::Sitemap.create do
   #     add article_path(article), :lastmod => article.updated_at
   #   end
   
-  add root_path, changefreq: "weekly"
-  
+  add '/home', :changefreq => 'daily', :priority => 0.9
+  add '/contact_us', :changefreq => 'weekly'
 end
+SitemapGenerator::Sitemap.ping_search_engines # Not needed if you use the rake tasks

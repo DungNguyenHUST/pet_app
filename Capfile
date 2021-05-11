@@ -40,6 +40,8 @@ Dir.glob("lib/capistrano/tasks/*.rake").each { |r| import r }
 require 'capistrano/rails'
 require 'capistrano/passenger'
 require 'capistrano/rbenv'
+require 'capistrano/sitemap_generator'
 
 set :rbenv_type, :user
 set :rbenv_ruby, '2.7.2'
+set :sitemap_roles, :web # default
