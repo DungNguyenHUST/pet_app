@@ -15,7 +15,7 @@
                                 <%if owner_user.present?%>
                                     <%if owner_user.avatar?%>
                                         <div class="user_avatar_small_img">
-                                            <%= link_to (image_tag(owner_user.avatar.thumb.url)), image_path(url_for(owner_user.avatar.thumb.url)), rel: "gallery" , :href => user_path(current_user)%>
+                                            <%= link_to (image_tag(owner_user.avatar.thumb.url)), image_path(url_for(owner_user.avatar.thumb.url)), rel: "gallery" , :href => user_path(owner_user)%>
                                         </div>
                                     <%else%>
                                         <div class="user_avatar_small_text checked_<%=user_color(owner_user.name)%>">
