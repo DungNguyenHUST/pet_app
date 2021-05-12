@@ -1,6 +1,137 @@
 //////////////////problem_solution//////////////////
 //@import url(https://maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css);
+//////////////////new///////////////////////
+.new_problem_solution_form
+{
+    margin-left: 20%;
+    margin-right: 20%;
+    margin-bottom: 50px;
+    .new_problem_solution_title{
+        font-size: 22px;
+        color: #333;
+        text-align: center;
+        margin-top: 50px;
+        margin-bottom: 30px;
+    }
 
+    .new_problem_solution_title_sub{
+        span{
+            font-size: 13px;
+            text-align: left;
+            color: #333;
+            font-style: italic;
+        }
+    }
+
+    .new_problem_solution_section
+    {
+        // border-bottom: 1px solid rgb(190, 185, 185);
+        // margin-top: 30px;
+        // background-color: #333;
+        .new_problem_solution_content{
+            .new_problem_solution_label{
+                font-weight: 550;
+                font-size: 14px;
+                color: #333;
+                text-align: left;
+            }
+
+            .new_problem_solution_input{
+                left: 0px;
+                margin-top: 5px;
+                margin-bottom: 20px;
+                width: 750px;
+                height: auto;
+                .new_problem_solution_form_input{
+                    margin-left: 0px;
+                    height: 40px;
+                    width: 100%;
+                    border: 1px solid #dfe1e5;
+                    border-radius: 3px;
+                }
+            }
+            .new_problem_solution_input_time{
+                left: 0px;
+                margin-top: 5px;
+                margin-bottom: 20px;
+                width: 300px;
+                .new_problem_solution_form_input{
+                    margin-left: 0px;
+                    height: 40px;
+                    width: 100%;
+                    border: 1px solid #dfe1e5;
+                    border-radius: 3px;
+                }
+                .form-control-text{
+                    min-height: 100px;
+                    height: auto;
+                    margin-left: 0px;
+                    width: 100%;
+                    border: 1px solid #dfe1e5;
+                    border-radius: 3px;
+                    overflow: auto;
+                }
+            }
+
+            .new_problem_solution_input_review{
+                left: 0px;
+                margin-top: 5px;
+                margin-bottom: 20px;
+                width: 750px;
+                height: 50px;
+                .new_problem_solution_form_input_review{
+                    word-wrap: break-word;
+                    white-space: pre-wrap; 
+                    margin-left: 0px;
+                    height: 80px;
+                    width: 100%;
+                    border: 1px solid #dfe1e5;
+                    border-radius: 3px;
+                }
+            }
+        }
+    }
+
+    .new_problem_solution_content_checkbox
+    {
+        margin-top: 50px;
+        .label-agree-term
+        {
+           font-size: 14px; 
+        }
+    }
+
+    .new_problem_solution_submit{
+        width: 750px;
+        margin-top: 20px;
+        .new_problem_solution_form_submit{
+            height: 50px;
+            width: 100%;
+            border-radius: 3px;
+            padding: 6px;
+            background: #1877f2;
+            font-size: 14px;
+            border: none;
+            cursor: pointer;
+            text-align: center;
+            color: #fff;
+            
+            &:hover{
+                background-color: #1877f2;
+            }
+        }
+    }
+
+    .my_style_class{
+        padding: 10px;
+        width: 300px;
+        font-size: 14px;
+        border-radius: 3px;
+        background: #fff;
+    }
+}
+
+/////////////////show/////////////////////////////////
 .user_problem_solution_block {
     width: 100%;
     height: 100%;
@@ -15,17 +146,88 @@
         display: block;
         position: relative;
         float: left;
-        .user_avatar {
+        .user_avatar_small {
             display: block;
-            margin-left: 10px;
-            margin-right: auto;
-            i{
-                text-align: center;
-                font-size: 33px;
+            text-align: center;
+            margin-bottom: 5px;
+            margin-top: 3px;
+            .user_avatar_small_text{
+                .user_name_label{
+                    border-radius: 50%;
+                    background-color: #dfe1e5;
+                    padding: 7px;
+                    padding-left: 12px;
+                    padding-right: 12px;
+                    position: relative;
+                    top: 3px;
+                    color: #fee;
+                }
             }
-            img {
-                width: 50px;
-                height: 50px;
+            .checked_0{
+                background-color: #888;
+            }
+            .checked_1{
+                .user_name_label{
+                    background-color: #7a20a1;
+                }
+            }
+            .checked_2{
+                .user_name_label{
+                    background-color: #778f99;
+                }
+            }
+            .checked_3{
+                .user_name_label{
+                    background-color: #00579c;
+                }
+            }
+            .checked_4{
+                .user_name_label{
+                    background-color: #33691e;
+                }
+            }
+            .checked_5{
+                .user_name_label{
+                    background-color: #c2175b;
+                }
+            }
+            .checked_6{
+                .user_name_label{
+                    background-color: #00887a;
+                }
+            }
+            .checked_7{
+                .user_name_label{
+                    background-color: #aa47bc;
+                }
+            }
+            .checked_8{
+                .user_name_label{
+                    background-color: #f24e1b;
+                }
+            }
+            .checked_9{
+                .user_name_label{
+                    background-color: #689f39;
+                }
+            }
+            .user_avatar_small_img{
+                img{
+                    border: 1px solid #dfe1e5;
+                    width: 33px;
+                    height: 33px;
+                    border-radius: 50%;
+                    object-fit: cover;
+                }
+            }
+            .user_avatar_small_default{
+                padding: 6px;
+                padding-left: 12px;
+                padding-right: 12px;
+                position: relative;
+                font-size: 14px;
+                border-radius: 50%;
+                color: #ffe;
             }
         }
 
@@ -109,7 +311,7 @@
     .user_problem_solution_cotent
     {
         display: block;
-        margin-left: 60px;
+        margin-left: 55px;
         background-color: #f8f9fa;
         border-radius: 3px;
         padding: 10px;

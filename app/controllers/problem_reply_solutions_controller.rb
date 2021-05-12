@@ -12,18 +12,19 @@ class ProblemReplySolutionsController < ApplicationController
     end
 
     def create
-        @problem = Problem.friendly.find(params[:problem_id])
-        @problem_solution = @problem.problem_solutions.friendly.find(params[:problem_solution_id])
-        @problem_reply_solution = @problem_solution.problem_reply_solutions.build(problem_reply_solution_param)
-
         if logged_in?
-            @problem_reply_solution.user_name = @current_user.name
+            @problem = Problem.friendly.find(params[:problem_id])
+            @problem_solution = @problem.problem_solutions.friendly.find(params[:problem_solution_id])
+            @problem_reply_solution = @problem_solution.problem_reply_solutions.build(problem_reply_solution_param)
+            @problem_reply_solution.user_name = current_user.name
+            @problem_reply_solution.user_id = current_user.id
         else
-            @problem_reply_solution.user_name = "Ẩn danh"
+            redirect_to login_path
+            return
         end
 
         if @problem_reply_solution.save
-            redirect_to problem_path(@problem)
+            redirect_to problem_path(@problem, tab_id: 'ProblemSolutionID')
         else
             flash[:danger] = "Lỗi, hãy điền đủ nội dung có dấu '*'"
             # render :new
@@ -36,7 +37,7 @@ class ProblemReplySolutionsController < ApplicationController
         @problem_reply_solution = @problem_solution.problem_reply_solutions.friendly.find(params[:id])
 
         @problem_reply_solution.destroy
-        redirect_to problem_path(@problem)
+        redirect_to problem_path(@problem, tab_id: 'ProblemSolutionID')
     end
 
     def show

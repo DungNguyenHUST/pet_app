@@ -10,14 +10,14 @@ class PostCommentsController < ApplicationController
     end
 
     def create
-        @post = Post.friendly.find(params[:post_id])
-
-        @post_comment = @post.post_comments.build(post_comment_param)
-
         if logged_in?
-            @post_comment.user_name = @current_user.name
+            @post = Post.friendly.find(params[:post_id])
+            @post_comment = @post.post_comments.build(post_comment_param)
+            @post_comment.user_name = current_user.name
+            @post_comment.user_id = current_user.id
         else
-            @post_comment.user_name = "Ẩn danh"
+            redirect_to login_path
+            return
         end
 
         if @post_comment.save

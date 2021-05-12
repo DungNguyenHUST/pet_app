@@ -39,7 +39,7 @@ class PagesController < ApplicationController
         if logged_in?
             if current_user.employer
                 # for company of employer
-                @company_by_employer = @current_user.company
+                @company_by_employer = current_user.company
                 @company_job_by_employer = @company_by_employer.company_jobs.all
             end
         end

@@ -35,9 +35,9 @@
                                 <%if @company_job.end_date%>
                                     <%cal_date = ((@company_job.end_date - Time.now)/(24*60*60))%>
                                     <%if cal_date > 0%>
-                                        <a><i class="material-icons-outlined">schedule</i> Đã đăng <%= time_ago_in_words(@company_job.created_at) %> • Hết hạn sau <%=cal_date.to_i%> ngày</a>
+                                        <a><i class="material-icons-outlined">schedule</i> Đã đăng <%= time_ago_in_words(@company_job.created_at) %> · Hết hạn sau <%=cal_date.to_i%> ngày</a>
                                     <%else%>
-                                        <a><i class="material-icons-outlined">schedule</i> Đã đăng <%= time_ago_in_words(@company_job.created_at) %> • </a><span class="warning">Đã hết hạn<span>
+                                        <a><i class="material-icons-outlined">schedule</i> Đã đăng <%= time_ago_in_words(@company_job.created_at) %> · </a><span class="warning">Đã hết hạn<span>
                                     <%end%>
                                 <%else%>
                                     <a><i class="material-icons-outlined">schedule</i> Đã đăng <%= time_ago_in_words(@company_job.created_at) %> </a>

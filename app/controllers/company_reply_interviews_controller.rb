@@ -12,14 +12,15 @@ class CompanyReplyInterviewsController < ApplicationController
     end
 
     def create
-        @company = Company.friendly.find(params[:company_id])
-        @company_interview = @company.company_interviews.friendly.find(params[:company_interview_id])
-        @company_reply_interview = @company_interview.company_reply_interviews.build(company_reply_interview_param)
-
         if logged_in?
-            @company_reply_interview.user_name = @current_user.name
+            @company = Company.friendly.find(params[:company_id])
+            @company_interview = @company.company_interviews.friendly.find(params[:company_interview_id])
+            @company_reply_interview = @company_interview.company_reply_interviews.build(company_reply_interview_param)
+            @company_reply_interview.user_name = current_user.name
+            @company_reply_interview.user_id = current_user.id
         else
-            @company_reply_interview.user_name = "Ẩn danh"
+            redirect_to login_path
+            return
         end
 
         if @company_reply_interview.save

@@ -6,13 +6,13 @@ module SessionHelper
 
     def log_out
         session.delete :user_id
-        @current_user = nil
+        current_user = nil
     end
 
     # get current user ID
     def current_user
         if session[:user_id]
-            @current_user ||= User.friendly.find_by(id: session[:user_id])
+            current_user ||= User.friendly.find_by(id: session[:user_id])
         end
     end
 

@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_05_07_092802) do
+ActiveRecord::Schema.define(version: 2021_05_11_152744) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -145,6 +145,7 @@ ActiveRecord::Schema.define(version: 2021_05_07_092802) do
     t.string "companyName"
     t.boolean "privacy", default: false
     t.string "slug"
+    t.integer "user_id"
     t.index ["slug"], name: "index_company_interviews_on_slug", unique: true
   end
 
@@ -202,6 +203,7 @@ ActiveRecord::Schema.define(version: 2021_05_07_092802) do
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.string "slug"
+    t.integer "user_id"
     t.index ["slug"], name: "index_company_reply_interviews_on_slug", unique: true
   end
 
@@ -212,6 +214,7 @@ ActiveRecord::Schema.define(version: 2021_05_07_092802) do
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.string "slug"
+    t.integer "user_id"
     t.index ["slug"], name: "index_company_reply_reviews_on_slug", unique: true
   end
 
@@ -239,6 +242,7 @@ ActiveRecord::Schema.define(version: 2021_05_07_092802) do
     t.boolean "privacy", default: false
     t.string "working_time"
     t.string "slug"
+    t.integer "user_id"
     t.index ["slug"], name: "index_company_reviews_on_slug", unique: true
   end
 
@@ -267,6 +271,7 @@ ActiveRecord::Schema.define(version: 2021_05_07_092802) do
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.string "slug"
+    t.integer "user_id"
     t.index ["slug"], name: "index_post_comments_on_slug", unique: true
   end
 
@@ -277,6 +282,7 @@ ActiveRecord::Schema.define(version: 2021_05_07_092802) do
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.string "slug"
+    t.integer "user_id"
     t.index ["slug"], name: "index_post_reply_comments_on_slug", unique: true
   end
 
@@ -291,6 +297,7 @@ ActiveRecord::Schema.define(version: 2021_05_07_092802) do
     t.string "avatar"
     t.string "wall_picture"
     t.integer "category"
+    t.integer "user_id"
     t.index ["slug"], name: "index_posts_on_slug", unique: true
   end
 
@@ -301,6 +308,7 @@ ActiveRecord::Schema.define(version: 2021_05_07_092802) do
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.string "slug"
+    t.integer "user_id"
     t.index ["slug"], name: "index_problem_reply_solutions_on_slug", unique: true
   end
 
@@ -349,6 +357,7 @@ ActiveRecord::Schema.define(version: 2021_05_07_092802) do
     t.string "category"
     t.boolean "approved", default: false
     t.string "slug"
+    t.integer "user_id"
     t.index ["slug"], name: "index_problems_on_slug", unique: true
   end
 

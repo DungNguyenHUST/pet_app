@@ -10,22 +10,21 @@ class ProblemSolutionsController < ApplicationController
     end
 
     def create
-        @problem = Problem.friendly.find(params[:problem_id])
-
-        @problem_solution = @problem.problem_solutions.build(problem_solution_param)
-
         if logged_in?
-            @problem_solution.user_name = @current_user.name
-            @problem_solution.user_id = @current_user.id
+            @problem = Problem.friendly.find(params[:problem_id])
+            @problem_solution = @problem.problem_solutions.build(problem_solution_param)
+            @problem_solution.user_name = current_user.name
+            @problem_solution.user_id = current_user.id
         else
-            @problem_solution.user_name = "Ẩn danh"
+            redirect_to login_path
+            return
         end
 
         if @problem_solution.save
-            redirect_to problem_path(@problem)
+            redirect_to problem_path(@problem, tab_id: 'ProblemSolutionID')
         else
             flash[:danger] = "Lỗi, hãy điền nội dung câu trả lời của bạn ..."
-            redirect_to problem_path(@problem)
+            redirect_to problem_path(@problem, tab_id: 'ProblemSolutionID')
         end
     end
 
@@ -48,7 +47,7 @@ class ProblemSolutionsController < ApplicationController
         @problem = Problem.friendly.find(params[:problem_id])
         @problem_solution = @problem.problem_solutions.friendly.find(params[:id])
         @problem_solution.destroy
-        redirect_to problem_path(@problem)
+        redirect_to problem_path(@problem, tab_id: 'ProblemSolutionID')
     end
 
     def show
