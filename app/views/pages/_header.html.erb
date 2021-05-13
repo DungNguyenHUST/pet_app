@@ -16,6 +16,9 @@
 
 		<%if logged_in?%>
 			<div class="nav_login_moblie" >
+					<div class="user_notification_mobile">
+						<span class="material-icons-outlined">notifications</span>
+					</div>
 				<div class="user_avatar_small_mobile">
 					<%if current_user.employer? || current_user.admin?%>
 						<%url = pages_path%>
@@ -33,12 +36,6 @@
 					<%end%>
 				</div>
 			</div>
-		<%else%>
-			<div class="nav_login_moblie">
-				<%= link_to sessions_new_path do %>
-					<i class="material-icons-outlined">account_circle</i>
-				<% end %>
-			</div>
 		<%end%>
 
 		<a href="<%=company_job_list_path %>">Việc làm </a>
@@ -49,6 +46,9 @@
 		<div class="nav_right">
 			<%if logged_in?%>
 				<div class="nav_user">
+					<div class="user_notification">
+						<span class="material-icons-outlined">notifications</span>
+					</div>
 					<div class="user_avatar_small">
 						<%if current_user.employer? || current_user.admin?%>
 							<%url = pages_path%>
@@ -72,7 +72,7 @@
 				</a>
 				<a class="nav_login" href="<%=sessions_new_path %>">
 					<span>
-						<i class="material-icons"> account_circle</i> Đăng nhập
+						<i class="material-icons">account_circle</i> Đăng nhập
 					</span>
 				</a>
 			<%end%>

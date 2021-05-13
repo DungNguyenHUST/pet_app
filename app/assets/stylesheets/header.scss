@@ -8,18 +8,18 @@
 .topnav .nav_logo{
 	float: left;
 	display: block;
-	top: -9px;
+	top: -8px;
 	position: relative;
 	margin-right: 2%;
-	@media screen and (max-width: 600px) {
-		margin-left: 30%;
+	img{
+		width: 28px;
+		height: 28px;
 	}
 	left: -15px;
 	a{
 		color: #444;
 		font-size: 25px;
 		font-weight: 550;
-		// text-shadow: 0.5px 0.5px #999;
 		justify-content: center;
 		font-family: 'Roboto', Sans-serif;
 		&:hover{
@@ -56,27 +56,39 @@
 		position: relative;
 		top: -3px;
 	}
+	.user_notification_mobile{
+		float: left;
+		span{
+			position: relative;
+			top: 15px;
+			font-size: 25px;
+			left: 10px;
+		}
+	}
 
 	.user_avatar_small_mobile{
 		display: block;
 		text-align: center;
 		float: left;
 		.user_avatar_small_text{
+			margin-left: 15px;
 			.user_name_label{
-				width: 30px;
+				width: 32px;
 				border-radius: 50%;
 				padding: 4px;
 				padding-left: 8px;
 				padding-right: 8px;
 				position: relative;
-				top: 10px;
+				top: 12px;
 			}
 			a:link{
 				color: #fee;
 			}
 		}
 		.checked_0{
-			background-color: #888;
+			.user_name_label{
+				background-color: #888;
+			}
 		}
 		.checked_1{
 			.user_name_label{
@@ -126,11 +138,13 @@
 
 		.user_avatar_small_img{
 			position: relative;
-			top: -5px;
+			top: -4px;
+			left: 10px;
+			border: none;
 			img{
 				border: 1px solid #dfe1e5;
-				width: 33px;
-				height: 33px;
+				width: 32px;
+				height: 32px;
 				border-radius: 50%;
 				object-fit: cover;
 			}
@@ -210,16 +224,25 @@
 	}
 
 	.nav_user{
+		@media screen and (max-width: 600px){
+			display: none;
+		}	
+		.user_notification{
+			float: left;
+			span{
+				position: relative;
+				top: 15px;
+				font-size: 25px;
+			}
+		}
 		.user_avatar_small{
+			float: right;
 			display: block;
 			text-align: center;
-			float: left;
 			.user_avatar_small_text{
-				@media screen and (max-width: 600px){
-					display: none;
-				}	
+				margin-left: 5px;
 				.user_name_label{
-					width: 33px;
+					width: 32px;
 					border-radius: 50%;
 					padding: 5px;
 					padding-left: 10px;
@@ -281,15 +304,12 @@
             }
 	
 			.user_avatar_small_img{
-				@media screen and (max-width: 600px){
-					display: none;
-				}	
 				position: relative;
 				top: -5px;
 				img{
 					border: 1px solid #dfe1e5;
-					width: 33px;
-					height: 33px;
+					width: 32px;
+					height: 32px;
 					border-radius: 50%;
 					object-fit: cover;
 				}
@@ -321,7 +341,7 @@
 @media screen and (max-width: 600px) {
 	.topnav a:not(:first-child) {display: none;}
 	.topnav a.menu_icon {
-		float: left;
+		float: right;
 		display: block;
 		font-size: 20px;
 		border-bottom: none;
@@ -329,7 +349,6 @@
 
 	.topnav .nav_logo{
 		float: left;
-		// margin-left: 25%;
 		.rounded
 		{
 			position: relative;
@@ -337,6 +356,10 @@
 				width: 30px;
 				height: 30px;
 				object-fit: cover;
+				@media screen and (max-width: 600px) {
+					width: 28px;
+					height: 28px;
+				}
 			}
 			display: block;
 			float: left;
