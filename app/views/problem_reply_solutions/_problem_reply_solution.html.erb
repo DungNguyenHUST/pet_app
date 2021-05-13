@@ -2,14 +2,14 @@
     <div class="user_reply_solution_left">
         <div class="user_reply_comment_left">
             <div class="user_avatar_small">
-                <%owner_user = owner_user(problem_reply_solution)%>
+                <%owner_user = find_owner_user(problem_reply_solution)%>
                 <%if owner_user.present?%>
                     <%if owner_user.avatar?%>
                         <div class="user_avatar_small_img">
                             <%= link_to (image_tag(owner_user.avatar.thumb.url)), image_path(url_for(owner_user.avatar.thumb.url)), rel: "gallery" , :href => user_path(owner_user)%>
                         </div>
                     <%else%>
-                        <div class="user_avatar_small_text checked_<%=user_color(owner_user.name)%>">
+                        <div class="user_avatar_small_text checked_<%=find_user_color(owner_user.name)%>">
                             <a><%= link_to owner_user.name[0], user_path(owner_user)%></a>
                         </div>
                     <%end%>

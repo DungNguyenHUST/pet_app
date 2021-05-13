@@ -29,6 +29,8 @@ class User < ApplicationRecord
 
     has_many :company_save_jobs, dependent: :destroy
 
+    has_many :user_notifications, dependent: :destroy
+
     belongs_to :company, optional: true
 	
 	def self.approved

@@ -7,7 +7,7 @@ module ApplicationHelper
     	cal_date = (end_time - DateTime.now)/(24*60*60)
     end
     
-    def owner_user(object)
+    def find_owner_user(object)
         User.all.each do |user|
             if object.user_id == user.id
                 @owner_user = user
@@ -17,7 +17,7 @@ module ApplicationHelper
         return @owner_user
     end
 
-    def user_color(user_name)
+    def find_user_color(user_name)
         color_type = 0
         case user_name[0]
             when "A","Ă","Â"

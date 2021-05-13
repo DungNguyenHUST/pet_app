@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_05_11_152744) do
+ActiveRecord::Schema.define(version: 2021_05_13_090427) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -361,6 +361,16 @@ ActiveRecord::Schema.define(version: 2021_05_11_152744) do
     t.index ["slug"], name: "index_problems_on_slug", unique: true
   end
 
+  create_table "user_notifications", force: :cascade do |t|
+    t.bigint "user_id", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.string "title"
+    t.text "content"
+    t.string "original_url"
+    t.index ["user_id"], name: "index_user_notifications_on_user_id"
+  end
+
   create_table "users", force: :cascade do |t|
     t.string "name"
     t.string "email"
@@ -410,4 +420,5 @@ ActiveRecord::Schema.define(version: 2021_05_11_152744) do
   add_foreign_key "problem_unvote_solutions", "users"
   add_foreign_key "problem_vote_solutions", "problem_solutions"
   add_foreign_key "problem_vote_solutions", "users"
+  add_foreign_key "user_notifications", "users"
 end

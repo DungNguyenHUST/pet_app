@@ -17,7 +17,9 @@
 		<%if logged_in?%>
 			<div class="nav_login_moblie" >
 					<div class="user_notification_mobile">
-						<i class="material-icons-outlined">notifications</i><span>0</span>
+						<%= link_to user_path(current_user, :tab_id => "NotificationID") do %>
+							<i class="material-icons-outlined">notifications</i><span><%=current_user.user_notifications.count%></span>
+						<%end%>
 					</div>
 				<div class="user_avatar_small_mobile">
 					<%if current_user.employer? || current_user.admin?%>
@@ -30,7 +32,7 @@
 							<%= link_to (image_tag(current_user.avatar.thumb.url)), image_path(url_for(current_user.avatar.thumb.url)), rel: "gallery" , :href => url%>
 						</div>
 					<%else%>
-						<div class="user_avatar_small_text checked_<%=user_color(current_user.name)%>">
+						<div class="user_avatar_small_text checked_<%=find_user_color(current_user.name)%>">
 							<span><%= link_to current_user.name[0], url, class: "user_name_label"%></span>
 						</div>
 					<%end%>
@@ -46,8 +48,10 @@
 		<div class="nav_right">
 			<%if logged_in?%>
 				<div class="nav_user">
-					<div class="user_notification">
-						<i class="material-icons-outlined">notifications</i><span>0</span>
+					<div class="user_notification">						
+						<%= link_to user_path(current_user, :tab_id => "NotificationID") do %>
+							<i class="material-icons-outlined">notifications</i><span><%=current_user.user_notifications.count%></span>
+						<%end%>
 					</div>
 					<div class="user_avatar_small">
 						<%if current_user.employer? || current_user.admin?%>
@@ -60,7 +64,7 @@
 								<%= link_to (image_tag(current_user.avatar.thumb.url)), image_path(url_for(current_user.avatar.thumb.url)), rel: "gallery" , :href => url%>
 							</div>
 						<%else%>
-							<div class="user_avatar_small_text checked_<%=user_color(current_user.name)%>">
+							<div class="user_avatar_small_text checked_<%=find_user_color(current_user.name)%>">
 								<span><%= link_to current_user.name[0], url, class: "user_name_label"%></span>
 							</div>
 						<%end%>

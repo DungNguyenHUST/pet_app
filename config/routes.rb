@@ -6,7 +6,11 @@ Rails.application.routes.draw do
   get     "logout"   => "sessions#destroy"
   get 'sessions/new'
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
-  resources :users
+  
+  resources :users do
+    resources :user_notifications
+  end
+
   resources :pages
   get     "admin_search"   => "pages#index"
 
