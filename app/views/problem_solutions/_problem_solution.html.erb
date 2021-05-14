@@ -86,7 +86,7 @@
         <%= form_for [@problem, problem_solution, ProblemReplySolution.new] do |f| %>
             <div class="new_reply_problem_solution_content">
                 <div class="new_reply_problem_solution_input_problem_solution">
-                    <%= f.text_area :reply_content, :required =>true, class: "form-control-text", placeholder: "Gửi trả lời" %>
+                    <%= f.text_area :reply_content, :required =>true, class: "form-control-text", placeholder: "Gửi trả câu trả lời của bạn" %>
                 </div>
             </div>
 
@@ -101,10 +101,10 @@
     <script>
         function myFunctionReplyproblem_solution(problem_solution_id) {
             var x = document.getElementById(problem_solution_id);
-            if (x.style.display == "none") {
-                x.style.display = "block";
-            } else {
+            if (x.style.display == "block") {
                 x.style.display = "none";
+            } else {
+                x.style.display = "block";
             }
         }
     </script>

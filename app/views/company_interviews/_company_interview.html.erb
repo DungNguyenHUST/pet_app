@@ -83,7 +83,7 @@
             <div class="interview_toolbar">
                 <div class="interview_reply_block">
                     <%if logged_in?%>
-                        <button class="reply_btn" onclick="myFunctionReplyinterview(<%=company_interview.id%>)"><i class="material-icons-outlined">chat_bubble_outline</i> <span><%= company_interview.company_reply_interviews.count%></span> <a>Trả lời</a> </button>
+                        <button class="reply_btn" onclick="myFunctionReplyInterview(<%=company_interview.id%>)"><i class="material-icons-outlined">chat_bubble_outline</i> <span><%= company_interview.company_reply_interviews.count%></span> <a>Trả lời</a> </button>
                     <%else%>
                         <%= button_to login_path, :method => :get, form_class: "reply_btn" do%>
                             <i class="material-icons-outlined">chat_bubble_outline</i> <span><%= company_interview.company_reply_interviews.count%></span> <a>Trả lời</a>
@@ -149,15 +149,15 @@
     </div>
 
     <script>
-        function myFunctionReplyInterview(interview_id) {
-            var x = document.getElementById(interview_id);
-            if (x.style.display == "none") 
+        function myFunctionReplyInterview(id) {
+            var x = document.getElementById(id);
+            if (x.style.display == "block") 
             {
-                x.style.display = "block";
+                x.style.display = "none";
             } 
             else 
             {
-                x.style.display = "none";
+                x.style.display = "block";
             }
         }
     </script>
