@@ -5,7 +5,7 @@
                 <span><%=@company_searchs.count%> công ty cho từ khóa "<%= params[:company_search]%>"</span>
             </div>
             <% @company_searchs.reverse.each do |company| %>
-                <div class='company_block'>
+                <div class='admin_company_block'>
                     <div class='company_name'>
                         <a> <%=company.id%> | <%= link_to company.name, company_path(company), class: "company_name_label" %> </a>
 

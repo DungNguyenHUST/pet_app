@@ -1,4 +1,5 @@
 class PostReplyCommentsController < ApplicationController
+    include ApplicationHelper
     def index 
         @post = Post.friendly.find(params[:post_id])
         @post_comments = @post.post_comments
@@ -24,6 +25,9 @@ class PostReplyCommentsController < ApplicationController
         end
 
         if @post_reply_comment.save
+            if(find_owner_user(@post_comment).present?)
+                UserNotificationsController.new.create_notify(find_owner_user(@post_comment), current_user, @post.title, @post_reply_comment.reply_content, post_path(@post), "PostComment")
+            end
             redirect_to post_path(@post)
         else
             flash[:danger] = "Lỗi, hãy điền đủ nội dung có dấu '*'"

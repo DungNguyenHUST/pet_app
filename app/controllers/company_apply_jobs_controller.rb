@@ -1,4 +1,5 @@
 class CompanyApplyJobsController < ApplicationController
+    include ApplicationHelper
     def index 
         @company = Company.friendly.find(params[:company_id])
         @company_jobs = @company.company_jobs
@@ -18,6 +19,9 @@ class CompanyApplyJobsController < ApplicationController
         @company_apply_job.user_id = current_user.id
 
         if @company_apply_job.save!
+            if(find_owner_user(@company_job).present?)
+                UserNotificationsController.new.create_notify(find_owner_user(@company_job), current_user, @company_job.title, @company_apply_job.email, pages_path(@tab_id == "JobID"), "ApplyJob")
+            end
             flash[:success] = "Thông tin của bạn đã được tiếp nhận và gửi tới nhà tuyển dụng..."
             redirect_to company_path(@company, tab_id: 'CompanyJobsID')
         else

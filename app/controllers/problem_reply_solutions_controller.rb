@@ -1,4 +1,5 @@
 class ProblemReplySolutionsController < ApplicationController
+    include ApplicationHelper
     def index 
         @problem = Problem.friendly.find(params[:problem_id])
         @problem_solutions = @problem.problem_solutions
@@ -24,6 +25,9 @@ class ProblemReplySolutionsController < ApplicationController
         end
 
         if @problem_reply_solution.save
+            if(find_owner_user(@problem_solution).present?)
+                UserNotificationsController.new.create_notify(find_owner_user(@problem_solution), current_user, @problem.title, @problem_reply_solution.reply_content, problem_path(@problem, tab_id: 'ProblemSolutionID'), "ProblemSolutionComment")
+            end
             redirect_to problem_path(@problem, tab_id: 'ProblemSolutionID')
         else
             flash[:danger] = "Lỗi, hãy điền đủ nội dung có dấu '*'"

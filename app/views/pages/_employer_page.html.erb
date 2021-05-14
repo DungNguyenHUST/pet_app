@@ -14,34 +14,117 @@
         <div class="employer_tab_link">
             <ul class="nav">
                 <li class="nav-item">
-                    <%if @tab_id == "default" || @tab_id == "CompanyID"%>
+                    <%if @tab_id == "default" || @tab_id == "EmployerPersonalID"%>
+                        <%active = "active"%>
+                    <%else%> 
+                        <%active = ""%>
+                    <%end%>                                     
+                    <a class="nav-link <%=active%>" href="<%=pages_path(tab_id: 'EmployerPersonalID')%>"><i class="material-icons-outlined">person</i>Thông tin cá nhân </a>
+                </li>
+                <li class="nav-item">
+                    <%if @tab_id == "EmployerCompanyID"%>
                         <%active = "active"%>
                     <%else%> 
                         <%active = ""%>
                     <%end%>                                 
-                    <a class="nav-link <%=active%>" href="<%=pages_path(tab_id: 'CompanyID')%>"><i class="material-icons-outlined">business</i>Công ty</a>
+                    <a class="nav-link <%=active%>" href="<%=pages_path(tab_id: 'EmployerCompanyID')%>"><i class="material-icons-outlined">business</i>Công ty</a>
                 </li>
                 <li class="nav-item">
-                    <%if @tab_id == "JobID"%>
+                    <%if @tab_id == "EmployerJobID"%>
                         <%active = "active"%>
                     <%else%> 
                         <%active = ""%>
                     <%end%>                                     
-                    <a class="nav-link <%=active%>" href="<%=pages_path(tab_id: 'JobID')%>"><i class="material-icons-outlined">work_outline</i>Tin tuyển dụng <span><%= @company_job_by_employer.count%><span></a>
+                    <a class="nav-link <%=active%>" href="<%=pages_path(tab_id: 'EmployerJobID')%>"><i class="material-icons-outlined">work_outline</i>Tin tuyển dụng <span><%= @company_job_by_employer.count%><span></a>
                 </li>
                 <li class="nav-item">
-                    <%if @tab_id == "PersonalID"%>
+                    <%if @tab_id == "EmployerNotificationID"%>
                         <%active = "active"%>
                     <%else%> 
                         <%active = ""%>
                     <%end%>                                     
-                    <a class="nav-link <%=active%>" href="<%=pages_path(tab_id: 'PersonalID')%>"><i class="material-icons-outlined">person</i>Thông tin cá nhân</a>
+                    <a class="nav-link <%=active%>" href="<%=pages_path(tab_id: 'EmployerNotificationID')%>"><i class="material-icons-outlined">notifications</i>Thông báo <span><%= current_user.user_notifications.count%><span></a>
                 </li>
             </ul>
         </div>
 
         <div class="employer_tab_content">
-            <%if @tab_id == "default" || @tab_id == "CompanyID"%>
+            <%if @tab_id == "default" || @tab_id == "EmployerPersonalID"%>
+                <div class="employer_info_tab">
+                    <div class="employer_info_des_label">
+                        <strong>Cài đặt tài khoản</strong>
+                    </div>
+
+                    <div class="employer_info_about">
+
+                        <div class="employer_info_label">
+                            <strong>Tên tài khoản:</strong>
+                        </div>
+
+                        <div class="employer_info_des">
+                            <%= current_user.name %>
+                        </div>
+
+                        <div class="employer_info_edit_button">
+                            <i class="fa fa-edit"></i> <%= link_to " Thay đổi tên đăng nhập", edit_user_path(current_user), class: "employer_info_edit_link_to" %>
+                        </div>
+
+                        <div class="employer_info_label">
+                            <strong>Địa chỉ email:</strong>
+                        </div>
+
+                        <div class="employer_info_des">
+                            <%= current_user.email %>
+                        </div>
+
+                        <div class="employer_info_edit_button">
+                            <i class="fa fa-edit"></i><%= link_to " Thay đổi địa chỉ email", edit_user_path(current_user), class: "employer_info_edit_link_to"  %>
+                        </div>
+
+                        <div class="employer_info_label">
+                            <strong>Mật khẩu:</strong>
+                        </div>
+
+                        <div class="employer_info_des">
+                            <%= current_user.password_digest, type="********"%> 
+                        </div>
+
+                        <div class="employer_info_edit_button">
+                            <i class="fa fa-edit"></i><%= link_to " Thay đổi mật khẩu", edit_user_path(current_user), class: "employer_info_edit_link_to"  %>
+                        </div>
+
+                        <div class="employer_info_label">
+                            <strong>Số điện thoại liên lạc:</strong>
+                        </div>
+
+                        <div class="employer_info_des">
+                            <%= current_user.phone %>
+                        </div>
+
+                        <div class="employer_info_edit_button">
+                            <i class="fa fa-edit"></i><%= link_to " Thay đổi số điện thoại", edit_user_path(current_user), class: "employer_info_edit_link_to"  %>
+                        </div>
+
+                        <div class="employer_info_label">
+                            <strong>Địa chỉ liên hệ:</strong>
+                        </div>
+
+                        <div class="employer_info_des">
+                            <%= current_user.address %>
+                        </div>
+
+                        <div class="employer_info_edit_button">
+                            <i class="fa fa-edit"></i><%= link_to " Thay đổi địa chỉ", edit_user_path(current_user), class: "employer_info_edit_link_to"  %>
+                        </div>
+                    </div>
+
+                    <div class="user_log_out">
+                        <%= link_to '<button type="submit">Đăng xuất</button>'.html_safe, logout_path(current_user) %>
+                    </div>
+                </div>
+            <%end%>
+
+            <%if @tab_id == "EmployerCompanyID"%>
                 <div class='employer_company_tab'>
                     <div class="employer_top_company">
                         <div class="employer_top_company_label">
@@ -140,7 +223,7 @@
                 </div>
             <%end%>
 
-            <%if @tab_id == "JobID"%>
+            <%if @tab_id == "EmployerJobID"%>
                 <div class="employer_job_tab">
                     <div class="employer_top_job_new">
                         <%= link_to '<button type="submit"><i class="material-icons-outlined">add</i><span>Đăng tin tuyển dụng miễn phí<span></button>'.html_safe, new_company_company_job_path(@company_by_employer) %>
@@ -284,79 +367,49 @@
                 </div>
             <%end%>
 
-            <%if @tab_id == "PersonalID"%>
-                <div class="employer_info_tab">
-                    
-                    <div class="employer_info_des_label">
-                        <strong>Cài đặt tài khoản</strong>
-                    </div>
+            <%if @tab_id == "EmployerNotificationID"%>
+                <div class="employer_notification_tab">
+                    <%current_user.user_notifications.each do |notify|%>
+                        <div class="employer_notification_block">
+                            <div class="employer_notification_left">
+                                <div class="employer_notification_date">
+                                    <a><%=notify.created_at.strftime("%B %d, %Y")%></a>
+                                </div>
+                            </div>
 
-                    <div class="employer_info_about">
+                            <div class="employer_notification_right">
+                                <div class="employer_notification_user">
+                                    <%if find_trigger_user(notify).present?%>
+                                        <a><%= link_to find_trigger_user(notify).name, user_path(find_trigger_user(notify)), class: "notify_label" %>
+                                            <%if notify.noti_type.to_s == "ReviewComment"%>
+                                                <span> đã trả lời review của bạn </span>
+                                            <%elsif notify.noti_type.to_s == "InterviewComment"%>
+                                                <span> đã trả lời chia sẻ phỏng vấn của bạn </span>
+                                            <%elsif notify.noti_type.to_s == "PostComment"%>
+                                                <span> đã trả bình luận bài viết của bạn </span>
+                                            <%elsif notify.noti_type.to_s == "ProblemComment"%>
+                                                <span> đã trả lời câu hỏi của bạn</span>
+                                            <%elsif notify.noti_type.to_s == "ProblemSolutionComment"%>
+                                                <span> đã bình luận trong câu trả lời của bạn </span>
+                                            <%elsif notify.noti_type.to_s == "ApplyJob"%>
+                                                <span> đã nộp đơn ứng tuyển cho vị trí </span>
+                                            <%else%>
+                                                <span> đã trả lời trong chủ đề </span>
+                                            <%end%>
+                                        </a>
+                                    <%end%>
+                                </div>
 
-                        <div class="employer_info_label">
-                            <strong>Tên tài khoản:</strong>
+                                <div class="employer_notification_title">
+                                    <a><%= link_to notify.title, notify.original_url, class: "notify_label" %></a>
+                                </div>
+
+                                <div class="employer_notification_content">
+                                    <a><%=notify.content%></a>
+                                </div>
+                            </div>
                         </div>
-
-                        <div class="employer_info_des">
-                            <%= current_user.name %>
-                        </div>
-
-                        <div class="employer_info_edit_button">
-                            <i class="fa fa-edit"></i> <%= link_to " Thay đổi tên đăng nhập", edit_user_path(current_user), class: "employer_info_edit_link_to" %>
-                        </div>
-
-                        <div class="employer_info_label">
-                            <strong>Địa chỉ email:</strong>
-                        </div>
-
-                        <div class="employer_info_des">
-                            <%= current_user.email %>
-                        </div>
-
-                        <div class="employer_info_edit_button">
-                            <i class="fa fa-edit"></i><%= link_to " Thay đổi địa chỉ email", edit_user_path(current_user), class: "employer_info_edit_link_to"  %>
-                        </div>
-
-                        <div class="employer_info_label">
-                            <strong>Mật khẩu:</strong>
-                        </div>
-
-                        <div class="employer_info_des">
-                            <%= current_user.password_digest, type="********"%> 
-                        </div>
-
-                        <div class="employer_info_edit_button">
-                            <i class="fa fa-edit"></i><%= link_to " Thay đổi mật khẩu", edit_user_path(current_user), class: "employer_info_edit_link_to"  %>
-                        </div>
-
-                        <div class="employer_info_label">
-                            <strong>Số điện thoại liên lạc:</strong>
-                        </div>
-
-                        <div class="employer_info_des">
-                            <%= current_user.phone %>
-                        </div>
-
-                        <div class="employer_info_edit_button">
-                            <i class="fa fa-edit"></i><%= link_to " Thay đổi số điện thoại", edit_user_path(current_user), class: "employer_info_edit_link_to"  %>
-                        </div>
-
-                        <div class="employer_info_label">
-                            <strong>Địa chỉ liên hệ:</strong>
-                        </div>
-
-                        <div class="employer_info_des">
-                            <%= current_user.address %>
-                        </div>
-
-                        <div class="employer_info_edit_button">
-                            <i class="fa fa-edit"></i><%= link_to " Thay đổi địa chỉ", edit_user_path(current_user), class: "employer_info_edit_link_to"  %>
-                        </div>
-                    </div>
-
-                    <div class="user_log_out">
-                        <%= link_to '<button type="submit">Đăng xuất</button>'.html_safe, logout_path(current_user) %>
-                    </div>
+                    <%end%>
                 </div>
             <%end%>
         </div>

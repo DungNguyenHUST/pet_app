@@ -17,6 +17,16 @@ module ApplicationHelper
         return @owner_user
     end
 
+    def find_trigger_user(object)
+        User.all.each do |user|
+            if object.trigger_user_id == user.id
+                @trigger_user = user
+                break
+            end
+        end
+        return @trigger_user
+    end
+
     def find_user_color(user_name)
         color_type = 0
         case user_name[0]

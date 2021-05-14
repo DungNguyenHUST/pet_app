@@ -15,8 +15,8 @@ class UserNotificationsController < ApplicationController
     @user_notification.save
   end
 
-  def create_notify(destination_user, trigger_user, title, content, original_url)
-    @user_notification = destination_user.user_notifications.build(:user_id => trigger_user.id, :title => title, :content => content, :original_url => original_url)
+  def create_notify(destination_user, trigger_user, title, content, original_url, noti_type)
+    @user_notification = destination_user.user_notifications.build(:trigger_user_id => trigger_user.id, :title => title, :content => content, :original_url => original_url, :noti_type => noti_type)
     @user_notification.save!
   end
 
@@ -45,6 +45,6 @@ class UserNotificationsController < ApplicationController
   private
 
   def user_notification_param
-    params.require(:user_notification).permit(:id, :user_id, :title, :content, :original_url)
+    params.require(:user_notification).permit(:id, :user_id, :trigger_user_id, :title, :content, :original_url, :readed, :noti_type)
   end
 end

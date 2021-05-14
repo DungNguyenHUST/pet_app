@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_05_13_090427) do
+ActiveRecord::Schema.define(version: 2021_05_14_042335) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -175,6 +175,7 @@ ActiveRecord::Schema.define(version: 2021_05_13_090427) do
     t.string "apply_site"
     t.string "address"
     t.text "skill", default: [], array: true
+    t.integer "user_id"
     t.index ["slug"], name: "index_company_jobs_on_slug", unique: true
   end
 
@@ -368,6 +369,9 @@ ActiveRecord::Schema.define(version: 2021_05_13_090427) do
     t.string "title"
     t.text "content"
     t.string "original_url"
+    t.integer "trigger_user_id"
+    t.boolean "readed", default: false
+    t.string "noti_type"
     t.index ["user_id"], name: "index_user_notifications_on_user_id"
   end
 

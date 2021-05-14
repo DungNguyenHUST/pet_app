@@ -18,7 +18,11 @@
 			<div class="nav_login_moblie" >
 					<div class="user_notification_mobile">
 						<%= link_to user_path(current_user, :tab_id => "NotificationID") do %>
-							<i class="material-icons-outlined">notifications</i><span><%=current_user.user_notifications.count%></span>
+							<%if current_user.user_notifications.count < 10%>
+								<i class="material-icons-outlined">notifications</i><span><%=current_user.user_notifications.count%></span>
+							<%else%>
+								<i class="material-icons-outlined">notifications</i><span>9+</span>
+							<%end%>
 						<%end%>
 					</div>
 				<div class="user_avatar_small_mobile">
@@ -50,7 +54,11 @@
 				<div class="nav_user">
 					<div class="user_notification">						
 						<%= link_to user_path(current_user, :tab_id => "NotificationID") do %>
-							<i class="material-icons-outlined">notifications</i><span><%=current_user.user_notifications.count%></span>
+							<%if current_user.user_notifications.count < 10%>
+								<i class="material-icons-outlined">notifications</i><span><%=current_user.user_notifications.count%></span>
+							<%else%>
+								<i class="material-icons-outlined">notifications</i><span>9+</span>
+							<%end%>
 						<%end%>
 					</div>
 					<div class="user_avatar_small">
