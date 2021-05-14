@@ -4,7 +4,7 @@ class PagesController < ApplicationController
 			@users = User.all
 			@companies = Company.all
 			@company_jobs = CompanyJob.all
-			@company_reviews = CompanyReview
+			@company_reviews = CompanyReview.all
 			@posts = Post.all
 			# for problem
 			@problems = Problem.all
@@ -36,14 +36,6 @@ class PagesController < ApplicationController
 			@problems_best = Problem.all.approved
 		end
 
-        if logged_in?
-            if current_user.employer
-                # for company of employer
-                @company_by_employer = current_user.company
-                @company_job_by_employer = @company_by_employer.company_jobs.all
-            end
-        end
-
 		if(params.has_key?(:company_search))
 		    @company_search = params[:company_search]
             @company_searchs = Company.friendly.search(@company_search)
@@ -74,5 +66,11 @@ class PagesController < ApplicationController
         else
             @tab_id = "default"
         end
+		
+        if logged_in?
+			if current_user.admin? || current_user.employer?
+				redirect_to user_path(current_user)
+			end
+		end
     end
 end

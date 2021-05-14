@@ -38,42 +38,60 @@ class UsersController < ApplicationController
 
     def show
         @user = current_user
-		
-        #############################
-        @company_jobs = CompanyJob.all
-        @company_apply_job_current = []
-        @company_save_job_current = []
-
-        @company_jobs.each do |company_job|
-            # find job apply by current user
-            if company_job.company_apply_jobs.find { |apply| apply.user_id == current_user.id}
-                @company_apply_job_current.push(company_job)
-            end
-
-            # find job save by user
-            if (company_job.company_save_jobs.find { |save| save.user_id == current_user.id})
-                @company_save_job_current.push(company_job)
-            end
-        end
-
-		#############################
-
-        #find all company folow by user 
-        @company_all = Company.all
-        @company_follow_current = []
-        @company_all.each do |company|
-            if (company.company_follows.find { |follow| follow.user_id == current_user.id})
-                @company_follow_current.push(company)
-            end
-        end
-		#############################
 
         if(params.has_key?(:tab_id))
             @tab_id = params[:tab_id]
         else
             @tab_id = "default"
         end
-		
+
+        if current_user.employer?
+            @users = User.all
+			@companies = Company.all.approved
+			@company_jobs = CompanyJob.all.approved
+			@company_reviews = CompanyReview.all
+			@posts = Post.all.approved
+			@problems = Problem.all.approved
+            @company_by_employer = current_user.company
+            @company_job_by_employer = @company_by_employer.company_jobs.all
+        elsif current_user.admin?
+            @users = User.all
+			@companies = Company.all
+			@company_jobs = CompanyJob.all
+			@company_reviews = CompanyReview.all
+			@posts = Post.all
+			@problems = Problem.all
+        else
+            @users = User.all
+			@companies = Company.all.approved
+			@company_jobs = CompanyJob.all.approved
+			@company_reviews = CompanyReview.all
+			@posts = Post.all.approved
+			@problems = Problem.all.approved
+            @company_apply_job_current = []
+            @company_save_job_current = []
+
+            @company_jobs.each do |company_job|
+                # find job apply by current user
+                if company_job.company_apply_jobs.find { |apply| apply.user_id == current_user.id}
+                    @company_apply_job_current.push(company_job)
+                end
+
+                # find job save by user
+                if (company_job.company_save_jobs.find { |save| save.user_id == current_user.id})
+                    @company_save_job_current.push(company_job)
+                end
+            end
+
+            #find all company folow by user
+            @company_all = Company.all
+            @company_follow_current = []
+            @company_all.each do |company|
+                if (company.company_follows.find { |follow| follow.user_id == current_user.id})
+                    @company_follow_current.push(company)
+                end
+            end
+        end
     end
 
     def edit
