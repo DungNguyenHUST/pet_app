@@ -9,7 +9,7 @@
                         <%else%> 
                             <%active = ""%>
                         <%end%>                                 
-                        <a class="nav-link <%=active%>" href="<%=pages_path(tab_id: 'AdminCompanyID')%>"><i class="material-icons-outlined">business</i>Company <span><%= @companies.count%><span></a>
+                        <a class="nav-link <%=active%>" href="<%=user_path(current_user, tab_id: 'AdminCompanyID')%>"><i class="material-icons-outlined">business</i>Company <span><%= @companies.count%><span></a>
                     </li>
                     <li class="nav-item">
                         <%if @tab_id == "AdminUserID"%>
@@ -17,7 +17,7 @@
                         <%else%> 
                             <%active = ""%>
                         <%end%>                                     
-                        <a class="nav-link <%=active%>" href="<%=pages_path(tab_id: 'AdminUserID')%>"><i class="material-icons-outlined">person</i>User <span><%= @users.count%><span></a>
+                        <a class="nav-link <%=active%>" href="<%=user_path(current_user, tab_id: 'AdminUserID')%>"><i class="material-icons-outlined">person</i>User <span><%= @users.count%><span></a>
                     </li>
                     <li class="nav-item">
                         <%if @tab_id == "AdminPostID"%>
@@ -25,7 +25,7 @@
                         <%else%> 
                             <%active = ""%>
                         <%end%>                                     
-                        <a class="nav-link <%=active%>" href="<%=pages_path(tab_id: 'AdminPostID')%>"><i class="material-icons-outlined">post_add</i>Post <span><%= @posts.count%><span></a>
+                        <a class="nav-link <%=active%>" href="<%=user_path(current_user, tab_id: 'AdminPostID')%>"><i class="material-icons-outlined">post_add</i>Post <span><%= @posts.count%><span></a>
                     </li>
                     <li class="nav-item">
                         <%if @tab_id == "AdminProblemID"%>
@@ -33,15 +33,15 @@
                         <%else%> 
                             <%active = ""%>
                         <%end%>                                     
-                        <a class="nav-link <%=active%>" href="<%=pages_path(tab_id: 'AdminProblemID')%>"><i class="material-icons-outlined">lightbulb</i>Problem <span><%= @problems.count%><span></a>
+                        <a class="nav-link <%=active%>" href="<%=user_path(current_user, tab_id: 'AdminProblemID')%>"><i class="material-icons-outlined">lightbulb</i>Problem <span><%= @problems.count%><span></a>
                     </li>
                     <li class="nav-item">
-                        <%if @tab_id == "AdminNotificationID"%>
+                        <%if @tab_id == "NotificationID"%>
                             <%active = "active"%>
                         <%else%> 
                             <%active = ""%>
                         <%end%>                                     
-                        <a class="nav-link <%=active%>" href="<%=pages_path(tab_id: 'AdminNotificationID')%>"><i class="material-icons-outlined">notifications</i>Thông báo <span><%= current_user.user_notifications.count%><span></a>
+                        <a class="nav-link <%=active%>" href="<%=user_path(current_user, tab_id: 'NotificationID')%>"><i class="material-icons-outlined">notifications</i>Thông báo <span><%= current_user.user_notifications.count%><span></a>
                     </li>
                 </ul>
             </div>
@@ -535,7 +535,7 @@
                     </div>                        
                 <%end%>
 
-                <%if @tab_id == "AdminNotificationID"%>
+                <%if @tab_id == "NotificationID"%>
                     <div class="admin_notification_tab">
                         <%current_user.user_notifications.each do |notify|%>
                             <div class="admin_notification_block">
@@ -609,7 +609,7 @@
                         <%else%> 
                             <%active = ""%>
                         <%end%>                                     
-                        <a class="nav-link <%=active%>" href="<%=pages_path(tab_id: 'EmployerPersonalID')%>"><i class="material-icons-outlined">person</i>Thông tin cá nhân </a>
+                        <a class="nav-link <%=active%>" href="<%=user_path(current_user, tab_id: 'EmployerPersonalID')%>"><i class="material-icons-outlined">person</i>Thông tin cá nhân </a>
                     </li>
                     <li class="nav-item">
                         <%if @tab_id == "EmployerCompanyID"%>
@@ -617,7 +617,7 @@
                         <%else%> 
                             <%active = ""%>
                         <%end%>                                 
-                        <a class="nav-link <%=active%>" href="<%=pages_path(tab_id: 'EmployerCompanyID')%>"><i class="material-icons-outlined">business</i>Công ty</a>
+                        <a class="nav-link <%=active%>" href="<%=user_path(current_user, tab_id: 'EmployerCompanyID')%>"><i class="material-icons-outlined">business</i>Công ty</a>
                     </li>
                     <li class="nav-item">
                         <%if @tab_id == "EmployerJobID"%>
@@ -625,15 +625,15 @@
                         <%else%> 
                             <%active = ""%>
                         <%end%>                                     
-                        <a class="nav-link <%=active%>" href="<%=pages_path(tab_id: 'EmployerJobID')%>"><i class="material-icons-outlined">work_outline</i>Tin tuyển dụng <span><%= @company_job_by_employer.count%><span></a>
+                        <a class="nav-link <%=active%>" href="<%=user_path(current_user, tab_id: 'EmployerJobID')%>"><i class="material-icons-outlined">work_outline</i>Tin tuyển dụng <span><%= @company_job_by_employer.count%><span></a>
                     </li>
                     <li class="nav-item">
-                        <%if @tab_id == "EmployerNotificationID"%>
+                        <%if @tab_id == "NotificationID"%>
                             <%active = "active"%>
                         <%else%> 
                             <%active = ""%>
                         <%end%>                                     
-                        <a class="nav-link <%=active%>" href="<%=pages_path(tab_id: 'EmployerNotificationID')%>"><i class="material-icons-outlined">notifications</i>Thông báo <span><%= current_user.user_notifications.count%><span></a>
+                        <a class="nav-link <%=active%>" href="<%=user_path(current_user, tab_id: 'NotificationID')%>"><i class="material-icons-outlined">notifications</i>Thông báo <span><%= current_user.user_notifications.count%><span></a>
                     </li>
                 </ul>
             </div>
@@ -957,7 +957,7 @@
                     </div>
                 <%end%>
 
-                <%if @tab_id == "EmployerNotificationID"%>
+                <%if @tab_id == "NotificationID"%>
                     <div class="employer_notification_tab">
                         <%current_user.user_notifications.each do |notify|%>
                             <div class="employer_notification_block">

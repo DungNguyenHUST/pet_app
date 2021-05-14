@@ -77,81 +77,61 @@
 		}
 	}
 
-	.user_avatar_small_mobile{
+	.user_avatar_small_moblie{
 		display: block;
 		text-align: center;
 		float: left;
+		border: none;
+		background: none;
+		&:focus{
+			outline: none;
+		}
 		.user_avatar_small_text{
-			margin-left: 5px;
-			margin-right: 5px;
-			.user_name_label{
-				width: 32px;
-				border-radius: 50%;
-				padding: 4px;
-				padding-left: 8px;
-				padding-right: 8px;
-				position: relative;
-				top: 12px;
-			}
+			width: 32px;
+			border-radius: 50%;
+			padding: 5px;
+			padding-left: 8px;
+			padding-right: 8px;
+			position: relative;
+			top: 12px;
 			a:link{
 				color: #fee;
 			}
 		}
 		.checked_0{
-			.user_name_label{
-				background-color: #888;
-			}
+			background-color: #888;
 		}
 		.checked_1{
-			.user_name_label{
-				background-color: #7a20a1;
-			}
+			background-color: #7a20a1;
 		}
 		.checked_2{
-			.user_name_label{
-				background-color: #778f99;
-			}
+			background-color: #778f99;
 		}
 		.checked_3{
-			.user_name_label{
-				background-color: #00579c;
-			}
+			background-color: #00579c;
 		}
 		.checked_4{
-			.user_name_label{
-				background-color: #33691e;
-			}
+			background-color: #33691e;
 		}
 		.checked_5{
-			.user_name_label{
-				background-color: #c2175b;
-			}
+			background-color: #c2175b;
 		}
 		.checked_6{
-			.user_name_label{
-				background-color: #00887a;
-			}
+			background-color: #00887a;
 		}
 		.checked_7{
-			.user_name_label{
-				background-color: #aa47bc;
-			}
+			background-color: #aa47bc;
 		}
 		.checked_8{
-			.user_name_label{
-				background-color: #f24e1b;
-			}
+			background-color: #f24e1b;
 		}
 		.checked_9{
-			.user_name_label{
-				background-color: #689f39;
-			}
+			background-color: #689f39;
 		}
 
 		.user_avatar_small_img{
 			position: relative;
-			top: -3px;
-			// left: 10px;
+			top: 12px;
 			border: none;
 			img{
 				border: 1px solid #dfe1e5;
@@ -160,6 +140,37 @@
 				border-radius: 50%;
 				object-fit: cover;
 			}
+		}
+	}
+
+	.user_action_select_mobile{
+		display: none;
+		background-color: #fff;
+		border: 1px solid #dfe1e5;
+		border-radius: 3px;
+		position: absolute;
+		z-index: 10;
+		width: 200px;
+		right: 10px;
+		margin-top: 58px;
+		.user_action{
+			color: #555;
+			button{
+				background-color: #fff;
+				border: none;
+				&:focus{
+					border: none;
+					background: none;
+					outline: none;
+				}
+			}
+			i{
+				position: relative;
+				top: 5px;
+				padding-right: 3px;
+				font-size: 24px;
+			}
+			padding-bottom: 10px;
 		}
 	}
 }
@@ -263,17 +274,20 @@
 			float: right;
 			display: block;
 			text-align: center;
+			background: none;
+			border: none;
+			&:focus{
+				outline: none;
+			}
 			.user_avatar_small_text{
 				margin-left: 5px;
-				.user_name_label{
-					width: 32px;
-					border-radius: 50%;
-					padding: 5px;
-					padding-left: 10px;
-					padding-right: 10px;
-					position: relative;
-					top: 10px;
-				}
+				width: 32px;
+				border-radius: 50%;
+				padding: 5px;
+				padding-left: 8px;
+				padding-right: 8px;
+				position: relative;
+				top: 13px;
 				a:link{
 					color: #fee;
 				}
@@ -282,60 +296,73 @@
                 background-color: #888;
             }
             .checked_1{
-                .user_name_label{
-                    background-color: #7a20a1;
-                }
+				background-color: #7a20a1;
             }
             .checked_2{
-                .user_name_label{
-                    background-color: #778f99;
-                }
+				background-color: #778f99;
             }
             .checked_3{
-                .user_name_label{
-                    background-color: #00579c;
-                }
+				background-color: #00579c;
             }
             .checked_4{
-                .user_name_label{
-                    background-color: #33691e;
-                }
+				background-color: #33691e;
             }
             .checked_5{
-                .user_name_label{
-                    background-color: #c2175b;
-                }
+				background-color: #c2175b;
             }
             .checked_6{
-                .user_name_label{
-                    background-color: #00887a;
-                }
+				background-color: #00887a;
             }
             .checked_7{
-                .user_name_label{
-                    background-color: #aa47bc;
-                }
+				background-color: #aa47bc;
             }
             .checked_8{
-                .user_name_label{
-                    background-color: #f24e1b;
-                }
+				background-color: #f24e1b;
             }
             .checked_9{
-                .user_name_label{
-                    background-color: #689f39;
-                }
+				background-color: #689f39;
             }
 	
 			.user_avatar_small_img{
 				position: relative;
-				top: -5px;
+				top: 12px;
 				img{
 					border: 1px solid #dfe1e5;
 					width: 32px;
 					height: 32px;
 					border-radius: 50%;
 					object-fit: cover;
+				}
+			}
+		}
+
+		.user_action_select{
+			display: none;
+			position: absolute;
+			top: 58px;
+			right: 18%;
+			background-color: #fff;
+			border: 1px solid #dfe1e5;
+			border-radius: 3px;
+			z-index: 10;
+			width: 200px;
+			padding-bottom: 10px;
+			.user_action{
+				color: #555;
+				button{
+					background-color: #fff;
+					border: none;
+					&:focus{
+						border: none;
+						background: none;
+						outline: none;
+					}
+				}
+				i{
+					position: relative;
+					top: 5px;
+					padding-right: 3px;
+					font-size: 24px;
 				}
 			}
 		}
