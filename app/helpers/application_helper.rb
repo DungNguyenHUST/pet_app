@@ -52,6 +52,6 @@ module ApplicationHelper
                 color_type = 0
             end
 
-            return color_type
+        return color_type
     end
 end

@@ -1,6 +1,10 @@
 <%- model_class = Company -%>
-<% content_for :meta_title, "Review công ty" %>
-<% content_for :meta_description, "Danh sách công ty được review bởi cộng đồng Firework" %>
+<%if !@is_company_searched%>
+    <% content_for :meta_title, "Review công ty" %>
+<%else%>
+    <% content_for :meta_title, "Kết quả tìm kiếm"%>
+<%end%>
+<% content_for :meta_description, "Danh sách các công ty tốt nhất, mới nhất, được quan tâm nhiều nhất review bởi cộng đồng Firework" %>
 <div class="companies_index">
     <div class="companies_search">
         <div class="container">

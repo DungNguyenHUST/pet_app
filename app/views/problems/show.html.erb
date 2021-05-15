@@ -1,4 +1,16 @@
-<% content_for :meta_title, @problem.title %>
+<%case @tab_id%>
+<%when "default", "ProblemDescriptionID"%>
+    <%title = "Mô tả"%>
+<%when "ProblemSolutionID"%>
+    <%title = "Trả lời"%>
+<%when "ProblemSubmitSolutionID"%>
+    <%title = "Câu trả lời của bạn"%>
+<%when "ProblemRelatedID"%>
+    <%title = "Câu hỏi liên quan"%>
+<%else%>
+    <%title = ""%>
+<%end%>
+<% content_for :meta_title, title + " · " + @problem.title %>
 <% content_for :meta_description, @problem.content %>
 <%- model_class = Problem -%>
 	<div class="container-fluid">
@@ -22,7 +34,7 @@
 									<%else%> 
 										<%active = ""%>
 									<%end%>                                     
-									<a class="nav-link <%=active%>" href="<%=problem_path(@problem, tab_id: 'ProblemSolutionID')%>"><i class="material-icons-outlined">lightbulb</i>Giải pháp<span> <%= @problem.problem_solutions.count%><span></a>
+									<a class="nav-link <%=active%>" href="<%=problem_path(@problem, tab_id: 'ProblemSolutionID')%>"><i class="material-icons-outlined">lightbulb</i>Trả lời<span> <%= @problem.problem_solutions.count%><span></a>
 								</li>
 								<li class="nav-item">
 									<%if @tab_id == "ProblemSubmitSolutionID"%>

@@ -1,5 +1,27 @@
-<% content_for :meta_title, @company.name %>
-<% content_for :meta_description, @company.overview %>
+<%case @tab_id%>
+<%when "default", "CompanyProfileID"%>
+    <%title = "Tổng quan chung"%>
+    <%content = @company.overview%>
+<%when "CompanyJoinsID"%>
+    <%title = "Chính sách nổi bật"%>
+    <%content = @company.policy%>
+<%when "CompanyReviewsID"%>
+    <%title = "Review "%>
+    <%content = "Review các chính sách, lương thưởng, môi trường làm việc, kinh ngiệm phỏng vấn, sếp, đồng nghiệp, mức độ hài lòng, văn hóa của công ty"%>
+<%when "CompanyInterviewsID"%>
+    <%title = "Kinh nghiệm phỏng vấn, Interview"%>
+    <%content = "Chia sẻ các kinh nghiệm, quy trình, mức độ hài lòng, chấp nhận offer, số lượng vòng phỏng vấn"%>
+<%when "CompanyJobsID"%>
+    <%title = "Việc làm mới nhất"%>
+    <%content = "Tin tuyển dụng, việc làm mới nhất, tìm kiếm việc làm"%>
+<%when "CompanyImagesID"%>
+    <%title = "Hình ảnh"%>
+    <%content = "Chia sẻ hình ảnh đẹp, văn hóa, môi trường làm việc, văn phòng và các hoạt động ngoại khóa của công ty"%>
+<%else%>
+    <%title = ""%>
+<%end%>
+<% content_for :meta_title, title + " · " + @company.name %>
+<% content_for :meta_description, content + @company.name %>
 <%- model_class = Company -%>
 <div class="company_area">
     <div class="company_overview">

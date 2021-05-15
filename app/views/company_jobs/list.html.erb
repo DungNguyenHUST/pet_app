@@ -1,5 +1,10 @@
 <%- model_class = CompanyJob -%>
-<% content_for :meta_title, "Tìm kiếm việc làm"%>
+<%if (!@is_job_searched)%>
+	<% content_for :meta_title, "Tìm kiếm việc làm"%>
+<%else%>
+	<% content_for :meta_title, "Kết quả tìm kiếm việc làm"%>
+<%end%>
+<% content_for :meta_description, "Thông tin tuyển dụng, việc làm mới nhất cho các nghành nghề được cập nhật liên tục tại firework.vn" %>
 <div class="company_job_list">
 	<div class="company_job_search">
 		<div class="container">
