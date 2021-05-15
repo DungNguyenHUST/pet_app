@@ -22,6 +22,25 @@
 <%end%>
 <% content_for :meta_title, title + " · " + @company.name %>
 <% content_for :meta_description, content + @company.name %>
+
+<%# Google structure data start %>
+<script type="application/ld+json">
+    {
+      "@context" : "https://www.firework.vn/",
+      "@type": "EmployerAggregateRating",
+      "itemReviewed": {
+        "@type": "Organization",
+        "name" : "<%=@company.name%>",
+        "sameAs" : "<%=company_path(@company)%>"
+      },
+      "ratingValue": "<%=cal_rating_review_total_score(@company)%>",
+      "bestRating": "5",
+      "worstRating": "1",
+      "reviewCount" : "<%=@company.company_reviews.count%>"
+    }
+</script>
+<%# Google structure data end %>
+
 <%- model_class = Company -%>
 <div class="company_area">
     <div class="company_overview">
