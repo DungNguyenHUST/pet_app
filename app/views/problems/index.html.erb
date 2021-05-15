@@ -1,5 +1,27 @@
-<% content_for :meta_title, "Câu hỏi phỏng vấn" %>
-<% content_for :meta_description, "Các câu hỏi phỏng vấn, thuật toán, IQ-EQ test, bài test tổng hợp... được update liên tục để mọi người cùng nhau tìm kiếm các giải pháp tốt nhất" %>
+<%case @tab_id%>
+<%when "default", "ProblemIndexAllID"%>
+    <%title = "Tất cả câu hỏi"%>
+    <%content = "Danh sách các câu hỏi phỏng vấn, thuật toán, IQ-EQ test, bài test tổng hợp... được update liên tục để mọi người cùng nhau tìm kiếm các giải pháp tốt nhất"%>
+<%when "ProblemIndexAlgorithmID"%>
+    <%title = "Câu hỏi thuật toán"%>
+    <%content = "Danh sách các câu hỏi thuật toán, công nghệ thông tin ..."%>
+<%when "ProblemEQTestID"%>
+    <%title = "Câu hỏi EQ test "%>
+    <%content = "Danh sách các câu hỏi EQ test, cảm xúc, khả năng xử lý của ứng viên..."%>
+<%when "ProblemIndexIQTestID"%>
+    <%title = "Câu hỏi IQ test"%>
+    <%content = "Danh sách các câu hỏi IQ, đánh giá tư duy, khả năng xử lý vấn đề của ứng viên"%>
+<%when "ProblemIndexCareerID"%>
+    <%title = "Câu hỏi phỏng vấn"%>
+    <%content = "Danh sách các câu hỏi tình huống nhằm đánh giá kĩ năng xử lý tình huống của ứng viên"%>
+<%when "ProblemIndexOtherID"%>
+    <%title = "Câu hỏi khác"%>
+    <%content = "Các câu hỏi thuộc các lĩnh vực khác, các bài test được xây dựng bởi các công ty hàng đầu"%>
+<%else%>
+    <%title = ""%>
+<%end%>
+<% content_for :meta_title, title %>
+<% content_for :meta_description, content %>
 <div class="container">
     <%- model_class = Problem -%>
         <div class="row">
