@@ -1,21 +1,21 @@
 <%case @tab_id%>
 <%when "default", "CompanyProfileID"%>
-    <%title = "Tổng quan chung"%>
+    <%title = "Tổng quan chung về công ty"%>
     <%content = @company.overview%>
 <%when "CompanyJoinsID"%>
-    <%title = "Chính sách nổi bật"%>
+    <%title = "Chính sách nổi bật của công ty"%>
     <%content = @company.policy%>
 <%when "CompanyReviewsID"%>
-    <%title = "Review "%>
+    <%title = "Review công ty"%>
     <%content = "Review các chính sách, lương thưởng, môi trường làm việc, kinh ngiệm phỏng vấn, sếp, đồng nghiệp, mức độ hài lòng, văn hóa của công ty"%>
 <%when "CompanyInterviewsID"%>
-    <%title = "Kinh nghiệm phỏng vấn, Interview"%>
+    <%title = "Kinh nghiệm phỏng vấn, Interview tại công ty"%>
     <%content = "Chia sẻ các kinh nghiệm, quy trình, mức độ hài lòng, chấp nhận offer, số lượng vòng phỏng vấn"%>
 <%when "CompanyJobsID"%>
-    <%title = "Việc làm mới nhất"%>
+    <%title = "Việc làm mới nhất tại công ty"%>
     <%content = "Tin tuyển dụng, việc làm mới nhất, tìm kiếm việc làm"%>
 <%when "CompanyImagesID"%>
-    <%title = "Hình ảnh"%>
+    <%title = "Hình ảnh về công ty"%>
     <%content = "Chia sẻ hình ảnh đẹp, văn hóa, môi trường làm việc, văn phòng và các hoạt động ngoại khóa của công ty"%>
 <%else%>
     <%title = ""%>
@@ -23,23 +23,23 @@
 <% content_for :meta_title, title + " · " + @company.name %>
 <% content_for :meta_description, content + @company.name %>
 
-<%# Google structure data start %>
+<%# Google review structure data start %>
 <script type="application/ld+json">
     {
-      "@context" : "https://www.firework.vn/",
-      "@type": "EmployerAggregateRating",
-      "itemReviewed": {
-        "@type": "Organization",
-        "name" : "<%=@company.name%>",
-        "sameAs" : "<%=company_path(@company)%>"
-      },
-      "ratingValue": "<%=cal_rating_review_total_score(@company)%>",
-      "bestRating": "5",
-      "worstRating": "1",
-      "reviewCount" : "<%=@company.company_reviews.count%>"
+        "@context" : "https://schema.org/",
+        "@type": "EmployerAggregateRating",
+        "itemReviewed": {
+            "@type": "Organization",
+            "name" : "<%=@company.name%>",
+            "sameAs" : "<%=company_path(@company, tab_id: 'CompanyReviewsID')%>"
+        },
+        "ratingValue": "<%=cal_rating_review_total_score(@company)%>",
+        "bestRating": "5",
+        "worstRating": "1",
+        "reviewCount" : "<%=@company.company_reviews.count%>"
     }
 </script>
-<%# Google structure data end %>
+<%# Google review structure data end %>
 
 <%- model_class = Company -%>
 <div class="company_area">

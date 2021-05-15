@@ -1,5 +1,67 @@
 <% content_for :meta_title, @company.name + " tuyển dụng " + @company_job.title %>
 <% content_for :meta_description, @company_job.description %>
+
+<%# Google job structure data start %>
+<%if @company_job.job_type == "Full Time"%>
+    <%employmentType = "FULL_TIME"%>
+<%elsif @company_job.job_type == "Part Time"%>
+    <%employmentType = "PART_TIME"%>
+<%elsif @company_job.job_type == "Remote"%>
+    <%employmentType = "FULL_TIME"%>
+<%elsif @company_job.job_type == "Tạm thời"%>
+    <%employmentType = "TEMPORARY"%>
+<%elsif @company_job.job_type == "Thực tập sinh"%>
+    <%employmentType = "INTERN"%>
+<%else%>
+    <%employmentType = "OTHER"%>
+<%end%>
+<script type="application/ld+json">
+{
+    "@context" : "https://schema.org/",
+    "@type" : "JobPosting",
+    "title" : "<%=@company_job.title%>",
+    "description" : "<%=@company_job.description%>",
+    "identifier": {
+        "@type": "PropertyValue",
+        "name": "Firework",
+        "value": "1234567"
+    },
+    "datePosted" : "<%=@company_job.created_at%>",
+    "validThrough" : "<%=@company_job.end_date%>",
+    "employmentType" : "<%=employmentType%>",
+    "hiringOrganization" : {
+        "@type" : "Organization",
+        "name" : "<%=@company.name%>",
+        "sameAs" : "<%=@company.website%>",
+        "logo" : "<%=@company.avatar.thumb.url%>"
+    },
+    "jobLocation": {
+    "@type": "Place",
+        "address": {
+        "@type": "PostalAddress",
+        "streetAddress": "<%=@company_job.address%>",
+        "addressLocality": "<%=@company_job.location%>",
+        "addressRegion": "VN",
+        "postalCode": "100000",
+        "addressCountry": "VN"
+        }
+    },
+
+    <%if @company_job.salary.to_i > 0%>
+        "baseSalary": {
+            "@type": "MonetaryAmount",
+            "currency": "VND",
+            "value": {
+            "@type": "QuantitativeValue",
+            "minValue": <%=convert_salary_to_min(@company_job)%>,
+            "maxValue": <%=convert_salary_to_max(@company_job)%>,
+            "unitText": "MONTH"
+            }
+        }
+    <%end%>
+}
+</script>
+<%# Google job structure data end %>
 <div class="container">
     <div class="job_overview">
         <div class='row'>

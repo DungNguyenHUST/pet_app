@@ -37,6 +37,92 @@ module CompanyJobsHelper
         else
         	salary_string = "Thương lượng"
         end
+
+        return salary_string
+    end
+
+    def convert_salary_to_min(company_job)
+		min = 0
+        case company_job.salary.to_i
+        when 0
+        	min = 0
+        when 1
+        	min = 1000000
+        when 2
+        	min = 5000000
+        when 3
+        	min = 10000000
+        when 4
+        	min = 15000000
+        when 5
+        	min = 20000000
+        when 6
+        	min = 25000000
+        when 7
+        	min = 30000000
+        when 8
+        	min = 35000000
+        when 9
+        	min = 40000000
+        when 10
+        	min = 50000000
+        when 11
+        	min = 60000000
+        when 12
+        	min = 70000000
+        when 13
+        	min = 80000000
+        when 14
+        	min = 90000000
+        when 15
+        	min = 100000000
+        else
+        	min = 0
+        end
+
+        return min
+    end
+
+    def convert_salary_to_max(company_job)
+		max = 0
+        case company_job.salary.to_i
+        when 0
+        	max = 0
+        when 1
+        	max = 5000000
+        when 2
+        	max = 10000000
+        when 3
+        	max = 15000000
+        when 4
+        	max = 20000000
+        when 5
+        	max = 25000000
+        when 6
+        	max = 30000000
+        when 7
+        	max = 35000000
+        when 8
+        	max = 40000000
+        when 9
+        	max = 50000000
+        when 10
+        	max = 60000000
+        when 11
+        	max = 70000000
+        when 12
+        	max = 80000000
+        when 13
+        	max = 90000000
+        when 14
+        	max = 100000000
+        when 15
+        	max = 0
+        else
+        	max = 0
+        end
+        
+        return max
     end
 
     def convert_skill_to_string(skill)
@@ -77,5 +163,7 @@ module CompanyJobsHelper
         else
             skill_string = "Đang cập nhật"
         end
+        
+        return skill_string
     end
 end
