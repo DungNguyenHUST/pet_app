@@ -52,6 +52,13 @@ class ProblemsController < ApplicationController
             return
         end
 
+        if logged_in? && current_user.admin?
+            @problem.approved = true
+            @problem.save!
+            redirect_to pages_path(tab_id: 'AdminProblemID')
+            return
+        end
+
         if @problem.save!
             if @problem.approved?
 				redirect_to problem_path(@problem)

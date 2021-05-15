@@ -18,6 +18,13 @@ class PostsController < ApplicationController
             return
         end
 
+        if logged_in? && current_user.admin?
+            @post.approved = true
+            @post.save!
+            redirect_to pages_path(tab_id: 'AdminPostID')
+            return
+        end
+
         if @post.save
             if @post.approved?
 				redirect_to post_path(@post)

@@ -69,7 +69,7 @@ class PagesController < ApplicationController
 		
         if logged_in?
 			if current_user.admin? || current_user.employer?
-				redirect_to user_path(current_user)
+				redirect_to user_path(current_user, tab_id: @tab_id)
 			end
 		end
     end

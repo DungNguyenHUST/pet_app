@@ -14,6 +14,13 @@ class CompanyJobsController < ApplicationController
         @company_job = @company.company_jobs.build(company_job_param)
         @company_job.user_id = current_user.id
 
+        if logged_in? && current_user.admin?
+            @company_job.approved = true
+            @company_job.save!
+            redirect_to pages_path(tab_id: 'AdminCompanyID')
+            return
+        end
+
         if @company_job.save
 			if @company_job.approved?
 				redirect_to company_company_job_path(@company)
