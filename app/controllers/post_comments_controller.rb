@@ -1,4 +1,5 @@
 class PostCommentsController < ApplicationController
+    before_action :require_login, only: [:new, :create, :edit, :update, :destroy]
     def index 
         @post = Post.friendly.find(params[:post_id])
         @post_comments = @post.post_comments
@@ -26,6 +27,12 @@ class PostCommentsController < ApplicationController
             flash[:danger] = "Lỗi, hãy điền đủ nội dung có dấu '*'"
             render :new
         end
+    end
+    
+    def edit
+    end
+
+    def update
     end
     
     def destroy

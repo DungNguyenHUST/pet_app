@@ -1,5 +1,5 @@
 class CompanyFollowsController < ApplicationController
-    # before_action :find_company_follow
+    before_action :require_login, only: [:new, :create, :edit, :update, :destroy]
     
     def index 
         @company = Company.friendly.find(params[:company_id])
@@ -29,6 +29,12 @@ class CompanyFollowsController < ApplicationController
         else
             redirect_to login_path
         end
+    end
+
+    def edit
+    end
+
+    def update
     end
     
     def destroy

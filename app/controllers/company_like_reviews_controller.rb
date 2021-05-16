@@ -1,7 +1,7 @@
 class CompanyLikeReviewsController < ApplicationController
-    # before_action :find_company_review
-    # before_action :find_like, only: [:destroy]
-    # respond_to :js, :json, :html
+    before_action :require_login, only: [:new, :create, :edit, :update, :destroy]
+    before_action :find_company_review
+    before_action :find_like, only: [:destroy]
     
     def index 
         @company = Company.friendly.find(params[:company_id])
@@ -32,6 +32,12 @@ class CompanyLikeReviewsController < ApplicationController
         else
             redirect_to login_path
         end
+    end
+
+    def edit
+    end
+
+    def update
     end
     
     def destroy

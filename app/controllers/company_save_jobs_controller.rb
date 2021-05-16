@@ -1,4 +1,5 @@
 class CompanySaveJobsController < ApplicationController
+    before_action :require_login, only: [:new, :create, :edit, :update, :destroy]
     # before_action :find_company_save_job
         
     def index 
@@ -32,6 +33,12 @@ class CompanySaveJobsController < ApplicationController
         else
             redirect_to login_path
         end
+    end
+
+    def edit
+    end
+
+    def update
     end
 
     def destroy 

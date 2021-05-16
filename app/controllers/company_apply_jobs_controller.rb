@@ -1,5 +1,6 @@
 class CompanyApplyJobsController < ApplicationController
     include ApplicationHelper
+    before_action :require_login, only: [:new, :create, :edit, :update, :destroy]
     def index 
         @company = Company.friendly.find(params[:company_id])
         @company_jobs = @company.company_jobs
@@ -28,6 +29,12 @@ class CompanyApplyJobsController < ApplicationController
             flash[:error] = "Lỗi, Không thể upload thông tin "
             render :new
         end
+    end
+
+    def edit
+    end
+
+    def update
     end
     
     def destroy

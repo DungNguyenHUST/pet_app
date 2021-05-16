@@ -1,4 +1,5 @@
 class ProblemVoteSolutionsController < ApplicationController
+    before_action :require_login, only: [:new, :create, :edit, :update, :destroy]
     before_action :find_problem_solution
     before_action :find_vote, only: [:destroy]
     
@@ -31,6 +32,12 @@ class ProblemVoteSolutionsController < ApplicationController
         else
             redirect_to login_path
         end
+    end
+
+    def edit
+    end
+
+    def update
     end
     
     def destroy

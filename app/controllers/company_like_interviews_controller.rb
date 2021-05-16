@@ -1,4 +1,5 @@
 class CompanyLikeInterviewsController < ApplicationController
+    before_action :require_login, only: [:new, :create, :edit, :update, :destroy]
     before_action :find_company_interview
     before_action :find_like, only: [:destroy]
     
@@ -31,6 +32,12 @@ class CompanyLikeInterviewsController < ApplicationController
         else
             redirect_to login_path
         end
+    end
+
+    def edit
+    end
+
+    def update
     end
     
     def destroy

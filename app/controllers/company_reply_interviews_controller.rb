@@ -1,5 +1,6 @@
 class CompanyReplyInterviewsController < ApplicationController
     include ApplicationHelper
+    before_action :require_login, only: [:new, :create, :edit, :update, :destroy]
     def index 
         @company = Company.friendly.find(params[:company_id])
         @company_interviews = @company.company_interviews
@@ -33,6 +34,12 @@ class CompanyReplyInterviewsController < ApplicationController
             flash[:danger] = "Lỗi, hãy điền đủ nội dung có dấu '*'"
             # render :new
         end
+    end
+
+    def edit
+    end
+
+    def update
     end
     
     def destroy

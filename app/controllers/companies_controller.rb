@@ -1,4 +1,5 @@
 class CompaniesController < ApplicationController
+    before_action :require_login, only: [:new, :create, :edit, :update, :destroy]
     def index
         @is_company_searched = false
 		if(params.has_key?(:search))

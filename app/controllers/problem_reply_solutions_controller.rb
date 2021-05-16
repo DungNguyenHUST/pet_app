@@ -1,5 +1,6 @@
 class ProblemReplySolutionsController < ApplicationController
     include ApplicationHelper
+    before_action :require_login, only: [:new, :create, :edit, :update, :destroy]
     def index 
         @problem = Problem.friendly.find(params[:problem_id])
         @problem_solutions = @problem.problem_solutions
@@ -33,6 +34,12 @@ class ProblemReplySolutionsController < ApplicationController
             flash[:danger] = "Lỗi, hãy điền đủ nội dung có dấu '*'"
             # render :new
         end
+    end
+
+    def edit
+    end
+
+    def update
     end
     
     def destroy
