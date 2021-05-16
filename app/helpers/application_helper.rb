@@ -8,21 +8,17 @@ module ApplicationHelper
     end
     
     def find_owner_user(object)
-        User.all.each do |user|
-            if object.user_id == user.id
-                @owner_user = user
-                break
-            end
+        @owner_user = nil
+        if object.user_id.present?
+            @owner_user = User.find_by(id: object.user_id)
         end
         return @owner_user
     end
 
     def find_trigger_user(object)
-        User.all.each do |user|
-            if object.trigger_user_id == user.id
-                @trigger_user = user
-                break
-            end
+        @trigger_user = nil
+        if object.trigger_user_id.present?
+            @trigger_user = User.find_by(id: object.trigger_user_id)
         end
         return @trigger_user
     end

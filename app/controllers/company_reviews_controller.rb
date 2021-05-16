@@ -20,6 +20,7 @@ class CompanyReviewsController < ApplicationController
             @company_review.user_id = current_user.id
         else
             @company_review.user_name = "Ẩn danh"
+            @company_review.user_id = -1
         end
 
         @company_review.companyName = @company.name

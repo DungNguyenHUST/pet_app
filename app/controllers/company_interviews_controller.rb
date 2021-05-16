@@ -20,6 +20,7 @@ class CompanyInterviewsController < ApplicationController
             @company_interview.user_id = current_user.id
         else
             @company_interview.user_name = "Ẩn danh"
+            @company_interview.user_id = -1
         end
 
         @company_interview.companyName = @company.name
