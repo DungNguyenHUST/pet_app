@@ -14,16 +14,11 @@ class CompanyReplyReviewsController < ApplicationController
     end
 
     def create
-        if logged_in?
-            @company = Company.friendly.find(params[:company_id])
-            @company_review = @company.company_reviews.friendly.find(params[:company_review_id])
-            @company_reply_review = @company_review.company_reply_reviews.build(company_reply_review_param)
-            @company_reply_review.user_name = current_user.name
-            @company_reply_review.user_id = current_user.id
-        else
-            redirect_to login_path
-            return
-        end
+        @company = Company.friendly.find(params[:company_id])
+        @company_review = @company.company_reviews.friendly.find(params[:company_review_id])
+        @company_reply_review = @company_review.company_reply_reviews.build(company_reply_review_param)
+        @company_reply_review.user_name = current_user.name
+        @company_reply_review.user_id = current_user.id
 
         if @company_reply_review.save
             if(find_owner_user(@company_review).present?)

@@ -44,7 +44,7 @@ class CompaniesController < ApplicationController
         @company_interview = CompanyInterview.new
         @company_job = CompanyJob.new
 
-        if logged_in? && current_user.admin?
+        if current_user.admin?
             @company.approved = true
             @company.save!
             redirect_to pages_path(tab_id: 'AdminCompanyID')

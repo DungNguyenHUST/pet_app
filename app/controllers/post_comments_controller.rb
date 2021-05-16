@@ -11,15 +11,10 @@ class PostCommentsController < ApplicationController
     end
 
     def create
-        if logged_in?
-            @post = Post.friendly.find(params[:post_id])
-            @post_comment = @post.post_comments.build(post_comment_param)
-            @post_comment.user_name = current_user.name
-            @post_comment.user_id = current_user.id
-        else
-            redirect_to login_path
-            return
-        end
+        @post = Post.friendly.find(params[:post_id])
+        @post_comment = @post.post_comments.build(post_comment_param)
+        @post_comment.user_name = current_user.name
+        @post_comment.user_id = current_user.id
 
         if @post_comment.save
             redirect_to post_path(@post)
@@ -28,7 +23,7 @@ class PostCommentsController < ApplicationController
             render :new
         end
     end
-    
+
     def edit
     end
 

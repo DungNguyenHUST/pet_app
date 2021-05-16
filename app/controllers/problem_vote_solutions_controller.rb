@@ -18,19 +18,15 @@ class ProblemVoteSolutionsController < ApplicationController
     def create
         @problem = Problem.friendly.find(params[:problem_id])
         @problem_solution = ProblemSolution.friendly.find(params[:problem_solution_id])
-        if logged_in?
-            if already_voted?
-                # flash[:notice] = "You can't vote more than once"
-            else
-                @problem_vote_solution = @problem_solution.problem_vote_solutions.create(user_id: current_user.id)
-            end
-            # redirect_to problem_path(@problem)
-            respond_to do |format|
-                format.html {}
-                format.js
-            end
+        if already_voted?
+            # flash[:notice] = "You can't vote more than once"
         else
-            redirect_to login_path
+            @problem_vote_solution = @problem_solution.problem_vote_solutions.create(user_id: current_user.id)
+        end
+        # redirect_to problem_path(@problem)
+        respond_to do |format|
+            format.html {}
+            format.js
         end
     end
 

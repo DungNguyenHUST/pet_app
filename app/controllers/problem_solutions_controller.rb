@@ -12,15 +12,10 @@ class ProblemSolutionsController < ApplicationController
     end
 
     def create
-        if logged_in?
-            @problem = Problem.friendly.find(params[:problem_id])
-            @problem_solution = @problem.problem_solutions.build(problem_solution_param)
-            @problem_solution.user_name = current_user.name
-            @problem_solution.user_id = current_user.id
-        else
-            redirect_to login_path
-            return
-        end
+        @problem = Problem.friendly.find(params[:problem_id])
+        @problem_solution = @problem.problem_solutions.build(problem_solution_param)
+        @problem_solution.user_name = current_user.name
+        @problem_solution.user_id = current_user.id
 
         if @problem_solution.save
             if(find_owner_user(@problem).present?)

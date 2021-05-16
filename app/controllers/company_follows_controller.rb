@@ -14,20 +14,17 @@ class CompanyFollowsController < ApplicationController
     def create
         @company = Company.friendly.find(params[:company_id])
         @company_follow = CompanyFollow.new
-        if logged_in?
-            if already_followed?
-                # flash[:notice] = "You can't like more than once"
-            else                
-                @company_follow = @company.company_follows.create(user_id: current_user.id)
-            end
-            @type_param = params[:type_param]
-            # redirect_to company_path(@company)
-            respond_to do |format|
-                format.html {}
-                format.js
-            end
-        else
-            redirect_to login_path
+        
+        if already_followed?
+            # flash[:notice] = "You can't like more than once"
+        else                
+            @company_follow = @company.company_follows.create(user_id: current_user.id)
+        end
+        @type_param = params[:type_param]
+        # redirect_to company_path(@company)
+        respond_to do |format|
+            format.html {}
+            format.js
         end
     end
 

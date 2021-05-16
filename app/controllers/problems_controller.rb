@@ -44,16 +44,11 @@ class ProblemsController < ApplicationController
     end
 
     def create
-        if logged_in?
-            @problem = Problem.new(problem_param)
-            @problem.user_name = current_user.name
-            @problem.user_id = current_user.id
-        else
-            redirect_to login_path
-            return
-        end
+        @problem = Problem.new(problem_param)
+        @problem.user_name = current_user.name
+        @problem.user_id = current_user.id
 
-        if logged_in? && current_user.admin?
+        if current_user.admin?
             @problem.approved = true
             @problem.save!
             redirect_to pages_path(tab_id: 'AdminProblemID')
@@ -89,7 +84,7 @@ class ProblemsController < ApplicationController
 
         @problem_submition = []
         @problem_solutions.each do |problem_solution|
-            if logged_in?
+            if current_user.present?
                 if problem_solution.user_id == current_user.id
                     @problem_submition.push(problem_solution)
                 end

@@ -14,16 +14,11 @@ class PostReplyCommentsController < ApplicationController
     end
 
     def create
-        if logged_in?
-            @post = Post.friendly.find(params[:post_id])
-            @post_comment = @post.post_comments.friendly.find(params[:post_comment_id])
-            @post_reply_comment = @post_comment.post_reply_comments.build(post_reply_comment_param)
-            @post_reply_comment.user_name = current_user.name
-            @post_reply_comment.user_id = current_user.id
-        else
-            redirect_to login_path
-            return
-        end
+        @post = Post.friendly.find(params[:post_id])
+        @post_comment = @post.post_comments.friendly.find(params[:post_comment_id])
+        @post_reply_comment = @post_comment.post_reply_comments.build(post_reply_comment_param)
+        @post_reply_comment.user_name = current_user.name
+        @post_reply_comment.user_id = current_user.id
 
         if @post_reply_comment.save
             if(find_owner_user(@post_comment).present?)

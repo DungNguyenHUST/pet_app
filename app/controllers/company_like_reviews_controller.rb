@@ -18,19 +18,15 @@ class CompanyLikeReviewsController < ApplicationController
     def create
         @company = Company.friendly.find(params[:company_id])
         @company_review = CompanyReview.friendly.find(params[:company_review_id])
-        if logged_in?
-            if already_liked?
-                # flash[:notice] = "You can't like more than once"
-            else
-                @company_like_review = @company_review.company_like_reviews.create(user_id: current_user.id)
-            end
-            # redirect_to company_path(@company)
-            respond_to do |format|
-				format.html {}
-				format.js
-            end
+        if already_liked?
+            # flash[:notice] = "You can't like more than once"
         else
-            redirect_to login_path
+            @company_like_review = @company_review.company_like_reviews.create(user_id: current_user.id)
+        end
+        # redirect_to company_path(@company)
+        respond_to do |format|
+            format.html {}
+            format.js
         end
     end
 

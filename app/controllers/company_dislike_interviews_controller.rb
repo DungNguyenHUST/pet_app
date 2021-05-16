@@ -15,19 +15,15 @@ class CompanyDislikeInterviewsController < ApplicationController
     def create
         @company = Company.friendly.find(params[:company_id])
         @company_interview = CompanyInterview.friendly.find(params[:company_interview_id])
-        if logged_in?
-            if already_liked?
-                # flash[:notice] = "You can't dislike more than once"
-            else
-                @company_dislike_interview = @company_interview.company_dislike_interviews.create(user_id: current_user.id)
-            end
-            # redirect_to company_path(@company)
-            respond_to do |format|
-                format.html {}
-                format.js
-            end
+        if already_liked?
+            # flash[:notice] = "You can't dislike more than once"
         else
-            redirect_to login_path
+            @company_dislike_interview = @company_interview.company_dislike_interviews.create(user_id: current_user.id)
+        end
+        # redirect_to company_path(@company)
+        respond_to do |format|
+            format.html {}
+            format.js
         end
     end
 

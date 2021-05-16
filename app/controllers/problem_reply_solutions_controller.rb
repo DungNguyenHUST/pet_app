@@ -14,16 +14,11 @@ class ProblemReplySolutionsController < ApplicationController
     end
 
     def create
-        if logged_in?
-            @problem = Problem.friendly.find(params[:problem_id])
-            @problem_solution = @problem.problem_solutions.friendly.find(params[:problem_solution_id])
-            @problem_reply_solution = @problem_solution.problem_reply_solutions.build(problem_reply_solution_param)
-            @problem_reply_solution.user_name = current_user.name
-            @problem_reply_solution.user_id = current_user.id
-        else
-            redirect_to login_path
-            return
-        end
+        @problem = Problem.friendly.find(params[:problem_id])
+        @problem_solution = @problem.problem_solutions.friendly.find(params[:problem_solution_id])
+        @problem_reply_solution = @problem_solution.problem_reply_solutions.build(problem_reply_solution_param)
+        @problem_reply_solution.user_name = current_user.name
+        @problem_reply_solution.user_id = current_user.id
 
         if @problem_reply_solution.save
             if(find_owner_user(@problem_solution).present?)

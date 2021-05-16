@@ -10,16 +10,11 @@ class PostsController < ApplicationController
     end
 
     def create
-        if logged_in?
-            @post = Post.new(post_param)
-            @post.username = current_user.name
-            @post.user_id = current_user.id
-        else
-            redirect_to login_path
-            return
-        end
+        @post = Post.new(post_param)
+        @post.username = current_user.name
+        @post.user_id = current_user.id
 
-        if logged_in? && current_user.admin?
+        if current_user.admin?
             @post.approved = true
             @post.save!
             redirect_to pages_path(tab_id: 'AdminPostID')
