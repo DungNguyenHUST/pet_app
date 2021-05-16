@@ -1,4 +1,3 @@
-require 'action_text'
 class ApplicationController < ActionController::Base
     protect_from_forgery
     include ::SessionHelper
