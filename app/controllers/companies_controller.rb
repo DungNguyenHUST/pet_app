@@ -81,6 +81,7 @@ class CompaniesController < ApplicationController
     end
 
     def edit
+        @is_edit = params[:is_edit]
         @company = Company.friendly.find params[:id]
     end
 

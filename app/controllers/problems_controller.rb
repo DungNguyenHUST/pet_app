@@ -99,6 +99,7 @@ class ProblemsController < ApplicationController
     end
 
     def edit
+        @is_edit = params[:is_edit]
         @problem = Problem.friendly.find params[:id]
     end
 

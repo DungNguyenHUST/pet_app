@@ -2,7 +2,11 @@
     <div class="new_problem_form">
         <%= form_for @problem, :html => { :class => "form-horizontal problem" } do |f| %>
             <div class="new_problem_title">
-                <a>Hãy cho mọi người biết vấn đề của bạn</a>
+                <%if !@is_edit%>
+					<a>Tạo một câu hỏi mới</a>
+				<%else%>
+					<a>Update thông tin câu hỏi <%=@problem.title%></a>
+				<%end%>
             </div>
 
             <div class="new_problem_title_sub">

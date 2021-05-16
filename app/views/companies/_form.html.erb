@@ -2,7 +2,11 @@
 	<div class="new_company_form">
 		<%= form_for @company, :html => { :class => "form-horizontal company" } do |f| %>
 			<div class="new_company_title">
-				<a>Tạo thông tin công ty mới</a>
+				<%if !@is_edit%>
+					<a>Tạo thông tin công ty mới</a>
+				<%else%>
+					<a>Update thông tin công ty <%=@company.name%></a>
+				<%end%>
 			</div>
 			<div class="new_company_title_sub">
 				<span>Note: Mục có dấu '*' là bắt buộc</span>

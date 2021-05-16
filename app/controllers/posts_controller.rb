@@ -41,6 +41,7 @@ class PostsController < ApplicationController
     end
 
     def edit
+        @is_edit = params[:is_edit]
         @post = Post.friendly.find params[:id]
     end
 

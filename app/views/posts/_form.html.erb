@@ -2,7 +2,11 @@
     <div class="new_post_form">
         <%= form_for @post, :html => { :class => "form-horizontal post" } do |f| %>
             <div class="new_post_title">
-                <a>Hãy tạo một bài viết mới</a>
+                <%if !@is_edit%>
+					<a>Tạo một bài viết mới</a>
+				<%else%>
+					<a>Update bài viết <%=@post.title%></a>
+				<%end%>
             </div>
 
             <div class="new_post_title_sub">
