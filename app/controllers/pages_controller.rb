@@ -73,4 +73,12 @@ class PagesController < ApplicationController
 			end
 		end
     end
+
+	# passing selected company to new review path
+	def select_company
+		if(params.has_key?(:company_id))
+			@company_id = params[:company_id]
+			redirect_to new_company_company_review_path(@company_id)
+		end
+	end
 end

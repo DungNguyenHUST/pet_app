@@ -76,6 +76,8 @@ Rails.application.routes.draw do
   get '/post_reply_comments/new/(:post_id, :post_comment_id)', to: 'post_reply_comments#new', as: :new_post_reply_comment
 
   get "search/index"
-  
+
+  get 'pages_select_company' => 'pages#select_company'
+
   root "pages#index"
 end

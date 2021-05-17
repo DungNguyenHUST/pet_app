@@ -35,17 +35,6 @@
                     </div>
                 <%end%>
             </div>
-
-            <div class="company_current_review">
-                <div class="company_current_review_title">
-                    <i class="material-icons-outlined checked">create</i><strong> Nhận xét công ty của bạn </strong>
-                </div>
-                <div class="company_current_review_rating">
-                    <%5.times do%>
-                        <i class="material-icons-outlined checked">radio_button_unchecked</i>
-                    <%end%>
-                </div>
-            </div>
         </div>
     </div>
 
@@ -53,6 +42,35 @@
         <div class="container">
             <%if (@is_company_searched)%>
                 <%= render :partial => 'companies/search', :object => @company_searchs %>
+            <%end%>
+
+            <%=form_tag pages_select_company_path, :method => "get" do%>
+                <div class="company_current_review">
+                    <div class='row'>
+                        <div class="col-sm-4">
+                            <div class="company_current_review_title">
+                                <i class="material-icons-outlined checked">create</i><a> Review công ty của bạn </a>
+                            </div>
+                        </div>
+                            
+                        <div class="col-sm-6">
+                            <div class="user_select_company">
+                                <%= select_tag :company_id, 
+                                    options_from_collection_for_select(Company.all.approved, "id", "name"), 
+                                    prompt: "Chọn công ty", 
+                                    class: "form-control"%>
+                            </div>
+                        </div>
+                        
+                        <div class='col-sm-2'>
+                            <div class="user_select_start">
+                                <%= button_to "", form_class: "select_button", :name => nil do%>
+                                    <a>Review</a>
+                                <%end%> 
+                            </div>
+                        </div>
+                    </div>
+                </div>
             <%end%>
 
             <div class="section_title">
