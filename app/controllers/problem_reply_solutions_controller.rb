@@ -24,7 +24,11 @@ class ProblemReplySolutionsController < ApplicationController
             if(find_owner_user(@problem_solution).present?)
                 UserNotificationsController.new.create_notify(find_owner_user(@problem_solution), current_user, @problem.title, @problem_reply_solution.reply_content, problem_path(@problem, tab_id: 'ProblemSolutionID'), "ProblemSolutionComment")
             end
-            redirect_to problem_path(@problem, tab_id: 'ProblemSolutionID')
+            # redirect_to problem_path(@problem, tab_id: 'ProblemSolutionID')
+            respond_to do |format|
+                format.html {}
+                format.js
+            end
         else
             flash[:danger] = "Lỗi, hãy điền đủ nội dung có dấu '*'"
             # render :new

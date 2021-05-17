@@ -1,7 +1,7 @@
-<div class="user_post_comment_block" id="post_comment_block_<%=post_comment.id%>">
+<div id="post_comment_block_<%=@post_comment.id%>">
     <div class="user_post_comment_left">
         <div class="user_avatar_small">
-            <%owner_user = find_owner_user(post_comment)%>
+            <%owner_user = find_owner_user(@post_comment)%>
             <%if owner_user.present?%>
                 <%if owner_user.avatar?%>
                     <div class="user_avatar_small_img">
@@ -22,26 +22,26 @@
 
     <div class="user_post_comment_cotent">
         <div class="user_post_comment_body">
-            <a><%= post_comment.comment_content %></a>
+            <a><%= @post_comment.comment_content %></a>
         </div>
         
         <div class="post_reply_toolbar">
             <div class="post_reply_button">
-                <a><%= post_comment.post_reply_comments.count%></a>
+                <a><%= @post_comment.post_reply_comments.count%></a>
                 <%if logged_in?%>
-                    <button class="reply_btn" onclick="myFunctionReplypost_comment(<%=post_comment.id%>)"><i class="material-icons-outlined">chat_bubble_outline</i> <span>Trả lời</span> </button>
+                    <button class="reply_btn" onclick="myFunctionReplypost_comment(<%=@post_comment.id%>)"><i class="material-icons-outlined">chat_bubble_outline</i> <span>Trả lời</span> </button>
                 <%else%>
                     <%= link_to'<button class="reply_btn"><i class="material-icons-outlined">chat_bubble_outline</i> <span>Trả lời</span> </button>'.html_safe, login_path%>
                 <%end%>
             </div>
 
             <div class="post_comment_info">
-                <a><%= post_comment.user_name %> · <%= time_ago_in_words(post_comment.created_at) %></a>
+                <a><%= @post_comment.user_name %> · <%= time_ago_in_words(@post_comment.created_at) %></a>
             </div>
         </div>
 
-        <div class="new_reply_post_comment_form" id ="<%=post_comment.id%>">
-            <%= form_for([@post, post_comment, PostReplyComment.new], remote: true)  do |f| %>
+        <div class="new_reply_post_comment_form" id ="<%=@post_comment.id%>">
+            <%= form_for([@post, @post_comment, PostReplyComment.new], remote: true)  do |f| %>
                 <div class="new_reply_post_comment_content">
                     <div class="new_reply_post_comment_input_post_comment">
                         <%= f.text_area :reply_content, :required =>true, class: "form-control-text", placeholder: "Nhập câu trả lời của bạn tại đây" %>
@@ -71,8 +71,8 @@
         </script>
     </div>
     
-    <div class="post_reply_comment" id="reply_post_comment_<%=post_comment.id%>">
-        <%= render post_comment.post_reply_comments %>
+    <div class="post_reply_comment" id="reply_post_comment_<%=@post_comment.id%>">
+        <%= render @post_comment.post_reply_comments %>
     </div>
     
 </div>

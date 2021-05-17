@@ -24,7 +24,11 @@ class PostReplyCommentsController < ApplicationController
             if(find_owner_user(@post_comment).present?)
                 UserNotificationsController.new.create_notify(find_owner_user(@post_comment), current_user, @post.title, @post_reply_comment.reply_content, post_path(@post), "PostComment")
             end
-            redirect_to post_path(@post)
+            # redirect_to post_path(@post)
+            respond_to do |format|
+                format.html {}
+                format.js
+            end
         else
             flash[:danger] = "Lỗi, hãy điền đủ nội dung có dấu '*'"
             # render :new

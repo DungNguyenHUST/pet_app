@@ -17,7 +17,11 @@ class PostCommentsController < ApplicationController
         @post_comment.user_id = current_user.id
 
         if @post_comment.save
-            redirect_to post_path(@post)
+            # redirect_to post_path(@post)
+            respond_to do |format|
+                format.html {}
+                format.js
+            end
         else
             flash[:danger] = "Lỗi, hãy điền đủ nội dung có dấu '*'"
             render :new

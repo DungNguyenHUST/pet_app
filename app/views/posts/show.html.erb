@@ -60,24 +60,25 @@
                         <div class="post_content">
                             <span><%=@post.content.html_safe%></span>
                         </div>
-
-                        <div class="post_count">
-                            <span><%= @post.post_comments.count%> Bình luận</span>
-                        </div>
-
-                        <%= form_for [@post, PostComment.new] do |f| %>
-                            <div class="new_post_show_comment_section">
-                                <div class="new_post_show_comment_input">
-                                    <%= f.text_area :comment_content, :required =>true, class: "form-control-text", placeholder: "Nhập bình luận" %>
+                        
+                        <div class="post_comment_block" id="post_comment_index_<%=@post.id%>">
+                            <div class="post_count">
+                                <span><%= @post.post_comments.count%> Bình luận</span>
+                            </div>
+                            <%= form_for([@post, PostComment.new], remote: true) do |f| %>
+                                <div class="new_post_show_comment_section">
+                                    <div class="new_post_show_comment_input">
+                                        <%= f.text_area :comment_content, :required =>true, class: "form-control-text", placeholder: "Nhập bình luận của bạn tại đây" %>
+                                    </div>
                                 </div>
-                            </div>
 
-                            <div class="new_post_show_comment_submit">
-                                <%= f.submit "Gửi bình luận", class: "new_post_comment_form_submit" %>
+                                <div class="new_post_show_comment_submit">
+                                    <%= f.submit "Gửi bình luận", class: "new_post_comment_form_submit" %>
+                                </div>
+                            <%end%>
+                            <div class="post_comment">
+                                <%= render @post.post_comments %>
                             </div>
-                        <%end%>
-                        <div class="post_comment">
-                            <%= render @post.post_comments %>
                         </div>
                     </div>
                 </div>

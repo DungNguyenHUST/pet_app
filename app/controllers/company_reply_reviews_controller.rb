@@ -24,7 +24,11 @@ class CompanyReplyReviewsController < ApplicationController
             if(find_owner_user(@company_review).present?)
                 UserNotificationsController.new.create_notify(find_owner_user(@company_review), current_user, @company_review.position, @company_reply_review.reply_content, company_path(@company, tab_id: 'CompanyReviewsID'), "ReviewComment")
             end
-            redirect_to company_path(@company, tab_id: 'CompanyReviewsID')
+            # redirect_to company_path(@company, tab_id: 'CompanyReviewsID')
+            respond_to do |format|
+                format.html {}
+                format.js
+            end
         else
             flash[:danger] = "Lỗi, hãy điền đủ nội dung có dấu '*'"
             # render :new
