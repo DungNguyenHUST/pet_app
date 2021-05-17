@@ -222,19 +222,31 @@
                             <div class="job_right_title">
                                 <a> <i class="material-icons-outlined">check_circle_outline</i> LĨNH VỰC CHÍNH</a>
                             </div>
-                            <span> <%= @company_job.category %></span>
+                            <%if !@company_job.category.to_s.empty?%>
+                                <span> <%= @company_job.category %></span>
+                            <%else%>
+                                <span>---</span>
+                            <%end%>
                         </div>
                         <div class="job_right">
                             <div class="job_right_title">
                                 <a> <i class="material-icons-outlined">work_outline</i> CẤP BẬC</a>
                             </div>
-                            <span> <%= @company_job.level %></span>
+                            <%if !@company_job.level.to_s.empty?%>
+                                <span> <%= @company_job.level %></span>
+                            <%else%>
+                                <span>---</span>
+                            <%end%>
                         </div>
                         <div class="job_right">
                             <div class="job_right_title">
                                 <a><i class="material-icons-outlined">translate</i> NGÔN NGỮ HỒ SƠ</a>
                             </div>
-                            <span> <%= @company_job.language %></span>
+                            <%if !@company_job.language.to_s.empty?%>
+                                <span> <%= @company_job.language %></span>
+                            <%else%>
+                                <span>---</span>
+                            <%end%>
                         </div>
                         <div class="job_right_end">
                             <div class="job_right_title">

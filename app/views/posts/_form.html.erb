@@ -28,11 +28,11 @@
             <div class="new_post_section">
                 <div class="new_post_content">
                     <div class="new_post_label">
-                        <a><%= f.label :category, "Danh mục*", class: "new_post_label" %></a>
+                        <a><%= f.label :category, "Danh mục bài viết*", class: "new_post_label" %></a>
                     </div>
 
                     <div class="new_post_input">
-                        <%= f.select(:category, options_for_select([['Con đường sự nghiệp', 1], ['Khoa học công nghệ', 2], ['Blog', 3], ['Danh mục khác', 4]], ['Danh mục khác', 4]), {include_blank: false}, { :class => 'my_style_class' }) %>
+                        <%= f.select(:category, options_for_select([['Con đường sự nghiệp', 1], ['Khoa học công nghệ', 2], ['Blog', 3], ['Danh mục khác', 4]], ['Danh mục khác', 4]), {include_blank: false, :required => true}, { :class => 'my_style_class' }) %>
                     </div>
                 </div>
             </div>
@@ -40,7 +40,7 @@
             <div class="new_post_section">
                 <div class="new_post_content">
                     <div class="new_post_label">
-                        <a><%= f.label :title, "Tiêu đề*", class: "new_post_label_name" %></a>
+                        <a><%= f.label :title, "Tiêu đề bài viết*", class: "new_post_label_name" %></a>
                     </div>
 
                     <div class="new_post_input">

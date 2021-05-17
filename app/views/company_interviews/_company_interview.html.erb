@@ -31,7 +31,7 @@
 
     <div class="company_interview_right">
         <div class="company_interview_title">
-            <strong><%= company_interview.position %></strong>
+            <a><%= company_interview.position %></a>
         </div>
 
         <div class="user_interview_status">
@@ -45,17 +45,21 @@
                     <a>Hài lòng với buổi phỏng vấn: </a>
                 </div>
                 <div class="interview_score_star">
-                    <%if company_interview.satisfied.to_i > 0%>
-                        <%company_interview.satisfied.to_i.times do%>
-                            <i class="material-icons checked">circle</i>
-                        <%end%>
-                        <%(5 - company_interview.satisfied.to_i).to_i.times do%>
-                            <i class="material-icons checked_out">radio_button_unchecked</i>
+                    <%if !company_interview.satisfied.to_s.empty?%>
+                        <%if company_interview.satisfied.to_i > 0%>
+                            <%company_interview.satisfied.to_i.times do%>
+                                <i class="material-icons checked">circle</i>
+                            <%end%>
+                            <%(5 - company_interview.satisfied.to_i).to_i.times do%>
+                                <i class="material-icons checked_out">radio_button_unchecked</i>
+                            <%end%>
+                        <%else%>
+                            <%5.times do%>
+                                <i class="material-icons checked_out">radio_button_unchecked</i>
+                            <%end%>
                         <%end%>
                     <%else%>
-                        <%5.times do%>
-                            <i class="material-icons checked_out">radio_button_unchecked</i>
-                        <%end%>
+                        <a>---</a>
                     <%end%>
                 </div>
             </div>
@@ -66,10 +70,14 @@
                 <a>Chấp nhận offer: </a>
             </div>
             <div class="user_interview_offer_content">
-                <%if company_interview.offer%>
-                    <a><i class="material-icons-outlined checked">check_circle_outline</i> Có </a>
-                <% else %>
-                    <a><i class="material-icons-outlined checked_out">clear</i> Không </a>
+                <%if !company_interview.offer.to_s.empty?%>
+                    <%if company_interview.offer%>
+                        <a><i class="material-icons-outlined checked">check_circle_outline</i> Có </a>
+                    <% else %>
+                        <a><i class="material-icons-outlined checked_out">clear</i> Không </a>
+                    <%end%>
+                <%else%>
+                    <a>---</a>
                 <%end%>
             </div>
         </div>

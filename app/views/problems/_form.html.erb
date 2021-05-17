@@ -16,27 +16,27 @@
             <div class="new_problem_section">
                 <div class="new_problem_content">
                     <div class="new_problem_label">
-                        <a><%= f.label :category, "Lĩnh vực chính*", class: "new_problem_label_name" %></a>
+                        <a><%= f.label :category, "Lĩnh vực chính của câu hỏi*", class: "new_problem_label_name" %></a>
                     </div>
 
                     <div class="new_problem_input">
-                        <%= f.select(:category, options_for_select([['Thuật toán', 1], ['Câu hỏi phỏng vấn', 2], ['EQ Test', 3], ['IQ Test', 4], ['Câu hỏi khác', 5]], ["Câu hỏi khác", 5]), {include_blank: false}, { :class => 'my_style_class' }) %>
+                        <%= f.select(:category, options_for_select([['Thuật toán', 1], ['Câu hỏi phỏng vấn', 2], ['EQ Test', 3], ['IQ Test', 4], ['Câu hỏi khác', 5]], ["Câu hỏi khác", 5]), {include_blank: false, :required => true}, { :class => 'my_style_class' }) %>
                     </div>
                 </div>
 
                 <div class="new_problem_content">
                     <div class="new_problem_label">
-                        <a><%= f.label :difficult, "Mức độ, độ khó*", class: "new_problem_label_name" %></a>
+                        <a><%= f.label :difficult, "Mức độ, độ khó câu của câu hỏi*", class: "new_problem_label_name" %></a>
                     </div>
 
                     <div class="new_problem_input">
-                        <%= f.select(:difficult, options_for_select(['Dễ', 'Trung bình', 'Khó'], "Dễ"), {include_blank: false}, { :class => 'my_style_class' }) %>
+                        <%= f.select(:difficult, options_for_select(['Dễ', 'Trung bình', 'Khó'], "Dễ"), {include_blank: false, :required => true}, { :class => 'my_style_class' }) %>
                     </div>
                 </div>
 
                 <div class="new_problem_content">
                     <div class="new_problem_label">
-                        <a><%= f.label :title, "Tiêu đề*", class: "new_problem_label_name" %></a>
+                        <a><%= f.label :title, "Tiêu đề câu hỏi*", class: "new_problem_label_name" %></a>
                     </div>
 
                     <div class="new_problem_input">
@@ -46,7 +46,7 @@
 
                 <div class="new_problem_content">
                     <div class="new_problem_label">
-                        <a><%= f.label :content, "Nội dung*", class: "new_problem_label_name" %></a>
+                        <a><%= f.label :content, "Nội dung câu hỏi*", class: "new_problem_label_name" %></a>
                     </div>
 
                     <div class="new_problem_input">

@@ -18,11 +18,11 @@
 					<div class="new_job_section">
 						<div class="new_job_content">
 							<div class="new_job_label">
-								<a><%= f.label :title, "Tiêu đề công việc*", class: "new_job_label" %></a>
+								<a><%= f.label :title, "Tên việc làm cần tuyển dụng*", class: "new_job_label" %></a>
 							</div>
 							
 							<div class="new_job_input">
-								<%= f.text_field :title, :required => true, class: "new_job_form_input", placeholder: "Nhập tên việc làm đang tuyển dụng" %>
+								<%= f.text_field :title, :required => true, class: "new_job_form_input", placeholder: "Nhập tên việc làm bạn cần tuyển dụng" %>
 							</div>
 						</div>
 
@@ -47,17 +47,17 @@
 
 						<div class="new_job_content">
 							<div class="new_job_label">
-								<a><%= f.label :category, "Lĩnh vực chính*", class: "new_job_label" %></a>
+								<a><%= f.label :category, "Lĩnh vực chính của công việc*", class: "new_job_label" %></a>
 							</div>
 							
 							<div class="new_job_input">
-								<%= f.select(:category, options_for_select(['IT - Phần mềm', 'IT - Phần cứng', 'Viễn thông', 'Kiến trúc', 'Xây dựng', 'Sức khỏe', 'Online Media', 'Dịch vụ', 'Giải trí', 'Du lịch', 'Giáo dục', 'Government', 'Sản xuất', 'Nghiên cứu', 'Business Management', 'Ngân hàng', 'Nhân sự', 'Luật', 'Marketing and Sales', 'Logistics', 'Lĩnh vực khác'], 'Lĩnh vực khác'), {include_blank: false}, { :class => 'my_style_class'}) %>
+								<%= f.select(:category, options_for_select(['IT - Phần mềm', 'IT - Phần cứng', 'Viễn thông', 'Kiến trúc', 'Xây dựng', 'Sức khỏe', 'Online Media', 'Dịch vụ', 'Giải trí', 'Du lịch', 'Giáo dục', 'Government', 'Sản xuất', 'Nghiên cứu', 'Business Management', 'Ngân hàng', 'Tài chính', 'Đầu tư', 'Nhân sự', 'Luật', 'Marketing and Sales', 'Logistics', 'Lĩnh vực khác'], 'Lĩnh vực khác'), {include_blank: false}, { :class => 'my_style_class'}) %>
 							</div>
 						</div>
 
 						<div class="new_job_content">
 							<div class="new_job_label">
-								<a><%= f.label :location, "Nơi làm việc*", class: "new_job_label" %></a>
+								<a><%= f.label :location, "Thành phố nơi làm việc*", class: "new_job_label" %></a>
 							</div>
 							
 							<div class="new_job_input">
@@ -72,7 +72,7 @@
 														'Quảng Nam','Quảng Ngãi','Quảng Ninh','Quảng Trị',
 														'Sóc Trăng','Sơn La','Tây Ninh','Thái Bình','Thái Nguyên' ,
 														'Thanh Hóa','Thừa Thiên – Huế','Tiền Giang','Trà Vinh',
-														'Tuyên Quang','Vĩnh Long','Vĩnh Phúc','Yên Bái' ], "Hà Nội"), {include_blank: false}, { :class => 'my_style_class' }) %>
+														'Tuyên Quang','Vĩnh Long','Vĩnh Phúc','Yên Bái' ], "Hà Nội"), {include_blank: false, :required => true}, { :class => 'my_style_class' }) %>
 							</div>
 						</div>
 
@@ -100,7 +100,7 @@
 						</div>
 						<div class="new_job_content">
 							<div class="new_job_label">
-								<a><%= f.label :salary, "Mức lương*", class: "new_job_label" %></a>
+								<a><%= f.label :salary, "Mức lương dự kiến*", class: "new_job_label" %></a>
 							</div>
 							
 							<div class="new_job_input">
@@ -110,7 +110,7 @@
 
 						<div class="new_job_content">
 							<div class="new_job_label">
-								<a><%= f.label :quantity, "Số lượng*", class: "new_job_label" %></a>
+								<a><%= f.label :quantity, "Số lượng vị trí cần tuyển dụng*", class: "new_job_label" %></a>
 							</div>
 							
 							<div class="new_job_input">
@@ -130,7 +130,7 @@
 
 						<div class="new_job_content">
 							<div class="new_job_label">
-								<a><%= f.label :language, "Ngôn ngữ trình bày hồ sơ*", class: "new_job_label" %></a>
+								<a><%= f.label :language, "Ngôn ngữ trình bày hồ sơ", class: "new_job_label" %></a>
 							</div>
 							
 							<div class="new_job_input">

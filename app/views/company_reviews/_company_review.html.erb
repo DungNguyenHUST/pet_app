@@ -77,6 +77,8 @@
                     <div class="user_review_pros_content">
                         <%if company_review.pros.present?%>
                             <a><%= company_review.pros.html_safe %></a>
+                        <%else%>
+                            <a>---</a>
                         <%end%>
                     </div>
                 </div>
@@ -89,6 +91,8 @@
                     <div class="user_review_cons_content">
                         <%if company_review.cons.present?%>
                             <a><%= company_review.cons.html_safe %></a>
+                        <%else%>
+                            <a>---</a>
                         <%end%>
                     </div>
                 </div>

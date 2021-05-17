@@ -205,27 +205,43 @@
                                                     <a> <i class="material-icons-outlined">foundation</i> <span>Trụ sở chính</span> </a>
                                                 </div>
                                                 <div class="company_profile_content">
-                                                    <%= @company.location %>
+                                                    <%if !@company.location.to_s.empty?%>
+                                                        <span><%= @company.location %></span>
+                                                    <%else%>
+                                                        <span>---</span>
+                                                    <%end%>
                                                 </div>
 
                                                 <div class="company_profile_section">
-                                                    <a> <i class="material-icons-outlined">link</i> <span>Website</span> </a>
+                                                    <a> <i class="material-icons-outlined">open_in_new</i> <span>Website</span> </a>
                                                 </div>
                                                 <div class="company_profile_content">
-                                                    <%=h auto_link(simple_format(@company.website), :link => :urls) %>
+                                                    <%if !@company.website.to_s.empty?%>
+                                                        <%=h auto_link(simple_format(@company.website), :link => :urls) %>
+                                                    <%else%>
+                                                        <span>---</span>
+                                                    <%end%>
                                                 </div>
 
                                                 <div class="company_profile_section">
                                                     <a> <i class="material-icons-outlined">phone</i> <span>Số điện thoại</span> </a>
                                                 </div>
                                                 <div class="company_profile_content">
-                                                    <%= @company.phone %>
+                                                    <%if !@company.phone.to_s.empty?%>
+                                                        <span><%= @company.phone %></span>
+                                                    <%else%>
+                                                        <span>---</span>
+                                                    <%end%>
                                                 </div>
                                                 <div class="company_profile_section">
                                                     <a><i class="material-icons-outlined">people</i> <span>Quy mô công ty</span> </a>
                                                 </div>
                                                 <div class="company_profile_content">
-                                                    <%= @company.size %>
+                                                    <%if !@company.size.to_s.empty?%>
+                                                        <span><%= @company.size %></span>
+                                                    <%else%>
+                                                        <span>---</span>
+                                                    <%end%>
                                                 </div>
                                             </div>
 
@@ -234,30 +250,42 @@
                                                     <a> <i class="material-icons-outlined">event_available</i> <span>Năm thành lập</span> </a>
                                                 </div>
                                                 <div class="company_profile_content">
-                                                    <%= @company.time_establish.strftime("%B %d, %Y")%>
+                                                    <%if !@company.time_establish.to_s.empty?%>
+                                                        <%= @company.time_establish.strftime("%B %d, %Y")%>
+                                                    <%else%>
+                                                        <span>---</span>
+                                                    <%end%>
                                                 </div>
 
                                                 <div class="company_profile_section">
                                                     <a> <i class="material-icons-outlined">money</i> <span>Doanh thu</span> </a>
                                                 </div>
                                                 <div class="company_profile_content">
-                                                    <%= @company.values%>
+                                                    <%if !@company.values.to_s.empty?%>
+                                                        <%= @company.values%>
+                                                    <%else%>
+                                                        <span>---</span>
+                                                    <%end%>
                                                 </div>
                                                 <div class="company_profile_section">
                                                     <a> <i class="material-icons-outlined">flag</i> <span>Quốc gia</span> </a>
                                                 </div>
                                                 <div class="company_profile_content">
-                                                    <%= @company.country %>
+                                                    <%if !@company.country.to_s.empty?%>
+                                                        <%= @company.country%>
+                                                    <%else%>
+                                                        <span>---</span>
+                                                    <%end%>
                                                 </div>
 
                                                 <div class="company_profile_section">
                                                     <a> <i class="material-icons-outlined">local_police</i> <span>Loại hình hoạt động</span> </a>
                                                 </div>
                                                 <div class="company_profile_content">
-                                                    <%if @company.company_type.present?%>
+                                                    <%if !@company.company_type.to_s.empty?%>
                                                         <%= @company.company_type%>
                                                     <%else%>
-                                                        Không xác định
+                                                        <span>---</span>
                                                     <%end%>
                                                 </div>
                                             </div>
@@ -267,16 +295,20 @@
                                                     <a> <i class="material-icons-outlined">turned_in_not</i> <span>Lĩnh vực hoạt động</span> </a>
                                                 </div>
                                                 <div class="company_profile_content">
-                                                    <%= @company.field_operetion %>
+                                                    <%if !@company.field_operetion.to_s.empty?%>
+                                                        <%= @company.field_operetion%>
+                                                    <%else%>
+                                                        <span>---</span>
+                                                    <%end%>
                                                 </div>
                                                 <div class="company_profile_section">
                                                     <a> <i class="material-icons-outlined">date_range</i> <span>Ngày làm việc trong tuần</span> </a>
                                                 </div>
                                                 <div class="company_profile_content">
-                                                    <%if @company.working_date.present?%>
+                                                    <%if !@company.working_date.to_s.empty?%>
                                                         <%= @company.working_date%>
                                                     <%else%>
-                                                        Mon - Fri
+                                                        <span>---</span>
                                                     <%end%>
                                                 </div>
 
@@ -284,10 +316,10 @@
                                                     <a> <i class="material-icons-outlined">history_toggle_off</i> <span>Thời gian làm việc</span> </a>
                                                 </div>
                                                 <div class="company_profile_content">
-                                                    <%if @company.working_time.present?%>
+                                                    <%if !@company.working_time.to_s.empty?%>
                                                         <%= @company.working_time%>
                                                     <%else%>
-                                                        8h00 - 17h00
+                                                        <span>---</span>
                                                     <%end%>
                                                 </div>
 
@@ -295,7 +327,11 @@
                                                     <a> <i class="material-icons-outlined">history</i> <span>Cập nhật lần cuối</span> </a>
                                                 </div>
                                                 <div class="company_profile_content">
-                                                    <%= @company.created_at.strftime("%B %d, %Y")%>
+                                                    <%if !@company.created_at.to_s.empty?%>
+                                                        <%= @company.created_at.strftime("%B %d, %Y")%>
+                                                    <%else%>
+                                                        <span>---</span>
+                                                    <%end%>
                                                 </div>
                                             </div>
                                         </div>
@@ -418,7 +454,11 @@
                                             <i class="material-icons-outlined">place</i><a>  Địa chỉ </a>
                                         </div>
                                         <div class="company_policy_overview_right_des">
-                                            <a><%= @company.location %></a>
+                                            <%if !@company.location.to_s.empty?%>
+                                                <a><%= @company.location %></a>
+                                            <%else%>
+                                                <a>---</a>
+                                            <%end%>
                                         </div>
                                     </div>
                                     <div class="company_policy_overview_right">
@@ -426,23 +466,37 @@
                                             <i class="material-icons-outlined">people</i> <a> Nhân viên </a>
                                         </div>
                                         <div class="company_policy_overview_right_des">
-                                            <a><%= @company.size %></a>
+                                            <%if !@company.size.to_s.empty?%>
+                                                <a><%= @company.size %></a>
+                                            <%else%>
+                                                <a>---</a>
+                                            <%end%>
                                         </div>
                                     </div>
                                     <div class="company_policy_overview_right">
                                         <div class="company_policy_overview_right_title">
-                                            <i class="material-icons-outlined">grading</i> <a> Lĩnh vực hoạt động </a>
+                                            <i class="material-icons-outlined">bookmark_border</i> <a> Lĩnh vực hoạt động </a>
                                         </div>
                                         <div class="company_policy_overview_right_des">
-                                            <a><%= @company.field_operetion %></a>
+                                            <%if !@company.field_operetion.to_s.empty?%>
+                                                <a><%= @company.field_operetion %></a>
+                                            <%else%>
+                                                <a>---</a>
+                                            <%end%>
                                         </div>
                                     </div>
                                     <div class="company_policy_overview_right">
                                         <div class="company_policy_overview_right_title">
-                                            <i class="material-icons-outlined">http</i><a> Liên hệ </a>
+                                            <i class="material-icons-outlined">open_in_new</i><a> Địa chỉ website </a>
                                         </div>
                                         <div class="company_policy_overview_right_des">
-                                            <a><%= @company.website %></a>
+                                            <%if !@company.website.to_s.empty?%>
+                                                <%=h auto_link(simple_format(@company.website), :link => :urls) %>
+                                            <%elsif !@company.phone.to_s.empty?%>
+                                                <a><%= @company.phone %></a>
+                                            <%else%>
+                                                <a>---</a>
+                                            <%end%>
                                         </div>
                                     </div>
                                     <div class="company_policy_overview_right">
@@ -766,7 +820,11 @@
                                             <i class="material-icons-outlined">place</i><a>  Địa chỉ </a>
                                         </div>
                                         <div class="company_policy_overview_right_des">
-                                            <a><%= @company.location %></a>
+                                            <%if !@company.location.to_s.empty?%>
+                                                <a><%= @company.location %></a>
+                                            <%else%>
+                                                <a>---</a>
+                                            <%end%>
                                         </div>
                                     </div>
                                     <div class="company_policy_overview_right">
@@ -774,23 +832,37 @@
                                             <i class="material-icons-outlined">people</i> <a> Nhân viên </a>
                                         </div>
                                         <div class="company_policy_overview_right_des">
-                                            <a><%= @company.size %></a>
+                                            <%if !@company.size.to_s.empty?%>
+                                                <a><%= @company.size %></a>
+                                            <%else%>
+                                                <a>---</a>
+                                            <%end%>
                                         </div>
                                     </div>
                                     <div class="company_policy_overview_right">
                                         <div class="company_policy_overview_right_title">
-                                            <i class="material-icons-outlined">grading</i> <a> Lĩnh vực hoạt động </a>
+                                            <i class="material-icons-outlined">bookmark_border</i> <a> Lĩnh vực hoạt động </a>
                                         </div>
                                         <div class="company_policy_overview_right_des">
-                                            <a><%= @company.field_operetion %></a>
+                                            <%if !@company.field_operetion.to_s.empty?%>
+                                                <a><%= @company.field_operetion %></a>
+                                            <%else%>
+                                                <a>---</a>
+                                            <%end%>
                                         </div>
                                     </div>
                                     <div class="company_policy_overview_right">
                                         <div class="company_policy_overview_right_title">
-                                            <i class="material-icons-outlined">http</i><a> Liên hệ </a>
+                                            <i class="material-icons-outlined">open_in_new</i><a> Địa chỉ website </a>
                                         </div>
                                         <div class="company_policy_overview_right_des">
-                                            <a><%= @company.website %></a>
+                                            <%if !@company.website.to_s.empty?%>
+                                                <%=h auto_link(simple_format(@company.website), :link => :urls) %>
+                                            <%elsif !@company.phone.to_s.empty?%>
+                                                <a><%= @company.phone %></a>
+                                            <%else%>
+                                                <a>---</a>
+                                            <%end%>
                                         </div>
                                     </div>
                                     <div class="company_policy_overview_right">

@@ -83,25 +83,41 @@
 
 											<div class="company_job_mark">
 												<div class="company_job_location">
-													<a><i class="material-icons-outlined">location_on</i><%= company_job.location %></a>
+													<%if !company_job.location.to_s.empty?%>
+														<a><i class="material-icons-outlined">location_on</i><%= company_job.location %></a>
+													<%else%>
+														<a>---</a>
+													<%end%>
 												</div>
 
 												<div class="company_job_tech">
-													<a><i class="material-icons-outlined">book</i><%= company_job.category %></a>
+													<%if !company_job.category.to_s.empty?%>
+														<a><i class="material-icons-outlined">book</i><%= company_job.category %></a>
+													<%else%>
+														<a>---</a>
+													<%end%>
 												</div>
 
 												<div class="company_job_salary">
-													<%if logged_in?%>
-														<a><i class="material-icons-outlined">local_offer</i><%= convert_salary_to_string(company_job)%></a>
-													<%else%>
-														<%= link_to login_path, form_class: "job_salary_login" do%>
-															<i class="material-icons-outlined">local_offer</i> <span>Đăng nhập để xem mức lương</span>
+													<%if !company_job.salary.to_s.empty?%>
+														<%if logged_in?%>
+															<a><i class="material-icons-outlined">local_offer</i><%= convert_salary_to_string(company_job)%></a>
+														<%else%>
+															<%= link_to login_path, form_class: "job_salary_login" do%>
+																<i class="material-icons-outlined">local_offer</i> <span>Đăng nhập để xem mức lương</span>
+															<%end%>
 														<%end%>
+													<%else%>
+														<a>---</a>
 													<%end%>
 												</div>
 
 												<div class="company_job_type">
-													<a><i class="material-icons-outlined">rss_feed</i><%= company_job.job_type %></a>
+													<%if !company_job.job_type.to_s.empty?%>
+														<a><i class="material-icons-outlined">rss_feed</i><%= company_job.job_type %></a>
+													<%else%>
+														<a>---</a>
+													<%end%>
 												</div>
 											</div>
 										</div>
