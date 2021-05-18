@@ -1,11 +1,10 @@
 Rails.application.routes.draw do
+  devise_for :users, controllers: {
+    sessions: 'users/sessions',
+    registrations: 'users/registrations'
+  }
+
   mount Ckeditor::Engine => '/ckeditor'
-  get     "login"    => "sessions#new"
-  post    "login"    => "sessions#create"
-  delete     "logout"   => "sessions#destroy"
-  get     "logout"   => "sessions#destroy"
-  get 'sessions/new'
-  # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
   
   resources :users do
     resources :user_notifications

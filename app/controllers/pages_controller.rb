@@ -1,6 +1,6 @@
 class PagesController < ApplicationController
     def index
-		if logged_in? && current_user.admin?
+		if user_signed_in? && current_user.admin?
 			@users = User.all
 			@companies = Company.all
 			@company_jobs = CompanyJob.all
@@ -67,7 +67,7 @@ class PagesController < ApplicationController
             @tab_id = "default"
         end
 		
-        if logged_in?
+        if user_signed_in?
 			if current_user.admin? || current_user.employer?
 				redirect_to user_path(current_user, tab_id: @tab_id)
 			end

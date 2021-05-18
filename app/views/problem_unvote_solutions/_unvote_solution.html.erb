@@ -1,6 +1,6 @@
 <div id="vote_solution_<%=problem_solution.id%>">
     <div class="user_vote_solution">
-        <%if logged_in?%>
+        <%if user_signed_in?%>
             <% pre_vote = problem_solution.problem_vote_solutions.find { |vote| vote.user_id == current_user.id} %>
             <% if pre_vote %>  
                 <%= button_to problem_problem_solution_problem_vote_solution_path(@problem, problem_solution, pre_vote), method: :delete, remote: true, form_class: "problem_solution_like_highlight" do%>
@@ -12,7 +12,7 @@
                 <%end%> 
             <%end%>
         <%else%>
-            <%= button_to login_path, :method => :get, form_class: "problem_solution_like" do%>
+            <%= button_to new_user_session_path, :method => :get, form_class: "problem_solution_like" do%>
                 <i class="material-icons-outlined">arrow_drop_up</i>
             <%end%> 
         <%end%>
@@ -23,7 +23,7 @@
     </div>
 
     <div class="user_unvote_solution">
-        <%if logged_in?%>
+        <%if user_signed_in?%>
             <% pre_unvote = problem_solution.problem_unvote_solutions.find { |unvote| unvote.user_id == current_user.id} %>
             <% if pre_unvote %>
                 <%= button_to problem_problem_solution_problem_unvote_solution_path(@problem, problem_solution, pre_unvote), method: :delete, remote: true, form_class: "problem_solution_dislike_highlight" do%>
@@ -35,7 +35,7 @@
                 <%end%> 
             <%end%>
         <%else%>
-            <%= button_to login_path, :method => :get, form_class: "problem_solution_dislike" do%>
+            <%= button_to new_user_session_path, :method => :get, form_class: "problem_solution_dislike" do%>
                 <i class="material-icons-outlined">arrow_drop_down</i>
             <%end%>
         <%end%>

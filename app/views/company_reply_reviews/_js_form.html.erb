@@ -100,17 +100,17 @@
                 <div class="review_info">
                     <div class="review_toolbar">
                         <div class="review_reply_block">
-                            <%if logged_in?%>
+                            <%if user_signed_in?%>
                                 <button class="reply_btn" onclick="myFunctionReplyReview(<%=@company_review.id%>)"><i class="material-icons-outlined">chat_bubble_outline</i> <span><%= @company_review.company_reply_reviews.count%></span> <a>Trả lời</a> </button>
                             <%else%>
-                                <%= button_to login_path, :method => :get, form_class: "reply_btn" do%>
+                                <%= button_to new_user_session_path, :method => :get, form_class: "reply_btn" do%>
                                     <i class="material-icons-outlined">chat_bubble_outline</i> <span><%= @company_review.company_reply_reviews.count%></span> <a>Trả lời</a>
                                 <%end%>
                             <%end%>
                         </div>
 
                         <div class="review_like_block" id="like_review_<%=@company_review.id%>">
-                            <%if logged_in?%>
+                            <%if user_signed_in?%>
                                 <% pre_like = @company_review.company_like_reviews.find { |like| like.user_id == current_user.id} %>
                                 <% if pre_like %>  
                                     <%= button_to company_company_review_company_like_review_path(@company, @company_review, pre_like), method: :delete, remote: true, form_class: "like_btn_highlight" do %>
@@ -122,14 +122,14 @@
                                     <%end%>
                                 <%end%>
                             <%else%>
-                                <%= button_to login_path, :method => :get, form_class: "like_btn" do%>
+                                <%= button_to new_user_session_path, :method => :get, form_class: "like_btn" do%>
                                     <i class="material-icons-outlined">thumb_up</i> <span><%= @company_review.company_like_reviews.count%></span> <a>Thích</a>
                                 <%end%>
                             <%end%>
                         </div>
 
                         <div class="review_dislike_block" id="dislike_review_<%=@company_review.id%>">
-                            <%if logged_in?%>
+                            <%if user_signed_in?%>
                                 <% pre_dislike = @company_review.company_dislike_reviews.find { |dislike| dislike.user_id == current_user.id} %>
                                 <% if pre_dislike %>
                                     <%= button_to company_company_review_company_dislike_review_path(@company, @company_review, pre_dislike), :method => :delete, remote: true, form_class: "dislike_btn_highlight" do%>
@@ -141,7 +141,7 @@
                                     <%end%> 
                                 <%end%>
                             <%else%>
-                                <%= button_to login_path, :method => :get, form_class: "dislike_btn" do%>
+                                <%= button_to new_user_session_path, :method => :get, form_class: "dislike_btn" do%>
                                     <i class="material-icons-outlined">thumb_down</i> <span><%= @company_review.company_dislike_reviews.count%></span> <a>Không thích</a>
                                 <%end%>
                             <%end%>

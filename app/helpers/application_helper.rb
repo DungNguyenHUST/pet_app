@@ -25,7 +25,8 @@ module ApplicationHelper
 
     def find_user_color(user_name)
         color_type = 0
-        case user_name[0]
+        if user_name.present?
+            case user_name[0].upcase
             when "A","Ă","Â"
                 color_type = 1
             when "B","C","D"
@@ -47,7 +48,10 @@ module ApplicationHelper
             else
                 color_type = 0
             end
-
+        else
+            color_type = 0 
+        end
+        
         return color_type
     end
 end

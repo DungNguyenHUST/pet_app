@@ -4,7 +4,7 @@
     <div class="container">
         <div class='session_block'>
             <div class="user_signin_form_left">
-                <%= form_for :session, url: login_path do |f| %>
+                <%= form_for :session, url: new_user_session_path do |f| %>
                     <div class="user_signin_title">
                         <a>Đăng nhập</a>
                     </div>
@@ -40,13 +40,13 @@
                 </div>
 
                 <div class="login_with_google">
-                    <%= link_to '<button type="submit"> <i class="material-icons-outlined">mail_outline</i><span>Đăng nhập bằng Google</span></button>'.html_safe, sessions_new_path %>
+                    <%= link_to '<button type="submit"> <i class="material-icons-outlined">mail_outline</i><span>Đăng nhập bằng Google</span></button>'.html_safe, new_user_session_path %>
                 </div>
                 <div class="login_with_facebook">
-                    <%= link_to '<button type="submit"> <i class="material-icons-outlined">facebook</i> <span>Đăng nhập bằng Facebook</span></button>'.html_safe, sessions_new_path %>
+                    <%= link_to '<button type="submit"> <i class="material-icons-outlined">facebook</i> <span>Đăng nhập bằng Facebook</span></button>'.html_safe, new_user_session_path %>
                 </div>
                 <div class="login_with_phone">
-                    <%= link_to '<button type="submit"> <i class="material-icons-outlined">phone</i><span>Đăng nhập bằng Số điện thoại</span></button>'.html_safe, sessions_new_path %>
+                    <%= link_to '<button type="submit"> <i class="material-icons-outlined">phone</i><span>Đăng nhập bằng Số điện thoại</span></button>'.html_safe, new_user_session_path %>
                 </div>
             </div>
 

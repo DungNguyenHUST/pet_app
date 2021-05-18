@@ -15,7 +15,7 @@ class CompanyReviewsController < ApplicationController
 
         @company_review = @company.company_reviews.build(company_review_param)
 
-        if logged_in? && !@company_review.privacy
+        if user_signed_in? && !@company_review.privacy
             @company_review.user_name = current_user.name
             @company_review.user_id = current_user.id
         else

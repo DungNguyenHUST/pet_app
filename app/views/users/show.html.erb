@@ -583,7 +583,7 @@
             </div>
 
             <div class="admin_log_out">
-                <%= link_to '<button type="submit">Đăng xuất</button>'.html_safe, logout_path(current_user) %>
+                <%= link_to '<button type="submit">Đăng xuất</button>'.html_safe, destroy_user_session_path, method: :delete %>
             </div>
         </div>
     </div>
@@ -709,7 +709,7 @@
                         </div>
 
                         <div class="user_log_out">
-                            <%= link_to '<button type="submit">Đăng xuất</button>'.html_safe, logout_path(current_user) %>
+                            <%= link_to '<button type="submit">Đăng xuất</button>'.html_safe, destroy_user_session_path, method: :delete %>
                         </div>
                     </div>
                 <%end%>
@@ -740,7 +740,7 @@
                                             </div>
 
                                             <div class="company_love_button" id ="company_love_<%=@company_by_employer.id%>">
-                                                <%if logged_in?%>
+                                                <%if user_signed_in?%>
                                                     <% pre_follow = @company_by_employer.company_follows.find { |follow| follow.user_id == current_user.id} %>
                                                     <% if pre_follow %> 
                                                         <%= link_to '<button class="follow_btn_highlight"><i class="material-icons">favorite</i></button>'.html_safe, company_company_follow_path(@company_by_employer, pre_follow, type_param: 'mini'), remote: true, method: :delete%>
@@ -748,7 +748,7 @@
                                                         <%= link_to '<button class="follow_btn"><i class="material-icons-outlined">favorite_border</i></button>'.html_safe, company_company_follows_path(@company_by_employer, type_param: 'mini'), remote: true, method: :post%>
                                                     <%end%>
                                                 <%else%>
-                                                    <%= link_to '<button class="follow_btn"><i class="material-icons-outlined">favorite_border</i></button>'.html_safe, login_path%>
+                                                    <%= link_to '<button class="follow_btn"><i class="material-icons-outlined">favorite_border</i></button>'.html_safe, new_user_session_path%>
                                                 <%end%>
                                             </div>
 
@@ -874,10 +874,10 @@
 
                                                             <div class="company_job_salary">
                                                                 <%if !company_job.salary.to_s.empty?%>
-                                                                    <%if logged_in?%>
+                                                                    <%if user_signed_in?%>
                                                                         <a><i class="material-icons-outlined">local_offer</i><%= convert_salary_to_string(company_job)%></a>
                                                                     <%else%>
-                                                                        <%= link_to login_path, form_class: "job_salary_login" do%>
+                                                                        <%= link_to new_user_session_path, form_class: "job_salary_login" do%>
                                                                             <i class="material-icons-outlined">local_offer</i> <span>Đăng nhập để xem mức lương</span>
                                                                         <%end%>
                                                                     <%end%>
@@ -905,7 +905,7 @@
                                                                 <%if company_job.urgent%>
                                                                     <a class="hot_label">Urgent</a>
                                                                 <%end%>
-                                                                <%if logged_in?%>
+                                                                <%if user_signed_in?%>
                                                                     <% pre_save = company_job.company_save_jobs.find { |save| save.user_id == current_user.id} %>
                                                                     <% if pre_save %> 
                                                                         <%= link_to '<button class="save_btn_highlight"><i class="material-icons">turned_in</i> </button>'.html_safe, company_company_job_company_save_job_path(@company_by_employer.id, company_job.id, pre_save.id, type_param: 'mini'), method: :delete, remote: true %>
@@ -913,7 +913,7 @@
                                                                         <%= link_to '<button class="save_btn"><i class="material-icons-outlined">turned_in_not</i> </button>'.html_safe, company_company_job_company_save_jobs_path(@company_by_employer.id, company_job.id, type_param: 'mini'), method: :post, remote: true %>
                                                                     <%end%>
                                                                 <%else%>
-                                                                    <%= link_to '<button class="save_btn"><i class="material-icons-outlined">turned_in_not</i> </button>'.html_safe, login_path%>
+                                                                    <%= link_to '<button class="save_btn"><i class="material-icons-outlined">turned_in_not</i> </button>'.html_safe, new_user_session_path%>
                                                                 <%end%>
                                                             </div>
                                                         </div>
@@ -1152,7 +1152,7 @@
                             </div>
 
                             <div class="user_log_out">
-                                <%= link_to '<button type="submit">Đăng xuất</button>'.html_safe, logout_path(current_user) %>
+                                <%= link_to '<button type="submit">Đăng xuất</button>'.html_safe, destroy_user_session_path, method: :delete %>
                             </div>
                         </div>
                     </div>
@@ -1212,10 +1212,10 @@
 
                                                         <div class="company_job_salary">
                                                             <%if !company_job.salary.to_s.empty?%>
-                                                                <%if logged_in?%>
+                                                                <%if user_signed_in?%>
                                                                     <a><i class="material-icons-outlined">local_offer</i><%= convert_salary_to_string(company_job)%></a>
                                                                 <%else%>
-                                                                    <%= link_to login_path, form_class: "job_salary_login" do%>
+                                                                    <%= link_to new_user_session_path, form_class: "job_salary_login" do%>
                                                                         <i class="material-icons-outlined">local_offer</i> <span>Đăng nhập để xem mức lương</span>
                                                                     <%end%>
                                                                 <%end%>
@@ -1243,7 +1243,7 @@
                                                             <%if company_job.urgent%>
                                                                 <a class="hot_label">Urgent</a>
                                                             <%end%>
-                                                            <%if logged_in?%>
+                                                            <%if user_signed_in?%>
                                                                 <% pre_save = company_job.company_save_jobs.find { |save| save.user_id == current_user.id} %>
                                                                 <% if pre_save %> 
                                                                     <%= link_to '<button class="save_btn_highlight"><i class="material-icons">turned_in</i> </button>'.html_safe, company_company_job_company_save_job_path(company_by_job.id, company_job.id, pre_save.id, type_param: 'mini'), method: :delete, remote: true %>
@@ -1251,7 +1251,7 @@
                                                                     <%= link_to '<button class="save_btn"><i class="material-icons-outlined">turned_in_not</i> </button>'.html_safe, company_company_job_company_save_jobs_path(company_by_job.id, company_job.id, type_param: 'mini'), method: :post, remote: true %>
                                                                 <%end%>
                                                             <%else%>
-                                                                <%= link_to '<button class="save_btn"><i class="material-icons-outlined">turned_in_not</i> </button>'.html_safe, login_path%>
+                                                                <%= link_to '<button class="save_btn"><i class="material-icons-outlined">turned_in_not</i> </button>'.html_safe, new_user_session_path%>
                                                             <%end%>
                                                         </div>
                                                     </div>
@@ -1318,10 +1318,10 @@
 
                                                         <div class="company_job_salary">
                                                             <%if !company_job.salary.to_s.empty?%>
-                                                                <%if logged_in?%>
+                                                                <%if user_signed_in?%>
                                                                     <a><i class="material-icons-outlined">local_offer</i><%= convert_salary_to_string(company_job)%></a>
                                                                 <%else%>
-                                                                    <%= link_to login_path, form_class: "job_salary_login" do%>
+                                                                    <%= link_to new_user_session_path, form_class: "job_salary_login" do%>
                                                                         <i class="material-icons-outlined">local_offer</i> <span>Đăng nhập để xem mức lương</span>
                                                                     <%end%>
                                                                 <%end%>
@@ -1349,7 +1349,7 @@
                                                             <%if company_job.urgent%>
                                                                 <a class="hot_label">Urgent</a>
                                                             <%end%>
-                                                            <%if logged_in?%>
+                                                            <%if user_signed_in?%>
                                                                 <% pre_save = company_job.company_save_jobs.find { |save| save.user_id == current_user.id} %>
                                                                 <% if pre_save %> 
                                                                     <%= link_to '<button class="save_btn_highlight"><i class="material-icons">turned_in</i> </button>'.html_safe, company_company_job_company_save_job_path(company_by_job.id, company_job.id, pre_save.id, type_param: 'mini'), method: :delete, remote: true %>
@@ -1357,7 +1357,7 @@
                                                                     <%= link_to '<button class="save_btn"><i class="material-icons-outlined">turned_in_not</i> </button>'.html_safe, company_company_job_company_save_jobs_path(company_by_job.id, company_job.id, type_param: 'mini'), method: :post, remote: true %>
                                                                 <%end%>
                                                             <%else%>
-                                                                <%= link_to '<button class="save_btn"><i class="material-icons-outlined">turned_in_not</i> </button>'.html_safe, login_path%>
+                                                                <%= link_to '<button class="save_btn"><i class="material-icons-outlined">turned_in_not</i> </button>'.html_safe, new_user_session_path%>
                                                             <%end%>
                                                         </div>
                                                     </div>
@@ -1398,7 +1398,7 @@
                                             </div>
                                             
                                             <div class="company_love_button" id ="company_love_<%=company.id%>">
-                                                <%if logged_in?%>
+                                                <%if user_signed_in?%>
                                                     <% pre_follow = company.company_follows.find { |follow| follow.user_id == current_user.id} %>
                                                     <% if pre_follow %> 
                                                         <%= link_to '<button class="follow_btn_highlight"><i class="material-icons">favorite</i></button>'.html_safe, company_company_follow_path(company, pre_follow, type_param: 'mini'), remote: true, method: :delete%>
@@ -1406,7 +1406,7 @@
                                                         <%= link_to '<button class="follow_btn"><i class="material-icons-outlined">favorite_border</i></button>'.html_safe, company_company_follows_path(company, type_param: 'mini'), remote: true, method: :post%>
                                                     <%end%>
                                                 <%else%>
-                                                    <%= link_to '<button class="follow_btn"><i class="material-icons-outlined">favorite_border</i></button>'.html_safe, login_path%>
+                                                    <%= link_to '<button class="follow_btn"><i class="material-icons-outlined">favorite_border</i></button>'.html_safe, new_user_session_path%>
                                                 <%end%>
                                             </div>
 

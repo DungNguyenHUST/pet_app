@@ -61,7 +61,7 @@
 
                 <%# New button %>
                 <div class="new_post">
-                    <%if logged_in?%>
+                    <%if user_signed_in?%>
                         <%if current_user.admin?%>
                             <%= link_to '<button type="submit"><i class="material-icons-outlined">create</i>Thêm bài viết mới</button>'.html_safe, new_post_path %>
                         <%end%>

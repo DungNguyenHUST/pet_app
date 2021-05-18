@@ -1,5 +1,5 @@
 <div id="like_review_<%=company_review.id%>">
-	<%if logged_in?%>
+	<%if user_signed_in?%>
 		<% pre_like = company_review.company_like_reviews.find { |like| like.user_id == current_user.id} %>
 		<% if pre_like %>  
 			<%= button_to company_company_review_company_like_review_path(@company, company_review, pre_like), method: :delete, remote: true, form_class: "like_btn_highlight" do %>
@@ -11,7 +11,7 @@
 			<%end%>
 		<%end%>
 	<%else%>
-		<%= button_to login_path, :method => :get, form_class: "like_btn" do%>
+		<%= button_to new_user_session_path, :method => :get, form_class: "like_btn" do%>
 			<i class="material-icons-outlined">thumb_up</i> <span><%= company_review.company_like_reviews.count%></span> <a>Thích</a>
 		<%end%>
 	<%end%>

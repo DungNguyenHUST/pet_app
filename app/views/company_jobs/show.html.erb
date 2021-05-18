@@ -113,7 +113,7 @@
             <div class="col-sm-4">
                 <div class="job_overview_right">
                     <div class="apply_job_button">
-                        <%if logged_in?%>
+                        <%if user_signed_in?%>
                             <div class="apply_button">
                                 <%if @company_job.apply_another_site_flag?%>
                                     <%= link_to '<button type="submit">Apply On Company Site</button>'.html_safe, @company_job.apply_site%>
@@ -124,7 +124,7 @@
 
                             <div class="save_button" id="save_job_<%=@company_job.id%>">
                                 <% pre_save = @company_job.company_save_jobs.find { |save| save.user_id == current_user.id} %>
-                                <%if logged_in?%>
+                                <%if user_signed_in?%>
                                     <% if pre_save %> 
                                         <%= button_to company_company_job_company_save_job_path(@company, @company_job, pre_save), :method => :delete, remote: true, form_class: "save_btn_highlight" do%>
                                             <i class="material-icons-outlined">turned_in_not</i> <span>Hủy lưu</span>
@@ -135,17 +135,17 @@
                                         <%end%>
                                     <%end%>
                                 <%else%>
-                                    <%= button_to login_path, form_class: "save_btn" do%>
+                                    <%= button_to new_user_session_path, form_class: "save_btn" do%>
                                         <i class="material-icons-outlined">turned_in_not</i> <span>Lưu Job</span>
                                     <%end%>
                                 <%end%>
                             </div>
                         <%else%>
                             <div class="apply_button">
-                                <%= link_to '<button type="submit"><i class="material-icons-outlined">open_in_new</i>Nộp đơn</button>'.html_safe, login_path%>
+                                <%= link_to '<button type="submit"><i class="material-icons-outlined">open_in_new</i>Nộp đơn</button>'.html_safe, new_user_session_path%>
                             </div>
                             <div class="save_button">
-                                <%= link_to '<button type="submit"><i class="material-icons-outlined">turned_in_not</i>Lưu Job</button>'.html_safe, login_path%>
+                                <%= link_to '<button type="submit"><i class="material-icons-outlined">turned_in_not</i>Lưu Job</button>'.html_safe, new_user_session_path%>
                             </div>
                         <%end%>
                     </div>
@@ -197,14 +197,14 @@
                     </div>
                     
                     <div class="apply_job_button">
-                        <%if logged_in?%>
+                        <%if user_signed_in?%>
                             <%if @company_job.apply_another_site_flag?%>
                                 <%= link_to '<button type="submit">Nộp đơn tại Company Site</button>'.html_safe, @company_job.apply_site%>
                             <%else%>
                                 <%= link_to '<button type="submit"><i class="material-icons-outlined">open_in_new</i>Nộp đơn</button>'.html_safe, new_company_apply_job_path(@company.id, @company_job.id)%>
                             <%end%>
                         <%else%>
-                            <%= link_to '<button type="submit"><i class="material-icons-outlined">open_in_new</i>Nộp đơn</button>'.html_safe, login_path%>
+                            <%= link_to '<button type="submit"><i class="material-icons-outlined">open_in_new</i>Nộp đơn</button>'.html_safe, new_user_session_path%>
                         <%end%>
                     </div>
                 </div>

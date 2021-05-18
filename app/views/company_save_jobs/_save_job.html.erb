@@ -1,7 +1,7 @@
 <%if !(@type_param == "mini")%>
 	<div id="save_job_<%=@company_job.id%>">
 	    <% pre_save = @company_job.company_save_jobs.find { |save| save.user_id == current_user.id} %>
-		<%if logged_in?%>
+		<%if user_signed_in?%>
 			<% if pre_save %> 
 				<%= button_to company_company_job_company_save_job_path(@company, @company_job, pre_save), :method => :delete, remote: true, form_class: "save_btn_highlight" do%>
 					<i class="material-icons-outlined">turned_in_not</i> <span>Hủy lưu</span>
@@ -12,7 +12,7 @@
 				<%end%>
 			<%end%>
 		<%else%>
-			<%= button_to login_path, form_class: "save_btn" do%>
+			<%= button_to new_user_session_path, form_class: "save_btn" do%>
 				<i class="material-icons-outlined">turned_in_not</i> <span>Lưu Job</span>
 			<%end%>
 		<%end%>
@@ -22,7 +22,7 @@
 	    <%if @company_job.urgent%>
 	        <a class="hot_label">Urgent</a>
 	    <%end%>
-	    <%if logged_in?%>
+	    <%if user_signed_in?%>
 	        <% pre_save = @company_job.company_save_jobs.find { |save| save.user_id == current_user.id} %>
 	        <% if pre_save %> 
 	            <%= link_to '<button class="save_btn_highlight"><i class="material-icons">turned_in</i> </button>'.html_safe, company_company_job_company_save_job_path(@company.id, @company_job.id, pre_save.id, type_param: 'mini'), method: :delete, remote: true %>
@@ -30,7 +30,7 @@
 	            <%= link_to '<button class="save_btn"><i class="material-icons-outlined">turned_in_not</i> </button>'.html_safe, company_company_job_company_save_jobs_path(@company.id, @company_job.id, type_param: 'mini'), method: :post, remote: true %>
 	        <%end%>
 	    <%else%>
-	        <%= link_to '<button class="save_btn"><i class="material-icons-outlined">turned_in_not</i> </button>'.html_safe, login_path%>
+	        <%= link_to '<button class="save_btn"><i class="material-icons-outlined">turned_in_not</i> </button>'.html_safe, new_user_session_path%>
 	    <%end%>
 	</div>
 <%end%>

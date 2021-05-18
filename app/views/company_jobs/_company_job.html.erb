@@ -41,10 +41,10 @@
 
                 <div class="company_job_salary">
                     <%if !company_job.salary.to_s.empty?%>
-                        <%if logged_in?%>
+                        <%if user_signed_in?%>
                             <a><i class="material-icons-outlined">local_offer</i><%= convert_salary_to_string(company_job)%></a>
                         <%else%>
-                            <%= link_to login_path, form_class: "job_salary_login" do%>
+                            <%= link_to new_user_session_path, form_class: "job_salary_login" do%>
                                 <i class="material-icons-outlined">local_offer</i> <span>Đăng nhập để xem mức lương</span>
                             <%end%>
                         <%end%>
@@ -72,7 +72,7 @@
                     <%if company_job.urgent%>
                         <a class="hot_label">Urgent</a>
                     <%end%>
-                    <%if logged_in?%>
+                    <%if user_signed_in?%>
                         <% pre_save = company_job.company_save_jobs.find { |save| save.user_id == current_user.id} %>
                         <% if pre_save %> 
                             <%= link_to '<button class="save_btn_highlight"><i class="material-icons">turned_in</i> </button>'.html_safe, company_company_job_company_save_job_path(@company.id, company_job.id, pre_save.id, type_param: 'mini'), method: :delete, remote: true %>
@@ -80,7 +80,7 @@
                             <%= link_to '<button class="save_btn"><i class="material-icons-outlined">turned_in_not</i> </button>'.html_safe, company_company_job_company_save_jobs_path(@company.id, company_job.id, type_param: 'mini'), method: :post, remote: true %>
                         <%end%>
                     <%else%>
-                        <%= link_to '<button class="save_btn"><i class="material-icons-outlined">turned_in_not</i> </button>'.html_safe, login_path%>
+                        <%= link_to '<button class="save_btn"><i class="material-icons-outlined">turned_in_not</i> </button>'.html_safe, new_user_session_path%>
                     <%end%>
                 </div>
             </div>

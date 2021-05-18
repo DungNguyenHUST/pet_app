@@ -1,0 +1,67 @@
+<% content_for :meta_title, "Đăng nhập" %>
+<% content_for :meta_description, "Đăng nhập để khám phá những thông tin hữu ích về công ty, việc làm giúp bạn chinh phục công việc mơ ước..." %>
+<div class='session_container'>
+    <div class="container">
+        <div class='session_block'>
+            <div class="user_signin_form_left">
+                <%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
+                    <div class="user_signin_title">
+                        <a>Đăng nhập</a>
+                    </div>
+
+                    <div class="user_signin_content">
+                        <div class="user_signin_label">
+                            <a><%= f.label :email, "Địa chỉ email*", class: "user_signin_label_name" %></a>
+                        </div>
+
+                        <div class="user_signin_input">
+                            <%= f.email_field :email, autofocus: true, autocomplete: "email", :required => true, class: "form-control", placeholder: "Nhập địa chỉ email của bạn" %>
+                        </div>
+                    </div>
+
+                    <div class="user_signin_content">
+                        <div class="user_signin_label">
+                            <a><%= f.label :password, "Mật khẩu*", class: "user_signin_label" %></a>
+                        </div>
+
+                        <div class="user_signin_input">
+                            <%= f.password_field :password, autocomplete: "current-password", :required => true, class: "form-control", placeholder: "Nhập mật khẩu của bạn" %>
+                        </div>
+                    </div>
+
+                    <% if devise_mapping.rememberable? %>
+                      <div class="field">
+                        <%= f.check_box :remember_me %>
+                        <%= f.label :remember_me %>
+                      </div>
+                    <% end %>
+
+                    <div class="user_signin_submit">
+                        <%= f.submit "Đăng nhập", class: "user_signin_form_submit" %>
+                    </div>
+                <%end%>
+            </div>
+            <div class="user_signin_form_right">
+                <div class="user_signin_title">
+                    <a><span>or</span></a>
+                </div>
+
+                <div class="login_with_google">
+                    <%= link_to '<button type="submit"> <i class="material-icons-outlined">mail_outline</i><span>Đăng nhập bằng Google</span></button>'.html_safe, new_user_session_path %>
+                </div>
+                <div class="login_with_facebook">
+                    <%= link_to '<button type="submit"> <i class="material-icons-outlined">facebook</i> <span>Đăng nhập bằng Facebook</span></button>'.html_safe, new_user_session_path %>
+                </div>
+                <div class="login_with_phone">
+                    <%= link_to '<button type="submit"> <i class="material-icons-outlined">phone</i><span>Đăng nhập bằng Số điện thoại</span></button>'.html_safe, new_user_session_path %>
+                </div>
+            </div>
+
+            <p class="user_signin_loginhere">
+                Bạn chưa có tài khoản?<a><%= link_to "Đăng kí", new_user_registration_path %></a>
+            </p>
+            <%= render "devise/shared/links" %>
+        </div>
+    </div>
+</div>
+

@@ -17,7 +17,7 @@ class SessionsController < ApplicationController
                     log_in user
 
                     case session[:my_previous_url]
-                    when login_path
+                    when new_user_session_path
                         redirect_to pages_path
                     when new_user_path
                         redirect_to pages_path
@@ -29,7 +29,7 @@ class SessionsController < ApplicationController
                 end
             else
                 flash[:danger] = "Email và mật khẩu không chính xác, vui lòng thử lại với mật khẩu khác..."
-                redirect_to login_path
+                redirect_to new_user_session_path
             end
         else
             flash[:danger] = "Email của bạn chưa được đăng kí, vui lòng đăng kí tài khoản mới tại đây..."
@@ -40,7 +40,7 @@ class SessionsController < ApplicationController
     def destroy
         log_out
         flash[:danger] = "Bạn đã thoát, hãy đăng nhập lại để tiếp tục sử dụng dịch vụ..."
-        redirect_to login_path
+        redirect_to new_user_session_path
     end
 
     def save_my_previous_url

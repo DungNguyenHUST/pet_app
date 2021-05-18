@@ -106,3 +106,5 @@ gem 'mini_magick'
 gem 'jquery-rails'
 
 # gem 'meta-tags'
+
+gem 'devise'

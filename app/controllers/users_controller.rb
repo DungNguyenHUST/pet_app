@@ -18,14 +18,14 @@ class UsersController < ApplicationController
         
         if user_present.present?
             flash[:danger] = "Email đã được đăng kí, vui lòng thử đăng nhập lại hoặc thay đổi mật khẩu... "
-            redirect_to login_path
+            redirect_to new_user_session_path
         else
             if @user.password == @user.password_confirmation
                 # special admin config
                 
                 if @user.save
                     flash[:success] = "Đăng kí thành công"
-                    redirect_to sessions_new_path
+                    redirect_to new_user_session_path
                 else
                     flash[:danger] = "Đăng kí không thành công"
                     render :new
