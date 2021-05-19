@@ -3,16 +3,18 @@
 class Users::RegistrationsController < Devise::RegistrationsController
   # before_action :configure_sign_up_params, only: [:create]
   # before_action :configure_account_update_params, only: [:update]
+  before_action :configure_permitted_parameters, if: :devise_controller?
 
   # GET /resource/sign_up
-  # def new
-  #   super
-  # end
+  def new
+    @user_type = params[:user_type]
+    super
+  end
 
   # POST /resource
   # def create
-  #   super
   #   current_user.update_attribute :admin, true
+  #   super
   # end
 
   # GET /resource/edit
@@ -39,7 +41,7 @@ class Users::RegistrationsController < Devise::RegistrationsController
   #   super
   # end
 
-  # protected
+  protected
 
   # If you have extra params to permit, append them to the sanitizer.
   # def configure_sign_up_params
@@ -61,10 +63,10 @@ class Users::RegistrationsController < Devise::RegistrationsController
   #   super(resource)
   # end
 
-  protected
-
-  def sign_up_params
-    params.require(:user).permit(:name, :email, :password, :password_confirmation, :phone, :address, :cover_letter , :cover_letter_attach, :avatar, :root, :admin, :user, :employer, :company, :company_id)
+  def configure_permitted_parameters
+    devise_parameter_sanitizer.permit(:sign_up) { |u|
+      u.permit(:name, :email, :password, :password_confirmation, :phone, :address, :cover_letter , :cover_letter_attach, :avatar, :root, :admin, :user, :employer, :company, :company_id)
+    }
   end
-  
+
 end

@@ -31,8 +31,12 @@
 							<%= image_tag current_user.avatar.url %>
 						</div>
 					<%else%>
-						<div class="user_avatar_small_text checked_<%=find_user_color(current_user.email)%>">
-							<span><%=current_user.email[0]%></span>
+						<div class="user_avatar_small_text checked_<%=find_user_color(current_user.name)%>">
+							<%if current_user.name.present?%>
+								<span><%=current_user.name[0].upcase%></span>
+							<%else%>
+								<span>A</span>
+							<%end%>
 						</div>
 					<%end%>
 				</button>
@@ -75,8 +79,12 @@
 								<%= image_tag current_user.avatar.url %>
 							</div>
 						<%else%>
-							<div class="user_avatar_small_text checked_<%=find_user_color(current_user.email)%>">
-								<span><%=current_user.email[0].upcase%></span>
+							<div class="user_avatar_small_text checked_<%=find_user_color(current_user.name)%>">
+								<%if current_user.name.present?%>
+									<span><%=current_user.name[0].upcase%></span>
+								<%else%>
+									<span>A</span>
+								<%end%>
 							</div>
 						<%end%>
 					</button>
@@ -94,7 +102,7 @@
 					</div>
 				</div>
 			<%else%>
-				<a class="nav_recrui" href="<%=new_user_path(role_param: 'employer') %>">
+				<a class="nav_recrui" href="<%=new_user_registration_path(:user_type => 'employer') %>">
 					<span>Tuyển dụng</span>
 				</a>
 				<a class="nav_login" href="<%=new_user_session_path %>">
