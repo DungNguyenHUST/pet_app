@@ -107,4 +107,8 @@ gem 'jquery-rails'
 
 # gem 'meta-tags'
 
+# for user login
 gem 'devise'
+gem 'omniauth-google-oauth2'
+gem 'omniauth-facebook'
+gem 'omniauth-rails_csrf_protection'

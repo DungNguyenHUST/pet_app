@@ -52,4 +52,7 @@ task :symlink_uploads do
         run "ln -nfs #{shared_path}/uploads #{release_path}/public/uploads"
     end
 end
+
+# For append secret key file in host
+append :linked_files, "config/secret.yml"
 # after 'deploy:update_code', 'deploy:symlink_uploads'

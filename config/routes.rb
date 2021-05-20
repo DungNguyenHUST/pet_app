@@ -1,7 +1,8 @@
 Rails.application.routes.draw do
   devise_for :users, controllers: {
     sessions: 'users/sessions',
-    registrations: 'users/registrations'
+    registrations: 'users/registrations',
+    omniauth_callbacks: 'users/omniauth_callbacks'
   }
 
   mount Ckeditor::Engine => '/ckeditor'
@@ -11,7 +12,7 @@ Rails.application.routes.draw do
   end
 
   resources :pages
-  get     "admin_search"   => "pages#index"
+  get "admin_search"   => "pages#index"
 
   resources :posts do
     resources :comments

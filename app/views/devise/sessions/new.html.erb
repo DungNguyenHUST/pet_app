@@ -29,12 +29,16 @@
                         </div>
                     </div>
 
-                    <% if devise_mapping.rememberable? %>
-                        <div class="field">
+                    <div class="user_signin_remember">
+                        <% if devise_mapping.rememberable? %>
                             <%= f.check_box :remember_me %>
-                            <%= f.label :remember_me %>
-                        </div>
-                    <% end %>
+                            <%= f.label :remember_me, "Nhớ đăng nhập", class: "user_signin_label_small" %>
+                        <% end %>
+                    </div>
+                    
+                    <div class="user_signin_forgot_pass">
+                        <a><%= link_to "Quên mật khẩu?", new_password_path(resource_name) %></a>
+                    </div>
 
                     <div class="user_signin_submit">
                         <%= f.submit "Đăng nhập", class: "user_signin_form_submit" %>
@@ -47,20 +51,16 @@
                 </div>
 
                 <div class="login_with_google">
-                    <%= link_to '<button type="submit"> <i class="material-icons-outlined">mail_outline</i><span>Đăng nhập bằng Google</span></button>'.html_safe, new_user_session_path %>
+                    <%= link_to '<button type="submit"> <i class="material-icons-outlined">mail_outline</i><span>Đăng nhập bằng Google</span></button>'.html_safe, user_google_oauth2_omniauth_authorize_path, method: :post %>
                 </div>
                 <div class="login_with_facebook">
-                    <%= link_to '<button type="submit"> <i class="material-icons-outlined">facebook</i> <span>Đăng nhập bằng Facebook</span></button>'.html_safe, new_user_session_path %>
-                </div>
-                <div class="login_with_phone">
-                    <%= link_to '<button type="submit"> <i class="material-icons-outlined">phone</i><span>Đăng nhập bằng Số điện thoại</span></button>'.html_safe, new_user_session_path %>
+                    <%= link_to '<button type="submit"> <i class="material-icons-outlined">facebook</i> <span>Đăng nhập bằng Facebook</span></button>'.html_safe, user_facebook_omniauth_authorize_path, method: :post %>
                 </div>
             </div>
 
-            <p class="user_signin_loginhere">
+            <div class="user_signin_loginhere">
                 Bạn chưa có tài khoản?<a><%= link_to "Đăng kí", new_user_registration_path %></a>
-            </p>
-            <%= render "devise/shared/links" %>
+            </div>
         </div>
     </div>
 </div>

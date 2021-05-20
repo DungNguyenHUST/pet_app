@@ -1,5 +1,5 @@
 <%if (@user_type == "employer") %>
-    <% content_for :meta_title, "Đăng kí tài khoản dành cho nhà tuyển dụng" %>
+    <% content_for :meta_title, "Đăng kí tài khoản mới dành cho nhà tuyển dụng" %>
     <div class="employer_container">
         <div class="container">
             <div class="employer_block">
@@ -162,6 +162,8 @@
         </div>
     </div>
 <%else%>
+    <% content_for :meta_title, "Đăng kí tài khoản mới" %>
+    <% content_for :meta_description, "Tạo tài khoản mới tại firework.vn giúp bạn truy cập những thông tin mới nhất(review công ty, phỏng vấn, việc làm...) trong tìm kiếm việc làm, hãy tham gia cộng đồng của chúng tôi ..." %>
     <div class='user_container'>
         <div class="container">
             <div class="user_block">
@@ -225,13 +227,10 @@
                         <a><span>or</span></a>
                     </div>
                     <div class="login_with_google">
-                        <%= link_to '<button type="submit"> <i class="material-icons-outlined">mail_outline</i><span>Đăng kí bằng Google</span></button>'.html_safe, new_user_session_path %>
+                        <%= link_to '<button type="submit"> <i class="material-icons-outlined">mail_outline</i><span>Đăng nhập bằng Google</span></button>'.html_safe, user_google_oauth2_omniauth_authorize_path, method: :post %>
                     </div>
                     <div class="login_with_facebook">
-                        <%= link_to '<button type="submit"> <i class="material-icons-outlined">facebook</i> <span>Đăng kí bằng Facebook</span></button>'.html_safe, new_user_session_path %>
-                    </div>
-                    <div class="login_with_phone">
-                        <%= link_to '<button type="submit"> <i class="material-icons-outlined">phone</i><span>Đăng kí bằng Số điện thoại</span></button>'.html_safe, new_user_session_path %>
+                        <%= link_to '<button type="submit"> <i class="material-icons-outlined">facebook</i> <span>Đăng nhập bằng Facebook</span></button>'.html_safe, user_facebook_omniauth_authorize_path, method: :post %>
                     </div>
                 </div>
                 

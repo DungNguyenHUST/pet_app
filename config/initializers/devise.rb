@@ -1,5 +1,4 @@
 # frozen_string_literal: true
-
 # Assuming you have not yet modified this file, each configuration option below
 # is set to its default value. Note that some are commented out while others
 # are not: uncommented lines are intended to protect your configuration from
@@ -9,6 +8,9 @@
 # Use this hook to configure devise mailer, warden hooks and so forth.
 # Many of these configuration options can be set straight in your model.
 Devise.setup do |config|
+  # Secret authent key load
+  SECRET_KEY = YAML.load_file(Rails.root.join("config/secret.yml"))
+
   # The secret key used by Devise. Devise uses this key to generate
   # random tokens. Changing this key will render invalid all existing
   # confirmation, reset password and unlock tokens in the database.
@@ -310,4 +312,8 @@ Devise.setup do |config|
   # config.sign_in_after_change_password = true
 
   config.scoped_views = true
+
+  #google authent
+  config.omniauth :facebook, SECRET_KEY["facbook_app_id"], SECRET_KEY["facebook_secret_key"], token_params: { parse: :json }
+  config.omniauth :google_oauth2, SECRET_KEY["google_app_id"], SECRET_KEY["google_secret_key"], token_params: { parse: :json }
 end

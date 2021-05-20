@@ -1,18 +1,26 @@
 <div class="container">
-  <h2>Forgot your password?</h2>
+  <div class="user_reset_password">
+    <h3>Quên mật khẩu?</h3>
+    <%= form_for(resource, as: resource_name, url: password_path(resource_name), html: { method: :post }) do |f| %>
+      <%= render "devise/shared/error_messages", resource: resource %>
 
-  <%= form_for(resource, as: resource_name, url: password_path(resource_name), html: { method: :post }) do |f| %>
-    <%= render "devise/shared/error_messages", resource: resource %>
+      <div class="user_reset_pass_content">
+        <div class="user_reset_pass_label">
+          <a><%= f.label :email, "Nhập địa chỉ email của bạn*", class: "user_reset_pass_label_name" %></a>
+        </div>
 
-    <div class="field">
-      <%= f.label :email %><br />
-      <%= f.email_field :email, autofocus: true, autocomplete: "email" %>
+        <div class="user_reset_pass_input">
+          <%= f.email_field :email, autofocus: true, autocomplete: "email", :required => true, class: "form-control", placeholder: "Nhập email của bạn tại đây" %>
+        </div>
+      </div>
+
+      <div class="user_reset_pass_submit">
+        <%= f.submit "Gửi email reset password", class: "user_reset_form_submit" %>
+      </div>
+    <% end %>
+
+    <div class="user_reset_pass_loginhere">
+      <a><%= link_to "Đăng kí tài khoản mới", new_user_registration_path %></a>
     </div>
-
-    <div class="actions">
-      <%= f.submit "Send me reset password instructions" %>
-    </div>
-  <% end %>
-
-  <%= render "devise/shared/links" %>
+  </div>
 </div>
