@@ -13,7 +13,6 @@ class Users::RegistrationsController < Devise::RegistrationsController
 
   # POST /resource
   # def create
-  #   current_user.update_attribute :admin, true
   #   super
   # end
 
