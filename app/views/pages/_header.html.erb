@@ -43,13 +43,19 @@
 
 				<div class="user_action_select_mobile" id ="user_action_menu_moblie">
 					<div class="user_action">
-						<%= link_to '<button type="submit"><i class="material-icons-outlined">account_circle</i>Thông tin cá nhân</button>'.html_safe, user_path(current_user)%>
+						<%= button_to user_path(current_user), :method => :get do%>
+							<i class="material-icons-outlined">account_circle</i> <span>Thông tin cá nhân</span>
+						<%end%>
 					</div>
 					<div class="user_action">
-						<%= link_to '<button type="submit"><i class="material-icons-outlined">settings</i>Cài đặt tài khoản</button>'.html_safe, user_path(current_user)%>
+						<%= button_to user_path(current_user), :method => :get do%>
+							<i class="material-icons-outlined">settings</i> <span>Cài đặt tài khoản</span>
+						<%end%>
 					</div>
 					<div class="user_action">
-						<%= link_to '<button type="submit"><i class="material-icons-outlined">logout</i>Đăng xuất</button>'.html_safe, destroy_user_session_path, :method => :delete%>
+						<%= button_to destroy_user_session_path, method: :delete do%>
+							<i class="material-icons-outlined">logout</i> <span>Đăng xuất</span>
+						<%end%>
 					</div>
 				</div>
 			</div>
@@ -91,13 +97,19 @@
 
 					<div class="user_action_select" id ="user_action_menu">
 						<div class="user_action">
-							<%= link_to '<button type="submit"><i class="material-icons-outlined">account_circle</i>Thông tin cá nhân</button>'.html_safe, user_path(current_user)%>
+							<%= button_to user_path(current_user), :method => :get do%>
+								<i class="material-icons-outlined">account_circle</i> <span>Thông tin cá nhân</span>
+							<%end%>
 						</div>
 						<div class="user_action">
-							<%= link_to '<button type="submit"><i class="material-icons-outlined">settings</i>Cài đặt tài khoản</button>'.html_safe, user_path(current_user)%>
+							<%= button_to user_path(current_user), :method => :get do%>
+								<i class="material-icons-outlined">settings</i> <span>Cài đặt tài khoản</span>
+							<%end%>
 						</div>
 						<div class="user_action">
-							<%= link_to '<button type="submit"><i class="material-icons-outlined">logout</i>Đăng xuất</button>'.html_safe, destroy_user_session_path, method: :delete%>
+							<%= button_to destroy_user_session_path, method: :delete do%>
+								<i class="material-icons-outlined">logout</i> <span>Đăng xuất</span>
+							<%end%>
 						</div>
 					</div>
 				</div>

@@ -227,10 +227,14 @@
                         <a><span>or</span></a>
                     </div>
                     <div class="login_with_google">
-                        <%= link_to '<button type="submit"> <i class="material-icons-outlined">mail_outline</i><span>Đăng nhập bằng Google</span></button>'.html_safe, user_google_oauth2_omniauth_authorize_path, method: :post %>
+						<%= button_to user_google_oauth2_omniauth_authorize_path, method: :post do%>
+							<i class="material-icons">mail</i> <span>Đăng kí bằng tài khoản Google</span>
+						<%end%>
                     </div>
                     <div class="login_with_facebook">
-                        <%= link_to '<button type="submit"> <i class="material-icons-outlined">facebook</i> <span>Đăng nhập bằng Facebook</span></button>'.html_safe, user_facebook_omniauth_authorize_path, method: :post %>
+                        <%= button_to user_facebook_omniauth_authorize_path, method: :post do%>
+							<i class="material-icons">facebook</i> <span>Đăng kí bằng tài khoản Facebook</span>
+						<%end%>
                     </div>
                 </div>
                 
