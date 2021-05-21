@@ -100,8 +100,8 @@
 								<a><%= f.label :position, "Vị trí làm việc của bạn tại công ty*", class: "new_review_label_name" %></a>
 							</div>
 
-							<div class="new_review_input_title">
-								<%= f.text_field :position, :required => true, class: "new_review_form_input", placeholder: "Nhập vị trí làm việc hiện tại của bạn" %>
+							<div class="new_review_input">
+								<%= f.text_field :position, :required => true, class: "form-control", placeholder: "Nhập vị trí làm việc hiện tại của bạn" %>
 							</div>
 						</div>
 
@@ -128,7 +128,7 @@
 							</div>
 
 							<div class="new_review_input">
-								<%= f.select(:working_time, options_for_select(["6 tháng", "1 năm", "2 năm", "3 năm", "5 năm", "Nhiều hơn 5 năm"]), {include_blank: false}, { :class => 'my_style_class' }) %>
+								<%= f.select(:working_time, options_for_select(["6 tháng", "1 năm", "2 năm", "3 năm", "5 năm", "Nhiều hơn 5 năm"]), {include_blank: false}, { :class => 'form-control' }) %>
 							</div>
 						</div>
 					
@@ -475,8 +475,8 @@
 								<a><%= f.label :review_title, "Tiêu đề bài review", class: "new_review_label" %></a>
 							</div>
 							
-							<div class="new_review_input_title">
-								<%= f.text_field :review_title, class: "new_review_form_input", placeholder: "Nhập title cho bài đánh giá" %>
+							<div class="new_review_input">
+								<%= f.text_field :review_title, class: "form-control", placeholder: "Nhập title cho bài đánh giá" %>
 							</div>
 						</div>
 

@@ -39,7 +39,11 @@
     "@type": "Place",
         "address": {
         "@type": "PostalAddress",
+    <%if @company_job.address.present?%>
         "streetAddress": "<%=@company_job.address%>",
+    <%else%>
+        "streetAddress": "<%=@company_job.location%>",
+    <%end%>
         "addressLocality": "<%=@company_job.location%>",
         "addressRegion": "VN",
         "postalCode": "100000",

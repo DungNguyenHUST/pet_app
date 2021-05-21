@@ -9,6 +9,10 @@
                         <a>Đăng nhập</a>
                     </div>
 
+                    <div class="user_signin_logo">
+                        <%= link_to (image_tag(("logo.png"))), image_path(url_for(("logo.png"))), rel: "gallery" , :href => pages_path%>
+                    </div>
+
                     <div class="user_signin_content">
                         <div class="user_signin_label">
                             <a><%= f.label :email, "Địa chỉ email*", class: "user_signin_label_name" %></a>
@@ -63,7 +67,7 @@
             </div>
 
             <div class="user_signin_loginhere">
-                Bạn chưa có tài khoản?<a><%= link_to "Đăng kí", new_user_registration_path %></a>
+                Chưa có tài khoản?<a><%= link_to "Tạo tài khoản", new_user_registration_path %></a>
             </div>
         </div>
     </div>

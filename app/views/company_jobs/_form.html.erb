@@ -22,7 +22,7 @@
 							</div>
 							
 							<div class="new_job_input">
-								<%= f.text_field :title,  autofocus: true, :required => true, class: "new_job_form_input", placeholder: "Nhập tên việc làm bạn cần tuyển dụng" %>
+								<%= f.text_field :title,  autofocus: true, :required => true, class: "form-control", placeholder: "Nhập tên việc làm bạn cần tuyển dụng" %>
 							</div>
 						</div>
 
@@ -31,7 +31,7 @@
 								<a><%= f.label :urgent, "Bạn cần tuyển gấp hay không?*", class: "new_job_label" %></a>
 							</div>
 							<div class="new_job_input">
-								<%= f.select(:urgent, options_for_select([['Không, tôi không cần tuyển gấp', false], ['Có, tôi cần tuyển gấp', true]]), {include_blank: false}, { :class => 'my_style_class' }) %>
+								<%= f.select(:urgent, options_for_select([['Không, tôi không cần tuyển gấp', false], ['Có, tôi cần tuyển gấp', true]]), {include_blank: false}, { :class => 'form-control' }) %>
 							</div>
 						</div> -->
 						
@@ -41,7 +41,7 @@
 							</div>
 							
 							<div class="new_job_input">
-								<%= f.select(:level, options_for_select(['Intern', 'Junior', 'Middle', 'Senior', 'Expert', 'Leader', 'Architect'], 'Junior'), {include_blank: false}, { :class => 'my_style_class'}) %>
+								<%= f.select(:level, options_for_select(['Intern', 'Junior', 'Middle', 'Senior', 'Expert', 'Leader', 'Architect'], 'Junior'), {include_blank: false}, { :class => 'form-control'}) %>
 							</div>
 						</div>
 
@@ -51,7 +51,7 @@
 							</div>
 							
 							<div class="new_job_input">
-								<%= f.select(:category, options_for_select(['IT - Phần mềm', 'IT - Phần cứng', 'Viễn thông', 'Kiến trúc', 'Xây dựng', 'Sức khỏe', 'Online Media', 'Dịch vụ', 'Giải trí', 'Du lịch', 'Giáo dục', 'Government', 'Sản xuất', 'Nghiên cứu', 'Business Management', 'Ngân hàng', 'Tài chính', 'Đầu tư', 'Nhân sự', 'Luật', 'Marketing and Sales', 'Logistics', 'Lĩnh vực khác'], 'Lĩnh vực khác'), {include_blank: false}, { :class => 'my_style_class'}) %>
+								<%= f.select(:category, options_for_select(['IT - Phần mềm', 'IT - Phần cứng', 'Viễn thông', 'Kiến trúc', 'Xây dựng', 'Sức khỏe', 'Online Media', 'Dịch vụ', 'Giải trí', 'Du lịch', 'Giáo dục', 'Government', 'Sản xuất', 'Nghiên cứu', 'Business Management', 'Ngân hàng', 'Tài chính', 'Đầu tư', 'Nhân sự', 'Luật', 'Marketing and Sales', 'Logistics', 'Lĩnh vực khác'], 'Lĩnh vực khác'), {include_blank: false}, { :class => 'form-control'}) %>
 							</div>
 						</div>
 
@@ -72,7 +72,7 @@
 														'Quảng Nam','Quảng Ngãi','Quảng Ninh','Quảng Trị',
 														'Sóc Trăng','Sơn La','Tây Ninh','Thái Bình','Thái Nguyên' ,
 														'Thanh Hóa','Thừa Thiên – Huế','Tiền Giang','Trà Vinh',
-														'Tuyên Quang','Vĩnh Long','Vĩnh Phúc','Yên Bái' ], "Hà Nội"), {include_blank: false, :required => true}, { :class => 'my_style_class' }) %>
+														'Tuyên Quang','Vĩnh Long','Vĩnh Phúc','Yên Bái' ], "Hà Nội"), {include_blank: false, :required => true}, { :class => 'form-control' }) %>
 							</div>
 						</div>
 
@@ -82,7 +82,7 @@
 							</div>
 							
 							<div class="new_job_input">
-								<%= f.text_field :address, class: "new_job_form_input", placeholder: "Nhập địa chỉ làm việc bao gồm tên đường, quận, huyện,..." %>
+								<%= f.text_field :address, class: "form-control", placeholder: "Nhập địa chỉ làm việc bao gồm tên đường, quận, huyện,..." %>
 							</div>
 						</div>
 					</div>
@@ -95,7 +95,7 @@
 							</div>
 							
 							<div class="new_job_input">
-								<%= f.select(:job_type, options_for_select(['Full Time', 'Part Time', 'Remote', 'Tạm thời', "Thực tập sinh", "Khác"], 'Full Time'), {include_blank: false}, { :class => 'my_style_class' }) %>
+								<%= f.select(:job_type, options_for_select(['Full Time', 'Part Time', 'Remote', 'Tạm thời', "Thực tập sinh", "Khác"], 'Full Time'), {include_blank: false}, { :class => 'form-control' }) %>
 							</div>
 						</div>
 						<div class="new_job_content">
@@ -104,7 +104,7 @@
 							</div>
 							
 							<div class="new_job_input">
-								<%= f.select(:salary, options_for_select([['Thương lượng', 0], ['1000000đ-5000000đ', 1], ['5000000đ-10000000đ', 2], ['10000000đ-15000000đ', 3], ['15000000đ-20000000đ', 4], ['20000000đ-25000000đ', 5], ['25000000đ-30000000đ', 6], ['30000000đ-35000000đ', 7], ['35000000đ-40000000đ', 8], ['40000000đ-45000000đ', 9], ['45000000đ-50000000đ', 9], ['50000000đ-60000000đ', 10], ['600000000đ-70000000đ', 11], ['70000000đ-80000000đ', 12], ['800000000đ-90000000đ', 13], ['90000000đ-100000000đ', 14], ['hơn 100000000đ', 15]], ['Thương lượng', 0]), {include_blank: false}, { :class => 'my_style_class' }) %>
+								<%= f.select(:salary, options_for_select([['Thương lượng', 0], ['1000000đ-5000000đ', 1], ['5000000đ-10000000đ', 2], ['10000000đ-15000000đ', 3], ['15000000đ-20000000đ', 4], ['20000000đ-25000000đ', 5], ['25000000đ-30000000đ', 6], ['30000000đ-35000000đ', 7], ['35000000đ-40000000đ', 8], ['40000000đ-45000000đ', 9], ['45000000đ-50000000đ', 9], ['50000000đ-60000000đ', 10], ['600000000đ-70000000đ', 11], ['70000000đ-80000000đ', 12], ['800000000đ-90000000đ', 13], ['90000000đ-100000000đ', 14], ['hơn 100000000đ', 15]], ['Thương lượng', 0]), {include_blank: false}, { :class => 'form-control' }) %>
 							</div>
 						</div>
 
@@ -114,7 +114,7 @@
 							</div>
 							
 							<div class="new_job_input">
-								<%= f.number_field :quantity, :required => true,  class: "new_job_form_input", placeholder: "Số lượng vị trí cần tuyển dụng" %>
+								<%= f.number_field :quantity, :required => true,  class: "form-control", placeholder: "Số lượng vị trí cần tuyển dụng" %>
 							</div>
 						</div>
 
@@ -124,7 +124,7 @@
 							</div>
 							
 							<div class="new_job_input">
-								<%= f.date_field :end_date, :required => true, class: "new_job_form_input", placeholder: "Nhập ngày hết hạn nộp hồ sơ" %>
+								<%= f.date_field :end_date, :required => true, class: "form-control", placeholder: "Nhập ngày hết hạn nộp hồ sơ" %>
 							</div>
 						</div>
 
@@ -134,7 +134,7 @@
 							</div>
 							
 							<div class="new_job_input">
-								<%= f.select(:language, options_for_select(['English', 'Tiếng Việt', 'Tùy chọn'], 'Tùy chọn'), {include_blank: false}, { :class => 'my_style_class' }) %>
+								<%= f.select(:language, options_for_select(['English', 'Tiếng Việt', 'Tùy chọn'], 'Tùy chọn'), {include_blank: false}, { :class => 'form-control' }) %>
 							</div>
 						</div>
 
@@ -146,7 +146,7 @@
 								</div>
 								
 								<div class="new_job_input">
-									<%= f.text_field :apply_site, :required => true, class: "new_job_form_input", placeholder: "Nhâp site tuyển dụng của công ty" %>
+									<%= f.text_field :apply_site, :required => true, class: "form-control", placeholder: "Nhâp site tuyển dụng của công ty" %>
 								</div>
 							</div>
 						<%end%>

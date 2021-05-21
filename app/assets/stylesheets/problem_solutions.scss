@@ -42,12 +42,16 @@
                 margin-bottom: 20px;
                 width: 750px;
                 height: auto;
-                .new_problem_solution_form_input{
+                .form-control{
                     margin-left: 0px;
                     height: 40px;
                     width: 100%;
                     border: 1px solid #dfe1e5;
                     border-radius: 3px;
+                    &:focus{
+                        border: 2px solid #1877f2;
+                        border-radius: 3px;
+                    }
                 }
             }
             .new_problem_solution_input_time{
@@ -55,21 +59,16 @@
                 margin-top: 5px;
                 margin-bottom: 20px;
                 width: 300px;
-                .new_problem_solution_form_input{
+                .form-control{
                     margin-left: 0px;
                     height: 40px;
                     width: 100%;
                     border: 1px solid #dfe1e5;
                     border-radius: 3px;
-                }
-                .form-control-text{
-                    min-height: 100px;
-                    height: auto;
-                    margin-left: 0px;
-                    width: 100%;
-                    border: 1px solid #dfe1e5;
-                    border-radius: 3px;
-                    overflow: auto;
+                    &:focus{
+                        border: 2px solid #1877f2;
+                        border-radius: 3px;
+                    }
                 }
             }
 
@@ -79,7 +78,7 @@
                 margin-bottom: 20px;
                 width: 750px;
                 height: 50px;
-                .new_problem_solution_form_input_review{
+                .form-control{
                     word-wrap: break-word;
                     white-space: pre-wrap; 
                     margin-left: 0px;
@@ -87,6 +86,10 @@
                     width: 100%;
                     border: 1px solid #dfe1e5;
                     border-radius: 3px;
+                    &:focus{
+                        border: 2px solid #1877f2;
+                        border-radius: 3px;
+                    }
                 }
             }
         }
@@ -122,12 +125,16 @@
         }
     }
 
-    .my_style_class{
+    .form-control{
         padding: 10px;
         width: 300px;
         font-size: 14px;
         border-radius: 3px;
         background: #fff;
+        &:focus{
+            border: 2px solid #1877f2;
+            border-radius: 3px;
+        }
     }
 }
 
@@ -221,13 +228,17 @@
                 }
             }
             .user_avatar_small_default{
-                padding: 6px;
-                padding-left: 12px;
-                padding-right: 12px;
-                position: relative;
-                font-size: 14px;
-                border-radius: 50%;
-                color: #ffe;
+                a{
+                    padding: 8px;
+                    padding-left: 12px;
+                    padding-right: 12px;
+                    position: relative;
+                    font-size: 14px;
+                    border-radius: 50%;
+                    color: #ffe;
+                    background-color: #6b6c6d;
+
+                }
             }
         }
 
@@ -333,6 +344,7 @@
                 button{
                     border: none;
                     background-color: #f8f9fa;
+                    &:focus {outline:none;}
                     i{
                         font-size: 18px;
                         position: relative;

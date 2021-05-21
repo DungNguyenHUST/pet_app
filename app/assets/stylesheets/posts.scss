@@ -143,6 +143,7 @@
                             text-align: left;
                             cursor: pointer;
                             color: #1877f2;
+                            &:focus {outline:none;}
                             i{
                                 position: relative;
                                 top: 7px;
@@ -168,6 +169,7 @@
                 border-radius: 3px;
                 height: 55px;
                 width: 100%;
+                &:focus {outline:none;}
                 i{
                     position: relative;
                     top: 5px;
@@ -412,7 +414,7 @@
                         min-height: 100px;
                         border-radius: 3px;
                     }
-                    .form-control-text{
+                    .form-control{
                         min-height: 100px;
                         height: auto;
                         margin-left: 0px;
@@ -420,6 +422,10 @@
                         border: 1px solid #dfe1e5;
                         border-radius: 3px;
                         overflow: auto;
+                        &:focus{
+                            border: 2px solid #1877f2;
+                            border-radius: 3px;
+                        }
                     }
                 }
             }
@@ -563,7 +569,7 @@
                 margin-bottom: 20px;
                 width: 100%;
                 height: auto;
-                .new_post_form_input{
+                .form-control{
                     margin-left: 0px;
                     min-height: 40px;
                     width: 100%;
@@ -578,8 +584,12 @@
                     border: 1px solid #dfe1e5;
                     border-radius: 3px;
                 }
-				.my_style_class{
+				.form-control{
 					width: 100%;
+                    &:focus{
+                        border: 2px solid #1877f2;
+                        border-radius: 3px;
+                    }
 				}
             }
         }
@@ -606,11 +616,15 @@
         }
     }
 
-    .my_style_class{
+    .form-control{
         padding: 10px;
         width: 300px;
         font-size: 14px;
         border-radius: 3px;
         background: #fff;
+        &:focus{
+            border: 2px solid #1877f2;
+            border-radius: 3px;
+        }
     }
 }

@@ -1,12 +1,12 @@
 <%if (@user_type == "employer") %>
-    <% content_for :meta_title, "Đăng kí tài khoản mới dành cho nhà tuyển dụng" %>
+    <% content_for :meta_title, "Tạo tài khoản mới dành cho nhà tuyển dụng" %>
     <div class="employer_container">
         <div class="container">
             <div class="employer_block">
                 <div class="employer_add_new_form">
                     <%= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
                         <div class="employer_add_new_title">
-                            <h3>Đăng kí thông tin nhà tuyển dụng</h3>
+                            <a>Tạo tài khoản nhà tuyển dụng</a>
                         </div>
 
                         <div class="employer_add_new_content">
@@ -82,7 +82,7 @@
                         <%=f.hidden_field :employer, :value => true, readonly: true%>
 
                         <div class="employer_add_new_submit">
-                            <%= f.submit "Đăng ký tài khoản", class: "employer_add_new_form_submit" %>
+                            <%= f.submit "Tạo tài khoản", class: "employer_add_new_form_submit" %>
                         </div>
                     <%end%>
                 </div>
@@ -101,7 +101,7 @@
                     <%= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
                         <%= render "devise/shared/error_messages", resource: resource %>
                         <div class="user_add_new_title">
-                            <h3>Đăng ký tài khoản admin - Admin only</h3>
+                            <a>Tạo tài khoản admin - Admin only</a>
                         </div>
 
                         <div class="user_add_new_content">
@@ -150,7 +150,7 @@
                         <%=f.hidden_field :admin, :value => true, readonly: true%>
 
                         <div class="user_add_new_submit">
-                            <%= f.submit "Đăng ký", class: "user_add_new_form_submit" %>
+                            <%= f.submit "Tạo tài khoản", class: "user_add_new_form_submit" %>
                         </div>
                     <%end%>
                 </div>
@@ -162,7 +162,7 @@
         </div>
     </div>
 <%else%>
-    <% content_for :meta_title, "Đăng kí tài khoản mới" %>
+    <% content_for :meta_title, "Tạo tài khoản mới" %>
     <% content_for :meta_description, "Tạo tài khoản mới tại firework.vn giúp bạn truy cập những thông tin mới nhất(review công ty, phỏng vấn, việc làm...) trong tìm kiếm việc làm, hãy tham gia cộng đồng của chúng tôi ..." %>
     <div class='user_container'>
         <div class="container">
@@ -171,7 +171,11 @@
                     <%= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
                         <%= render "devise/shared/error_messages", resource: resource %>
                         <div class="user_add_new_title">
-                            <h3>Đăng ký tài khoản mới</h3>
+                            <a>Tạo tài khoản mới</a>
+                        </div>
+
+                        <div class="user_add_new_logo">
+                            <%= link_to (image_tag(("logo.png"))), image_path(url_for(("logo.png"))), rel: "gallery" , :href => pages_path%>
                         </div>
 
                         <div class="user_add_new_content">
@@ -218,7 +222,7 @@
                         </div>
 
                         <div class="user_add_new_submit">
-                            <%= f.submit "Đăng ký", class: "user_add_new_form_submit" %>
+                            <%= f.submit "Tạo tài khoản", class: "user_add_new_form_submit" %>
                         </div>
                     <%end%>
                 </div>

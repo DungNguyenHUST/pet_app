@@ -9,32 +9,10 @@ class UsersController < ApplicationController
 
     def new
         @user = User.new
-        @param = params[:role_param]
     end
     
     def create
         @user = User.new(user_params)
-        user_present = User.friendly.find_by(email: user_params[:email].downcase)
-        
-        if user_present.present?
-            flash[:danger] = "Email đã được đăng kí, vui lòng thử đăng nhập lại hoặc thay đổi mật khẩu... "
-            redirect_to new_user_session_path
-        else
-            if @user.password == @user.password_confirmation
-                # special admin config
-                
-                if @user.save
-                    flash[:success] = "Đăng kí thành công"
-                    redirect_to new_user_session_path
-                else
-                    flash[:danger] = "Đăng kí không thành công"
-                    render :new
-                end
-            else
-                flash[:danger] = "Mật khẩu không khớp, vui lòng nhập lại mật khẩu"
-                render :new
-            end
-        end
     end
 
     def show
@@ -113,7 +91,8 @@ class UsersController < ApplicationController
 				flash[:success] = "Update thông tin thành công"
 				redirect_to user_path(current_user)
 			else
-				flash[:danger] = "Lỗi, hãy điền đủ nội dung có dấu '*'"
+				flash[:danger] = "Lỗi, không thể cập nhật thông tin"
+                redirect_to user_path(current_user)
 			end
         else
             if (!@user.approved? && @user.update_column(:approved, true))
@@ -122,6 +101,8 @@ class UsersController < ApplicationController
             elsif (@user.approved? && @user.update_column(:approved, false))
                 flash[:danger] = "Rejected"
                 redirect_to pages_path(tab_id: 'UserID')
+            else
+                redirect_to user_path(current_user)
             end
         end
     end

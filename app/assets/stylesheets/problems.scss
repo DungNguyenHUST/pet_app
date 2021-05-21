@@ -28,7 +28,7 @@
                         left: 25px;
                         top: 14px;
                     }
-                    .search_input{
+                    .form-control{
                         padding-left: 40px;
                         padding-right: 10px;
                         width: 100%;
@@ -38,6 +38,10 @@
                         color: #333;
                         font-size: 16px;
                         outline:none;
+                        &:focus{
+                            border: 2px solid #1877f2;
+                            border-radius: 3px;
+                        }
                     }
 				}
 				
@@ -55,6 +59,7 @@
 						height: 50px;
 						color: #fff;
 						font-size:16px;
+                        &:focus {outline:none;}
 					}
 				}
 			}
@@ -456,6 +461,7 @@
                 background-color: #1877f2;
                 border: none;
                 color: #fff;
+                &:focus {outline:none;}
                 i{
                     color: #fff;
                     position: relative;
@@ -471,6 +477,7 @@
                     background-color: #369;
                     color: #fff;
                 }
+                &:focus {outline:none;}
             }
         }
     }
@@ -1082,102 +1089,111 @@
 							display: block;
 							.new_problem_solution_right_form
 							{
-								.new_problem_solution_right_title{
-									a{
-										font-size: 22px;
-										font-weight: 500;
-										color: #333;
-									}
-									text-align: center;
-									@media screen and (max-width: 600px){
-										text-align: left;
-										padding-top: 10px;
-									}
-									//border-bottom: 1px solid #dfe1e5;
-									padding-top: 5px;
-									position: relative;
-								}
-				
-								.new_problem_solution_right_section
-								{
-									padding-top: 10px;
-									.new_problem_solution_right_content{
-										.new_problem_solution_right_label_title{
-											font-weight: 550;
-											font-size: 16px;
-											color: #333;
-											text-align: left;
-											margin-bottom: 10px;
-										}
-				
-										.new_problem_solution_right_input_review_title{
-											left: 0px;
-											height: auto;
-											.form-control{
-												margin-left: 0px;
-												min-height: 50px;
-												width: 100%;
-												border: 1px solid #dfe1e5;
-												border-radius: 3px;
-											}
-										}
-				
-										.new_problem_solution_right_label{
-											font-weight: 550;
-											font-size: 16px;
-											color: #333;
-											text-align: left;
-											margin-top: 30px;
-											margin-bottom: 10px;
-										}
-				
-										.new_problem_solution_right_input_review{
-											left: 0px;
-											margin-top: 5px;
-											margin-bottom: 20px;
-				
-											.problem_rich_text{
-												min-height: 500px !important;;
-												height: auto;
-												margin-left: 0px;
-												width: 100%;
-												border: 1px solid #dfe1e5;
-												border-radius: 3px;
-											}
-										}
-										
-									}
-								}
-				
-								.new_problem_solution_right_submit_button{
-									margin-top: 30px;
+                                .new_problem_solution_right_title{
+                                    a{
+                                        font-size: 22px;
+                                        font-weight: 500;
+                                        color: #333;
+                                    }
+                                    text-align: center;
+                                    @media screen and (max-width: 600px){
+                                        text-align: left;
+                                        padding-top: 10px;
+                                    }
+                                    //border-bottom: 1px solid #dfe1e5;
+                                    padding-top: 5px;
+                                    position: relative;
+                                }
+            
+                                .new_problem_solution_right_section
+                                {
+                                    padding-top: 10px;
+                                    .new_problem_solution_right_content{
+                                        .new_problem_solution_right_label_title{
+                                            font-weight: 550;
+                                            font-size: 16px;
+                                            color: #333;
+                                            text-align: left;
+                                            margin-bottom: 10px;
+                                        }
+                
+                                        .new_problem_solution_right_input_review_title{
+                                            left: 0px;
+                                            height: auto;
+                                            .form-control{
+                                                margin-left: 0px;
+                                                min-height: 50px;
+                                                width: 100%;
+                                                border: 1px solid #dfe1e5;
+                                                border-radius: 3px;
+                                                &:focus{
+                                                    border: 2px solid #1877f2;
+                                                    border-radius: 3px;
+                                                }
+                                            }
+                                        }
+                
+                                        .new_problem_solution_right_label{
+                                            font-weight: 550;
+                                            font-size: 16px;
+                                            color: #333;
+                                            text-align: left;
+                                            margin-top: 30px;
+                                            margin-bottom: 10px;
+                                        }
+                
+                                        .new_problem_solution_right_input_review{
+                                            left: 0px;
+                                            margin-top: 5px;
+                                            margin-bottom: 20px;
+                
+                                            .problem_rich_text{
+                                                min-height: 500px !important;;
+                                                height: auto;
+                                                margin-left: 0px;
+                                                width: 100%;
+                                                border: 1px solid #dfe1e5;
+                                                border-radius: 3px;
+                                            }
+                                        }
+                                        
+                                    }
+                                }
+            
+                                .new_problem_solution_right_submit_button{
+                                    margin-top: 30px;
                                     margin-bottom: 20px;
-									.new_problem_solution_right_form_submit{
-										height: 50px;
-										width: 100%;
-										border-radius: 3px;
-										padding: 6px;
-										background: #1877f2;
-										font-size: 16px;
-										border: none;
-										cursor: pointer;
-										text-align: center;
-										color: #fff;
-										
-										&:hover{
-											background-color: #369;
-										}
-									}
-								}
-				
-								.my_style_class{
-									padding: 10px;
-									width: 300px;
-									font-size: 14px;
-									border-radius: 3px;
-									background: #fff;
-								}
-								}
+                                    .new_problem_solution_right_form_submit{
+                                        height: 50px;
+                                        width: 100%;
+                                        border-radius: 3px;
+                                        padding: 6px;
+                                        background: #1877f2;
+                                        font-size: 16px;
+                                        border: none;
+                                        cursor: pointer;
+                                        text-align: center;
+                                        color: #fff;
+                                        &:focus {outline:none;}
+                                        
+                                        &:hover{
+                                            background-color: #369;
+                                        }
+                                    }
+                                }
+            
+                                    .form-control{
+                                        padding: 10px;
+                                        width: 300px;
+                                        font-size: 14px;
+                                        border-radius: 3px;
+                                        background: #fff;
+                                        &:focus{
+                                            border: 2px solid #1877f2;
+                                            border-radius: 3px;
+                                        }
+                                    }
+                                }
 							}
 						}
 					}
@@ -1221,8 +1237,12 @@
                 text-align: left;
             }
 			
-			.my_style_class{
+			.form-control{
 				width: 100%;
+                &:focus{
+                    border: 2px solid #1877f2;
+                    border-radius: 3px;
+                }
 			}
             .new_problem_input{
                 left: 0px;
@@ -1235,6 +1255,10 @@
                     width: 100%;
                     border: 1px solid #dfe1e5;
                     border-radius: 3px;
+                    &:focus{
+                        border: 2px solid #1877f2;
+                        border-radius: 3px;
+                    }
                 }
             }
         }
@@ -1260,11 +1284,15 @@
         }
     }
 
-    .my_style_class{
+    .form-control{
         padding: 10px;
         width: 300px;
         font-size: 14px;
         border-radius: 3px;
         background: #fff;
+        &:focus{
+            border: 2px solid #1877f2;
+            border-radius: 3px;
+        }
     }
 }

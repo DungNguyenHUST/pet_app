@@ -42,7 +42,7 @@
 														'Quảng Nam','Quảng Ngãi','Quảng Ninh','Quảng Trị',
 														'Sóc Trăng','Sơn La','Tây Ninh','Thái Bình','Thái Nguyên' ,
 														'Thanh Hóa','Thừa Thiên – Huế','Tiền Giang','Trà Vinh',
-														'Tuyên Quang','Vĩnh Long','Vĩnh Phúc','Yên Bái' ], "Hà Nội"), {include_blank: false, :required => true}, { :class => 'my_style_class' }) %>
+														'Tuyên Quang','Vĩnh Long','Vĩnh Phúc','Yên Bái' ], "Hà Nội"), {include_blank: false, :required => true}, { :class => 'form-control' }) %>
 							</div>
 						</div>
 
@@ -257,7 +257,7 @@
 																			'Việt Nam',
 																			'Yemen',
 																			'Zambia',
-																			'Zimbabwe'], "Việt Nam"), {include_blank: false}, { :class => 'my_style_class' }) %>
+																			'Zimbabwe'], "Việt Nam"), {include_blank: false}, { :class => 'form-control' }) %>
 							</div>
 						</div>
 						
@@ -267,7 +267,7 @@
 							</div>
 
 							<div class="new_company_input">
-								<%= f.select(:company_type, options_for_select(['Công ty TNHH', 'Công ty Cổ phần', 'Không xác định'], "Không xác định"), {include_blank: false}, { :class => 'my_style_class' }) %>
+								<%= f.select(:company_type, options_for_select(['Công ty TNHH', 'Công ty Cổ phần', 'Không xác định'], "Không xác định"), {include_blank: false}, { :class => 'form-control' }) %>
 							</div>
 						</div>
 
@@ -277,7 +277,7 @@
 							</div>
 
 							<div class="new_company_input">
-								<%= f.select(:field_operetion, options_for_select(['Công nghệ thông tin - IT', 'Viễn thông - Telecommunication', 'Tài chính, Ngân hàng - Finance', 'Chứng khoán - Stock index', 'Hàng không - Aerospace', 'Vận tải - Transport', 'Bán dẫn - Computer', 'Nông nghiệp - Agriculture', 'Xây dựng - Construction', 'Giáo dục - Education', 'Dược phẩm - Pharmaceutical', 'Ăn uống - Food', 'Chăm sóc sức khỏe - Health care', 'Bảo hiểm - Insurance', 'Bệnh viện - Hospitality', 'Giải trí - Entertainment ', 'Truyền thông - Media', 'Năng lượng - Energy', 'Sản xuất - Manufacturing', 'Âm nhạc - Music', 'Khai thác mỏ, dầu khí - Mining', 'Worldwide web, hosting', 'Không xác định'], 'Không xác định'), {include_blank: false}, { :class => 'my_style_class' }) %>
+								<%= f.select(:field_operetion, options_for_select(['Công nghệ thông tin - IT', 'Viễn thông - Telecommunication', 'Tài chính, Ngân hàng - Finance', 'Chứng khoán - Stock index', 'Hàng không - Aerospace', 'Vận tải - Transport', 'Bán dẫn - Computer', 'Nông nghiệp - Agriculture', 'Xây dựng - Construction', 'Giáo dục - Education', 'Dược phẩm - Pharmaceutical', 'Ăn uống - Food', 'Chăm sóc sức khỏe - Health care', 'Bảo hiểm - Insurance', 'Bệnh viện - Hospitality', 'Giải trí - Entertainment ', 'Truyền thông - Media', 'Năng lượng - Energy', 'Sản xuất - Manufacturing', 'Âm nhạc - Music', 'Khai thác mỏ, dầu khí - Mining', 'Worldwide web, hosting', 'Không xác định'], 'Không xác định'), {include_blank: false}, { :class => 'form-control' }) %>
 							</div>
 						</div>
 
@@ -310,7 +310,7 @@
 								<a><%= f.label :time_establish, "Năm thành lập công ty", class: "new_company_label_name" %></a>
 							</div>
 
-							<div class="new_company_input_year">
+							<div class="new_company_input">
 								<a><%= f.date_select :time_establish, {discard_day: true, discard_month: true, start_year: 1900, end_year: Date.current.year} %></a>
 							</div>
 						</div>
@@ -320,8 +320,8 @@
 								<a><%= f.label :working_time, "Thời gian làm việc", class: "new_company_label_name" %></a>
 							</div>
 
-							<div class="new_company_input_time">
-								<%= f.select(:working_time, options_for_select(['6h00 - 15h00', '6h30 - 15h30', '7h00 - 16h00', '7h30 - 16h30', '8h00 - 17h00', '8h30 - 17h30', '9h00 - 18h00', '9h30 - 18h30', 'Không cố định(flexible)'] , '9h00 - 16h00'), {include_blank: false}, { :class => 'my_style_class' }) %>
+							<div class="new_company_input">
+								<%= f.select(:working_time, options_for_select(['6h00 - 15h00', '6h30 - 15h30', '7h00 - 16h00', '7h30 - 16h30', '8h00 - 17h00', '8h30 - 17h30', '9h00 - 18h00', '9h30 - 18h30', 'Không cố định(flexible)'] , '9h00 - 16h00'), {include_blank: false}, { :class => 'form-control' }) %>
 							</div>
 						</div>
 
@@ -330,8 +330,8 @@
 								<a><%= f.label :working_date, "Ngày làm việc trong tuần", class: "new_company_label_name" %></a>
 							</div>
 
-							<div class="new_company_input_time">
-								<%= f.select(:working_date, options_for_select(['Mon-Fri', 'Mon-Sat', 'Không cố định(Flexible)']), {include_blank: false}, { :class => 'my_style_class' }) %>
+							<div class="new_company_input">
+								<%= f.select(:working_date, options_for_select(['Mon-Fri', 'Mon-Sat', 'Không cố định(Flexible)']), {include_blank: false}, { :class => 'form-control' }) %>
 							</div>
 						</div>
 						
@@ -341,7 +341,7 @@
 							</div>
 
 							<div class="new_company_input">
-								<%= f.select(:size, options_for_select(['10', '10-50', '50-100', '100-500', '500-1000', '1000+'], "Không xác định"), {include_blank: false}, { :class => 'my_style_class' }) %>
+								<%= f.select(:size, options_for_select(['10', '10-50', '50-100', '100-500', '500-1000', '1000+'], "Không xác định"), {include_blank: false}, { :class => 'form-control' }) %>
 							</div>
 						</div>
 
@@ -351,7 +351,7 @@
 							</div>
 
 							<div class="new_company_input">
-								<%= f.select(:values, options_for_select(['1-10 million USD', '10-50 million USD', '50-100 million USD', '100-500 million USD', '500-1000 million USD', '1-10 billion USD', '10-50 billion USD', '50-100 billion USD', '100-500 billion USD', '500-1000 billion USD', '1000+ billion USD'], "Không xác định"), {include_blank: false}, { :class => 'my_style_class' }) %>
+								<%= f.select(:values, options_for_select(['1-10 million USD', '10-50 million USD', '50-100 million USD', '100-500 million USD', '500-1000 million USD', '1-10 billion USD', '10-50 billion USD', '50-100 billion USD', '100-500 billion USD', '500-1000 billion USD', '1000+ billion USD'], "Không xác định"), {include_blank: false}, { :class => 'form-control' }) %>
 							</div>
 						</div>
 
