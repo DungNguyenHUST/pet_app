@@ -59,10 +59,10 @@ class CompanyJobsController < ApplicationController
         else
             if (!@company_job.approved? && @company_job.update_column(:approved, true))
                 flash[:success] = "Approved"
-                redirect_to pages_path(tab_id: 'CompanyID')
+                redirect_to user_path(current_user, tab_id: 'AdminCompanyID')
             elsif (@company_job.approved? && @company_job.update_column(:approved, false))
                 flash[:danger] = "Rejected"
-                redirect_to pages_path(tab_id: 'CompanyID')
+                redirect_to user_path(current_user, tab_id: 'AdminCompanyID')
             end
 		end
     end

@@ -120,10 +120,10 @@ class ProblemsController < ApplicationController
         else
             if (!@problem.approved? && @problem.update_column(:approved, true))
                 flash[:success] = "Approved"
-                redirect_to pages_path(tab_id: 'ProblemID')
+                redirect_to user_path(current_user, tab_id: 'AdminProblemID')
             elsif (@problem.approved? && @problem.update_column(:approved, false))
                 flash[:danger] = "Rejected"
-                redirect_to pages_path(tab_id: 'ProblemID')
+                redirect_to user_path(current_user, tab_id: 'AdminProblemID')
             end
         end
     end
@@ -131,7 +131,7 @@ class ProblemsController < ApplicationController
     def destroy
         @problem = Problem.friendly.find params[:id]
         @problem.destroy
-        redirect_to pages_path(tab_id: 'ProblemID')
+        redirect_to pages_path(tab_id: 'AdminProblemID')
     end
 
     private

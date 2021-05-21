@@ -101,10 +101,10 @@ class CompaniesController < ApplicationController
         else
             if (!@company.approved? && @company.update_column(:approved, true))
                 flash[:success] = "Approved"
-                redirect_to pages_path(tab_id: 'CompanyID')
+                redirect_to user_path(current_user, tab_id: 'AdminCompanyID')
             elsif (@company.approved? && @company.update_column(:approved, false))
                 flash[:danger] = "Rejected"
-                redirect_to pages_path(tab_id: 'CompanyID')
+                redirect_to user_path(current_user, tab_id: 'AdminCompanyID')
             end
         end
     end
@@ -112,7 +112,7 @@ class CompaniesController < ApplicationController
     def destroy
         @company = Company.friendly.find params[:id]
         @company.destroy
-        redirect_to pages_path(tab_id: 'CompanyID')
+        redirect_to pages_path(tab_id: 'AdminCompanyID')
     end
 
     private

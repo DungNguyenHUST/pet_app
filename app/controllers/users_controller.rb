@@ -80,7 +80,7 @@ class UsersController < ApplicationController
     def destroy
         @user = User.friendly.find params[:id]
         @user.destroy
-        redirect_to pages_path(tab_id: 'UserID')
+        redirect_to pages_path(tab_id: 'AdminUserID')
     end
 
     def update
@@ -97,10 +97,10 @@ class UsersController < ApplicationController
         else
             if (!@user.approved? && @user.update_column(:approved, true))
                 flash[:success] = "Approved"
-                redirect_to pages_path(tab_id: 'UserID')
+                redirect_to user_path(current_user, tab_id: 'AdminUserID')
             elsif (@user.approved? && @user.update_column(:approved, false))
                 flash[:danger] = "Rejected"
-                redirect_to pages_path(tab_id: 'UserID')
+                redirect_to user_path(current_user, tab_id: 'AdminUserID')
             else
                 redirect_to user_path(current_user)
             end
