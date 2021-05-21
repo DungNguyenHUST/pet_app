@@ -225,7 +225,7 @@
 
                                         <%company.company_jobs.reverse.each do |company_job|%>
                                             <%if company_job.approved?%>
-                                                <div class='company_job_block'>
+                                                <div class='admin_company_job_block'>
                                                     <div class='company_job_name'>
                                                         <a><%=company_job.id%> | <%= link_to (company_job.title), company_company_job_path(company, company_job) %> </a>
                                                     </div>
@@ -248,7 +248,7 @@
                                                     </div>
                                                 </div>
                                             <%else%>
-                                                <div class='company_job_block'>
+                                                <div class='admin_company_job_block'>
                                                     <div class='company_job_name'>
                                                         <a><%=company_job.id%> | <%= link_to (company_job.title), company_company_job_path(company, company_job) %> </a>
                                                     </div>
@@ -832,7 +832,7 @@
                                                     <%= link_to 'Chỉnh sửa', edit_company_company_job_path(@company_by_employer, company_job), class: "btn btn-large btn-warning" %>
                                                     <%= link_to 'Xóa', company_company_job_path(@company_by_employer, company_job), method: :delete, class: "btn btn-large btn-danger", data: { confirm: 'Bạn có chắc muốn xóa công việc này?' } %>
                                                 </div>
-                                                <div class="user_employer_job_block">
+                                                <div class="single_company_job_block">
                                                     <div class="company_job_left">
                                                         <div class="company_avatar">
                                                             <%if @company_by_employer.avatar?%>
@@ -1180,7 +1180,7 @@
                                 <%@company_save_job_current.each do |company_job|%>
                                     <%company_by_job = company_job.company%>
                                     <div class="col-sm-6">
-                                        <div class="user_save_job_block">
+                                        <div class="single_company_job_block">
                                             <div class="company_job_left">
                                                 <div class="company_avatar">
                                                     <%if company_by_job.avatar%>
@@ -1286,7 +1286,7 @@
                                 <%@company_apply_job_current.each do |company_job|%>
                                     <%company_by_job = company_job.company%>
                                     <div class="col-sm-6">
-                                        <div class="company_apply_job_block">
+                                        <div class="single_company_job_block">
                                             <div class="company_job_left">
                                                 <div class="company_avatar">
                                                     <%if company_by_job.avatar%>
