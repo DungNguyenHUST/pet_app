@@ -57,6 +57,7 @@
                             <div class="user_select_company">
                                 <%= select_tag :company_id, 
                                     options_from_collection_for_select(Company.all.approved, "id", "name"), 
+                                    required: true,
                                     prompt: "Chọn công ty", 
                                     class: "form-control"%>
                             </div>
