@@ -129,21 +129,19 @@
 
 							<%if @tab_id == "ProblemSolutionID"%>
 								<div class="problem_solution_tab" id="ProblemSolutionID">
-									<div class="problem_solution_best">
-										<div class="problem_solution_best_title">
-											<i class="material-icons-outlined">verified</i>
-											<a class="problem_solution_best_title"> Câu trả lời hay nhất</a>
-										</div>
-										<%if @problem_solutions_best.present?%>
+									<%if @problem_solutions_best.present?%>
+										<div class="problem_solution_best">
+											<div class="problem_solution_best_title">
+												<i class="material-icons-outlined">done</i>
+												<a> Câu trả lời hay nhất</a>
+											</div>
 											<%=render @problem_solutions_best%>
-										<%else%>
-											<a class="problem_solution_no_best_title">Rất tiếc, chưa có câu trả lời tốt nhất cho câu hỏi này...<a>
-										<%end%>
-									</div>
+										</div>
+									<%end%>
 
 									<div class="problem_solution_normal">
 										<div class="problem_solution_title">
-											<a>Xem thêm <%=@problem.problem_solutions.count%> câu trả lời khác</a>
+											<a><%=@problem.problem_solutions.count%> câu trả lời</a>
 										</div>
 										<%if @problem.problem_solutions.count > 0%>
 											<%= render @problem.problem_solutions %>
@@ -225,7 +223,7 @@
 									<a class="nav-link active" data-toggle="tab" href="#NormalTextID"><i class="material-icons-outlined">create</i>Text Editor</a>
 								</li>
 								<li class="nav-item">
-									<a class="nav-link" data-toggle="tab" href="#CompilerID"><i class="material-icons-outlined">code</i>Compiler</a>
+									<a class="nav-link disabled" data-toggle="tab" href="#CompilerID"><i class="material-icons-outlined">code</i>Compiler</a>
 								</li>
 							</ul>
 						</div>
