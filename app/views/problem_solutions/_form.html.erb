@@ -1,39 +1,33 @@
-<div class="container">
-    <div class="new_problem_solution_form">
-        <%= form_for [@problem, ProblemSolution.new] do |f| %>
-            <div class="new_problem_solution_title">
-                <h3>Cho mọi người biết giải pháp của bạn</h3>
-            </div>
+<div class="new_problem_solution_form">
+    <%= form_for [@problem, ProblemSolution.new] do |f| %>
+        <div class="new_problem_solution_title_sub">
+            <span>Note: Mục có dấu '*' là bắt buộc</span>
+        </div>
 
-            <div class="new_problem_solution_title_sub">
-                <span>Note: Mục có dấu '*' là bắt buộc</span>
-            </div>
-
-            <div class="new_problem_solution_section">
-                <div class="new_problem_solution_content">
-                    <div class="new_problem_solution_label">
-                        <a><%= f.label :title, "Tiêu đề câu trả lời*", class: "new_problem_solution_label_name" %></a>
-                    </div>
-
-                    <div class="new_problem_solution_input_time">
-                        <%= f.text_field :title, :required => true, class: "form-control", placeholder: "Nhập tên hoặc email của bạn" %>
-                    </div>
+        <div class="new_problem_solution_section">
+            <div class="new_problem_solution_content">
+                <div class="new_problem_solution_label">
+                    <a><%= f.label :title, "Tiêu đề cho câu trả lời của bạn(tùy chọn)", class: "new_problem_solution_label_name" %></a>
                 </div>
 
-                <div class="new_problem_solution_content">
-                    <div class="new_problem_solution_label">
-                        <a><%= f.label :content, "Giải pháp của bạn*", class: "new_problem_solution_label_name" %></a>
-                    </div>
-
-                    <div class="new_problem_solution_input_time">
-                        <%= f.text_area :content, :required => true, class: "form-control", placeholder: "Nhập tên hoặc email của bạn" %>
-                    </div>
+                <div class="new_problem_solution_input">
+                    <%= f.text_field :title, class: "form-control", placeholder: "Nhập mô tả ngắn gọn về giải pháp của bạn" %>
                 </div>
             </div>
 
-            <div class="new_problem_solution_submit">
-                <%= f.submit "Gửi đánh giá", class: "new_problem_solution_form_submit" %>
+            <div class="new_problem_solution_content">
+                <div class="new_problem_solution_label">
+                    <a><%= f.label :content, "Giải pháp của bạn*", class: "new_problem_solution_label_name" %></a>
+                </div>
+
+                <div class="new_problem_solution_input">
+                    <%= f.cktext_area :content, :required => true, class: "form-control-rich-text customized-min-height", ckeditor: { language: 'us', toolbar: "mini"}, placeholder: "Mô tả câu trả lời của bạn tại đây ..." %>
+                </div>
             </div>
-        <%end%>
-    </div>
+        </div>
+
+        <div class="new_problem_solution_submit">
+            <%= f.submit "Gửi câu trả lời", class: "new_problem_solution_form_submit" %>
+        </div>
+    <%end%>
 </div>

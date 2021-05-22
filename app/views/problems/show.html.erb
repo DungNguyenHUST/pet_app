@@ -233,23 +233,7 @@
 							<div class="tab-content">
 								<div role="tabpanel" id="NormalTextID" class="tab-pane fade in active">
 									<div class="problem_normal_text">
-										<div class="problem_submit">
-											<div class="new_problem_solution_right_form">
-												<%= form_for [@problem, ProblemSolution.new] do |f| %>
-													<div class="new_problem_solution_right_section">
-														<div class="new_problem_solution_right_content">
-															<div class="new_problem_solution_right_input_review">
-																<%= f.cktext_area :content, :required => true, class: "problem_rich_text", ckeditor: { language: 'us'}, placeholder: "Mô tả câu trả lời của bạn tại đây ..." %>
-															</div>
-														</div>
-													</div>
-
-													<div class="new_problem_solution_right_submit_button">
-														<%= f.submit "Gửi câu trả lời", class: "new_problem_solution_right_form_submit" %>
-													</div>
-												<%end%>
-											</div>
-										</div>
+										<%= render :partial => 'problem_solutions/form' %>
 									</div>
 								</div>
 								<div role="tabpanel" id="CompilerID" class="tab-pane">
