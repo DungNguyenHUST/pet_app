@@ -1,16 +1,23 @@
 <div class="container">
 	<div class="new_interview_form">
-		<%= form_for [@company, CompanyInterview.new] do |f| %>
-			<div class="new_interview_title">
-				<h3>Sẽ chỉ mất 1 phút, kinh nghiệm phỏng vấn của bạn tại <%=@company.name%> sẽ giúp ích cho rất nhiều người ...</h3>
-			</div>
-
-			<div class="new_interview_title_sub">
-				<span>Note: Mục có dấu '*' là bắt buộc</span>
-			</div>
-			
+		<%= form_for [@company, CompanyInterview.new] do |f| %>			
 			<div class="row">
 				<div class="col-sm-8">
+					<div class="new_interview_title_block">
+						<div class="new_interview_title">
+							<h3>Interview <%=@company.name%></h3>
+							<a>Bạn sẽ chỉ mất ít phút để chia sẻ kinh nghiệm phỏng vấn tại <%=@company.name%>, chia sẻ của bạn sẽ giúp ích cho rất nhiều người ...</a>
+						</div>
+						<div class="company_interview_image">
+							<%if @company.avatar?%>
+								<img><%= image_tag @company.avatar.thumb.url %>
+							<%end%>
+						</div>
+					</div>
+
+					<div class="new_interview_title_sub">
+						<span>Note: Mục có dấu '*' là bắt buộc</span>
+					</div>
 					<%if user_signed_in?%>
 						<div class="new_interview_section">
 							<div class="new_interview_content">
@@ -219,6 +226,31 @@
 
 					<div class="new_interview_submit">
 						<%= f.submit "Gửi phản hồi", class: "new_interview_form_submit" %>
+					</div>
+				</div>
+				<div class="col-sm-4">
+					<div class="interview_policy">
+						<div class="interview_policy_title">
+							<a>Quy định khi viết bài interview</a>
+						</div>
+						<div class="interview_policy_content">
+							<div class="interview_policy_content_index">
+								· Không sử dụng từ ngữ mang ý xúc phạm, miệt thị người khác
+							</div>
+							<div class="interview_policy_content_index">
+								· Không sử dụng từ ngữ mang tính chất kích động, bạo lực
+							</div>
+							<div class="interview_policy_content_index">
+								· Không cung cấp thông tin cá nhân
+							</div>
+							<div class="interview_policy_content_index">
+								· Không cung cấp thông tin bảo mật, bí mật kinh doanh của công ty
+							</div>
+							<div class="interview_policy_content_link">
+								Cảm ơn bạn đã đưa ra những đánh giá chân thực nhất. Xem thêm thông tin chi tiết về 
+								<a href="https://www.firework.vn/posts/policy">thỏa thuận sử dụng </a>
+							</div>
+						</div>
 					</div>
 				</div>
 			</div>

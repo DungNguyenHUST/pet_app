@@ -472,16 +472,43 @@
 .new_interview_form
 {
     margin-bottom: 50px;
-    .new_interview_title{
-        font-size: 22px;
-        color: #333;
-        text-align: center;
-        margin-top: 50px;
-        margin-bottom: 30px;
+    .new_interview_title_block{
+        margin-top: 20px;
+        margin-bottom: 20px;
+        .new_interview_title{
+            float: left;
+            max-width: 80%;
+            @media screen and (max-width: 600px){
+                float: none;
+            }
+            h3{
+                font-size: 22px;
+                color: #333;
+                text-align: left;
+                font-weight: 600;
+            }
+            a{
+                font-size: 16px;
+            }
+        }
+        .company_interview_image{
+            margin-top: 30px;
+            float: right;
+            @media screen and (max-width: 600px){
+                display: none;
+                float: none;
+            }
+            img{
+                max-width: 80px;
+                max-height: 80px;
+            }
+        }
     }
 
     .new_interview_title_sub{
-        margin-bottom: 10px;
+        clear: both;
+        padding-top: 5px;
+        padding-bottom: 10px;
         span{
             font-size: 13px;
             text-align: left;
@@ -751,15 +778,36 @@
         }
     }
 
-    .form-control{
-        padding: 10px;
-        width: 300px;
-        font-size: 14px;
+    .interview_policy{
+        margin-top: 20px;
+        border: 1px solid #dfe1e5;
+        padding: 15px;
         border-radius: 3px;
-        background: #fff;
-        &:focus{
-            border: 2px solid #1877f2;
-            border-radius: 3px;
+        .interview_policy_title{
+            a{
+                border-left: 5px solid #febb02;
+                text-align: left;
+                font-size: 22px;
+                color: #333;
+                font-weight: 550;
+                padding-left: 5px;
+            }
+            padding-bottom: 5px;
+            border-bottom: 1px solid #dfe1e5;
+        }
+
+        .interview_policy_content{
+            .interview_policy_content_index{
+                font-size: 16px;
+                padding-top: 10px;
+                // padding-bottom: 5px;
+            }
+
+            .interview_policy_content_link{
+                font-weight: 600;
+                font-size: 16px;
+                padding-top: 15px;
+            }
         }
     }
 }

@@ -478,15 +478,42 @@
 .new_review_form
 {
     margin-bottom: 50px;
-    .new_review_title{
-        font-size: 22px;
-        color: #333;
-        text-align: center;
-        margin-top: 50px;
-        margin-bottom: 30px;
+    .new_review_title_block{
+        margin-top: 20px;
+        margin-bottom: 20px;
+        .new_review_title{
+            float: left;
+            max-width: 80%;
+            @media screen and (max-width: 600px){
+                float: none;
+            }
+            h3{
+                font-size: 22px;
+                color: #333;
+                text-align: left;
+                font-weight: 600;
+            }
+            a{
+                font-size: 16px;
+            }
+        }
+        .company_review_image{
+            margin-top: 30px;
+            float: right;
+            @media screen and (max-width: 600px){
+                display: none;
+                float: none;
+            }
+            img{
+                max-width: 80px;
+                max-height: 80px;
+            }
+        }
     }
 
     .new_review_title_sub{
+        clear: both;
+        padding-top: 5px;
         span{
             font-size: 13px;
             text-align: left;
@@ -900,6 +927,39 @@
             
             &:hover{
                 background-color: #1877f2;
+            }
+        }
+    }
+
+    .review_policy{
+        margin-top: 20px;
+        border: 1px solid #dfe1e5;
+        padding: 15px;
+        border-radius: 3px;
+        .review_policy_title{
+            a{
+                border-left: 5px solid #febb02;
+                text-align: left;
+                font-size: 22px;
+                color: #333;
+                font-weight: 550;
+                padding-left: 5px;
+            }
+            padding-bottom: 5px;
+            border-bottom: 1px solid #dfe1e5;
+        }
+
+        .review_policy_content{
+            .review_policy_content_index{
+                font-size: 16px;
+                padding-top: 10px;
+                // padding-bottom: 5px;
+            }
+
+            .review_policy_content_link{
+                font-weight: 600;
+                font-size: 16px;
+                padding-top: 15px;
             }
         }
     }
