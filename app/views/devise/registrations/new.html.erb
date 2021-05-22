@@ -167,17 +167,35 @@
     <div class='user_container'>
         <div class="container">
             <div class="user_block">
+                <div class="user_add_new_label">
+                    <%= render "devise/shared/error_messages", resource: resource %>
+                    <div class="user_add_new_title">
+                        <a>Tạo tài khoản mới</a>
+                    </div>
+
+                    <div class="user_add_new_logo">
+                        <%= link_to (image_tag(("logo.png"))), image_path(url_for(("logo.png"))), rel: "gallery" , :href => root_path%>
+                    </div>
+                </div>
+                <div class="user_add_new_form_right">
+                    <div class="login_with_google">
+						<%= button_to user_google_oauth2_omniauth_authorize_path, method: :post do%>
+							<i class="material-icons">mail</i> <span>Đăng kí bằng tài khoản Google</span>
+						<%end%>
+                    </div>
+                    <div class="login_with_facebook">
+                        <%= button_to user_facebook_omniauth_authorize_path, method: :post do%>
+							<i class="material-icons">facebook</i> <span>Đăng kí bằng tài khoản Facebook</span>
+						<%end%>
+                    </div>
+                </div>
+                
+                <div class="user_add_new_or">
+                    <a><span>or</span></a>
+                </div>
+
                 <div class="user_add_new_form_left">
                     <%= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
-                        <%= render "devise/shared/error_messages", resource: resource %>
-                        <div class="user_add_new_title">
-                            <a>Tạo tài khoản mới</a>
-                        </div>
-
-                        <div class="user_add_new_logo">
-                            <%= link_to (image_tag(("logo.png"))), image_path(url_for(("logo.png"))), rel: "gallery" , :href => root_path%>
-                        </div>
-
                         <div class="user_add_new_content">
                             <div class="user_add_new_label">
                                 <a><%= f.label :name, "Tên đăng nhập*", class: "user_add_new_label_name" %></a>
@@ -225,21 +243,6 @@
                             <%= f.submit "Tạo tài khoản", class: "user_add_new_form_submit" %>
                         </div>
                     <%end%>
-                </div>
-                <div class="user_add_new_form_right">
-                    <div class="user_add_new_title">
-                        <a><span>or</span></a>
-                    </div>
-                    <div class="login_with_google">
-						<%= button_to user_google_oauth2_omniauth_authorize_path, method: :post do%>
-							<i class="material-icons">mail</i> <span>Đăng kí bằng tài khoản Google</span>
-						<%end%>
-                    </div>
-                    <div class="login_with_facebook">
-                        <%= button_to user_facebook_omniauth_authorize_path, method: :post do%>
-							<i class="material-icons">facebook</i> <span>Đăng kí bằng tài khoản Facebook</span>
-						<%end%>
-                    </div>
                 </div>
                 
                 <p class="user_add_new_loginhere">
