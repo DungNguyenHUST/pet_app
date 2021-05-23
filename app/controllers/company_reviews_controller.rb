@@ -56,6 +56,6 @@ class CompanyReviewsController < ApplicationController
     private
 
     def company_review_param
-        params.require(:company_review).permit(:working_status, :working_time, :position, :work_env_score, :salary_score, :ot_score, :manager_score, :career_score, :score, :pros, :cons, :review_title, :review, :privacy)
+        params.require(:company_review).permit(:working_status, :working_time, :position, :work_env_score, :salary_score, :ot_score, :manager_score, :career_score, :score, :pros, :cons, :review_title, :review, :privacy, :recommend)
     end
 end

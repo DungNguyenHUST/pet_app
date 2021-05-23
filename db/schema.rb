@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_05_20_034816) do
+ActiveRecord::Schema.define(version: 2021_05_23_153407) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -244,6 +244,7 @@ ActiveRecord::Schema.define(version: 2021_05_20_034816) do
     t.string "working_time"
     t.string "slug"
     t.integer "user_id"
+    t.boolean "recommend"
     t.index ["slug"], name: "index_company_reviews_on_slug", unique: true
   end
 

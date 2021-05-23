@@ -1,4 +1,5 @@
 module CompaniesHelper
+    # For review
     def cal_rating_review_total_score(company)
         total_rate_score = 0
         work_env_score = 0
@@ -34,15 +35,13 @@ module CompaniesHelper
                     career_score = company_review.career_score
                 end
 
-                average_score = ((work_env_score + salary_score + ot_score + manager_score + career_score) / 5).to_f.round(1)
+                average_score = ((work_env_score + salary_score + ot_score + manager_score + career_score) / 5).to_f
                 total_rate_score += average_score
             end
         end
 
         if (count > 0)
-            total_rate_score = (total_rate_score / count).to_f.round(1)
-        else
-            total_rate_score = 0
+            total_rate_score = (total_rate_score / count).to_f
         end
 
         return total_rate_score
@@ -79,32 +78,24 @@ module CompaniesHelper
                 career_score = company_review.career_score
             end
 
-            average_score = ((work_env_score + salary_score + ot_score + manager_score + career_score) / 5).to_f.round(1)
+            average_score = ((work_env_score + salary_score + ot_score + manager_score + career_score) / 5).to_f
         end
 
         return average_score
     end
 
-    def cal_rating_interview_total_score(company)
-        total_rate = 0
-        if(company.company_interviews.count > 0)
-            rate_difficultly = company.company_interviews.sum('difficultly').to_f / company.company_interviews.count
-            rate_satisfied = company.company_interviews.sum('satisfied').to_f / company.company_interviews.count
-
-            total_rate = (rate_difficultly + rate_satisfied)/2
-        else
-            total_rate = 0
-        end
-
-        return total_rate
-    end
-
     def cal_rating_review_work_env_score(company)
         rate_work_env = 0
-        if(company.company_reviews.count > 0)
-            rate_work_env = company.company_reviews.sum('work_env_score').to_f / company.company_reviews.count
-        else
-            rate_work_env = 0
+        count = 0
+        company.company_reviews.each do |company_review|
+            if company_review.work_env_score.to_f > 0
+                count += 1
+                rate_work_env += company_review.work_env_score
+            end
+        end
+        
+        if count > 0
+            rate_work_env = (rate_work_env/count).to_f
         end
 
         return rate_work_env
@@ -112,10 +103,16 @@ module CompaniesHelper
 
     def cal_rating_review_salary_score(company)
         rate_salary = 0
-        if(company.company_reviews.count > 0)
-            rate_salary = company.company_reviews.sum('salary_score').to_f / company.company_reviews.count
-        else
-            rate_salary = 0
+        count = 0
+        company.company_reviews.each do |company_review|
+            if company_review.salary_score.to_f > 0
+                count += 1
+                rate_salary += company_review.salary_score
+            end
+        end
+        
+        if count > 0
+            rate_salary = (rate_salary/count).to_f
         end
 
         return rate_salary
@@ -123,10 +120,16 @@ module CompaniesHelper
 
     def cal_rating_review_ot_score(company)
         rate_ot = 0
-        if(company.company_reviews.count > 0)
-            rate_ot = company.company_reviews.sum('ot_score').to_f / company.company_reviews.count
-        else
-            rate_ot = 0
+        count = 0
+        company.company_reviews.each do |company_review|
+            if company_review.ot_score.to_f > 0
+                count += 1
+                rate_ot += company_review.ot_score
+            end
+        end
+        
+        if count > 0
+            rate_ot = (rate_ot/count).to_f
         end
 
         return rate_ot
@@ -134,10 +137,16 @@ module CompaniesHelper
 
     def cal_rating_review_manager_score(company)
         rate_manager = 0
-        if(company.company_reviews.count > 0)
-            rate_manager = company.company_reviews.sum('manager_score').to_f / company.company_reviews.count
-        else
-            rate_manager = 0
+        count = 0
+        company.company_reviews.each do |company_review|
+            if company_review.manager_score.to_f > 0
+                count += 1
+                rate_manager += company_review.manager_score
+            end
+        end
+        
+        if count > 0
+            rate_manager = (rate_manager/count).to_f
         end
 
         return rate_manager
@@ -145,21 +154,74 @@ module CompaniesHelper
 
     def cal_rating_review_career_score(company)
         rate_career = 0
-        if(company.company_reviews.count > 0)
-            rate_career = company.company_reviews.sum('career_score').to_f / company.company_reviews.count
-        else
-            rate_career = 0
+        count = 0
+        company.company_reviews.each do |company_review|
+            if company_review.career_score.to_f > 0
+                count += 1
+                rate_career += company_review.career_score
+            end
+        end
+        
+        if count > 0
+            rate_career = (rate_career/count).to_f
         end
 
         return rate_career
     end
 
+    def cal_rating_review_recommend(company)
+        recommend = 0
+        count = 0
+        
+        company.company_reviews.each do |company_review|
+            if company_review.recommend == true
+                count += 1
+            end
+        end
+        
+        if count > 0
+            recommend = ((count  * 100)/company.company_reviews.count).to_i
+        end
+
+        return recommend
+    end
+
+    def count_rating_category(category, company)
+        count = 0
+        if category == "work_env_score"
+            count = company.company_reviews.where.not(work_env_score: 0).count
+        elsif category == "salary_score"
+            count = company.company_reviews.where.not(salary_score: 0).count
+        elsif category == "ot_score"
+            count = company.company_reviews.where.not(ot_score: 0).count
+        elsif category == "manager_score"
+            count = company.company_reviews.where.not(manager_score: 0).count
+        elsif category == "career_score"
+            count = company.company_reviews.where.not(career_score: 0).count
+        end
+
+        return count
+    end
+
+    # For interview
+    def cal_rating_interview_total_score(company)
+        total_rate = 0
+        total_rate = (cal_rating_interview_difficultly_score(company) + cal_rating_interview_satisfied_score(company))/2
+        return total_rate
+    end
+
     def cal_rating_interview_difficultly_score(company)
         rate_difficultly = 0
-        if(company.company_interviews.count > 0)
-            rate_difficultly = company.company_interviews.sum('difficultly').to_f / company.company_interviews.count
-        else
-            rate_difficultly = 0
+        count = 0
+        company.company_interviews.each do |company_interview|
+            if company_interview.difficultly.to_f > 0
+                count += 1
+                rate_difficultly += company_interview.difficultly
+            end
+        end
+        
+        if count > 0
+            rate_difficultly = (rate_difficultly/count).to_f
         end
 
         return rate_difficultly
@@ -167,10 +229,16 @@ module CompaniesHelper
 
     def cal_rating_interview_satisfied_score(company)
         rate_satisfied = 0
-        if(company.company_interviews.count > 0)
-            rate_satisfied = company.company_interviews.sum('satisfied').to_f / company.company_interviews.count
-        else
-            rate_satisfied = 0
+        count = 0
+        company.company_interviews.each do |company_interview|
+            if company_interview.satisfied.to_f > 0
+                count += 1
+                rate_satisfied += company_interview.satisfied
+            end
+        end
+        
+        if count > 0
+            rate_satisfied = (rate_satisfied/count).to_f
         end
 
         return rate_satisfied
@@ -178,10 +246,16 @@ module CompaniesHelper
 
     def cal_rating_interview_process_score(company)
         rate_process = 0
-        if(company.company_interviews.count > 0)
-            rate_process = company.company_interviews.sum('process').to_f / company.company_interviews.count
-        else
-            rate_process = 0
+        count = 0
+        company.company_interviews.each do |company_interview|
+            if company_interview.process.to_f > 0
+                count += 1
+                rate_process += company_interview.process
+            end
+        end
+        
+        if count > 0
+            rate_process = (rate_process/count).to_i
         end
 
         return rate_process
@@ -189,11 +263,16 @@ module CompaniesHelper
 
     def cal_rating_interview_offer_score(company)
         rate_offer = 0
-        offer_count = CompanyInterview.where(offer: true).count
-        if(company.company_interviews.count > 0)
-            rate_offer = (offer_count / company.company_interviews.count)
-        else
-            rate_offer = 0
+        count = 0
+        
+        company.company_interviews.each do |company_interview|
+            if company_interview.offer == true
+                count += 1
+            end
+        end
+        
+        if count > 0
+            rate_offer = ((count  * 100)/company.company_interviews.count).to_i
         end
 
         return rate_offer

@@ -51,7 +51,7 @@
                             </div>
                             
                             <div class="inside-circle">
-                                <%= cal_rating_review_total_score(@company).to_i * 20%>%
+                                <%= cal_rating_review_recommend(@company)%>%
                             </div>
                         </div>
                     </div>
@@ -67,7 +67,7 @@
             .circle-wrap .circle .mask.full,
             .circle-wrap .circle .fill {
                 animation: fill ease-in-out 3s;
-                transform: rotate(<%= cal_rating_review_total_score(@company).to_i * 36%>deg);
+                transform: rotate(<%= cal_rating_review_recommend(@company).to_i * 36%>deg);
             }
             
             @keyframes fill {
@@ -75,7 +75,7 @@
                 transform: rotate(0deg);
             }
             100% {
-                transform: rotate(<%= cal_rating_review_total_score(@company).to_i * 36%>deg);
+                transform: rotate(<%= cal_rating_review_recommend(@company).to_i * 36%>deg);
             }
         }
         </style>

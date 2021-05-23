@@ -71,9 +71,8 @@
                 <div class="interview_score_interview">
                     <div class="interview_content">
                         <div class="interview_point">
-                            <%offer_count = CompanyInterview.where(offer: true).count%>
                             <%if @company.company_interviews.count > 0%>
-                                <strong><%= (offer_count * 100)/@company.company_interviews.count %>%</strong>
+                                <strong><%= cal_rating_interview_offer_score(@company)%>%</strong>
                             <%else%>
                                 <strong>0%</strong>
                             <%end%>

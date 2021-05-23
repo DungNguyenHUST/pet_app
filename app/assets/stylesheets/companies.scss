@@ -980,12 +980,24 @@
                     border: 1px solid #dfe1e5;
                     background-color: #fff;
                     border-radius: 3px;
-                    padding-right: 15px;
-                    padding-left: 15px;
+                    padding: 15px;
+                    .col-sm-4{
+                        padding-top: 0px;
+                    }
                     .company_profile_block{
-                        .col-sm-4{
+                        .company_profile_title
+                        {
+                            font-size: 22px;
+                            font-weight: 550;
+                            padding-bottom: 5px;
+                            border-bottom: 1px solid #dfe1e5;
+                        }
+                        .company_profile_content_block{
+                            padding-top: 10px;
+                            padding-bottom: 10px;
                             @media screen and (max-width: 600px){
                                 border-top: 1px solid #dfe1e5;
+                                border-bottom: 1px solid #dfe1e5;
                             }
                             .company_profile_section{
                                 min-height: 20px;
@@ -1004,36 +1016,17 @@
 
                             .company_profile_content{
                                 font-size: 13px;
-                                padding-bottom: 15px;
                                 padding-left: 28px;
                                 color: #444;
                             }
                         }
-                    }
-                }
-
-                .company_profile_summary_block{
-                    border: 1px solid #dfe1e5;
-                    padding: 15px;
-                    margin-top: 20px;
-                    background-color: #fff;
-                    border-radius: 3px;
-                    .company_profile_title
-                    {
-                        font-size: 22px;
-                        font-weight: 550;
-                        i{
-                            font-size: 25px;
-                            position: relative;
-                            top: 3px;
-                            margin-right: 3px;
+                            
+                        .company_profile_summary
+                        {
+                            border-top: 1px solid #dfe1e5;
+                            font-size: 14px;
+                            padding-top: 20px;
                         }
-                    }
-                        
-                    .company_profile_summary
-                    {
-                        font-size: 14px;
-                        padding-top: 20px;
                     }
                 }
 
@@ -1051,6 +1044,13 @@
                     .review_content{
 
                     }
+                    .review_suggestion{
+                        padding: 15px;
+                        border-top: 1px solid #dfe1e5;
+                        a{
+                            color: #1877f2;
+                        }
+                    }
                 }
 
                 .company_profile_interview{
@@ -1067,6 +1067,14 @@
                     .interview_content{
                         
                     }
+
+                    .interview_suggestion{
+                        padding: 15px;
+                        border-top: 1px solid #dfe1e5;
+                        a{
+                            color: #1877f2;
+                        }
+                    }
                 }
             }
 
@@ -1079,6 +1087,7 @@
                     border-radius: 3px;
                     .company_job_label{
                         border-bottom: 1px solid #dfe1e5;
+                        padding-bottom: 5px;
                         a{
                             font-size: 20px;
                             font-weight: 550;
@@ -1133,6 +1142,39 @@
                 @media screen and (max-width: 600px){
                     margin-top: 20px;
                 }
+
+                .company_policy_benefit_block{
+                    .company_policy_benefit{
+                        width: 100%;
+                        height: 100px;
+                        border: 1px solid #dfe1e5;
+                        &:hover{
+                            box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.1), 0 6px 20px 0 rgba(0, 0, 0, 0.09);
+                        }
+                        text-align: center;
+                        border-radius: 3px;
+                        background-color: #fff;
+                        padding: 10px;
+                        margin-bottom: 20px;
+                        @media screen and (max-width: 600px){
+                            margin-top: 10px;
+                            padding-top: 10px;
+                        }
+                        .benefit_icon{ 
+                            @media screen and (max-width: 600px){
+                                padding-top: 10px;
+                            }
+                            i{
+                                font-size: 28px;
+                                color: #1877f2;
+                            }
+                        }
+                        a{
+                            font-size: 18px;
+                        }
+                    }
+                }
+
                 .company_policy_block
                 {
                     background-color: #fff;
@@ -1150,37 +1192,6 @@
                     .company_policy_policy{
                         font-size: 14px;
                         height: auto;
-                    }
-                }
-
-                .company_policy_benefit_block{
-                    margin-top: 10px;
-                    .company_policy_benefit{
-                        width: 100%;
-                        height: 100px;
-                        /*border: 1px solid #dfe1e5;*/
-                        box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.1), 0 6px 20px 0 rgba(0, 0, 0, 0.09);
-                        text-align: center;
-                        border-radius: 3px;
-                        background-color: #fff;
-                        padding: 10px;
-                        margin-top: 20px;
-                        @media screen and (max-width: 600px){
-                            margin-top: 10px;
-                            padding-top: 10px;
-                        }
-                        .benefit_icon{ 
-                            @media screen and (max-width: 600px){
-                                padding-top: 10px;
-                            }
-                            i{
-                                font-size: 28px;
-                                color: #1877f2;
-                            }
-                        }
-                        a{
-                            font-size: 18px;
-                        }
                     }
                 }
             }
@@ -1239,6 +1250,7 @@
                         border-radius: 3px;
                         .company_job_label{
                             border-bottom: 1px solid #dfe1e5;
+                            padding-bottom: 5px;
                             a{
                                 font-size: 20px;
                                 font-weight: 550;
@@ -1298,8 +1310,66 @@
                     border-radius: 3px;
                     border: 1px solid #dfe1e5;
                 }
-                .company_review{
+
+                .company_review_score_detail{
+                    border-radius: 3px;
+                    border: 1px solid #dfe1e5;
+                    padding: 15px;
+                    margin-top: 20px;
+                    .review_score_detail_label{
+                        font-size: 22px;
+                        font-weight: 600;
+                        padding-bottom: 20px;
+                        color: #444;
+                    }
+                    
+                    @media screen and (min-width: 600px){
+                        .padding-custom-right{
+                            padding-right: 5px;
+                        }
+
+                        .padding-custom-left{
+                            padding-left: 5px;
+                        }
+                    }
+
+                    .col-sm-6{  
+                        .review_detail_section{                          
+                            border: 1px solid #dfe1e5 !important;
+                            border-radius: 3px;
+                            padding: 10px;
+                            margin-bottom: 10px;
+                            min-height: 50px;
+                            &:hover{
+                                box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+                            }
+                            .review_detail_label{
+                                font-size: 16px;
+                                float: left;
+                                a{
+                                    position: relative;
+                                    top: 3px;
+                                }
+                            }
+                            .review_detail_score{
+                                float: right;
+                                a{
+                                    font-size: 18px;
+                                }
+                                i{
+                                    color: #febb02;
+                                    position: relative;
+                                    top: 5px;
+                                    font-size: 22px;
+                                }
+                            }
+                        }
+                    }
                 }
+                .company_review{
+                    clear: both;
+                }
+                
                 .review_new_not_found{
                     font-size: 20px;
                     font-weight: 550;
@@ -1486,6 +1556,7 @@
                     border-radius: 3px;
                     .company_job_label{
                         border-bottom: 1px solid #dfe1e5;
+                        padding-bottom: 5px;
                         a{
                             font-size: 20px;
                             font-weight: 550;
@@ -1911,6 +1982,7 @@
                         border-radius: 3px;
                         .company_job_label{
                             border-bottom: 1px solid #dfe1e5;
+                            padding-bottom: 5px;
                             a{
                                 font-size: 20px;
                                 font-weight: 550;
