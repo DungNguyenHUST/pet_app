@@ -36,6 +36,12 @@ Rails.application.routes.draw do
       resources :company_save_jobs
     end
 
+    resources :company_questions do
+      resources :company_reply_questions
+    end
+
+    resources :company_salarys
+
     resources :company_follows
 	
 	resources :company_images
@@ -50,6 +56,8 @@ Rails.application.routes.draw do
   get '/company_apply_jobs/new/(:company_id, :company_job_id)', to: 'company_apply_jobs#new', as: :new_company_apply_job
 
   get '/company_save_jobs/new/(:company_id, :company_job_id)', to: 'company_save_jobs#new', as: :new_company_save_job
+
+  get '/company_reply_questions/new/(:company_id, :company_question_id)', to: 'company_reply_questions#new', as: :new_company_reply_question
   
   resources :problems do
     resources :problem_solutions do

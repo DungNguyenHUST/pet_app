@@ -17,8 +17,15 @@
 <%when "CompanyImagesID"%>
     <%title = "Hình ảnh về công ty"%>
     <%content = "Chia sẻ hình ảnh đẹp, văn hóa, môi trường làm việc, văn phòng và các hoạt động ngoại khóa của công ty"%>
+<%when "CompanySalarysID"%>
+    <%title = "Lương, chế độ đãi ngộ tại công ty"%>
+    <%content = "Tổng quan về lương, chế độ đãi ngộ dành cho nhân viên của công ty"%>
+<%when "CompanyQuestionsID"%>
+    <%title = "Các câu hỏi liên quan tới công ty"%>
+    <%content = "Nơi giải đáp tất cả các thắc mắc liên quan tới công ty"%>
 <%else%>
     <%title = ""%>
+    <%content = ""%>
 <%end%>
 <% content_for :meta_title, title + " " + @company.name %>
 <% content_for :meta_description, content + @company.name %>
@@ -124,6 +131,10 @@
                                     <%else%>
                                         <%= link_to '<button type="submit"> <i class="material-icons-outlined">edit</i> <span> Viết review</span> </button>'.html_safe, new_company_company_review_path(@company) %>
                                     <%end%>
+                                <% elsif @tab_id == "CompanyQuestionsID" %>
+                                    <%= link_to '<button type="submit"> <i class="material-icons-outlined">edit</i> <span> Đặt câu hỏi</span> </button>'.html_safe, new_company_company_question_path(@company) %>
+                                <% elsif @tab_id == "CompanySalarysID" %>
+                                    <%= link_to '<button type="submit"> <i class="material-icons-outlined">edit</i> <span> Thêm lương </span> </button>'.html_safe, new_company_company_salary_path(@company) %>
                                 <% elsif @tab_id == "CompanyImagesID" %>
                                     <%= link_to '<button type="submit"> <i class="material-icons-outlined">edit</i> <span> Viết review</span> </button>'.html_safe, new_company_company_review_path(@company) %>
                                 <%end%>
@@ -179,12 +190,12 @@
                     <a class="nav-link <%=active%>" href="<%=company_path(@company, tab_id: 'CompanyJobsID')%>"><i class="material-icons-outlined">work_outline</i>Tuyển dụng <span> <%= convert_number_to_human(@company.company_jobs.count)%><span></a>
                 </li>
                 <li class="nav-item">
-                    <%if @tab_id == "CompanyImagesID"%>
+                    <%if @tab_id == "CompanySalarysID"%>
                         <%active = "active"%>
                     <%else%> 
                         <%active = ""%>
                     <%end%>                                     
-                    <a class="nav-link <%=active%>" href="<%=company_path(@company, tab_id: 'CompanyImagesID')%>"><i class="material-icons-outlined">image</i>Lương<span> <%= convert_number_to_human(@company.company_images.count)%><span></a>
+                    <a class="nav-link <%=active%>" href="<%=company_path(@company, tab_id: 'CompanySalarysID')%>"><i class="material-icons-outlined">paid</i>Lương<span> <%= convert_number_to_human(@company.company_salarys.count)%><span></a>
                 </li>
                 <li class="nav-item">
                     <%if @tab_id == "CompanyImagesID"%>
@@ -195,12 +206,12 @@
                     <a class="nav-link <%=active%>" href="<%=company_path(@company, tab_id: 'CompanyImagesID')%>"><i class="material-icons-outlined">image</i>Hình ảnh<span> <%= convert_number_to_human(@company.company_images.count)%><span></a>
                 </li>
                 <li class="nav-item">
-                    <%if @tab_id == "CompanyImagesID"%>
+                    <%if @tab_id == "CompanyQuestionsID"%>
                         <%active = "active"%>
                     <%else%> 
                         <%active = ""%>
                     <%end%>                                     
-                    <a class="nav-link <%=active%>" href="<%=company_path(@company, tab_id: 'CompanyImagesID')%>"><i class="material-icons-outlined">image</i>Q&A<span> <%= convert_number_to_human(@company.company_images.count)%><span></a>
+                    <a class="nav-link <%=active%>" href="<%=company_path(@company, tab_id: 'CompanyQuestionsID')%>"><i class="material-icons-outlined">help_outline</i>Q&A<span> <%= convert_number_to_human(@company.company_questions.count)%><span></a>
                 </li>
             </ul>
         </div>
@@ -1002,6 +1013,72 @@
                                         </div>
                                     </div>
                                 </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            <%end%>
+
+            <%if @tab_id == "CompanySalarysID"%>
+            <%end%>
+
+            <%if @tab_id == "CompanyQuestionsID"%>
+                <div class="company_question_tab">
+                    <div class="row">
+                        <div class="col-sm-8">
+                            <div class="company_question_left"> 
+                                <%if @company.company_questions.count > 0%>  
+                                    <div class="company_question_index">    
+                                        <div class="company_question_new_button">                     
+                                            <%= link_to '<button type="submit"> <i class="material-icons-outlined">edit</i> <span> Tạo câu hỏi mới</span> </button>'.html_safe, new_company_company_question_path(@company) %>
+                                        </div>
+                                        <%= render @company.company_questions%>
+                                    </div>
+                                <%else%>
+                                    <div class="question_new_not_found">
+                                        <span>Hãy là người đầu tiên đặt câu hỏi về <%=@company.name%></span>
+                                    </div>
+                                    <div class="no_question_found">
+                                        <div class="question_new_label">
+                                            <a>Đặt câu hỏi ngay</a>
+                                        </div>
+                                        <div class="question_new_button">
+                                            <%= link_to '<button type="submit"> <i class="material-icons-outlined">edit</i> <span> Đặt câu hỏi</span> </button>'.html_safe, new_company_company_question_path(@company) %>
+                                        </div>
+                                    </div>
+                                <%end%>
+                            </div>
+                        </div>
+
+                        <div class="col-sm-4">
+                            <div class="company_question_right"> 
+                                <%if @company.company_jobs.count >0%>
+                                    <div class="company_job_mini_block">
+                                        <div class="company_job_label">
+                                            <a> Việc làm </a>
+                                        </div>
+                                        <div class="company_job_des">
+                                            <%@company.company_jobs.each do |company_job|%>
+                                                <div class="company_job_block_mini">
+                                                    <div class="company_avatar">
+                                                        <%if @company.avatar?%>
+                                                            <img><%= link_to (image_tag(@company.avatar.thumb.url)), image_path(url_for(@company.avatar.thumb.url)), rel: "gallery" , :href => company_path(@company)%>
+                                                        <%end%>
+                                                    </div>
+
+                                                    <div class="company_job_info">
+                                                        <div class="company_job_title">
+                                                            <%= link_to (company_job.title), company_company_job_path(@company, company_job) %>
+                                                        </div>
+                                                        <div class="company_job_date">
+                                                            <a><%= time_ago_in_words(company_job.created_at) %></a>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            <%end%>
+                                        </div>
+                                    </div>
+                                <%end%>
                             </div>
                         </div>
                     </div>

@@ -1,0 +1,77 @@
+<div class="container">
+	<div class="new_question_form">
+		<%= form_for [@company, CompanyQuestion.new] do |f| %>
+			<div class="row">
+				<div class="col-sm-8">
+					<div class="new_question_title_block">
+						<div class="new_question_title">
+							<h3>Đặt câu hỏi về <%=@company.name%></h3>
+							<a>Bạn sẽ nhận được câu trả lời từ nhà tuyển dụng tại <%=@company.name%> hoặc cộng đồng Firework trong thời gian sớm nhất</a>
+						</div>
+						<div class="company_question_image">
+							<%if @company.avatar?%>
+								<img><%= image_tag @company.avatar.thumb.url %>
+							<%end%>
+						</div>
+					</div>
+
+					<div class="new_question_title_sub">
+						<span>Note: Mục có dấu '*' là bắt buộc</span>
+					</div>
+
+					<div class="new_question_section">
+						<div class="new_question_content">
+							<div class="new_question_label">
+								<a><%= f.label :title, "Title cho câu hỏi của bạn*", class: "new_question_label_name" %></a>
+							</div>
+
+							<div class="new_question_input">
+								<%= f.text_field :title, :required => true, class: "form-control", placeholder: "Nhập title mô tả câu hỏi của bạn" %>
+							</div>
+						</div>
+
+						<div class="new_question_content">
+							<div class="new_question_label">
+								<a><%= f.label :content, "Nội dung câu hỏi của bạn*", class: "new_question_label_name" %></a>
+							</div>
+
+							<div class="new_question_input">
+								<%= f.text_area :content, :required => true, class: "form-control-text-area", placeholder: "Nhập nội dung câu hỏi mà bạn muốn hỏi" %>
+							</div>
+						</div>
+					</div>
+
+					<div class="new_question_submit">
+						<%= f.submit "Gửi câu hỏi", class: "new_question_form_submit" %>
+					</div>
+				</div>
+
+				<div class="col-sm-4">
+					<div class="question_policy">
+						<div class="question_policy_title">
+							<a>Quy định khi đặt câu hỏi</a>
+						</div>
+						<div class="question_policy_content">
+							<div class="question_policy_content_index">
+								· Không sử dụng từ ngữ mang ý xúc phạm, miệt thị người khác
+							</div>
+							<div class="question_policy_content_index">
+								· Không sử dụng từ ngữ mang tính chất kích động, bạo lực
+							</div>
+							<div class="question_policy_content_index">
+								· Không cung cấp thông tin cá nhân
+							</div>
+							<div class="question_policy_content_index">
+								· Không cung cấp thông tin bảo mật, bí mật kinh doanh của công ty
+							</div>
+							<div class="question_policy_content_link">
+								Cảm ơn bạn đã đưa ra những đánh giá chân thực nhất. Xem thêm thông tin chi tiết về 
+								<a href="https://www.firework.vn/posts/policy">thỏa thuận sử dụng </a>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		<%end%>
+	</div>
+</div>

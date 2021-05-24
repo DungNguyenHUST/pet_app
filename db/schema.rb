@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_05_23_153407) do
+ActiveRecord::Schema.define(version: 2021_05_24_051234) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -197,6 +197,18 @@ ActiveRecord::Schema.define(version: 2021_05_23_153407) do
     t.index ["user_id"], name: "index_company_like_reviews_on_user_id"
   end
 
+  create_table "company_questions", force: :cascade do |t|
+    t.string "title"
+    t.text "content"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.integer "company_id"
+    t.string "slug"
+    t.integer "user_id"
+    t.string "user_name"
+    t.index ["slug"], name: "index_company_questions_on_slug", unique: true
+  end
+
   create_table "company_reply_interviews", force: :cascade do |t|
     t.string "user_name"
     t.string "reply_content"
@@ -206,6 +218,17 @@ ActiveRecord::Schema.define(version: 2021_05_23_153407) do
     t.string "slug"
     t.integer "user_id"
     t.index ["slug"], name: "index_company_reply_interviews_on_slug", unique: true
+  end
+
+  create_table "company_reply_questions", force: :cascade do |t|
+    t.integer "company_question_id"
+    t.text "reply_content"
+    t.integer "user_id"
+    t.string "user_name"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.string "slug"
+    t.index ["slug"], name: "index_company_reply_questions_on_slug", unique: true
   end
 
   create_table "company_reply_reviews", force: :cascade do |t|
@@ -246,6 +269,21 @@ ActiveRecord::Schema.define(version: 2021_05_23_153407) do
     t.integer "user_id"
     t.boolean "recommend"
     t.index ["slug"], name: "index_company_reviews_on_slug", unique: true
+  end
+
+  create_table "company_salaries", force: :cascade do |t|
+    t.integer "company_id"
+    t.integer "salary"
+    t.string "salary_currency"
+    t.string "salary_job"
+    t.string "salary_experience"
+    t.boolean "salary_working_status"
+    t.integer "user_id"
+    t.string "user_name"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.string "slug"
+    t.index ["slug"], name: "index_company_salaries_on_slug", unique: true
   end
 
   create_table "company_save_jobs", force: :cascade do |t|
