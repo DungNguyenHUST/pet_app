@@ -1,18 +1,18 @@
 <%case @tab_id%>
 <%when "default", "CompanyProfileID"%>
-    <%title = "Tổng quan chung về công ty"%>
+    <%title = "Tổng quan, giới thiệu về công ty"%>
     <%content = @company.overview%>
 <%when "CompanyJoinsID"%>
     <%title = "Chính sách nổi bật của công ty"%>
     <%content = @company.policy%>
 <%when "CompanyReviewsID"%>
-    <%title = "Review công ty"%>
+    <%title = "Review, đánh giá công ty"%>
     <%content = "Review các chính sách, lương thưởng, môi trường làm việc, kinh ngiệm phỏng vấn, sếp, đồng nghiệp, mức độ hài lòng, văn hóa của công ty"%>
 <%when "CompanyInterviewsID"%>
-    <%title = "Kinh nghiệm phỏng vấn, Interview tại công ty"%>
+    <%title = "Kinh nghiệm phỏng vấn, interview tại công ty"%>
     <%content = "Chia sẻ các kinh nghiệm, quy trình, mức độ hài lòng, chấp nhận offer, số lượng vòng phỏng vấn"%>
 <%when "CompanyJobsID"%>
-    <%title = "Việc làm mới nhất tại công ty"%>
+    <%title = "Việc làm, tin tuyển dụng mới nhất tại công ty"%>
     <%content = "Tin tuyển dụng, việc làm mới nhất, tìm kiếm việc làm"%>
 <%when "CompanyImagesID"%>
     <%title = "Hình ảnh về công ty"%>
@@ -20,7 +20,7 @@
 <%else%>
     <%title = ""%>
 <%end%>
-<% content_for :meta_title, title + " · " + @company.name %>
+<% content_for :meta_title, title + " " + @company.name %>
 <% content_for :meta_description, content + @company.name %>
 
 <%# Google review structure data start %>

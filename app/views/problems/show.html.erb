@@ -1,8 +1,8 @@
 <%case @tab_id%>
 <%when "default", "ProblemDescriptionID"%>
-    <%title = "Mô tả"%>
+    <%title = "Mô tả câu hỏi"%>
 <%when "ProblemSolutionID"%>
-    <%title = "Trả lời"%>
+    <%title = "Câu trả lời cho"%>
 <%when "ProblemSubmitSolutionID"%>
     <%title = "Câu trả lời của bạn"%>
 <%when "ProblemRelatedID"%>
@@ -10,7 +10,7 @@
 <%else%>
     <%title = ""%>
 <%end%>
-<% content_for :meta_title, title + " · " + @problem.title %>
+<% content_for :meta_title, title + " " + @problem.title %>
 <% content_for :meta_description, @problem.content %>
 <%- model_class = Problem -%>
 	<div class="container-fluid">

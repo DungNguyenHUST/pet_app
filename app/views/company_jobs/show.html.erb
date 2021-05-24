@@ -51,18 +51,16 @@
         }
     },
 
-    <%if @company_job.salary.to_i > 0%>
-        "baseSalary": {
-            "@type": "MonetaryAmount",
-            "currency": "VND",
-            "value": {
-            "@type": "QuantitativeValue",
-            "minValue": <%=convert_salary_to_min(@company_job)%>,
-            "maxValue": <%=convert_salary_to_max(@company_job)%>,
-            "unitText": "MONTH"
-            }
+    "baseSalary": {
+        "@type": "MonetaryAmount",
+        "currency": "VND",
+        "value": {
+        "@type": "QuantitativeValue",
+        "minValue": <%=convert_salary_to_min(@company_job)%>,
+        "maxValue": <%=convert_salary_to_max(@company_job)%>,
+        "unitText": "MONTH"
         }
-    <%end%>
+    }
 }
 </script>
 <%# Google job structure data end %>
