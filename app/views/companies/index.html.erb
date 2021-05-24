@@ -1,9 +1,21 @@
 <%- model_class = Company -%>
-<%if !@is_company_searched%>
-    <% content_for :meta_title, "Review công ty" %>
+<%case @tab_id%>
+<%when "default", "CompanyAllID"%>
+    <%if !@is_company_searched%>
+        <% title = "Review, đánh giá các công ty" %>
+    <%else%>
+        <% title = "Kết quả tìm kiếm"%>
+    <%end%>
+<%when "CompanyNewestID"%>
+    <%title = "Công ty mới nhất được cập nhật hàng ngày"%>
+<%when "CompanyMostRecentID"%>
+    <%title = "Công ty được nhiều người quan tâm, có lượng review đông đảo nhất"%>
+<%when "CompanyBestID"%>
+    <%title = "Công ty tốt nhất dựa trên kết quả review, đánh giá"%>
 <%else%>
-    <% content_for :meta_title, "Kết quả tìm kiếm"%>
+    <%title = ""%>
 <%end%>
+<% content_for :meta_title, title %>
 <% content_for :meta_description, "Danh sách các công ty tốt nhất, mới nhất, được quan tâm nhiều nhất review bởi cộng đồng Firework" %>
 <div class="companies_index">
     <div class="companies_search">
