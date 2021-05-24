@@ -40,7 +40,7 @@ Rails.application.routes.draw do
       resources :company_reply_questions
     end
 
-    resources :company_salarys
+    resources :company_salaries
 
     resources :company_follows
 	

@@ -360,4 +360,40 @@ module CompaniesHelper
             benefit_icon = "scatter_plot"
         end
     end
+
+    # for salary
+    def cal_intern_salary_by_type(company, locate_type, level_type)
+        count = 0
+        average = 0
+        buffer = 0
+        company.company_salaries.each do |company_salary|
+            if company_salary.locate.to_i == locate_type
+                if company_salary.level.to_i == level_type
+                    count += 1
+                    buffer = company_salary.salary + company_salary.salary_bonus
+                    if company_salary.salary_currency.to_s == "USD"
+                        average += (company_salary.salary + company_salary.salary_bonus) * 23
+                    else
+                        average += company_salary.salary + company_salary.salary_bonus
+                    end
+                end
+            end
+        end
+
+        if count > 0
+            average = average /count
+        end
+
+        if average > 0
+            return number_with_delimiter(average, delimiter: ".")
+        else
+            return "---"
+        end
+    end
+
+    def count_salary_category(company, locate_type, level_type)
+        count = 0
+        count = company.company_salaries.where(level: level_type, locate: locate_type).count
+        return convert_number_to_human(count)
+    end
 end

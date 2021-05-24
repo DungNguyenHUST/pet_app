@@ -9,7 +9,7 @@ class Company < ApplicationRecord
     has_many :user, dependent: :destroy
     has_many :company_images, dependent: :destroy
     has_many :company_questions, dependent: :destroy
-    has_many :company_salarys, dependent: :destroy
+    has_many :company_salaries, dependent: :destroy
     accepts_nested_attributes_for :company_images
     
     # has_one_attached :avatar

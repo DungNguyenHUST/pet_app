@@ -17,7 +17,7 @@
 <%when "CompanyImagesID"%>
     <%title = "Hình ảnh về công ty"%>
     <%content = "Chia sẻ hình ảnh đẹp, văn hóa, môi trường làm việc, văn phòng và các hoạt động ngoại khóa của công ty"%>
-<%when "CompanySalarysID"%>
+<%when "CompanySalariesID"%>
     <%title = "Lương, chế độ đãi ngộ tại công ty"%>
     <%content = "Tổng quan về lương, chế độ đãi ngộ dành cho nhân viên của công ty"%>
 <%when "CompanyQuestionsID"%>
@@ -133,7 +133,7 @@
                                     <%end%>
                                 <% elsif @tab_id == "CompanyQuestionsID" %>
                                     <%= link_to '<button type="submit"> <i class="material-icons-outlined">edit</i> <span> Đặt câu hỏi</span> </button>'.html_safe, new_company_company_question_path(@company) %>
-                                <% elsif @tab_id == "CompanySalarysID" %>
+                                <% elsif @tab_id == "CompanySalariesID" %>
                                     <%= link_to '<button type="submit"> <i class="material-icons-outlined">edit</i> <span> Thêm lương </span> </button>'.html_safe, new_company_company_salary_path(@company) %>
                                 <% elsif @tab_id == "CompanyImagesID" %>
                                     <%= link_to '<button type="submit"> <i class="material-icons-outlined">edit</i> <span> Viết review</span> </button>'.html_safe, new_company_company_review_path(@company) %>
@@ -190,12 +190,12 @@
                     <a class="nav-link <%=active%>" href="<%=company_path(@company, tab_id: 'CompanyJobsID')%>"><i class="material-icons-outlined">work_outline</i>Tuyển dụng <span> <%= convert_number_to_human(@company.company_jobs.count)%><span></a>
                 </li>
                 <li class="nav-item">
-                    <%if @tab_id == "CompanySalarysID"%>
+                    <%if @tab_id == "CompanySalariesID"%>
                         <%active = "active"%>
                     <%else%> 
                         <%active = ""%>
                     <%end%>                                     
-                    <a class="nav-link <%=active%>" href="<%=company_path(@company, tab_id: 'CompanySalarysID')%>"><i class="material-icons-outlined">paid</i>Lương<span> <%= convert_number_to_human(@company.company_salarys.count)%><span></a>
+                    <a class="nav-link <%=active%>" href="<%=company_path(@company, tab_id: 'CompanySalariesID')%>"><i class="material-icons-outlined">paid</i>Lương<span> <%= convert_number_to_human(@company.company_salaries.count)%><span></a>
                 </li>
                 <li class="nav-item">
                     <%if @tab_id == "CompanyImagesID"%>
@@ -1019,7 +1019,84 @@
                 </div>
             <%end%>
 
-            <%if @tab_id == "CompanySalarysID"%>
+            <%if @tab_id == "CompanySalariesID"%>
+                <div class="company_salary_tab">
+                    <div class="row">
+                        <div class="col-sm-8">
+                            <div class="company_salary_left">
+                                <div class="row">
+                                    <div class="col-sm-6">
+                                        <%= render :partial => 'company_salaries/company_salary', :object => @company, locals: {salary_locate: 1} %>
+                                    </div>
+                                    <div class="col-sm-6">
+                                        <%= render :partial => 'company_salaries/company_salary', :object => @company, locals: {salary_locate: 2} %>
+                                    </div>
+                                    <div class="col-sm-6">
+                                        <%= render :partial => 'company_salaries/company_salary', :object => @company, locals: {salary_locate: 3} %>
+                                    </div>
+                                    <div class="col-sm-6">
+                                        <%= render :partial => 'company_salaries/company_salary', :object => @company, locals: {salary_locate: 4} %>
+                                    </div>
+                                    <div class="col-sm-6">
+                                        <%= render :partial => 'company_salaries/company_salary', :object => @company, locals: {salary_locate: 5} %>
+                                    </div>
+                                    <div class="col-sm-6">
+                                        <%= render :partial => 'company_salaries/company_salary', :object => @company, locals: {salary_locate: 6} %>
+                                    </div>
+                                    <div class="col-sm-6">
+                                        <%= render :partial => 'company_salaries/company_salary', :object => @company, locals: {salary_locate: 7} %>
+                                    </div>
+                                    <div class="col-sm-6">
+                                        <%= render :partial => 'company_salaries/company_salary', :object => @company, locals: {salary_locate: 8} %>
+                                    </div>
+                                    <div class="col-sm-6">
+                                        <%= render :partial => 'company_salaries/company_salary', :object => @company, locals: {salary_locate: 9} %>
+                                    </div>
+                                    <div class="col-sm-6">
+                                        <%= render :partial => 'company_salaries/company_salary', :object => @company, locals: {salary_locate: 10} %>
+                                    </div>
+                                    <div class="col-sm-6">
+                                        <%= render :partial => 'company_salaries/company_salary', :object => @company, locals: {salary_locate: 11} %>
+                                    </div>
+                                    <div class="col-sm-6">
+                                        <%= render :partial => 'company_salaries/company_salary', :object => @company, locals: {salary_locate: 12} %>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-sm-4">
+                            <div class="company_salary_right"> 
+                                <%if @company.company_jobs.count >0%>
+                                    <div class="company_job_mini_block">
+                                        <div class="company_job_label">
+                                            <a> Việc làm </a>
+                                        </div>
+                                        <div class="company_job_des">
+                                            <%@company.company_jobs.each do |company_job|%>
+                                                <div class="company_job_block_mini">
+                                                    <div class="company_avatar">
+                                                        <%if @company.avatar?%>
+                                                            <img><%= link_to (image_tag(@company.avatar.thumb.url)), image_path(url_for(@company.avatar.thumb.url)), rel: "gallery" , :href => company_path(@company)%>
+                                                        <%end%>
+                                                    </div>
+
+                                                    <div class="company_job_info">
+                                                        <div class="company_job_title">
+                                                            <%= link_to (company_job.title), company_company_job_path(@company, company_job) %>
+                                                        </div>
+                                                        <div class="company_job_date">
+                                                            <a><%= time_ago_in_words(company_job.created_at) %></a>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            <%end%>
+                                        </div>
+                                    </div>
+                                <%end%>
+                            </div>
+                        </div>
+                    </div>
+                </div>
             <%end%>
 
             <%if @tab_id == "CompanyQuestionsID"%>

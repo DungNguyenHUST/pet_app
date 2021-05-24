@@ -1,0 +1,109 @@
+<%if salary_locate == 1 %>
+    <% icon = "paid"%>
+    <% title = "Tài chính kế toán"%>
+<%elsif salary_locate == 2%>
+    <% icon = "laptop"%>
+    <% title = "Công nghệ thông tin"%>
+<%elsif salary_locate == 3%>
+    <% icon = "groups"%>
+    <% title = "Tư vấn chiến lược"%>
+<%elsif salary_locate == 4%>
+    <% icon = "cases"%>
+    <% title = "Kinh doanh"%>
+<%elsif salary_locate == 5%>
+    <% icon = "science"%>
+    <% title = "Nghiên cứu phát triển"%>
+<%elsif salary_locate == 6%>
+    <% icon = "engineering"%>
+    <% title = "Kĩ thuật"%>
+<%elsif salary_locate == 7%>
+    <% icon = "people"%>
+    <% title = "Hành chính, nhân sự"%>
+<%elsif salary_locate == 8%>
+    <% icon = "cast"%>
+    <% title = "Truyền thông"%>
+<%elsif salary_locate == 9%>
+    <% icon = "admin_panel_settings"%>
+    <% title = "Quản lý dự án"%>
+<%elsif salary_locate == 10%>
+    <% icon = "store"%>
+    <% title = "Sale & Marketing"%>
+<%elsif salary_locate == 11%>
+    <% icon = "precision_manufacturing"%>
+    <% title = "Sản xuất"%>
+<%elsif salary_locate == 12%>
+    <% icon = "support_agent"%>
+    <% title = "Dịch vụ khách hàng"%>
+<%else%>
+    <% icon = "edit"%>
+    <% title = "Tài chính kế toán"%>
+<%end%>
+<div class="company_salary_block">
+    <div class="company_salary_title"> 
+        <i class="material-icons-outlined"><%=icon%></i> <span>
+        <a><%=title%></a>
+    </div>
+    
+    <div class="company_salary_section">
+        <div class="company_salary_section_title">
+            <a>Internship(<%=count_salary_category(@company, salary_locate, 1)%>)</a>
+        </div>
+        <div class="company_salary_section_number">
+            <%= cal_intern_salary_by_type(@company, salary_locate, 1)%> đ
+        </div>
+    </div>
+
+    <div class="company_salary_section">
+        <div class="company_salary_section_title">
+            <a>Junior(<%=count_salary_category(@company, salary_locate, 2)%>)</a>
+        </div>
+        <div class="company_salary_section_number">
+            <%= cal_intern_salary_by_type(@company, salary_locate, 2)%> đ
+        </div>
+    </div>
+    
+    <div class="company_salary_section">
+        <div class="company_salary_section_title">
+            <a>Middle(<%=count_salary_category(@company, salary_locate, 3)%>)</a>
+        </div>
+        <div class="company_salary_section_number">
+            <%= cal_intern_salary_by_type(@company, salary_locate, 3)%> đ
+        </div>
+    </div>
+
+    <div class="company_salary_section">
+        <div class="company_salary_section_title">
+            <a>Senior(<%=count_salary_category(@company, salary_locate, 4)%>)</a>
+        </div>
+        <div class="company_salary_section_number">
+            <%= cal_intern_salary_by_type(@company, salary_locate, 4)%> đ
+        </div>
+    </div>
+
+    <div class="company_salary_section">
+        <div class="company_salary_section_title">
+            <a>Expert(<%=count_salary_category(@company, salary_locate, 5)%>)</a>
+        </div>
+        <div class="company_salary_section_number">
+            <%= cal_intern_salary_by_type(@company, salary_locate, 5)%> đ
+        </div>
+    </div>
+
+    <div class="company_salary_section">
+        <div class="company_salary_section_title">
+            <a>Leader(<%=count_salary_category(@company, salary_locate, 6)%>)</a>
+        </div>
+        <div class="company_salary_section_number">
+            <%= cal_intern_salary_by_type(@company, salary_locate, 6)%> đ
+        </div>
+    </div>
+
+    <div class="company_salary_section">
+        <div class="company_salary_section_title">
+            <a>Archritec(<%=count_salary_category(@company, salary_locate, 7)%>)</a>
+        </div>
+        <div class="company_salary_section_number">
+            <%= cal_intern_salary_by_type(@company, salary_locate, 7)%> đ
+        </div>
+    </div>
+</div>
