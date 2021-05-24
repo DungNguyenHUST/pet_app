@@ -34,7 +34,7 @@
 									<%else%> 
 										<%active = ""%>
 									<%end%>                                     
-									<a class="nav-link <%=active%>" href="<%=problem_path(@problem, tab_id: 'ProblemSolutionID')%>"><i class="material-icons-outlined">lightbulb</i>Trả lời<span> <%= @problem.problem_solutions.count%><span></a>
+									<a class="nav-link <%=active%>" href="<%=problem_path(@problem, tab_id: 'ProblemSolutionID')%>"><i class="material-icons-outlined">lightbulb</i>Trả lời<span> <%= convert_number_to_human(@problem.problem_solutions.count)%><span></a>
 								</li>
 								<li class="nav-item">
 									<%if @tab_id == "ProblemSubmitSolutionID"%>
@@ -42,7 +42,7 @@
 									<%else%> 
 										<%active = ""%>
 									<%end%>                                     
-									<a class="nav-link <%=active%>" href="<%=problem_path(@problem, tab_id: 'ProblemSubmitSolutionID')%>"><i class="material-icons-outlined">bookmark_border</i>Submission<span> <%= @problem_submition.count%><span></a>
+									<a class="nav-link <%=active%>" href="<%=problem_path(@problem, tab_id: 'ProblemSubmitSolutionID')%>"><i class="material-icons-outlined">bookmark_border</i>Submission<span> <%= convert_number_to_human(@problem_submition.count)%><span></a>
 								</li>
 								<li class="nav-item">
 									<%if @tab_id == "ProblemRelatedID"%>
@@ -50,7 +50,7 @@
 									<%else%> 
 										<%active = ""%>
 									<%end%>                                     
-									<a class="nav-link <%=active%>" href="<%=problem_path(@problem, tab_id: 'ProblemRelatedID')%>"><i class="material-icons">list</i>Câu hỏi liên quan<span> <%= @problems.count%><span></a>
+									<a class="nav-link <%=active%>" href="<%=problem_path(@problem, tab_id: 'ProblemRelatedID')%>"><i class="material-icons">list</i>Câu hỏi liên quan<span> <%= convert_number_to_human(@problems.count)%><span></a>
 								</li>
 							</ul>
 						</div>

@@ -9,7 +9,7 @@
                         <%else%> 
                             <%active = ""%>
                         <%end%>                                 
-                        <a class="nav-link <%=active%>" href="<%=user_path(current_user, tab_id: 'AdminCompanyID')%>"><i class="material-icons-outlined">business</i>Company <span><%= @companies.count%><span></a>
+                        <a class="nav-link <%=active%>" href="<%=user_path(current_user, tab_id: 'AdminCompanyID')%>"><i class="material-icons-outlined">business</i>Company <span><%= convert_number_to_human(@companies.count)%><span></a>
                     </li>
                     <li class="nav-item">
                         <%if @tab_id == "AdminUserID"%>
@@ -17,7 +17,7 @@
                         <%else%> 
                             <%active = ""%>
                         <%end%>                                     
-                        <a class="nav-link <%=active%>" href="<%=user_path(current_user, tab_id: 'AdminUserID')%>"><i class="material-icons-outlined">person</i>User <span><%= @users.count%><span></a>
+                        <a class="nav-link <%=active%>" href="<%=user_path(current_user, tab_id: 'AdminUserID')%>"><i class="material-icons-outlined">person</i>User <span><%= convert_number_to_human(@users.count)%><span></a>
                     </li>
                     <li class="nav-item">
                         <%if @tab_id == "AdminPostID"%>
@@ -25,7 +25,7 @@
                         <%else%> 
                             <%active = ""%>
                         <%end%>                                     
-                        <a class="nav-link <%=active%>" href="<%=user_path(current_user, tab_id: 'AdminPostID')%>"><i class="material-icons-outlined">post_add</i>Post <span><%= @posts.count%><span></a>
+                        <a class="nav-link <%=active%>" href="<%=user_path(current_user, tab_id: 'AdminPostID')%>"><i class="material-icons-outlined">post_add</i>Post <span><%= convert_number_to_human(@posts.count)%><span></a>
                     </li>
                     <li class="nav-item">
                         <%if @tab_id == "AdminProblemID"%>
@@ -33,7 +33,7 @@
                         <%else%> 
                             <%active = ""%>
                         <%end%>                                     
-                        <a class="nav-link <%=active%>" href="<%=user_path(current_user, tab_id: 'AdminProblemID')%>"><i class="material-icons-outlined">lightbulb</i>Problem <span><%= @problems.count%><span></a>
+                        <a class="nav-link <%=active%>" href="<%=user_path(current_user, tab_id: 'AdminProblemID')%>"><i class="material-icons-outlined">lightbulb</i>Problem <span><%= convert_number_to_human(@problems.count)%><span></a>
                     </li>
                     <li class="nav-item">
                         <%if @tab_id == "NotificationID"%>
@@ -41,7 +41,7 @@
                         <%else%> 
                             <%active = ""%>
                         <%end%>                                     
-                        <a class="nav-link <%=active%>" href="<%=user_path(current_user, tab_id: 'NotificationID')%>"><i class="material-icons-outlined">notifications</i>Thông báo <span><%= current_user.user_notifications.count%><span></a>
+                        <a class="nav-link <%=active%>" href="<%=user_path(current_user, tab_id: 'NotificationID')%>"><i class="material-icons-outlined">notifications</i>Thông báo <span><%= convert_number_to_human(current_user.user_notifications.count)%><span></a>
                     </li>
                 </ul>
             </div>
@@ -628,7 +628,7 @@
                             <%else%> 
                                 <%active = ""%>
                             <%end%>                                     
-                            <a class="nav-link <%=active%>" href="<%=user_path(current_user, tab_id: 'EmployerJobID')%>"><i class="material-icons-outlined">work_outline</i>Tin tuyển dụng <span><%= @company_job_by_employer.count%><span></a>
+                            <a class="nav-link <%=active%>" href="<%=user_path(current_user, tab_id: 'EmployerJobID')%>"><i class="material-icons-outlined">work_outline</i>Tin tuyển dụng <span><%= convert_number_to_human(@company_job_by_employer.count)%><span></a>
                         </li>
                         <li class="nav-item">
                             <%if @tab_id == "NotificationID"%>
@@ -636,7 +636,7 @@
                             <%else%> 
                                 <%active = ""%>
                             <%end%>                                     
-                            <a class="nav-link <%=active%>" href="<%=user_path(current_user, tab_id: 'NotificationID')%>"><i class="material-icons-outlined">notifications</i>Thông báo <span><%= current_user.user_notifications.count%><span></a>
+                            <a class="nav-link <%=active%>" href="<%=user_path(current_user, tab_id: 'NotificationID')%>"><i class="material-icons-outlined">notifications</i>Thông báo <span><%= convert_number_to_human(current_user.user_notifications.count)%><span></a>
                         </li>
                     </ul>
                 </div>
@@ -1060,7 +1060,7 @@
                         <%else%> 
                             <%active = ""%>
                         <%end%>                                     
-                        <a class="nav-link <%=active%>" href="<%=user_path(current_user, tab_id: 'SaveJobID')%>"><i class="material-icons-outlined">bookmark_border</i>Việc làm đã lưu <span><%= @company_save_job_current.count%><span> </a>
+                        <a class="nav-link <%=active%>" href="<%=user_path(current_user, tab_id: 'SaveJobID')%>"><i class="material-icons-outlined">bookmark_border</i>Việc làm đã lưu <span><%= convert_number_to_human(@company_save_job_current.count)%><span> </a>
                     </li>
                     <li class="nav-item">
                         <%if @tab_id == "ApplyJobID"%>
@@ -1068,7 +1068,7 @@
                         <%else%> 
                             <%active = ""%>
                         <%end%>                                     
-                        <a class="nav-link <%=active%>" href="<%=user_path(current_user, tab_id: 'ApplyJobID')%>"><i class="material-icons-outlined">check</i>Việc làm đã ứng tuyển <span><%= @company_apply_job_current.count%><span> </a>
+                        <a class="nav-link <%=active%>" href="<%=user_path(current_user, tab_id: 'ApplyJobID')%>"><i class="material-icons-outlined">check</i>Việc làm đã ứng tuyển <span><%= convert_number_to_human(@company_apply_job_current.count)%><span> </a>
                     </li>
                     <li class="nav-item">
                         <%if @tab_id == "CompanyFollowID"%>
@@ -1076,7 +1076,7 @@
                         <%else%> 
                             <%active = ""%>
                         <%end%>                                     
-                        <a class="nav-link <%=active%>" href="<%=user_path(current_user, tab_id: 'CompanyFollowID')%>"><i class="material-icons-outlined">favorite_border</i>Công ty đang theo dõi <span><%= @company_follow_current.count%><span> </a>
+                        <a class="nav-link <%=active%>" href="<%=user_path(current_user, tab_id: 'CompanyFollowID')%>"><i class="material-icons-outlined">favorite_border</i>Công ty đang theo dõi <span><%= convert_number_to_human(@company_follow_current.count)%><span> </a>
                     </li>
                     <li class="nav-item">
                         <%if @tab_id == "NotificationID"%>
@@ -1084,7 +1084,7 @@
                         <%else%> 
                             <%active = ""%>
                         <%end%>                                     
-                        <a class="nav-link <%=active%>" href="<%=user_path(current_user, tab_id: 'NotificationID')%>"><i class="material-icons-outlined">notifications</i>Thông báo <span><%= current_user.user_notifications.count%><span> </a>
+                        <a class="nav-link <%=active%>" href="<%=user_path(current_user, tab_id: 'NotificationID')%>"><i class="material-icons-outlined">notifications</i>Thông báo <span><%= convert_number_to_human(current_user.user_notifications.count)%><span> </a>
                     </li>
                 </ul>
             </div>

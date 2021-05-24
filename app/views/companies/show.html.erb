@@ -83,7 +83,7 @@
                             </div>
 
                             <div class="company_title_short_des">
-                                <a><%= @company.company_reviews.count %> review | <%= @company.company_interviews.count %> phỏng vấn | <%=@company.company_follows.count%> theo dõi</a>
+                                <a><%= convert_number_to_human(@company.company_reviews.count) %> review | <%= convert_number_to_human(@company.company_interviews.count) %> phỏng vấn | <%=convert_number_to_human(@company.company_follows.count)%> theo dõi</a>
                             </div>
                         </div>
                     </div>
@@ -160,7 +160,7 @@
                     <%else%> 
                         <%active = ""%>
                     <%end%>                                     
-                    <a class="nav-link <%=active%>" href="<%=company_path(@company, tab_id: 'CompanyReviewsID')%>"><i class="material-icons-outlined">insert_emoticon</i>Review công ty <span> <%= @company.company_reviews.count%><span></a>
+                    <a class="nav-link <%=active%>" href="<%=company_path(@company, tab_id: 'CompanyReviewsID')%>"><i class="material-icons-outlined">insert_emoticon</i>Review công ty <span> <%= convert_number_to_human(@company.company_reviews.count)%><span></a>
                 </li>
                 <li class="nav-item">
                     <%if @tab_id == "CompanyInterviewsID"%>
@@ -168,7 +168,7 @@
                     <%else%> 
                         <%active = ""%>
                     <%end%> 
-                    <a class="nav-link <%=active%>" href="<%=company_path(@company, tab_id: 'CompanyInterviewsID')%>"><i class="material-icons-outlined">people_outline</i>Phỏng vấn <span> <%= @company.company_interviews.count%><span></a>
+                    <a class="nav-link <%=active%>" href="<%=company_path(@company, tab_id: 'CompanyInterviewsID')%>"><i class="material-icons-outlined">people_outline</i>Phỏng vấn <span> <%= convert_number_to_human(@company.company_interviews.count)%><span></a>
                 </li>
                 <li class="nav-item">
                     <%if @tab_id == "CompanyJobsID"%>
@@ -176,7 +176,7 @@
                     <%else%> 
                         <%active = ""%>
                     <%end%> 
-                    <a class="nav-link <%=active%>" href="<%=company_path(@company, tab_id: 'CompanyJobsID')%>"><i class="material-icons-outlined">work_outline</i>Tuyển dụng <span> <%= @company.company_jobs.count%><span></a>
+                    <a class="nav-link <%=active%>" href="<%=company_path(@company, tab_id: 'CompanyJobsID')%>"><i class="material-icons-outlined">work_outline</i>Tuyển dụng <span> <%= convert_number_to_human(@company.company_jobs.count)%><span></a>
                 </li>
                 <li class="nav-item">
                     <%if @tab_id == "CompanyImagesID"%>
@@ -184,7 +184,23 @@
                     <%else%> 
                         <%active = ""%>
                     <%end%>                                     
-                    <a class="nav-link <%=active%>" href="<%=company_path(@company, tab_id: 'CompanyImagesID')%>"><i class="material-icons-outlined">image</i>Hình ảnh<span> <%= @company.company_images.count%><span></a>
+                    <a class="nav-link <%=active%>" href="<%=company_path(@company, tab_id: 'CompanyImagesID')%>"><i class="material-icons-outlined">image</i>Lương<span> <%= convert_number_to_human(@company.company_images.count)%><span></a>
+                </li>
+                <li class="nav-item">
+                    <%if @tab_id == "CompanyImagesID"%>
+                        <%active = "active"%>
+                    <%else%> 
+                        <%active = ""%>
+                    <%end%>                                     
+                    <a class="nav-link <%=active%>" href="<%=company_path(@company, tab_id: 'CompanyImagesID')%>"><i class="material-icons-outlined">image</i>Hình ảnh<span> <%= convert_number_to_human(@company.company_images.count)%><span></a>
+                </li>
+                <li class="nav-item">
+                    <%if @tab_id == "CompanyImagesID"%>
+                        <%active = "active"%>
+                    <%else%> 
+                        <%active = ""%>
+                    <%end%>                                     
+                    <a class="nav-link <%=active%>" href="<%=company_path(@company, tab_id: 'CompanyImagesID')%>"><i class="material-icons-outlined">image</i>Q&A<span> <%= convert_number_to_human(@company.company_images.count)%><span></a>
                 </li>
             </ul>
         </div>

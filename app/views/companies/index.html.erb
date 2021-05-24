@@ -86,7 +86,7 @@
                         <%else%> 
                             <%active = ""%>
                         <%end%> 
-                        <a class="nav-link <%=active%>" href="<%=companies_path(tab_id: 'CompanyAllID')%>"><i class="material-icons-outlined">sort</i>Tất cả<span> <%= @companies_all.count%><span></a>
+                        <a class="nav-link <%=active%>" href="<%=companies_path(tab_id: 'CompanyAllID')%>"><i class="material-icons-outlined">sort</i>Tất cả<span> <%= convert_number_to_human(@companies_all.count)%><span></a>
                     </li>
                     <li class="nav-item">
                         <%if @tab_id == "CompanyNewestID"%>

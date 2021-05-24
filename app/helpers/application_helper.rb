@@ -54,4 +54,24 @@ module ApplicationHelper
         
         return color_type
     end
+
+    def convert_number_to_human(number)
+        number_in_human = ""
+
+        case number
+        when 0..999
+            number_in_human = number.to_s
+        when 1000..999999
+            number_in_human = number_to_human(number, :format => '%n%u', :units => { :thousand => 'k' })
+        when 1000000..999999990
+            number_in_human = number_to_human(number, :format => '%n%u', :units => { :million => 'm' })
+        when 1000000000..999999999999
+            number_in_human = number_to_human(number, :format => '%n%u', :units => { :million => 'b' })
+        else
+            number_in_human = number_to_human(number, :format => '%n%u', :units => { :trillion => 't' })
+        end
+
+        return number_in_human
+    end
+
 end

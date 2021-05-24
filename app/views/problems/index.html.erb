@@ -65,7 +65,7 @@
                             <%else%> 
                                 <%active = ""%>
                             <%end%>                                 
-                            <a class="nav-link <%=active%>" href="<%=problems_path(tab_id: 'ProblemIndexAllID')%>"><i class="material-icons-outlined">view_list</i>Tất cả <span><%=@problems_all.count%><span></a>
+                            <a class="nav-link <%=active%>" href="<%=problems_path(tab_id: 'ProblemIndexAllID')%>"><i class="material-icons-outlined">view_list</i>Tất cả <span><%=convert_number_to_human(@problems_all.count)%><span></a>
                         </li>
                         <li class="nav-item">
                             <%if @tab_id == "ProblemIndexAlgorithmID"%>
@@ -73,7 +73,7 @@
                             <%else%> 
                                 <%active = ""%>
                             <%end%>                                     
-                            <a class="nav-link <%=active%>" href="<%=problems_path(tab_id: 'ProblemIndexAlgorithmID')%>"><i class="material-icons-outlined">calculate</i>Thuật toán<span><%=@problem_math.count%><span></a>
+                            <a class="nav-link <%=active%>" href="<%=problems_path(tab_id: 'ProblemIndexAlgorithmID')%>"><i class="material-icons-outlined">calculate</i>Thuật toán<span><%=convert_number_to_human(@problem_math.count)%><span></a>
                         </li>
                         <li class="nav-item">
                             <%if @tab_id == "ProblemEQTestID"%>
@@ -81,7 +81,7 @@
                             <%else%> 
                                 <%active = ""%>
                             <%end%>                                     
-                            <a class="nav-link <%=active%>" href="<%=problems_path(tab_id: 'ProblemEQTestID')%>"><i class="material-icons-outlined">text_snippet</i>EQ Test <span><%=@problem_eq_test.count%><span></a>
+                            <a class="nav-link <%=active%>" href="<%=problems_path(tab_id: 'ProblemEQTestID')%>"><i class="material-icons-outlined">text_snippet</i>EQ Test <span><%=convert_number_to_human(@problem_eq_test.count)%><span></a>
                         </li>
                         <li class="nav-item">
                             <%if @tab_id == "ProblemIndexIQTestID"%>
@@ -89,7 +89,7 @@
                             <%else%> 
                                 <%active = ""%>
                             <%end%>                                     
-                            <a class="nav-link <%=active%>" href="<%=problems_path(tab_id: 'ProblemIndexIQTestID')%>"><i class="material-icons-outlined">batch_prediction</i>IQ Test <span><%=@problem_iq_test.count%><span></a>
+                            <a class="nav-link <%=active%>" href="<%=problems_path(tab_id: 'ProblemIndexIQTestID')%>"><i class="material-icons-outlined">batch_prediction</i>IQ Test <span><%=convert_number_to_human(@problem_iq_test.count)%><span></a>
                         </li>
                         <li class="nav-item">
                             <%if @tab_id == "ProblemIndexCareerID"%>
@@ -97,7 +97,7 @@
                             <%else%> 
                                 <%active = ""%>
                             <%end%>                                     
-                            <a class="nav-link <%=active%>" href="<%=problems_path(tab_id: 'ProblemIndexCareerID')%>"><i class="material-icons-outlined">card_travel</i>Phỏng vấn <span><%=@problem_interview.count%><span></a>
+                            <a class="nav-link <%=active%>" href="<%=problems_path(tab_id: 'ProblemIndexCareerID')%>"><i class="material-icons-outlined">card_travel</i>Phỏng vấn <span><%=convert_number_to_human(@problem_interview.count)%><span></a>
                         </li>
                         <li class="nav-item">
                             <%if @tab_id == "ProblemIndexOtherID"%>
@@ -105,7 +105,7 @@
                             <%else%> 
                                 <%active = ""%>
                             <%end%>                                     
-                            <a class="nav-link <%=active%>" href="<%=problems_path(tab_id: 'ProblemIndexOtherID')%>"><i class="material-icons-outlined">blur_on</i>Khác <span><%=@problem_other.count%><span></a>
+                            <a class="nav-link <%=active%>" href="<%=problems_path(tab_id: 'ProblemIndexOtherID')%>"><i class="material-icons-outlined">blur_on</i>Khác <span><%=convert_number_to_human(@problem_other.count)%><span></a>
                         </li>
                     </ul>
                 </div>
