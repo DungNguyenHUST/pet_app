@@ -1025,42 +1025,13 @@
                         <div class="col-sm-8">
                             <div class="company_salary_left">
                                 <div class="row">
-                                    <div class="col-sm-6">
-                                        <%= render :partial => 'company_salaries/company_salary', :object => @company, locals: {salary_locate: 1} %>
-                                    </div>
-                                    <div class="col-sm-6">
-                                        <%= render :partial => 'company_salaries/company_salary', :object => @company, locals: {salary_locate: 2} %>
-                                    </div>
-                                    <div class="col-sm-6">
-                                        <%= render :partial => 'company_salaries/company_salary', :object => @company, locals: {salary_locate: 3} %>
-                                    </div>
-                                    <div class="col-sm-6">
-                                        <%= render :partial => 'company_salaries/company_salary', :object => @company, locals: {salary_locate: 4} %>
-                                    </div>
-                                    <div class="col-sm-6">
-                                        <%= render :partial => 'company_salaries/company_salary', :object => @company, locals: {salary_locate: 5} %>
-                                    </div>
-                                    <div class="col-sm-6">
-                                        <%= render :partial => 'company_salaries/company_salary', :object => @company, locals: {salary_locate: 6} %>
-                                    </div>
-                                    <div class="col-sm-6">
-                                        <%= render :partial => 'company_salaries/company_salary', :object => @company, locals: {salary_locate: 7} %>
-                                    </div>
-                                    <div class="col-sm-6">
-                                        <%= render :partial => 'company_salaries/company_salary', :object => @company, locals: {salary_locate: 8} %>
-                                    </div>
-                                    <div class="col-sm-6">
-                                        <%= render :partial => 'company_salaries/company_salary', :object => @company, locals: {salary_locate: 9} %>
-                                    </div>
-                                    <div class="col-sm-6">
-                                        <%= render :partial => 'company_salaries/company_salary', :object => @company, locals: {salary_locate: 10} %>
-                                    </div>
-                                    <div class="col-sm-6">
-                                        <%= render :partial => 'company_salaries/company_salary', :object => @company, locals: {salary_locate: 11} %>
-                                    </div>
-                                    <div class="col-sm-6">
-                                        <%= render :partial => 'company_salaries/company_salary', :object => @company, locals: {salary_locate: 12} %>
-                                    </div>
+                                    <%i = 1%>
+                                    <%while i < 13%>
+                                        <div class="col-sm-6">
+                                            <%= render :partial => 'company_salaries/company_salary', :object => @company, locals: {salary_locate: i} %>
+                                        </div>
+                                        <%i += 1%>
+                                    <%end%>
                                 </div>
                             </div>
                         </div>
