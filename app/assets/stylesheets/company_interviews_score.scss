@@ -4,33 +4,44 @@
 
 //////////////////interview//////////////////
 .interview_score_content{
-    background-color: #fff;
     .interview_score
     {
-        clear: both;
         background-color: #fff;
         padding: 15px;
         display: block;
-        @media screen and (max-width: 600px){
-            border-top: none;
+        .padding-custom-middle{
+            padding: 0px;
+            @media screen and (min-width: 600px){
+                border-left: 1px solid #dfe1e5;
+                border-right: 1px solid #dfe1e5;
+            }
+        }
+        .padding-custom{
+            padding: 0px;
         }
         .interview_score_difficult{
             text-align: center;
             @media screen and (max-width: 600px){
-                border: none;
+                padding-bottom: 15px;
+            }
+            .interview_score_label{
+                font-size: 20px;
+                font-weight: 600;
             }
             .interview_point{
-                font-size: 40px;
+                font-size: 33px;
                 margin-bottom: 5px;
-                color: #353434;
+                margin-top: 10px;
+                color: #444;
                 text-align: center;
             }
             .interview_score_star{
                 i{
-                    font-size: 24px;
-                    margin-right: 3px;
+                    font-size: 36px;
                     position: relative;
-                    margin-right: -3px !important;
+                    margin-right: -15px !important;
+                    top: -6px;
+                    left: -10px;
                 }
                 .checked{
                     color: #febb02;
@@ -38,11 +49,6 @@
                 .checked_out{
                     color: #999;
                 }
-            }
-            
-            .interview_score_label{
-                margin-top: 10px;
-                font-size: 16px;
             }
         }
 
@@ -50,17 +56,19 @@
             text-align: center;
             @media screen and (max-width: 600px){
                 border: none;
-                margin-top: 20px;
-                padding-top: 10px;
+                padding-top: 15px;
                 border-top: 1px solid #dfe1e5;
+                padding-bottom: 15px;
             }
             .interview_point{
                 text-align: center;
-                font-size: 40px;
+                font-size: 33px;
                 margin-bottom: 5px;
-                color: #353434;
+                margin-top: 10px;
+                color: #444;
             }
             .interview_score_star{
+                text-align: center;
                 i{
                     font-size: 24px;
                     margin-right: 3px;
@@ -74,47 +82,9 @@
                     color: #999;
                 }
             }
-            
             .interview_score_label{
-                margin-top: 10px;
-                font-size: 16px;
-            }
-        }
-
-        .interview_score_process{
-            text-align: center;
-            @media screen and (max-width: 600px){
-                border: none;
-                margin-top: 20px;
-                padding-top: 10px;
-                border-top: 1px solid #dfe1e5;
-            }
-            .interview_point{
-                text-align: center;
-                font-size: 40px;
-                margin-bottom: 5px;
-                color: #353434;
-            }
-            .interview_score_star{
-                text-align: center;
-                i{
-                    font-size: 24px;
-                    margin-right: 3px;
-                    position: relative;
-                    top:-3px;
-                    margin-right: -3px !important;
-                }
-                .checked{
-                    color: #febb02;
-                }
-                .checked_out{
-                    color: #999;
-                }
-            }
-            
-            .interview_score_label{
-                margin-top: 10px;
-                font-size: 16px;
+                font-size: 20px;
+                font-weight: 600;
             }
         }
 
@@ -122,38 +92,37 @@
             text-align: center;
             @media screen and (max-width: 600px){
                 border: none;
-                margin-top: 20px;
-                padding-top: 10px;
+                padding-top: 15px;
                 border-top: 1px solid #dfe1e5;
             }
-            .interview_point{
-                font-size: 40px;
-                margin-bottom: 5px;
-                color: #353434;
-                text-align: center;
-            }
-            .interview_score_star{
-                text-align: center;
-                i{
-                    font-size: 24px;
-                    margin-right: 3px;
-                    position: relative;
-                    top:-3px;
-                    margin-right: -3px !important;
-                }
-                .checked{
-                    color: #febb02;
-                }
-                .checked_out{
-                    color: #999;
-                }
+            .interview_score_label{
+                font-size: 20px;
+                font-weight: 600;
             }
             
-            .interview_score_label{
-                margin-top: 10px;
-                font-size: 16px;
+            .interview_score_recommand_block{
+                .interview_score_recommand{
+                    a{
+                        font-size: 22px;
+                        text-align: center;
+                        font-weight: 600;
+                        color: #444;
+                    }
+                    position: absolute;
+                    z-index: 100;
+                    top: 48%;
+                    left: 42%;
+                    @media screen and (max-width: 600px){
+                        top: 55%;
+                        left: 44%;
+                    }
+                    @media screen and (max-width: 350px){
+                        top: 56%;
+                        left: 44%;
+                    }
+                    border: none;
+                }
             }
         }
-        
     }
 }

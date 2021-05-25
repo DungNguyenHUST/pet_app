@@ -1042,6 +1042,8 @@
                         font-size: 22px;
                         font-weight: 550;
                         border-bottom: 1px solid #dfe1e5;
+                        padding-top: 5px;
+                        padding-bottom: 5px;
                     }
                     .review_content{
 
@@ -1065,6 +1067,8 @@
                         font-size: 22px;
                         font-weight: 550;
                         border-bottom: 1px solid #dfe1e5;
+                        padding-top: 5px;
+                        padding-bottom: 5px;
                     }
                     .interview_content{
                         
@@ -1308,9 +1312,19 @@
                 @media screen and (max-width: 600px){
                     margin-top: 20px;
                 }
-                .company_review_score{
+                .company_review_score_block{
                     border-radius: 3px;
                     border: 1px solid #dfe1e5;
+                    .company_review_title{
+                        font-size: 20px;
+                        font-weight: 600;
+                        border-bottom: 1px solid #dfe1e5;
+                        padding: 15px;
+                        padding-top: 5px;
+                        padding-bottom: 5px;
+                    }
+                    .company_review_score{
+                    }
                 }
 
                 .company_review_score_detail{
@@ -1351,18 +1365,19 @@
                                 a{
                                     position: relative;
                                     top: 3px;
+                                    color: #444;
                                 }
                             }
                             .review_detail_score{
                                 float: right;
                                 a{
-                                    font-size: 18px;
+                                    font-size: 16px;
                                 }
                                 i{
                                     color: #febb02;
                                     position: relative;
-                                    top: 5px;
-                                    font-size: 22px;
+                                    top: 4px;
+                                    font-size: 20px;
                                 }
                             }
                         }
@@ -1615,9 +1630,19 @@
                 .user_comment_heading{
                     font-size: 22px;
                 }
-                .company_interview_score{
+                .company_interview_score_block{
                     border-radius: 3px;
                     border: 1px solid #dfe1e5;
+                    .company_interview_title{
+                        font-size: 20px;
+                        font-weight: 600;
+                        border-bottom: 1px solid #dfe1e5;
+                        padding: 15px;
+                        padding-top: 5px;
+                        padding-bottom: 5px;
+                    }
+                    .company_interview_score{
+                    }
                 }
                 .company_interview_tab_des_left{
                     width: 100%;
@@ -2330,6 +2355,137 @@
         .company_salary_tab{
             .company_salary_left{
                 margin-top: 10px;
+                .salary_new_not_found{
+                    font-size: 20px;
+                    font-weight: 550;
+                    padding-top: 10px;
+                    padding-bottom: 10px;
+                }
+                .no_salary_found{
+                    span{
+                        font-size: 20px;
+                        font-weight: 550;
+                    }
+                    width: 100%;
+                    min-height: 100px;
+                    margin-top: 20px;
+                    margin-bottom: 30px;
+                    background-color: #ebfeff;
+                    border: 1px solid #ebfeff;
+                    border-radius: 3px;
+                    .salary_new_label{
+                        font-size: 22px;
+                        float: left;
+                        @media screen and (max-width: 600px){
+                            float: none;
+                        }
+                        padding-top:30px;
+                        padding-left: 20px;    
+                    }
+                    .salary_new_button{
+                        float: right;
+                        padding: 15px;
+                        @media screen and (max-width: 600px){
+                            float: none;
+                            padding-bottom: 30px;
+                        }
+                        button{
+                            height: 50px;
+                            @media screen and (max-width: 600px){
+                                width: 100%;
+                            }
+                            width: 250px;
+                            margin-right: 10px;
+                            background: #1877f2;
+                            font-size: 16px;
+                            border: none;
+                            cursor: pointer;
+                            text-align: center;
+                            color: #fff;
+                            border-radius: 3px;
+                            &:focus {outline:none;}
+                            i{
+                                position: relative;
+                                top: 2px;
+                                font-size: 20px;
+                                margin-right: 3px;
+                            }
+    
+                            span{
+                                font-size: 16px;
+                                position: relative;
+                                top: -2px;
+                            }
+                            
+                            &:hover{
+                                background-color: #369;
+                                color: #fff;
+                            }
+                        }
+                    }
+                }
+                .new_salary_question
+                {
+                    width: 100%;
+                    min-height: 90px;
+                    background-color: #ebfeff;
+                    border-top: 5px solid #febb02;
+                    padding: 10px;
+                    border-radius: 3px;
+                    margin-top: 30px;
+                    .new_salary_question_title{
+                        margin-top: 10px;
+                        margin-bottom: 20px;
+                        font-size: 20px;
+                        @media screen and (min-width: 600px){
+                            float: left;
+                            font-size: 22px;
+                        }
+                        i {
+                            font-size: 30px;
+                            margin: 3px;
+                            color: #febb02;
+                            position: relative;
+                            top: 2px;
+                        }
+                    }
+    
+                    .new_salary_question_button button {
+                        float: right;
+                        @media screen and (max-width: 600px){
+                            float: none;
+                            width: 100%;
+                        }
+                        padding: 14px;
+                        width: 300px;
+                        height: 50px;
+                        background: #1877f2;
+                        font-size: 14px;
+                        border: none;
+                        cursor: pointer;
+                        text-align: center;
+                        color: #fff;
+                        border-radius: 3px;
+                        &:focus {outline:none;}
+                        i{
+                            font-size: 20px;
+                            position: relative;
+                            top: 3px;
+                            color: #fff;
+                            margin-right: 3px;
+                        }
+                        span{
+                            font-size: 14px;
+                            position: relative;
+                            top: -2px;
+                        }
+                        
+                        &:hover {
+                            background-color: #369;
+                            color: #fff;
+                        }
+                    }
+                }
             }
             .company_salary_right{
                 .company_job_mini_block{

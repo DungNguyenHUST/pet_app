@@ -1,7 +1,7 @@
 <div class="review_score_content">
     <div class="review_score">
         <div class='row'>
-            <div class="col-sm-6">
+            <div class="col-sm-6 custom-padding-right">
                 <div class="review_score_total">
                     <div class="review_score_label">
                         <a>Đánh giá tổng quát</a>
@@ -28,56 +28,47 @@
                     </div>
 
                     <div class="review_total_des">
-                        <a>Dựa trên <%= @company.company_reviews.count%> đánh giá từ nhân viên</a>
+                        <a>Dựa trên <%= convert_number_to_human(@company.company_reviews.count)%> đánh giá từ nhân viên</a>
                     </div>
                 </div>
             </div>
 
-            <div class="col-sm-6">
+            <div class="col-sm-6 custom-padding-left">
                 <div class="review_score_recommand">  
                     <div class="review_score_recommand_title">
                         <a>Khuyến khích làm việc tại đây</a>
                     </div>
 
-                    <div class="circle-wrap">
-                        <div class="circle">
-                            
-                            <div class="mask full">
-                                <div class="fill"></div>
-                            </div>
-                        
-                            <div class="mask half">
-                                <div class="fill"></div>
-                            </div>
-                            
-                            <div class="inside-circle">
-                                <%= cal_rating_review_recommend(@company)%>%
-                            </div>
+                    <div class="review_score_recommand_block">
+                        <div class="review_circle_box" style="--p:<%=cal_rating_review_recommend(@company)%>;">
+                        </div>
+                        <div class="review_score_recommand">
+                            <a><%=cal_rating_review_recommend(@company)%>%</a>
                         </div>
                     </div>
+                    <style>
+                        .review_circle_box {
+                            --v:calc( ((18/5) * var(--p) - 90)*1deg);
+                            width: 100px;
+                            height: 100px;
+                            display: inline-block;
+                            margin-left: 34%;
+                            margin-top: 5px;
+                            border-radius: 50%;
+                            padding: 10px;
+                            background:
+                                linear-gradient(var(--v), #f2f2f2     50%,transparent 0) 0/min(100%,(50 - var(--p))*100%),
+                                linear-gradient(var(--v), transparent 50%,#febb02        0) 0/min(100%,(var(--p) - 50)*100%),
+                                linear-gradient(to right, #f2f2f2 50%,#febb02 0);
+                            -webkit-mask:
+                                linear-gradient(#fff 0 0) content-box,
+                                linear-gradient(#fff 0 0);
+                            -webkit-mask-composite:destination-out;
+                            mask-composite:exclude;
+                        }
+                    </style>
                 </div>
             </div>
         </div>
-
-        <style>
-            .circle-wrap .circle .mask .fill {
-                clip: rect(0px, 75px, 150px, 0px);
-                background-color: #febb02;
-            }
-            .circle-wrap .circle .mask.full,
-            .circle-wrap .circle .fill {
-                animation: fill ease-in-out 3s;
-                transform: rotate(<%= cal_rating_review_recommend(@company).to_i * 36%>deg);
-            }
-            
-            @keyframes fill {
-            0% {
-                transform: rotate(0deg);
-            }
-            100% {
-                transform: rotate(<%= cal_rating_review_recommend(@company).to_i * 36%>deg);
-            }
-        }
-        </style>
     </div>
 </div>

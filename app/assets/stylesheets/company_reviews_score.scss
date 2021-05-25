@@ -5,14 +5,25 @@
 //////////////////review//////////////////
 .review_score_content{
     background-color: #fff;
+    @media screen and (min-width: 600px){
+        .custom-padding-left{
+            padding-left: 0px;
+            border-left: 1px solid #dfe1e5;
+        }
+        .custom-padding-right{
+            padding-right: 0px;
+            border-right: 1px solid #dfe1e5;
+        }
+    }
+
     .review_score{
         clear: both;
+        padding: 15px;
         background-color: #fff;
         .review_score_total{
             .review_score_label{
-                padding-top: 30px;
                 text-align: center;
-                font-size: 22px;
+                font-size: 20px;
                 font-weight: 550;
                 color: #444;
             }
@@ -20,24 +31,24 @@
             .review_score_star{
                 .review_point
                 {
-                    margin-top: 20px;
-                    font-size: 36px;
-                    color: #333;
+                    padding-top: 5px;
+                    font-size: 30px;
+                    color: #ea1e30;
                     text-align: center;
                 }
 
                 .review_score_star_des
                 {
-                    margin-top: 10px;
+                    margin-top: 5px;
                     font-size: 25px;
-                    margin-left: 28%;
-                     @media screen and (max-width: 600px){
-                        margin-left: 33%;
+                    margin-left: 30%;
+                    @media screen and (max-width: 600px){
+                        margin-left: 30%;
                     }
                     text-align: center;
                     i {
                         float: left;
-                        font-size: 28px;
+                        font-size: 24px;
                         margin-right: 2px;
                         display: block;
                         color: #fff;
@@ -54,7 +65,7 @@
             }
 
             .review_total_des{
-                margin-top: 50px;
+                margin-top: 40px;
                 font-size: 14px;
                 text-align: center;
                 color: #535153;
@@ -65,47 +76,40 @@
         .review_score_recommand{
             @media screen and (max-width: 600px){
                 border-top: 1px solid #dfe1e5;
-                margin-top: 30px;
+                margin-top: 15px;
             }
             .review_score_recommand_title{
+                @media screen and (max-width: 600px){
+                    border-top: 1px solid #dfe1e5;
+                    padding-top: 15px;
+                }
                 text-align: center;
-                font-size: 22px;
+                font-size: 20px;
                 font-weight: 550;
-                padding-top: 30px;
                 color: #444;
             }
 
-            .circle-wrap {
-                margin: 50px auto;
-                margin-top: 15px;
-                width: 120px;
-                height: 120px;
-                background: #e2e2e2;
-                border-radius: 50%;
-            }
-            .circle-wrap .circle .mask,
-            .circle-wrap .circle .fill {
-                width: 120px;
-                height: 120px;
-                position: absolute;
-                border-radius: 50%;
-            }
-            .circle-wrap .circle .mask {
-                clip: rect(0px, 120px, 120px, 60px);
-            }
-            .circle-wrap .inside-circle {
-                width: 100px;
-                height: 100px;
-                border-radius: 50%;
-                background: #fff;
-                line-height: 100px;
-                text-align: center;
-                margin-top: 10px;
-                margin-left: 10px;
-                position: absolute;
-                z-index: 100;
-                font-weight: 700;
-                font-size: 2em;
+            .review_score_recommand_block{
+                .review_score_recommand{
+                    a{
+                        font-size: 22px;
+                        text-align: center;
+                        font-weight: 600;
+                    }
+                    position: absolute;
+                    z-index: 100;
+                    top: 50%;
+                    left: 42%;
+                    @media screen and (max-width: 600px){
+                        top: 51%;
+                        left: 45%;
+                    }
+                    @media screen and (max-width: 350px){
+                        top: 58%;
+                        left: 46%;
+                    }
+                    border: none;
+                }
             }
         }
     }

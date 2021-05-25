@@ -620,8 +620,13 @@
                         <div class="col-sm-8">
                             <div class="company_review_tab_des_left">
                                 <%if(@company.company_reviews.count > 0)%>
-                                    <div class="company_review_score">
-                                        <%= render :partial => 'company_reviews/review_score' %>
+                                    <div class="company_review_score_block">
+                                        <div class="company_review_title">
+                                            <a>Review <%= @company.name %></a>
+                                        </div>
+                                        <div class="company_review_score">
+                                            <%= render :partial => 'company_reviews/review_score' %>
+                                        </div>
                                     </div>
 
                                     <div class="company_review_score_detail">
@@ -832,8 +837,13 @@
                         <div class="col-sm-8">
                             <div class="company_interview_tab_des_left">
                                 <%if @company.company_interviews.count > 0%>
-                                    <div class="company_interview_score">
-                                        <%= render :partial => 'company_interviews/interview_score' %>
+                                    <div class="company_interview_score_block">
+                                        <div class="company_interview_title">
+                                            <a>Interview <%= @company.name %></a>
+                                        </div>
+                                        <div class="company_interview_score">
+                                            <%= render :partial => 'company_interviews/interview_score' %>
+                                        </div>
                                     </div>
                                     <div class="company_interview">
                                         <%= render @company.company_interviews %>
@@ -921,7 +931,7 @@
                                         <%if @company.company_jobs.count > 0%>
                                             <strong><%=@company.company_jobs.count%> việc làm tại <%=@company.name%> </strong> 
                                         <%else%>
-                                            <strong> Rất tiếc, hiện tại chưa có việc làm đang tuyển dụng </strong>
+                                            <strong> Rất tiếc, <%=@company.name%> hiện tại chưa có việc làm đang tuyển dụng </strong>
                                         <%end%>
                                     </div>
                                 </div>
@@ -1024,15 +1034,29 @@
                     <div class="row">
                         <div class="col-sm-8">
                             <div class="company_salary_left">
-                                <div class="row">
-                                    <%i = 1%>
-                                    <%while i < 13%>
-                                        <div class="col-sm-6">
-                                            <%= render :partial => 'company_salaries/company_salary', :object => @company, locals: {salary_locate: i} %>
+                                <%if @company.company_salaries.count > 0%>
+                                    <div class="row">
+                                        <%i = 1%>
+                                        <%while i < 13%>
+                                            <div class="col-sm-6">
+                                                <%= render :partial => 'company_salaries/company_salary', :object => @company, locals: {salary_locate: i} %>
+                                            </div>
+                                            <%i += 1%>
+                                        <%end%>
+                                    </div>
+                                <%else%>
+                                    <div class="salary_new_not_found">
+                                        <span>Rất tiếc, chưa có đủ dữ liệu thống kê. Hãy là người đầu tiên chia sẻ mức lương của bạn tại <%=@company.name%>, thông tin của bạn sẽ rất hữu ích cho những người khác ...</span>
+                                    </div>
+                                    <div class="no_salary_found">
+                                        <div class="salary_new_label">
+                                            <a>Thêm review lương ngay</a>
                                         </div>
-                                        <%i += 1%>
-                                    <%end%>
-                                </div>
+                                        <div class="salary_new_button">
+                                            <%= link_to '<button type="submit"> <i class="material-icons-outlined">edit</i> <span> Review lương</span> </button>'.html_safe, new_company_company_salary_path(@company) %>
+                                        </div>
+                                    </div>
+                                <%end%>
                             </div>
                         </div>
                         <div class="col-sm-4">
