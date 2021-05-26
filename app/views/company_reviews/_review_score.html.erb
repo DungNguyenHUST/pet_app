@@ -3,10 +3,6 @@
         <div class='row'>
             <div class="col-sm-6 custom-padding-right">
                 <div class="review_score_total">
-                    <div class="review_score_label">
-                        <a>Đánh giá tổng quát</a>
-                    </div>
-
                     <div class="review_score_star">
                         <div class="review_point">
                             <strong><%=cal_rating_review_total_score(@company).to_f.round(1)%> </strong>
@@ -26,47 +22,434 @@
                             <%end%>
                         </div>
                     </div>
-
-                    <div class="review_total_des">
-                        <a>Dựa trên <%= convert_number_to_human(@company.company_reviews.count)%> đánh giá từ nhân viên</a>
-                    </div>
                 </div>
             </div>
 
             <div class="col-sm-6 custom-padding-left">
-                <div class="review_score_recommand">  
+                <div class="review_score_recommand">
+                    <div class="review_score_recommand_block">
+                        <div class="flex-wrapper-review">
+                            <div class="single-chart">
+                                <svg viewBox="0 0 36 36" class="circular-chart orange">
+                                    <path class="circle-bg"
+                                        d="M18 2.0845
+                                            a 15.9155 15.9155 0 0 1 0 31.831
+                                            a 15.9155 15.9155 0 0 1 0 -31.831"
+                                    />
+                                    <path class="circle"
+                                        stroke-dasharray="<%=cal_rating_review_recommend(@company)%>, 100"
+                                        d="M18 2.0845
+                                            a 15.9155 15.9155 0 0 1 0 31.831
+                                            a 15.9155 15.9155 0 0 1 0 -31.831"
+                                    />
+                                    <text x="18" y="20.35" class="percentage"><%=cal_rating_review_recommend(@company)%>%</text>
+                                </svg>
+                            </div>
+                        </div>
+                        <style>
+                            .flex-wrapper-review {
+                                display: flex;
+                                flex-flow: row nowrap;
+                            }
+
+                            .single-chart {
+                                width: 33%;
+                                justify-content: space-around ;
+                            }
+
+                            .circular-chart {
+                                display: block;
+                                margin: 10px auto;
+                                max-width: 80%;
+                                max-height: 250px;
+                            }
+
+                            .circle-bg {
+                                fill: none;
+                                stroke: #eee;
+                                stroke-width: 3.8;
+                            }
+
+                            .circle {
+                                fill: none;
+                                stroke-width: 2.8;
+                                stroke-linecap: round;
+                                animation: progress 1s ease-out forwards;
+                            }
+
+                            @keyframes progress {
+                                0% {
+                                    stroke-dasharray: 0 100;
+                                }
+                            }
+
+                            .circular-chart.orange .circle {
+                                stroke: #ff9f00;
+                            }
+
+                            .percentage {
+                                fill: #1877f2;
+                                font-size: 0.5em;
+                                text-anchor: middle;
+                                font-weight: 550;
+                            }
+                        </style>
+                    </div>
+                      
                     <div class="review_score_recommand_title">
                         <a>Khuyến khích làm việc tại đây</a>
                     </div>
+                </div>
+            </div>
+            
+            <div class="col-sm-6">
+                <div class="review_score_tab">
+                    <ul class="nav nav-tabs flex-column" id="myTab" role="tablist">
+                        <li class="nav-item">
+                            <a class="nav-link active" id="overall-tab" data-toggle="tab" href="#overall" role="tab" aria-controls="overall" aria-selected="true">
+                                <p>Tổng quan chung</p>
+                                <span>
+                                    <p><%=cal_rating_review_total_score(@company).round(1)%></p>
+                                    <i class="material-icons">circle</i>
+                                </span>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" id="enviroment-tab" data-toggle="tab" href="#enviroment" role="tab" aria-controls="enviroment" aria-selected="false">
+                                <p>Môi trường làm việc</p>
+                                <span>
+                                    <p><%=cal_rating_review_work_env_score(@company).round(1)%></p>
+                                    <i class="material-icons">circle</i>
+                                </span>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" id="salary-tab" data-toggle="tab" href="#salary" role="tab" aria-controls="salary" aria-selected="false">
+                                <p>Lương thưởng</p>
+                                <span>
+                                    <p><%=cal_rating_review_salary_score(@company).round(1)%></p>
+                                    <i class="material-icons">circle</i>
+                                </span>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" id="overtime-tab" data-toggle="tab" href="#overtime" role="tab" aria-controls="overtime" aria-selected="false">
+                                <p>Làm thêm giờ</p>
+                                <span>
+                                    <p><%=cal_rating_review_ot_score(@company).round(1)%></p>
+                                    <i class="material-icons">circle</i>
+                                </span>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" id="manager-tab" data-toggle="tab" href="#manager" role="tab" aria-controls="manager" aria-selected="false">
+                                <p>Quản lý, cấp trên</p>
+                                <span>
+                                    <p><%=cal_rating_review_manager_score(@company).round(1)%></p>
+                                    <i class="material-icons">circle</i>
+                                </span>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" id="carrier-tab" data-toggle="tab" href="#carrier" role="tab" aria-controls="carrier" aria-selected="false">
+                                <p>Cơ hội thăng tiến</p>
+                                <span>
+                                    <p><%=cal_rating_review_career_score(@company).round(1)%></p>
+                                    <i class="material-icons">circle</i>
+                                </span>
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
 
-                    <div class="review_score_recommand_block">
-                        <div class="review_circle_box" style="--p:<%=cal_rating_review_recommend(@company)%>;">
+            <div class="col-sm-6">
+                <div class="review_score_content">
+                    <div class="tab-content">
+                        <div class="tab-pane active" id="overall" role="tabpanel" aria-labelledby="overall-tab">
+                            <div class="review_score_progress">
+                                <div class="progress_section">
+                                    <div class="progress_label">
+                                        <a>1 star</a>
+                                    </div>
+                                    <div class="progress">
+                                        <div class="progress-bar" role="progressbar" style="width: <%=cal_rating_category_percent(@company, "overall", 1)%>%" aria-valuenow="<%=cal_rating_category_percent(@company, "overall", 1)%>" aria-valuemin="0" aria-valuemax="100"><%=cal_rating_category_percent(@company, "overall", 1)%>%</div>
+                                    </div>
+                                </div>
+                                <div class="progress_section">
+                                    <div class="progress_label">
+                                        <a>2 star</a>
+                                    </div>
+                                    <div class="progress">
+                                        <div class="progress-bar" role="progressbar" style="width: <%=cal_rating_category_percent(@company, "overall", 2)%>%" aria-valuenow="<%=cal_rating_category_percent(@company, "overall", 2)%>" aria-valuemin="0" aria-valuemax="100"><%=cal_rating_category_percent(@company, "overall", 2)%>%</div>
+                                    </div>
+                                </div>
+                                <div class="progress_section">
+                                    <div class="progress_label">
+                                        <a>3 star</a>
+                                    </div>
+                                    <div class="progress">
+                                        <div class="progress-bar" role="progressbar" style="width: <%=cal_rating_category_percent(@company, "overall", 3)%>%" aria-valuenow="<%=cal_rating_category_percent(@company, "overall", 3)%>" aria-valuemin="0" aria-valuemax="100"><%=cal_rating_category_percent(@company, "overall", 3)%>%</div>
+                                    </div>
+                                </div>
+                                <div class="progress_section">
+                                    <div class="progress_label">
+                                        <a>4 star</a>
+                                    </div>
+                                    <div class="progress">
+                                        <div class="progress-bar" role="progressbar" style="width: <%=cal_rating_category_percent(@company, "overall", 4)%>%" aria-valuenow="<%=cal_rating_category_percent(@company, "overall", 4)%>" aria-valuemin="0" aria-valuemax="100"><%=cal_rating_category_percent(@company, "overall", 4)%>%</div>
+                                    </div>
+                                </div>
+                                <div class="progress_section">
+                                    <div class="progress_label">
+                                        <a>5 star</a>
+                                    </div>
+                                    <div class="progress">
+                                        <div class="progress-bar" role="progressbar" style="width: <%=cal_rating_category_percent(@company, "overall", 5)%>%" aria-valuenow="<%=cal_rating_category_percent(@company, "overall", 5)%>" aria-valuemin="0" aria-valuemax="100"><%=cal_rating_category_percent(@company, "overall", 5)%>%</div>
+                                    </div>
+                                </div>
+
+                                <div class="progress_section_label">
+                                    <a>Tổng số:</a> <%=count_rating_category("overall", @company)%> reviews
+                                </div>
+                            </div>
                         </div>
-                        <div class="review_score_recommand">
-                            <a><%=cal_rating_review_recommend(@company)%>%</a>
+                        <div class="tab-pane" id="enviroment" role="tabpanel" aria-labelledby="enviroment-tab">
+                            <div class="review_score_progress">
+                                <div class="progress_section">
+                                    <div class="progress_label">
+                                        <a>1 star</a>
+                                    </div>
+                                    <div class="progress">
+                                        <div class="progress-bar" role="progressbar" style="width: <%=cal_rating_category_percent(@company, "work_env_score", 1)%>%" aria-valuenow="<%=cal_rating_category_percent(@company, "work_env_score", 1)%>" aria-valuemin="0" aria-valuemax="100"><%=cal_rating_category_percent(@company, "work_env_score", 1)%>%</div>
+                                    </div>
+                                </div>
+                                <div class="progress_section">
+                                    <div class="progress_label">
+                                        <a>2 star</a>
+                                    </div>
+                                    <div class="progress">
+                                        <div class="progress-bar" role="progressbar" style="width: <%=cal_rating_category_percent(@company, "work_env_score", 2)%>%" aria-valuenow="<%=cal_rating_category_percent(@company, "work_env_score", 2)%>" aria-valuemin="0" aria-valuemax="100"><%=cal_rating_category_percent(@company, "work_env_score", 2)%>%</div>
+                                    </div>
+                                </div>
+                                <div class="progress_section">
+                                    <div class="progress_label">
+                                        <a>3 star</a>
+                                    </div>
+                                    <div class="progress">
+                                        <div class="progress-bar" role="progressbar" style="width: <%=cal_rating_category_percent(@company, "work_env_score", 3)%>%" aria-valuenow="<%=cal_rating_category_percent(@company, "work_env_score", 3)%>" aria-valuemin="0" aria-valuemax="100"><%=cal_rating_category_percent(@company, "work_env_score", 3)%>%</div>
+                                    </div>
+                                </div>
+                                <div class="progress_section">
+                                    <div class="progress_label">
+                                        <a>4 star</a>
+                                    </div>
+                                    <div class="progress">
+                                        <div class="progress-bar" role="progressbar" style="width: <%=cal_rating_category_percent(@company, "work_env_score", 4)%>%" aria-valuenow="<%=cal_rating_category_percent(@company, "work_env_score", 4)%>" aria-valuemin="0" aria-valuemax="100"><%=cal_rating_category_percent(@company, "work_env_score", 4)%>%</div>
+                                    </div>
+                                </div>
+                                <div class="progress_section">
+                                    <div class="progress_label">
+                                        <a>5 star</a>
+                                    </div>
+                                    <div class="progress">
+                                        <div class="progress-bar" role="progressbar" style="width: <%=cal_rating_category_percent(@company, "work_env_score", 5)%>%" aria-valuenow="<%=cal_rating_category_percent(@company, "work_env_score", 5)%>" aria-valuemin="0" aria-valuemax="100"><%=cal_rating_category_percent(@company, "work_env_score", 5)%>%</div>
+                                    </div>
+                                </div>
+                                <div class="progress_section_label">
+                                    <a>Tổng số:</a> <%=count_rating_category("work_env_score", @company)%> reviews
+                                </div>
+                            </div>
+                        </div>
+                        <div class="tab-pane" id="salary" role="tabpanel" aria-labelledby="salary-tab">
+                            <div class="review_score_progress">
+                                <div class="progress_section">
+                                    <div class="progress_label">
+                                        <a>1 star</a>
+                                    </div>
+                                    <div class="progress">
+                                        <div class="progress-bar" role="progressbar" style="width: <%=cal_rating_category_percent(@company, "salary_score", 1)%>%" aria-valuenow="<%=cal_rating_category_percent(@company, "salary_score", 1)%>" aria-valuemin="0" aria-valuemax="100"><%=cal_rating_category_percent(@company, "salary_score", 1)%>%</div>
+                                    </div>
+                                </div>
+                                <div class="progress_section">
+                                    <div class="progress_label">
+                                        <a>2 star</a>
+                                    </div>
+                                    <div class="progress">
+                                        <div class="progress-bar" role="progressbar" style="width: <%=cal_rating_category_percent(@company, "salary_score", 2)%>%" aria-valuenow="<%=cal_rating_category_percent(@company, "salary_score", 2)%>" aria-valuemin="0" aria-valuemax="100"><%=cal_rating_category_percent(@company, "salary_score", 2)%>%</div>
+                                    </div>
+                                </div>
+                                <div class="progress_section">
+                                    <div class="progress_label">
+                                        <a>3 star</a>
+                                    </div>
+                                    <div class="progress">
+                                        <div class="progress-bar" role="progressbar" style="width: <%=cal_rating_category_percent(@company, "salary_score", 3)%>%" aria-valuenow="<%=cal_rating_category_percent(@company, "salary_score", 3)%>" aria-valuemin="0" aria-valuemax="100"><%=cal_rating_category_percent(@company, "salary_score", 3)%>%</div>
+                                    </div>
+                                </div>
+                                <div class="progress_section">
+                                    <div class="progress_label">
+                                        <a>4 star</a>
+                                    </div>
+                                    <div class="progress">
+                                        <div class="progress-bar" role="progressbar" style="width: <%=cal_rating_category_percent(@company, "salary_score", 4)%>%" aria-valuenow="<%=cal_rating_category_percent(@company, "salary_score", 4)%>" aria-valuemin="0" aria-valuemax="100"><%=cal_rating_category_percent(@company, "salary_score", 4)%>%</div>
+                                    </div>
+                                </div>
+                                <div class="progress_section">
+                                    <div class="progress_label">
+                                        <a>5 star</a>
+                                    </div>
+                                    <div class="progress">
+                                        <div class="progress-bar" role="progressbar" style="width: <%=cal_rating_category_percent(@company, "salary_score", 5)%>%" aria-valuenow="<%=cal_rating_category_percent(@company, "salary_score", 5)%>" aria-valuemin="0" aria-valuemax="100"><%=cal_rating_category_percent(@company, "salary_score", 5)%>%</div>
+                                    </div>
+                                </div>
+                                <div class="progress_section_label">
+                                    <a>Tổng số:</a> <%=count_rating_category("salary_score", @company)%> reviews
+                                </div>
+                            </div>
+                        </div>
+                        <div class="tab-pane" id="overtime" role="tabpanel" aria-labelledby="overtime-tab">
+                            <div class="review_score_progress">
+                                <div class="progress_section">
+                                    <div class="progress_label">
+                                        <a>1 star</a>
+                                    </div>
+                                    <div class="progress">
+                                        <div class="progress-bar" role="progressbar" style="width: <%=cal_rating_category_percent(@company, "ot_score", 1)%>%" aria-valuenow="<%=cal_rating_category_percent(@company, "ot_score", 1)%>" aria-valuemin="0" aria-valuemax="100"><%=cal_rating_category_percent(@company, "ot_score", 1)%>%</div>
+                                    </div>
+                                </div>
+                                <div class="progress_section">
+                                    <div class="progress_label">
+                                        <a>2 star</a>
+                                    </div>
+                                    <div class="progress">
+                                        <div class="progress-bar" role="progressbar" style="width: <%=cal_rating_category_percent(@company, "ot_score", 2)%>%" aria-valuenow="<%=cal_rating_category_percent(@company, "ot_score", 2)%>" aria-valuemin="0" aria-valuemax="100"><%=cal_rating_category_percent(@company, "ot_score", 2)%>%</div>
+                                    </div>
+                                </div>
+                                <div class="progress_section">
+                                    <div class="progress_label">
+                                        <a>3 star</a>
+                                    </div>
+                                    <div class="progress">
+                                        <div class="progress-bar" role="progressbar" style="width: <%=cal_rating_category_percent(@company, "ot_score", 3)%>%" aria-valuenow="<%=cal_rating_category_percent(@company, "ot_score", 3)%>" aria-valuemin="0" aria-valuemax="100"><%=cal_rating_category_percent(@company, "ot_score", 3)%>%</div>
+                                    </div>
+                                </div>
+                                <div class="progress_section">
+                                    <div class="progress_label">
+                                        <a>4 star</a>
+                                    </div>
+                                    <div class="progress">
+                                        <div class="progress-bar" role="progressbar" style="width: <%=cal_rating_category_percent(@company, "ot_score", 4)%>%" aria-valuenow="<%=cal_rating_category_percent(@company, "ot_score", 4)%>" aria-valuemin="0" aria-valuemax="100"><%=cal_rating_category_percent(@company, "ot_score", 4)%>%</div>
+                                    </div>
+                                </div>
+                                <div class="progress_section">
+                                    <div class="progress_label">
+                                        <a>5 star</a>
+                                    </div>
+                                    <div class="progress">
+                                        <div class="progress-bar" role="progressbar" style="width: <%=cal_rating_category_percent(@company, "ot_score", 5)%>%" aria-valuenow="<%=cal_rating_category_percent(@company, "ot_score", 5)%>" aria-valuemin="0" aria-valuemax="100"><%=cal_rating_category_percent(@company, "ot_score", 5)%>%</div>
+                                    </div>
+                                </div>
+                                <div class="progress_section_label">
+                                    <a>Tổng số:</a> <%=count_rating_category("ot_score", @company)%> reviews
+                                </div>
+                            </div>
+                        </div>
+                        <div class="tab-pane" id="manager" role="tabpanel" aria-labelledby="manager-tab">
+                            <div class="review_score_progress">
+                                <div class="progress_section">
+                                    <div class="progress_label">
+                                        <a>1 star</a>
+                                    </div>
+                                    <div class="progress">
+                                        <div class="progress-bar" role="progressbar" style="width: <%=cal_rating_category_percent(@company, "manager_score", 1)%>%" aria-valuenow="<%=cal_rating_category_percent(@company, "manager_score", 1)%>" aria-valuemin="0" aria-valuemax="100"><%=cal_rating_category_percent(@company, "manager_score", 1)%>%</div>
+                                    </div>
+                                </div>
+                                <div class="progress_section">
+                                    <div class="progress_label">
+                                        <a>2 star</a>
+                                    </div>
+                                    <div class="progress">
+                                        <div class="progress-bar" role="progressbar" style="width: <%=cal_rating_category_percent(@company, "manager_score", 2)%>%" aria-valuenow="<%=cal_rating_category_percent(@company, "manager_score", 2)%>" aria-valuemin="0" aria-valuemax="100"><%=cal_rating_category_percent(@company, "manager_score", 2)%>%</div>
+                                    </div>
+                                </div>
+                                <div class="progress_section">
+                                    <div class="progress_label">
+                                        <a>3 star</a>
+                                    </div>
+                                    <div class="progress">
+                                        <div class="progress-bar" role="progressbar" style="width: <%=cal_rating_category_percent(@company, "manager_score", 3)%>%" aria-valuenow="<%=cal_rating_category_percent(@company, "manager_score", 3)%>" aria-valuemin="0" aria-valuemax="100"><%=cal_rating_category_percent(@company, "manager_score", 3)%>%</div>
+                                    </div>
+                                </div>
+                                <div class="progress_section">
+                                    <div class="progress_label">
+                                        <a>4 star</a>
+                                    </div>
+                                    <div class="progress">
+                                        <div class="progress-bar" role="progressbar" style="width: <%=cal_rating_category_percent(@company, "manager_score", 4)%>%" aria-valuenow="<%=cal_rating_category_percent(@company, "manager_score", 4)%>" aria-valuemin="0" aria-valuemax="100"><%=cal_rating_category_percent(@company, "manager_score", 4)%>%</div>
+                                    </div>
+                                </div>
+                                <div class="progress_section">
+                                    <div class="progress_label">
+                                        <a>5 star</a>
+                                    </div>
+                                    <div class="progress">
+                                        <div class="progress-bar" role="progressbar" style="width: <%=cal_rating_category_percent(@company, "manager_score", 5)%>%" aria-valuenow="<%=cal_rating_category_percent(@company, "manager_score", 5)%>" aria-valuemin="0" aria-valuemax="100"><%=cal_rating_category_percent(@company, "manager_score", 5)%>%</div>
+                                    </div>
+                                </div>
+                                <div class="progress_section_label">
+                                    <a>Tổng số:</a> <%=count_rating_category("manager_score", @company)%> reviews
+                                </div>
+                            </div>
+                        </div>
+                        <div class="tab-pane" id="carrier" role="tabpanel" aria-labelledby="carrier-tab">
+                            <div class="review_score_progress">
+                                <div class="progress_section">
+                                    <div class="progress_label">
+                                        <a>1 star</a>
+                                    </div>
+                                    <div class="progress">
+                                        <div class="progress-bar" role="progressbar" style="width: <%=cal_rating_category_percent(@company, "career_score", 1)%>%" aria-valuenow="<%=cal_rating_category_percent(@company, "career_score", 1)%>" aria-valuemin="0" aria-valuemax="100"><%=cal_rating_category_percent(@company, "career_score", 1)%>%</div>
+                                    </div>
+                                </div>
+                                <div class="progress_section">
+                                    <div class="progress_label">
+                                        <a>2 star</a>
+                                    </div>
+                                    <div class="progress">
+                                        <div class="progress-bar" role="progressbar" style="width: <%=cal_rating_category_percent(@company, "career_score", 2)%>%" aria-valuenow="<%=cal_rating_category_percent(@company, "career_score", 2)%>" aria-valuemin="0" aria-valuemax="100"><%=cal_rating_category_percent(@company, "career_score", 2)%>%</div>
+                                    </div>
+                                </div>
+                                <div class="progress_section">
+                                    <div class="progress_label">
+                                        <a>3 star</a>
+                                    </div>
+                                    <div class="progress">
+                                        <div class="progress-bar" role="progressbar" style="width: <%=cal_rating_category_percent(@company, "career_score", 3)%>%" aria-valuenow="<%=cal_rating_category_percent(@company, "career_score", 3)%>" aria-valuemin="0" aria-valuemax="100"><%=cal_rating_category_percent(@company, "career_score", 3)%>%</div>
+                                    </div>
+                                </div>
+                                <div class="progress_section">
+                                    <div class="progress_label">
+                                        <a>4 star</a>
+                                    </div>
+                                    <div class="progress">
+                                        <div class="progress-bar" role="progressbar" style="width: <%=cal_rating_category_percent(@company, "career_score", 4)%>%" aria-valuenow="<%=cal_rating_category_percent(@company, "career_score", 4)%>" aria-valuemin="0" aria-valuemax="100"><%=cal_rating_category_percent(@company, "career_score", 4)%>%</div>
+                                    </div>
+                                </div>
+                                <div class="progress_section">
+                                    <div class="progress_label">
+                                        <a>5 star</a>
+                                    </div>
+                                    <div class="progress">
+                                        <div class="progress-bar" role="progressbar" style="width: <%=cal_rating_category_percent(@company, "career_score", 5)%>%" aria-valuenow="<%=cal_rating_category_percent(@company, "career_score", 5)%>" aria-valuemin="0" aria-valuemax="100"><%=cal_rating_category_percent(@company, "career_score", 5)%>%</div>
+                                    </div>
+                                </div>
+                                <div class="progress_section_label">
+                                    <a>Tổng số:</a> <%=count_rating_category("career_score", @company)%> reviews
+                                </div>
+                            </div>
                         </div>
                     </div>
-                    <style>
-                        .review_circle_box {
-                            --v:calc( ((18/5) * var(--p) - 90)*1deg);
-                            width: 100px;
-                            height: 100px;
-                            display: inline-block;
-                            margin-left: 34%;
-                            margin-top: 5px;
-                            border-radius: 50%;
-                            padding: 10px;
-                            background:
-                                linear-gradient(var(--v), #f2f2f2     50%,transparent 0) 0/min(100%,(50 - var(--p))*100%),
-                                linear-gradient(var(--v), transparent 50%,#febb02        0) 0/min(100%,(var(--p) - 50)*100%),
-                                linear-gradient(to right, #f2f2f2 50%,#febb02 0);
-                            -webkit-mask:
-                                linear-gradient(#fff 0 0) content-box,
-                                linear-gradient(#fff 0 0);
-                            -webkit-mask-composite:destination-out;
-                            mask-composite:exclude;
-                        }
-                    </style>
                 </div>
             </div>
         </div>

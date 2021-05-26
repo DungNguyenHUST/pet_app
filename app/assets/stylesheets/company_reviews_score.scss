@@ -8,11 +8,11 @@
     @media screen and (min-width: 600px){
         .custom-padding-left{
             padding-left: 0px;
-            border-left: 2px solid #dfe1e5;
+            // border-left: 1px solid #dfe1e5;
         }
         .custom-padding-right{
             padding-right: 0px;
-            border-right: 1px solid #dfe1e5;
+            // border-right: 1px solid #dfe1e5;
         }
     }
 
@@ -20,38 +20,35 @@
         clear: both;
         padding: 15px;
         background-color: #fff;
+        min-height: 100px;
         .review_score_total{
-            .review_score_label{
-                text-align: center;
-                font-size: 20px;
-                font-weight: 550;
-                color: #444;
-            }
-
             .review_score_star{
+                padding-top: 10%;
+                padding-left: 25%;
+                @media screen and (max-width: 600px){
+                    padding-top: 0px;
+                    padding-left: 28%;
+                }
                 .review_point
                 {
-                    padding-top: 5px;
-                    font-size: 30px;
+                    font-size: 26px;
                     color: #ea1e30;
-                    text-align: center;
-                }
+                    float: left;
+                    margin-right: 3px;
+                }   
 
                 .review_score_star_des
                 {
-                    margin-top: 5px;
                     font-size: 25px;
-                    margin-left: 30%;
-                    @media screen and (max-width: 600px){
-                        margin-left: 30%;
-                    }
-                    text-align: center;
+                    text-align: left;
+                    position: relative;
+                    top: 5px;
                     i {
                         float: left;
                         font-size: 24px;
-                        margin-right: 2px;
                         display: block;
                         color: #fff;
+                        position: relative;
                     }
 
                     .checked {
@@ -63,51 +60,113 @@
                     }
                 }
             }
-
-            .review_total_des{
-                margin-top: 40px;
-                font-size: 14px;
-                text-align: center;
-                color: #535153;
-                text-align: center;
-            }
         }
 
         .review_score_recommand{
-            @media screen and (max-width: 600px){
-                margin-top: 15px;
+            .review_score_recommand_block{
+                text-align: center;
             }
             .review_score_recommand_title{
-                @media screen and (max-width: 600px){
-                    border-top: 2px solid #dfe1e5;
-                    padding-top: 15px;
-                }
-                text-align: center;
-                font-size: 20px;
-                font-weight: 550;
+                font-size: 18px;
                 color: #444;
+                position: absolute;
+                top: 36%;
+                left: 30%;
+                @media screen and (max-width: 600px){
+                    top: 25%;
+                    left: 36%;
+                    padding-right: 20px;
+                }
             }
+        }
 
-            .review_score_recommand_block{
-                .review_score_recommand{
-                    a{
-                        font-size: 22px;
-                        text-align: center;
-                        font-weight: 600;
+        .review_score_tab{
+            padding-top: 30px; 
+            @media screen and (max-width: 600px){
+                padding-top: 20px; 
+            }
+            .nav-tabs {
+                overflow-x: auto;
+                overflow-y: hidden;
+                flex-wrap: nowrap;
+                border: none;
+            }
+            .nav-tabs .nav-link {
+                white-space: nowrap;
+                font-size: 14px;
+                color: #333;
+                min-height: 50px; 
+                padding: 10px;
+                border: none;
+                p{
+                    float: left;
+                    position: relative;
+                    top: 5px;
+                }
+                span{
+                    float: right;
+                    p{
+                        position: relative;
+                        font-size: 16px;
+                        top: 4px;
                     }
-                    position: absolute;
-                    z-index: 100;
-                    top: 50%;
-                    left: 42%;
+                    i{
+                        position: relative;
+                        top: 5px;
+                        font-size: 20px;
+                        color: #febb02;
+                    }
+                }
+            }
+            .nav-tabs .nav-link, .nav-tabs .nav-link.active, .nav-tabs .nav-link:hover {
+                padding: 10px;
+                border: none;
+                color: #333;
+                font-size: 14px;
+            }
+            .nav-tabs .nav-link.active {
+                border-radius: 0;
+                font-weight: 500;
+                color: #1877f2;
+                background-color: #dfe1e5;
+                border-radius: 3px;
+                border: none;
+            }
+        }
+
+        .review_score_content{
+            .tab-content{
+                border: none;
+                .review_score_progress{
+                    padding-top: 80px;
                     @media screen and (max-width: 600px){
-                        top: 51%;
-                        left: 45%;
+                        padding-top: 20px; 
                     }
-                    @media screen and (max-width: 350px){
-                        top: 58%;
-                        left: 46%;
+                    .progress_section{
+                        .progress_label{
+                            float: left;
+                            width: 15%;
+                            font-size: 14px;
+                            position: relative;
+                            top: -3px;
+                        }
+                        .progress{
+                            width: 85%;
+                            height: 15px;
+                            border-radius: 10px;
+                            .progress-bar{
+                                background-color: #1877f2;
+                                border-radius: 10px;
+                            }
+                        }
                     }
-                    border: none;
+                    .progress_section_label{
+                        a{
+                            font-size: 14px;
+                            padding-top: 20px;
+                            font-weight: 600;
+                        }
+                    }
                 }
             }
         }

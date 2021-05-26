@@ -88,7 +88,7 @@ module CompaniesHelper
         rate_work_env = 0
         count = 0
         company.company_reviews.each do |company_review|
-            if company_review.work_env_score.to_f > 0
+            if company_review.work_env_score.to_i > 0
                 count += 1
                 rate_work_env += company_review.work_env_score
             end
@@ -198,9 +198,34 @@ module CompaniesHelper
             count = company.company_reviews.where.not(manager_score: 0).count
         elsif category == "career_score"
             count = company.company_reviews.where.not(career_score: 0).count
+        elsif category == "overall"
+            count = company.company_reviews.where.not(score: 0).count
         end
 
         return count
+    end
+
+    def cal_rating_category_percent(company, category, star)
+        average = 0
+        count = count_rating_category(category, company)
+
+        if count > 0
+            if category == "work_env_score"
+                average = company.company_reviews.where(work_env_score: star).count.to_i * 100 / count
+            elsif category == "salary_score"
+                average = company.company_reviews.where(salary_score: star).count.to_i * 100 / count
+            elsif category == "ot_score"
+                average = company.company_reviews.where(ot_score: star).count.to_i * 100 / count
+            elsif category == "manager_score"
+                average = company.company_reviews.where(manager_score: star).count.to_i * 100 / count
+            elsif category == "career_score"
+                average = company.company_reviews.where(career_score: star).count.to_i * 100 / count
+            elsif category == "overall"
+                average = company.company_reviews.where(score: star).count.to_i * 100 / count
+            end
+        end
+
+        return average
     end
 
     # For interview
