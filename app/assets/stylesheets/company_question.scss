@@ -265,15 +265,16 @@
 .new_question_form
 {
     margin-bottom: 50px;
+    
     .new_question_title_block{
         margin-top: 20px;
         margin-bottom: 20px;
+        @media screen and (max-width: 600px){
+            margin-top: 0px;
+        }
         .new_question_title{
             float: left;
             max-width: 80%;
-            @media screen and (max-width: 600px){
-                float: none;
-            }
             h3{
                 font-size: 22px;
                 color: #333;
@@ -288,12 +289,15 @@
             margin-top: 30px;
             float: right;
             @media screen and (max-width: 600px){
-                display: none;
-                float: none;
+                margin-top: 20px;
             }
             img{
                 max-width: 80px;
                 max-height: 80px;
+                @media screen and (max-width: 600px){
+                    max-width: 50px;
+                    max-height: 50px;
+                }
             }
         }
     }
