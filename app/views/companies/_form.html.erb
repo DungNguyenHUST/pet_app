@@ -31,11 +31,11 @@
 							</div>
 
 							<div class="new_company_input">
-								<%= f.select(:location, options_for_select(['An Giang','Bà Rịa-Vũng Tàu','Bạc Liêu','Bắc Kạn','Bắc Giang',
+								<%= f.select(:location, options_for_select(['Hà Nội', 'TP Hồ Chí Minh', 'Đà Nẵng', 'An Giang','Bà Rịa-Vũng Tàu','Bạc Liêu','Bắc Kạn','Bắc Giang',
 														'Bắc Ninh','Bến Tre','Bình Dương','Bình Định','Bình Phước',
-														'Bình Thuận','Cà Mau','Cao Bằng','Cần Thơ','Đà Nẵng','Đắk Lắk','Đắk Nông','Điện Biên',
-														'Đồng Nai','Đồng Tháp','Gia Lai','Hà Giang','Hà Nam','Hà Nội','Hà Tây','Hà Tĩnh',
-														'Hải Dương','Hải Phòng','Hòa Bình','TP Hồ Chí Minh','Hậu Giang','Hưng Yên','Khánh Hòa',
+														'Bình Thuận','Cà Mau','Cao Bằng','Cần Thơ','Đắk Lắk','Đắk Nông','Điện Biên',
+														'Đồng Nai','Đồng Tháp','Gia Lai','Hà Giang','Hà Nam','Hà Tây','Hà Tĩnh',
+														'Hải Dương','Hải Phòng','Hòa Bình','Hậu Giang','Hưng Yên','Khánh Hòa',
 														'Kiên Giang','Kon Tum','Lai Châu','Lào Cai',
 														'Lạng Sơn','Lâm Đồng','Long An','Nam Định','Nghệ An',
 														'Ninh Bình','Ninh Thuận','Phú Thọ','Phú Yên','Quảng Bình',
@@ -277,7 +277,37 @@
 							</div>
 
 							<div class="new_company_input">
-								<%= f.select(:field_operetion, options_for_select(['Công nghệ thông tin - IT', 'Viễn thông - Telecommunication', 'Tài chính, Ngân hàng - Finance', 'Chứng khoán - Stock index', 'Hàng không - Aerospace', 'Vận tải - Transport', 'Bán dẫn - Computer', 'Nông nghiệp - Agriculture', 'Xây dựng - Construction', 'Giáo dục - Education', 'Dược phẩm - Pharmaceutical', 'Ăn uống - Food', 'Chăm sóc sức khỏe - Health care', 'Bảo hiểm - Insurance', 'Bệnh viện - Hospitality', 'Giải trí - Entertainment ', 'Truyền thông - Media', 'Năng lượng - Energy', 'Sản xuất - Manufacturing', 'Âm nhạc - Music', 'Khai thác mỏ, dầu khí - Mining', 'Worldwide web, hosting', 'Không xác định'], 'Không xác định'), {include_blank: false}, { :class => 'form-control' }) %>
+								<%= f.select(:field_operetion, options_for_select(['Công nghệ thông tin - IT', 
+																				'Viễn thông - Telecommunication', 
+																				'Thương mại điện tử - E-commerce',
+																				'Tài chính, Ngân hàng - Finance', 
+																				'Chứng khoán - Stock index', 
+																				'Hàng không - Aerospace', 
+																				'Vận tải - Transport', 
+																				'Logistics',
+																				'Bán dẫn - Computer', 
+																				'Nông nghiệp - Agriculture', 
+																				'Xây dựng - Construction', 
+																				'Giáo dục - Education', 
+																				'Dược phẩm - Pharmaceutical', 
+																				'Du lịch - Travel', 
+																				'Dịch vụ - Service',
+																				'Sale, Marketing',
+																				'Ăn uống - Food', 
+																				'Chăm sóc sức khỏe - Health care', 
+																				'Bảo hiểm - Insurance', 
+																				'Bảo vệ - Security',
+																				'Luật - Law',
+																				'Bất động sản - Property',
+																				'Bệnh viện - Hospitality', 
+																				'Giải trí - Entertainment ', 
+																				'Truyền thông - Media', 
+																				'Năng lượng - Energy', 
+																				'Sản xuất - Manufacturing', 
+																				'Âm nhạc - Music', 
+																				'Khai thác mỏ, dầu khí - Mining', 
+																				'Worldwide web, hosting', 
+																				'Không xác định'], 'Không xác định'), {include_blank: false}, { :class => 'form-control' }) %>
 							</div>
 						</div>
 
@@ -311,7 +341,11 @@
 							</div>
 
 							<div class="new_company_input">
-								<a><%= f.date_select :time_establish, {discard_day: true, discard_month: true, start_year: 1900, end_year: Date.current.year} %></a>
+								<a><%= f.date_select :time_establish, {discard_day: true, 
+																	discard_month: true, 
+																	start_year: 1900, 
+																	end_year: Date.current.year,
+																	default: { year: 2010 }}, {:class => 'form-control'} %></a>
 							</div>
 						</div>
 						
@@ -321,7 +355,7 @@
 							</div>
 
 							<div class="new_company_input">
-								<%= f.select(:working_time, options_for_select(['6h00 - 15h00', '6h30 - 15h30', '7h00 - 16h00', '7h30 - 16h30', '8h00 - 17h00', '8h30 - 17h30', '9h00 - 18h00', '9h30 - 18h30', 'Không cố định(flexible)'] , '9h00 - 16h00'), {include_blank: false}, { :class => 'form-control' }) %>
+								<%= f.select(:working_time, options_for_select(['6h00 - 15h00', '6h30 - 15h30', '7h00 - 16h00', '7h30 - 16h30', '8h00 - 17h00', '8h30 - 17h30', '9h00 - 18h00', '9h30 - 18h30', 'Không cố định(flexible)'] , '9h00 - 18h00'), {include_blank: false}, { :class => 'form-control' }) %>
 							</div>
 						</div>
 
@@ -341,7 +375,7 @@
 							</div>
 
 							<div class="new_company_input">
-								<%= f.select(:size, options_for_select(['10', '10-50', '50-100', '100-500', '500-1000', '1000+'], "Không xác định"), {include_blank: false}, { :class => 'form-control' }) %>
+								<%= f.select(:size, options_for_select(['10', '10-50', '50-100', '100-500', '500-1000', '1000+'], "50-100"), {include_blank: false}, { :class => 'form-control' }) %>
 							</div>
 						</div>
 
@@ -395,7 +429,7 @@
 					</div>
 					
 					<div class="new_company_input_checkbox">
-						<%select_datas = [0,1,2,3,4,5,6,7,8,9,10,11,12,13,14,15]%>
+						<%select_datas = [0,1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16]%>
 						<%select_datas.each do |select_data|%>
 							<a><%= f.check_box :benefit, { multiple: true, class: "check_box_style"}, select_data, nil %> <%=convert_benefit_to_string(select_data)%></a>
 						<%end%>

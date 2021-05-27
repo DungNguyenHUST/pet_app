@@ -312,33 +312,73 @@
                                             </div>
 
                                             <div class="job_review_score_recommand_block">
-                                                <div class="job_review_circle_box" style="--p:<%=cal_rating_review_recommend(@company)%>;">
+                                                <div class="flex-wrapper-job_review">
+                                                    <div class="single-chart-job_review">
+                                                        <svg viewBox="0 0 36 36" class="circular-chart orange">
+                                                            <path class="circle-bg"
+                                                                d="M18 2.0845
+                                                                    a 15.9155 15.9155 0 0 1 0 31.831
+                                                                    a 15.9155 15.9155 0 0 1 0 -31.831"
+                                                            />
+                                                            <path class="circle"
+                                                                stroke-dasharray="<%=cal_rating_review_recommend(@company)%>, 100"
+                                                                d="M18 2.0845
+                                                                    a 15.9155 15.9155 0 0 1 0 31.831
+                                                                    a 15.9155 15.9155 0 0 1 0 -31.831"
+                                                            />
+                                                            <text x="18" y="20.35" class="percentage-job_review"><%=cal_rating_review_recommend(@company)%>%</text>
+                                                        </svg>
+                                                    </div>
                                                 </div>
-                                                <div class="job_review_score_recommand">
-                                                    <a><%=cal_rating_review_recommend(@company)%>%</a>
-                                                </div>
+                                                <style>
+                                                    .flex-wrapper-job_review {
+                                                        display: flex;
+                                                        flex-flow: row nowrap;
+                                                    }
+
+                                                    .single-chart-job_review {
+                                                        width: 55%;
+                                                        justify-content: space-around ;
+                                                    }
+
+                                                    .circular-chart {
+                                                        display: block;
+                                                        margin: 10px auto;
+                                                        max-width: 80%;
+                                                        max-height: 250px;
+                                                    }
+
+                                                    .circle-bg {
+                                                        fill: none;
+                                                        stroke: #eee;
+                                                        stroke-width: 3.8;
+                                                    }
+
+                                                    .circle {
+                                                        fill: none;
+                                                        stroke-width: 2.8;
+                                                        stroke-linecap: round;
+                                                        animation: progress 1s ease-out forwards;
+                                                    }
+
+                                                    @keyframes progress {
+                                                        0% {
+                                                            stroke-dasharray: 0 100;
+                                                        }
+                                                    }
+
+                                                    .circular-chart.orange .circle {
+                                                        stroke: #ff9f00;
+                                                    }
+
+                                                    .percentage-job_review {
+                                                        fill: #1877f2;
+                                                        font-size: 0.5em;
+                                                        text-anchor: middle;
+                                                        font-weight: 550;
+                                                    }
+                                                </style>
                                             </div>
-                                            <style>
-                                                .job_review_circle_box {
-                                                    --v:calc( ((18/5) * var(--p) - 90)*1deg);
-                                                    width: 100px;
-                                                    height: 100px;
-                                                    display: inline-block;
-                                                    margin-left: 30%;
-                                                    margin-top: 5px;
-                                                    border-radius: 50%;
-                                                    padding: 10px;
-                                                    background:
-                                                        linear-gradient(var(--v), #f2f2f2     50%,transparent 0) 0/min(100%,(50 - var(--p))*100%),
-                                                        linear-gradient(var(--v), transparent 50%,#febb02        0) 0/min(100%,(var(--p) - 50)*100%),
-                                                        linear-gradient(to right, #f2f2f2 50%,#febb02 0);
-                                                    -webkit-mask:
-                                                        linear-gradient(#fff 0 0) content-box,
-                                                        linear-gradient(#fff 0 0);
-                                                    -webkit-mask-composite:destination-out;
-                                                    mask-composite:exclude;
-                                                }
-                                            </style>
                                         </div>
                                     </div>
                                 </div>

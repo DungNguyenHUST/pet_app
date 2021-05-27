@@ -160,6 +160,24 @@ module CompanyJobsHelper
             skill_string = "Head hunter"
         when 15
             skill_string = "Bussiness Management"
+        when 16
+            skill_string = "Project Management"
+        when 17
+            skill_string = "Architecture Design"
+        when 18
+            skill_string = "Front End"
+        when 19
+            skill_string = "Back End"
+        when 20
+            skill_string = "Dev Ops"
+        when 21
+            skill_string = "Android"
+        when 22
+            skill_string = "iOS"
+        when 23
+            skill_string = "Hardware"
+        when 24
+            skill_string = "AI"
         else
             skill_string = "Đang cập nhật"
         end

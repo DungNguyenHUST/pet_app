@@ -318,7 +318,7 @@ module CompaniesHelper
         when 3
             benefit_string = "Team building"
         when 4
-            benefit_string = "Nghỉ phép"
+            benefit_string = "Nghỉ phép hơn 12 ngày/năm"
         when 5
             benefit_string = "Kiểm tra sức khỏe"
         when 6
@@ -341,6 +341,8 @@ module CompaniesHelper
             benefit_string = "Câu lạc bộ âm nhạc"
         when 15
             benefit_string = "Laptop, màn hình xịn"
+        when 16
+            benefit_string = "Đào tạo chuyên nghiệp"
         else
             benefit_string = "Đang cập nhật"
         end
@@ -381,6 +383,8 @@ module CompaniesHelper
             benefit_icon = "headphones"
         when 15
             benefit_icon = "laptop"
+        when 16
+            benefit_icon = "school"
         else
             benefit_icon = "scatter_plot"
         end

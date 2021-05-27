@@ -41,7 +41,7 @@
 							</div>
 							
 							<div class="new_job_input">
-								<%= f.select(:level, options_for_select(['Intern', 'Junior', 'Middle', 'Senior', 'Expert', 'Leader', 'Architect'], 'Junior'), {include_blank: false}, { :class => 'form-control'}) %>
+								<%= f.select(:level, options_for_select(['Intern', 'Junior', 'Middle', 'Senior', 'Expert', 'Leader', 'Architect'], 'Middle'), {include_blank: false}, { :class => 'form-control'}) %>
 							</div>
 						</div>
 
@@ -51,7 +51,29 @@
 							</div>
 							
 							<div class="new_job_input">
-								<%= f.select(:category, options_for_select(['IT - Phần mềm', 'IT - Phần cứng', 'Viễn thông', 'Kiến trúc', 'Xây dựng', 'Sức khỏe', 'Online Media', 'Dịch vụ', 'Giải trí', 'Du lịch', 'Giáo dục', 'Government', 'Sản xuất', 'Nghiên cứu', 'Business Management', 'Ngân hàng', 'Tài chính', 'Đầu tư', 'Nhân sự', 'Luật', 'Marketing and Sales', 'Logistics', 'Lĩnh vực khác'], 'Lĩnh vực khác'), {include_blank: false}, { :class => 'form-control'}) %>
+								<%= f.select(:category, options_for_select(['IT - Phần mềm', 
+																			'IT - Phần cứng', 
+																			'Viễn thông', 
+																			'Kiến trúc', 
+																			'Xây dựng', 
+																			'Sức khỏe', 
+																			'Online Media', 
+																			'Dịch vụ', 
+																			'Giải trí', 
+																			'Du lịch', 
+																			'Giáo dục', 
+																			'Government', 
+																			'Sản xuất', 
+																			'Nghiên cứu', 
+																			'Business Management', 
+																			'Ngân hàng', 
+																			'Tài chính', 
+																			'Đầu tư', 
+																			'Nhân sự', 
+																			'Luật', 
+																			'Marketing and Sales', 
+																			'Logistics', 
+																			'Lĩnh vực khác'], 'Lĩnh vực khác'), {include_blank: false}, { :class => 'form-control'}) %>
 							</div>
 						</div>
 
@@ -61,11 +83,11 @@
 							</div>
 							
 							<div class="new_job_input">
-								<%= f.select(:location, options_for_select(['An Giang','Bà Rịa-Vũng Tàu','Bạc Liêu','Bắc Kạn','Bắc Giang',
+								<%= f.select(:location, options_for_select(['Hà Nội','TP Hồ Chí Minh','Đà Nẵng','An Giang','Bà Rịa-Vũng Tàu','Bạc Liêu','Bắc Kạn','Bắc Giang',
 														'Bắc Ninh','Bến Tre','Bình Dương','Bình Định','Bình Phước',
-														'Bình Thuận','Cà Mau','Cao Bằng','Cần Thơ','Đà Nẵng','Đắk Lắk','Đắk Nông','Điện Biên',
-														'Đồng Nai','Đồng Tháp','Gia Lai','Hà Giang','Hà Nam','Hà Nội','Hà Tây','Hà Tĩnh',
-														'Hải Dương','Hải Phòng','Hòa Bình','TP Hồ Chí Minh','Hậu Giang','Hưng Yên','Khánh Hòa',
+														'Bình Thuận','Cà Mau','Cao Bằng','Cần Thơ','Đắk Lắk','Đắk Nông','Điện Biên',
+														'Đồng Nai','Đồng Tháp','Gia Lai','Hà Giang','Hà Nam','Hà Tây','Hà Tĩnh',
+														'Hải Dương','Hải Phòng','Hòa Bình','Hậu Giang','Hưng Yên','Khánh Hòa',
 														'Kiên Giang','Kon Tum','Lai Châu','Lào Cai',
 														'Lạng Sơn','Lâm Đồng','Long An','Nam Định','Nghệ An',
 														'Ninh Bình','Ninh Thuận','Phú Thọ','Phú Yên','Quảng Bình',
@@ -114,7 +136,7 @@
 							</div>
 							
 							<div class="new_job_input">
-								<%= f.number_field :quantity, :required => true,  class: "form-control", placeholder: "Số lượng vị trí cần tuyển dụng" %>
+								<%= f.number_field :quantity, :required => true, :value => 1, class: "form-control", placeholder: "Số lượng vị trí cần tuyển dụng" %>
 							</div>
 						</div>
 
@@ -124,7 +146,7 @@
 							</div>
 							
 							<div class="new_job_input">
-								<%= f.date_field :end_date, :required => true, class: "form-control", placeholder: "Nhập ngày hết hạn nộp hồ sơ" %>
+								<%= f.date_field :end_date, :required => true, value: (Date.current + 1.month), class: "form-control", placeholder: "Nhập ngày hết hạn nộp hồ sơ" %>
 							</div>
 						</div>
 
@@ -167,11 +189,11 @@
 
 				<div class="new_job_content">
 					<div class="new_job_label">
-						<a><%= f.label :skill, "Kĩ năng cần có cho công việc này(bạn có thể chọn 1 hoặc nhiều kĩ năng)* ", class: "new_job_label" %></a>
+						<a><%= f.label :skill, "Kĩ năng cần có cho công việc này(bạn có thể chọn 1 hoặc nhiều kĩ năng)", class: "new_job_label" %></a>
 					</div>
 					
 					<div class="new_job_input_checkbox">
-						<%select_datas = [0,1,2,3,4,5,6,7,8,9,10,11,12,13,14,15]%>
+						<%select_datas = [0,1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24]%>
 						<%select_datas.each do |select_data|%>
 							<a><%= f.check_box :skill, { multiple: true, class: "check_box_style"}, select_data, nil %> <%=convert_skill_to_string(select_data)%></a>
 						<%end%>
@@ -180,7 +202,7 @@
 
 				<div class="new_job_content">
 					<div class="new_job_label">
-						<a><%= f.label :requirement, "Yêu câu công việc*", class: "new_job_label" %></a>
+						<a><%= f.label :requirement, "Yêu câu công việc chi tiết*", class: "new_job_label" %></a>
 					</div>
 					
 					<div class="new_job_input">
