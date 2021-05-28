@@ -21,17 +21,17 @@
 					<%if user_signed_in?%>
 						<div class="new_interview_section">
 							<div class="new_interview_content">
-								<div class="new_interview_label">
-									<a><%= f.label :privacy, "Bạn có muốn ẩn thông tin cá nhân (thông tin cá nhân của bạn sẽ không được hiển thị)", class: "new_interview_label_name" %></a>
-								</div>
-								<div class="new_interview_input">
-									<div class="new_interview_input_radio">
-										<%= f.radio_button :privacy, true %>
-										<a>Có, tôi muốn ẩn thông tin cá nhân</a>
+								<div class="new_interview_input_switch">
+									<div class="new_interview_input_switch_button">
+										<div class="custom-control custom-switch custom-switch-lg">
+											<%= f.check_box :privacy, class: "custom-control-input", id: "customSwitch1"%>
+											<label class="custom-control-label" for="customSwitch1">
+												<a>Bạn có muốn ẩn thông tin cá nhân không?</a>
+											</label>
+										</div>
 									</div>
-									<div class="new_interview_input_radio">
-										<%= f.radio_button :privacy, false, :checked => true %>
-										<a>Không</a>
+									<div class="new_interview_input_note">
+									 	<a>Thông tin về tên, địa chỉ email, profile ... của bạn sẽ không được hiển thị</a>
 									</div>
 								</div>
 							</div>
