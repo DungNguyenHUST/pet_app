@@ -473,37 +473,35 @@
                     <div class="row">
                         <div class="col-sm-8">
                             <div class="company_policy_overview_left">
-                                <div class="company_policy_benefit_block">
-                                    <div class="row">
-                                        <%@company.benefit.each do |benefit|%>
-                                            <div class="col-sm-3">
-                                                <div class="company_policy_benefit">
-                                                    <div class="benefit_icon">
-                                                        <i class="material-icons"><%=convert_benefit_to_icon(benefit)%></i>
-                                                    </div>
-                                                    <a><%=convert_benefit_to_string(benefit)%></a>
-                                                </div>
-                                            </div>
-                                        <%end%>
-                                    </div>
+                                <div class="company_policy_title">
+                                    <a> Tại sao bạn nên làm việc tại <%= @company.name %>?</a>
                                 </div>
+                                
+                                <%if @company.benefit.present?%>
+                                    <div class="company_policy_benefit_block">
+                                        <div class="row">
+                                            <%@company.benefit.each do |benefit|%>
+                                                <div class="col-sm-3">
+                                                    <div class="company_policy_benefit">
+                                                        <div class="benefit_icon">
+                                                            <i class="material-icons"><%=convert_benefit_to_icon(benefit)%></i>
+                                                        </div>
+                                                        <a><%=convert_benefit_to_string(benefit)%></a>
+                                                    </div>
+                                                </div>
+                                            <%end%>
+                                        </div>
+                                    </div>
+                                <%end%>
 
                                 <%if @company.policy.present?%>
                                     <div class="company_policy_block">
-                                        <div class="company_policy_title">
-                                            <a> Tại sao bạn nên làm việc tại <%= @company.name %>?</a>
-                                        </div>
-
                                         <div class="company_policy_policy">
                                             <a><%= @company.policy.html_safe %></a>
                                         </div>
                                     </div>
-                                <%else%>
+                                <%elsif @company.overview.present?%>
                                     <div class="company_policy_block">
-                                        <div class="company_policy_title">
-                                            <a> Về <%= @company.name %></a>
-                                        </div>
-
                                         <div class="company_policy_policy">
                                             <a><%= @company.overview.html_safe %></a>
                                         </div>
