@@ -118,12 +118,7 @@
 
 							<div class="new_review_input">
 								<div class="new_review_input_radio">
-									<%= f.radio_button :working_status, true %>
-									<a>Có</a>
-								</div>
-								<div class="new_review_input_radio">
-									<%= f.radio_button :working_status, false, :checked => true %>
-									<a>Không</a>
+									<%=f.collection_radio_buttons :working_status, [[true, "Có"] ,[false, "Không"]], :first, :last, { checked: true }%>
 								</div>
 							</div>
 						</div>
@@ -470,12 +465,7 @@
 
 							<div class="new_review_input">
 								<div class="new_review_input_radio">
-									<%= f.radio_button :recommend, true %>
-									<a>Có, tôi sẽ giới thiệu bạn bè làm việc tại đây</a>
-								</div>
-								<div class="new_review_input_radio">
-									<%= f.radio_button :recommend, false%>
-									<a>Không, tôi nghĩ không nên làm việc tại đây</a>
+									<%=f.collection_radio_buttons :recommend, [[true, "Có"] ,[false, "Không"]], :first, :last, { checked: true }%>
 								</div>
 							</div>
 						</div>

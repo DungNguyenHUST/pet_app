@@ -561,7 +561,7 @@
                         }
                     
                         .custom-control-label {
-                            padding-top: 2px;
+                            // padding-top: 2px;
                             padding-left: #{$index};
                             font-weight: 600;
                             font-size: 16px;
@@ -614,19 +614,29 @@
                 .new_interview_input_radio{
                     padding-top: 5px;
                     padding-bottom: 5px;
-                }
-                .collection_radio_buttons{
-                    margin-right: 5px;
-                    font-size: 40px;
-                    margin-top: 10px;
-                    margin-bottom: 20px;
-                    // padding: 3px;
-                }
-                .collection_radio_buttons_label{
-                    margin-right: 20px;
-                    min-width: 100px;
-                    font-size: 14px;
-                    color: #333;
+                    input[type=radio], input[type=checkbox] {
+                        display:none;
+                    }
+                
+                    input[type=radio] + label, input[type=checkbox] + label {
+                        display: inline-block;
+                        min-width: 100px;
+                        @media screen and (max-width: 600px){
+                            min-width: 50%;
+                        }
+                        padding: 4px 12px;
+                        margin-bottom: 0;
+                        font-size: 14px;
+                        color: #333;
+                        text-align: center;
+                        border: 1px solid #dfe1e5;
+                    }
+                
+                    input[type=radio]:checked + label, input[type=checkbox]:checked + label{
+                        background-color:#1877f2;
+                        border: 1px solid #dfe1e5;
+                        color: #fff;
+                    }
                 }
 				
 				.form-control{
