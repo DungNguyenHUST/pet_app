@@ -425,20 +425,42 @@
 
 				<div class="new_company_content">
 					<div class="new_company_label">
-						<a><%= f.label :benefit, "Chọn chính sách công ty(bạn có thể chọn 1 hoặc nhiều chính sách)* ", class: "new_company_label" %></a>
+						<a><%= f.label :benefit, "Chọn chính sách nổi bật công ty(bạn có thể chọn 1 hoặc nhiều chính sách)* ", class: "new_company_label" %></a>
 					</div>
 					
 					<div class="new_company_input_checkbox">
-						<%select_datas = [0,1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16]%>
-						<%select_datas.each do |select_data|%>
-							<a><%= f.check_box :benefit, { multiple: true, class: "check_box_style"}, select_data, nil %> <%=convert_benefit_to_string(select_data)%></a>
-						<%end%>
+						<div class="row">
+							<div class="col-sm-4">
+								<%select_data_1 = [0,1,2,3,4,5]%>
+								<%select_data_1.each do |select_data|%>
+									<div class="new_company_input_checkbox_block">
+										<a><%= f.check_box :benefit, { multiple: true, class: "check_box_style"}, select_data, nil %> <%=convert_benefit_to_string(select_data)%></a>
+									</div>
+								<%end%>
+							</div>
+							<div class="col-sm-4">
+								<%select_data_2 = [6,7,8,9,10,11]%>
+								<%select_data_2.each do |select_data|%>
+									<div class="new_company_input_checkbox_block">
+										<a><%= f.check_box :benefit, { multiple: true, class: "check_box_style"}, select_data, nil %> <%=convert_benefit_to_string(select_data)%></a>
+									</div>
+								<%end%>
+							</div>
+							<div class="col-sm-4">
+								<%select_data_3 = [12,13,14,15,16]%>
+								<%select_data_3.each do |select_data|%>
+									<div class="new_company_input_checkbox_block">
+										<a><%= f.check_box :benefit, { multiple: true, class: "check_box_style"}, select_data, nil %> <%=convert_benefit_to_string(select_data)%></a>
+									</div>
+								<%end%>
+							</div>
+						</div>
 					</div>
 				</div>
 				
 				<div class="new_company_content">
 					<div class="new_company_label">
-						<a><%= f.label :policy, "Thêm chính sách nổi bật khác(tùy chọn)", class: "new_company_label" %></a>
+						<a><%= f.label :policy, "Thêm lý do tại sao nên làm việc tại công ty của bạn(nếu có)", class: "new_company_label" %></a>
 					</div>
 					
 					<div class="new_company_input">

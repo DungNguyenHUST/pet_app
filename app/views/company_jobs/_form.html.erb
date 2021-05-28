@@ -193,10 +193,40 @@
 					</div>
 					
 					<div class="new_job_input_checkbox">
-						<%select_datas = [0,1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24]%>
-						<%select_datas.each do |select_data|%>
-							<a><%= f.check_box :skill, { multiple: true, class: "check_box_style"}, select_data, nil %> <%=convert_skill_to_string(select_data)%></a>
-						<%end%>
+						<div class="row">
+							<div class="col-sm-3">
+								<%select_data_1 = [0,1,2,3,4,5]%>
+								<%select_data_1.each do |select_data|%>
+									<div class="new_job_input_checkbox_block">
+										<a><%= f.check_box :skill, { multiple: true, class: "check_box_style"}, select_data, nil %> <%=convert_skill_to_string(select_data)%></a>
+									</div>
+								<%end%>
+							</div>
+							<div class="col-sm-3">
+								<%select_data_2 = [6,7,8,9,10,11]%>
+								<%select_data_2.each do |select_data|%>
+									<div class="new_job_input_checkbox_block">
+										<a><%= f.check_box :skill, { multiple: true, class: "check_box_style"}, select_data, nil %> <%=convert_skill_to_string(select_data)%></a>
+									</div>
+								<%end%>
+							</div>
+							<div class="col-sm-3">
+								<%select_data_3 = [12,13,14,15,16,17]%>
+								<%select_data_3.each do |select_data|%>
+									<div class="new_job_input_checkbox_block">
+										<a><%= f.check_box :skill, { multiple: true, class: "check_box_style"}, select_data, nil %> <%=convert_skill_to_string(select_data)%></a>
+									</div>
+								<%end%>
+							</div>
+							<div class="col-sm-3">
+								<%select_data_4 = [18,19,20,21,22,23,24]%>
+								<%select_data_4.each do |select_data|%>
+									<div class="new_job_input_checkbox_block">
+										<a><%= f.check_box :skill, { multiple: true, class: "check_box_style"}, select_data, nil %> <%=convert_skill_to_string(select_data)%></a>
+									</div>
+								<%end%>
+							</div>
+						</div>
 					</div>
 				</div>
 
