@@ -37,7 +37,9 @@
 
             <div class="user_question_cotent">
                 <div class="user_question_body">
-                    <a><%= company_question.content %></a>
+                    <%if company_question.content.present?%>
+                        <a><%= company_question.content.html_safe %></a>
+                    <%end%>
                 </div>
 
                 <div class="question_info">
