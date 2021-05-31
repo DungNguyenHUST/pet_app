@@ -1,4 +1,4 @@
 class ApplicationMailer < ActionMailer::Base
-  default from: 'noreply.firework@gmail.com'
+  default from: 'Firework'
   layout 'mailer'
 end

@@ -110,4 +110,20 @@ Rails.application.configure do
   # config.active_record.database_resolver = ActiveRecord::Middleware::DatabaseSelector::Resolver
   # config.active_record.database_resolver_context = ActiveRecord::Middleware::DatabaseSelector::Resolver::Session
   # config.force_ssl = true
+
+  # Config Mailer
+  config.action_mailer.delivery_method = :smtp
+  config.action_mailer.default_url_options = { :host => 'https://www.firework.vn/', protocol: 'https' }
+
+  G_SECRET_KEY = YAML.load_file(Rails.root.join("config/secret.yml"))
+  # SMTP settings for gmail
+  config.action_mailer.smtp_settings = {
+    :address              => "smtp.gmail.com",
+    :port                 => 587,
+    :user_name            => G_SECRET_KEY["g_user_name"],
+    :password             => G_SECRET_KEY["g_password"],
+    :domain               => 'gmail.com',
+    :authentication       => "plain",
+    :enable_starttls_auto => true
+  }
 end

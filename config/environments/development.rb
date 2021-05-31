@@ -62,16 +62,16 @@ Rails.application.configure do
 
   # Config Mailer
   config.action_mailer.delivery_method = :smtp
-  host = 'localhost:3000' #replace with your own url
   config.action_mailer.default_url_options = { :host => 'localhost:3000', protocol: 'http' }
-  # config.action_mailer.default_url_options = { host: 'localhost', port: 3000 }
 
+  G_SECRET_KEY_DEV = YAML.load_file(Rails.root.join("config/secret.yml"))
   # SMTP settings for gmail
   config.action_mailer.smtp_settings = {
     :address              => "smtp.gmail.com",
     :port                 => 587,
-    :user_name            => "noreply.firework@gmail.com",
-    :password             => "bodung93",
+    :user_name            => G_SECRET_KEY_DEV["g_user_name"],
+    :password             => G_SECRET_KEY_DEV["g_password"],
+    :domain               => 'gmail.com',
     :authentication       => "plain",
     :enable_starttls_auto => true
   }

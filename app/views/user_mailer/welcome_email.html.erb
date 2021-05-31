@@ -4,14 +4,19 @@
     <meta content='text/html; charset=UTF-8' http-equiv='Content-Type' />
   </head>
   <body>
-    <h1><%= @user.name %>, welcome to firework.vn</h1>
+    <h2><%= @user.name %>, welcome to https://www.firework.vn/</h2>
     <p>
-        You have successfully signed up to firework.vn,
-        your username is: <%= @user.name %>.<br>
+      Bạn đã tạo tài khoản thành công tại firework.vn,
     </p>
     <p>
-        To login to the site, just follow this link: <%= url_for(@url) %>.
+      Tên tài khoản: <%= @user.name %>.
     </p>
-    <p>Thanks for joining and have a great day!</p>
+    <p>
+      Địa chỉ email: <%= @user.email %>.
+    </p>
+    <p>
+      Để đăng nhập tài khoản, vui lòng di chuyển tới link sau: <%= url_for(@url) %>.
+    </p>
+    <p>Rất nhiều thông tin thú vị đang chờ đợi bạn khám phá.</p>
   </body>
 </html>
