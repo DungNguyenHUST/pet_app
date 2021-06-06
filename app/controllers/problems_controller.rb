@@ -6,7 +6,7 @@ class ProblemsController < ApplicationController
             @is_problem_searched = true
 			@problem_searchs = Problem.friendly.search(params[:search]).order("created_at DESC").approved.reverse
         end
-		@problems_all = Problem.all.approved
+		@problems_all = Problem.all.approved.page(params[:page]).per(20)
         @problems_newest = Problem.all.order("created_at DESC").approved
         @problem_solutions = ProblemSolution.all
 

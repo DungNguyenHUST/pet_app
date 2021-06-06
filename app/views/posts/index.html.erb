@@ -1,14 +1,14 @@
 <% content_for :meta_title, "Blog" %>
 <% content_for :meta_description, "Các bài viết hay về công nghệ, khoa học, kinh nghiệm tìm kiếm việc làm được chia sẻ tại Firework" %>
 <div class="container">
-    <div class="row">
-        <div class="col-sm-8">
-            <div class="post_container_left">
-                <div class="post_label">
-                    <span>Blog</span>
-                </div>
-                <% @posts.each do |post| %>
-                    <div class="single_question_block">
+    <div class="post_container_index">
+        <div class="post_label">
+            <span>Blog</span>
+        </div>
+        <% @posts.each do |post| %>
+            <div class="single_post_block">
+                <div class="row">
+                    <div class="col-sm-8">
                         <div class="post_left">
                             <div class="post_cover">
                                 <%if post.wall_picture?%>
@@ -57,50 +57,9 @@
                             </div>
                         </div>
                     </div>
-                <% end %>
-
-                <%# New button %>
-                <div class="new_post">
-                    <%if user_signed_in?%>
-                        <%if current_user.admin?%>
-                            <%= link_to '<button type="submit"><i class="material-icons-outlined">create</i>Thêm bài viết mới</button>'.html_safe, new_post_path %>
-                        <%end%>
-                    <%end%>
                 </div>
             </div>
-        </div>
-    
-        <div class="col-sm-4">
-            <div class="post_container_right">
-                <div class="post_most_visit_label">
-                    <span>Tin nổi bật</span>
-                </div>
-                <% @posts.each do |post| %>
-                    <%if post.approved?%>
-                        <div class="post_block">
-                            <div class="post_left">
-                                <%if post.wall_picture?%>
-                                    <%= link_to (image_tag(post.wall_picture.medium.url)), image_path(url_for(post.wall_picture.medium.url)), rel: "gallery" , :href => post_path(post)%>
-                                <%else%>
-                                    <img src="<%= "/assets/illustration.png" %>" alt="Snow" style="width:100%;">
-                                <%end%>
-                            </div>
-
-                            <div class="post_right">
-                                <div class="post_header">
-                                    <a><%= link_to (post.title), post_path(post) %></a>
-                                </div>
-                                
-                                <div class="post_info">
-                                    <div class="post_date">
-                                        <span><%=time_ago_in_words(post.created_at)%></span>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    <%end%>
-                <%end%>
-            </div>
-        </div>
+        <% end %>
+        <%= paginate @posts, window: 1, outer_window: 1%>
     </div>
 </div>

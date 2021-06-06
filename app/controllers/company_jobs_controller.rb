@@ -81,7 +81,7 @@ class CompanyJobsController < ApplicationController
 	
 	def list
         @companies = Company.all.approved
-		@company_jobs = CompanyJob.all.approved
+		@company_jobs = CompanyJob.all.approved.page(params[:page]).per(10)
 		
 		@is_job_searched = false
 		if(params.has_key?(:search) && params.has_key?(:location))
