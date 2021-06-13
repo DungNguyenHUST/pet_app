@@ -31,21 +31,23 @@
 <% content_for :meta_description, content + @company.name %>
 
 <%# Google review structure data start %>
-<script type="application/ld+json">
-    {
-        "@context" : "https://schema.org/",
-        "@type": "EmployerAggregateRating",
-        "itemReviewed": {
-            "@type": "Organization",
-            "name" : "<%=@company.name%>",
-            "sameAs" : "<%=company_path(@company, tab_id: 'CompanyReviewsID')%>"
-        },
-        "ratingValue": "<%=cal_rating_review_total_score(@company)%>",
-        "bestRating": "5",
-        "worstRating": "1",
-        "reviewCount" : "<%=@company.company_reviews.count%>"
-    }
-</script>
+<%if @company.company_reviews.count > 0%>
+    <script type="application/ld+json">
+        {
+            "@context" : "https://schema.org/",
+            "@type": "EmployerAggregateRating",
+            "itemReviewed": {
+                "@type": "Organization",
+                "name" : "<%=@company.name%>",
+                "sameAs" : "<%=company_path(@company, tab_id: 'CompanyReviewsID')%>"
+            },
+            "ratingValue": "<%=cal_rating_review_total_score(@company)%>",
+            "bestRating": "5",
+            "worstRating": "1",
+            "reviewCount" : "<%=@company.company_reviews.count%>"
+        }
+    </script>
+<%end%>
 <%# Google review structure data end %>
 
 <%- model_class = Company -%>
