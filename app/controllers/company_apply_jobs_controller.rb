@@ -4,7 +4,7 @@ class CompanyApplyJobsController < ApplicationController
     def index 
         @company = Company.friendly.find(params[:company_id])
         @company_jobs = @company.company_jobs
-        @company_apply_jobs = @company_jobs.company_apply_jobs
+        @company_apply_jobs = @company_jobs.company_apply_jobs.order('created_at DESC')
     end
 
     def new

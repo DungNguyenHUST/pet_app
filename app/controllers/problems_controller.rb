@@ -6,31 +6,15 @@ class ProblemsController < ApplicationController
             @is_problem_searched = true
 			@problem_searchs = Problem.friendly.search(params[:search]).order("created_at DESC").approved.reverse
         end
-		@problems_all = Problem.all.approved.page(params[:page]).per(20)
+		@problems_all = Problem.all.order("id ASC").approved.page(params[:page]).per(20)
         @problems_newest = Problem.all.order("created_at DESC").approved
         @problem_solutions = ProblemSolution.all
 
-        @problem_math = []
-        @problem_eq_test = []
-        @problem_iq_test = []
-        @problem_interview = []
-        @problem_other = []
-
-        @problems_all.each do |problem|
-			if problem.category?
-				if(problem.category.to_i == 1 || problem.category.to_s == 'Thuật toán')
-					@problem_math.push(problem)
-				elsif(problem.category.to_i == 2 || problem.category.to_s == 'Câu hỏi phỏng vấn')
-					@problem_interview.push(problem)
-				elsif(problem.category.to_i == 3 || problem.category.to_s == 'EQ Test')
-					@problem_eq_test.push(problem)
-				elsif(problem.category.to_i == 4 || problem.category.to_s == 'IQ Test')
-					@problem_iq_test.push(problem)
-				elsif(problem.category.to_i == 5 || problem.category.to_s == 'Câu hỏi khác')
-					@problem_other.push(problem)
-				end 
-			end
-        end
+        @problem_math = Problem.where(:category => "1").order("id ASC").page(params[:page]).per(20)
+        @problem_eq_test = Problem.where(:category => "2").order("id ASC").page(params[:page]).per(20)
+        @problem_iq_test = Problem.where(:category => "3").order("id ASC").page(params[:page]).per(20)
+        @problem_interview = Problem.where(:category => "4").order("id ASC").page(params[:page]).per(20)
+        @problem_other = Problem.where(:category => "5").order("id ASC").page(params[:page]).per(20)
 
         if(params.has_key?(:tab_id))
             @tab_id = params[:tab_id]

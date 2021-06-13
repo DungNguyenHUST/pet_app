@@ -171,102 +171,101 @@
             <div class="home_top_job_home_container">
                 <div class="row">
                     <%i = 0%>
-                    <% @companies.each do |company| %>
-                        <%company.company_jobs.each do |company_job|%>
-                            <%i += 1%>
-                            <%break if i > 8%>
-                            <div class="col-sm-6">
-                                <div class="single_company_job_block">
-                                    <div class="company_job_left">
-                                        <div class="company_avatar">
-                                            <%if company.avatar?%>
-                                                <%= link_to (image_tag(company.avatar.thumb.url)), image_path(url_for(company.avatar.thumb.url)), rel: "gallery" , :href => company_path(company)%>
-                                            <%end%>
+                    <%@company_jobs.each do |company_job|%>
+                        <%company = company_job.company%>
+                        <%i += 1%>
+                        <%break if i > 8%>
+                        <div class="col-sm-6">
+                            <div class="single_company_job_block">
+                                <div class="company_job_left">
+                                    <div class="company_avatar">
+                                        <%if company.avatar?%>
+                                            <%= link_to (image_tag(company.avatar.thumb.url)), image_path(url_for(company.avatar.thumb.url)), rel: "gallery" , :href => company_path(company)%>
+                                        <%end%>
+                                    </div>
+                                </div>
+
+                                <div class="company_job_right">
+                                    <div class="company_job_des">
+                                        <div class="company_job_title">
+                                            <a><%= link_to (company_job.title), company_company_job_path(company, company_job) %></a>
+                                        </div>
+
+                                        <div class="company_job_company_rate">
+                                            <a><%= link_to (company.name), company_path(company)%> </a>
+                                            <a><%=cal_rating_review_total_score(company).to_f.round(1)%><i class="material-icons checked">circle</i></a>
+                                        </div>
+
+                                        <div class="company_job_description">
+                                            <a><%= company_job.description.html_safe %></a>
+                                        </div>
+
+                                        <div class="company_job_mark">
+                                            <div class="company_job_location">
+                                                <%if !company_job.location.to_s.empty?%>
+                                                    <a><i class="material-icons-outlined">location_on</i><%= company_job.location %></a>
+                                                <%else%>
+                                                    <a>---</a>
+                                                <%end%>
+                                            </div>
+
+                                            <div class="company_job_tech">
+                                                <%if !company_job.category.to_s.empty?%>
+                                                    <a><i class="material-icons-outlined">book</i><%= company_job.category %></a>
+                                                <%else%>
+                                                    <a>---</a>
+                                                <%end%>
+                                            </div>
+
+                                            <div class="company_job_salary">
+                                                <%if !company_job.salary.to_s.empty?%>
+                                                    <%if user_signed_in?%>
+                                                        <a><i class="material-icons-outlined">local_offer</i><%= convert_salary_to_string(company_job)%></a>
+                                                    <%else%>
+                                                        <%= link_to new_user_session_path, form_class: "job_salary_login" do%>
+                                                            <i class="material-icons-outlined">local_offer</i> <span>Đăng nhập để xem lương</span>
+                                                        <%end%>
+                                                    <%end%>
+                                                <%else%>
+                                                    <a>---</a>
+                                                <%end%>
+                                            </div>
+
+                                            <div class="company_job_type">
+                                                <%if !company_job.job_type.to_s.empty?%>
+                                                    <a><i class="material-icons-outlined">rss_feed</i><%= company_job.job_type %></a>
+                                                <%else%>
+                                                    <a>---</a>
+                                                <%end%>
+                                            </div>
                                         </div>
                                     </div>
-
-                                    <div class="company_job_right">
-                                        <div class="company_job_des">
-                                            <div class="company_job_title">
-                                                <a><%= link_to (company_job.title), company_company_job_path(company, company_job) %></a>
-                                            </div>
-
-                                            <div class="company_job_company_rate">
-                                                <a><%= link_to (company.name), company_path(company)%> </a>
-                                                <a><%=cal_rating_review_total_score(company).to_f.round(1)%><i class="material-icons checked">circle</i></a>
-                                            </div>
-
-                                            <div class="company_job_description">
-                                                <a><%= company_job.description.html_safe %></a>
-                                            </div>
-
-                                            <div class="company_job_mark">
-                                                <div class="company_job_location">
-                                                    <%if !company_job.location.to_s.empty?%>
-                                                        <a><i class="material-icons-outlined">location_on</i><%= company_job.location %></a>
-                                                    <%else%>
-                                                        <a>---</a>
-                                                    <%end%>
-                                                </div>
-
-                                                <div class="company_job_tech">
-                                                    <%if !company_job.category.to_s.empty?%>
-                                                        <a><i class="material-icons-outlined">book</i><%= company_job.category %></a>
-                                                    <%else%>
-                                                        <a>---</a>
-                                                    <%end%>
-                                                </div>
-
-                                                <div class="company_job_salary">
-                                                    <%if !company_job.salary.to_s.empty?%>
-                                                        <%if user_signed_in?%>
-                                                            <a><i class="material-icons-outlined">local_offer</i><%= convert_salary_to_string(company_job)%></a>
-                                                        <%else%>
-                                                            <%= link_to new_user_session_path, form_class: "job_salary_login" do%>
-                                                                <i class="material-icons-outlined">local_offer</i> <span>Đăng nhập để xem lương</span>
-                                                            <%end%>
-                                                        <%end%>
-                                                    <%else%>
-                                                        <a>---</a>
-                                                    <%end%>
-                                                </div>
-
-                                                <div class="company_job_type">
-                                                    <%if !company_job.job_type.to_s.empty?%>
-                                                        <a><i class="material-icons-outlined">rss_feed</i><%= company_job.job_type %></a>
-                                                    <%else%>
-                                                        <a>---</a>
-                                                    <%end%>
-                                                </div>
-                                            </div>
+                                                            
+                                    <div class="company_job_info">
+                                        <div class="company_job_date">
+                                            <a><%= time_ago_in_words(company_job.created_at) %> </a>
                                         </div>
-                                                                
-                                        <div class="company_job_info">
-                                            <div class="company_job_date">
-                                                <a><%= time_ago_in_words(company_job.created_at) %> </a>
-                                            </div>
-                                            <div class="company_job_hot_save">
-                                                <div class="company_job_button_save" id="job_<%=company_job.id%>">
-                                                    <%if company_job.urgent%>
-                                                        <a class="hot_label">Urgent</a>
-                                                    <%end%>
-                                                    <%if user_signed_in?%>
-                                                        <% pre_save = company_job.company_save_jobs.find { |save| save.user_id == current_user.id} %>
-                                                        <% if pre_save %> 
-                                                            <%= link_to '<button class="save_btn_highlight"><i class="material-icons">turned_in</i> </button>'.html_safe, company_company_job_company_save_job_path(company.id, company_job.id, pre_save.id, type_param: 'mini'), method: :delete, remote: true %>
-                                                        <%else%>
-                                                            <%= link_to '<button class="save_btn"><i class="material-icons-outlined">turned_in_not</i> </button>'.html_safe, company_company_job_company_save_jobs_path(company.id, company_job.id, type_param: 'mini'), method: :post, remote: true %>
-                                                        <%end%>
+                                        <div class="company_job_hot_save">
+                                            <div class="company_job_button_save" id="job_<%=company_job.id%>">
+                                                <%if company_job.urgent%>
+                                                    <a class="hot_label">Urgent</a>
+                                                <%end%>
+                                                <%if user_signed_in?%>
+                                                    <% pre_save = company_job.company_save_jobs.find { |save| save.user_id == current_user.id} %>
+                                                    <% if pre_save %> 
+                                                        <%= link_to '<button class="save_btn_highlight"><i class="material-icons">turned_in</i> </button>'.html_safe, company_company_job_company_save_job_path(company.id, company_job.id, pre_save.id, type_param: 'mini'), method: :delete, remote: true %>
                                                     <%else%>
-                                                        <%= link_to '<button class="save_btn"><i class="material-icons-outlined">turned_in_not</i> </button>'.html_safe, new_user_session_path%>
+                                                        <%= link_to '<button class="save_btn"><i class="material-icons-outlined">turned_in_not</i> </button>'.html_safe, company_company_job_company_save_jobs_path(company.id, company_job.id, type_param: 'mini'), method: :post, remote: true %>
                                                     <%end%>
-                                                </div>
+                                                <%else%>
+                                                    <%= link_to '<button class="save_btn"><i class="material-icons-outlined">turned_in_not</i> </button>'.html_safe, new_user_session_path%>
+                                                <%end%>
                                             </div>
                                         </div>
                                     </div>
                                 </div>
                             </div>
-                        <%end%>
+                        </div>
                     <%end%>
                 </div>
             </div>
@@ -281,7 +280,7 @@
             <div class="home_top_question_container">
                 <div class="row">
                     <%i = 0%>
-                    <% @problems_best.each do |problem| %>
+                    <% @problems.each do |problem| %>
                         <%i += 1%>
                         <%break if i > 9%>
                         <div class="col-sm-4">

@@ -317,7 +317,10 @@
                 <%if @tab_id == "CompanyMostRecentID"%>
                     <div class="company_most_recent_tab">
                         <div class="row">
+                            <%count = 0%>
                             <% @companies_most_recent.each do |company| %>
+                                <%count += 1%>
+                                <%break if count > 20%>
                                 <div class="col-sm-3">
                                     <div class="single_company_block">
                                         <div class="company_wall">
@@ -409,7 +412,10 @@
                 <%if @tab_id == "CompanyBestID"%>
                     <div class="company_best_tab">
                         <div class="row">
+                            <%count = 0%>
                             <% @companies_best.each do |company| %>
+                                <%count += 1%>
+                                <%break if count > 20%>
                                 <div class="col-sm-3">
                                     <div class="single_company_block">
                                         <div class="company_wall">

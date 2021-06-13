@@ -218,7 +218,7 @@
                         <strong>Việc làm khác cùng công ty <%=@company.name%></strong>
                     </div>
                     <div class="job_content">
-                        <%= render @company.company_jobs %>
+                        <%= render @company.company_jobs.order('created_at DESC').approved %>
                     </div>
                 </div>
             </div>

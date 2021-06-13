@@ -4,36 +4,14 @@ class PagesController < ApplicationController
 			@users = User.all
 			@companies = Company.all
 			@company_jobs = CompanyJob.all
-			@company_reviews = CompanyReview.all
 			@posts = Post.all
-			# for problem
 			@problems = Problem.all
-			# count = 0
-			# @problems_best = []
-			# @problems.each do |problem|
-			#     if problem.problem_solutions.count > count
-			#         @problems_best.push(problem)
-			#         count = problem.problem_solutions.count
-			#     end
-			# end
-			@problems_best = Problem.all
 		else
 			@users = User.all
-			@companies = Company.all.approved
-			@company_jobs = CompanyJob.all.approved
-			@company_reviews = CompanyReview.all
-			@posts = Post.all.approved
-			# for problem
-			@problems = Problem.all.approved
-			# count = 0
-			# @problems_best = []
-			# @problems.each do |problem|
-			#     if problem.problem_solutions.count > count
-			#         @problems_best.push(problem)
-			#         count = problem.problem_solutions.count
-			#     end
-			# end
-			@problems_best = Problem.all.approved
+			@companies = Company.all.approved.sort_by{|company| company.company_reviews.count}.reverse
+			@company_jobs = CompanyJob.all.order('created_at DESC').approved
+			@posts = Post.all.order('created_at DESC').approved
+			@problems = Problem.all.approved.sort_by{|problem| problem.problem_solutions.count}.reverse
 		end
 
 		if(params.has_key?(:company_search))

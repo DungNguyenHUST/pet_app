@@ -10,18 +10,14 @@ class CompaniesController < ApplicationController
         @companies_all = Company.all.approved
         @companies_oder_name = Company.all.order('name DESC').approved.page(params[:page]).per(20)
         @companies_oder_newest = Company.all.order('created_at DESC').approved.page(params[:page]).per(20)
-        @companies_most_recent = Company.all.order('created_at DESC').approved.reverse
-        @companies_best = []
-        count = 0
-        @companies_all.each do |company|
-            if cal_rating_review_total_score(company).to_f > count
-                @companies_best.push(company)
-                count = cal_rating_review_total_score(company).to_f
-            end
-        end
+        # find most review company
+        @companies_most_recent = @companies_all.sort_by{|company| company.company_reviews.count}.reverse
+        # find best company
+        @companies_best = @companies_all.sort_by{|company| cal_rating_review_total_score(company).to_f}.reverse
+
         @company_reviews = CompanyReview.all
         @company_interviews = CompanyInterview.all
-        @company_jobs = CompanyJob.all
+        @company_jobs = CompanyJob.all.order('created_at DESC').approved
         @company_apply_jobs = CompanyApplyJob.all
         @company_reply_reviews = CompanyReplyReview.all
         @company_reply_interviews = CompanyReplyInterview.all

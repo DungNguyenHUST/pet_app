@@ -936,7 +936,7 @@
                                     </div>
                                 </div>
                                 <div class="company_job_index_tab">
-                                    <%= render @company.company_jobs%>
+                                    <%= render @company.company_jobs.order('created_at DESC').approved%>
                                 </div>
                             </div>
                         </div>
