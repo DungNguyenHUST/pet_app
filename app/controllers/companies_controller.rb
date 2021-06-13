@@ -8,7 +8,7 @@ class CompaniesController < ApplicationController
 			@company_searchs = Company.friendly.search(params[:search]).approved
 		end
         @companies_all = Company.all.approved
-        @companies_oder_name = Company.all.order('name DESC').approved.page(params[:page]).per(20)
+        @companies_oder_name = Company.all.order('name ASC').approved.page(params[:page]).per(20)
         @companies_oder_newest = Company.all.order('created_at DESC').approved.page(params[:page]).per(20)
         # find most review company
         @companies_most_recent = @companies_all.sort_by{|company| company.company_reviews.count}.reverse
