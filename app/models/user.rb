@@ -39,7 +39,7 @@ class User < ApplicationRecord
 
   belongs_to :company, optional: true
 
-  after_create :send_welcome_email
+  # after_create :send_welcome_email
 	
 	def self.approved
 	  where(approved: :true)
