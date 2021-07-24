@@ -20,7 +20,11 @@
     "@context" : "https://schema.org/",
     "@type" : "JobPosting",
     "title" : "<%=@company_job.title%>",
+<%if @company_job.description.present?%>
     "description" : "<%=@company_job.description%>",
+<%else%>
+    "description" : "<%=@company_job.detail%>",
+<%end%>
     "identifier": {
         "@type": "PropertyValue",
         "name": "Firework",
@@ -175,29 +179,35 @@
                         <div class="job_section">
                             <strong>Mô tả công việc</strong>
                         </div>
-                        <div class="job_content">
-                            <%= @company_job.description.html_safe %>
-                        </div>
+                        <%if @company_job.description.present?%>
+                            <div class="job_content">
+                                <%= @company_job.description.html_safe %>
+                            </div>
+                        <%end%>
                     </div>
 
                     <div class="job_requirement">
                         <div class="job_section">
                             <strong>Yêu cầu công việc</strong>
                         </div>
-                        <div class="job_content">
-                            <%= @company_job.requirement.html_safe %>
-                        </div>
+                        <%if @company_job.requirement.present?%>
+                            <div class="job_content">
+                                <%= @company_job.requirement.html_safe %>
+                            </div>
+                        <%end%>
                     </div>
                     
                     <div class="job_benefit">
                         <div class="job_section">
                             <strong>Chế độ đãi ngộ bạn sẽ nhận được</strong>
                         </div>
-                        <div class="job_content">
-                            <div class="job_benefit_block">
-                                <span><%= @company_job.benefit.html_safe %></span>
+                        <%if @company_job.benefit.present?%>
+                            <div class="job_content">
+                                <div class="job_benefit_block">
+                                    <span><%= @company_job.benefit.html_safe %></span>
+                                </div>
                             </div>
-                        </div>
+                        <%end%>
                     </div>
                     
                     <div class="apply_job_button">
@@ -265,7 +275,11 @@
                             <div class="job_right_title">
                                 <a> <i class="material-icons-outlined">timer</i> NGÀY HẾT HẠN</a>
                             </div>
-                            <span> <%= @company_job.end_date.strftime("%B %d, %Y") %></span>
+                            <%if !@company_job.end_date.to_s.empty?%>
+                                <span> <%= @company_job.end_date.strftime("%B %d, %Y") %></span>
+                            <%else%>
+                                <span>---</span>
+                            <%end%>
                         </div>
                     </div>
                     
