@@ -336,11 +336,8 @@
                 <div class="problem_top">
                     <a><i class="material-icons-outlined">turned_in_not</i>Top câu hỏi hot</a>
                     <div class="problem_short">
-                        <%i = 0%>
-                        <% @problems_newest.each do |problem| %>
-                            <%i += 1%>
-                            <%break if i > 10%>
-                            <div class="problem_block">
+                        <% @problems_newest.first(10).each do |problem| %>
+                            <div class="problem_top_block">
                                 <div class="problem_id">
                                     <a><%=problem.id%></a>
                                 </div>
@@ -354,10 +351,7 @@
                 <div class="problem_problem">
                     <a><i class="material-icons-outlined">corporate_fare</i>Câu hỏi theo công ty</a>
                     <div class="problem_short">
-                        <%i = 0%>
-                        <% @problems_all.each do |problem| %>
-                            <%i += 1%>
-                            <%break if i > 10%>
+                        <% @problems_all.first(10).each do |problem| %>
                             <%if problem.approved?%>
                                 <div class="problem_label">
                                     <a><%= link_to problem.title, problem_path(problem) %></a>

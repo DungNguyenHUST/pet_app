@@ -1,0 +1,49 @@
+<div class="post_block">
+    <div class="post_left">
+        <div class="post_cover">
+            <%if post.wall_picture?%>
+                <%= link_to (image_tag(post.wall_picture.medium.url)), image_path(url_for(post.wall_picture.medium.url)), rel: "gallery" , :href => post_path(post)%>
+            <%else%>
+                <img src="<%= "/assets/illustration.png" %>" alt="Snow" style="width:100%;">
+            <%end%>
+        </div>
+    </div>
+
+    <div class="post_right">
+        <div class="post_header">
+            <a><%= link_to (post.title), post_path(post) %></a>
+        </div>
+
+        <div class="post_info">
+            <div class="post_category_info">
+                <%post_category=''%>
+                <%if(post.category.to_i == 1) %>
+                    <% post_category = "Con đường sự nghiệp" %>
+                <% elsif (post.category.to_i == 2) %>
+                    <% post_category = "Khoa học công nghệ" %>
+                <% elsif (post.category.to_i == 3) %>
+                    <% post_category = "Blog" %>
+                <% else %>
+                    <% post_category = "Danh mục khác" %>
+                <%end%>
+                <div class="post_category">
+                    <a><%= post_category %></a>
+                </div>
+            </div>
+            <div class="post_comment">
+                <a><i class="material-icons-outlined">chat_bubble_outline</i><span><%=post.post_comments.count%></span></a>
+            </div>
+            <div class="post_time">
+                <span><%=post.created_at.strftime("%B %d, %Y")%></span>
+            </div>
+        </div>
+
+        <div class="post_content">
+            <a><%=post.content.html_safe%></a>
+        </div>
+
+        <div class="post_view">
+            <%= link_to '<button type="submit"> Đọc tiếp <i class="material-icons-outlined">chevron_right</i></button>'.html_safe, post_path(post) %>
+        </div>
+    </div>
+</div>

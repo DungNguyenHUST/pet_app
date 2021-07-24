@@ -80,7 +80,7 @@
                 <span><%=@post_searchs.count%> bài viết cho từ khóa "<%= params[:post_search]%>"</span>
             </div>
             <% @post_searchs.reverse.each do |post| %>
-                <div class="post_block">
+                <div class="user_post_block">
                     <a><%=post.id%> | <%= link_to post.title, post_path(post), class: "admin_name_label" %> </a>
                     
                     <div class='approved'>
@@ -110,7 +110,7 @@
                 <span><%=@problem_searchs.count%> câu hỏi cho từ khóa "<%= params[:problem_search]%>"</span>
             </div>
             <% @problem_searchs.reverse.each do |problem| %>
-                <div class="problem_block">
+                <div class="user_problem_block">
                     <a><%=problem.id%> | <%= link_to problem.title, problem_path(problem), class: "admin_name_label" %></a>
                     
                     <div class='approved'>
