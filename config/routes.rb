@@ -87,5 +87,5 @@ Rails.application.routes.draw do
 
   get 'pages_select_company' => 'pages#select_company'
 
-  root "pages#index"
+  root "pages#home"
 end

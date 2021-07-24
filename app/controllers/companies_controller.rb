@@ -42,7 +42,7 @@ class CompaniesController < ApplicationController
         if current_user.admin?
             @company.approved = true
             @company.save!
-            redirect_to pages_path(tab_id: 'AdminCompanyID')
+            redirect_to root_path(tab_id: 'AdminCompanyID')
             return
         end
 
@@ -107,7 +107,7 @@ class CompaniesController < ApplicationController
     def destroy
         @company = Company.friendly.find params[:id]
         @company.destroy
-        redirect_to pages_path(tab_id: 'AdminCompanyID')
+        redirect_to root_path(tab_id: 'AdminCompanyID')
     end
 
     private

@@ -17,7 +17,7 @@ class PostsController < ApplicationController
         if current_user.admin?
             @post.approved = true
             @post.save!
-            redirect_to pages_path(tab_id: 'AdminPostID')
+            redirect_to root_path(tab_id: 'AdminPostID')
             return
         end
 
@@ -73,7 +73,7 @@ class PostsController < ApplicationController
     def destroy
         @post = Post.friendly.find params[:id]
         @post.destroy
-        redirect_to pages_path(tab_id: 'AdminPostID')
+        redirect_to root_path(tab_id: 'AdminPostID')
     end
 
     private

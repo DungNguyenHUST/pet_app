@@ -18,7 +18,7 @@ class CompanyJobsController < ApplicationController
         if current_user.admin?
             @company_job.approved = true
             @company_job.save!
-            redirect_to pages_path(tab_id: 'AdminCompanyID')
+            redirect_to root_path(tab_id: 'AdminCompanyID')
             return
         end
 

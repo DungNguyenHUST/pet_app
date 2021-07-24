@@ -21,7 +21,7 @@ class CompanyApplyJobsController < ApplicationController
 
         if @company_apply_job.save!
             if(find_owner_user(@company_job).present?)
-                UserNotificationsController.new.create_notify(find_owner_user(@company_job), current_user, @company_job.title, @company_apply_job.email, pages_path(@tab_id == "JobID"), "ApplyJob")
+                UserNotificationsController.new.create_notify(find_owner_user(@company_job), current_user, @company_job.title, @company_apply_job.email, root_path(@tab_id == "JobID"), "ApplyJob")
             end
             flash[:success] = "Thông tin của bạn đã được tiếp nhận và gửi tới nhà tuyển dụng..."
             redirect_to company_path(@company, tab_id: 'CompanyJobsID')

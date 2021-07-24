@@ -1,5 +1,5 @@
 class PagesController < ApplicationController
-    def index
+    def home
 		if user_signed_in? && current_user.admin?
 			@users = User.all
 			@companies = Company.all
