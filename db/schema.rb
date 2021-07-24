@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_05_24_075738) do
+ActiveRecord::Schema.define(version: 2021_07_24_021842) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -176,6 +176,7 @@ ActiveRecord::Schema.define(version: 2021_05_24_075738) do
     t.string "address"
     t.text "skill", default: [], array: true
     t.integer "user_id"
+    t.string "detail"
     t.index ["slug"], name: "index_company_jobs_on_slug", unique: true
   end
 

@@ -6,27 +6,28 @@ class ScraperWorker
     end
 
     def get_data_fpt
-        response = HTTParty.get('http://www.fpts.com.vn/co-hoi-nghe-nghiep/')
+        response = HTTParty.get('https://itviec.com/viec-lam-it/fpt/ha-noi')
         doc = Nokogiri::HTML(response.body)
         
-        # Get block
-        processing_block = doc.css("detail")
+        # Get job link block
+        processing_block = doc.css("h2.title")
+        links = processing_block.css("a").map { |link| link['href']}
+        links.map { |h| h.to_s.prepend("https://itviec.com/")}
 
-        print processing_block.first
+		data = Struct.new(:title, :detail)
+		# links.each do |link|
+			response = HTTParty.get(links.first.to_s)
+        	doc = Nokogiri::HTML(response.body)
+			title = doc.css("h1.job-details__title").first
+			detail = doc.css("div.job-details__paragraph").first
+		# end
 
-        # link = processing_block.css("a").map { |link| link['href']}
-
-        # print link.first
-
-        # Create data in array
-        # data = Struct.new(:title, :link)
-        # processing_datas = []
-        # processing_block.each do |processing_block|
-        #     title = processing_block.css("a").map { |title| title['title']}
-        #     link = processing_block.css("a").map { |link| link['href']}
-        #     data_temp = data.new(title.first, link.first)
-        #     processing_datas.push(data_temp)
-        # end
+		@company_job = CompanyJob.new
+		@company_job.company_id = 5
+		@company_job.title = title
+		@company_job.detail = detail
+		@company_job.approved = true
+		@company_job.save!
         # return processing_datas
     end
 
