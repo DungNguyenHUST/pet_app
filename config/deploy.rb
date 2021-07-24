@@ -56,3 +56,12 @@ end
 # For append secret key file in host
 append :linked_files, "config/secret.yml"
 # after 'deploy:update_code', 'deploy:symlink_uploads'
+
+# Job sidekiq
+task :restart do
+    on roles(:app) do
+        execute "cd /home/deploy/pet_app/current"
+        execute :sudo, :systemctl, :restart, :sidekiq
+        run "#{sudo} nohup /etc/init.d/redis-server"
+    end
+end

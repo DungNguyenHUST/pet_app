@@ -1,0 +1,12 @@
+development:
+  :concurrency: 5
+production:
+  :concurrency: 5
+:queues:
+  - default
+:schedule:
+  scrap_woker:
+    #      s m h d m w
+    # cron: '47 16 * * *'
+    every: 12 hours
+    class: ScrapWorker

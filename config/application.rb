@@ -24,5 +24,10 @@ module PetApp
     # Application configuration can go into files in config/initializers
     # -- all .rb files in that directory are automatically loaded after loading
     # the framework and any gems in your application.
+
+    # job adapter
+    config.active_job.queue_adapter = :sidekiq
+    config.autoload_paths += %W(#{config.root}/app/workers)
+    config.eager_load_paths += %W(#{config.root}/app/workers)
   end
 end

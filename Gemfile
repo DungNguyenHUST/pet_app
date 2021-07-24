@@ -115,3 +115,13 @@ gem 'omniauth-rails_csrf_protection'
 
 # pagenigation
 gem 'kaminari'
+
+# scrap data
+gem 'httparty'
+gem 'nokogiri'
+gem 'csv'
+
+# job
+gem 'redis'
+gem 'sidekiq'
+gem 'sidekiq-scheduler'
