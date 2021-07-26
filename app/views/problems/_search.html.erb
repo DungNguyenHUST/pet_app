@@ -1,7 +1,7 @@
 <div class="problem_search_area">
 	<div class="problem_search_label">
-		<%if @problem_searchs.count > 0%>
-			<span><%=@problem_searchs.count%> câu hỏi cho từ khóa "<%= params[:search]%>"</span>
+		<%if @problem_searchs.total_count > 0%>
+			<span><%=@problem_searchs.total_count%> câu hỏi cho từ khóa "<%= params[:search]%>"</span>
 		<%else%>
 			<span>Không tìm được kết quả phù hợp với từ khóa "<%= params[:search]%>"</span>
 		<%end%>
@@ -17,5 +17,6 @@
 				<%end%>
 			<%end%>
 		</div>
+		<%= paginate @problem_searchs, window: 1, outer_window: 1%>
 	</div>
 </div>

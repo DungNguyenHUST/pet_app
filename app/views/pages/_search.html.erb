@@ -2,7 +2,7 @@
     <div class="admin_search_block">
         <%if @company_searchs.present?%>
             <div class="search_label">
-                <span><%=@company_searchs.count%> công ty cho từ khóa "<%= params[:company_search]%>"</span>
+                <span><%=@company_searchs.total_count%> công ty cho từ khóa "<%= params[:company_search]%>"</span>
             </div>
             <% @company_searchs.reverse.each do |company| %>
                 <div class='admin_company_block'>
@@ -34,6 +34,7 @@
                     </div>
                 </div>
             <%end%>
+            <%= paginate @company_searchs, window: 1, outer_window: 1%>
         <%end%>
 
         <%if @user_searchs.present?%>
@@ -107,7 +108,7 @@
 
         <%if @problem_searchs.present?%>
             <div class="search_label">
-                <span><%=@problem_searchs.count%> câu hỏi cho từ khóa "<%= params[:problem_search]%>"</span>
+                <span><%=@problem_searchs.total_count%> câu hỏi cho từ khóa "<%= params[:problem_search]%>"</span>
             </div>
             <% @problem_searchs.reverse.each do |problem| %>
                 <div class="user_problem_block">
@@ -134,5 +135,6 @@
                 </div>
             <%end%>
         <%end%>
+        <%= paginate @problem_searchs, window: 1, outer_window: 1%>
     </div>
 </div>

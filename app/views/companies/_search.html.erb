@@ -1,7 +1,7 @@
 <div class="companies_search_block">
 	<div class="section_title_search">
-		<% if @company_searchs.count > 0 %>
-			<span><%=@company_searchs.count%> công ty cho từ khóa "<%= params[:search]%>"</span>
+		<% if @company_searchs.total_count > 0 %>
+			<span><%=@company_searchs.total_count%> công ty cho từ khóa "<%= params[:search]%>"</span>
 		<%else%>
 			<span>Không tìm được kết quả phù hợp với từ khóa "<%= params[:search]%>"</span>
 		<%end%>
@@ -16,5 +16,6 @@
 				<%end%>
 			<%end%>
 		</div>
+		<%= paginate @company_searchs, window: 1, outer_window: 1%>
 	</div>
 </div>

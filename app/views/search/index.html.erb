@@ -45,8 +45,8 @@
 		<div class="home_search_index">
 			<div class="job_search">
 				<div class="job_label">
-					<%if @job_searchs.count > 0%>
-						<span><%=@job_searchs.count%> việc làm cho từ khóa "<%= params[:search]%>" và địa điểm "<%= params[:location]%>"</span>
+					<%if @job_searchs.total_count > 0%>
+						<span><%=@job_searchs.total_count%> việc làm cho từ khóa "<%= params[:search]%>" và địa điểm "<%= params[:location]%>"</span>
 					<%else%>
 						<span>Rất tiếc, không tìm được công việc nào phù hợp với từ khóa "<%= params[:search]%>" và địa điểm "<%= params[:location]%>"</span>
 					<%end%>
@@ -61,12 +61,13 @@
 						<%end%>
 					<%end%>
 				</div>
+				<%= paginate @job_searchs, window: 1, outer_window: 1%>
 			</div>
 			
 			<div class="company_search">
 				<div class="company_label">
-					<%if @company_searchs.count > 0%>
-						<span><%=@company_searchs.count%> công ty cho từ khóa "<%= params[:search]%>" và địa điểm "<%= params[:location]%>"</span>
+					<%if @company_searchs.total_count > 0%>
+						<span><%=@company_searchs.total_count%> công ty cho từ khóa "<%= params[:search]%>" và địa điểm "<%= params[:location]%>"</span>
 					<%else%>
 						<span>Rất tiếc, không tìm được công ty nào phù hợp với từ khóa "<%= params[:search]%>" và địa điểm "<%= params[:location]%>"</span>
 					<%end%>
@@ -81,6 +82,7 @@
 						<%end%>
 					<%end%>
 				</div>
+				<%= paginate @company_searchs, window: 1, outer_window: 1%>
 			</div>
 		</div>
 	</div>

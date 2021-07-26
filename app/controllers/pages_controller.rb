@@ -16,12 +16,12 @@ class PagesController < ApplicationController
 
 		if(params.has_key?(:company_search))
 		    @company_search = params[:company_search]
-            @company_searchs = Company.friendly.search(@company_search)
+            @company_searchs = Company.friendly.search(@company_search).approved.page(params[:page]).per(12)
         end
 
         if(params.has_key?(:job_search))
 		    @job_search = params[:job_search]
-            @job_searchs = CompanyJob.friendly.search(@job_search)
+            @job_searchs = CompanyJob.friendly.search(@job_search).approved.page(params[:page]).per(12)
         end
 
         if(params.has_key?(:user_search))
@@ -36,7 +36,7 @@ class PagesController < ApplicationController
 
         if(params.has_key?(:problem_search))
             @problem_search = params[:problem_search]
-            @problem_searchs = Problem.friendly.search(@problem_search)
+            @problem_searchs = Problem.friendly.search(@problem_search).approved.page(params[:page]).per(12)
         end
 
 		if(params.has_key?(:tab_id))

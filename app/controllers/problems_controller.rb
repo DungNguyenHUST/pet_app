@@ -4,7 +4,7 @@ class ProblemsController < ApplicationController
         @is_problem_searched = false
 		if(params.has_key?(:search))
             @is_problem_searched = true
-			@problem_searchs = Problem.friendly.search(params[:search]).order("created_at DESC").approved.reverse
+			@problem_searchs = Problem.friendly.search(params[:search]).order("created_at DESC").approved.page(params[:page]).per(12)
         end
 		@problems_all = Problem.all.order("id ASC").approved.page(params[:page]).per(20)
         @problems_newest = Problem.all.order("created_at DESC").approved

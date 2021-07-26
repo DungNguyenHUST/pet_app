@@ -6,8 +6,8 @@ class SearchController < ApplicationController
 		if(params.has_key?(:search) && params.has_key?(:location))
 			@search = params[:search]
 			@location = params[:location]
-			@company_searchs = Company.friendly.search_advance(@search, @location).approved
-			@job_searchs = CompanyJob.friendly.search_advance(@search, @location).approved
+			@company_searchs = Company.friendly.search_advance(@search, @location).approved.page(params[:page]).per(12)
+			@job_searchs = CompanyJob.friendly.search_advance(@search, @location).approved.page(params[:page]).per(12)
 		end
 	end
 end
