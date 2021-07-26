@@ -5,16 +5,17 @@ class ScrapWorker
         processing_data
     end
 
-	def get_data_itviec
+	def get_data_itviec(company_path)
         # Root link
-		response = HTTParty.get('https://itviec.com/viec-lam-it/fpt/ha-noi')
+		response = HTTParty.get('https://itviec.com/nha-tuyen-dung/' + company_path.to_s)
         doc = Nokogiri::HTML(response.body)
-        
+
         # Get job link in to map
-        processing_block = doc.css("h2.title")
+        processing_block = doc.css("h4.title")
         links = processing_block.css("a").map { |link| link['href']}
         links.map { |h| h.to_s.prepend("https://itviec.com/")}			
 		
+		# Start to get data
 		processing_datas = []
 		links.each do |link|
 			response = HTTParty.get(link.to_s)
@@ -47,8 +48,18 @@ class ScrapWorker
 			apply_site = link.to_s
 			address = "Hà Nội"
 			approved = true
-			company_id = 5 #FPT
 			user_id = 1
+
+			# get company id by path
+			if company_path == "fpt-software"
+				company_id = 5 #FPT
+			elsif company_path == "techcombank"
+				company_id = 25
+			elsif company_path == "lg-vehicle-component-solutions-development-center-vietnam-lg-vs-dcv"
+				company_id = 5
+			else
+				company_id = 1
+			end
 
 			data_temp = job_params.new(title,
 									detail,
@@ -122,7 +133,9 @@ class ScrapWorker
 
     def processing_data
         puts "Start scrap data..."
-        processing_job(get_data_itviec)
+		processing_job(get_data_itviec("techcombank"))
+        processing_job(get_data_itviec("fpt-software"))
+		processing_job(get_data_itviec("lg-vehicle-component-solutions-development-center-vietnam-lg-vs-dcv"))
         puts "End scrap data!!!"
     end
 end
