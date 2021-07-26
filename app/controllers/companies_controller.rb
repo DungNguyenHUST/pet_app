@@ -5,7 +5,7 @@ class CompaniesController < ApplicationController
         @is_company_searched = false
 		if(params.has_key?(:search))
             @is_company_searched = true
-			@company_searchs = Company.friendly.search(params[:search]).approved.page(params[:page]).per(12)
+			@company_searchs = Company.friendly.search(params[:search]).approved.order('name ASC').page(params[:page]).per(12)
 		end
         @companies_all = Company.all.approved
         @companies_oder_name = Company.all.order('name ASC').approved.page(params[:page]).per(20)

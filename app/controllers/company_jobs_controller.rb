@@ -89,7 +89,7 @@ class CompanyJobsController < ApplicationController
 			@is_job_searched = true
 			@search = params[:search]
 			@location = params[:location]
-			@job_searchs = CompanyJob.friendly.search_advance(@search, @location).approved.page(params[:page]).per(12)
+			@job_searchs = CompanyJob.friendly.search_advance(@search, @location).approved.order('created_at DESC').page(params[:page]).per(12)
 		end
     end
 

@@ -16,7 +16,7 @@ class PagesController < ApplicationController
 
 		if(params.has_key?(:company_search))
 		    @company_search = params[:company_search]
-            @company_searchs = Company.friendly.search(@company_search).approved.page(params[:page]).per(12)
+            @company_searchs = Company.friendly.search(@company_search).approved.order('name ASC').page(params[:page]).per(12)
         end
 
         if(params.has_key?(:job_search))
