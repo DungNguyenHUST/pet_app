@@ -443,7 +443,7 @@
                                             <a>Tin tuyển dụng</a>
                                         </div>
                                         <div class="company_job_des">
-                                            <%@company.company_jobs.each do |company_job|%>
+                                            <%@company.company_jobs.order('created_at DESC').first(10).each do |company_job|%>
                                                 <div class="company_job_block_mini">
                                                     <div class="company_avatar">
                                                         <%if @company.avatar?%>
@@ -586,7 +586,7 @@
                                                 <a>Tin tuyển dụng</a>
                                             </div>
                                             <div class="company_job_des">
-                                                <%@company.company_jobs.each do |company_job|%>
+                                                <%@company.company_jobs.order('created_at DESC').first(10).each do |company_job|%>
                                                     <div class="company_job_block_mini">
                                                         <div class="company_avatar">
                                                             <%if @company.avatar?%>
@@ -698,8 +698,9 @@
                                     </div>
 
                                     <div class="company_review">
-                                        <%= render @company.company_reviews %>
+                                        <%= render @company_reviews %>
                                     </div>
+                                    <%= paginate @company_reviews, window: 1, outer_window: 1%>
                                 <%else%>
                                     <div class="review_new_not_found">
                                         <span>Rất tiếc, chưa có đủ dữ liệu thống kê. Bạn sẽ chỉ mất 1 phút để hoàn thành bài review, chia sẻ của bạn sẽ rất hữu ích cho mọi người</span>
@@ -804,7 +805,7 @@
                                             <a>Tin tuyển dụng</a>
                                         </div>
                                         <div class="company_job_des">
-                                            <%@company.company_jobs.each do |company_job|%>
+                                            <%@company.company_jobs.order('created_at DESC').first(10).each do |company_job|%>
                                                 <div class="company_job_block_mini">
                                                     <div class="company_avatar">
                                                         <%if @company.avatar?%>
@@ -846,8 +847,9 @@
                                         </div>
                                     </div>
                                     <div class="company_interview">
-                                        <%= render @company.company_interviews %>
+                                        <%= render @company_interviews %>
                                     </div>
+                                    <%= paginate @company_interviews, window: 1, outer_window: 1%>
                                 <%else%>
                                     <div class="interview_new_not_found">
                                         <span>Rất tiếc, chưa có đủ dữ liệu thống kê. Bạn sẽ chỉ mất 1 phút để hoàn thành bài chia sẻ phỏng vấn, kinh nghiệm của bạn của bạn sẽ rất hữu ích cho mọi người</span>
@@ -894,7 +896,7 @@
                                             <a>Tin tuyển dụng</a>
                                         </div>
                                         <div class="company_job_des">
-                                            <%@company.company_jobs.each do |company_job|%>
+                                            <%@company.company_jobs.order('created_at DESC').first(10).each do |company_job|%>
                                                 <div class="company_job_block_mini">
                                                     <div class="company_avatar">
                                                         <%if @company.avatar?%>
@@ -936,8 +938,9 @@
                                     </div>
                                 </div>
                                 <div class="company_job_index_tab">
-                                    <%= render @company.company_jobs.order('created_at DESC').approved%>
+                                    <%= render @company_jobs%>
                                 </div>
+                                <%= paginate @company_jobs, window: 1, outer_window: 1%>
                             </div>
                         </div>
 
@@ -1067,7 +1070,7 @@
                                             <a>Tin tuyển dụng</a>
                                         </div>
                                         <div class="company_job_des">
-                                            <%@company.company_jobs.each do |company_job|%>
+                                            <%@company.company_jobs.order('created_at DESC').first(10).each do |company_job|%>
                                                 <div class="company_job_block_mini">
                                                     <div class="company_avatar">
                                                         <%if @company.avatar?%>
@@ -1104,7 +1107,8 @@
                                         <div class="company_question_new_button">                     
                                             <%= link_to '<button type="submit"> <i class="material-icons-outlined">edit</i> <span> Tạo câu hỏi mới</span> </button>'.html_safe, new_company_company_question_path(@company) %>
                                         </div>
-                                        <%= render @company.company_questions%>
+                                        <%= render @company_questions%>
+                                        <%= paginate @company_questions, window: 1, outer_window: 1%>
                                     </div>
                                 <%else%>
                                     <div class="question_new_not_found">
@@ -1130,7 +1134,7 @@
                                             <a>Tin tuyển dụng</a>
                                         </div>
                                         <div class="company_job_des">
-                                            <%@company.company_jobs.each do |company_job|%>
+                                            <%@company.company_jobs.order('created_at DESC').first(10).each do |company_job|%>
                                                 <div class="company_job_block_mini">
                                                     <div class="company_avatar">
                                                         <%if @company.avatar?%>
@@ -1189,7 +1193,7 @@
 
                                 <div class="company_image_block"> 
                                     <div class="row"> 
-                                        <%@company.company_images.each do |company_image|%>
+                                        <%@company_images.each do |company_image|%>
                                             <div class="col-sm-4">
                                                 <%if company_image.image?%>
                                                     <img><%= image_tag company_image.image.url %>
@@ -1197,6 +1201,7 @@
                                             </div>
                                         <%end%> 
                                     </div>
+                                    <%= paginate @company_images, window: 1, outer_window: 1%>
                                 </div>
                             </div>
                         </div>
@@ -1208,7 +1213,7 @@
                                             <a>Tin tuyển dụng</a>
                                         </div>
                                         <div class="company_job_des">
-                                            <%@company.company_jobs.each do |company_job|%>
+                                            <%@company.company_jobs.order('created_at DESC').first(10).each do |company_job|%>
                                                 <div class="company_job_block_mini">
                                                     <div class="company_avatar">
                                                         <%if @company.avatar?%>

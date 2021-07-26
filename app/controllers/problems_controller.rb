@@ -54,8 +54,8 @@ class ProblemsController < ApplicationController
 
     def show
         @problem = Problem.friendly.find params[:id]
-        @problems = Problem.all
-        @problem_solutions = @problem.problem_solutions
+        @problems = Problem.all.approved.page(params[:page]).per(20)
+        @problem_solutions = @problem.problem_solutions.page(params[:page]).per(10)
         
         @problem_solutions_best = []
         count = 1

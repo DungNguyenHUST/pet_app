@@ -36,7 +36,7 @@ class PostsController < ApplicationController
 
     def show
         @post = Post.friendly.find(params[:id])
-        @post_comment = PostComment.new
+        @post_comments = @post.post_comments.order('created_at DESC').page(params[:page]).per(10)
         @posts = Post.all
     end
 

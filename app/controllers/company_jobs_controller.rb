@@ -77,6 +77,7 @@ class CompanyJobsController < ApplicationController
     def show
         @company = Company.friendly.find(params[:company_id])
         @company_job = @company.company_jobs.friendly.find(params[:id])
+        @company_jobs = @company.company_jobs.order('created_at DESC').approved.page(params[:page]).per(10)
     end
 	
 	def list

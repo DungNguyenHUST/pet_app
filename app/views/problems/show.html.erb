@@ -50,7 +50,7 @@
 									<%else%> 
 										<%active = ""%>
 									<%end%>                                     
-									<a class="nav-link <%=active%>" href="<%=problem_path(@problem, tab_id: 'ProblemRelatedID')%>"><i class="material-icons">list</i>Câu hỏi liên quan<span> <%= convert_number_to_human(@problems.count)%><span></a>
+									<a class="nav-link <%=active%>" href="<%=problem_path(@problem, tab_id: 'ProblemRelatedID')%>"><i class="material-icons">list</i>Câu hỏi liên quan<span> <%= convert_number_to_human(@problems.total_count)%><span></a>
 								</li>
 							</ul>
 						</div>
@@ -144,7 +144,8 @@
 											<a><%=@problem.problem_solutions.count%> câu trả lời</a>
 										</div>
 										<%if @problem.problem_solutions.count > 0%>
-											<%= render @problem.problem_solutions %>
+											<%= render @problem_solutions %>
+											<%= paginate @problem_solutions, window: 1, outer_window: 1%>
 										<%else%>
 											<a>Rất tiếc chưa có câu trả lời, hãy là người đầu tiên đưa ra giải pháp cho câu hỏi này ...</a>
 										<%end%>
@@ -195,6 +196,7 @@
 											<% end %>
 										</tbody>
 									</table>
+									<%= paginate @problems, window: 1, outer_window: 1%>
 								</div>
 							<%end%>
 						</div>

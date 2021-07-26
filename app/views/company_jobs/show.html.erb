@@ -229,8 +229,9 @@
                         <strong>Việc làm khác cùng công ty <%=@company.name%></strong>
                     </div>
                     <div class="job_content">
-                        <%= render @company.company_jobs.order('created_at DESC').approved %>
+                        <%= render @company_jobs %>
                     </div>
+                    <%= paginate @company_jobs, window: 1, outer_window: 1%>
                 </div>
             </div>
             <div class="col-sm-4">

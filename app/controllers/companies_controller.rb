@@ -61,12 +61,11 @@ class CompaniesController < ApplicationController
 
     def show
         @company = Company.friendly.find params[:id]
-        @company_review = CompanyReview.new(company_id: params[:company_id])
-        @company_reply_review = CompanyReplyReview.new(company_review_id: params[:company_review_id])
-        @company_interview = CompanyInterview.new(company_id: params[:company_id])
-        @company_reply_interview = CompanyReplyInterview.new(company_interview_id: params[:company_interview_id])
-        @company_job = CompanyJob.new(company_id: params[:company_id])
-        @company_apply_job = CompanyApplyJob.new(company_job_id: params[:company_job_id])
+        @company_reviews = @company.company_reviews.order('created_at DESC').page(params[:page]).per(10)
+        @company_interviews = @company.company_interviews.order('created_at DESC').page(params[:page]).per(10)
+        @company_jobs = @company.company_jobs.order('created_at DESC').approved.page(params[:page]).per(10)
+        @company_questions = @company.company_questions.order('created_at DESC').page(params[:page]).per(10)
+        @company_images = @company.company_images.order('created_at DESC').page(params[:page]).per(12)
 
         if(params.has_key?(:tab_id))
             @tab_id = params[:tab_id]

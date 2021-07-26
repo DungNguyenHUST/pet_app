@@ -77,8 +77,9 @@
                                 </div>
                             <%end%>
                             <div class="post_comment">
-                                <%= render @post.post_comments %>
+                                <%= render @post_comments %>
                             </div>
+                            <%= paginate @post_comments, window: 1, outer_window: 1%>
                         </div>
                     </div>
                 </div>
@@ -88,7 +89,7 @@
                         <div class="post_area_right_title">
                             <span>Xem thêm</span>
                         </div>
-                        <% @posts.each do |post| %>
+                        <% @posts.first(10).each do |post| %>
                             <%if post.approved?%>
                                 <div class="post_container">
                                     <div class="post_left">
