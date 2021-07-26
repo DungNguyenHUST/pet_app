@@ -100,13 +100,8 @@
                                 <a><i class="material-icons-outlined">local_offer</i><%= convert_salary_to_string(@company_job) %></a>
                             </div>
                             <div class="job_shoft_info">
-                                <%if @company_job.end_date%>
-                                    <%cal_date = ((@company_job.end_date - Time.now)/(24*60*60))%>
-                                    <%if cal_date > 0%>
-                                        <a><i class="material-icons-outlined">schedule</i> Đã đăng <%= time_ago_in_words(@company_job.created_at) %> · Hết hạn sau <%=cal_date.to_i%> ngày</a>
-                                    <%else%>
-                                        <a><i class="material-icons-outlined">schedule</i> Đã đăng <%= time_ago_in_words(@company_job.created_at) %> · </a><span class="warning">Đã hết hạn<span>
-                                    <%end%>
+                                <%if @company_job.apply_another_site_flag%>
+                                    <a><i class="material-icons-outlined">schedule</i> Đã đăng <%= time_ago_in_words(@company_job.created_at) %> · từ <%=get_domain_name(@company_job.apply_site)%></a>
                                 <%else%>
                                     <a><i class="material-icons-outlined">schedule</i> Đã đăng <%= time_ago_in_words(@company_job.created_at) %> </a>
                                 <%end%>
@@ -166,49 +161,55 @@
         <div class='row'>
             <div class="col-sm-8">
                 <div class='job_block_left'>
-                    <%if @company_job.skill.present?%>
-                        <div class="job_skill">
-                            <div class="job_content">
-                                <%@company_job.skill.each do |skill|%>
-                                    <a><%= convert_skill_to_string(skill)%></a>
-                                <%end%>
-                            </div>
+                    <%if @company_job.detail.present?%>
+                        <div class="job_detail_content">
+                            <%= @company_job.detail.html_safe %>
                         </div>
-                    <%end%>
-                    <div class="job_description">
-                        <div class="job_section">
-                            <strong>Mô tả công việc</strong>
-                        </div>
-                        <%if @company_job.description.present?%>
-                            <div class="job_content">
-                                <%= @company_job.description.html_safe %>
-                            </div>
-                        <%end%>
-                    </div>
-
-                    <div class="job_requirement">
-                        <div class="job_section">
-                            <strong>Yêu cầu công việc</strong>
-                        </div>
-                        <%if @company_job.requirement.present?%>
-                            <div class="job_content">
-                                <%= @company_job.requirement.html_safe %>
-                            </div>
-                        <%end%>
-                    </div>
-                    
-                    <div class="job_benefit">
-                        <div class="job_section">
-                            <strong>Chế độ đãi ngộ bạn sẽ nhận được</strong>
-                        </div>
-                        <%if @company_job.benefit.present?%>
-                            <div class="job_content">
-                                <div class="job_benefit_block">
-                                    <span><%= @company_job.benefit.html_safe %></span>
+                    <%else%>
+                        <%if @company_job.skill.present?%>
+                            <div class="job_skill">
+                                <div class="job_content">
+                                    <%@company_job.skill.each do |skill|%>
+                                        <a><%= convert_skill_to_string(skill)%></a>
+                                    <%end%>
                                 </div>
                             </div>
                         <%end%>
-                    </div>
+                        <div class="job_description">
+                            <div class="job_section">
+                                <strong>Mô tả công việc</strong>
+                            </div>
+                            <%if @company_job.description.present?%>
+                                <div class="job_content">
+                                    <%= @company_job.description.html_safe %>
+                                </div>
+                            <%end%>
+                        </div>
+
+                        <div class="job_requirement">
+                            <div class="job_section">
+                                <strong>Yêu cầu công việc</strong>
+                            </div>
+                            <%if @company_job.requirement.present?%>
+                                <div class="job_content">
+                                    <%= @company_job.requirement.html_safe %>
+                                </div>
+                            <%end%>
+                        </div>
+                        
+                        <div class="job_benefit">
+                            <div class="job_section">
+                                <strong>Chế độ đãi ngộ bạn sẽ nhận được</strong>
+                            </div>
+                            <%if @company_job.benefit.present?%>
+                                <div class="job_content">
+                                    <div class="job_benefit_block">
+                                        <span><%= @company_job.benefit.html_safe %></span>
+                                    </div>
+                                </div>
+                            <%end%>
+                        </div>
+                    <%end%>
                     
                     <div class="apply_job_button">
                         <%if user_signed_in?%>
