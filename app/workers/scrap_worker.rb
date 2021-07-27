@@ -224,9 +224,9 @@ class ScrapWorker
 
     def processing_data
         puts "Start scrap data..."
-		# processing_job(get_data_itviec("https://itviec.com/nha-tuyen-dung/techcombank", "TECHCOMBANK"))
-        # processing_job(get_data_itviec("https://itviec.com/nha-tuyen-dung/fpt-software", "FPT"))
-		# processing_job(get_data_itviec("https://itviec.com/nha-tuyen-dung/lg-vehicle-component-solutions-development-center-vietnam-lg-vs-dcv", "LG"))
+		processing_job(get_data_itviec("https://itviec.com/nha-tuyen-dung/techcombank", "TECHCOMBANK"))
+        processing_job(get_data_itviec("https://itviec.com/nha-tuyen-dung/fpt-software", "FPT"))
+		processing_job(get_data_itviec("https://itviec.com/nha-tuyen-dung/lg-vehicle-component-solutions-development-center-vietnam-lg-vs-dcv", "LG"))
 		processing_job(get_data_careerbuilder("https://careerbuilder.vn/vi/nha-tuyen-dung/fpt-telecom-chi-nhanh-cong-ty-co-phan-vien-thong-fpt.35A8CF49.html", "FPT"))
         puts "End scrap data!!!"
     end
