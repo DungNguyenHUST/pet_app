@@ -117,7 +117,7 @@
                         <%if user_signed_in?%>
                             <div class="apply_button">
                                 <%if @company_job.apply_another_site_flag?%>
-                                    <%= link_to '<button type="submit">Apply On Company Site</button>'.html_safe, @company_job.apply_site%>
+                                    <%= link_to '<button type="submit">Nộp đơn tại trang công ty</button>'.html_safe, @company_job.apply_site%>
                                 <%else%>
                                     <%= link_to '<button type="submit"><i class="material-icons-outlined">open_in_new</i>Nộp đơn</button>'.html_safe, new_company_apply_job_path(@company.id, @company_job.id)%>
                                 <%end%>
@@ -214,7 +214,7 @@
                     <div class="apply_job_button">
                         <%if user_signed_in?%>
                             <%if @company_job.apply_another_site_flag?%>
-                                <%= link_to '<button type="submit">Nộp đơn tại Company Site</button>'.html_safe, @company_job.apply_site%>
+                                <%= link_to '<button type="submit">Nộp đơn tại trang công ty</button>'.html_safe, @company_job.apply_site%>
                             <%else%>
                                 <%= link_to '<button type="submit"><i class="material-icons-outlined">open_in_new</i>Nộp đơn</button>'.html_safe, new_company_apply_job_path(@company.id, @company_job.id)%>
                             <%end%>

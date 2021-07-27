@@ -32,4 +32,16 @@ class CompanyJob < ApplicationRecord
 	  where(approved: :true)
 	end
 
+    def self.convert_slug(title)
+        n = title.downcase.to_s
+        n.gsub! /[àáạãâậấẫầăặắằẵ]/, "a"
+        n.gsub! /[đ]/, "d"
+        n.gsub! /[èéẹẽêềếệễ]/, "e"
+        n.gsub! /[óòọõôốồộỗơớợỡờ]/, "o"
+        n.gsub! /[úùụũưứựừữ]/, "u"
+        n.gsub! /[íịìĩ]/, "i"
+        n.gsub! /[ýỵỹỳ]/, "y"
+        return n
+    end
+
 end
