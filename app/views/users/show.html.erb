@@ -43,6 +43,14 @@
                         <%end%>                                     
                         <a class="nav-link <%=active%>" href="<%=user_path(current_user, tab_id: 'NotificationID')%>"><i class="material-icons-outlined">notifications</i>Thông báo <span><%= convert_number_to_human(current_user.user_notifications.count)%><span></a>
                     </li>
+                    <li class="nav-item">
+                        <%if @tab_id == "ScrapJobID"%>
+                            <%active = "active"%>
+                        <%else%> 
+                            <%active = ""%>
+                        <%end%>                                     
+                        <a class="nav-link <%=active%>" href="<%=user_path(current_user, tab_id: 'ScrapJobID')%>"><i class="material-icons-outlined">smart_toy</i>Job Scraper</a>
+                    </li>
                 </ul>
             </div>
 
@@ -581,6 +589,11 @@
                             </div>
                         <%end%>
                     </div>
+                <%end%>
+
+                <%if @tab_id == "ScrapJobID"%>
+                    <%@scrap_job = ScrapJob.new%>
+                    <%= render :partial => 'scrap_jobs/form', :local => @scrap_job %>
                 <%end%>
             </div>
 

@@ -1,0 +1,2 @@
+class ScrapJob < ApplicationRecord
+end
