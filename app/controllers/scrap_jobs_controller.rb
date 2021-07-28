@@ -18,6 +18,6 @@ class ScrapJobsController < ApplicationController
     end
 
     def scrap_job_param
-        params.require(:scrap_job).permit(:id, :company_id, :company_name, :url)
+        params.require(:scrap_job).permit(:id, :company_id, :company_name, :location, :url)
     end
 end

@@ -2,20 +2,20 @@ class ScraperJob < ApplicationJob
     queue_as :default
 
     def perform(scrap_job)
-        processing_data(scrap_job.url, scrap_job.company_name, scrap_job.company_id)
+        processing_data(scrap_job)
     end
 
-    def get_data_itviec(url, company_name, company_id)
+    def get_data_itviec(scrap_job)
         # get company id by name
-        if company_name.present?
-            @company = Company.friendly.search(company_name).approved.first
+        if scrap_job.company_name.present?
+            @company = Company.friendly.search(scrap_job.company_name).approved.first
         else
-            @company = Company.friendly.find_by_id(company_id)
+            @company = Company.friendly.find_by_id(scrap_job.company_id)
         end
 
         if(@company.present?)
             # Root link
-            response = HTTParty.get(url.to_s)
+            response = HTTParty.get(scrap_job.url.to_s)
             doc = Nokogiri::HTML(response.body)
 
             # Get job link in to map
@@ -44,8 +44,12 @@ class ScraperJob < ApplicationJob
                     end
                     next_step += 1
                 end
-
-                location = "Hà Nội"
+                
+                if scrap_job.location.present?
+                    location = scrap_job.location.to_s
+                else
+                    location = "Hà Nội"
+                end
                 salary = "Thương lượng"
                 quantity = 1
                 category = "IT"
@@ -57,7 +61,7 @@ class ScraperJob < ApplicationJob
                 urgent = false
                 apply_another_site_flag = true
                 apply_site = link.to_s
-                address = "Hà Nội"
+                address = @company.address
                 approved = true
                 user_id = 1
 
@@ -89,17 +93,17 @@ class ScraperJob < ApplicationJob
         end
     end
 
-    def get_data_careerbuilder(url, company_name, company_id)
+    def get_data_careerbuilder(scrap_job)
         # get company id by name
-        if company_name.present?
-            @company = Company.friendly.search(company_name).approved.first
+        if scrap_job.company_name.present?
+            @company = Company.friendly.search(scrap_job.company_name).approved.first
         else
-            @company = Company.friendly.find_by_id(company_id)
+            @company = Company.friendly.find_by_id(scrap_job.company_id)
         end
 
         if(@company.present?)
             # Root link
-            response = HTTParty.get(url.to_s)
+            response = HTTParty.get(scrap_job.url.to_s)
             doc = Nokogiri::HTML(response.body)
 
             # Get job link in to map
@@ -128,7 +132,11 @@ class ScraperJob < ApplicationJob
                     next_step += 1
                 end
 
-                location = "Hà Nội"
+                if scrap_job.location.present?
+                    location = scrap_job.location.to_s
+                else
+                    location = "Hà Nội"
+                end
                 salary = "Thương lượng"
                 quantity = 1
                 category = "IT"
@@ -140,7 +148,7 @@ class ScraperJob < ApplicationJob
                 urgent = false
                 apply_another_site_flag = true
                 apply_site = link.to_s
-                address = "Hà Nội"
+                address = @company.address
                 approved = true
                 user_id = 1
 
@@ -226,13 +234,13 @@ class ScraperJob < ApplicationJob
         return uri.to_s
     end
 
-    def processing_data(url, company_name, company_id)
+    def processing_data(scrap_job)
         puts "Start scrap data..."
-        if split_domain_name(url) == "itviec.com"
-            processing_job(get_data_itviec(url, company_name, company_id))
+        if split_domain_name(scrap_job.url) == "itviec.com"
+            processing_job(get_data_itviec(scrap_job))
         end
-        if split_domain_name(url) == "careerbuilder.vn"
-            processing_job(get_data_careerbuilder(url, company_name, company_id))
+        if split_domain_name(scrap_job.url) == "careerbuilder.vn"
+            processing_job(get_data_careerbuilder(scrap_job))
         end
         puts "End scrap data!!!"
     end

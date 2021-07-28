@@ -410,6 +410,7 @@ ActiveRecord::Schema.define(version: 2021_07_27_150053) do
   create_table "scrap_jobs", force: :cascade do |t|
     t.integer "company_id"
     t.string "company_name"
+    t.string "location"
     t.string "url"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
