@@ -120,8 +120,3 @@ gem 'kaminari'
 gem 'httparty'
 gem 'nokogiri'
 gem 'csv'
-
-# job
-gem 'redis'
-gem 'sidekiq'
-gem 'sidekiq-scheduler'

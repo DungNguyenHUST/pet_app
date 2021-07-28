@@ -114,7 +114,6 @@ GEM
       orm_adapter (~> 0.5.0)
     commonjs (0.2.7)
     concurrent-ruby (1.1.9)
-    connection_pool (2.2.5)
     crass (1.0.6)
     csv (3.2.0)
     devise (4.8.0)
@@ -123,12 +122,9 @@ GEM
       railties (>= 4.1.0)
       responders
       warden (~> 1.2.3)
-    e2mmap (0.1.0)
     ed25519 (1.2.4)
     ed25519 (1.2.4-java)
     erubi (1.10.0)
-    et-orbi (1.2.4)
-      tzinfo
     execjs (2.8.1)
     faraday (1.5.1)
       faraday-em_http (~> 1.0)
@@ -153,9 +149,6 @@ GEM
     ffi (1.15.3-x86-mingw32)
     friendly_id (5.4.2)
       activerecord (>= 4.0.0)
-    fugit (1.5.0)
-      et-orbi (~> 1.1, >= 1.1.8)
-      raabro (~> 1.4)
     globalid (0.4.2)
       activesupport (>= 4.2.0)
     hashie (4.1.0)
@@ -265,7 +258,6 @@ GEM
       nio4r (~> 2.0)
     puma (4.3.8-java)
       nio4r (~> 2.0)
-    raabro (1.4.0)
     racc (1.5.2)
     racc (1.5.2-java)
     rack (2.2.3)
@@ -307,7 +299,6 @@ GEM
     rb-fsevent (0.11.0)
     rb-inotify (0.10.1)
       ffi (~> 1.0)
-    redis (4.3.1)
     regexp_parser (2.1.1)
     responders (3.0.1)
       actionpack (>= 5.0)
@@ -317,8 +308,6 @@ GEM
     ruby2_keywords (0.0.5)
     ruby_dep (1.5.0)
     rubyzip (2.3.2)
-    rufus-scheduler (3.8.0)
-      fugit (~> 1.1, >= 1.1.6)
     sass-rails (6.0.0)
       sassc-rails (~> 2.1, >= 2.1.1)
     sassc (2.4.0)
@@ -334,17 +323,6 @@ GEM
     selenium-webdriver (3.142.7)
       childprocess (>= 0.5, < 4.0)
       rubyzip (>= 1.2.2)
-    sidekiq (6.2.1)
-      connection_pool (>= 2.2.2)
-      rack (~> 2.0)
-      redis (>= 4.2.0)
-    sidekiq-scheduler (3.1.0)
-      e2mmap
-      redis (>= 3, < 5)
-      rufus-scheduler (~> 3.2)
-      sidekiq (>= 3)
-      thwait
-      tilt (>= 1.4.0)
     sitemap_generator (6.1.2)
       builder (~> 3.0)
     spring (2.1.1)
@@ -362,8 +340,6 @@ GEM
       net-scp (>= 1.1.2)
       net-ssh (>= 2.8.0)
     thor (1.1.0)
-    thwait (0.2.0)
-      e2mmap
     tilt (2.0.10)
     turbolinks (5.2.1)
       turbolinks-source (~> 5.2)
@@ -441,11 +417,8 @@ DEPENDENCIES
   puma (~> 4.1)
   rails (= 6.1.1)
   rails_autolink
-  redis
   sass-rails (>= 6)
   selenium-webdriver
-  sidekiq
-  sidekiq-scheduler
   sitemap_generator
   spring
   spring-watcher-listen (~> 2.0.0)
