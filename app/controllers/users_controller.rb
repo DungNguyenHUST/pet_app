@@ -34,12 +34,12 @@ class UsersController < ApplicationController
             @company_by_employer = current_user.company
             @company_job_by_employer = @company_by_employer.company_jobs.all
         elsif current_user.admin?
-            @users = User.all
-			@companies = Company.all
-			@company_jobs = CompanyJob.all
-			@company_reviews = CompanyReview.all
-			@posts = Post.all
-			@problems = Problem.all
+            @users = User.all.page(params[:page]).per(20)
+			@companies = Company.all.page(params[:page]).per(20)
+			@company_jobs = CompanyJob.all.page(params[:page]).per(20)
+			@company_reviews = CompanyReview.all.page(params[:page]).per(20)
+			@posts = Post.all.page(params[:page]).per(20)
+			@problems = Problem.all.page(params[:page]).per(20)
         else
             @users = User.all
 			@companies = Company.all.approved

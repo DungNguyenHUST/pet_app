@@ -9,7 +9,7 @@
                         <%else%> 
                             <%active = ""%>
                         <%end%>                                 
-                        <a class="nav-link <%=active%>" href="<%=user_path(current_user, tab_id: 'AdminCompanyID')%>"><i class="material-icons-outlined">business</i>Company <span><%= convert_number_to_human(@companies.count)%><span></a>
+                        <a class="nav-link <%=active%>" href="<%=user_path(current_user, tab_id: 'AdminCompanyID')%>"><i class="material-icons-outlined">business</i>Company <span><%= convert_number_to_human(@companies.total_count)%><span></a>
                     </li>
                     <li class="nav-item">
                         <%if @tab_id == "AdminUserID"%>
@@ -17,7 +17,7 @@
                         <%else%> 
                             <%active = ""%>
                         <%end%>                                     
-                        <a class="nav-link <%=active%>" href="<%=user_path(current_user, tab_id: 'AdminUserID')%>"><i class="material-icons-outlined">person</i>User <span><%= convert_number_to_human(@users.count)%><span></a>
+                        <a class="nav-link <%=active%>" href="<%=user_path(current_user, tab_id: 'AdminUserID')%>"><i class="material-icons-outlined">person</i>User <span><%= convert_number_to_human(@users.total_count)%><span></a>
                     </li>
                     <li class="nav-item">
                         <%if @tab_id == "AdminPostID"%>
@@ -25,7 +25,7 @@
                         <%else%> 
                             <%active = ""%>
                         <%end%>                                     
-                        <a class="nav-link <%=active%>" href="<%=user_path(current_user, tab_id: 'AdminPostID')%>"><i class="material-icons-outlined">post_add</i>Post <span><%= convert_number_to_human(@posts.count)%><span></a>
+                        <a class="nav-link <%=active%>" href="<%=user_path(current_user, tab_id: 'AdminPostID')%>"><i class="material-icons-outlined">post_add</i>Post <span><%= convert_number_to_human(@posts.total_count)%><span></a>
                     </li>
                     <li class="nav-item">
                         <%if @tab_id == "AdminProblemID"%>
@@ -33,7 +33,7 @@
                         <%else%> 
                             <%active = ""%>
                         <%end%>                                     
-                        <a class="nav-link <%=active%>" href="<%=user_path(current_user, tab_id: 'AdminProblemID')%>"><i class="material-icons-outlined">lightbulb</i>Problem <span><%= convert_number_to_human(@problems.count)%><span></a>
+                        <a class="nav-link <%=active%>" href="<%=user_path(current_user, tab_id: 'AdminProblemID')%>"><i class="material-icons-outlined">lightbulb</i>Problem <span><%= convert_number_to_human(@problems.total_count)%><span></a>
                     </li>
                     <li class="nav-item">
                         <%if @tab_id == "NotificationID"%>
@@ -284,6 +284,7 @@
                                 </div>
                             <%end%>
                         <%end%>
+                        <%= paginate @companies, window: 1, outer_window: 1%>
                     </div>                        
                 <%end%>
 
@@ -372,6 +373,8 @@
                                 </div>
                             <%end%>
                         <%end%>
+
+                        <%= paginate @users, window: 1, outer_window: 1%>
                     </div>                        
                 <%end%>
 
@@ -456,6 +459,8 @@
                                 </div>
                             <%end%>
                         <%end%>
+
+                        <%= paginate @posts, window: 1, outer_window: 1%>
                     </div>                        
                 <%end%>
 
@@ -540,6 +545,8 @@
                                 </div>
                             <%end%>
                         <%end%>
+
+                        <%= paginate @problems, window: 1, outer_window: 1%>
                     </div>                        
                 <%end%>
 
