@@ -11,8 +11,8 @@
             <%end%> 
         <%end%>
     <%else%>
-        <%= button_to new_user_session_path, :method => :get, form_class: "dislike_btn" do%>
+        <button type="button" data-toggle="modal" data-target="#buttonModalLoginCenter" class="dislike_btn">
             <i class="material-icons-outlined">thumb_down</i> <span><%= company_interview.company_dislike_interviews.count%></span> <a>Không thích</a>
-        <%end%>
+        </button>
     <%end%>
 </div>

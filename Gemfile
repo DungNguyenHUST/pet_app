@@ -67,7 +67,7 @@ gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
 gem "bcrypt" 
 
 # add bootstrap
-gem "bootstrap-sass", ">= 3.4.1"
+gem 'bootstrap', '~> 4.6.0'
 
 # For editor in post
 gem 'ckeditor'

@@ -327,7 +327,9 @@
                     <%if user_signed_in?%>
                         <%= link_to '<button type="submit"><i class="material-icons-outlined">create</i>Tạo câu hỏi mới</button>'.html_safe, new_problem_path %>
                     <%else%>
-                        <%= link_to '<button type="submit"><i class="material-icons-outlined">create</i>Tạo câu hỏi mới</button>'.html_safe, new_user_session_path %>
+                        <button type="button" data-toggle="modal" data-target="#buttonModalLoginCenter">
+                            <i class="material-icons-outlined">create</i>Tạo câu hỏi mới
+                        </button>
                     <%end%>
                 </div>
             </div>

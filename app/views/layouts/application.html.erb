@@ -140,6 +140,11 @@
     </section>
     <!-- end -->
 
+    <!-- For login anywhere -->
+    <%if !user_signed_in?%>
+      <%= render 'pages/login'%>
+    <%end%>
+
     <!-- body render start -->
     <%= yield %>
     <!-- body render end -->

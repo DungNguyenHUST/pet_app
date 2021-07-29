@@ -112,9 +112,9 @@
                                         <%end%>
                                     <%end%>
                                 <%else%>
-                                    <%= button_to new_user_session_path, :method => :get, form_class: "follow_btn_large" do%>
+                                    <button type="button" data-toggle="modal" data-target="#buttonModalLoginCenter" class="follow_btn_large">
                                         <i class="material-icons-outlined">favorite_border</i> <span>Theo dõi</span>
-                                    <%end%>
+                                    </button>
                                 <%end%>
                             </div>
 
@@ -871,7 +871,9 @@
                                         <%if user_signed_in?%>
                                             <%= link_to '<button type="submit"> <i class="material-icons-outlined">add</i> <span> Thêm câu hỏi mới </span> </button>'.html_safe, new_problem_path %>
                                         <%else%>
-                                            <%= link_to '<button type="submit"> <i class="material-icons-outlined">add</i> <span> Thêm câu hỏi mới </span> </button>'.html_safe, new_user_session_path %>
+                                            <button type="button" data-toggle="modal" data-target="#buttonModalLoginCenter">
+                                                <i class="material-icons-outlined">add</i> <span> Thêm câu hỏi mới </span>
+                                            </button>
                                         <%end%>
                                     </div>
                                 </div>
@@ -1185,7 +1187,9 @@
                                             <%if user_signed_in?%>
                                                 <%= f.submit "Đăng ảnh", class: "new_company_image_form_submit" %>
                                             <%else%>
-                                                <%= link_to '<button type="submit"> <span> Đăng ảnh </span> </button>'.html_safe, new_user_session_path %>
+                                                <button type="button" data-toggle="modal" data-target="#buttonModalLoginCenter">
+                                                    <span> Đăng ảnh </span>
+                                                </button>
                                             <%end%>
                                         </div>
                                     <%end%>

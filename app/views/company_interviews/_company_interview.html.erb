@@ -92,9 +92,9 @@
                     <%if user_signed_in?%>
                         <button class="reply_btn" onclick="myFunctionReplyInterview(<%=company_interview.id%>)"><i class="material-icons-outlined">chat_bubble_outline</i> <span><%= company_interview.company_reply_interviews.count%></span> <a>Trả lời</a> </button>
                     <%else%>
-                        <%= button_to new_user_session_path, :method => :get, form_class: "reply_btn" do%>
+                        <button type="button" data-toggle="modal" data-target="#buttonModalLoginCenter" class="reply_btn">
                             <i class="material-icons-outlined">chat_bubble_outline</i> <span><%= company_interview.company_reply_interviews.count%></span> <a>Trả lời</a>
-                        <%end%>
+                        </button>
                     <%end%>
                 </div>
 
@@ -111,9 +111,9 @@
                             <%end%>
                         <%end%>
                     <%else%>
-                        <%= button_to new_user_session_path, :method => :get, form_class: "like_btn" do%>
+                        <button type="button" data-toggle="modal" data-target="#buttonModalLoginCenter" class="like_btn">
                             <i class="material-icons-outlined">thumb_up</i> <span><%= company_interview.company_like_interviews.count%></span> <a>Thích</a>
-                        <%end%>
+                        </button>
                     <%end%>
                 </div>
 
@@ -130,9 +130,9 @@
                             <%end%> 
                         <%end%>
                     <%else%>
-                        <%= button_to new_user_session_path, :method => :get, form_class: "dislike_btn" do%>
+                        <button type="button" data-toggle="modal" data-target="#buttonModalLoginCenter" class="dislike_btn">
                             <i class="material-icons-outlined">thumb_down</i> <span><%= company_interview.company_dislike_interviews.count%></span> <a>Không thích</a>
-                        <%end%>
+                        </button>
                     <%end%>
                 </div>
             </div>

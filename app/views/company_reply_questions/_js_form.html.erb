@@ -46,9 +46,9 @@
                             <%if user_signed_in?%>
                                 <button class="reply_btn" onclick="myFunctionReplyquestion(<%=company_question.id%>)"><i class="material-icons-outlined">chat_bubble_outline</i> <span><%= company_question.company_reply_questions.count%></span> <a>Trả lời</a> </button>
                             <%else%>
-                                <%= button_to new_user_session_path, :method => :get, form_class: "reply_btn" do%>
+                                <button type="button" data-toggle="modal" data-target="#buttonModalLoginCenter" class="reply_btn">
                                     <i class="material-icons-outlined">chat_bubble_outline</i> <span><%= company_question.company_reply_questions.count%></span> <a>Trả lời</a>
-                                <%end%>
+                                </button>
                             <%end%>
                         </div>
                     </div>

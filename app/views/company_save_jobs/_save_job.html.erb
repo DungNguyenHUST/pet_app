@@ -12,9 +12,9 @@
 				<%end%>
 			<%end%>
 		<%else%>
-			<%= button_to new_user_session_path, form_class: "save_btn" do%>
+			<button type="button" data-toggle="modal" data-target="#buttonModalLoginCenter" class="save_btn">
 				<i class="material-icons-outlined">turned_in_not</i> <span>Lưu Job</span>
-			<%end%>
+			</button>
 		<%end%>
 	</div>
 <%else%>
@@ -30,7 +30,9 @@
 	            <%= link_to '<button class="save_btn"><i class="material-icons-outlined">turned_in_not</i> </button>'.html_safe, company_company_job_company_save_jobs_path(@company.id, @company_job.id, type_param: 'mini'), method: :post, remote: true %>
 	        <%end%>
 	    <%else%>
-	        <%= link_to '<button class="save_btn"><i class="material-icons-outlined">turned_in_not</i> </button>'.html_safe, new_user_session_path%>
+			<button type="button" data-toggle="modal" data-target="#buttonModalLoginCenter" class="save_btn">
+				<i class="material-icons-outlined">turned_in_not</i>
+			</button>
 	    <%end%>
 	</div>
 <%end%>

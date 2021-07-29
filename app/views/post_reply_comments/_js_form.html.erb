@@ -31,7 +31,9 @@
                 <%if user_signed_in?%>
                     <button class="reply_btn" onclick="myFunctionReplypost_comment(<%=@post_comment.id%>)"><i class="material-icons-outlined">chat_bubble_outline</i> <span>Trả lời</span> </button>
                 <%else%>
-                    <%= link_to'<button class="reply_btn"><i class="material-icons-outlined">chat_bubble_outline</i> <span>Trả lời</span> </button>'.html_safe, new_user_session_path%>
+                    <button type="button" data-toggle="modal" data-target="#buttonModalLoginCenter" class="reply_btn">
+                        <i class="material-icons-outlined">chat_bubble_outline</i> <span>Trả lời
+                    </button>
                 <%end%>
             </div>
 

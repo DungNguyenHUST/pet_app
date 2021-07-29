@@ -1,0 +1,170 @@
+<div class="modal fade" id="buttonModalLoginCenter" tabindex="-1" role="dialog" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <div class="user_signin_modal_title">
+                    <a>Đăng nhập / Đăng kí</a>
+                </div> 
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+
+            <div class="modal-body">
+                <div class="user_signin_modal_tab_link">
+                    <nav>
+                        <ul class="nav nav-tabs nav-justified" id="user_signin_modal_tabs" role="tablist">
+                            <li class="nav-item">
+                                <a class="nav-link active" data-toggle="tab" href="#SignInID">Đăng nhập</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" data-toggle="tab" href="#SignUpID">Đăng kí</a>
+                            </li>
+                        </ul>
+                    </nav>
+                </div>
+                <div class="user_signin_modal_tab_content">
+                    <div class="tab-content">
+                        <div role="tabpanel" id="SignInID" class="tab-pane fade show active">
+                            <div class='user_signin_modal_block'>
+                                <div class="user_signin_modal_form_top">
+                                    <div class="user_signin_modal_with_google">
+                                        <%= button_to user_google_oauth2_omniauth_authorize_path, method: :post do%>
+                                            <i class="material-icons">mail</i> <span>Đăng nhập bằng Google</span>
+                                        <%end%>
+                                    </div>
+                                    <div class="user_signin_modal_with_facebook">
+                                        <%= button_to user_facebook_omniauth_authorize_path, method: :post do%>
+                                            <i class="material-icons">facebook</i> <span>Đăng nhập bằng Facebook</span>
+                                        <%end%>
+                                    </div>
+                                </div>
+
+                                <div class="user_signin_modal_or">
+                                    <a><span>or</span></a>
+                                </div>
+
+                                <div class="user_signin_modal_form_bottom">
+                                    <%= render "devise/shared/error_messages", resource: resource %>
+                                    <%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
+                                        <div class="user_signin_modal_content">
+                                            <div class="user_signin_modal_label">
+                                                <a><%= f.label :email, "Địa chỉ email*", class: "user_signin_modal_label_name" %></a>
+                                            </div>
+
+                                            <div class="user_signin_modal_input">
+                                                <%= f.email_field :email, autofocus: true, autocomplete: "email", :required => true, class: "form-control", placeholder: "Nhập địa chỉ email của bạn" %>
+                                            </div>
+                                        </div>
+
+                                        <div class="user_signin_modal_content">
+                                            <div class="user_signin_modal_label">
+                                                <a><%= f.label :password, "Mật khẩu*", class: "user_signin_modal_label" %></a>
+                                            </div>
+
+                                            <div class="user_signin_modal_input">
+                                                <%= f.password_field :password, autocomplete: "current-password", :required => true, class: "form-control", placeholder: "Nhập mật khẩu của bạn" %>
+                                            </div>
+                                        </div>
+
+                                        <div class="user_signin_modal_remember">
+                                            <% if devise_mapping.rememberable? %>
+                                                <%= f.check_box :remember_me %>
+                                                <%= f.label :remember_me, "Nhớ đăng nhập", class: "user_signin_modal_label_small" %>
+                                            <% end %>
+                                        </div>
+                                        
+                                        <div class="user_signin_modal_forgot_pass">
+                                            <a><%= link_to "Quên mật khẩu?", new_password_path(resource_name) %></a>
+                                        </div>
+
+                                        <div class="user_signin_modal_submit">
+                                            <%= f.submit "Đăng nhập", class: "user_signin_modal_form_submit" %>
+                                        </div>
+                                    <%end%>
+                                </div>
+
+                                <div class="user_signin_modal_loginhere">
+                                    Chưa có tài khoản?<a><%= link_to "Tạo tài khoản", new_user_registration_path %></a>
+                                </div>
+                            </div>
+                        </div>
+                        <div role="tabpanel" id="SignUpID" class="tab-pane">
+                            <div class="user_signup_modal_block">
+                                <div class="user_signup_modal_form_top">
+                                    <div class="user_signup_modal_with_google">
+                                        <%= button_to user_google_oauth2_omniauth_authorize_path, method: :post do%>
+                                            <i class="material-icons">mail</i> <span>Đăng nhập bằng Google</span>
+                                        <%end%>
+                                    </div>
+                                    <div class="user_signup_modal_with_facebook">
+                                        <%= button_to user_facebook_omniauth_authorize_path, method: :post do%>
+                                            <i class="material-icons">facebook</i> <span>Đăng nhập bằng Facebook</span>
+                                        <%end%>
+                                    </div>
+                                </div>
+                                
+                                <div class="user_signup_modal_or">
+                                    <a><span>or</span></a>
+                                </div>
+
+                                <div class="user_signup_modal_form_bottom">
+                                    <%= render "devise/shared/error_messages", resource: resource %>
+                                    <%= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
+                                        <div class="user_signup_modal_content">
+                                            <div class="user_signup_modal_label">
+                                                <a><%= f.label :name, "Tên đăng nhập*", class: "user_signup_modal_label_name" %></a>
+                                            </div>
+
+                                            <div class="user_signup_modal_input">
+                                                <%= f.text_field :name, autofocus: true, :required => true, class: 'form-control', placeholder: "Nhập họ và tên của bạn" %>
+                                            </div>
+                                        </div>
+                                        
+                                        <div class="user_signup_modal_content">
+                                            <div class="user_signup_modal_label">
+                                                <a><%= f.label :email, "Địa chỉ email*", class: "user_signup_modal_label_name" %></a>
+                                            </div>
+
+                                            <div class="user_signup_modal_input">
+                                                <%= f.email_field :email, autocomplete: "email", :required => true, class: "form-control", placeholder: "Nhập email của bạn" %>
+                                            </div>
+                                        </div>
+
+                                        <div class="user_signup_modal_content">
+                                            <div class="user_signup_modal_label">
+                                                <a><%= f.label :password, "Mật khẩu*", class: "user_signup_modal_label_name" %></a>
+                                            </div>
+
+                                            <div class="user_signup_modal_input">
+                                                <%= f.password_field :password, autocomplete: "new-password", :required => true, class: "form-control", placeholder: "Mật khẩu ít nhất 6 kí tự gồm chữ in hoa, chữ số và biểu tượng" %>
+                                            </div>
+                                        </div>
+
+                                        <div class="user_signup_modal_content">
+                                            <div class="user_signup_modal_label">
+                                                <a><%= f.label :password_confirmation, "Xác nhận lại mật khẩu*", class: "user_signup_modal_label" %></a>
+                                            </div>
+
+                                            <div class="user_signup_modal_input">
+                                                <%= f.password_field :password_confirmation, autocomplete: "new-password", :required => true, class: "form-control", placeholder: "Nhập lại mật khẩu" %>
+                                            </div>
+                                        </div>
+
+                                        <div class="user_signup_modal_submit">
+                                            <%= f.submit "Tạo tài khoản", class: "user_signup_modal_form_submit" %>
+                                        </div>
+                                    <%end%>
+                                </div>
+                                
+                                <p class="user_signup_modal_loginhere">
+                                    Bạn đã có tài khoản? <%= link_to " Đăng nhập", new_user_session_path %>
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

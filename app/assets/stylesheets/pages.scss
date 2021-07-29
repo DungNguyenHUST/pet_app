@@ -447,3 +447,448 @@
         }
     }
 }
+
+/////////////////////login template modal////////////////
+.user_signin_modal_title{
+    font-size: 22px;
+    color: #0f1419;
+    text-align: left;
+    font-weight: 550;
+}
+
+.user_signin_modal_tab_link{
+    clear: left;
+    overflow: hidden;
+    position: relative;
+    display: block;
+    background-color: #fff;
+
+    .nav-tabs {
+        overflow-x: auto;
+        overflow-y: hidden;
+        flex-wrap: nowrap;
+    }
+    .nav-tabs .nav-link {
+        white-space: nowrap;
+        font-size: 16px;
+        color: #333;
+    }
+    .nav-tabs .nav-link, .nav-tabs .nav-link.active, .nav-tabs .nav-link:hover {
+        border: none;
+        color: #333;
+        font-size: 16px;
+        padding-left: 10px;
+        padding-right: 10px;
+        i{
+            position: relative;
+            top: 7px;
+            padding-right: 3px;
+        }
+        span{
+            position: absolute;
+            top: -1px;
+            font-size: 12px;
+        }
+    }
+    .nav-tabs .nav-link.active {
+        border-radius: 0;
+        border-bottom: 5px solid #1877f2;
+        font-weight: 500;
+        color: #1877f2;
+        font-weight: 600;
+    }
+}
+
+.user_signin_modal_tab_content{
+    .user_signin_modal_block{
+        background-color: #fff;
+        border-radius: 4px;
+        background-color: #fff;
+        @media screen and (max-width: 600px){
+            margin-top: 30px;
+            margin-bottom: 30px;
+        }
+        .user_signin_modal_form_top{
+			display: block;
+            margin-top: 20px;
+            .user_signin_modal_with_google{   
+                button{
+                    height: 44px;
+                    width: 100%;
+                    border-radius: 4px;
+                    padding: 6px;
+                    margin-bottom: 10px;
+                    background: #fff;
+                    border: 2px solid #ea4537;
+                    font-size: 16px;
+                    cursor: pointer;
+                    text-align: left;
+                    color: #ea4537;
+                    font-weight: 500;
+                    &:focus {outline:none;}
+                    i{
+                        padding-left: 10px;
+                        margin-right: 5px;
+                        color: #ea4537;
+                        font-size: 30px;
+                        position: relative;
+                        // top: -10px;
+                    }
+                    span{
+                        position: relative;
+                        top: -10px;
+                    }
+                    &:hover{
+                        background-color: #ea4537;
+                        color: #fff;
+                        i{
+                            color: #fff;
+                        }
+                    }
+                }
+            }
+    
+            .user_signin_modal_with_facebook{   
+                button{
+                    height: 44px;
+                    width: 100%;
+                    border-radius: 4px;
+                    padding: 6px;
+                    margin-bottom: 10px;
+                    margin-top: 10px;
+                    background: #fff;
+                    border: 2px solid #0c87ee;
+                    font-size: 16px;
+                    // border: none;
+                    cursor: pointer;
+                    text-align: left;
+                    // color: #fff;
+                    color: #0c87ee;
+                    font-weight: 500;
+                    &:focus {outline:none;}
+                    i{
+                        padding-left: 10px;
+                        margin-right: 5px;
+                        color: #0c87ee;
+                        font-size: 30px;
+                        position: relative;
+                        // top: -10px;
+                    }
+                    span{
+                        position: relative;
+                        top: -10px;
+                    }
+                    
+                    &:hover{
+                        background-color: #1877f2;
+                        color: #fff;
+                        i{
+                            color: #fff;
+                        }
+                    }
+                }
+            }
+        }
+        
+        .user_signin_modal_or{
+            font-size: 16px;
+            color: #596976;
+            text-align: center;
+            padding-top: 10px;
+            a {
+                overflow: hidden;
+            }
+            
+            a:after {
+                content:"";
+                display: inline-block;
+                height: 0.5em;
+                vertical-align: bottom;
+                width: 45%;
+                margin-right: -45%;
+                margin-left: 10px;
+                border-top: 1px solid #dddddd;
+            }
+
+            a:before {
+                content:"";
+                display: inline-block;
+                height: 0.5em;
+                vertical-align: bottom;
+                width: 45%;
+                margin-left: -45%;
+                margin-right: 10px;
+                border-top: 1px solid #dddddd;
+            }
+        }
+
+        .user_signin_modal_form_bottom
+        {
+            padding-top: 10px;
+            .user_signin_modal_content{
+                clear: both;
+                .user_signin_modal_label{
+                    font-weight: 550;
+                    font-size: 16px;
+                    color: #0f1419;
+                    text-align: left;
+                }
+    
+                .user_signin_modal_input{
+                    left: 0px;
+                    margin-top: 5px;
+                    margin-bottom: 20px;
+                    .form-control{
+                        margin-left: 0px;
+                        height: 44px;
+                        width: 100%;
+                        border: 1px solid #dddddd;
+                        border-radius: 4px;
+                        &:focus{
+                            border: 2px solid #1877f2;
+                            border-radius: 4px;
+                        }
+                    }
+                }
+            }
+
+            .user_signin_modal_remember{
+                float: left;
+                .user_signin_modal_label_small{
+                    font-size: 14px;
+                    color: #536471;
+                    text-align: left;
+                    font-weight: 300;
+                }
+            }
+
+            .user_signin_modal_forgot_pass{
+                float: right;
+                a{
+                    color: #1877f2;
+                }
+            }
+    
+            .user_signin_modal_submit{
+                clear: both;
+				padding-top: 20px;
+                .user_signin_modal_form_submit{
+                    height: 44px;
+                    width: 100%;
+                    border-radius: 4px;
+                    padding: 6px;
+                    background: #1877f2;
+                    font-size: 16px;
+                    border: none;
+                    cursor: pointer;
+                    text-align: center;
+                    color: #fff;
+                    
+                    &:hover{
+                        background-color: #1877f2;
+                        color: #fff;
+                    }
+                }
+            }
+        }
+    
+        .user_signin_modal_loginhere
+        {
+            text-align: center;
+            font-size: 16px;
+            margin-top: 20px;
+            font-weight: 550;
+            a{
+                padding-left: 5px;
+                text-decoration: none;
+                color: #1877f2;
+            }
+        }
+    }
+    
+    .user_signup_modal_block
+    {
+        background-color: #fff;
+        border-radius: 4px;
+        background-color: #fff;
+        @media screen and (max-width: 600px){
+            margin-top: 30px;
+            margin-bottom: 30px;
+        }
+
+        .user_signup_modal_form_top{
+            display: block;
+            margin-top: 20px;
+            .user_signup_modal_with_google{  
+                button{
+                    height: 44px;
+                    width: 100%;
+                    border-radius: 4px;
+                    padding: 6px;
+                    margin-bottom: 10px;
+                    background: #fff;
+                    border: 2px solid #ea4537;
+                    font-size: 16px;
+                    cursor: pointer;
+                    text-align: left;
+                    color: #ea4537;
+                    font-weight: 500;
+                    &:focus {outline:none;}
+                    i{
+                        padding-left: 10px;
+                        margin-right: 5px;
+                        color: #ea4537;
+                        font-size: 30px;
+                        position: relative;
+                        // top: -10px;
+                    }
+                    span{
+                        position: relative;
+                        top: -10px;
+                    }
+                    &:hover{
+                        background-color: #ea4537;
+                        color: #fff;
+                        i{
+                            color: #fff;
+                        }
+                    }
+                }
+            }
+    
+            .user_signup_modal_with_facebook{   
+                button{
+                    height: 44px;
+                    width: 100%;
+                    border-radius: 4px;
+                    padding: 6px;
+                    margin-bottom: 10px;
+                    margin-top: 10px;
+                    background: #fff;
+                    border: 2px solid #0c87ee;
+                    font-size: 16px;
+                    // border: none;
+                    cursor: pointer;
+                    text-align: left;
+                    // color: #fff;
+                    color: #0c87ee;
+                    font-weight: 500;
+                    &:focus {outline:none;}
+                    i{
+                        padding-left: 10px;
+                        margin-right: 5px;
+                        color: #0c87ee;
+                        font-size: 30px;
+                        position: relative;
+                        // top: -10px;
+                    }
+                    span{
+                        position: relative;
+                        top: -10px;
+                    }
+                    &:hover{
+                        background-color: #0c87ee;
+                        color: #fff;
+                        i{
+                            color: #fff;
+                        }
+                    }
+                }
+            }
+        }
+        
+        .user_signup_modal_or{
+            font-size: 16px;
+            color: #0f1419;
+            text-align: center;
+            padding-top: 10px;
+            a {
+                overflow: hidden;
+            }
+            
+            a:after {
+                content:"";
+                display: inline-block;
+                height: 0.5em;
+                vertical-align: bottom;
+                width: 45%;
+                margin-right: -45%;
+                margin-left: 10px;
+                border-top: 1px solid #dddddd;
+            }
+
+            a:before {
+                content:"";
+                display: inline-block;
+                height: 0.5em;
+                vertical-align: bottom;
+                width: 45%;
+                margin-left: -45%;
+                margin-right: 10px;
+                border-top: 1px solid #dddddd;
+            }
+        }
+
+        .user_signup_modal_form_bottom
+        {
+            padding-top: 10px;
+            .user_signup_modal_content{
+                clear: both;
+                .user_signup_modal_label{
+                    font-weight: 550;
+                    font-size: 16px;
+                    color: #0f1419;
+                    text-align: left;
+                }
+                .user_signup_modal_input{
+                    left: 0px;
+                    margin-top: 5px;
+                    margin-bottom: 20px;
+                    .form-control{
+                        width: 100%;
+                        height: 44px;
+                        border: 1px solid #dddddd;
+                        border-radius: 4px;
+                        &:focus{
+                            border: 2px solid #1877f2;
+                            border-radius: 4px;
+                        }
+                    }
+                }
+            }
+    
+            .user_signup_modal_submit{
+                padding-top: 10px;
+                .user_signup_modal_form_submit{
+                    width: 100%;
+                    height: 44px;
+                    border-radius: 4px;
+                    padding: 6px;
+                    background: #1877f2;
+                    font-size: 16px;
+                    border: none;
+                    cursor: pointer;
+                    text-align: center;
+                    color: #fff;
+                    
+                    &:hover{
+                        background-color: #1877f2;
+                    }
+                }
+            }
+        }
+        
+        .user_signup_modal_loginhere
+        {
+            text-align: center;
+            font-size: 16px;
+            margin-top: 20px;
+            font-weight: 550;
+            a{
+                padding-left: 5px;
+                text-decoration: none;
+                color: #1877f2;
+            }
+        }
+    }
+}

@@ -136,17 +136,21 @@
                                         <%end%>
                                     <%end%>
                                 <%else%>
-                                    <%= button_to new_user_session_path, form_class: "save_btn" do%>
+                                    <button type="button" data-toggle="modal" data-target="#buttonModalLoginCenter" class="save_btn">
                                         <i class="material-icons-outlined">turned_in_not</i> <span>Lưu Job</span>
-                                    <%end%>
+                                    </button>
                                 <%end%>
                             </div>
                         <%else%>
                             <div class="apply_button">
-                                <%= link_to '<button type="submit"><i class="material-icons-outlined">open_in_new</i>Nộp đơn</button>'.html_safe, new_user_session_path%>
+                                <button type="button" data-toggle="modal" data-target="#buttonModalLoginCenter">
+                                    <i class="material-icons-outlined">open_in_new</i>Nộp đơn
+                                </button>
                             </div>
                             <div class="save_button">
-                                <%= link_to '<button type="submit"><i class="material-icons-outlined">turned_in_not</i>Lưu Job</button>'.html_safe, new_user_session_path%>
+                                <button type="button" data-toggle="modal" data-target="#buttonModalLoginCenter">
+                                    <i class="material-icons-outlined">turned_in_not</i>Lưu Job
+                                </button>
                             </div>
                         <%end%>
                     </div>
@@ -219,7 +223,9 @@
                                 <%= link_to '<button type="submit"><i class="material-icons-outlined">open_in_new</i>Nộp đơn</button>'.html_safe, new_company_apply_job_path(@company.id, @company_job.id)%>
                             <%end%>
                         <%else%>
-                            <%= link_to '<button type="submit"><i class="material-icons-outlined">open_in_new</i>Nộp đơn</button>'.html_safe, new_user_session_path%>
+                            <button type="button" data-toggle="modal" data-target="#buttonModalLoginCenter">
+                                <i class="material-icons-outlined">open_in_new</i>Nộp đơn
+                            </button>
                         <%end%>
                     </div>
                 </div>
