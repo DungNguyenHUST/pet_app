@@ -1,6 +1,17 @@
 class CompanyJob < ApplicationRecord
 	extend FriendlyId
-	friendly_id :title, use: :slugged
+    def convert_slug
+        slug = title.downcase.to_s
+        slug.gsub! /[àáạãảâậấẫầẩăặắằẵẳ]/, "a"
+        slug.gsub! /[đ]/, "d"
+        slug.gsub! /[èéẹẽẻêềếệễể]/, "e"
+        slug.gsub! /[óòọõỏôốồộỗổơớợỡờở]/, "o"
+        slug.gsub! /[úùụũủưứựừữử]/, "u"
+        slug.gsub! /[íịìĩỉ]/, "i"
+        slug.gsub! /[ýỵỹỳỷ]/, "y"
+        return slug
+    end
+	friendly_id :convert_slug, use: :slugged
 	
     belongs_to :company, optional: true
     has_many :company_apply_jobs, dependent: :destroy
@@ -31,17 +42,4 @@ class CompanyJob < ApplicationRecord
 	def self.approved
 	  where(approved: :true)
 	end
-
-    def self.convert_slug(title)
-        n = title.downcase.to_s
-        n.gsub! /[àáạãâậấẫầăặắằẵ]/, "a"
-        n.gsub! /[đ]/, "d"
-        n.gsub! /[èéẹẽêềếệễ]/, "e"
-        n.gsub! /[óòọõôốồộỗơớợỡờ]/, "o"
-        n.gsub! /[úùụũưứựừữ]/, "u"
-        n.gsub! /[íịìĩ]/, "i"
-        n.gsub! /[ýỵỹỳ]/, "y"
-        return n
-    end
-
 end

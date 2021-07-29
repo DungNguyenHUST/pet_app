@@ -1,6 +1,17 @@
 class Post < ApplicationRecord
 	extend FriendlyId
-	friendly_id :title, use: :slugged
+    def convert_slug
+        slug = title.downcase.to_s
+        slug.gsub! /[àáạãảâậấẫầẩăặắằẵẳ]/, "a"
+        slug.gsub! /[đ]/, "d"
+        slug.gsub! /[èéẹẽẻêềếệễể]/, "e"
+        slug.gsub! /[óòọõỏôốồộỗổơớợỡờở]/, "o"
+        slug.gsub! /[úùụũủưứựừữử]/, "u"
+        slug.gsub! /[íịìĩỉ]/, "i"
+        slug.gsub! /[ýỵỹỳỷ]/, "y"
+        return slug
+    end
+	friendly_id :convert_slug, use: :slugged
     
   has_many :post_comments, dependent: :destroy
 
