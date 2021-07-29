@@ -25,7 +25,7 @@
 						<%end%>
 					<%end%>
 				</div>
-				<button class="user_avatar_small_moblie" onclick="openUserActionMenuMoblie()">
+				<button class="user_avatar_small_mobile" type="button" id="dropdownUserMenuButtonMobile" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
 					<%if current_user.avatar?%>
 						<div class="user_avatar_small_img">
 							<%= image_tag current_user.avatar.url %>
@@ -40,23 +40,17 @@
 						</div>
 					<%end%>
 				</button>
-
-				<div class="user_action_select_mobile" id ="user_action_menu_moblie">
-					<div class="user_action">
-						<%= button_to user_path(current_user), :method => :get do%>
-							<i class="material-icons-outlined">account_circle</i> <span>Thông tin cá nhân</span>
-						<%end%>
-					</div>
-					<div class="user_action">
-						<%= button_to user_path(current_user), :method => :get do%>
-							<i class="material-icons-outlined">settings</i> <span>Cài đặt tài khoản</span>
-						<%end%>
-					</div>
-					<div class="user_action">
-						<%= button_to destroy_user_session_path, method: :delete do%>
-							<i class="material-icons-outlined">logout</i> <span>Đăng xuất</span>
-						<%end%>
-					</div>
+				
+				<div class="dropdown-menu dropdown-menu-right" aria-labelledby="dropdownUserMenuButtonMobile">
+					<a class="dropdown-item" href="<%=user_path(current_user)%>">
+						<i class="material-icons-outlined">account_circle</i><span>Thông tin cá nhân</span>
+					</a>
+					<a class="dropdown-item" href="<%=edit_user_path(current_user)%>">
+						<i class="material-icons-outlined">settings</i><span>Cài đặt tài khoản</span>
+					</a>
+					<a class="dropdown-item" type="button" class="btn" data-toggle="modal" data-target="#buttonModalHeaderCenter">
+						<i class="material-icons-outlined">logout</i><span>Đăng xuất</span>
+					</a>
 				</div>
 			</div>
 		<%end%>
@@ -79,7 +73,7 @@
 						<%end%>
 					</div>
 
-					<button class="user_avatar_small" onclick="openUserActionMenu()">
+					<button class="user_avatar_small" type="button" id="dropdownUserMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
 						<%if current_user.avatar?%>
 							<div class="user_avatar_small_img">
 								<%= image_tag current_user.avatar.url %>
@@ -95,21 +89,37 @@
 						<%end%>
 					</button>
 
-					<div class="user_action_select" id ="user_action_menu">
-						<div class="user_action">
-							<%= button_to user_path(current_user), :method => :get do%>
-								<i class="material-icons-outlined">account_circle</i> <span>Thông tin cá nhân</span>
-							<%end%>
-						</div>
-						<div class="user_action">
-							<%= button_to user_path(current_user), :method => :get do%>
-								<i class="material-icons-outlined">settings</i> <span>Cài đặt tài khoản</span>
-							<%end%>
-						</div>
-						<div class="user_action">
-							<%= button_to destroy_user_session_path, method: :delete do%>
-								<i class="material-icons-outlined">logout</i> <span>Đăng xuất</span>
-							<%end%>
+					<div class="dropdown-menu dropdown-menu-right" aria-labelledby="dropdownUserMenuButton">
+						<a class="dropdown-item" href="<%=user_path(current_user)%>">
+							<i class="material-icons-outlined">account_circle</i><span>Thông tin cá nhân</span>
+						</a>
+						<div class="dropdown-divider"></div>
+						<a class="dropdown-item" href="<%=edit_user_path(current_user)%>">
+							<i class="material-icons-outlined">settings</i><span>Cài đặt tài khoản</span>
+						</a>
+						<div class="dropdown-divider"></div>
+						<a class="dropdown-item" type="button" class="btn" data-toggle="modal" data-target="#buttonModalHeaderCenter">
+							<i class="material-icons-outlined">logout</i><span>Đăng xuất</span>
+						</a>
+					</div>
+					<!-- Modal -->
+					<div class="modal fade" id="buttonModalHeaderCenter" tabindex="-1" role="dialog" aria-hidden="true">
+						<div class="modal-dialog modal-dialog-centered" role="document">
+							<div class="modal-content">
+								<div class="modal-header">
+									<h5 class="modal-title">Bạn có chắc chắn muốn đăng xuất?</h5>
+									<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+									<span aria-hidden="true">&times;</span>
+									</button>
+								</div>
+								<div class="modal-body">
+									<div class="nav_header_user_action">
+										<%= button_to destroy_user_session_path, method: :delete do%>
+											<i class="material-icons-outlined">logout</i><span>Có, đăng xuất ngay bây giờ</span>
+										<%end%>
+									</div>
+								</div>
+							</div>
 						</div>
 					</div>
 				</div>
