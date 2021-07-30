@@ -3,6 +3,7 @@
 class Users::RegistrationsController < Devise::RegistrationsController
     # before_action :configure_sign_up_params, only: [:create]
     # before_action :configure_account_update_params, only: [:update]
+    before_action :save_my_previous_url, only: [:new]
     before_action :configure_permitted_parameters, if: :devise_controller?
 
     # GET /resource/sign_up
@@ -52,11 +53,9 @@ class Users::RegistrationsController < Devise::RegistrationsController
     #   devise_parameter_sanitizer.permit(:account_update, keys: [:attribute])
     # end
 
-    # Redirect to current path after login
+    # The path used after sign up.
     def after_sign_up_path_for(resource_or_scope)
-        current_path = request.referrer
-
-        case current_path
+        case session[:my_previous_url]
         when new_user_session_path
         when user_session_path
         when destroy_user_session_path
@@ -75,11 +74,11 @@ class Users::RegistrationsController < Devise::RegistrationsController
         when new_user_path
         when edit_user_path(current_user)
         when user_path(current_user)
-            current_path = root_path
+            session[:my_previous_url] = root_path
         else
         end
 
-        stored_location_for(resource_or_scope) || current_path
+        stored_location_for(resource_or_scope) || session[:my_previous_url]
     end
 
     # The path used after sign up for inactive accounts.
@@ -91,5 +90,9 @@ class Users::RegistrationsController < Devise::RegistrationsController
         devise_parameter_sanitizer.permit(:sign_up) { |u|
             u.permit(:name, :email, :password, :password_confirmation, :phone, :address, :cover_letter , :cover_letter_attach, :avatar, :root, :admin, :user, :employer, :company, :company_id)
         }
+    end
+
+    def save_my_previous_url
+        session[:my_previous_url] = URI(request.referer || '').path
     end
 end
