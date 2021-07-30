@@ -115,14 +115,6 @@
         }
 
         .company_search_result{
-            .row{
-                padding-bottom: 10px;
-                .col-sm-3{
-                    float: left;
-                    display: block;
-                    padding: 10px;
-                }
-            }
         }
 
         .company_current_review{
@@ -140,19 +132,22 @@
                     color: #333;
                     font-weight: 555;
                     text-align: left;
-                    top: -18px;
+                    top: 15px;
                 }
                 i {
                     font-size: 24px;
                     margin: 1px;
                     color: #febb02;
                     position: relative;
-                    top: -15px;
+                    top: 18px;
                 }
             }
     
             .user_select_company{
                 padding: 10px;
+                @media screen and (max-width: 600px){
+                    margin-top: 20px;
+                }
                 .form-control{
                     height: 45px;
                     &:focus{
@@ -164,6 +159,9 @@
             
             .user_select_start{
                 padding: 10px;
+                @media screen and (max-width: 600px){
+                    padding-top: 0px;
+                }
                 button{
                     width: 100%;
                     border: none;
@@ -235,16 +233,8 @@
         .company_index_tab_content{
             padding-left: 0px;
             background-color: #fff;
-            padding-top: 10px;
+            padding-top: 20px;
             min-height: 600px;
-            .row{
-                padding-bottom: 10px;
-                .col-sm-3{
-                    float: left;
-                    display: block;
-                    padding: 10px;
-                }
-            }
         }
     
         .new-company button {
@@ -292,6 +282,7 @@
     border-radius: 4px;
     background-color: #fff;
     min-height: 300px;
+    margin-bottom: 20px;
     &:hover{
         box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
         background-color: #fff;
@@ -330,8 +321,8 @@
 
     .company_love_button{
         position: absolute;
-        right: 15px;
-        top: 18px;
+        right: 20px;
+        top: 10px;
         button{
             border: none;
             color: #666;
@@ -340,7 +331,7 @@
                 background-color: #fff;
                 border-radius: 30px;
                 font-size: 20px;
-                color: #dfe1e5;
+                color: #c8f7fa;
                 position: relative;
                 &:hover{
                     color: #1877f2;
@@ -720,7 +711,7 @@
                 position: relative;
                 top: -12px;
                 // right: 15px;
-                font-size: 12px;
+                font-size: 11px;
                 color: #999;
             }
         }
@@ -744,7 +735,7 @@
         .company_profile_tab{
             .company_profile_left
             {
-                margin-top: 30px;
+                margin-top: 20px;
                 @media screen and (max-width: 600px){
                     margin-top: 20px;
                 }
@@ -755,9 +746,6 @@
                     background-color: #fff;
                     border-radius: 4px;
                     padding: 15px;
-                    .col-sm-4{
-                        padding-top: 0px;
-                    }
                     .company_profile_block{
                         .company_profile_title
                         {
@@ -858,6 +846,7 @@
 
             .company_profile_right{
                 display: block;
+                margin-top: 20px;
                 .company_job_mini_block{
                     padding: 10px;
                     border: 1px solid #dfe1e5;
@@ -916,7 +905,7 @@
             width: 100%;
             .company_policy_overview_left
             {
-                margin-top: 30px;
+                margin-top: 20px;
                 @media screen and (max-width: 600px){
                     margin-top: 20px;
                 }
@@ -974,6 +963,7 @@
             }
 
             .company_policy_overview_block_right{
+                margin-top: 20px;
                 .company_policy_overview_block_right_overview{
                     padding: 15px;
                     display: block;
@@ -1079,7 +1069,7 @@
             display: block;
             height: auto;               
             .company_review_tab_des_left{
-                margin-top: 30px;
+                margin-top: 20px;
                 @media screen and (max-width: 600px){
                     margin-top: 20px;
                 }
@@ -1119,38 +1109,36 @@
                         .padding-custom-left{
                             padding-left: 5px;
                         }
-                    }
+                    } 
 
-                    .col-sm-6{  
-                        .review_detail_section{                          
-                            border: 1px solid #dfe1e5 !important;
-                            border-radius: 4px;
-                            padding: 10px;
-                            margin-bottom: 10px;
-                            min-height: 50px;
-                            &:hover{
-                                box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+                    .review_detail_section{                          
+                        border: 1px solid #dfe1e5 !important;
+                        border-radius: 4px;
+                        padding: 10px;
+                        margin-bottom: 10px;
+                        min-height: 50px;
+                        &:hover{
+                            box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+                        }
+                        .review_detail_label{
+                            font-size: 16px;
+                            float: left;
+                            a{
+                                position: relative;
+                                top: 3px;
+                                color: #444;
                             }
-                            .review_detail_label{
+                        }
+                        .review_detail_score{
+                            float: right;
+                            a{
                                 font-size: 16px;
-                                float: left;
-                                a{
-                                    position: relative;
-                                    top: 3px;
-                                    color: #444;
-                                }
                             }
-                            .review_detail_score{
-                                float: right;
-                                a{
-                                    font-size: 16px;
-                                }
-                                i{
-                                    color: #febb02;
-                                    position: relative;
-                                    top: 4px;
-                                    font-size: 20px;
-                                }
+                            i{
+                                color: #febb02;
+                                position: relative;
+                                top: 4px;
+                                font-size: 20px;
                             }
                         }
                     }
@@ -1231,6 +1219,7 @@
             }
 
             .company_review_tab_des_right{
+                margin-top: 20px;
                 .review_score_title_block{
                     @media screen and (max-width: 600px){
                         margin-top: 20px;
@@ -1395,7 +1384,7 @@
         .company_interview_tab{
             display: block;
             .company_interview_tab_des_left{
-                margin-top: 30px;
+                margin-top: 20px;
                 @media screen and (max-width: 600px){
                     margin-top: 20px;
                 }
@@ -1554,6 +1543,7 @@
             }
 
             .company_interview_tab_des_right{
+                margin-top: 20px;
                 @media screen and (max-width: 600px){
                     margin-top: 20px;
                 }
@@ -1658,7 +1648,7 @@
         {
             display: block;
             .company_job_tab_des_left{
-                margin-top: 30px;
+                margin-top: 20px;
                 @media screen and (max-width: 600px){
                     margin-top: 20px;
                 }
@@ -1684,6 +1674,7 @@
                 }
             }
             .company_job_tab_des_right{
+                margin-top: 20px;
                 .new_job{
                     width: 100%;
                     min-height: 100px;
@@ -1837,7 +1828,7 @@
             .company_image_tab_left{
                 border: 1px solid #dfe1e5;
                 border-radius: 4px;
-                margin-top: 30px; 
+                margin-top: 20px; 
                 background-color: #fff;
                 padding: 15px;
                 .company_image_upload{
@@ -1909,6 +1900,7 @@
                 }
             }
             .company_image_tab_right{
+                margin-top: 20px;
                 .company_image_mini_block{
                     padding: 10px;
                     border: 1px solid #dfe1e5;
@@ -1964,7 +1956,7 @@
 
         .company_question_tab{
             .company_question_left{
-                padding-top: 30px;
+                margin-top: 20px;
                 .company_question_index{
                     .company_question_new_button{
                         button{
@@ -2073,6 +2065,7 @@
                 }
             }
             .company_question_right{
+                margin-top: 20px;
                 .company_job_mini_block
                 {
                     padding: 10px;
@@ -2130,7 +2123,6 @@
 
         .company_salary_tab{
             .company_salary_left{
-                margin-top: 10px;
                 .salary_new_not_found{
                     font-size: 20px;
                     font-weight: 550;
@@ -2264,6 +2256,7 @@
                 }
             }
             .company_salary_right{
+                margin-top: 20px;
                 .company_job_mini_block{
                     padding: 10px;
                     border: 1px solid #dfe1e5;
@@ -2465,30 +2458,22 @@
             }
 
             .new_company_input_checkbox{
-                .col-sm-4{
-                    // border: 1px solid #dfe1e5;
-                    border-radius: 4px;
-                    padding-left: 10px;
-                    padding-right: 10px;
-                    padding-top: 0px;
-                    padding-bottom: 0px;
-                    .new_company_input_checkbox_block{
-                        min-width: 100%;
-                        .check_box_style{
-                            margin-top: 10px;
-                        }
-                        a{
-                            font-size: 15px;
-                            font-weight: 500px;
-                            border-radius: 4px;
-                            padding-left: 10px;
-                            padding-right: 10px;
-                            /*padding-top: 5px;*/
-                            /*padding-bottom: 5px;*/
-                            margin-right: 10px; 
-                            word-break: break-word;
-                            overflow-wrap: break-word; 
-                        }
+                .new_company_input_checkbox_block{
+                    min-width: 100%;
+                    .check_box_style{
+                        margin-top: 10px;
+                    }
+                    a{
+                        font-size: 15px;
+                        font-weight: 500px;
+                        border-radius: 4px;
+                        padding-left: 10px;
+                        padding-right: 10px;
+                        /*padding-top: 5px;*/
+                        /*padding-bottom: 5px;*/
+                        margin-right: 10px; 
+                        word-break: break-word;
+                        overflow-wrap: break-word; 
                     }
                 }
             }
