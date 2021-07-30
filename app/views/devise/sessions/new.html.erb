@@ -27,24 +27,20 @@
 
             <div class="user_signin_form_left">
                 <%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
-                    <div class="user_signin_content">
-                        <div class="user_signin_label">
-                            <a><%= f.label :email, "Địa chỉ email*", class: "user_signin_label_name" %></a>
-                        </div>
-
-                        <div class="user_signin_input">
-                            <%= f.email_field :email, autofocus: true, autocomplete: "email", :required => true, class: "form-control", placeholder: "Nhập địa chỉ email của bạn" %>
-                        </div>
+                    <div class="user_signin_label">
+                        <a><%= f.label :email, "Địa chỉ email*", class: "user_signin_label_name" %></a>
                     </div>
 
-                    <div class="user_signin_content">
-                        <div class="user_signin_label">
-                            <a><%= f.label :password, "Mật khẩu*", class: "user_signin_label" %></a>
-                        </div>
+                    <div class="user_signin_input">
+                        <%= f.email_field :email, autofocus: true, autocomplete: "email", :required => true, class: "form-control", placeholder: "Nhập địa chỉ email của bạn" %>
+                    </div>
+                    
+                    <div class="user_signin_label">
+                        <a><%= f.label :password, "Mật khẩu*", class: "user_signin_label_name" %></a>
+                    </div>
 
-                        <div class="user_signin_input">
-                            <%= f.password_field :password, autocomplete: "current-password", :required => true, class: "form-control", placeholder: "Nhập mật khẩu của bạn" %>
-                        </div>
+                    <div class="user_signin_input">
+                        <%= f.password_field :password, autocomplete: "current-password", :required => true, class: "form-control", placeholder: "Nhập mật khẩu của bạn" %>
                     </div>
 
                     <div class="user_signin_remember">

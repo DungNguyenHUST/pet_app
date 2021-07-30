@@ -104,47 +104,39 @@
                             <a>Tạo tài khoản admin - Admin only</a>
                         </div>
 
-                        <div class="user_add_new_content">
-                            <div class="user_add_new_label">
-                                <a><%= f.label :name, "Tên đăng nhập*", class: "user_add_new_label_name" %></a>
-                            </div>
+                        <div class="user_add_new_label">
+                            <a><%= f.label :name, "Tên đăng nhập*", class: "user_add_new_label_name" %></a>
+                        </div>
 
-                            <div class="user_add_new_input">
-                                <%= f.text_field :name, autofocus: true, :required => true, class: 'form-control', placeholder: "Nhập họ và tên của bạn" %>
-                            </div>
+                        <div class="user_add_new_input">
+                            <%= f.text_field :name, autofocus: true, :required => true, class: 'form-control', placeholder: "Nhập họ và tên của bạn" %>
                         </div>
                         
-                        <div class="user_add_new_content">
-                            <div class="user_add_new_label">
-                                <a><%= f.label :email, "Địa chỉ email*", class: "user_add_new_label_name" %></a>
-                            </div>
-
-                            <div class="user_add_new_input">
-                                <%= f.email_field :email, autocomplete: "email", :required => true, class: "form-control", placeholder: "Nhập email của bạn" %>
-                            </div>
+                        <div class="user_add_new_label">
+                            <a><%= f.label :email, "Địa chỉ email*", class: "user_add_new_label_name" %></a>
                         </div>
 
-                        <div class="user_add_new_content">
-                            <div class="user_add_new_label">
-                                <a><%= f.label :password, "Mật khẩu*", class: "user_add_new_label" %></a>
-                            </div>
+                        <div class="user_add_new_input">
+                            <%= f.email_field :email, autocomplete: "email", :required => true, class: "form-control", placeholder: "Nhập email của bạn" %>
+                        </div>
 
-                            <div class="user_add_new_input">
-                                <% if @minimum_password_length %>
+                        <div class="user_add_new_label">
+                            <a><%= f.label :password, "Mật khẩu*", class: "user_add_new_label_name" %></a>
+                        </div>
+
+                        <div class="user_add_new_input">
+                            <% if @minimum_password_length %>
                                 <em>(<%= @minimum_password_length %> characters minimum)</em>
-                                <% end %><br />
-                                <%= f.password_field :password, autocomplete: "new-password", :required => true, class: "form-control", placeholder: "Mật khẩu ít nhất 6 kí tự gồm chữ in hoa, chữ số và biểu tượng" %>
-                            </div>
+                            <% end %>
+                            <%= f.password_field :password, autocomplete: "new-password", :required => true, class: "form-control", placeholder: "Mật khẩu ít nhất 6 kí tự gồm chữ in hoa, chữ số và biểu tượng" %>
                         </div>
 
-                        <div class="user_add_new_content">
-                            <div class="user_add_new_label">
-                                <a><%= f.label :password_confirmation, "Xác nhận lại mật khẩu*", class: "user_add_new_label" %></a>
-                            </div>
+                        <div class="user_add_new_label">
+                            <a><%= f.label :password_confirmation, "Xác nhận lại mật khẩu*", class: "user_add_new_label_name" %></a>
+                        </div>
 
-                            <div class="user_add_new_input">
-                                <%= f.password_field :password_confirmation, autocomplete: "new-password", :required => true, class: "form-control", placeholder: "Nhập lại mật khẩu" %>
-                            </div>
+                        <div class="user_add_new_input">
+                            <%= f.password_field :password_confirmation, autocomplete: "new-password", :required => true, class: "form-control", placeholder: "Nhập lại mật khẩu" %>
                         </div>
 
                         <%=f.hidden_field :admin, :value => true, readonly: true%>
@@ -214,7 +206,7 @@
 
                         <div class="user_add_new_content">
                             <div class="user_add_new_label">
-                                <a><%= f.label :password, "Mật khẩu*", class: "user_add_new_label" %></a>
+                                <a><%= f.label :password, "Mật khẩu*", class: "user_add_new_label_name" %></a>
                             </div>
 
                             <div class="user_add_new_input">
@@ -227,7 +219,7 @@
 
                         <div class="user_add_new_content">
                             <div class="user_add_new_label">
-                                <a><%= f.label :password_confirmation, "Xác nhận lại mật khẩu*", class: "user_add_new_label" %></a>
+                                <a><%= f.label :password_confirmation, "Xác nhận lại mật khẩu*", class: "user_add_new_label_name" %></a>
                             </div>
 
                             <div class="user_add_new_input">
