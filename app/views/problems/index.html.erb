@@ -337,11 +337,13 @@
             </div>
             
             <div class="col-sm-4">
-                <div class="problem_top_block">
+                <div class="problem_block_right">
                     <div class="problem_top">
-                        <a><i class="material-icons-outlined">turned_in_not</i>Top câu hỏi hot</a>
+                        <div class="problem_top_label">
+                            <a><i class="material-icons-outlined">turned_in_not</i>Top câu hỏi hot</a>
+                        </div>
                         <div class="problem_short">
-                            <% @problems_newest.first(10).each do |problem| %>
+                            <% @problems_newest.first(20).each do |problem| %>
                                 <div class="problem_top_block">
                                     <div class="problem_id">
                                         <a><%=problem.id%></a>
@@ -353,7 +355,7 @@
                             <% end %>
                         </div>
                     </div>
-                    <div class="problem_problem">
+                    <div class="problem_company">
                         <a><i class="material-icons-outlined">corporate_fare</i>Câu hỏi theo công ty</a>
                         <div class="problem_short">
                             <% @problems_all.first(10).each do |problem| %>

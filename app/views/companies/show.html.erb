@@ -438,28 +438,13 @@
                         <div class="col-sm-4">
                             <div class="company_profile_right">
                                 <%if(@company.company_jobs.count > 0)%>
-                                    <div class="company_job_mini_block">
+                                    <div class="company_job_refer_block">
                                         <div class="company_job_label">
                                             <a>Tin tuyển dụng</a>
                                         </div>
                                         <div class="company_job_des">
                                             <%@company.company_jobs.order('created_at DESC').first(10).each do |company_job|%>
-                                                <div class="company_job_block_mini">
-                                                    <div class="company_avatar">
-                                                        <%if @company.avatar?%>
-                                                            <img><%= link_to (image_tag(@company.avatar.thumb.url)), image_path(url_for(@company.avatar.thumb.url)), rel: "gallery" , :href => company_path(@company)%>
-                                                        <%end%>
-                                                    </div>
-
-                                                    <div class="company_job_info">
-                                                        <div class="company_job_title">
-                                                            <%= link_to (company_job.title), company_company_job_path(@company, company_job) %>
-                                                        </div>
-                                                        <div class="company_job_date">
-                                                            <a><%= time_ago_in_words(company_job.created_at) %></a>
-                                                        </div>
-                                                    </div>
-                                                </div>
+                                                <%= render :partial => 'company_jobs/company_job_mini', :locals => {:company_job => company_job} %>
                                             <%end%>
                                         </div>
                                     </div>
@@ -581,28 +566,13 @@
 
                                 <div class='company_policy_overview_block_right_job'>
                                     <%if(@company.company_jobs.count > 0)%>
-                                        <div class="company_job_mini_block">
+                                        <div class="company_job_refer_block">
                                             <div class="company_job_label">
                                                 <a>Tin tuyển dụng</a>
                                             </div>
                                             <div class="company_job_des">
                                                 <%@company.company_jobs.order('created_at DESC').first(10).each do |company_job|%>
-                                                    <div class="company_job_block_mini">
-                                                        <div class="company_avatar">
-                                                            <%if @company.avatar?%>
-                                                                <img><%= link_to (image_tag(@company.avatar.thumb.url)), image_path(url_for(@company.avatar.thumb.url)), rel: "gallery" , :href => company_path(@company)%>
-                                                            <%end%>
-                                                        </div>
-
-                                                        <div class="company_job_info">
-                                                            <div class="company_job_title">
-                                                                <%= link_to (company_job.title), company_company_job_path(@company, company_job) %>
-                                                            </div>
-                                                            <div class="company_job_date">
-                                                                <a><%= time_ago_in_words(company_job.created_at) %></a>
-                                                            </div>
-                                                        </div>
-                                                    </div>
+                                                    <%= render :partial => 'company_jobs/company_job_mini', :locals => {:company_job => company_job} %>
                                                 <%end%>
                                             </div>
                                         </div>
@@ -727,101 +697,15 @@
                                             </div>
                                         </div>
                                     </div>
-                                    <div class="review_score_detail">
-                                        <div class="review_score_overview">
-                                            <div class="review_content">
-                                                <div class="review_point">
-                                                    <strong><%=cal_rating_review_work_env_score(@company).to_f.round(1)%></strong>
-                                                </div>
-                                                <div class="review_score_star">
-                                                    <i class="material-icons-outlined checked">radio_button_unchecked</i>
-                                                </div>
-                                                <div class="review_score_label">
-                                                    <a> Company culture </a>
-                                                </div>
-                                            </div>
-                                        </div>
-
-                                        <div class="review_score_overview">
-                                            <div class="review_content">
-                                                <div class="review_point">
-                                                    <strong><%=cal_rating_review_salary_score(@company).to_f.round(1)%></strong>
-                                                </div>
-                                                <div class="review_score_star">
-                                                    <i class="material-icons-outlined checked">radio_button_unchecked</i>
-                                                </div>
-                                                <div class="review_score_label">
-                                                    <a> Salary and bonus </a>
-                                                </div>
-                                            </div>
-                                        </div>
-
-                                        <div class="review_score_overview">
-                                            <div class="review_content">
-                                                <div class="review_point">
-                                                    <strong><%=cal_rating_review_ot_score(@company).to_f.round(1)%></strong>
-                                                </div>
-                                                <div class="review_score_star">
-                                                    <i class="material-icons-outlined checked">radio_button_unchecked</i>
-                                                </div>
-                                                <div class="review_score_label">
-                                                    <a> Overtime - OT </a>
-                                                </div>
-                                            </div>
-                                        </div>
-
-                                        <div class="review_score_overview">
-                                            <div class="review_content">
-                                                <div class="review_point">
-                                                    <strong><%=cal_rating_review_manager_score(@company).to_f.round(1)%></strong>
-                                                </div>
-                                                <div class="review_score_star">
-                                                    <i class="material-icons-outlined checked">radio_button_unchecked</i>
-                                                </div>
-                                                <div class="review_score_label">
-                                                    <a> Level of management </a>
-                                                </div>
-                                            </div>
-                                        </div>
-
-                                        <div class="review_score_overview">
-                                            <div class="review_content">
-                                                <div class="review_point">
-                                                    <strong><%=cal_rating_review_career_score(@company).to_f.round(1)%></strong>
-                                                </div>
-                                                <div class="review_score_star">
-                                                    <i class="material-icons-outlined checked">radio_button_unchecked</i>
-                                                </div>
-                                                <div class="review_score_label">
-                                                    <a> Promotion opportunity </a>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
                                 <%end%>
                                 <%if @company.company_jobs.count >0%>
-                                    <div class="company_job_mini_block">
+                                    <div class="company_job_refer_block">
                                         <div class="company_job_label">
                                             <a>Tin tuyển dụng</a>
                                         </div>
                                         <div class="company_job_des">
                                             <%@company.company_jobs.order('created_at DESC').first(10).each do |company_job|%>
-                                                <div class="company_job_block_mini">
-                                                    <div class="company_avatar">
-                                                        <%if @company.avatar?%>
-                                                            <img><%= link_to (image_tag(@company.avatar.thumb.url)), image_path(url_for(@company.avatar.thumb.url)), rel: "gallery" , :href => company_path(@company)%>
-                                                        <%end%>
-                                                    </div>
-
-                                                    <div class="company_job_info">
-                                                        <div class="company_job_title">
-                                                            <%= link_to (company_job.title), company_company_job_path(@company, company_job) %>
-                                                        </div>
-                                                        <div class="company_job_date">
-                                                            <a><%= time_ago_in_words(company_job.created_at) %></a>
-                                                        </div>
-                                                    </div>
-                                                </div>
+                                                <%= render :partial => 'company_jobs/company_job_mini', :locals => {:company_job => company_job} %>
                                             <%end%>
                                         </div>
                                     </div>
@@ -886,35 +770,20 @@
                                     <div class="interview_score_title_block">
                                         <div class="interview_new_button_side">
                                             <div class="interview_new_button">
-                                                <%= link_to '<button type="submit"> <i class="material-icons-outlined">edit</i> <span> Chia sẻ kinh nghiệm ngay </span> </button>'.html_safe, new_company_company_interview_path(@company) %>
+                                                <%= link_to '<button type="submit"> <i class="material-icons-outlined">edit</i> <span> Chia sẻ phỏng vấn ngay </span> </button>'.html_safe, new_company_company_interview_path(@company) %>
                                             </div>
                                         </div>
                                     </div> 
                                 <%end%>
                                 
                                 <%if @company.company_jobs.count >0%>
-                                    <div class="company_interview_job_mini_block">
+                                    <div class="company_job_refer_block">
                                         <div class="company_job_label">
                                             <a>Tin tuyển dụng</a>
                                         </div>
                                         <div class="company_job_des">
                                             <%@company.company_jobs.order('created_at DESC').first(10).each do |company_job|%>
-                                                <div class="company_job_block_mini">
-                                                    <div class="company_avatar">
-                                                        <%if @company.avatar?%>
-                                                            <img><%= link_to (image_tag(@company.avatar.thumb.url)), image_path(url_for(@company.avatar.thumb.url)), rel: "gallery" , :href => company_path(@company)%>
-                                                        <%end%>
-                                                    </div>
-
-                                                    <div class="company_job_info">
-                                                        <div class="company_job_title">
-                                                            <%= link_to (company_job.title), company_company_job_path(@company, company_job) %>
-                                                        </div>
-                                                        <div class="company_job_date">
-                                                            <a><%= time_ago_in_words(company_job.created_at) %></a>
-                                                        </div>
-                                                    </div>
-                                                </div>
+                                                <%= render :partial => 'company_jobs/company_job_mini', :locals => {:company_job => company_job} %>
                                             <%end%>
                                         </div>
                                     </div>
@@ -932,8 +801,8 @@
                             <div class="company_job_tab_des_left">
                                 <div class="company_job_tab_heading">
                                     <div class="user_comment_heading_job">
-                                        <%if @company.company_jobs.count > 0%>
-                                            <a><%=@company.company_jobs.count%> việc làm tại <%=@company.name%> </a> 
+                                        <%if @company.company_jobs.approved.count > 0%>
+                                            <a><%=@company.company_jobs.approved.count%> việc làm tại <%=@company.name%> </a> 
                                         <%else%>
                                             <a> Rất tiếc, <%=@company.name%> hiện tại chưa có việc làm đang tuyển dụng </a>
                                         <%end%>
@@ -1067,28 +936,13 @@
                         <div class="col-sm-4">
                             <div class="company_salary_right"> 
                                 <%if @company.company_jobs.count >0%>
-                                    <div class="company_job_mini_block">
+                                    <div class="company_job_refer_block">
                                         <div class="company_job_label">
                                             <a>Tin tuyển dụng</a>
                                         </div>
                                         <div class="company_job_des">
                                             <%@company.company_jobs.order('created_at DESC').first(10).each do |company_job|%>
-                                                <div class="company_job_block_mini">
-                                                    <div class="company_avatar">
-                                                        <%if @company.avatar?%>
-                                                            <img><%= link_to (image_tag(@company.avatar.thumb.url)), image_path(url_for(@company.avatar.thumb.url)), rel: "gallery" , :href => company_path(@company)%>
-                                                        <%end%>
-                                                    </div>
-
-                                                    <div class="company_job_info">
-                                                        <div class="company_job_title">
-                                                            <%= link_to (company_job.title), company_company_job_path(@company, company_job) %>
-                                                        </div>
-                                                        <div class="company_job_date">
-                                                            <a><%= time_ago_in_words(company_job.created_at) %></a>
-                                                        </div>
-                                                    </div>
-                                                </div>
+                                                <%= render :partial => 'company_jobs/company_job_mini', :locals => {:company_job => company_job} %>
                                             <%end%>
                                         </div>
                                     </div>
@@ -1107,7 +961,7 @@
                                 <%if @company.company_questions.count > 0%>  
                                     <div class="company_question_index">    
                                         <div class="company_question_new_button">                     
-                                            <%= link_to '<button type="submit"> <i class="material-icons-outlined">edit</i> <span> Tạo câu hỏi mới</span> </button>'.html_safe, new_company_company_question_path(@company) %>
+                                            <%= link_to '<button type="submit"> <i class="material-icons-outlined">edit</i> <span> Thêm câu hỏi mới</span> </button>'.html_safe, new_company_company_question_path(@company) %>
                                         </div>
                                         <%= render @company_questions%>
                                         <%= paginate @company_questions, window: 1, outer_window: 1%>
@@ -1131,28 +985,13 @@
                         <div class="col-sm-4">
                             <div class="company_question_right"> 
                                 <%if @company.company_jobs.count >0%>
-                                    <div class="company_job_mini_block">
+                                    <div class="company_job_refer_block">
                                         <div class="company_job_label">
                                             <a>Tin tuyển dụng</a>
                                         </div>
                                         <div class="company_job_des">
                                             <%@company.company_jobs.order('created_at DESC').first(10).each do |company_job|%>
-                                                <div class="company_job_block_mini">
-                                                    <div class="company_avatar">
-                                                        <%if @company.avatar?%>
-                                                            <img><%= link_to (image_tag(@company.avatar.thumb.url)), image_path(url_for(@company.avatar.thumb.url)), rel: "gallery" , :href => company_path(@company)%>
-                                                        <%end%>
-                                                    </div>
-
-                                                    <div class="company_job_info">
-                                                        <div class="company_job_title">
-                                                            <%= link_to (company_job.title), company_company_job_path(@company, company_job) %>
-                                                        </div>
-                                                        <div class="company_job_date">
-                                                            <a><%= time_ago_in_words(company_job.created_at) %></a>
-                                                        </div>
-                                                    </div>
-                                                </div>
+                                                <%= render :partial => 'company_jobs/company_job_mini', :locals => {:company_job => company_job} %>
                                             <%end%>
                                         </div>
                                     </div>
@@ -1218,22 +1057,7 @@
                                         </div>
                                         <div class="company_job_des">
                                             <%@company.company_jobs.order('created_at DESC').first(10).each do |company_job|%>
-                                                <div class="company_job_block_mini">
-                                                    <div class="company_avatar">
-                                                        <%if @company.avatar?%>
-                                                            <img><%= link_to (image_tag(@company.avatar.thumb.url)), image_path(url_for(@company.avatar.thumb.url)), rel: "gallery" , :href => company_path(@company)%>
-                                                        <%end%>
-                                                    </div>
-
-                                                    <div class="company_job_info">
-                                                        <div class="company_job_title">
-                                                            <%= link_to (company_job.title), company_company_job_path(@company, company_job) %>
-                                                        </div>
-                                                        <div class="company_job_date">
-                                                            <a><%= time_ago_in_words(company_job.created_at) %></a>
-                                                        </div>
-                                                    </div>
-                                                </div>
+                                                <%= render :partial => 'company_jobs/company_job_mini', :locals => {:company_job => company_job} %>
                                             <%end%>
                                         </div>
                                     </div>

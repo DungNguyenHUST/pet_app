@@ -91,8 +91,8 @@
                         </div>
                         <% @posts.first(10).each do |post| %>
                             <%if post.approved?%>
-                                <div class="post_container">
-                                    <div class="post_left">
+                                <div class="post_mini_container">
+                                    <div class="post_mini_left">
                                         <%if post.wall_picture?%>
                                             <%= link_to (image_tag(post.wall_picture.medium.url)), image_path(url_for(post.wall_picture.medium.url)), rel: "gallery" , :href => post_path(post)%>
                                         <%else%>
@@ -100,13 +100,13 @@
                                         <%end%>
                                     </div>
 
-                                    <div class="post_right">
-                                        <div class="post_header">
+                                    <div class="post_mini_right">
+                                        <div class="post_mini_header">
                                             <strong><%= link_to (post.title), post_path(post) %></strong>
                                         </div>
 
-                                        <div class="post_info">
-                                            <div class="post_date">
+                                        <div class="post_mini_info">
+                                            <div class="post_mini_date">
                                                 <span><%=time_ago_in_words(post.created_at)%></span>
                                             </div>
                                         </div>

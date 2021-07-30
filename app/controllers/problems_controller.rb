@@ -67,7 +67,7 @@ class ProblemsController < ApplicationController
         end
 
         @problem_submition = []
-        @problem_solutions.each do |problem_solution|
+        @problem.problem_solutions.each do |problem_solution|
             if current_user.present?
                 if problem_solution.user_id == current_user.id
                     @problem_submition.push(problem_solution)

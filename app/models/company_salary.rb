@@ -1,7 +1,7 @@
 class CompanySalary < ApplicationRecord
     extend FriendlyId
     def convert_slug
-        slug = slary_job.downcase.to_s
+        slug = salary_job.downcase.to_s
         slug.gsub! /[àáạãảâậấẫầẩăặắằẵẳ]/, "a"
         slug.gsub! /[đ]/, "d"
         slug.gsub! /[èéẹẽẻêềếệễể]/, "e"
