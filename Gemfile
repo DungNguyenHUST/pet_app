@@ -120,3 +120,6 @@ gem 'kaminari'
 gem 'httparty'
 gem 'nokogiri'
 gem 'csv'
+
+# admin
+gem 'rails_admin'

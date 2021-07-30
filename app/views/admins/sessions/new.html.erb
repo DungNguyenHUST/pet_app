@@ -1,0 +1,41 @@
+<div class='admin_signin_container'>
+    <div class="container">
+        <div class='admin_signin_block'>
+            <div class="admin_signin_label">
+                <div class="admin_signin_title">
+                    <a>Admin Log In</a>
+                </div>
+            </div>
+
+            <div class="admin_signin_form_left">
+                <%= render "admins/shared/error_messages", resource: resource %>
+                <%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
+                    <div class="admin_signin_content">
+                        <div class="admin_signin_label">
+                            <a><%= f.label :email, "Địa chỉ email*", class: "admin_signin_label_name" %></a>
+                        </div>
+
+                        <div class="admin_signin_input">
+                            <%= f.email_field :email, autofocus: true, autocomplete: "email", :required => true, class: "form-control", placeholder: "Nhập địa chỉ email của bạn" %>
+                        </div>
+                    </div>
+
+                    <div class="admin_signin_content">
+                        <div class="admin_signin_label">
+                            <a><%= f.label :password, "Mật khẩu*", class: "admin_signin_label" %></a>
+                        </div>
+
+                        <div class="admin_signin_input">
+                            <%= f.password_field :password, autocomplete: "current-password", :required => true, class: "form-control", placeholder: "Nhập mật khẩu của bạn" %>
+                        </div>
+                    </div>
+
+                    <div class="admin_signin_submit">
+                        <%= f.submit "Đăng nhập", class: "admin_signin_form_submit" %>
+                    </div>
+                <%end%>
+                <%= link_to "Tạo tài khoản", new_admin_registration_path%>
+            </div>
+        </div>
+    </div>
+</div>
