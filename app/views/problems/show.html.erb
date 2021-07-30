@@ -179,7 +179,7 @@
 												<%if problem.difficult.to_i == @problem.difficult.to_i%>
 													<tr>
 														<td><div class="table_td_no"><%= problem.id %></td>
-														<td><div class="table_td_title"><%= link_to problem.title, problem_path(problem) %></td>
+														<td><div class="table_td_title"><a><%= link_to problem.title, problem_path(problem) %></a></td>
 														<td>
 															<%if(problem.difficult.to_i == 1 || problem.difficult.to_s == 'Dễ') %>
 																<% table_td_difficult = "easy" %>

@@ -128,7 +128,7 @@
                                         <% @problems_all.each do |problem| %>
                                             <tr>
                                                 <td><div class="table_td_no"><%= problem.id %></td>
-                                                <td><div class="table_td_title"><%= link_to problem.title, problem_path(problem) %></td>
+                                                <td><div class="table_td_title"><a><%= link_to problem.title, problem_path(problem) %></a></td>
                                                 <td>
                                                     <%if(problem.difficult.to_i == 1 || problem.difficult.to_s == 'Dễ') %>
                                                         <% table_td_difficult = "easy" %>
@@ -163,7 +163,7 @@
                                         <% @problem_math.each do |problem| %>
                                             <tr>
                                                 <td><div class="table_td_no"><%= link_to problem.id, problem_path(problem) %></td>
-                                                <td><div class="table_td_title"><%= link_to problem.title, problem_path(problem) %></td>
+                                                <td><div class="table_td_title"><a><%= link_to problem.title, problem_path(problem) %></a></td>
                                                 <td>
                                                     <%if(problem.difficult.to_i == 1 || problem.difficult.to_s == 'Dễ') %>
                                                         <% table_td_difficult = "easy" %>
@@ -198,7 +198,7 @@
                                         <% @problem_eq_test.each do |problem| %>
                                             <tr>
                                                 <td><div class="table_td_no"><%= link_to problem.id, problem_path(problem) %></td>
-                                                <td><div class="table_td_title"><%= link_to problem.title, problem_path(problem) %></td>
+                                                <td><div class="table_td_title"><a><%= link_to problem.title, problem_path(problem) %></a></td>
                                                 <td>
                                                     <%if(problem.difficult.to_i == 1 || problem.difficult.to_s == 'Dễ') %>
                                                         <% table_td_difficult = "easy" %>
@@ -233,7 +233,7 @@
                                         <% @problem_iq_test.each do |problem| %>
                                             <tr>
                                                 <td><div class="table_td_no"><%= link_to problem.id, problem_path(problem) %></td>
-                                                <td><div class="table_td_title"><%= link_to problem.title, problem_path(problem) %></td>
+                                                <td><div class="table_td_title"><a><%= link_to problem.title, problem_path(problem) %></a></td>
                                                 <td>
                                                     <%if(problem.difficult.to_i == 1 || problem.difficult.to_s == 'Dễ') %>
                                                         <% table_td_difficult = "easy" %>
@@ -268,7 +268,7 @@
                                         <% @problem_interview.each do |problem| %>
                                             <tr>
                                                 <td><div class="table_td_no"><%= link_to problem.id, problem_path(problem) %></td>
-                                                <td><div class="table_td_title"><%= link_to problem.title, problem_path(problem) %></td>
+                                                <td><div class="table_td_title"><a><%= link_to problem.title, problem_path(problem) %></a></td>
                                                 <td>
                                                     <%if(problem.difficult.to_i == 1 || problem.difficult.to_s == 'Dễ') %>
                                                         <% table_td_difficult = "easy" %>
@@ -303,7 +303,7 @@
                                         <% @problem_other.each do |problem| %>
                                             <tr>
                                                 <td><div class="table_td_no"><%= link_to problem.id, problem_path(problem) %></td>
-                                                <td><div class="table_td_title"><%= link_to problem.title, problem_path(problem) %></td>
+                                                <td><div class="table_td_title"><a><%= link_to problem.title, problem_path(problem) %></a></td>
                                                 <td>
                                                     <%if(problem.difficult.to_i == 1 || problem.difficult.to_s == 'Dễ') %>
                                                         <% table_td_difficult = "easy" %>
