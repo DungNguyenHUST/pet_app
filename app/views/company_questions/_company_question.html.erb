@@ -1,4 +1,4 @@
-<div class="user_question_block" id="company_question_block_<%=company_question.id%>">
+<div class="user_question_block">
     <div class="user_question_intro">
         <div class="user_question_intro_left">
             <div class="user_avatar_small">
@@ -42,16 +42,33 @@
                     <%end%>
                 </div>
 
-                <div class="question_info">
-                    <div class="question_toolbar">
-                        <div class="question_reply_block">
-                            <%if user_signed_in?%>
-                                <button class="reply_btn" onclick="myFunctionReplyquestion(<%=company_question.id%>)"><i class="material-icons-outlined">chat_bubble_outline</i> <span><%= company_question.company_reply_questions.count%></span> <a>Trả lời</a> </button>
-                            <%else%>
-                                <button type="button" data-toggle="modal" data-target="#buttonModalLoginCenter" class="reply_btn">
-                                    <i class="material-icons-outlined">chat_bubble_outline</i> <span><%= company_question.company_reply_questions.count%></span> <a>Trả lời</a>
-                                </button>
-                            <%end%>
+                <div class="question_toolbar">
+                    <div class="question_reply_block">
+                        <%if user_signed_in?%>
+                            <button class="reply_btn" onclick="myFunctionReplyquestion(<%=company_question.id%>)"><i class="material-icons-outlined">chat_bubble_outline</i> <span><%= company_question.company_reply_questions.count%></span> <a>Trả lời</a> </button>
+                        <%else%>
+                            <button type="button" data-toggle="modal" data-target="#buttonModalLoginCenter" class="reply_btn">
+                                <i class="material-icons-outlined">chat_bubble_outline</i> <span><%= company_question.company_reply_questions.count%></span> <a>Trả lời</a>
+                            </button>
+                        <%end%>
+                    </div>
+                    <div class="question_report_block">
+                        <%if user_signed_in?%>
+                            <button class="report_btn" type="button" class="btn" data-toggle="modal" data-target="#buttonModalquestionCommentIndexCenter">
+                                <i class="material-icons-outlined">flag</i> <a>Báo xấu</a>
+                            </button>
+                        <%else%>
+                            <button class="report_btn" type="button" class="btn" data-toggle="modal" data-target="#buttonModalLoginCenter">
+                                <i class="material-icons-outlined">flag</i> <a>Báo xấu</a>
+                            </button>
+                        <%end%>
+                        <!-- Modal -->
+                        <div class="modal fade" id="buttonModalquestionCommentIndexCenter" tabindex="-1" role="dialog" aria-hidden="true">
+                            <div class="modal-dialog modal-dialog-centered" role="document">
+                                <div class="modal-content">
+                                    <%= render :partial => 'reports/form', locals: {target_id: company_question.id, target_type: "CompanyQuestion"} %>
+                                </div>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -89,11 +106,7 @@
         }
     </script>
 
-    <div class="reply_question_content">
-        <%if company_question.company_reply_questions.count > 0%>
-            <div class="question_reply">
-                <%= render company_question.company_reply_questions %>
-            </div>
-        <%end%>
+    <div class="reply_question_content" id="reply_question_block_<%=company_question.id%>">
+        <%= render company_question.company_reply_questions %>
     </div>
 </div>

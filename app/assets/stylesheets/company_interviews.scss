@@ -9,142 +9,15 @@
     border: 1px solid #dfe1e5;
     background-color: #fff;
     border-radius: 4px;
-    padding: 15px;
-    .company_interview_left
-    {
-        display: block;
-        position: relative;
-        float: left;
-        .user_avatar_small {
-            display: block;
-            text-align: center;
-            margin-bottom: 5px;
-            margin-top: 3px;
-            max-width: 50px;
-            .user_avatar_small_text{
-                padding-bottom: 8px;
-                .user_name_label{
-                    border-radius: 50%;
-                    background-color: #dfe1e5;
-                    padding: 7px;
-                    padding-left: 12px;
-                    padding-right: 12px;
-                    position: relative;
-                    top: 3px;
-                    color: #fee;
-                }
-            }
-            .checked_0{
-                background-color: #888;
-            }
-            .checked_1{
-                .user_name_label{
-                    background-color: #7a20a1;
-                }
-            }
-            .checked_2{
-                .user_name_label{
-                    background-color: #778f99;
-                }
-            }
-            .checked_3{
-                .user_name_label{
-                    background-color: #00579c;
-                }
-            }
-            .checked_4{
-                .user_name_label{
-                    background-color: #33691e;
-                }
-            }
-            .checked_5{
-                .user_name_label{
-                    background-color: #c2175b;
-                }
-            }
-            .checked_6{
-                .user_name_label{
-                    background-color: #00887a;
-                }
-            }
-            .checked_7{
-                .user_name_label{
-                    background-color: #aa47bc;
-                }
-            }
-            .checked_8{
-                .user_name_label{
-                    background-color: #f24e1b;
-                }
-            }
-            .checked_9{
-                .user_name_label{
-                    background-color: #689f39;
-                }
-            }
-            .user_avatar_small_img{
-                text-align: left;
-                img{
-                    border: 1px solid #dfe1e5;
-                    width: 35px;
-                    height: 35px;
-                    border-radius: 50%;
-                    object-fit: cover;
-                }
-            }
-            .user_avatar_small_default{
-                width: 33px;
-                padding: 6px;
-                padding-left: 12px;
-                padding-right: 12px;
-                position: relative;
-                font-size: 14px;
-                border-radius: 50%;
-                color: #ffe;
-                text-align: center;
-            }
-        }
-        .user_info{
-            padding-top: 5px;
-            max-width: 40px;
-            text-align: left;
-            color: #555;
-            .user_name{
-                font-weight: 550;
-                a{
-                    word-break: break-word;
-                    font-size: 11px;
-                    text-decoration: none !important;overflow: hidden;
-                    text-overflow: ellipsis;
-                    display: -webkit-box;
-                    -webkit-line-clamp: 1; /* number of lines to show */
-                    -webkit-box-orient: vertical;
-                }
-            }
-            .user_time_interview{
-                // padding-top: 5px;
-                a{
-                    word-break: break-word;
-                    font-size: 10px;
-                    text-decoration: none !important;overflow: hidden;
-                    text-overflow: ellipsis;
-                    display: -webkit-box;
-                    -webkit-line-clamp: 1; /* number of lines to show */
-                    -webkit-box-orient: vertical;
-                }
-            }
-        }
-    }
+    padding: 10px 20px 20px 20px;
     
-    .company_interview_right
+    .company_interview_container
     {
         width: auto;
         height: auto;
-        margin-left: 50px;
         background-color: #fff;
-        border-radius: 4px;
         .company_interview_title{
-            font-size: 18px;
+            font-size: 20px;
             font-weight: 550;
             color: #2e3030;
         }
@@ -156,8 +29,9 @@
         }
 
         .interview_satisfied_overview{
-            margin-top: 5px;
+            margin-top: 15px;
             border-top: 1px solid #eeeddd;
+            padding-top: 5px;
             .interview_content
             {
                 margin-top: 10px;
@@ -225,6 +99,7 @@
                     padding: 3px;
                     padding-left: 5px;
                     padding-right: 5px;
+                    font-size: 14px;
                     i {
                         font-size: 16px;
                         margin-right: 3px;
@@ -250,60 +125,21 @@
             font-size: 14px;   
         }
 
-        .interview_info{
-            margin-top: 10px;
-            border-top: 1px solid #eeeddd;
-            // padding-bottom: 10px;
+        .interview_toolbar {
+            margin-top: 20px;
+            border-top: 1px solid #dfe1e5;
             padding-top: 10px;
-            .interview_toolbar {    
-                .interview_reply_block{
-                    display: block;
-                    @media screen and (max-width: 600px){
-                        width: 33%;
-                    }
-                    width: 120px;
-                    float: left;
-                    .reply_btn
-                    {
-                        border: none;
-                        background-color: #fff;
-                        color: #555;
-                        font-size: 13px;
-                        &:focus {outline:none;}
+            .interview_reply_block{
+                display: inline-block;
+                width: 25%;
+                .reply_btn
+                {
+                    border: none;
+                    background-color: #fff;
+                    color: #555;
+                    font-size: 13px;
+                    &:focus {outline:none;}
 
-                        button{
-                            border: none;
-                            background-color: #fff;
-                            color: #555;
-                            font-size: 13px;
-                            &:focus {outline:none;}
-                        } 
-                        a{
-                            font-size: 13px;
-                            color: #666;
-                            @media screen and (max-width: 600px){
-                                display: none;
-                            }
-                        }
-
-                        i{
-                            font-size: 18px;
-                            position: relative;
-                            top: 5px;
-                        }
-                        span{
-                            font-size: 13px;
-                            color: #666;
-                        }
-                    }
-                }
-
-                .interview_like_block{
-                    width: 120px;
-                    @media screen and (max-width: 600px){
-                        width: 33%;
-                    }
-                    float: left;
                     button{
                         border: none;
                         background-color: #fff;
@@ -311,52 +147,145 @@
                         font-size: 13px;
                         &:focus {outline:none;}
                     } 
-                    .like_btn_highlight
-                    {
-                        a{
-                            font-size: 13px;
-                            color: #666;
-                            @media screen and (max-width: 600px){
-                                display: none;
-                            }
-                        }
-
-                        i{
-                            font-size: 18px;
-                            position: relative;
-                            top: 3px;
-                            color: #1877f2;
-                        }
-                        span{
-                            font-size: 13px;
-                            color: #666;
+                    a{
+                        font-size: 13px;
+                        color: #666;
+                        @media screen and (max-width: 600px){
+                            display: none;
                         }
                     }
 
-                    .like_btn
-                    {
-                        a{
-                            font-size: 13px;
-                            color: #666;
-                            @media screen and (max-width: 600px){
-                                display: none;
-                            }
-                        }
-
-                        i{
-                            font-size: 18px;
-                            position: relative;
-                            top: 3px;
-                            color: #666;
-                        }
-                        span{
-                            font-size: 13px;
-                            color: #666;
-                        }
+                    i{
+                        font-size: 22px;
+                        position: relative;
+                        top: 5px;
+                    }
+                    span{
+                        font-size: 13px;
+                        color: #666;
                     }
                 }
-                
-                .interview_dislike_block{
+            }
+
+            .interview_like_block{
+                display: inline-block;
+                width: 25%;
+                button{
+                    border: none;
+                    background-color: #fff;
+                    color: #555;
+                    font-size: 13px;
+                    &:focus {outline:none;}
+                } 
+                .like_btn_highlight
+                {
+                    a{
+                        font-size: 13px;
+                        color: #666;
+                        @media screen and (max-width: 600px){
+                            display: none;
+                        }
+                    }
+
+                    i{
+                        font-size: 20px;
+                        position: relative;
+                        top: 3px;
+                        color: #1877f2;
+                    }
+                    span{
+                        font-size: 13px;
+                        color: #666;
+                    }
+                }
+
+                .like_btn
+                {
+                    a{
+                        font-size: 13px;
+                        color: #666;
+                        @media screen and (max-width: 600px){
+                            display: none;
+                        }
+                    }
+
+                    i{
+                        font-size: 20px;
+                        position: relative;
+                        top: 3px;
+                        color: #666;
+                    }
+                    span{
+                        font-size: 13px;
+                        color: #666;
+                    }
+                }
+            }
+            
+            .interview_dislike_block{
+                display: inline-block;
+                width: 25%;
+                button{
+                    border: none;
+                    background-color: #fff;
+                    color: #555;
+                    font-size: 13px;
+                    &:focus {outline:none;}
+                } 
+                .dislike_btn_highlight
+                {
+                    a{
+                        font-size: 13px;
+                        color: #666;
+                        @media screen and (max-width: 600px){
+                            display: none;
+                        }
+                    }
+
+                    i{
+                        font-size: 20px;
+                        position: relative;
+                        top: 5px;
+                        color: #1877f2;
+                    }
+                    span{
+                        font-size: 13px;
+                        color: #666;
+                    }
+                }
+
+                .dislike_btn
+                {
+                    a{
+                        font-size: 13px;
+                        color: #666;
+                        @media screen and (max-width: 600px){
+                            display: none;
+                        }
+                    }
+
+                    i{
+                        font-size: 20px;
+                        position: relative;
+                        top: 5px;
+                        color: #666;
+                    }
+                    span{
+                        font-size: 13px;
+                        color: #666;
+                    }
+                }
+            }
+
+            .interview_report_block{
+                display: inline-block;
+                .report_btn{
+                    border: none;
+                    background-color: #fff;
+                    color: #555;
+                    font-size: 13px;
+                    &:focus {outline:none;}
+    
                     button{
                         border: none;
                         background-color: #fff;
@@ -364,48 +293,22 @@
                         font-size: 13px;
                         &:focus {outline:none;}
                     } 
-                    .dislike_btn_highlight
-                    {
-                        a{
-                            font-size: 13px;
-                            color: #666;
-                            @media screen and (max-width: 600px){
-                                display: none;
-                            }
-                        }
-
-                        i{
-                            font-size: 18px;
-                            position: relative;
-                            top: 5px;
-                            color: #1877f2;
-                        }
-                        span{
-                            font-size: 13px;
-                            color: #666;
+                    a{
+                        font-size: 13px;
+                        color: #666;
+                        @media screen and (max-width: 600px){
+                            display: none;
                         }
                     }
     
-                    .dislike_btn
-                    {
-                        a{
-                            font-size: 13px;
-                            color: #666;
-                            @media screen and (max-width: 600px){
-                                display: none;
-                            }
-                        }
-
-                        i{
-                            font-size: 18px;
-                            position: relative;
-                            top: 5px;
-                            color: #666;
-                        }
-                        span{
-                            font-size: 13px;
-                            color: #666;
-                        }
+                    i{
+                        font-size: 24px;
+                        position: relative;
+                        top: 5px;
+                    }
+                    span{
+                        font-size: 13px;
+                        color: #666;
                     }
                 }
             }
@@ -415,9 +318,9 @@
     .new_reply_interview_form_internal{
         margin-bottom: 10px;
         margin-top: 15px;
-        padding-left: 50px;
         display: none;
         .new_reply_interview_content{
+            margin-bottom: 15px;
             .new_reply_interview_input_interview{
                 width: 80%;
                 float: left;
@@ -446,6 +349,7 @@
         .new_reply_interview_submit{
             float: right;
             width: 19%;
+            margin-bottom: 15px;
             .new_reply_interview_form_submit{
                 width: 100%;
                 height: 55px;

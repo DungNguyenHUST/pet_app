@@ -1,35 +1,5 @@
-<div class="company_interview_block" id="company_interview_block_<%=company_interview.id%>">
-    <div class="company_interview_left">
-        <div class="user_avatar_small">
-            <%owner_user = find_owner_user(company_interview)%>
-            <%if !company_interview.privacy? && owner_user.present?%>
-                <%if owner_user.avatar?%>
-                    <div class="user_avatar_small_img">
-                        <%= link_to (image_tag(owner_user.avatar.thumb.url)), image_path(url_for(owner_user.avatar.thumb.url)), rel: "gallery" , :href => user_path(owner_user)%>
-                    </div>
-                <%else%>
-                    <div class="user_avatar_small_text checked_<%=find_user_color(owner_user.name)%>">
-                        <a><%= link_to owner_user.name[0], user_path(owner_user), class: "user_name_label"%></a>
-                    </div>
-                <%end%>
-            <%else%>
-                <div class="user_avatar_small_default checked_0">
-                    <a>A</a>
-                </div>
-            <%end%>
-        </div>
-
-        <div class="user_info">
-            <div class="user_name">
-                <a><%=company_interview.user_name%></a>
-            </div>
-            <div class="user_time_interview">
-                <a><%= time_ago_in_words(company_interview.created_at) %></a>
-            </div>
-        </div>
-    </div>
-
-    <div class="company_interview_right">
+<div class="company_interview_block">
+    <div class="company_interview_container">
         <div class="company_interview_title">
             <a><%= company_interview.position %></a>
         </div>
@@ -37,6 +7,7 @@
         <div class="user_interview_status">
             <a>Phỏng vấn qua <%= company_interview.get_interview %> · </a>
             <a><%= company_interview.process %> vòng phỏng vấn</a>
+            <a> · <%= company_interview.created_at.strftime("%B %d, %Y") %></a>
         </div>
 
         <div class="interview_satisfied_overview">
@@ -86,54 +57,72 @@
             <a><%= company_interview.content.html_safe %></a>
         </div>
     
-        <div class="interview_info">
-            <div class="interview_toolbar">
-                <div class="interview_reply_block">
-                    <%if user_signed_in?%>
-                        <button class="reply_btn" onclick="myFunctionReplyInterview(<%=company_interview.id%>)"><i class="material-icons-outlined">chat_bubble_outline</i> <span><%= company_interview.company_reply_interviews.count%></span> <a>Trả lời</a> </button>
-                    <%else%>
-                        <button type="button" data-toggle="modal" data-target="#buttonModalLoginCenter" class="reply_btn">
-                            <i class="material-icons-outlined">chat_bubble_outline</i> <span><%= company_interview.company_reply_interviews.count%></span> <a>Trả lời</a>
-                        </button>
-                    <%end%>
-                </div>
+        <div class="interview_toolbar">
+            <div class="interview_reply_block">
+                <%if user_signed_in?%>
+                    <button class="reply_btn" onclick="myFunctionReplyInterview(<%=company_interview.id%>)"><i class="material-icons-outlined">chat_bubble_outline</i> <span><%= company_interview.company_reply_interviews.count%></span> <a>Trả lời</a> </button>
+                <%else%>
+                    <button type="button" data-toggle="modal" data-target="#buttonModalLoginCenter" class="reply_btn">
+                        <i class="material-icons-outlined">chat_bubble_outline</i> <span><%= company_interview.company_reply_interviews.count%></span> <a>Trả lời</a>
+                    </button>
+                <%end%>
+            </div>
 
-                <div class="interview_like_block" id="like_interview_<%=company_interview.id%>">
-                    <%if user_signed_in?%>
-                        <% pre_like = company_interview.company_like_interviews.find { |like| like.user_id == current_user.id} %>
-                        <% if pre_like %>  
-                            <%= button_to company_company_interview_company_like_interview_path(@company, company_interview, pre_like), method: :delete, remote: true, form_class: "like_btn_highlight" do %>
-                                <i class="material-icons">thumb_up</i> <span><%= company_interview.company_like_interviews.count%></span> <a>Thích</a>
-                            <%end%>
-                        <%else%>
-                            <%= button_to company_company_interview_company_like_interviews_path(@company, company_interview, pre_like), method: :post, remote: true, form_class: "like_btn" do %>
-                                <i class="material-icons-outlined">thumb_up</i> <span><%= company_interview.company_like_interviews.count%></span> <a>Thích</a>
-                            <%end%>
+            <div class="interview_like_block" id="like_interview_<%=company_interview.id%>">
+                <%if user_signed_in?%>
+                    <% pre_like = company_interview.company_like_interviews.find { |like| like.user_id == current_user.id} %>
+                    <% if pre_like %>  
+                        <%= button_to company_company_interview_company_like_interview_path(@company, company_interview, pre_like), method: :delete, remote: true, form_class: "like_btn_highlight" do %>
+                            <i class="material-icons">thumb_up</i> <span><%= company_interview.company_like_interviews.count%></span> <a>Thích</a>
                         <%end%>
                     <%else%>
-                        <button type="button" data-toggle="modal" data-target="#buttonModalLoginCenter" class="like_btn">
+                        <%= button_to company_company_interview_company_like_interviews_path(@company, company_interview, pre_like), method: :post, remote: true, form_class: "like_btn" do %>
                             <i class="material-icons-outlined">thumb_up</i> <span><%= company_interview.company_like_interviews.count%></span> <a>Thích</a>
-                        </button>
-                    <%end%>
-                </div>
-
-                <div class="interview_dislike_block" id="dislike_interview_<%=company_interview.id%>">
-                    <%if user_signed_in?%>
-                        <% pre_dislike = company_interview.company_dislike_interviews.find { |dislike| dislike.user_id == current_user.id} %>
-                        <% if pre_dislike %>
-                            <%= button_to company_company_interview_company_dislike_interview_path(@company, company_interview, pre_dislike), :method => :delete, remote: true, form_class: "dislike_btn_highlight" do%>
-                                <i class="material-icons">thumb_down</i> <span><%= company_interview.company_dislike_interviews.count%></span> <a>Không thích</a>
-                            <%end%> 
-                        <%else%>
-                            <%= button_to company_company_interview_company_dislike_interviews_path(@company, company_interview), method: :post, remote: true, form_class: "dislike_btn" do%>
-                                <i class="material-icons-outlined">thumb_down</i> <span><%= company_interview.company_dislike_interviews.count%></span> <a>Không thích</a>
-                            <%end%> 
                         <%end%>
-                    <%else%>
-                        <button type="button" data-toggle="modal" data-target="#buttonModalLoginCenter" class="dislike_btn">
-                            <i class="material-icons-outlined">thumb_down</i> <span><%= company_interview.company_dislike_interviews.count%></span> <a>Không thích</a>
-                        </button>
                     <%end%>
+                <%else%>
+                    <button type="button" data-toggle="modal" data-target="#buttonModalLoginCenter" class="like_btn">
+                        <i class="material-icons-outlined">thumb_up</i> <span><%= company_interview.company_like_interviews.count%></span> <a>Thích</a>
+                    </button>
+                <%end%>
+            </div>
+
+            <div class="interview_dislike_block" id="dislike_interview_<%=company_interview.id%>">
+                <%if user_signed_in?%>
+                    <% pre_dislike = company_interview.company_dislike_interviews.find { |dislike| dislike.user_id == current_user.id} %>
+                    <% if pre_dislike %>
+                        <%= button_to company_company_interview_company_dislike_interview_path(@company, company_interview, pre_dislike), :method => :delete, remote: true, form_class: "dislike_btn_highlight" do%>
+                            <i class="material-icons">thumb_down</i> <span><%= company_interview.company_dislike_interviews.count%></span> <a>Không thích</a>
+                        <%end%> 
+                    <%else%>
+                        <%= button_to company_company_interview_company_dislike_interviews_path(@company, company_interview), method: :post, remote: true, form_class: "dislike_btn" do%>
+                            <i class="material-icons-outlined">thumb_down</i> <span><%= company_interview.company_dislike_interviews.count%></span> <a>Không thích</a>
+                        <%end%> 
+                    <%end%>
+                <%else%>
+                    <button type="button" data-toggle="modal" data-target="#buttonModalLoginCenter" class="dislike_btn">
+                        <i class="material-icons-outlined">thumb_down</i> <span><%= company_interview.company_dislike_interviews.count%></span> <a>Không thích</a>
+                    </button>
+                <%end%>
+            </div>
+
+            <div class="interview_report_block">
+                <%if user_signed_in?%>
+                    <button class="report_btn" type="button" class="btn" data-toggle="modal" data-target="#buttonModalinterviewCommentIndexCenter">
+                        <i class="material-icons-outlined">flag</i> <a>Báo xấu</a>
+                    </button>
+                <%else%>
+                    <button class="report_btn" type="button" class="btn" data-toggle="modal" data-target="#buttonModalLoginCenter">
+                        <i class="material-icons-outlined">flag</i> <a>Báo xấu</a>
+                    </button>
+                <%end%>
+                <!-- Modal -->
+                <div class="modal fade" id="buttonModalinterviewCommentIndexCenter" tabindex="-1" role="dialog" aria-hidden="true">
+                    <div class="modal-dialog modal-dialog-centered" role="document">
+                        <div class="modal-content">
+                            <%= render :partial => 'reports/form', locals: {target_id: company_interview.id, target_type: "CompanyInterview"} %>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
@@ -169,11 +158,7 @@
         }
     </script>
 
-    <div class="reply_interview_content">
-        <%if company_interview.company_reply_interviews.count > 0%>
-            <div class="interview_reply">
-                <%= render company_interview.company_reply_interviews %>
-            </div>
-        <%end%>
+    <div class="reply_interview_content" id="reply_interview_block_<%=company_interview.id%>">
+        <%= render company_interview.company_reply_interviews %>
     </div>
 </div>
