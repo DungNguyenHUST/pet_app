@@ -33,15 +33,40 @@
         <div class="user_review_intro_right">
             <div class="user_review_score_star">
                 <div class="review_point">
+                    <a><%=cal_rating_review_score(company_review).to_f.round(1)%> </a>
                 </div>
                 <div class="review_score_star">
-                    <a><%=cal_rating_review_score(company_review).to_f.round(1)%> </a>
                     <%cal_rating_review_score(company_review).to_i.times do%>
                         <i class="material-icons checked">circle</i>
                     <%end%>
                     <%(5 - cal_rating_review_score(company_review).to_i).to_i.times do%>
                         <i class="material-icons checked_out">radio_button_unchecked</i>
                     <%end%>
+                </div>
+            </div>
+
+            <button class="user_review_option_btn" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                <i class="material-icons-outlined">more_horiz</i>
+            </button>
+            <div class="dropdown-menu dropdown-menu-right" aria-labelledby="dropdownMenuButton">
+                <div class="dropdown-item">
+                    <%if user_signed_in?%>
+                        <button type="button" class="btn" data-toggle="modal" data-target="#buttonModalReviewCommentIndexCenter">
+                            Báo xấu
+                        </button>
+                    <%else%>
+                        <button type="button" class="btn" data-toggle="modal" data-target="#buttonModalLoginCenter">
+                            Báo xấu
+                        </button>
+                    <%end%>
+                </div>
+            </div>
+            <!-- Modal -->
+            <div class="modal fade" id="buttonModalReviewCommentIndexCenter" tabindex="-1" role="dialog" aria-hidden="true">
+                <div class="modal-dialog modal-dialog-centered" role="document">
+                    <div class="modal-content">
+                        <%= render :partial => 'reports/form', locals: {target_id: company_review.id, target_type: "CompanyReview"} %>
+                    </div>
                 </div>
             </div>
 
