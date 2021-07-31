@@ -138,25 +138,26 @@
 											<%=render @problem_solutions_best%>
 										</div>
 									<%end%>
-
-									<div class="problem_solution_normal">
-										<%if @problem.problem_solutions.count > 0%>
+									<%if @problem.problem_solutions.count > 0%>
+										<div class="problem_solution_index">
 											<div class="problem_solution_title">
 												<a><%=@problem.problem_solutions.count%> câu trả lời</a>
 											</div>
-											<%= render @problem_solutions %>
-											<%= paginate @problem_solutions, window: 1, outer_window: 1%>
-										<%else%>
-											<div class="problem_new_not_found_block">
-												<div class="problem_new_not_found_icon">
-													<i class="material-icons">lightbulb</i>
-												</div>
-												<div class="problem_new_not_found">
-													<span>Rất tiếc, hiện tại chưa có câu trả lời nào, hãy trở thành người đầu tiên đưa ra câu trả lời cho câu hỏi này</span>
-												</div>
+											<div class="problem_solution_render">
+												<%= render @problem_solutions %>
+												<%= paginate @problem_solutions, window: 1, outer_window: 1%>
 											</div>
-										<%end%>
-									</div>
+										</div>
+									<%else%>
+										<div class="problem_new_not_found_block">
+											<div class="problem_new_not_found_icon">
+												<i class="material-icons">lightbulb</i>
+											</div>
+											<div class="problem_new_not_found">
+												<span>Rất tiếc, hiện tại chưa có câu trả lời nào, hãy trở thành người đầu tiên đưa ra câu trả lời cho câu hỏi này</span>
+											</div>
+										</div>
+									<%end%>
 								</div>
 							<%end%>
 

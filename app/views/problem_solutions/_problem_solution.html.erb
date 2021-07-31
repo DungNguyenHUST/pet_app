@@ -1,4 +1,4 @@
-<div class="user_problem_solution_block" id="problem_solution_block_<%=problem_solution.id%>">
+<div class="user_problem_solution_block">
     <div class="user_problem_solution_left">
         <div class="user_avatar_small">
             <%owner_user = find_owner_user(problem_solution)%>
@@ -64,6 +64,9 @@
     </div>
 
     <div class="user_problem_solution_cotent">
+        <div class="user_problem_solution_time">
+            <a><span><%= problem_solution.user_name %></span> · <%= problem_solution.created_at.strftime("%B %d, %Y") %></a>
+        </div>
         <div class="user_problem_solution_title">
             <a><%= problem_solution.title %></a>
         </div>
@@ -72,16 +75,31 @@
             <a><%= problem_solution.content.html_safe %></a>
         </div>
 
-        <div class="problem_solution_info">
-            <div class="problem_solution_info">
-                <div class="problem_solution_toolbar">
-                    <a><%= problem_solution.problem_reply_solutions.count%></a>
-                    <button class="reply_btn" onclick="myFunctionReplyproblem_solution(<%=problem_solution.id%>)"><i class="material-icons-outlined">chat_bubble_outline</i> Trả lời </button>
-                </div>
+        <div class="problem_solution_toolbar">
+            <div class="problem_solution_reply_block">
+                <button class="reply_btn" onclick="myFunctionReplyproblem_solution(<%=problem_solution.id%>)">
+                     <i class="material-icons-outlined">chat_bubble_outline</i> <span><%= problem_solution.problem_reply_solutions.count%></span> <a>Trả lời</a>
+                </button>
             </div>
 
-            <div class="user_problem_solution_time">
-                <a><%= problem_solution.user_name %> · <%= time_ago_in_words(problem_solution.created_at) %></a>
+            <div class="problem_solution_report_block">
+                <%if user_signed_in?%>
+                    <button class="report_btn" type="button" class="btn" data-toggle="modal" data-target="#buttonModalProblemSolutionIndexCenter">
+                        <i class="material-icons-outlined">flag</i> <a>Báo xấu</a>
+                    </button>
+                <%else%>
+                    <button class="report_btn" type="button" class="btn" data-toggle="modal" data-target="#buttonModalLoginCenter">
+                        <i class="material-icons-outlined">flag</i> <a>Báo xấu</a>
+                    </button>
+                <%end%>
+                <!-- Modal -->
+                <div class="modal fade" id="buttonModalProblemSolutionIndexCenter" tabindex="-1" role="dialog" aria-hidden="true">
+                    <div class="modal-dialog modal-dialog-centered" role="document">
+                        <div class="modal-content">
+                            <%= render :partial => 'reports/form', locals: {target_id: problem_solution.id, target_type: "ProblemSolution"} %>
+                        </div>
+                    </div>
+                </div>
             </div>
         </div>
     </div>
@@ -113,11 +131,7 @@
         }
     </script>
 
-    <div class="reply_problem_solution_content">
-        <%if problem_solution.problem_reply_solutions.count > 0%>
-            <div class="problem_solution_reply" id="mydivShowHide">
-                <%= render problem_solution.problem_reply_solutions %>
-            </div>
-        <%end%>
+    <div class="reply_problem_solution_content" id="problem_reply_solution_block_<%=problem_solution.id%>">
+        <%= render problem_solution.problem_reply_solutions %>
     </div>
 </div>

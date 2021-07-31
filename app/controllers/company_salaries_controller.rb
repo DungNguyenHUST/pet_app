@@ -15,7 +15,7 @@ class CompanySalariesController < ApplicationController
 
         @company_salary = @company.company_salaries.build(company_salary_param)
 
-        if user_signed_in? && !@company_salary.privacy
+        if user_signed_in?
             @company_salary.user_name = current_user.name
             @company_salary.user_id = current_user.id
         else

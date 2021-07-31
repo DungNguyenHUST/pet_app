@@ -74,12 +74,11 @@
     height: 100%;
     margin-bottom: 10px;
     background-color: #fff;
-    // border-top: 1px solid #dfe1e5;
     padding-top: 10px;
     .user_problem_solution_left
     {
         width: auto;
-        height: auto;
+        height: 100%;
         display: block;
         position: relative;
         float: left;
@@ -255,10 +254,22 @@
         margin-left: 55px;
         background-color: #f8f9fa;
         border-radius: 4px;
-        padding: 10px;
-        min-height: 140px;
+        padding: 15px;
+        
+        .user_problem_solution_time{
+            display: block;
+            font-size: 14px;
+            color: #6b6c6d;
+            position: relative;
+            span{
+                font-size: 14px;
+                font-weight: 600;
+                color: #333;
+            }
+        }
 
         .user_problem_solution_title{
+            padding-top: 10px;
             font-size: 18px;
             font-weight: 600;
             color: #333;
@@ -267,38 +278,84 @@
         .user_problem_solution_body {
             font-size: 14px;
             display: block;
+            word-break: break-word;
         }
-        .problem_solution_info{
-            display: block;
-            margin-top: 20px;
-            padding-bottom: 15px;
-            .problem_solution_toolbar{
-                display: block;
-                float: left;
+
+        .problem_solution_toolbar{
+            .problem_solution_reply_block{
+                display: inline-block;
+                width: 20%;
                 font-size: 13px;
-                button{
+                padding-bottom: 10px;
+                .reply_btn
+                {
                     border: none;
                     background-color: #f8f9fa;
+                    color: #555;
+                    font-size: 13px;
                     &:focus {outline:none;}
+
+                    button{
+                        border: none;
+                        background-color: #f8f9fa;
+                        color: #555;
+                        font-size: 13px;
+                        &:focus {outline:none;}
+                    } 
+                    a{
+                        font-size: 13px;
+                        color: #666;
+                        @media screen and (max-width: 600px){
+                            display: none;
+                        }
+                    }
+
                     i{
-                        font-size: 18px;
+                        font-size: 22px;
                         position: relative;
                         top: 5px;
-                        color: #6b6c6d;
                     }
-                    &:focus{
-                        outline: none;
+                    span{
+                        font-size: 13px;
+                        color: #666;
                     }
                 }
             }
 
-            .user_problem_solution_time{
-                float: right;
-                display: block;
-                font-size: 13px;
-                color: #6b6c6d;
-                position: relative;
-                top: -8px;
+            .problem_solution_report_block{
+                display: inline-block;
+                .report_btn{
+                    border: none;
+                    background-color: #f8f9fa;
+                    color: #555;
+                    font-size: 13px;
+                    &:focus {outline:none;}
+    
+                    button{
+                        border: none;
+                        background-color: #fff;
+                        color: #555;
+                        font-size: 13px;
+                        &:focus {outline:none;}
+                    } 
+                    a{
+                        font-size: 13px;
+                        color: #666;
+                        @media screen and (max-width: 600px){
+                            display: none;
+                        }
+                    }
+    
+                    i{
+                        font-size: 24px;
+                        position: relative;
+                        top: 5px;
+                    }
+                    span{
+                        font-size: 13px;
+                        color: #666;
+                    }
+                }
             }
         }
     }

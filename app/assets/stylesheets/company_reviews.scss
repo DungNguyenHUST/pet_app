@@ -451,67 +451,6 @@
                 color: #333;
                 text-align: left;
             }
-            .new_review_input_switch{
-                .new_review_input_switch_button{
-                    @mixin switch($res: 'sm') {
-                        $index: 1rem;
-                        $mainVal: 1rem;
-                      
-                        @if $res == 'md' {
-                            $index: 2rem;
-                            $mainVal: 1.5rem;
-                        } @else if $res == 'lg' {
-                            $index: 3rem;
-                            $mainVal: 2rem;
-                        } @else if $res == 'xl' {
-                            $index: 4rem;
-                            $mainVal: 2.5rem;
-                        }
-                    
-                        .custom-control-label {
-                            // padding-top: 2px;
-                            padding-left: #{$index};
-                            font-weight: 600;
-                            font-size: 16px;
-                        }
-                    
-                        .custom-control-label::before {
-                            height: $mainVal;
-                            width: calc(#{$index} + 0.75rem);
-                            border-radius: $mainVal * 2;
-                        }
-                    
-                        .custom-control-label::after {
-                            width: calc(#{$mainVal} - 4px);
-                            height: calc(#{$mainVal} - 4px);
-                            border-radius: calc(#{$index} - (#{$mainVal} / 2));
-                        }
-                    
-                        .custom-control-input:checked ~ .custom-control-label::after {
-                            transform: translateX(calc(#{$mainVal} - 0.25rem));
-                        }
-                    }
-                    
-                    // YOU CAN PUT ALL RESOLUTION HERE
-                    // sm - DEFAULT, md, lg, xl
-                    .custom-switch.custom-switch-sm {
-                        @include switch();
-                    }
-                    
-                    .custom-switch.custom-switch-md {
-                        @include switch('md');
-                    }
-                    
-                    .custom-switch.custom-switch-lg {
-                        @include switch('lg');
-                    }
-                }
-                .new_review_input_note{
-                    padding-left: 4.3rem;
-                    padding-top: 5px;
-                    font-size: 12px;
-                }
-            }
 
             .new_review_input{
                 width: 100%;

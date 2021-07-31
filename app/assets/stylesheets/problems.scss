@@ -858,10 +858,10 @@
 
             .problem_solution_tab{
                 .problem_solution_best{
-                    margin-bottom: 10px;
+                    margin-bottom: 20px;
                     display: block;
                     min-height: 300px;
-                    border-radius: 4px;
+                    padding-bottom: 20px;
                     border-bottom: 2px dashed #999;
                     margin-bottom: 20px;
                     .problem_solution_best_title{
@@ -879,7 +879,7 @@
                         }
                     }
                 }
-                .problem_solution_normal{
+                .problem_solution_index{
                     .problem_solution_title{
                         a{
                             font-size: 20px;
@@ -890,86 +890,86 @@
                         }
                         padding-bottom: 15px;
                     }
-                    .problem_new_not_found_block{
-                        background-color: #f8f9fa;
-                        padding: 30px;
+                }
+                .problem_new_not_found_block{
+                    background-color: #f8f9fa;
+                    padding: 30px;
+                    border-radius: 4px;
+                    .problem_new_not_found_icon{
+                        i{
+                            font-size: 30px;
+                            color: #666;
+                        }
+                        text-align: center;
+                    }
+                    .problem_new_not_found{
+                        text-align: center;
+                        font-size: 16px;
+                        font-weight: 500;
+                        padding-bottom: 10px;
+                        color: #444;
+                    }
+                    .problem_new_not_found_action{
+                        span{
+                            font-size: 20px;
+                            font-weight: 550;
+                        }
+                        width: 100%;
+                        min-height: 100px;
+                        margin-top: 20px;
+                        background-color: #ebfeff;
+                        border: 1px solid #ebfeff;
                         border-radius: 4px;
-                        .problem_new_not_found_icon{
-                            i{
-                                font-size: 30px;
-                                color: #666;
+                        .problem_new_label{
+                            font-size: 20px;
+                            float: left;
+                            @media screen and (max-width: 600px){
+                                float: none;
                             }
-                            text-align: center;
+                            padding-top:30px;
+                            padding-left: 20px;    
+                            font-weight: 600;
                         }
-                        .problem_new_not_found{
-                            text-align: center;
-                            font-size: 16px;
-                            font-weight: 500;
-                            padding-bottom: 10px;
-                            color: #444;
-                        }
-                        .problem_new_not_found_action{
-                            span{
-                                font-size: 20px;
-                                font-weight: 550;
+                        .problem_new_button{
+                            float: right;
+                            padding: 15px;
+                            margin-top: 10px;
+                            @media screen and (max-width: 600px){
+                                float: none;
+                                padding-bottom: 30px;
                             }
-                            width: 100%;
-                            min-height: 100px;
-                            margin-top: 20px;
-                            background-color: #ebfeff;
-                            border: 1px solid #ebfeff;
-                            border-radius: 4px;
-                            .problem_new_label{
-                                font-size: 20px;
-                                float: left;
+                            button{
+                                height: 50px;
                                 @media screen and (max-width: 600px){
-                                    float: none;
+                                    width: 100%;
                                 }
-                                padding-top:30px;
-                                padding-left: 20px;    
-                                font-weight: 600;
-                            }
-                            .problem_new_button{
-                                float: right;
-                                padding: 15px;
-                                margin-top: 10px;
-                                @media screen and (max-width: 600px){
-                                    float: none;
-                                    padding-bottom: 30px;
+                                width: 250px;
+                                margin-right: 10px;
+                                background: #1877f2;
+                                font-size: 16px;
+                                border: none;
+                                cursor: pointer;
+                                text-align: center;
+                                color: #fff;
+                                border-radius: 4px;
+                                i{
+                                    position: relative;
+                                    top: 2px;
+                                    font-size: 20px;
+                                    margin-right: 3px;
                                 }
-                                button{
-                                    height: 50px;
-                                    @media screen and (max-width: 600px){
-                                        width: 100%;
-                                    }
-                                    width: 250px;
-                                    margin-right: 10px;
-                                    background: #1877f2;
+        
+                                span{
                                     font-size: 16px;
-                                    border: none;
-                                    cursor: pointer;
-                                    text-align: center;
-                                    color: #fff;
-                                    border-radius: 4px;
-                                    i{
-                                        position: relative;
-                                        top: 2px;
-                                        font-size: 20px;
-                                        margin-right: 3px;
-                                    }
-            
-                                    span{
-                                        font-size: 16px;
-                                        position: relative;
-                                        top: -2px;
-                                    }
-                                    
-                                    &:hover{
-                                        background-color: #369;
-                                        color: #fff;
-                                    }
-                                    &:focus {outline:none;}
+                                    position: relative;
+                                    top: -2px;
                                 }
+                                
+                                &:hover{
+                                    background-color: #369;
+                                    color: #fff;
+                                }
+                                &:focus {outline:none;}
                             }
                         }
                     }
