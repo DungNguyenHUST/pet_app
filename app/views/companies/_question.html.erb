@@ -1,0 +1,52 @@
+
+<div class="company_question_tab">
+    <div class="row">
+        <div class="col-sm-8">
+            <div class="company_question_left"> 
+                <%if @company.company_questions.count > 0%>  
+                    <div class="company_question_index">    
+                        <div class="company_question_new_button">                     
+                            <%= link_to '<button type="submit"> <i class="material-icons-outlined">edit</i> <span> Thêm câu hỏi mới</span> </button>'.html_safe, new_company_company_question_path(@company) %>
+                        </div>
+                        <%= render @company_questions%>
+                        <%= paginate @company_questions, window: 1, outer_window: 1%>
+                    </div>
+                <%else%>
+                    <div class="question_new_not_found_block">
+                        <div class="question_new_not_found_icon">
+                            <i class="material-icons">help</i>
+                        </div>
+                        <div class="question_new_not_found">
+                            <span>Hãy là người đầu tiên đặt câu hỏi về <%=@company.name%></span>
+                        </div>
+                        <div class="question_new_not_found_action">
+                            <div class="question_new_label">
+                                <a>Đặt câu hỏi tới nhà tuyển dụng</a>
+                            </div>
+                            <div class="question_new_button">
+                                <%= link_to '<button type="submit"> <i class="material-icons-outlined">edit</i> <span> Thêm câu hỏi mới</span> </button>'.html_safe, new_company_company_question_path(@company) %>
+                            </div>
+                        </div>
+                    </div>
+                <%end%>
+            </div>
+        </div>
+
+        <div class="col-sm-4">
+            <div class="company_question_right"> 
+                <%if @company.company_jobs.count >0%>
+                    <div class="company_job_refer_block">
+                        <div class="company_job_label">
+                            <a>Tin tuyển dụng</a>
+                        </div>
+                        <div class="company_job_des">
+                            <%@company.company_jobs.order('created_at DESC').first(10).each do |company_job|%>
+                                <%= render :partial => 'company_jobs/company_job_mini', :locals => {:company_job => company_job} %>
+                            <%end%>
+                        </div>
+                    </div>
+                <%end%>
+            </div>
+        </div>
+    </div>
+</div>

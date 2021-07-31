@@ -1,0 +1,126 @@
+<div class="company_policy_tab">
+    <div class="row">
+        <div class="col-sm-8">
+            <div class="company_policy_overview_left">
+                <div class="company_policy_title">
+                    <a> Tại sao bạn nên làm việc tại <%= @company.name %>?</a>
+                </div>
+                
+                <%if @company.benefit.present?%>
+                    <div class="company_policy_benefit_block">
+                        <div class="row">
+                            <%@company.benefit.each do |benefit|%>
+                                <div class="col-sm-3">
+                                    <div class="company_policy_benefit">
+                                        <div class="benefit_icon">
+                                            <i class="material-icons"><%=convert_benefit_to_icon(benefit)%></i>
+                                        </div>
+                                        <a><%=convert_benefit_to_string(benefit)%></a>
+                                    </div>
+                                </div>
+                            <%end%>
+                        </div>
+                    </div>
+                <%end%>
+
+                <%if @company.policy.present?%>
+                    <div class="company_policy_block">
+                        <div class="company_policy_policy">
+                            <a><%= @company.policy.html_safe %></a>
+                        </div>
+                    </div>
+                <%elsif @company.overview.present?%>
+                    <div class="company_policy_block">
+                        <div class="company_policy_policy">
+                            <a><%= @company.overview.html_safe %></a>
+                        </div>
+                    </div>
+                <%end%>
+            </div>
+        </div>
+
+        <div class="col-sm-4">
+            <div class='company_policy_overview_block_right'>
+                <div class='company_policy_overview_block_right_overview'>
+                    <div class="company_policy_overview_label">
+                        <span> Giới thiệu</span>
+                    </div>
+
+                    <div class="company_policy_overview_right">
+                        <div class="company_policy_overview_right_title">
+                            <i class="material-icons-outlined">place</i><a>  Địa chỉ </a>
+                        </div>
+                        <div class="company_policy_overview_right_des">
+                            <%if !@company.location.to_s.empty?%>
+                                <a><%= @company.location %></a>
+                            <%else%>
+                                <a>---</a>
+                            <%end%>
+                        </div>
+                    </div>
+                    <div class="company_policy_overview_right">
+                        <div class="company_policy_overview_right_title">
+                            <i class="material-icons-outlined">people</i> <a> Nhân viên </a>
+                        </div>
+                        <div class="company_policy_overview_right_des">
+                            <%if !@company.size.to_s.empty?%>
+                                <a><%= @company.size %></a>
+                            <%else%>
+                                <a>---</a>
+                            <%end%>
+                        </div>
+                    </div>
+                    <div class="company_policy_overview_right">
+                        <div class="company_policy_overview_right_title">
+                            <i class="material-icons-outlined">bookmark_border</i> <a> Lĩnh vực hoạt động </a>
+                        </div>
+                        <div class="company_policy_overview_right_des">
+                            <%if !@company.field_operetion.to_s.empty?%>
+                                <a><%= @company.field_operetion %></a>
+                            <%else%>
+                                <a>---</a>
+                            <%end%>
+                        </div>
+                    </div>
+                    <div class="company_policy_overview_right">
+                        <div class="company_policy_overview_right_title">
+                            <i class="material-icons-outlined">open_in_new</i><a> Địa chỉ website </a>
+                        </div>
+                        <div class="company_policy_overview_right_des">
+                            <%if !@company.website.to_s.empty?%>
+                                <%=h auto_link(simple_format(@company.website), :link => :urls) %>
+                            <%elsif !@company.phone.to_s.empty?%>
+                                <a><%= @company.phone %></a>
+                            <%else%>
+                                <a>---</a>
+                            <%end%>
+                        </div>
+                    </div>
+                    <div class="company_policy_overview_right">
+                        <div class="company_policy_overview_right_title">
+                            <i class="material-icons-outlined">history</i><a> Cập nhật lần cuối </a>
+                        </div>
+                        <div class="company_policy_overview_right_des">
+                            <a><%= @company.created_at.strftime("%B %d, %Y") %></a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class='company_policy_overview_block_right_job'>
+                    <%if(@company.company_jobs.count > 0)%>
+                        <div class="company_job_refer_block">
+                            <div class="company_job_label">
+                                <a>Tin tuyển dụng</a>
+                            </div>
+                            <div class="company_job_des">
+                                <%@company.company_jobs.order('created_at DESC').first(10).each do |company_job|%>
+                                    <%= render :partial => 'company_jobs/company_job_mini', :locals => {:company_job => company_job} %>
+                                <%end%>
+                            </div>
+                        </div>
+                    <%end%>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

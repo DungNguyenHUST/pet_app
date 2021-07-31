@@ -140,14 +140,21 @@
 									<%end%>
 
 									<div class="problem_solution_normal">
-										<div class="problem_solution_title">
-											<a><%=@problem.problem_solutions.count%> câu trả lời</a>
-										</div>
 										<%if @problem.problem_solutions.count > 0%>
+											<div class="problem_solution_title">
+												<a><%=@problem.problem_solutions.count%> câu trả lời</a>
+											</div>
 											<%= render @problem_solutions %>
 											<%= paginate @problem_solutions, window: 1, outer_window: 1%>
 										<%else%>
-											<a>Rất tiếc chưa có câu trả lời, hãy là người đầu tiên đưa ra giải pháp cho câu hỏi này ...</a>
+											<div class="problem_new_not_found_block">
+												<div class="problem_new_not_found_icon">
+													<i class="material-icons">lightbulb</i>
+												</div>
+												<div class="problem_new_not_found">
+													<span>Rất tiếc, hiện tại chưa có câu trả lời nào, hãy trở thành người đầu tiên đưa ra câu trả lời cho câu hỏi này</span>
+												</div>
+											</div>
 										<%end%>
 									</div>
 								</div>
@@ -158,7 +165,14 @@
 									<%if @problem_submition.count > 0%>  
 										<%= render @problem_submition%>
 									<%else%>
-										<a>Bạn chưa có câu trả lời cho câu hỏi này ...</a>
+										<div class="problem_new_not_found_block">
+											<div class="problem_new_not_found_icon">
+												<i class="material-icons">bookmark</i>
+											</div>
+											<div class="problem_new_not_found">
+												<span>Bạn chưa có câu trả lời nào cho câu hỏi này...</span>
+											</div>
+										</div>
 									<%end%>
 								</div>
 							<%end%>
@@ -225,7 +239,7 @@
 									<a class="nav-link active" data-toggle="tab" href="#NormalTextID"><i class="material-icons-outlined">create</i>Text Editor</a>
 								</li>
 								<li class="nav-item">
-									<a class="nav-link disabled" data-toggle="tab" href="#CompilerID"><i class="material-icons-outlined">code</i>Compiler</a>
+									<a class="nav-link" data-toggle="tab" href="#CompilerID"><i class="material-icons-outlined">code</i>Compiler</a>
 								</li>
 							</ul>
 						</div>
@@ -237,7 +251,9 @@
 									</div>
 								</div>
 								<div role="tabpanel" id="CompilerID" class="tab-pane">
-									<a>Comming soon</a>
+									<div class="problem_compiler_text">
+										<a>Comming soon...</a>
+									</div>
 								</div>
 							</div>
 						</div>

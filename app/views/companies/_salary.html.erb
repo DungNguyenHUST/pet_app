@@ -1,0 +1,53 @@
+
+<div class="company_salary_tab">
+    <div class="row">
+        <div class="col-sm-8">
+            <div class="company_salary_left">
+                <%if @company.company_salaries.count > 0%>
+                    <div class="row">
+                        <%i = 1%>
+                        <%while i < 13%>
+                            <div class="col-sm-6">
+                                <%= render :partial => 'company_salaries/company_salary', :object => @company, locals: {salary_locate: i} %>
+                            </div>
+                            <%i += 1%>
+                        <%end%>
+                    </div>
+                <%else%>
+                    <div class="salary_new_not_found_block">
+                        <div class="salary_new_not_found_icon">
+                            <i class="material-icons">paid</i>
+                        </div>
+                        <div class="salary_new_not_found">
+                            <span>Rất tiếc, chưa có đủ dữ liệu thống kê. Hãy là người đầu tiên chia sẻ mức lương của bạn tại <%=@company.name%>, thông tin của bạn sẽ rất hữu ích cho những người khác ...</span>
+                        </div>
+                        <div class="salary_new_not_found_action">
+                            <div class="salary_new_label">
+                                <a>Bạn đã từng làm việc tại công ty?</a>
+                            </div>
+                            <div class="salary_new_button">
+                                <%= link_to '<button type="submit"> <i class="material-icons-outlined">edit</i> <span> Review lương</span> </button>'.html_safe, new_company_company_salary_path(@company) %>
+                            </div>
+                        </div>
+                    </div>
+                <%end%>
+            </div>
+        </div>
+        <div class="col-sm-4">
+            <div class="company_salary_right"> 
+                <%if @company.company_jobs.count >0%>
+                    <div class="company_job_refer_block">
+                        <div class="company_job_label">
+                            <a>Tin tuyển dụng</a>
+                        </div>
+                        <div class="company_job_des">
+                            <%@company.company_jobs.order('created_at DESC').first(10).each do |company_job|%>
+                                <%= render :partial => 'company_jobs/company_job_mini', :locals => {:company_job => company_job} %>
+                            <%end%>
+                        </div>
+                    </div>
+                <%end%>
+            </div>
+        </div>
+    </div>
+</div>

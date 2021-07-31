@@ -1,0 +1,130 @@
+
+<div class="company_job_tab">
+    <div class="row"> 
+        <div class="col-sm-8"> 
+            <div class="company_job_tab_des_left">
+                <%if @company.company_jobs.approved.count > 0%>
+                    <div class="company_job_tab_des_label">
+                        <a><%=@company.company_jobs.approved.count%> việc làm đang tuyển dụng tại <%=@company.name%> </a> 
+                    </div>
+                    <div class="company_job_index_tab">
+                        <%= render @company_jobs%>
+                    </div>
+                    <%= paginate @company_jobs, window: 1, outer_window: 1%>
+                <%else%>
+                    <div class="company_job_new_not_found_block">
+                        <div class="company_job_new_not_found_icon">
+                            <i class="material-icons">work</i>
+                        </div>
+                        <div class="company_job_new_not_found">
+                            <span>Rất tiếc, hiện tại <%=@company.name%> chưa có tin tuyển dụng mới nào</span>
+                        </div>
+                        <div class="company_job_new_not_found_action">
+                            <div class="company_job_new_label">
+                                <a>Bạn là nhà tuyển dụng?</a>
+                            </div>
+                            <div class="company_job_new_button">
+                                <%if user_signed_in?%>
+                                    <%if current_user.employer? || current_user.admin?%>
+                                        <%= link_to '<button type="submit"><i class="material-icons-outlined">add</i><span>Đăng tin tuyển dụng miễn phí<span></button>'.html_safe, new_company_company_job_path(@company) %>
+                                    <%else%>
+                                        <%= link_to '<button type="submit"><i class="material-icons-outlined">add</i><span>Đăng tin tuyển dụng miễn phí<span></button>'.html_safe, new_user_registration_path(:user_type => 'employer') %>
+                                    <%end%>
+                                <%else%>
+                                    <%= link_to '<button type="submit"><i class="material-icons-outlined">add</i><span>Đăng tin tuyển dụng miễn phí<span></button>'.html_safe, new_user_registration_path(:user_type => 'employer') %>
+                                <%end%>
+                            </div>
+                        </div>
+                    </div>
+                <%end%>
+            </div>
+        </div>
+
+        <div class="col-sm-4">
+            <div class='company_job_tab_des_right'>
+                <%if @company.company_jobs.approved.count > 0%>
+                    <div class="new_job">
+                        <div class="new_job_title">
+                            <strong>Bạn là nhà tuyển dụng</strong>
+                        </div>
+                        <div class="new_job_button">
+                            <%if user_signed_in?%>
+                                <%if current_user.employer? || current_user.admin?%>
+                                    <%= link_to '<button type="submit"><i class="material-icons-outlined">add</i><span>Đăng tin tuyển dụng miễn phí<span></button>'.html_safe, new_company_company_job_path(@company) %>
+                                <%else%>
+                                    <%= link_to '<button type="submit"><i class="material-icons-outlined">add</i><span>Đăng tin tuyển dụng miễn phí<span></button>'.html_safe, new_user_registration_path(:user_type => 'employer') %>
+                                <%end%>
+                            <%else%>
+                                <%= link_to '<button type="submit"><i class="material-icons-outlined">add</i><span>Đăng tin tuyển dụng miễn phí<span></button>'.html_safe, new_user_registration_path(:user_type => 'employer') %>
+                            <%end%>
+                        </div>
+                    </div>
+                <%end%>
+                <div class='company_policy_overview_block_right_overview'>
+                    <div class="company_policy_overview_label">
+                        <span> Giới thiệu</span>
+                    </div>
+
+                    <div class="company_policy_overview_right">
+                        <div class="company_policy_overview_right_title">
+                            <i class="material-icons-outlined">place</i><a>  Địa chỉ </a>
+                        </div>
+                        <div class="company_policy_overview_right_des">
+                            <%if !@company.location.to_s.empty?%>
+                                <a><%= @company.location %></a>
+                            <%else%>
+                                <a>---</a>
+                            <%end%>
+                        </div>
+                    </div>
+                    <div class="company_policy_overview_right">
+                        <div class="company_policy_overview_right_title">
+                            <i class="material-icons-outlined">people</i> <a> Nhân viên </a>
+                        </div>
+                        <div class="company_policy_overview_right_des">
+                            <%if !@company.size.to_s.empty?%>
+                                <a><%= @company.size %></a>
+                            <%else%>
+                                <a>---</a>
+                            <%end%>
+                        </div>
+                    </div>
+                    <div class="company_policy_overview_right">
+                        <div class="company_policy_overview_right_title">
+                            <i class="material-icons-outlined">bookmark_border</i> <a> Lĩnh vực hoạt động </a>
+                        </div>
+                        <div class="company_policy_overview_right_des">
+                            <%if !@company.field_operetion.to_s.empty?%>
+                                <a><%= @company.field_operetion %></a>
+                            <%else%>
+                                <a>---</a>
+                            <%end%>
+                        </div>
+                    </div>
+                    <div class="company_policy_overview_right">
+                        <div class="company_policy_overview_right_title">
+                            <i class="material-icons-outlined">open_in_new</i><a> Địa chỉ website </a>
+                        </div>
+                        <div class="company_policy_overview_right_des">
+                            <%if !@company.website.to_s.empty?%>
+                                <%=h auto_link(simple_format(@company.website), :link => :urls) %>
+                            <%elsif !@company.phone.to_s.empty?%>
+                                <a><%= @company.phone %></a>
+                            <%else%>
+                                <a>---</a>
+                            <%end%>
+                        </div>
+                    </div>
+                    <div class="company_policy_overview_right">
+                        <div class="company_policy_overview_right_title">
+                            <i class="material-icons-outlined">history</i><a> Cập nhật lần cuối </a>
+                        </div>
+                        <div class="company_policy_overview_right_des">
+                            <a><%= @company.created_at.strftime("%B %d, %Y") %></a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
