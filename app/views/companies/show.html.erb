@@ -104,7 +104,7 @@
                                     <% pre_follow = @company.company_follows.find { |follow| follow.user_id == current_user.id} %>
                                     <% if pre_follow %> 
                                         <%= button_to company_company_follow_path(@company, pre_follow), :method => :delete, remote: true, form_class: "follow_btn_large_highlight" do%>
-                                            <i class="material-icons">favorite</i> <span>Bỏ theo dõi</span>
+                                            <i class="material-icons">favorite</i> <span>Đang theo dõi</span>
                                         <%end%> 
                                     <%else%>
                                         <%= button_to company_company_follows_path(@company), :method => :post, remote: true, form_class: "follow_btn_large" do%>
