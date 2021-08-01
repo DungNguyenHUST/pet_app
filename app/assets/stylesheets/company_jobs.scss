@@ -3,7 +3,8 @@
 
 //////////////////////block/////////////////////
 .company_job_block {
-    height: 240px;
+    min-height: 220px;
+    height: auto;
     padding: 15px;
     margin-bottom: 20px;
     background-color: #fff;
@@ -36,17 +37,39 @@
             top: 3px;
             img{ 
                 border-radius: 0px;
-                width: 60px;
-                height: 60px;
+                width: 50px;
+                height: 50px;
                 border: 1px solid #efefef;
                 object-fit: cover;
                 border-radius: 4px;
             }
         }
+
+        .company_job_company_rate{
+            a{
+                padding-left: 5px;
+                padding-top: 10px;
+                font-size: 15px;
+                color: #333;
+                overflow: hidden;
+                text-overflow: ellipsis;
+                display: -webkit-box;
+                -webkit-line-clamp: 1; /* number of lines to show */
+                -webkit-box-orient: vertical;
+                i{
+                    color: #febb02;
+                    font-size: 18px;
+                    position: relative;
+                    top: 3px;
+                    padding-left: 3px;
+                    // background-color: #febb02;
+                }
+            }
+        }
     }
     
     .company_job_right{
-        margin-left: 75px;
+        margin-left: 65px;
         .company_job_des{
             min-height: 160px;
             .company_job_title{
@@ -68,8 +91,9 @@
                 -webkit-box-orient: vertical;
             }
 
-            .company_job_company_rate{
+            .company_job_company_name{
                 a{
+                    padding-left: 3px;
                     font-size: 15px;
                     color: #333;
                     overflow: hidden;
@@ -77,14 +101,6 @@
                     display: -webkit-box;
                     -webkit-line-clamp: 1; /* number of lines to show */
                     -webkit-box-orient: vertical;
-                    i{
-                        color: #febb02;
-                        font-size: 18px;
-                        position: relative;
-                        top: 3px;
-                        padding-left: 3px;
-                        // background-color: #febb02;
-                    }
                 }
             }
 
@@ -223,7 +239,7 @@
         .company_job_info{
             .company_job_date{
                 width: 60%;
-                margin-top: 20px;
+                margin-top: 10px;
                 font-size: 13px;
                 float: left;
                 a{
@@ -239,7 +255,6 @@
                 /*display: none;*/
                 float: right;
                 width: 40%;
-                padding-top: 10px;
                 .company_job_button_save{
                     text-align: right;
                     .hot_label{
@@ -403,6 +418,7 @@
         clear: both;
         @media screen and (max-width: 600px){
             margin-bottom: 20px;
+            margin-top: 20px;
         }
         .apply_job_button{
             .apply_button{
@@ -431,8 +447,8 @@
                 i{
                     font-size: 20px;
                     position: relative;
-                    top: 5px;
-                    padding-right: 3px;
+                    top: 4px;
+                    padding-right: 5px;
                 }
             }
             .save_button{
@@ -456,12 +472,15 @@
                     &:hover{
                         background-color: #ff5a5f;
                         color: #fff;
+                        i{
+                            color: #fff;
+                        }
                     }
                 }
                 i{
                     font-size: 20px;
                     position: relative;
-                    top: 5px;
+                    top: 4px;
                     padding-right: 3px;
                 }
                 i{
@@ -495,7 +514,7 @@
                     i{
                         font-size: 20px;
                         position: relative;
-                        top: 5px;
+                        top: 4px;
                         padding-right: 3px;
                     }
                     i{
@@ -531,7 +550,7 @@
                     i{
                         font-size: 20px;
                         position: relative;
-                        top: 5px;
+                        top: 4px;
                         padding-right: 3px;
                     }
                     color: #444;

@@ -6,6 +6,12 @@
                 <%= link_to (image_tag(company.avatar.thumb.url)), image_path(url_for(company.avatar.thumb.url)), rel: "gallery" , :href => company_path(company)%>
             <%end%>
         </div>
+        
+        <%if cal_rating_review_total_score(company).to_i > 0%>
+            <div class="company_job_company_rate">
+                <a><%=cal_rating_review_total_score(company).to_f.round(1)%><i class="material-icons checked">circle</i></a>
+            </div>
+        <%end%>
     </div>
 
     <div class="company_job_right">
@@ -14,9 +20,8 @@
                 <a><%= link_to (company_job.title), company_company_job_path(company, company_job) %></a>
             </div>
 
-            <div class="company_job_company_rate">
+            <div class="company_job_company_name">
                 <a><%= link_to (company.name), company_path(company)%> </a>
-                <a><%=cal_rating_review_total_score(company).to_f.round(1)%><i class="material-icons checked">circle</i></a>
             </div>
 
             <%if company_job.description.present?%>
@@ -78,13 +83,13 @@
                     <%if user_signed_in?%>
                         <% pre_save = company_job.company_save_jobs.find { |save| save.user_id == current_user.id} %>
                         <% if pre_save %> 
-                            <%= link_to '<button class="save_btn_highlight"><i class="material-icons">turned_in</i> </button>'.html_safe, company_company_job_company_save_job_path(company.id, company_job.id, pre_save.id, type_param: 'mini'), method: :delete, remote: true %>
+                            <%= link_to '<button class="save_btn_highlight"><i class="material-icons">favorite</i> </button>'.html_safe, company_company_job_company_save_job_path(company.id, company_job.id, pre_save.id, type_param: 'mini'), method: :delete, remote: true %>
                         <%else%>
-                            <%= link_to '<button class="save_btn"><i class="material-icons-outlined">turned_in_not</i> </button>'.html_safe, company_company_job_company_save_jobs_path(company.id, company_job.id, type_param: 'mini'), method: :post, remote: true %>
+                            <%= link_to '<button class="save_btn"><i class="material-icons-outlined">favorite_border</i> </button>'.html_safe, company_company_job_company_save_jobs_path(company.id, company_job.id, type_param: 'mini'), method: :post, remote: true %>
                         <%end%>
                     <%else%>
                         <button type="button" data-toggle="modal" data-target="#buttonModalLoginCenter" class="save_btn">
-                            <i class="material-icons-outlined">turned_in_not</i>
+                            <i class="material-icons-outlined">favorite_border</i>
                         </button>
                     <%end%>
                 </div>
