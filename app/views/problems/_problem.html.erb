@@ -1,9 +1,9 @@
 <div class="problem_block">
     <div class="problem_label">
-        <a><%= link_to problem.title, problem_path(problem) %></a>
+        <a><%= link_to truncate(strip_tags(problem.title), length: 50), problem_path(problem) %></a>
     </div>
     <div class="problem_des">
-        <a><%= problem.content.html_safe%></a>
+        <a><%= truncate(strip_tags(problem.content), length: 90)%></a>
     </div>
     <div class="problem_info">
         <div class="problem_reply_info">

@@ -11,7 +11,7 @@
 
     <div class="post_right">
         <div class="post_header">
-            <a><%= link_to (post.title), post_path(post) %></a>
+            <a><%= link_to (truncate(strip_tags(post.title), length: 60)), post_path(post) %></a>
         </div>
 
         <div class="post_info">
@@ -39,7 +39,7 @@
         </div>
 
         <div class="post_content">
-            <a><%=post.content.html_safe%></a>
+            <a><%=truncate(strip_tags(post.content), length: 80)%></a>
         </div>
 
         <div class="post_view">
