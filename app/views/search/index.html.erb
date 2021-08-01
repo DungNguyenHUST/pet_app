@@ -43,47 +43,84 @@
 		</div>
 		
 		<div class="home_search_index">
-			<div class="job_search">
-				<div class="job_label">
-					<%if @job_searchs.total_count > 0%>
-						<span><%=@job_searchs.total_count%> việc làm cho từ khóa "<%= params[:search]%>" và địa điểm "<%= params[:location]%>"</span>
-					<%else%>
-						<span>Rất tiếc, không tìm được công việc nào phù hợp với từ khóa "<%= params[:search]%>" và địa điểm "<%= params[:location]%>"</span>
-					<%end%>
-				</div>
+			<%if @job_searchs.total_count > 0 || @company_searchs.total_count > 0%>
+				<%if @job_searchs.total_count > 0%>
+					<div class="home_search_job_search">
+						<div class="home_search_job_label">
+							<span><%=@job_searchs.total_count%> việc làm cho từ khóa "<%= params[:search]%>" và địa điểm "<%= params[:location]%>"</span>
+						</div>
+						
+						<div class="row">
+							<%if @job_searchs != nil%>
+								<%@job_searchs.each do |company_job|%>
+									<div class="col-sm-6">
+										<%=render company_job%>
+									</div>
+								<%end%>
+							<%end%>
+						</div>
+						<%= paginate @job_searchs, window: 1, outer_window: 1%>
+					</div>
+				<%end%>
 				
-				<div class="row">
-					<%if @job_searchs != nil%>
-						<%@job_searchs.each do |company_job|%>
-							<div class="col-sm-6">
-								<%=render company_job%>
-							</div>
-						<%end%>
-					<%end%>
-				</div>
-				<%= paginate @job_searchs, window: 1, outer_window: 1%>
-			</div>
-			
-			<div class="company_search">
-				<div class="company_label">
-					<%if @company_searchs.total_count > 0%>
-						<span><%=@company_searchs.total_count%> công ty cho từ khóa "<%= params[:search]%>" và địa điểm "<%= params[:location]%>"</span>
-					<%else%>
-						<span>Rất tiếc, không tìm được công ty nào phù hợp với từ khóa "<%= params[:search]%>" và địa điểm "<%= params[:location]%>"</span>
-					<%end%>
-				</div>
+				<%if @company_searchs.total_count > 0%>
+					<div class="home_search_company_search">
+						<div class="home_search_company_label">
+							<span><%=@company_searchs.total_count%> công ty cho từ khóa "<%= params[:search]%>" và địa điểm "<%= params[:location]%>"</span>
+						</div>
 
-				<div class="row">
-					<%if @company_searchs != nil%>
-						<% @company_searchs.each do |company| %>
-							<div class="col-sm-4">
-								<%=render company%>
-							</div>
-						<%end%>
-					<%end%>
+						<div class="row">
+							<%if @company_searchs != nil%>
+								<% @company_searchs.each do |company| %>
+									<div class="col-sm-4">
+										<%=render company%>
+									</div>
+								<%end%>
+							<%end%>
+						</div>
+						<%= paginate @company_searchs, window: 1, outer_window: 1%>
+					</div>
+				<%end%>
+			<%else%>
+				<div class="home_search_not_found_block">
+					<div class="home_search_not_found_label">
+						<span>Rất tiếc, không tìm được kết quả phù hợp với từ khóa "<%= params[:search]%>" và địa điểm "<%= params[:location]%>"</span>
+					</div>
+					<div class="home_search_not_found_image">
+						<%=image_tag("no_result_found.png")%>
+					</div>
+					<div class="home_search_not_found_help">
+						<a>Gợi ý từ khóa tìm kiếm:</a>
+						<ul>
+							<li>
+								Tìm kiếm với từ khoá cụ thể như vị trí công việc. Ví dụ: Nhân viên kinh doanh, sales ...
+							</li>
+
+							<li>
+								Tìm kiếm theo tên công ty bằng tiếng việt hoặc tiếng anh.
+							</li>
+
+							<li>
+								Tìm kiếm theo danh sách việc làm mới cập nhật và lọc theo tỉnh/thành phố
+							</li>
+						</ul>
+					</div>
+
+					<div class="home_search_not_found_suggest">
+						<div class="home_search_not_found_suggest_label">
+							<a>Việc làm nổi bật</a>
+						</div>
+						<div class="row">
+							<%@company_jobs.each do |company_job|%>
+								<div class="col-sm-6">
+									<%=render company_job%>
+								</div>
+							<%end%>
+						</div>
+						<%= paginate @company_jobs, window: 1, outer_window: 1%>
+					</div>
 				</div>
-				<%= paginate @company_searchs, window: 1, outer_window: 1%>
-			</div>
+			<%end%>
 		</div>
 	</div>
 </div>

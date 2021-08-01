@@ -94,28 +94,85 @@
         background-color: #fff;
         height: auto;
         padding-top: 20px;
-        .section_title_search
-        {
-            font-size: 22px;
-            margin-right: 13px;
-            margin-top: 30px;
-            border-top-right-radius: 1px;
-            border-top-left-radius: 1px;
-            margin-bottom: 20px;
-            font-weight: 550;
-            span{
-                border-left: 5px solid #febb02;
-                padding-left: 5px;
+        .companies_search_block{
+            .section_title_search
+            {
+                font-size: 24px;
+                margin-right: 13px;
+                margin-top: 30px;
+                border-top-right-radius: 1px;
+                border-top-left-radius: 1px;
+                margin-bottom: 20px;
+                font-weight: 550;
+                span{
+                    border-left: 5px solid #febb02;
+                    padding-left: 5px;
+                }
+                @media screen and (max-width: 600px){
+                    margin-top: 20px;
+                    width: 100%;
+                }
+        
             }
-            @media screen and (max-width: 600px){
-                margin-top: 20px;
-                width: 100%;
-            }
-    
+
         }
 
-        .company_search_result{
-        }
+		.company_search_not_found_block{
+			margin-top: 30px;
+			.company_search_not_found_label{
+				padding-top: 10px;
+				padding-bottom: 20px;
+				font-size: 24px;
+				margin-right: 13px;
+				border-top-right-radius: 1px;
+				border-top-left-radius: 1px;
+				font-weight: 550;
+				span{
+					// border-left: 5px solid #febb02;
+					// padding-left: 5px;
+				}
+				@media screen and (max-width: 600px){
+					margin-top: 10px;
+					width: 100%;
+				}
+			}
+			.company_search_not_found_image{
+				display: flex;
+				justify-content: center;
+				img{
+					height: 100px;
+					width: 200px;
+					object-fit: cover;
+				}
+			}
+			.company_search_not_found_help{
+				margin-top: 10px;
+				a{
+					font-size: 16px;
+					font-weight: 600;
+				}
+			}
+			.company_search_not_found_suggest{
+				margin-top: 30px;
+				.company_search_not_found_suggest_label{
+					padding-top: 10px;
+					padding-bottom: 20px;
+					font-size: 24px;
+					margin-right: 13px;
+					border-top-right-radius: 1px;
+					border-top-left-radius: 1px;
+					font-weight: 550;
+					a{
+						border-left: 5px solid #febb02;
+						padding-left: 5px;
+					}
+					@media screen and (max-width: 600px){
+						margin-top: 10px;
+						width: 100%;
+					}
+				}
+			}
+		}
 
         .company_current_review{
             width: 100%;
@@ -279,7 +336,6 @@
 /////////////////////////block/////////////
 .company_block{
     border: 1px solid #e0e2e5;
-    border-top: none;
     border-radius: 3px;
     background-color: #fff;
     min-height: 300px;

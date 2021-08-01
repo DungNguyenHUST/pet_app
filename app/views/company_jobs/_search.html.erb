@@ -1,0 +1,56 @@
+<%if @job_searchs.total_count > 0%>
+    <div class="company_job_search_index">
+        <div class="company_job_label">
+            <span><%=@job_searchs.total_count%> việc làm cho từ khóa "<%= params[:search]%>" và địa điểm "<%= params[:location]%>"</span>						
+        </div>
+        <div class="row">
+            <%if @job_searchs != nil%>
+                <%@job_searchs.each do |company_job|%>
+                    <div class="col-sm-6">
+                        <%=render company_job%>
+                    </div>
+                <%end%>
+            <%end%>
+        </div>
+        <%= paginate @job_searchs, window: 1, outer_window: 1%>
+    </div>
+<%else%>
+    <div class="company_job_search_not_found_block">
+        <div class="company_job_search_not_found_label">
+            <span>Rất tiếc, không tìm được việc làm phù hợp với từ khóa "<%= params[:search]%>" và địa điểm "<%= params[:location]%>"</span>
+        </div>
+        <div class="company_job_search_not_found_image">
+            <%=image_tag("no_result_found.png")%>
+        </div>
+        <div class="company_job_search_not_found_help">
+            <a>Gợi ý từ khóa tìm kiếm:</a>
+            <ul>
+                <li>
+                    Tìm kiếm với từ khoá cụ thể như vị trí công việc. Ví dụ: Nhân viên kinh doanh, sales ...
+                </li>
+
+                <li>
+                    Tìm kiếm theo tên công ty bằng tiếng việt hoặc tiếng anh.
+                </li>
+
+                <li>
+                    Tìm kiếm theo danh sách việc làm mới cập nhật và lọc theo tỉnh/thành phố
+                </li>
+            </ul>
+        </div>
+
+        <div class="company_job_search_not_found_suggest">
+            <div class="company_job_search_not_found_suggest_label">
+                <a>Việc làm nổi bật</a>
+            </div>
+            <div class="row">
+                <%@company_jobs.each do |company_job|%>
+                    <div class="col-sm-6">
+                        <%=render company_job%>
+                    </div>
+                <%end%>
+            </div>
+            <%= paginate @company_jobs, window: 1, outer_window: 1%>
+        </div>
+    </div>
+<%end%>

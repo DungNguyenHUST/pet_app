@@ -1,21 +1,55 @@
-<div class="companies_search_block">
-	<div class="section_title_search">
-		<% if @company_searchs.total_count > 0 %>
+
+<% if @company_searchs.total_count > 0 %>
+	<div class="companies_search_block">
+		<div class="section_title_search">
 			<span><%=@company_searchs.total_count%> công ty cho từ khóa "<%= params[:search]%>"</span>
-		<%else%>
-			<span>Không tìm được kết quả phù hợp với từ khóa "<%= params[:search]%>"</span>
-		<%end%>
-	</div>
-	<div class="company_search_result">
-		<div class="row">
-			<%if @company_searchs.present?%>
-				<% @company_searchs.each do |company| %>
-					<div class="col-sm-4">
-						<%=render company%>
-					</div>
-				<%end%>
-			<%end%>
 		</div>
-		<%= paginate @company_searchs, window: 1, outer_window: 1%>
+		<div class="company_search_result">
+			<div class="row">
+				<%if @company_searchs.present?%>
+					<% @company_searchs.each do |company| %>
+						<div class="col-sm-4">
+							<%=render company%>
+						</div>
+					<%end%>
+				<%end%>
+			</div>
+			<%= paginate @company_searchs, window: 1, outer_window: 1%>
+		</div>
 	</div>
-</div>
+<%else%>
+	<div class="company_search_not_found_block">
+        <div class="company_search_not_found_label">
+            <span>Rất tiếc, không tìm được công ty phù hợp với từ khóa "<%= params[:search]%>"</span>
+        </div>
+        <div class="company_search_not_found_image">
+            <%=image_tag("no_result_found.png")%>
+        </div>
+        <div class="company_search_not_found_help">
+            <a>Gợi ý từ khóa tìm kiếm:</a>
+            <ul>
+                <li>
+                    Tìm kiếm theo tên công ty bằng tiếng việt hoặc tiếng anh không dấu.
+                </li>
+
+                <li>
+                    Tìm kiếm theo tên viết tắt của công ty.
+                </li>
+            </ul>
+        </div>
+
+        <div class="company_search_not_found_suggest">
+            <div class="company_search_not_found_suggest_label">
+                <a>Công ty nổi bật</a>
+            </div>
+            <div class="row">
+                <%@companies_oder_name.each do |company|%>
+                    <div class="col-sm-4">
+                        <%=render company%>
+                    </div>
+                <%end%>
+            </div>
+            <%= paginate @companies_oder_name, window: 1, outer_window: 1%>
+        </div>
+    </div>
+<%end%>

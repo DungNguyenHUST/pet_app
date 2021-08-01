@@ -110,14 +110,39 @@
 	}
 
 	.home_search_index{
-		.job_search{
-			margin-top: 50px;
-			border-top: 2px solid #e0e2e5;	
+		.home_search_job_search{
+			margin-top: 30px;
+			// border-top: 2px solid #e0e2e5;	
 			clear: both;
-			.job_label{
+			.home_search_job_label{
 				padding-top: 10px;
 				padding-bottom: 20px;
-				font-size: 22px;
+				font-size: 24px;
+				margin-right: 13px;
+				border-top-right-radius: 1px;
+				border-top-left-radius: 1px;
+				font-weight: 550;
+				span{
+					border-left: 5px solid #febb02;
+					padding-left: 5px;
+				}
+				@media screen and (max-width: 600px){
+					margin-top: 10px;
+					width: 100%;
+				}
+			}
+			.no_job_found_label{
+				font-size: 24px;
+				font-weight: 550;
+			}
+		}
+		
+		.home_search_company_search{
+			margin-top: 40px;
+			.home_search_company_label{
+				padding-top: 10px;
+				padding-bottom: 20px;
+				font-size: 24px;
 				margin-right: 13px;
 				border-top-right-radius: 1px;
 				border-top-left-radius: 1px;
@@ -132,25 +157,59 @@
 				}
 			}
 		}
-		
-		.company_search{
+		.home_search_not_found_block{
 			margin-top: 30px;
-			border-top: 2px solid #e0e2e5;
-			.company_label{
+			.home_search_not_found_label{
 				padding-top: 10px;
 				padding-bottom: 20px;
-				font-size: 22px;
+				font-size: 24px;
 				margin-right: 13px;
 				border-top-right-radius: 1px;
 				border-top-left-radius: 1px;
 				font-weight: 550;
 				span{
-					border-left: 5px solid #febb02;
-					padding-left: 5px;
+					// border-left: 5px solid #febb02;
+					// padding-left: 5px;
 				}
 				@media screen and (max-width: 600px){
 					margin-top: 10px;
 					width: 100%;
+				}
+			}
+			.home_search_not_found_image{
+				display: flex;
+				justify-content: center;
+				img{
+					height: 100px;
+					width: 200px;
+					object-fit: cover;
+				}
+			}
+			.home_search_not_found_help{
+				margin-top: 10px;
+				a{
+					font-size: 16px;
+					font-weight: 600;
+				}
+			}
+			.home_search_not_found_suggest{
+				margin-top: 30px;
+				.home_search_not_found_suggest_label{
+					padding-top: 10px;
+					padding-bottom: 20px;
+					font-size: 24px;
+					margin-right: 13px;
+					border-top-right-radius: 1px;
+					border-top-left-radius: 1px;
+					font-weight: 550;
+					a{
+						border-left: 5px solid #febb02;
+						padding-left: 5px;
+					}
+					@media screen and (max-width: 600px){
+						margin-top: 10px;
+						width: 100%;
+					}
 				}
 			}
 		}

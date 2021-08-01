@@ -52,10 +52,6 @@
 
     <div class="companies_area">
         <div class="container">
-            <%if (@is_company_searched)%>
-                <%= render :partial => 'companies/search', :object => @company_searchs %>
-            <%end%>
-
             <%=form_tag pages_select_company_path, :method => "get" do%>
                 <div class="company_current_review">
                     <div class='row'>
@@ -86,104 +82,109 @@
                 </div>
             <%end%>
 
-            <div class="section_title">
-                <span>Danh sách công ty</span>
-            </div>
             
-            <div class="company_index_tab_link">
-                <ul class="nav">
-                    <li class="nav-item">
-                        <%if @tab_id == "default" || @tab_id == "CompanyAllID"%>
-                            <%active = "active"%>
-                        <%else%> 
-                            <%active = ""%>
-                        <%end%> 
-                        <a class="nav-link <%=active%>" href="<%=companies_path(tab_id: 'CompanyAllID')%>">Tất cả</a>
-                    </li>
-                    <li class="nav-item">
-                        <%if @tab_id == "CompanyNewestID"%>
-                            <%active = "active"%>
-                        <%else%> 
-                            <%active = ""%>
-                        <%end%>
-                        <a class="nav-link <%=active%>" href="<%=companies_path(tab_id: 'CompanyNewestID')%>">Công ty mới nhất </a>
-                    </li>
-                    <li class="nav-item">
-                        <%if @tab_id == "CompanyMostRecentID"%>
-                            <%active = "active"%>
-                        <%else%> 
-                            <%active = ""%>
-                        <%end%>
-                        <a class="nav-link <%=active%>" href="<%=companies_path(tab_id: 'CompanyMostRecentID')%>">Nhiều người quan tâm nhất</a>
-                    </li>
-                    <li class="nav-item">
-                        <%if @tab_id == "CompanyBestID"%>
-                            <%active = "active"%>
-                        <%else%> 
-                            <%active = ""%>
-                        <%end%>
-                        <a class="nav-link <%=active%>" href="<%=companies_path(tab_id: 'CompanyBestID')%>">Công ty tốt nhất</a>
-                    </li>
-                </ul>
-            </div>
-
-            <div class="company_index_tab_content">
-                <%if @tab_id == "default" || @tab_id == "CompanyAllID"%>
-                    <div class="company_all_tab">
-                        <div class="row">
-                            <% @companies_oder_name.each do |company| %>
-                                <div class="col-sm-4">
-                                    <%=render company%>
-                                </div>
-                            <%end%>
-                        </div>
-                        <%= paginate @companies_oder_name, window: 1, outer_window: 1%>
-                    </div>
-                <%end%>
+            <%if (@is_company_searched)%>
+                <%= render :partial => 'companies/search', :object => @company_searchs %>
+            <%else%>
+                <div class="section_title">
+                    <span>Danh sách công ty</span>
+                </div>
                 
-                <%if @tab_id == "CompanyNewestID"%>
-                    <div class="company_newest_tab">
-                        <div class="row">
-                            <% @companies_oder_newest.each do |company| %>
-                                <div class="col-sm-4">
-                                    <%=render company%>
-                                </div>
+                <div class="company_index_tab_link">
+                    <ul class="nav">
+                        <li class="nav-item">
+                            <%if @tab_id == "default" || @tab_id == "CompanyAllID"%>
+                                <%active = "active"%>
+                            <%else%> 
+                                <%active = ""%>
+                            <%end%> 
+                            <a class="nav-link <%=active%>" href="<%=companies_path(tab_id: 'CompanyAllID')%>">Tất cả</a>
+                        </li>
+                        <li class="nav-item">
+                            <%if @tab_id == "CompanyNewestID"%>
+                                <%active = "active"%>
+                            <%else%> 
+                                <%active = ""%>
                             <%end%>
-                        </div>
-                        <%= paginate @companies_oder_newest, window: 1, outer_window: 1%>
-                    </div>
-                <%end%>
+                            <a class="nav-link <%=active%>" href="<%=companies_path(tab_id: 'CompanyNewestID')%>">Công ty mới nhất </a>
+                        </li>
+                        <li class="nav-item">
+                            <%if @tab_id == "CompanyMostRecentID"%>
+                                <%active = "active"%>
+                            <%else%> 
+                                <%active = ""%>
+                            <%end%>
+                            <a class="nav-link <%=active%>" href="<%=companies_path(tab_id: 'CompanyMostRecentID')%>">Nhiều người quan tâm nhất</a>
+                        </li>
+                        <li class="nav-item">
+                            <%if @tab_id == "CompanyBestID"%>
+                                <%active = "active"%>
+                            <%else%> 
+                                <%active = ""%>
+                            <%end%>
+                            <a class="nav-link <%=active%>" href="<%=companies_path(tab_id: 'CompanyBestID')%>">Công ty tốt nhất</a>
+                        </li>
+                    </ul>
+                </div>
 
-                <%if @tab_id == "CompanyMostRecentID"%>
-                    <div class="company_most_recent_tab">
-                        <div class="row">
-                            <%count = 0%>
-                            <% @companies_most_recent.each do |company| %>
-                                <%count += 1%>
-                                <%break if count > 20%>
-                                <div class="col-sm-4">
-                                    <%=render company%>
-                                </div>
-                            <%end%>
+                <div class="company_index_tab_content">
+                    <%if @tab_id == "default" || @tab_id == "CompanyAllID"%>
+                        <div class="company_all_tab">
+                            <div class="row">
+                                <% @companies_oder_name.each do |company| %>
+                                    <div class="col-sm-4">
+                                        <%=render company%>
+                                    </div>
+                                <%end%>
+                            </div>
+                            <%= paginate @companies_oder_name, window: 1, outer_window: 1%>
                         </div>
-                    </div>
-                <%end%>
+                    <%end%>
+                    
+                    <%if @tab_id == "CompanyNewestID"%>
+                        <div class="company_newest_tab">
+                            <div class="row">
+                                <% @companies_oder_newest.each do |company| %>
+                                    <div class="col-sm-4">
+                                        <%=render company%>
+                                    </div>
+                                <%end%>
+                            </div>
+                            <%= paginate @companies_oder_newest, window: 1, outer_window: 1%>
+                        </div>
+                    <%end%>
 
-                <%if @tab_id == "CompanyBestID"%>
-                    <div class="company_best_tab">
-                        <div class="row">
-                            <%count = 0%>
-                            <% @companies_best.each do |company| %>
-                                <%count += 1%>
-                                <%break if count > 20%>
-                                <div class="col-sm-4">
-                                    <%=render company%>
-                                </div>
-                            <%end%>
+                    <%if @tab_id == "CompanyMostRecentID"%>
+                        <div class="company_most_recent_tab">
+                            <div class="row">
+                                <%count = 0%>
+                                <% @companies_most_recent.each do |company| %>
+                                    <%count += 1%>
+                                    <%break if count > 20%>
+                                    <div class="col-sm-4">
+                                        <%=render company%>
+                                    </div>
+                                <%end%>
+                            </div>
                         </div>
-                    </div>
-                <%end%>
-            </div>
+                    <%end%>
+
+                    <%if @tab_id == "CompanyBestID"%>
+                        <div class="company_best_tab">
+                            <div class="row">
+                                <%count = 0%>
+                                <% @companies_best.each do |company| %>
+                                    <%count += 1%>
+                                    <%break if count > 20%>
+                                    <div class="col-sm-4">
+                                        <%=render company%>
+                                    </div>
+                                <%end%>
+                            </div>
+                        </div>
+                    <%end%>
+                </div>
+            <%end%>
         </div>
         <div class="resume_upload">
             <%# <strong>Để nhà tuyển dụng tìm đến bạn, hãy tạo hồ sơ</strong> %>
