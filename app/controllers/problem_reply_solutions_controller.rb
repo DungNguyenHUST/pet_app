@@ -9,13 +9,13 @@ class ProblemReplySolutionsController < ApplicationController
 
     def new
         @problem = Problem.friendly.find(params[:problem_id])
-        @problem_solution = @problem.problem_solutions.friendly.find(params[:problem_solution_id])
+        @problem_solution = @problem.problem_solutions.find(params[:problem_solution_id])
         @problem_reply_solution = ProblemReplySolution.new
     end
 
     def create
         @problem = Problem.friendly.find(params[:problem_id])
-        @problem_solution = @problem.problem_solutions.friendly.find(params[:problem_solution_id])
+        @problem_solution = @problem.problem_solutions.find(params[:problem_solution_id])
         @problem_reply_solution = @problem_solution.problem_reply_solutions.build(problem_reply_solution_param)
         @problem_reply_solution.user_name = current_user.name
         @problem_reply_solution.user_id = current_user.id
@@ -43,8 +43,8 @@ class ProblemReplySolutionsController < ApplicationController
     
     def destroy
         @problem = Problem.friendly.find(params[:problem_id])
-        @problem_solution = @problem.problem_solutions.friendly.find(params[:problem_solution_id])
-        @problem_reply_solution = @problem_solution.problem_reply_solutions.friendly.find(params[:id])
+        @problem_solution = @problem.problem_solutions.find(params[:problem_solution_id])
+        @problem_reply_solution = @problem_solution.problem_reply_solutions.find(params[:id])
 
         @problem_reply_solution.destroy
         redirect_to problem_path(@problem, tab_id: 'ProblemSolutionID')
@@ -52,8 +52,8 @@ class ProblemReplySolutionsController < ApplicationController
 
     def show
         @problem = Problem.friendly.find(params[:problem_id])
-        @problem_solution = @problem.problem_solutions.friendly.find(params[:problem_solution_id])
-        @problem_reply_solution = @problem_solution.problem_reply_solutions.friendly.find(params[:id])
+        @problem_solution = @problem.problem_solutions.find(params[:problem_solution_id])
+        @problem_reply_solution = @problem_solution.problem_reply_solutions.find(params[:id])
     end
 
     private

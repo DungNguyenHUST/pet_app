@@ -40,7 +40,7 @@ class CompanyApplyJobsController < ApplicationController
     def destroy
         @company = Company.friendly.find(params[:company_id])
         @company_job = @company.company_jobs.friendly.find(params[:company_job_id])
-        @company_apply_job = @company_job.company_apply_jobs.friendly.find(params[:id])
+        @company_apply_job = @company_job.company_apply_jobs.find(params[:id])
 
         @company_apply_job.destroy
         redirect_to company_path(@company, tab_id: 'CompanyJobsID')
@@ -49,7 +49,7 @@ class CompanyApplyJobsController < ApplicationController
     def show
         @company = Company.friendly.find(params[:company_id])
         @company_job = @company.company_jobs.friendly.find(params[:company_job_id])
-        @company_apply_job = @company_job.company_apply_jobs.friendly.find(params[:id])
+        @company_apply_job = @company_job.company_apply_jobs.find(params[:id])
     end
 
     private

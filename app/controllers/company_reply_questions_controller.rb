@@ -9,13 +9,13 @@ class CompanyReplyQuestionsController < ApplicationController
 
     def new
         @company = Company.friendly.find(params[:company_id])
-        @company_question = @company.company_questions.friendly.find(params[:company_question_id])
+        @company_question = @company.company_questions.find(params[:company_question_id])
         @company_reply_question = CompanyReplyQuestion.new
     end
 
     def create
         @company = Company.friendly.find(params[:company_id])
-        @company_question = @company.company_questions.friendly.find(params[:company_question_id])
+        @company_question = @company.company_questions.find(params[:company_question_id])
         @company_reply_question = @company_question.company_reply_questions.build(company_reply_question_param)
         @company_reply_question.user_name = current_user.name
         @company_reply_question.user_id = current_user.id
@@ -43,8 +43,8 @@ class CompanyReplyQuestionsController < ApplicationController
     
     def destroy
         @company = Company.friendly.find(params[:company_id])
-        @company_question = @company.company_questions.friendly.find(params[:company_question_id])
-        @company_reply_question = @company_question.company_reply_questions.friendly.find(params[:id])
+        @company_question = @company.company_questions.find(params[:company_question_id])
+        @company_reply_question = @company_question.company_reply_questions.find(params[:id])
 
         @company_reply_question.destroy
         redirect_to company_path(@company, tab_id: 'CompanyquestionsID')
@@ -52,8 +52,8 @@ class CompanyReplyQuestionsController < ApplicationController
 
     def show
         @company = Company.friendly.find(params[:company_id])
-        @company_question = @company.company_questions.friendly.find(params[:company_question_id])
-        @company_reply_question = @company_question.company_reply_questions.friendly.find(params[:id])
+        @company_question = @company.company_questions.find(params[:company_question_id])
+        @company_reply_question = @company_question.company_reply_questions.find(params[:id])
     end
 
     private

@@ -39,14 +39,14 @@ class CompanySalariesController < ApplicationController
     
     def destroy
         @company = Company.friendly.find(params[:company_id])
-        @company_salary = @company.company_salaries.friendly.find(params[:id])
+        @company_salary = @company.company_salaries.find(params[:id])
         @company_salary.destroy
         redirect_to company_path(@company, tab_id: 'CompanySalariesID')
     end
 
     def show
         @company = Company.friendly.find(params[:company_id])
-        @company_salary = @company.company_salaries.friendly.find(params[:id])
+        @company_salary = @company.company_salaries.find(params[:id])
     end
 
     private

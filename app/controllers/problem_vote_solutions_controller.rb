@@ -11,13 +11,13 @@ class ProblemVoteSolutionsController < ApplicationController
 
     def new
         @problem = Problem.friendly.find(params[:problem_id])
-        @problem_solution = @problem.problem_solutions.friendly.find(params[:problem_solution_id])
+        @problem_solution = @problem.problem_solutions.find(params[:problem_solution_id])
         @problem_vote_solution = ProblemVoteSolution.new
     end
 
     def create
         @problem = Problem.friendly.find(params[:problem_id])
-        @problem_solution = ProblemSolution.friendly.find(params[:problem_solution_id])
+        @problem_solution = ProblemSolution.find(params[:problem_solution_id])
         if already_voted?
             # flash[:notice] = "You can't vote more than once"
         else
@@ -38,7 +38,7 @@ class ProblemVoteSolutionsController < ApplicationController
     
     def destroy
         @problem = Problem.friendly.find(params[:problem_id])
-        @problem_solution = @problem.problem_solutions.friendly.find(params[:problem_solution_id])
+        @problem_solution = @problem.problem_solutions.find(params[:problem_solution_id])
         @problem_vote_solution = @problem_solution.problem_vote_solutions.find(params[:id])
         @problem_vote_solution.destroy
         # redirect_to problem_path(@problem)
@@ -50,7 +50,7 @@ class ProblemVoteSolutionsController < ApplicationController
 
     def show
         @problem = Problem.friendly.find(params[:problem_id])
-        @problem_solution = @problem.problem_solutions.friendly.find(params[:problem_solution_id])
+        @problem_solution = @problem.problem_solutions.find(params[:problem_solution_id])
         @problem_vote_solution = @problem_solution.problem_vote_solutions.find(params[:id])
     end
 
@@ -65,7 +65,7 @@ class ProblemVoteSolutionsController < ApplicationController
     end
 
     def find_problem_solution
-        @problem_solution = ProblemSolution.friendly.find(params[:problem_solution_id])
+        @problem_solution = ProblemSolution.find(params[:problem_solution_id])
     end
 
     def find_vote

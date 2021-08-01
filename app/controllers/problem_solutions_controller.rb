@@ -30,12 +30,12 @@ class ProblemSolutionsController < ApplicationController
 
     def edit
         @problem = Problem.friendly.find params[:problem_id]
-        @problem_solution = @problem.problem_solutions.friendly.find(params[:id])
+        @problem_solution = @problem.problem_solutions.find(params[:id])
     end
 
     def update
         @problem = Problem.friendly.find params[:problem_id]
-        @problem_solution = @problem.problem_solutions.friendly.find(params[:id])
+        @problem_solution = @problem.problem_solutions.find(params[:id])
         if(@problem_solution.update(problem_solution_param))
             redirect_to root_path
         else
@@ -45,14 +45,14 @@ class ProblemSolutionsController < ApplicationController
     
     def destroy
         @problem = Problem.friendly.find(params[:problem_id])
-        @problem_solution = @problem.problem_solutions.friendly.find(params[:id])
+        @problem_solution = @problem.problem_solutions.find(params[:id])
         @problem_solution.destroy
         redirect_to problem_path(@problem, tab_id: 'ProblemSolutionID')
     end
 
     def show
         @problem = Problem.friendly.find(params[:problem_id])
-        @problem_solution = @problem.problem_solutions.friendly.find(params[:id])
+        @problem_solution = @problem.problem_solutions.find(params[:id])
     end
 
     private

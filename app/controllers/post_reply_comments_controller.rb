@@ -9,13 +9,13 @@ class PostReplyCommentsController < ApplicationController
 
     def new
         @post = Post.friendly.find(params[:post_id])
-        @post_comment = @post.post_comments.friendly.find(params[:post_comment_id])
+        @post_comment = @post.post_comments.find(params[:post_comment_id])
         @post_reply_comment = PostReplyComment.new
     end
 
     def create
         @post = Post.friendly.find(params[:post_id])
-        @post_comment = @post.post_comments.friendly.find(params[:post_comment_id])
+        @post_comment = @post.post_comments.find(params[:post_comment_id])
         @post_reply_comment = @post_comment.post_reply_comments.build(post_reply_comment_param)
         @post_reply_comment.user_name = current_user.name
         @post_reply_comment.user_id = current_user.id
@@ -43,8 +43,8 @@ class PostReplyCommentsController < ApplicationController
     
     def destroy
         @post = Post.friendly.find(params[:post_id])
-        @post_comment = @post.post_comments.friendly.find(params[:post_comment_id])
-        @post_reply_comment = @post_comment.post_reply_comments.friendly.find(params[:id])
+        @post_comment = @post.post_comments.find(params[:post_comment_id])
+        @post_reply_comment = @post_comment.post_reply_comments.find(params[:id])
 
         @post_reply_comment.destroy
         redirect_to post_path(@post)
@@ -52,8 +52,8 @@ class PostReplyCommentsController < ApplicationController
 
     def show
         @post = Post.friendly.find(params[:post_id])
-        @post_comment = @post.post_comments.friendly.find(params[:post_comment_id])
-        @post_reply_comment = @post_comment.post_reply_comments.friendly.find(params[:id])
+        @post_comment = @post.post_comments.find(params[:post_comment_id])
+        @post_reply_comment = @post_comment.post_reply_comments.find(params[:id])
     end
 
     private

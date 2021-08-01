@@ -8,13 +8,13 @@ class CompanyDislikeReviewsController < ApplicationController
 
     def new
         @company = Company.friendly.find(params[:company_id])
-        @company_review = @company.company_reviews.friendly.find(params[:company_review_id])
+        @company_review = @company.company_reviews.find(params[:company_review_id])
         @company_dislike_review = CompanyDislikeReview.new
     end
 
     def create
         @company = Company.friendly.find(params[:company_id])
-        @company_review = CompanyReview.friendly.find(params[:company_review_id])
+        @company_review = CompanyReview.find(params[:company_review_id])
         
         if already_liked?
             # flash[:notice] = "You can't dislike more than once"
@@ -36,7 +36,7 @@ class CompanyDislikeReviewsController < ApplicationController
     
     def destroy
         @company = Company.friendly.find(params[:company_id])
-        @company_review = @company.company_reviews.friendly.find(params[:company_review_id])
+        @company_review = @company.company_reviews.find(params[:company_review_id])
         @company_dislike_review = @company_review.company_dislike_reviews.find(params[:id])
 
         @company_dislike_review.destroy
@@ -49,7 +49,7 @@ class CompanyDislikeReviewsController < ApplicationController
 
     def show
         @company = Company.friendly.find(params[:company_id])
-        @company_review = @company.company_reviews.friendly.find(params[:company_review_id])
+        @company_review = @company.company_reviews.find(params[:company_review_id])
         @company_dislike_review = @company_review.company_dislike_reviews.find(params[:id])
     end
 

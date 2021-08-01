@@ -36,14 +36,14 @@ class PostCommentsController < ApplicationController
     
     def destroy
         @post = Post.friendly.find(params[:post_id])
-        @post_comment = @post.post_comments.friendly.find(params[:id])
+        @post_comment = @post.post_comments.find(params[:id])
         @post_comment.destroy
         redirect_to post_path(@post)
     end
 
     def show
         @post = Post.friendly.find(params[:post_id])
-        @post_comment = @post.post_comments.friendly.find(params[:id])
+        @post_comment = @post.post_comments.find(params[:id])
     end
 
     private

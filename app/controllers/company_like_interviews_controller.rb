@@ -11,13 +11,13 @@ class CompanyLikeInterviewsController < ApplicationController
 
     def new
         @company = Company.friendly.find(params[:company_id])
-        @company_interview = @company.company_interviews.friendly.find(params[:company_interview_id])
+        @company_interview = @company.company_interviews.find(params[:company_interview_id])
         @company_like_interview = CompanyLikeInterview.new
     end
 
     def create
         @company = Company.friendly.find(params[:company_id])
-        @company_interview = CompanyInterview.friendly.find(params[:company_interview_id])
+        @company_interview = CompanyInterview.find(params[:company_interview_id])
         if already_liked?
             # flash[:notice] = "You can't like more than once"
         else
@@ -38,7 +38,7 @@ class CompanyLikeInterviewsController < ApplicationController
     
     def destroy
         @company = Company.friendly.find(params[:company_id])
-        @company_interview = @company.company_interviews.friendly.find(params[:company_interview_id])
+        @company_interview = @company.company_interviews.find(params[:company_interview_id])
         @company_like_interview = @company_interview.company_like_interviews.find(params[:id])
         @company_like_interview.destroy
         # redirect_to company_path(@company)
@@ -50,7 +50,7 @@ class CompanyLikeInterviewsController < ApplicationController
 
     def show
         @company = Company.friendly.find(params[:company_id])
-        @company_interview = @company.company_interviews.friendly.find(params[:company_interview_id])
+        @company_interview = @company.company_interviews.find(params[:company_interview_id])
         @company_like_interview = @company_interview.company_like_interviews.find(params[:id])
     end
 
@@ -65,7 +65,7 @@ class CompanyLikeInterviewsController < ApplicationController
     end
 
     def find_company_interview
-        @company_interview = CompanyInterview.friendly.find(params[:company_interview_id])
+        @company_interview = CompanyInterview.find(params[:company_interview_id])
     end
 
     def find_like

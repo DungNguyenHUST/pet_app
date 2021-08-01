@@ -9,13 +9,13 @@ class CompanyReplyReviewsController < ApplicationController
 
     def new
         @company = Company.friendly.find(params[:company_id])
-        @company_review = @company.company_reviews.friendly.find(params[:company_review_id])
+        @company_review = @company.company_reviews.find(params[:company_review_id])
         @company_reply_review = CompanyReplyReview.new
     end
 
     def create
         @company = Company.friendly.find(params[:company_id])
-        @company_review = @company.company_reviews.friendly.find(params[:company_review_id])
+        @company_review = @company.company_reviews.find(params[:company_review_id])
         @company_reply_review = @company_review.company_reply_reviews.build(company_reply_review_param)
         @company_reply_review.user_name = current_user.name
         @company_reply_review.user_id = current_user.id
@@ -43,8 +43,8 @@ class CompanyReplyReviewsController < ApplicationController
     
     def destroy
         @company = Company.friendly.find(params[:company_id])
-        @company_review = @company.company_reviews.friendly.find(params[:company_review_id])
-        @company_reply_review = @company_review.company_reply_reviews.friendly.find(params[:id])
+        @company_review = @company.company_reviews.find(params[:company_review_id])
+        @company_reply_review = @company_review.company_reply_reviews.find(params[:id])
 
         @company_reply_review.destroy
         redirect_to company_path(@company, tab_id: 'CompanyReviewsID')
@@ -52,8 +52,8 @@ class CompanyReplyReviewsController < ApplicationController
 
     def show
         @company = Company.friendly.find(params[:company_id])
-        @company_review = @company.company_reviews.friendly.find(params[:company_review_id])
-        @company_reply_review = @company_review.company_reply_reviews.friendly.find(params[:id])
+        @company_review = @company.company_reviews.find(params[:company_review_id])
+        @company_reply_review = @company_review.company_reply_reviews.find(params[:id])
     end
 
     private
