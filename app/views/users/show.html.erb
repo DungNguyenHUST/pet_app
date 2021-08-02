@@ -1032,11 +1032,13 @@
 
                         <div class="user_save_job">
                             <%if @company_save_job_current != nil%>
-                                <%@company_save_job_current.each do |company_job|%>
-                                    <div class="col-sm-6">
-                                        <%=render company_job%>
-                                    </div>
-                                <%end%>
+                                <div class="row">
+                                    <%@company_save_job_current.each do |company_job|%>
+                                        <div class="col-sm-6">
+                                            <%=render company_job%>
+                                        </div>
+                                    <%end%>
+                                </div>
                             <%end%>
                         </div>
                     </div>
@@ -1049,11 +1051,13 @@
                         </div>
                         <div class="company_apply_job">
                             <%if @company_apply_job_current != nil%>
-                                <%@company_apply_job_current.each do |company_job|%>
-                                    <div class="col-sm-6">
-                                        <%=render company_job%>
-                                    </div>
-                                <%end%>
+                                <div class="row">
+                                    <%@company_apply_job_current.each do |company_job|%>
+                                        <div class="col-sm-6">
+                                            <%=render company_job%>
+                                        </div>
+                                    <%end%>
+                                </div>
                             <%end%>
                         </div>
                     </div>
