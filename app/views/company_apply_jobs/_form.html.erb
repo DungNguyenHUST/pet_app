@@ -1,57 +1,92 @@
 <div class="container">
-    <div class="new_apply_job_form">
-        <%= form_for [@company, @company_job, CompanyApplyJob.new] do |f| %>
-            <div class="new_apply_job_title">
-                <h3>Ứng tuyển vị trí "<%=@company_job.title%>" </h3>
-            </div>
+    <div class="row">
+        <div class="col-sm-8">
+            <div class="new_apply_job_form">
+                <%= form_for [@company, @company_job, CompanyApplyJob.new] do |f| %>
+                    <div class="new_apply_job_title">
+                        <h3>Ứng tuyển vị trí "<%=@company_job.title%>" </h3>
+                    </div>
 
-            <div class="new_apply_job_title_sub">
-                <span>Note: Mục có dấu '*' là bắt buộc</span>
-            </div>
-            
-            <div class="new_apply_job_content">
-                <div class="new_apply_job_label">
-                    <a><%= f.label :name, "Họ và tên*", class: "new_apply_job_label_content" %></a>
-                </div>
-                
-                <div class="new_apply_job_input_job">
-                    <%= f.text_field :name, autofocus: true, :required => true, class: "form-control", value: current_user.name %>
-                </div>
-            </div>
+                    <div class="new_apply_job_title_sub">
+                        <span>Note: Mục có dấu '*' là bắt buộc</span>
+                    </div>
+                    
+                    <div class="new_apply_job_content">
+                        <div class="new_apply_job_label">
+                            <a><%= f.label :name, "Họ và tên*", class: "new_apply_job_label_content" %></a>
+                        </div>
+                        
+                        <div class="new_apply_job_input_job">
+                            <%= f.text_field :name, autofocus: true, :required => true, class: "form-control", value: current_user.name %>
+                        </div>
+                    </div>
 
-            <div class="new_apply_job_content">
-                <div class="new_apply_job_label">
-                    <a><%= f.label :email, "Địa chỉ Email*", class: "new_apply_job_label_content" %></a>
-                </div>
-                
-                <div class="new_apply_job_input_job">
-                    <%= f.text_field :email, :required => true, class: "form-control", value: current_user.email%>
-                </div>
-            </div>
+                    <div class="new_apply_job_content">
+                        <div class="new_apply_job_label">
+                            <a><%= f.label :email, "Địa chỉ Email*", class: "new_apply_job_label_content" %></a>
+                        </div>
+                        
+                        <div class="new_apply_job_input_job">
+                            <%= f.text_field :email, :required => true, class: "form-control", value: current_user.email%>
+                        </div>
+                    </div>
 
-            <div class="new_apply_job_content">
-                <div class="new_apply_job_label">
-                    <a><%= f.label :cover_vitate, "Upload CV*", class: "new_apply_job_label_content" %></a>
-                </div>
-                
-                <div class="new_apply_job_input_job">
-                    <%= f.file_field :cover_vitate, :required => true, class: "form-control", placeholder: "Tải CV của bạn lên" %>
-                </div>
-            </div>
+                    <div class="new_apply_job_content">
+                        <div class="new_apply_job_label">
+                            <a><%= f.label :cover_vitate, "Upload CV*", class: "new_apply_job_label_content" %></a>
+                        </div>
+                        
+                        <div class="new_apply_job_input_job">
+                            <%= f.file_field :cover_vitate, :required => true, class: "form-control", placeholder: "Tải CV của bạn lên" %>
+                        </div>
+                    </div>
 
-            <div class="new_apply_job_content">
-                <div class="new_apply_job_label">
-                    <a><%= f.label :cover_letter, "Giới thiệu về bản thân(khoảng 3000 từ)*", class: "new_apply_job_label_content" %></a>
-                </div>
-                
-                <div class="new_apply_job_input_job">
-                    <%= f.cktext_area :cover_letter, :required => true, class: "form-control-rich-text", ckeditor: {toolbar: "medium", height: 200}, placeholder: "Giới thiệu bản thân( kinh nghiệm, học vấn, nghề nghiệp...) ít nhất 3000 từ" %>
-                </div>
-            </div>
+                    <div class="new_apply_job_content">
+                        <div class="new_apply_job_label">
+                            <a><%= f.label :cover_letter, "Giới thiệu về bản thân(khoảng 3000 từ)*", class: "new_apply_job_label_content" %></a>
+                        </div>
+                        
+                        <div class="new_apply_job_input_job">
+                            <%= f.cktext_area :cover_letter, :required => true, class: "form-control-rich-text", ckeditor: {toolbar: "medium", height: 200}, placeholder: "Giới thiệu bản thân( kinh nghiệm, học vấn, nghề nghiệp...) ít nhất 3000 từ" %>
+                        </div>
+                    </div>
 
-            <div class="new_apply_job_submit">
-                <%= f.submit "Nộp đơn", class: "new_apply_job_form_submit" %>
+                    <div class="new_apply_job_submit">
+                        <%= f.submit "Nộp đơn", class: "new_apply_job_form_submit" %>
+                    </div>
+                <%end%>
             </div>
-        <%end%>
+        </div>
+        <div class="col-sm-4">
+            <div class="apply_job_policy">
+                <div class="apply_job_policy_title">
+                    <a>Lưu ý trước khi ứng tuyển</a>
+                </div>
+                <div class="apply_job_policy_content">
+                    <div class="apply_job_policy_content_index">
+                        · Mô tả bản thân một cách ngắn gọn, xúc tích ghi điểm với nhà tuyển dụng
+                    </div>
+                    <div class="apply_job_policy_content_index">
+                        · Trình bày CV thông minh làm nổi bật những điểm mạnh của bản thân
+                    </div>
+                    <div class="apply_job_policy_content_index">
+                        · Không sử dụng từ ngữ mang ý xúc phạm, miệt thị người khác
+                    </div>
+                    <div class="apply_job_policy_content_index">
+                        · Không sử dụng từ ngữ mang tính chất kích động, bạo lực
+                    </div>
+                    <div class="apply_job_policy_content_index">
+                        · Không cung cấp thông tin cá nhân
+                    </div>
+                    <div class="apply_job_policy_content_index">
+                        · Không cung cấp thông tin bảo mật, bí mật kinh doanh của công ty
+                    </div>
+                    <div class="apply_job_policy_content_link">
+                        Xem thêm thông tin chi tiết về 
+                        <a href="https://www.firework.vn/posts/policy">thỏa thuận sử dụng </a>
+                    </div>
+                </div>
+            </div>
+        </div>
     </div>
 </div>
