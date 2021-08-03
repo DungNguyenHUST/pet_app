@@ -1,6 +1,6 @@
 class CompaniesController < ApplicationController
     include ::CompaniesHelper
-    before_action :require_login, only: [:new, :create, :edit, :update, :destroy]
+    before_action :require_user_login, only: [:new, :create, :edit, :update, :destroy]
     def index
         @is_company_searched = false
 		if(params.has_key?(:search))

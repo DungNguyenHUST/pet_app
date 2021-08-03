@@ -1,5 +1,5 @@
 class CompanyDislikeInterviewsController < ApplicationController
-    before_action :require_login, only: [:new, :create, :edit, :update, :destroy]
+    before_action :require_user_login, only: [:new, :create, :edit, :update, :destroy]
     def index 
         @company = Company.friendly.find(params[:company_id])
         @company_interviews = @company.company_interviews

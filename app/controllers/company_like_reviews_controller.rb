@@ -1,5 +1,5 @@
 class CompanyLikeReviewsController < ApplicationController
-    before_action :require_login, only: [:new, :create, :edit, :update, :destroy]
+    before_action :require_user_login, only: [:new, :create, :edit, :update, :destroy]
     before_action :find_company_review
     before_action :find_like, only: [:destroy]
     

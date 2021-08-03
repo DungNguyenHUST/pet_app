@@ -1,5 +1,5 @@
 class PostsController < ApplicationController
-    before_action :require_login, only: [:new, :create, :edit, :update, :destroy]
+    before_action :require_user_login, only: [:new, :create, :edit, :update, :destroy]
     def index
         @posts = Post.all.order('created_at DESC').approved.page(params[:page]).per(10)
         @post_comments = PostComment.all

@@ -4,6 +4,12 @@ Rails.application.routes.draw do
     registrations: 'admins/registrations',
     passwords: 'admins/passwords'
   }
+  
+  devise_for :employers, controllers: {
+    sessions: 'employers/sessions',
+    registrations: 'employers/registrations',
+    passwords: 'employers/passwords'
+  }
 
   devise_for :users, controllers: {
     sessions: 'users/sessions',
@@ -17,6 +23,8 @@ Rails.application.routes.draw do
   resources :users do
     resources :user_notifications
   end
+
+  resources :employers
 
   resources :pages
   get "admin_search"   => "pages#index"

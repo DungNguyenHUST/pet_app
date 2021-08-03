@@ -1,5 +1,5 @@
 class ProblemUnvoteSolutionsController < ApplicationController
-    before_action :require_login, only: [:new, :create, :edit, :update, :destroy]
+    before_action :require_user_login, only: [:new, :create, :edit, :update, :destroy]
     before_action :find_problem_solution
     before_action :find_unvote, only: [:destroy]
     

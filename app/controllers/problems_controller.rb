@@ -1,5 +1,5 @@
 class ProblemsController < ApplicationController
-    before_action :require_login, only: [:new, :create, :edit, :update, :destroy]
+    before_action :require_user_login, only: [:new, :create, :edit, :update, :destroy]
     def index
         @is_problem_searched = false
 		if(params.has_key?(:search))

@@ -1,5 +1,5 @@
 class CompanyImagesController < ApplicationController
-  before_action :require_login, only: [:new, :create, :edit, :update, :destroy]
+  before_action :require_user_login, only: [:new, :create, :edit, :update, :destroy]
   before_action :set_company_image, only: %i[ show edit update destroy ]
 
   # GET /company_images or /company_images.json

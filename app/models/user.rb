@@ -48,8 +48,6 @@ class User < ApplicationRecord
 
   has_many :user_notifications, dependent: :destroy
 
-  belongs_to :company, optional: true
-
   # after_create :send_welcome_email
 	
 	def self.approved

@@ -1,5 +1,5 @@
 class PostCommentsController < ApplicationController
-    before_action :require_login, only: [:new, :create, :edit, :update, :destroy]
+    before_action :require_user_login, only: [:new, :create, :edit, :update, :destroy]
     def index 
         @post = Post.friendly.find(params[:post_id])
         @post_comments = @post.post_comments

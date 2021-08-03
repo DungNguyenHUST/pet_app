@@ -1,6 +1,6 @@
 class ProblemReplySolutionsController < ApplicationController
     include ApplicationHelper
-    before_action :require_login, only: [:new, :create, :edit, :update, :destroy]
+    before_action :require_user_login, only: [:new, :create, :edit, :update, :destroy]
     def index 
         @problem = Problem.friendly.find(params[:problem_id])
         @problem_solutions = @problem.problem_solutions

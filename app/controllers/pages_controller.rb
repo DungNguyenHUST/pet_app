@@ -50,6 +50,10 @@ class PagesController < ApplicationController
 				redirect_to user_path(current_user, tab_id: @tab_id)
 			end
 		end
+
+		if employer_signed_in?
+			redirect_to employer_path(current_employer)
+		end
     end
 
 	# passing selected company to new review path

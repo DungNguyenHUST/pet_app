@@ -1,5 +1,5 @@
 class UserNotificationsController < ApplicationController
-  before_action :require_login, only: [:index, :show, :edit, :update, :destroy]
+  before_action :require_user_login, only: [:index, :show, :edit, :update, :destroy]
   def index 
     @users = User.all
     @user_notifications = UserNotification.all
