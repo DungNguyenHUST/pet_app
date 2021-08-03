@@ -1,5 +1,5 @@
 class CompanyJobsController < ApplicationController
-    before_action :require_user_login, only: [:new, :create, :edit, :update, :destroy]
+    before_action :require_employer_login, only: [:new, :create, :edit, :update, :destroy]
     def index 
         @companies = Company.all.approved
         @company_jobs = CompanyJob.all.approved

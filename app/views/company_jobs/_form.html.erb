@@ -160,7 +160,7 @@
 							</div>
 						</div>
 
-						<%if current_user.admin?%>
+						<%if user_signed_in? && current_user.admin?%>
 							<%= f.hidden_field :apply_another_site_flag, :value => true %>
 							<div class="new_job_content">
 								<div class="new_job_label">

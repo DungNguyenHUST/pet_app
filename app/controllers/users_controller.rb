@@ -24,16 +24,7 @@ class UsersController < ApplicationController
             @tab_id = "default"
         end
 
-        if current_user.employer?
-            @users = User.all
-			@companies = Company.all.approved
-			@company_jobs = CompanyJob.all.approved
-			@company_reviews = CompanyReview.all
-			@posts = Post.all.approved
-			@problems = Problem.all.approved
-            @company_by_employer = current_user.company
-            @company_job_by_employer = @company_by_employer.company_jobs.all
-        elsif current_user.admin?
+        if current_user.admin?
             @users = User.all.page(params[:page]).per(20)
 			@companies = Company.all.page(params[:page]).per(20)
 			@company_jobs = CompanyJob.all.page(params[:page]).per(20)

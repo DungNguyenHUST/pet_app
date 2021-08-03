@@ -128,7 +128,7 @@
                                 <% elsif @tab_id == "CompanyInterviewsID" %>
                                     <%= link_to '<button type="submit"> <i class="material-icons-outlined">edit</i> <span> Viết interview</span> </button>'.html_safe, new_company_company_interview_path(@company) %>
                                 <% elsif @tab_id == "CompanyJobsID" %>
-                                    <%if user_signed_in? && current_user.employer?%>
+                                    <%if employer_signed_in?%>
                                         <%= link_to '<button type="submit"> <i class="material-icons-outlined">edit</i> <span> Đăng tuyển</span> </button>'.html_safe, new_company_company_job_path(@company) %>
                                     <%else%>
                                         <%= link_to '<button type="submit"> <i class="material-icons-outlined">edit</i> <span> Viết review</span> </button>'.html_safe, new_company_company_review_path(@company) %>

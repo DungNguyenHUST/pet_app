@@ -24,14 +24,10 @@
                                 <a>Bạn là nhà tuyển dụng?</a>
                             </div>
                             <div class="company_job_new_button">
-                                <%if user_signed_in?%>
-                                    <%if current_user.employer? || current_user.admin?%>
-                                        <%= link_to '<button type="submit"><i class="material-icons-outlined">add</i><span>Đăng tin tuyển dụng miễn phí<span></button>'.html_safe, new_company_company_job_path(@company) %>
-                                    <%else%>
-                                        <%= link_to '<button type="submit"><i class="material-icons-outlined">add</i><span>Đăng tin tuyển dụng miễn phí<span></button>'.html_safe, new_user_registration_path(:user_type => 'employer') %>
-                                    <%end%>
+                                <%if employer_signed_in?%>
+                                    <%= link_to '<button type="submit"><i class="material-icons-outlined">add</i><span>Đăng tin tuyển dụng miễn phí<span></button>'.html_safe, new_company_company_job_path(@company) %>
                                 <%else%>
-                                    <%= link_to '<button type="submit"><i class="material-icons-outlined">add</i><span>Đăng tin tuyển dụng miễn phí<span></button>'.html_safe, new_user_registration_path(:user_type => 'employer') %>
+                                    <%= link_to '<button type="submit"><i class="material-icons-outlined">add</i><span>Đăng tin tuyển dụng miễn phí<span></button>'.html_safe, new_employer_registration_path %>
                                 <%end%>
                             </div>
                         </div>
@@ -48,14 +44,10 @@
                             <strong>Bạn là nhà tuyển dụng</strong>
                         </div>
                         <div class="new_job_button">
-                            <%if user_signed_in?%>
-                                <%if current_user.employer? || current_user.admin?%>
-                                    <%= link_to '<button type="submit"><i class="material-icons-outlined">add</i><span>Đăng tin tuyển dụng miễn phí<span></button>'.html_safe, new_company_company_job_path(@company) %>
-                                <%else%>
-                                    <%= link_to '<button type="submit"><i class="material-icons-outlined">add</i><span>Đăng tin tuyển dụng miễn phí<span></button>'.html_safe, new_user_registration_path(:user_type => 'employer') %>
-                                <%end%>
+                            <%if employer_signed_in?%>
+                                <%= link_to '<button type="submit"><i class="material-icons-outlined">add</i><span>Đăng tin tuyển dụng miễn phí<span></button>'.html_safe, new_company_company_job_path(@company) %>
                             <%else%>
-                                <%= link_to '<button type="submit"><i class="material-icons-outlined">add</i><span>Đăng tin tuyển dụng miễn phí<span></button>'.html_safe, new_user_registration_path(:user_type => 'employer') %>
+                                <%= link_to '<button type="submit"><i class="material-icons-outlined">add</i><span>Đăng tin tuyển dụng miễn phí<span></button>'.html_safe, new_employer_registration_path %>
                             <%end%>
                         </div>
                     </div>
