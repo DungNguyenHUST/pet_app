@@ -114,13 +114,12 @@
         position: relative;
         display: block;
         background-color: #fff;
-        // padding-bottom: 20px;
         .nav {
             overflow-x: auto;
             overflow-y: hidden;
             flex-wrap: nowrap;
-            // border: none;
-            border-bottom: 1px solid #e0e2e5;
+            border-top: 1px solid #e0e2e5;
+            border-bottom: none !important;
         }
         .nav .nav-link {
             white-space: nowrap;
@@ -128,8 +127,8 @@
             border: none;
             min-width: 100%;
             text-align: left;
-        }
-        .nav-pills{
+            display: flex;
+            justify-content: center;
         }
 
         .nav .nav-link, .nav .nav-link.active, .nav .nav-link:hover {
@@ -138,8 +137,6 @@
             text-align: left;
             position: relative;
             i{
-                position: relative;
-                top: 5px;
                 padding-right: 3px;
                 padding-left: 0px;
                 color: #444;
@@ -173,6 +170,10 @@
         width: 100%;
     }
 
+    .table-striped > tbody > tr:nth-child(2n+1) > td, .table-striped > tbody > tr:nth-child(2n+1) > th {
+        background-color: #fefefe;
+    }
+
     .table{
         text-decoration: none;
         // margin-top: 10px;
@@ -187,7 +188,7 @@
             text-align: left;
             font-size: 15px;
             white-space: normal;
-            border-bottom: 2px solid #e0e2e5 !important;
+            border-bottom: none !important;
             .table_th_no{
                 text-align: center;
             }
@@ -611,9 +612,6 @@
             display: block;
             background-color: #fff;
             border-bottom: 1px solid #e0e2e5;
-            @media screen and (max-width: 600px){
-                border-bottom: none;
-            }
 
             .nav {
                 overflow-x: auto;
@@ -1067,6 +1065,10 @@
             }
 
             .problem_related_tab{
+                .table-striped > tbody > tr:nth-child(2n+1) > td, .table-striped > tbody > tr:nth-child(2n+1) > th {
+                    background-color: #fefefe;
+                }
+
                 .table{
                     text-decoration: none;
                     // margin-top: 10px;
@@ -1081,7 +1083,7 @@
                         text-align: left;
                         font-size: 15px;
                         white-space: normal;
-                        border-bottom: 2px solid #e0e2e5 !important;
+                        border-bottom: 1px solid #e0e2e5 !important;
                         .table_th_no{
                             text-align: center;
                         }
