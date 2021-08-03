@@ -17,15 +17,7 @@
                 <div class="employer_tab_link">
                     <ul class="nav">
                         <li class="nav-item">
-                            <%if @tab_id == "default" || @tab_id == "EmployerPersonalID"%>
-                                <%active = "active"%>
-                            <%else%> 
-                                <%active = ""%>
-                            <%end%>                                     
-                            <a class="nav-link <%=active%>" href="<%=employer_path(current_employer, tab_id: 'EmployerPersonalID')%>"><i class="material-icons-outlined">person</i>Thông tin cá nhân </a>
-                        </li>
-                        <li class="nav-item">
-                            <%if @tab_id == "EmployerCompanyID"%>
+                            <%if @tab_id == "default" || @tab_id == "EmployerCompanyID"%>
                                 <%active = "active"%>
                             <%else%> 
                                 <%active = ""%>
@@ -52,80 +44,7 @@
                 </div>
 
                 <div class="employer_tab_content">
-                    <%if @tab_id == "default" || @tab_id == "EmployerPersonalID"%>
-                        <div class="employer_info_tab">
-                            <div class="employer_info_des_label">
-                                <strong>Cài đặt tài khoản</strong>
-                            </div>
-
-                            <div class="employer_info_about">
-
-                                <div class="employer_info_label">
-                                    <strong>Tên tài khoản:</strong>
-                                </div>
-
-                                <div class="employer_info_des">
-                                    <%= current_employer.name %>
-                                </div>
-
-                                <div class="employer_info_edit_button">
-                                    <i class="fa fa-edit"></i> <%= link_to " Thay đổi tên đăng nhập", edit_employer_path(current_employer), class: "employer_info_edit_link_to" %>
-                                </div>
-
-                                <div class="employer_info_label">
-                                    <strong>Địa chỉ email:</strong>
-                                </div>
-
-                                <div class="employer_info_des">
-                                    <%= current_employer.email %>
-                                </div>
-
-                                <div class="employer_info_edit_button">
-                                    <i class="fa fa-edit"></i><%= link_to " Thay đổi địa chỉ email", edit_employer_path(current_employer), class: "employer_info_edit_link_to"  %>
-                                </div>
-
-                                <div class="employer_info_label">
-                                    <strong>Mật khẩu:</strong>
-                                </div>
-
-                                <div class="employer_info_edit_button">
-                                    <i class="fa fa-edit"></i><%= link_to " Thay đổi mật khẩu", edit_employer_path(current_employer), class: "employer_info_edit_link_to"  %>
-                                </div>
-
-                                <div class="employer_info_label">
-                                    <strong>Số điện thoại liên lạc:</strong>
-                                </div>
-
-                                <div class="employer_info_des">
-                                    <%= current_employer.phone %>
-                                </div>
-
-                                <div class="employer_info_edit_button">
-                                    <i class="fa fa-edit"></i><%= link_to " Thay đổi số điện thoại", edit_employer_path(current_employer), class: "employer_info_edit_link_to"  %>
-                                </div>
-
-                                <div class="employer_info_label">
-                                    <strong>Địa chỉ liên hệ:</strong>
-                                </div>
-
-                                <div class="employer_info_des">
-                                    <%= current_employer.address %>
-                                </div>
-
-                                <div class="employer_info_edit_button">
-                                    <i class="fa fa-edit"></i><%= link_to " Thay đổi địa chỉ", edit_employer_path(current_employer), class: "employer_info_edit_link_to"  %>
-                                </div>
-                            </div>
-
-                            <div class="employer_log_out">
-                                <%= button_to destroy_employer_session_path, method: :delete do%>
-                                    <span>Đăng xuất</span>
-                                <%end%>
-                            </div>
-                        </div>
-                    <%end%>
-
-                    <%if @tab_id == "EmployerCompanyID"%>
+                    <%if @tab_id == "default" || @tab_id == "EmployerCompanyID"%>
                         <div class='employer_company_tab'>
                             <div class="employer_top_company">
                                 <div class="employer_top_company_label">
