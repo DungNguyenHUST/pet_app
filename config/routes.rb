@@ -26,6 +26,8 @@ Rails.application.routes.draw do
 
   resources :employers
 
+  resources :admins
+
   resources :pages
   get "admin_search"   => "pages#index"
 

@@ -18,6 +18,12 @@ class ApplicationController < ActionController::Base
         end
     end
 
+    def require_admin_login
+        unless admin_signed_in?
+            redirect_to new_admin_session_path
+        end
+    end
+
     def configure_permitted_parameters
         devise_parameter_sanitizer.permit(:sign_in) do |user_params|
             user_params.permit( :email, :password, :password_confirmation)
