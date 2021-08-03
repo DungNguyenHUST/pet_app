@@ -71,11 +71,14 @@
                 <a>Công ty được yêu thích</a>
             </div>
             <div class="row">
-                <% @companies.first(9).each do |company| %>
+                <% @companies.first(6).each do |company| %>
                     <div class="col-sm-4">
                         <%=render company%>
                     </div>
                 <%end%>
+            </div>
+            <div class="home_top_company_all">
+                <%= link_to '<button type="submit"> Xem tất cả công ty <i class="material-icons-outlined">arrow_forward</i></button>'.html_safe, companies_path %>
             </div>
         </div>
     </div>
@@ -95,6 +98,10 @@
                     <%end%>
                 </div>
             </div>
+
+            <div class="home_top_job_all">
+                <%= link_to '<button type="submit"> Xem tất cả việc làm <i class="material-icons-outlined">arrow_forward</i></button>'.html_safe, company_job_list_path %>
+            </div>
         </div>
     </div>
     
@@ -105,12 +112,15 @@
             </div>
             <div class="home_top_question_container">
                 <div class="row">
-                    <% @problems.first(9).each do |problem| %>
+                    <% @problems.first(6).each do |problem| %>
                         <div class="col-sm-4">
                             <%=render problem%>
                         </div>
                     <%end%>
                 </div>
+            </div>
+            <div class="home_top_question_all">
+                <%= link_to '<button type="submit"> Xem tất cả câu hỏi <i class="material-icons-outlined">arrow_forward</i></button>'.html_safe, problems_path %>
             </div>
         </div>
     </div>
