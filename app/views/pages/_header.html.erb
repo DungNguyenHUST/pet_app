@@ -155,7 +155,11 @@
 				<div class="nav_employer">
 					<div class="employer_notification">						
 						<%= link_to employer_path(current_employer, :tab_id => "NotificationID") do %>
-							<i class="material-icons-outlined">notifications</i><span>9+</span>
+							<%if current_employer.employer_notifications.count < 10%>
+								<i class="material-icons-outlined">notifications</i><span><%=current_employer.employer_notifications.count%></span>
+							<%else%>
+								<i class="material-icons-outlined">notifications</i><span>9+</span>
+							<%end%>
 						<%end%>
 					</div>
 

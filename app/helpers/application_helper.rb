@@ -15,6 +15,14 @@ module ApplicationHelper
         return @owner_user
     end
 
+    def find_owner_employer(object)
+        @owner_employer = nil
+        if object.employer_id.present?
+            @owner_employer = Employer.find_by(id: object.employer_id)
+        end
+        return @owner_employer
+    end
+
     def find_trigger_user(object)
         @trigger_user = nil
         if object.trigger_user_id.present?

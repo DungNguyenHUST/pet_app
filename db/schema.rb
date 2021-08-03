@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_08_03_071304) do
+ActiveRecord::Schema.define(version: 2021_08_03_093000) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -326,6 +326,19 @@ ActiveRecord::Schema.define(version: 2021_08_03_071304) do
     t.integer "company_job_id"
   end
 
+  create_table "employer_notifications", force: :cascade do |t|
+    t.string "title"
+    t.text "content"
+    t.string "original_url"
+    t.integer "trigger_user_id"
+    t.boolean "readed", default: false
+    t.string "noti_type"
+    t.bigint "employer_id", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["employer_id"], name: "index_employer_notifications_on_employer_id"
+  end
+
   create_table "employers", force: :cascade do |t|
     t.string "name"
     t.string "avatar"
@@ -561,6 +574,7 @@ ActiveRecord::Schema.define(version: 2021_08_03_071304) do
   add_foreign_key "company_like_interviews", "users"
   add_foreign_key "company_like_reviews", "company_reviews"
   add_foreign_key "company_like_reviews", "users"
+  add_foreign_key "employer_notifications", "employers"
   add_foreign_key "problem_unvote_solutions", "problem_solutions"
   add_foreign_key "problem_unvote_solutions", "users"
   add_foreign_key "problem_vote_solutions", "problem_solutions"

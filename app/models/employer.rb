@@ -19,7 +19,9 @@ class Employer < ApplicationRecord
   friendly_id :convert_slug, use: :slugged
 
   mount_uploader :avatar, ImageUploader
-  
+
+  has_many :employer_notifications, dependent: :destroy
+
   def self.approved
     where(approved: :true)
   end

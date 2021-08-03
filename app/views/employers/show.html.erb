@@ -40,6 +40,14 @@
                             <%end%>                                     
                             <a class="nav-link <%=active%>" href="<%=employer_path(current_employer, tab_id: 'EmployerJobID')%>"><i class="material-icons-outlined">work_outline</i>Tin tuyển dụng <span><%= convert_number_to_human(@company_job_by_employer.count)%><span></a>
                         </li>
+                        <li class="nav-item">
+                            <%if @tab_id == "NotificationID"%>
+                                <%active = "active"%>
+                            <%else%> 
+                                <%active = ""%>
+                            <%end%>                                     
+                            <a class="nav-link <%=active%>" href="<%=employer_path(current_employer, tab_id: 'NotificationID')%>"><i class="material-icons-outlined">notifications</i>Thông báo <span><%= convert_number_to_human(current_employer.employer_notifications.count)%><span> </a>
+                        </li>
                     </ul>
                 </div>
 
@@ -217,8 +225,8 @@
 
                                     <div class="employer_notification_right">
                                         <div class="employer_notification_employer">
-                                            <%if find_trigger_employer(notify).present?%>
-                                                <a> <%= find_trigger_employer(notify).name%>
+                                            <%if find_trigger_user(notify).present?%>
+                                                <a> <%= find_trigger_user(notify).name%>
                                                     <%if notify.noti_type.to_s == "ReviewComment"%>
                                                         <span> đã trả lời review của bạn </span>
                                                     <%elsif notify.noti_type.to_s == "InterviewComment"%>

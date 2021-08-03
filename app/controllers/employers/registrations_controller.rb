@@ -58,7 +58,7 @@ class Employers::RegistrationsController < Devise::RegistrationsController
 
 	# The path used after sign up.
 	def after_sign_up_path_for(resource_or_scope)
-		stored_location_for(resource_or_scope) || employers_path
+		stored_location_for(resource_or_scope) || employer_path(current_employer)
 	end
 
 	# The path used after sign up for inactive accounts.
