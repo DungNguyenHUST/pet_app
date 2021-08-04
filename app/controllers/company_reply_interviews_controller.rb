@@ -2,20 +2,20 @@ class CompanyReplyInterviewsController < ApplicationController
     include ApplicationHelper
     before_action :require_user_login, only: [:new, :create, :edit, :update, :destroy]
     def index 
-        @company = Company.friendly.find(params[:company_id])
-        @company_interviews = @company.company_interviews
-        @company_reply_interviews = @company_interviews.company_reply_interviews
+        @company_interview = CompanyInterview.find(params[:company_interview_id])
+        @company = @company_interview.company
+        @company_reply_interviews = @company_interview.company_reply_interviews
     end
 
     def new
-        @company = Company.friendly.find(params[:company_id])
-        @company_interview = @company.company_interviews.find(params[:company_interview_id])
+        @company_interview = CompanyInterview.find(params[:company_interview_id])
+        @company = @company_interview.company
         @company_reply_interview = CompanyReplyInterview.new
     end
 
     def create
-        @company = Company.friendly.find(params[:company_id])
-        @company_interview = @company.company_interviews.find(params[:company_interview_id])
+        @company_interview = CompanyInterview.find(params[:company_interview_id])
+        @company = @company_interview.company
         @company_reply_interview = @company_interview.company_reply_interviews.build(company_reply_interview_param)
         @company_reply_interview.user_name = current_user.name
         @company_reply_interview.user_id = current_user.id
@@ -42,8 +42,8 @@ class CompanyReplyInterviewsController < ApplicationController
     end
     
     def destroy
-        @company = Company.friendly.find(params[:company_id])
-        @company_interview = @company.company_interviews.find(params[:company_interview_id])
+        @company_interview = CompanyInterview.find(params[:company_interview_id])
+        @company = @company_interview.company
         @company_reply_interview = @company_interview.company_reply_interviews.find(params[:id])
 
         @company_reply_interview.destroy
@@ -51,8 +51,8 @@ class CompanyReplyInterviewsController < ApplicationController
     end
 
     def show
-        @company = Company.friendly.find(params[:company_id])
-        @company_interview = @company.company_interviews.find(params[:company_interview_id])
+        @company_interview = CompanyInterview.find(params[:company_interview_id])
+        @company = @company_interview.company
         @company_reply_interview = @company_interview.company_reply_interviews.find(params[:id])
     end
 

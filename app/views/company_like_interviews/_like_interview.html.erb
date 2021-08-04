@@ -2,11 +2,11 @@
     <%if user_signed_in?%>
         <% pre_like = company_interview.company_like_interviews.find { |like| like.user_id == current_user.id} %>
         <% if pre_like %>  
-            <%= button_to company_company_interview_company_like_interview_path(@company, company_interview, pre_like), method: :delete, remote: true, form_class: "like_btn_highlight" do %>
+            <%= button_to company_interview_company_like_interview_path(company_interview, pre_like), method: :delete, remote: true, form_class: "like_btn_highlight" do %>
                 <i class="material-icons">thumb_up</i> <span><%= company_interview.company_like_interviews.count%></span> <a>Thích</a>
             <%end%>
         <%else%>
-            <%= button_to company_company_interview_company_like_interviews_path(@company, company_interview, pre_like), method: :post, remote: true, form_class: "like_btn" do %>
+            <%= button_to company_interview_company_like_interviews_path(company_interview), method: :post, remote: true, form_class: "like_btn" do %>
                 <i class="material-icons-outlined">thumb_up</i> <span><%= company_interview.company_like_interviews.count%></span> <a>Thích</a>
             <%end%>
         <%end%>
