@@ -83,9 +83,9 @@
                     <%if user_signed_in?%>
                         <% pre_save = company_job.company_save_jobs.find { |save| save.user_id == current_user.id} %>
                         <% if pre_save %> 
-                            <%= link_to '<button class="save_btn_highlight"><i class="material-icons">favorite</i> </button>'.html_safe, company_company_job_company_save_job_path(company.id, company_job.id, pre_save.id, type_param: 'mini'), method: :delete, remote: true %>
+                            <%= link_to '<button class="save_btn_highlight"><i class="material-icons">favorite</i> </button>'.html_safe, company_job_company_save_job_path(company_job, pre_save, type_param: 'mini'), method: :delete, remote: true %>
                         <%else%>
-                            <%= link_to '<button class="save_btn"><i class="material-icons-outlined">favorite_border</i> </button>'.html_safe, company_company_job_company_save_jobs_path(company.id, company_job.id, type_param: 'mini'), method: :post, remote: true %>
+                            <%= link_to '<button class="save_btn"><i class="material-icons-outlined">favorite_border</i> </button>'.html_safe, company_job_company_save_jobs_path(company_job, type_param: 'mini'), method: :post, remote: true %>
                         <%end%>
                     <%else%>
                         <button type="button" data-toggle="modal" data-target="#buttonModalLoginCenter" class="save_btn">

@@ -1,22 +1,21 @@
 class CompanySaveJobsController < ApplicationController
     before_action :require_user_login, only: [:new, :create, :edit, :update, :destroy]
-    # before_action :find_company_save_job
         
     def index 
-        @company = Company.friendly.find(params[:company_id])
-        @company_job = @company.company_jobs.friendly.find(params[:company_job_id])
+        @company_job = CompanyJob.friendly.find(params[:company_job_id])
+        @company = @company_job.company
         @company_save_job = @company_job.company_save_jobs
     end
 
     def new
-        @company = Company.friendly.find(params[:company_id])
-        @company_job = @company.company_jobs.friendly.find(params[:company_job_id])
+        @company_job = CompanyJob.friendly.find(params[:company_job_id])
+        @company = @company_job.company
         @company_save_job = CompanySaveJob.new
     end
 
     def create
-        @company = Company.friendly.find(params[:company_id])
-        @company_job = @company.company_jobs.friendly.find(params[:company_job_id])
+        @company_job = CompanyJob.friendly.find(params[:company_job_id])
+        @company = @company_job.company
         @company_save_job = CompanySaveJob.new
         @type_param = params[:type_param]
         if already_saved?
@@ -38,8 +37,8 @@ class CompanySaveJobsController < ApplicationController
     end
 
     def destroy 
-        @company = Company.friendly.find(params[:company_id])
-        @company_job = @company.company_jobs.friendly.find(params[:company_job_id])
+        @company_job = CompanyJob.friendly.find(params[:company_job_id])
+        @company = @company_job.company
         @company_save_job = @company_job.company_save_jobs.find(params[:id])
         @company_save_job.destroy
         @type_param = params[:type_param]
@@ -51,8 +50,8 @@ class CompanySaveJobsController < ApplicationController
     end
 
     def show
-        @company = Company.friendly.find(params[:company_id])
-        @company_job = @company.company_jobs.friendly.find(params[:company_job_id])
+        @company_job = CompanyJob.friendly.find(params[:company_job_id])
+        @company = @company_job.company
         @company_save_job = @company_job.company_save_jobs.find(params[:id])
     end
 
@@ -64,10 +63,5 @@ class CompanySaveJobsController < ApplicationController
 
     def already_saved?
         CompanySaveJob.where(user_id: current_user.id, company_job_id: params[:company_job_id]).exists?
-    end
-
-    def find_company_save_job
-        @company_job = CompanyJob.friendly.find(params[:company_job_id])
-        @company_save_job = CompanySaveJob.find(params[:id])
     end
 end
