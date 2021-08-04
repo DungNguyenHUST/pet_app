@@ -4,20 +4,20 @@ class ProblemVoteSolutionsController < ApplicationController
     before_action :find_vote, only: [:destroy]
     
     def index 
-        @problem = Problem.friendly.find(params[:problem_id])
-        @problem_solutions = @problem.problem_solutions
-        @problem_vote_solutions = @problem_solutions.problem_vote_solutions
+        @problem_solution = ProblemSolution.find(params[:problem_solution_id])
+        @problem = @problem_solution.problem
+        @problem_vote_solutions = @problem_solution.problem_vote_solutions
     end
 
     def new
-        @problem = Problem.friendly.find(params[:problem_id])
-        @problem_solution = @problem.problem_solutions.find(params[:problem_solution_id])
+        @problem_solution = ProblemSolution.find(params[:problem_solution_id])
+        @problem = @problem_solution.problem
         @problem_vote_solution = ProblemVoteSolution.new
     end
 
     def create
-        @problem = Problem.friendly.find(params[:problem_id])
         @problem_solution = ProblemSolution.find(params[:problem_solution_id])
+        @problem = @problem_solution.problem
         if already_voted?
             # flash[:notice] = "You can't vote more than once"
         else
@@ -37,8 +37,8 @@ class ProblemVoteSolutionsController < ApplicationController
     end
     
     def destroy
-        @problem = Problem.friendly.find(params[:problem_id])
-        @problem_solution = @problem.problem_solutions.find(params[:problem_solution_id])
+        @problem_solution = ProblemSolution.find(params[:problem_solution_id])
+        @problem = @problem_solution.problem
         @problem_vote_solution = @problem_solution.problem_vote_solutions.find(params[:id])
         @problem_vote_solution.destroy
         # redirect_to problem_path(@problem)
@@ -49,16 +49,12 @@ class ProblemVoteSolutionsController < ApplicationController
     end
 
     def show
-        @problem = Problem.friendly.find(params[:problem_id])
-        @problem_solution = @problem.problem_solutions.find(params[:problem_solution_id])
+        @problem_solution = ProblemSolution.find(params[:problem_solution_id])
+        @problem = @problem_solution.problem
         @problem_vote_solution = @problem_solution.problem_vote_solutions.find(params[:id])
     end
 
     private
-
-    def problem_vote_solution_param
-        # params.require(:problem_vote_solution).permit(:vote_content)
-    end
 
     def already_voted?
         ProblemVoteSolution.where(user_id: current_user.id, problem_solution_id: params[:problem_solution_id]).exists?

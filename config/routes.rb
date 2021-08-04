@@ -69,14 +69,14 @@ Rails.application.routes.draw do
   get 'company_job_list' => 'company_jobs#list'
   
   resources :problems do
-    resources :problem_solutions do
-      resources :problem_reply_solutions
-      resources :problem_vote_solutions
-      resources :problem_unvote_solutions
-    end
+    resources :problem_solutions
   end
 
-  get '/problem_reply_solutions/new/(:problem_id, :problem_solution_id)', to: 'problem_reply_solutions#new', as: :new_problem_reply_solution
+  resources :problem_solutions do
+    resources :problem_reply_solutions
+    resources :problem_vote_solutions
+    resources :problem_unvote_solutions
+  end
 
   # New post
   get 'posts/new' => 'posts#new'
