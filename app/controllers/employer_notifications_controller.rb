@@ -17,7 +17,7 @@ class EmployerNotificationsController < ApplicationController
   end
 
   def create_notify(destination_employer, trigger_employer, title, content, original_url, noti_type)
-    @employer_notification = destination_employer.employer_notifications.build(:trigger_employer_id => trigger_employer.id, :title => title, :content => content, :original_url => original_url, :noti_type => noti_type)
+    @employer_notification = destination_employer.employer_notifications.build(:trigger_user_id => trigger_employer.id, :title => title, :content => content, :original_url => original_url, :noti_type => noti_type)
     @employer_notification.save!
   end
 
@@ -46,6 +46,6 @@ class EmployerNotificationsController < ApplicationController
   private
 
   def employer_notification_param
-    params.require(:employer_notification).permit(:id, :employer_id, :trigger_employer_id, :title, :content, :original_url, :readed, :noti_type)
+    params.require(:employer_notification).permit(:id, :employer_id, :trigger_user_id, :title, :content, :original_url, :readed, :noti_type)
   end
 end

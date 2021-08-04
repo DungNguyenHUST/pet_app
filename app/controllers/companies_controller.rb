@@ -1,6 +1,6 @@
 class CompaniesController < ApplicationController
     include ::CompaniesHelper
-    before_action :require_user_login, only: [:new, :create, :edit, :update, :destroy]
+    before_action :require_employer_login, only: [:new, :create, :edit, :update, :destroy]
     def index
         @is_company_searched = false
 		if(params.has_key?(:search))
@@ -39,7 +39,7 @@ class CompaniesController < ApplicationController
         @company_interview = CompanyInterview.new
         @company_job = CompanyJob.new
 
-        if current_user.admin?
+        if user_signed_in? && current_user.admin?
             @company.approved = true
             @company.save!
             redirect_to root_path(tab_id: 'AdminCompanyID')

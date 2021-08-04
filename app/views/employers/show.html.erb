@@ -24,14 +24,16 @@
                             <%end%>                                 
                             <a class="nav-link <%=active%>" href="<%=employer_path(current_employer, tab_id: 'EmployerCompanyID')%>"><i class="material-icons-outlined">business</i>Công ty</a>
                         </li>
-                        <li class="nav-item">
-                            <%if @tab_id == "EmployerJobID"%>
-                                <%active = "active"%>
-                            <%else%> 
-                                <%active = ""%>
-                            <%end%>                                     
-                            <a class="nav-link <%=active%>" href="<%=employer_path(current_employer, tab_id: 'EmployerJobID')%>"><i class="material-icons-outlined">work_outline</i>Tin tuyển dụng <span><%= convert_number_to_human(@company_job_by_employer.count)%><span></a>
-                        </li>
+                        <%if @company_job_by_employer.present?%>
+                            <li class="nav-item">
+                                <%if @tab_id == "EmployerJobID"%>
+                                    <%active = "active"%>
+                                <%else%> 
+                                    <%active = ""%>
+                                <%end%>                                     
+                                <a class="nav-link <%=active%>" href="<%=employer_path(current_employer, tab_id: 'EmployerJobID')%>"><i class="material-icons-outlined">work_outline</i>Tin tuyển dụng <span><%= convert_number_to_human(@company_job_by_employer.count)%><span></a>
+                            </li>
+                        <%end%>
                         <li class="nav-item">
                             <%if @tab_id == "NotificationID"%>
                                 <%active = "active"%>
@@ -46,132 +48,152 @@
                 <div class="employer_tab_content">
                     <%if @tab_id == "default" || @tab_id == "EmployerCompanyID"%>
                         <div class='employer_company_tab'>
-                            <div class="employer_top_company">
-                                <div class="employer_top_company_label">
-                                    <a>Công ty hiện tại của <%=current_employer.name%> </a>
-                                </div>
-                                <div class="row">
-                                    <div class="col-sm-3">
-                                        <%= render @company_by_employer%>
+                            <div class="employer_company">
+                                <%if @company_job_by_employer.present?%>
+                                    <div class="row">
+                                        <div class="col-sm-3">
+                                            <%= render @company_by_employer%>
+                                        </div>
                                     </div>
-                                </div>
+                                <%else%>
+                                    <div class="employer_company_not_found_block">
+                                        <div class="employer_company_not_found_icon">
+                                            <i class="material-icons">business</i>
+                                        </div>
+                                        <div class="employer_company_not_found">
+                                            <span>Rất tiếc, hiện tại công ty của bạn chưa có trên cơ sở dữ liệu của chúng tôi, bạn có thể dễ dàng tạo công ty của mình bằng các bước dưới đây</span>
+                                        </div>
+                                        <div class="employer_company_not_found_action">
+                                            <div class="employer_company_button">
+                                                <%= link_to '<button type="submit"> <i class="material-icons-outlined">edit</i> <span> Thêm công ty của tôi</span> </button>'.html_safe, new_company_path%>
+                                            </div>
+                                        </div>
+                                    </div>
+                                <%end%>
                             </div>
                         </div>
                     <%end%>
 
                     <%if @tab_id == "EmployerJobID"%>
                         <div class="employer_job_tab">
-                            <div class="employer_top_job_new">
-                                <%= link_to '<button type="submit"><i class="material-icons-outlined">add</i><span>Đăng tin tuyển dụng miễn phí<span></button>'.html_safe, new_company_company_job_path(@company_by_employer) %>
-                            </div>  
-                            <div class="employer_top_job_employer">
-                                <div class="employer_top_job_employer_label">
-                                    <span>Bạn đang có <%=@company_job_by_employer.count%> việc làm đang tuyển dụng</span>
-                                </div>
+                            <%if @company_job_by_employer.count > 0%>
+                                <div class="employer_job_new">
+                                    <%= link_to '<button type="submit"><i class="material-icons-outlined">add</i><span>Đăng tin tuyển dụng miễn phí<span></button>'.html_safe, new_company_company_job_path(@company_by_employer) %>
+                                </div>  
+                                <div class="employer_job_employer">
+                                    <div class="employer_job_employer_label">
+                                        <span>Bạn có <%=@company_job_by_employer.count%> việc làm đang tuyển dụng</span>
+                                    </div>
 
-                                <div class="employer_top_job_employer_container">
-                                    <%@company_job_by_employer.each do |company_job|%>
-                                        <div class="company_employer_job_container">
-                                            <div class="company_job_employer_block">
-                                                <div class='company_employer_job_edit'>
-                                                    <%= link_to 'Chỉnh sửa', edit_company_company_job_path(@company_by_employer, company_job), class: "btn btn-large btn-warning" %>
-                                                    <%= link_to 'Xóa', company_company_job_path(@company_by_employer, company_job), method: :delete, class: "btn btn-large btn-danger", data: { confirm: 'Bạn có chắc muốn xóa công việc này?' } %>
-                                                </div>
+                                    <div class="employer_job_employer_container">
+                                        <%@company_job_by_employer.each do |company_job|%>
+                                            <div class="company_employer_job_container">
+                                                <div class="company_job_employer_block">
+                                                    <div class='company_employer_job_edit'>
+                                                        <%= link_to 'Chỉnh sửa', edit_company_company_job_path(@company_by_employer, company_job), class: "btn btn-large btn-warning" %>
+                                                        <%= link_to 'Xóa', company_company_job_path(@company_by_employer, company_job), method: :delete, class: "btn btn-large btn-danger", data: { confirm: 'Bạn có chắc muốn xóa công việc này?' } %>
+                                                    </div>
 
-                                                <%=render company_job%>
-                                            
-                                                <div class="company_job_apply_count">
-                                                    <a>Có <%=company_job.company_apply_jobs.count%> hồ sơ ứng tuyển cho vị trí <%=company_job.title%></a>
-                                                </div>
+                                                    <div class='company_employer_job_render'>
+                                                        <%=render company_job%>
+                                                    </div>
+                                                    
+                                                    <%if company_job.company_apply_jobs.count > 0%>
+                                                        <div class="company_job_apply_count">
+                                                            <a>Có <%=company_job.company_apply_jobs.count%> hồ sơ ứng tuyển cho vị trí <%=company_job.title%></a>
+                                                        </div>
 
-                                                <div class="row">
-                                                    <%count = 0%>
-                                                    <%if !company_job.company_apply_jobs.nil?%>
-                                                        <%company_job.company_apply_jobs.each do |company_apply_job|%>
-                                                            <div class="col-sm-4">
-                                                                <%count += 1%>
-                                                                <div class="company_job_apply_block">
-                                                                    <div class="company_job_apply_info">
-                                                                        <div class="company_job_apply_name">
-                                                                            <a>Họ và tên: <%=company_apply_job.name%></a>
-                                                                        </div>
-
-                                                                        <div class="company_job_apply_email">
-                                                                            <a> Địa chỉ email: <%=company_apply_job.email%></a>
-                                                                        </div>
-
-                                                                        <div class="company_job_apply_letter">
-                                                                            <a> Summary letter: </a>
-                                                                            <div class="company_job_apply_sumary">
-                                                                                <%=company_apply_job.cover_letter.html_safe%>
-                                                                            </div>
-                                                                        </div>
-
-                                                                        <div class="company_job_apply_time">
-                                                                            </a>Ứng tuyển <%=time_ago_in_words(company_apply_job.created_at)%></a>
-                                                                        </div>
-
-                                                                        <div class="company_job_apply_download">
-                                                                            <i class="material-icons-outlined">download</i>
-                                                                            <%if company_apply_job.cover_vitate?%>
-                                                                                <%=link_to "Download CV tại đây", company_apply_job.cover_vitate.url%>
-                                                                            <%end%>
-                                                                        </div>
-                                                                    </div>
+                                                        <div class="row">
+                                                            <%company_job.company_apply_jobs.each do |company_apply_job|%>
+                                                                <div class="col-sm-4">
+                                                                    <%=render company_apply_job%>
                                                                 </div>
+                                                            <%end%>
+                                                        </div>
+                                                    <%else%>
+                                                        <div class="employer_apply_job_not_found_block">
+                                                            <div class="employer_apply_job_not_found_icon">
+                                                                <i class="material-icons">next_week</i>
                                                             </div>
-                                                        <%end%>
+                                                            <div class="employer_apply_job_not_found">
+                                                                <span>Rất tiếc chưa có đơn ứng tuyển cho việc làm này</span>
+                                                            </div>
+                                                        </div>
                                                     <%end%>
                                                 </div>
                                             </div>
-                                        </div>
-                                    <%end%>
+                                        <%end%>
+                                    </div>
                                 </div>
-
-                            </div>
+                            <%else%>
+                                <div class="employer_job_not_found_block">
+                                    <div class="employer_job_not_found_icon">
+                                        <i class="material-icons">business</i>
+                                    </div>
+                                    <div class="employer_job_not_found">
+                                        <span>Hiện tại bạn chưa có việc làm nào đang tuyển dụng</span>
+                                    </div>
+                                    <div class="employer_job_not_found_action">
+                                        <div class="employer_job_button">
+                                            <%= link_to '<button type="submit"> <i class="material-icons-outlined">edit</i> <span> Thêm việc làm mới</span> </button>'.html_safe, new_company_company_job_path(@company_by_employer)%>
+                                        </div>
+                                    </div>
+                                </div>
+                            <%end%>
                         </div>
                     <%end%>
 
                     <%if @tab_id == "NotificationID"%>
                         <div class="employer_notification_tab">
-                            <%current_employer.employer_notifications.each do |notify|%>
-                                <div class="employer_notification_block">
-                                    <div class="employer_notification_left">
-                                        <div class="employer_notification_date">
-                                            <a><%=notify.created_at.strftime("%B %d, %Y")%></a>
+                            <%if current_employer.employer_notifications.count > 0 %>
+                                <%current_employer.employer_notifications.each do |notify|%>
+                                    <div class="employer_notification_block">
+                                        <div class="employer_notification_left">
+                                            <div class="employer_notification_date">
+                                                <a><%=notify.created_at.strftime("%B %d, %Y")%></a>
+                                            </div>
+                                        </div>
+
+                                        <div class="employer_notification_right">
+                                            <div class="employer_notification_employer">
+                                                <%if find_trigger_user(notify).present?%>
+                                                    <a> <%= find_trigger_user(notify).name%>
+                                                        <%if notify.noti_type.to_s == "ReviewComment"%>
+                                                            <span> đã trả lời review của bạn </span>
+                                                        <%elsif notify.noti_type.to_s == "InterviewComment"%>
+                                                            <span> đã trả lời chia sẻ phỏng vấn của bạn </span>
+                                                        <%elsif notify.noti_type.to_s == "PostComment"%>
+                                                            <span> đã trả bình luận bài viết của bạn </span>
+                                                        <%elsif notify.noti_type.to_s == "ProblemComment"%>
+                                                            <span> đã trả lời câu hỏi của bạn</span>
+                                                        <%elsif notify.noti_type.to_s == "ProblemSolutionComment"%>
+                                                            <span> đã bình luận trong câu trả lời của bạn </span>
+                                                        <%elsif notify.noti_type.to_s == "ApplyJob"%>
+                                                            <span> đã nộp đơn ứng tuyển cho vị trí </span>
+                                                        <%else%>
+                                                            <span> đã trả lời trong chủ đề </span>
+                                                        <%end%>
+                                                    </a>
+                                                <%end%>
+                                            </div>
+
+                                            <div class="employer_notification_title">
+                                                <a><%= link_to notify.title, notify.original_url, class: "notify_label" %></a>
+                                            </div>
+
+                                            <div class="employer_notification_content">
+                                                <a><%=notify.content%></a>
+                                            </div>
                                         </div>
                                     </div>
-
-                                    <div class="employer_notification_right">
-                                        <div class="employer_notification_employer">
-                                            <%if find_trigger_user(notify).present?%>
-                                                <a> <%= find_trigger_user(notify).name%>
-                                                    <%if notify.noti_type.to_s == "ReviewComment"%>
-                                                        <span> đã trả lời review của bạn </span>
-                                                    <%elsif notify.noti_type.to_s == "InterviewComment"%>
-                                                        <span> đã trả lời chia sẻ phỏng vấn của bạn </span>
-                                                    <%elsif notify.noti_type.to_s == "PostComment"%>
-                                                        <span> đã trả bình luận bài viết của bạn </span>
-                                                    <%elsif notify.noti_type.to_s == "ProblemComment"%>
-                                                        <span> đã trả lời câu hỏi của bạn</span>
-                                                    <%elsif notify.noti_type.to_s == "ProblemSolutionComment"%>
-                                                        <span> đã bình luận trong câu trả lời của bạn </span>
-                                                    <%elsif notify.noti_type.to_s == "ApplyJob"%>
-                                                        <span> đã nộp đơn ứng tuyển cho vị trí </span>
-                                                    <%else%>
-                                                        <span> đã trả lời trong chủ đề </span>
-                                                    <%end%>
-                                                </a>
-                                            <%end%>
-                                        </div>
-
-                                        <div class="employer_notification_title">
-                                            <a><%= link_to notify.title, notify.original_url, class: "notify_label" %></a>
-                                        </div>
-
-                                        <div class="employer_notification_content">
-                                            <a><%=notify.content%></a>
-                                        </div>
+                                <%end%>
+                            <%else%>
+                                <div class="employer_notification_not_found_block">
+                                    <div class="employer_notification_not_found_icon">
+                                        <i class="material-icons">notifications_none</i>
+                                    </div>
+                                    <div class="employer_notification_not_found">
+                                        <span>Bạn chưa có thông báo mới nào</span>
                                     </div>
                                 </div>
                             <%end%>

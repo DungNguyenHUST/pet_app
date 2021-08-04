@@ -1,3 +1,3 @@
 class ProblemReplySolution < ApplicationRecord
-    belongs_to :problem_solutions, optional: true
+    belongs_to :problem_solution, optional: true
 end

@@ -2,20 +2,20 @@ class CompanyApplyJobsController < ApplicationController
     include ApplicationHelper
     before_action :require_user_login, only: [:new, :create, :edit, :update, :destroy]
     def index 
-        @company = Company.friendly.find(params[:company_id])
-        @company_jobs = @company.company_jobs
+        @company_job = CompanyJob.friendly.find(params[:company_job_id])
+        @company = @company_job.company
         @company_apply_jobs = @company_jobs.company_apply_jobs.order('created_at DESC')
     end
 
     def new
-        @company = Company.friendly.find(params[:company_id])
-        @company_job = @company.company_jobs.friendly.find(params[:company_job_id])
+        @company_job = CompanyJob.friendly.find(params[:company_job_id])
+        @company = @company_job.company
         @company_apply_job = CompanyApplyJob.new
     end
 
     def create
-        @company = Company.friendly.find(params[:company_id])
-        @company_job = @company.company_jobs.friendly.find(params[:company_job_id])
+        @company_job = CompanyJob.friendly.find(params[:company_job_id])
+        @company = @company_job.company
         @company_apply_job = @company_job.company_apply_jobs.build(company_apply_job_param)
         @company_apply_job.user_id = current_user.id
 
@@ -38,8 +38,8 @@ class CompanyApplyJobsController < ApplicationController
     end
     
     def destroy
-        @company = Company.friendly.find(params[:company_id])
-        @company_job = @company.company_jobs.friendly.find(params[:company_job_id])
+        @company_job = CompanyJob.friendly.find(params[:company_job_id])
+        @company = @company_job.company
         @company_apply_job = @company_job.company_apply_jobs.find(params[:id])
 
         @company_apply_job.destroy
@@ -47,8 +47,8 @@ class CompanyApplyJobsController < ApplicationController
     end
 
     def show
-        @company = Company.friendly.find(params[:company_id])
-        @company_job = @company.company_jobs.friendly.find(params[:company_job_id])
+        @company_job = CompanyJob.friendly.find(params[:company_job_id])
+        @company = @company_job.company
         @company_apply_job = @company_job.company_apply_jobs.find(params[:id])
     end
 

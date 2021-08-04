@@ -2,7 +2,6 @@
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: https://sass-lang.com/
 /////////////new////////////////////////
-
 .new_apply_job_form
 {
     margin-bottom: 50px;
@@ -99,6 +98,130 @@
             font-weight: 600;
             font-size: 16px;
             padding-top: 15px;
+        }
+    }
+}
+
+///////////////////////////////block/////////////////////////
+.company_job_apply_block{
+    border: 2px dashed #e0e2e5;
+    border-radius: 4px;
+    margin-top: 20px;
+    padding: 15px;
+    min-height: 150px;
+    display: block;
+    .company_job_apply_info{
+        .company_job_apply_name{
+            font-size: 16px;
+            font-weight: 600;
+            a{
+                text-decoration: none;
+            }
+        }
+        .company_job_apply_email{
+            padding-top: 10px;
+            font-size: 16px;
+        }
+        .company_job_apply_letter{
+            padding-top: 10px;
+            padding-bottom: 10px;
+            font-size: 16px;
+            // display: none;
+            .company_job_apply_sumary{
+                padding-top: 10px;
+                a{
+                    display: block; 
+                    font-size: 14px;
+                    text-overflow: ellipsis;
+                    word-break: break-word; 
+                }
+            }
+        }
+        .company_job_apply_time{
+            padding-top: 10px;
+            font-size: 14px;
+            font-weight: 400px;
+        }
+        .company_job_apply_download{
+            padding-top: 10px;
+            i{
+                position: relative;
+                top: 5px;
+            }
+            a{
+                text-decoration: none;
+            }
+        }
+
+        .company_job_apply_more{    
+            margin-top: 15px;
+            button{
+                width: 100%;
+                border-radius: 4px;
+                background-color: #fff;
+                border: 1px solid #1877f2;
+                height: 40px;
+                color: #1877f2;
+                font-size: 14px;
+                font-weight: 600;
+                &:focus {outline:none;}
+                i{
+                    position: relative;
+                    top: 5px;
+                    font-size: 20px;
+                }
+                &:hover{
+                    background-color: #1877f2;
+                    color: #fff;
+                }
+            }
+        }
+    }
+}
+
+
+///////////////////////////////show/////////////////////////@at-root
+.company_job_apply_show_block{
+    margin-top: 20px;
+    display: block;
+    @media screen and (min-width: 600px){
+        min-height: 700px;
+    }
+    .company_job_apply_show_info{
+        .company_job_apply_show_name{
+            font-size: 16px;
+            font-weight: 600;
+        }
+        .company_job_apply_show_email{
+            padding-top: 10px;
+            font-size: 16px;
+        }
+        .company_job_apply_show_letter{
+            padding-top: 10px;
+            padding-bottom: 10px;
+            font-size: 16px;
+            // display: none;
+            .company_job_apply_show_sumary{
+                padding-top: 10px;
+                a{
+                    display: block; 
+                    font-size: 14px;
+                    text-overflow: ellipsis;
+                    word-break: break-word; 
+                }
+            }
+        }
+        .company_job_apply_show_time{
+            padding-top: 10px;
+            font-size: 14px;
+            font-weight: 400px;
+        }
+        .company_job_apply_show_download{
+            padding-top: 10px;
+            i{
+                position: relative;
+                top: 5px;
+            }
         }
     }
 }

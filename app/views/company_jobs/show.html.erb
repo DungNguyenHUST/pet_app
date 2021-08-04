@@ -119,7 +119,7 @@
                                 <%if @company_job.apply_another_site_flag?%>
                                     <%= link_to '<button type="submit">Nộp đơn tại trang công ty</button>'.html_safe, @company_job.apply_site%>
                                 <%else%>
-                                    <%= link_to '<button type="submit"><i class="material-icons">send</i>Nộp đơn</button>'.html_safe, new_company_apply_job_path(@company.id, @company_job.id)%>
+                                    <%= link_to '<button type="submit"><i class="material-icons">send</i>Nộp đơn</button>'.html_safe, new_company_job_company_apply_job_path(@company_job)%>
                                 <%end%>
                             </div>
 
@@ -220,7 +220,7 @@
                             <%if @company_job.apply_another_site_flag?%>
                                 <%= link_to '<button type="submit">Nộp đơn tại trang công ty</button>'.html_safe, @company_job.apply_site%>
                             <%else%>
-                                <%= link_to '<button type="submit"><i class="material-icons-outlined">open_in_new</i>Nộp đơn</button>'.html_safe, new_company_apply_job_path(@company.id, @company_job.id)%>
+                                <%= link_to '<button type="submit"><i class="material-icons-outlined">open_in_new</i>Nộp đơn</button>'.html_safe, new_company_job_company_apply_job_path(@company_job)%>
                             <%end%>
                         <%else%>
                             <button type="button" data-toggle="modal" data-target="#buttonModalLoginCenter">

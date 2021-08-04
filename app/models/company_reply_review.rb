@@ -1,3 +1,3 @@
 class CompanyReplyReview < ApplicationRecord
-    belongs_to :company_reviews, optional: true
+    belongs_to :company_review, optional: true
 end

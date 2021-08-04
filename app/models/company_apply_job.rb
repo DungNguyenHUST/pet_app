@@ -1,5 +1,5 @@
 class CompanyApplyJob < ApplicationRecord
-    belongs_to :company_jobs, optional: true
+    belongs_to :company_job, optional: true
     # has_one_attached :cover_vitate
     mount_uploader :cover_vitate, FileUploader
 
