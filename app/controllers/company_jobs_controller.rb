@@ -13,8 +13,9 @@ class CompanyJobsController < ApplicationController
     def create
         @company = Company.friendly.find(params[:company_id])
         @company_job = @company.company_jobs.build(company_job_param)
-        @company_job.user_id = current_user.id
-
+        @company_job.user_id = current_employer.id
+        @company_job.approved = true
+        
         if current_user.admin?
             @company_job.approved = true
             @company_job.save!

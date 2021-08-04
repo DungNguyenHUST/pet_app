@@ -1,25 +1,38 @@
-<h2>Change your password</h2>
+<div class="container">
+  <div class="row">
+    <div class="col-sm-8">
+      <div class="employer_change_pass_password">
+        <h3>Đổi mật khẩu mới</h3>
+        <%= form_for(resource, as: resource_name, url: password_path(resource_name), html: { method: :put }) do |f| %>
+          <%= render "devise/shared/error_messages", resource: resource %>
+          <%= f.hidden_field :reset_password_token %>
 
-<%= form_for(resource, as: resource_name, url: password_path(resource_name), html: { method: :put }) do |f| %>
-  <%= render "employers/shared/error_messages", resource: resource %>
-  <%= f.hidden_field :reset_password_token %>
+          <div class="employer_reset_pass_content">
+            <div class="employer_reset_pass_label">
+              <%= f.label :password, "Mật khẩu mới" %><br />
+              <% if @minimum_password_length %>
+                <em>(<%= @minimum_password_length %> characters minimum)</em><br />
+              <% end %>
+            </div>
+            <div class="employer_reset_pass_input">
+              <%= f.password_field :password, autofocus: true, autocomplete: "new-password", class: "form-control" %>
+            </div>
+          </div>
 
-  <div class="field">
-    <%= f.label :password, "New password" %><br />
-    <% if @minimum_password_length %>
-      <em>(<%= @minimum_password_length %> characters minimum)</em><br />
-    <% end %>
-    <%= f.password_field :password, autofocus: true, autocomplete: "new-password" %>
+          <div class="employer_reset_pass_content">
+            <div class="employer_reset_pass_label">
+              <%= f.label :password_confirmation, "Nhập lại mật khẩu mới" %><br />
+            </div>
+            <div class="employer_reset_pass_input">
+              <%= f.password_field :password_confirmation, autocomplete: "new-password", class: "form-control" %>
+            </div>
+          </div>
+
+          <div class="employer_reset_pass_submit">
+            <%= f.submit "Đổi mật khẩu",  class: "employer_reset_form_submit"%>
+          </div>
+        <% end %>
+      </div>
+    </div>
   </div>
-
-  <div class="field">
-    <%= f.label :password_confirmation, "Confirm new password" %><br />
-    <%= f.password_field :password_confirmation, autocomplete: "new-password" %>
-  </div>
-
-  <div class="actions">
-    <%= f.submit "Change my password" %>
-  </div>
-<% end %>
-
-<%= render "employers/shared/links" %>
+</div>
