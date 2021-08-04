@@ -43,7 +43,7 @@
         </div>
 
         <div class="new_reply_post_comment_form" id ="<%=@post_comment.id%>">
-            <%= form_for([@post, @post_comment, PostReplyComment.new], remote: true)  do |f| %>
+            <%= form_for([@post_comment, PostReplyComment.new], remote: true)  do |f| %>
                 <div class="new_reply_post_comment_content">
                     <div class="new_reply_post_comment_input_post_comment">
                         <%= f.text_area :reply_content, :required =>true, class: "form-control", placeholder: "Nhập câu trả lời của bạn tại đây" %>
