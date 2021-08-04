@@ -39,15 +39,9 @@ Rails.application.routes.draw do
     resources :company_reviews
     resources :company_interviews
     resources :company_jobs
-
-    resources :company_questions do
-      resources :company_reply_questions
-    end
-
+    resources :company_questions
     resources :company_salaries
-
     resources :company_follows
-	
 	  resources :company_images
   end
   
@@ -67,10 +61,12 @@ Rails.application.routes.draw do
     resources :company_apply_jobs
     resources :company_save_jobs
   end
+
+  resources :company_questions do
+    resources :company_reply_questions
+  end
   
   get 'company_job_list' => 'company_jobs#list'
-
-  get '/company_reply_questions/new/(:company_id, :company_question_id)', to: 'company_reply_questions#new', as: :new_company_reply_question
   
   resources :problems do
     resources :problem_solutions do

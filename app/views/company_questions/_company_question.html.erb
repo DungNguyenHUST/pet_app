@@ -76,7 +76,7 @@
         </div>
         
         <div class="new_reply_question_form_internal" id ="<%=company_question.id%>">
-            <%= form_for([@company, company_question, CompanyReplyQuestion.new], remote: true) do |f| %>
+            <%= form_for([company_question, CompanyReplyQuestion.new], remote: true) do |f| %>
                 <div class="new_reply_question_content">
                     <div class="new_reply_question_input_question">
                         <%= f.text_area :reply_content, :required =>true, class: "form-control", placeholder: "Nhập câu trả lời của bạn tại đây" %>
