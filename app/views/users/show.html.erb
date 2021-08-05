@@ -193,46 +193,8 @@
 
             <%if @tab_id == "NotificationID"%>
                 <div class="user_notification_tab">
-                    <%current_user.user_notifications.each do |notify|%>
-                        <div class="user_notification_block">
-                            <div class="user_notification_left">
-                                <div class="user_notification_date">
-                                    <a><%=notify.created_at.strftime("%B %d, %Y")%></a>
-                                </div>
-                            </div>
-
-                            <div class="user_notification_right">
-                                <div class="user_notification_user">
-                                    <%if find_trigger_user(notify).present?%>
-                                        <a> <%= find_trigger_user(notify).name%>
-                                            <%if notify.noti_type.to_s == "ReviewComment"%>
-                                                <span> đã trả lời review của bạn </span>
-                                            <%elsif notify.noti_type.to_s == "InterviewComment"%>
-                                                <span> đã trả lời chia sẻ phỏng vấn của bạn </span>
-                                            <%elsif notify.noti_type.to_s == "PostComment"%>
-                                                <span> đã trả bình luận bài viết của bạn </span>
-                                            <%elsif notify.noti_type.to_s == "ProblemComment"%>
-                                                <span> đã trả lời câu hỏi của bạn</span>
-                                            <%elsif notify.noti_type.to_s == "ProblemSolutionComment"%>
-                                                <span> đã bình luận trong câu trả lời của bạn </span>
-                                            <%elsif notify.noti_type.to_s == "ApplyJob"%>
-                                                <span> đã nộp đơn ứng tuyển cho vị trí </span>
-                                            <%else%>
-                                                <span> đã trả lời trong chủ đề </span>
-                                            <%end%>
-                                        </a>
-                                    <%end%>
-                                </div>
-
-                                <div class="user_notification_title">
-                                    <a><%= link_to notify.title, notify.original_url, class: "notify_label" %></a>
-                                </div>
-
-                                <div class="user_notification_content">
-                                    <a><%=notify.content%></a>
-                                </div>
-                            </div>
-                        </div>
+                    <%current_user.user_notifications.each do |user_notification|%>
+                        <%=render user_notification%>
                     <%end%>
                 </div>
             <%end%>

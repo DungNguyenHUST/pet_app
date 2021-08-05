@@ -40,9 +40,7 @@
                     <div class="row"> 
                         <%@company_images.each do |company_image|%>
                             <div class="col-sm-4">
-                                <%if company_image.image?%>
-                                    <img><%= image_tag company_image.image.url %>
-                                <%end%>
+                                <%=render company_image%>
                             </div>
                         <%end%> 
                     </div>

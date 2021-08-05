@@ -1,0 +1,39 @@
+<div class="user_notification_block">
+    <div class="user_notification_left">
+        <div class="user_notification_date">
+            <a><%=user_notification.created_at.strftime("%B %d, %Y")%></a>
+        </div>
+    </div>
+
+    <div class="user_notification_right">
+        <div class="user_notification_user">
+            <%if find_trigger_user(user_notification).present?%>
+                <a> <%= find_trigger_user(user_notification).name%>
+                    <%if user_notification.noti_type.to_s == "ReviewComment"%>
+                        <span> đã trả lời review của bạn </span>
+                    <%elsif user_notification.noti_type.to_s == "InterviewComment"%>
+                        <span> đã trả lời chia sẻ phỏng vấn của bạn </span>
+                    <%elsif user_notification.noti_type.to_s == "PostComment"%>
+                        <span> đã trả bình luận bài viết của bạn </span>
+                    <%elsif user_notification.noti_type.to_s == "ProblemComment"%>
+                        <span> đã trả lời câu hỏi của bạn</span>
+                    <%elsif user_notification.noti_type.to_s == "ProblemSolutionComment"%>
+                        <span> đã bình luận trong câu trả lời của bạn </span>
+                    <%elsif user_notification.noti_type.to_s == "ApplyJob"%>
+                        <span> đã nộp đơn ứng tuyển cho vị trí </span>
+                    <%else%>
+                        <span> đã trả lời trong chủ đề </span>
+                    <%end%>
+                </a>
+            <%end%>
+        </div>
+
+        <div class="user_notification_title">
+            <a><%= link_to user_notification.title, user_notification.original_url, class: "user_notification_label" %></a>
+        </div>
+
+        <div class="user_notification_content">
+            <a><%=user_notification.content%></a>
+        </div>
+    </div>
+</div>
