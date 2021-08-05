@@ -10,6 +10,12 @@
             <%end%>
         </div>
 
+        <div class="admin_log_out">
+            <%= button_to destroy_admin_session_path, method: :delete do%>
+                <span>Đăng xuất</span>
+            <%end%>
+        </div>
+
         <div class="admin_tab_link">
             <ul class="nav">
                 <li class="nav-item">
@@ -93,12 +99,6 @@
             <%if @tab_id == "ScrapJobID"%>
                 <%@scrap_job = ScrapJob.new%>
                 <%= render :partial => 'scrap_jobs/form', :local => @scrap_job %>
-            <%end%>
-        </div>
-
-        <div class="admin_log_out">
-            <%= button_to destroy_user_session_path, method: :delete do%>
-                <span>Đăng xuất</span>
             <%end%>
         </div>
     </div>

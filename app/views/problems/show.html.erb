@@ -50,7 +50,7 @@
 									<%else%> 
 										<%active = ""%>
 									<%end%>                                     
-									<a class="nav-link <%=active%>" href="<%=problem_path(@problem, tab_id: 'ProblemRelatedID')%>"><i class="material-icons">list</i>Câu hỏi liên quan<span> <%= convert_number_to_human(@problems.total_count)%><span></a>
+									<a class="nav-link <%=active%>" href="<%=problem_path(@problem, tab_id: 'ProblemRelatedID')%>"><i class="material-icons">list</i>Câu hỏi liên quan<span> <%= convert_number_to_human(@problem_relateds.total_count)%><span></a>
 								</li>
 							</ul>
 						</div>
@@ -190,7 +190,7 @@
 											</tr>
 										</thead>
 										<tbody>
-											<% @problems.each do |problem| %>
+											<% @problem_relateds.each do |problem| %>
 												<%if problem.difficult.to_i == @problem.difficult.to_i%>
 													<tr>
 														<td><div class="table_td_no"><%= problem.id %></td>
@@ -211,7 +211,7 @@
 											<% end %>
 										</tbody>
 									</table>
-									<%= paginate @problems, window: 1, outer_window: 1%>
+									<%= paginate @problem_relateds, window: 1, outer_window: 1%>
 								</div>
 							<%end%>
 						</div>

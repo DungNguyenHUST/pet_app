@@ -10,7 +10,6 @@ class ProblemsController < ApplicationController
 
 		@problems_all = Problem.all.order("id ASC").approved.page(params[:page]).per(20)
         @problems_newest = Problem.all.order("created_at DESC").approved
-        @problem_solutions = ProblemSolution.all.approved
         @problem_math = Problem.where(:category => "1").order("id ASC").approved.page(params[:page]).per(20)
         @problem_eq_test = Problem.where(:category => "2").order("id ASC").approved.page(params[:page]).per(20)
         @problem_iq_test = Problem.where(:category => "3").order("id ASC").approved.page(params[:page]).per(20)
@@ -47,7 +46,7 @@ class ProblemsController < ApplicationController
             if @problem.approved?
 				redirect_to problem_path(@problem)
 			else
-				flash[:success] = "Thông tin của bạn đã được tiếp nhận, vui lòng chờ quản trị viên sẽ xử lý trong 30min - 1h"
+				flash[:success] = "Câu hỏi của bạn đã được tiếp nhận, vui lòng chờ quản trị viên sẽ xử lý trong 30min - 1h"
 				redirect_to problems_path
 			end
         else
@@ -84,6 +83,9 @@ class ProblemsController < ApplicationController
         else
             @tab_id = "default"
         end
+
+        @problem_relateds = Problem.all.approved.reject{|i| i.id == @problem.id}
+        @problem_relateds = Kaminari.paginate_array(@problem_relateds).page(params[:page]).per(20)
     end
 
     def edit

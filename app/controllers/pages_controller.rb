@@ -4,38 +4,7 @@ class PagesController < ApplicationController
 		@companies = Company.all.sort_by{|company| company.company_reviews.count}.reverse
 		@company_jobs = CompanyJob.all.order('created_at DESC')
 		@posts = Post.all.order('created_at DESC')
-		@problems = Problem.all.sort_by{|problem| problem.problem_solutions.count}.reverse
-
-		if(params.has_key?(:company_search))
-		    @company_search = params[:company_search]
-            @company_searchs = Company.friendly.search(@company_search).order('name ASC').page(params[:page]).per(12)
-        end
-
-        if(params.has_key?(:job_search))
-		    @job_search = params[:job_search]
-            @job_searchs = CompanyJob.friendly.search(@job_search).page(params[:page]).per(12)
-        end
-
-        if(params.has_key?(:user_search))
-            @user_search = params[:user_search]
-            @user_searchs = User.friendly.search(@user_search)
-        end
-
-        if(params.has_key?(:post_search))
-            @post_search = params[:post_search]
-            @post_searchs = Post.friendly.search(@post_search)
-        end
-
-        if(params.has_key?(:problem_search))
-            @problem_search = params[:problem_search]
-            @problem_searchs = Problem.friendly.search(@problem_search).page(params[:page]).per(12)
-        end
-
-		if(params.has_key?(:tab_id))
-            @tab_id = params[:tab_id]
-        else
-            @tab_id = "default"
-        end
+		@problems = Problem.all.approved.sort_by{|problem| problem.problem_solutions.count}.reverse
 		
         if admin_signed_in?
 			redirect_to admin_path(current_admin)

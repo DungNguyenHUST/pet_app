@@ -37,12 +37,14 @@
                 </div>
 
                 <div class="company_image_block"> 
-                    <div class="row"> 
-                        <%@company_images.each do |company_image|%>
-                            <div class="col-sm-4">
-                                <%=render company_image%>
-                            </div>
-                        <%end%> 
+                    <div class="company_image_render"> 
+                        <div class="row"> 
+                            <%@company_images.each do |company_image|%>
+                                <div class="col-sm-4">
+                                    <%=render company_image%>
+                                </div>
+                            <%end%> 
+                        </div>
                     </div>
                     <%= paginate @company_images, window: 1, outer_window: 1%>
                 </div>

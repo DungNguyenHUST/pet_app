@@ -54,7 +54,10 @@ class CompanyJobsController < ApplicationController
     def show
         @company = Company.friendly.find(params[:company_id])
         @company_job = @company.company_jobs.friendly.find(params[:id])
-        @company_jobs = @company.company_jobs.order('created_at DESC').page(params[:page]).per(10)
+
+        @company_jobs = @company.company_jobs.order('created_at DESC')
+        @company_jobs = @company_jobs.reject{|i| i.id == @company_job.id}
+        @company_related_jobs = Kaminari.paginate_array(@company_jobs).page(params[:page]).per(10)
     end
 	
 	def list

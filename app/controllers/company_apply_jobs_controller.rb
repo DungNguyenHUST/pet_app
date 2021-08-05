@@ -29,7 +29,7 @@ class CompanyApplyJobsController < ApplicationController
                                                                 company_job_company_apply_job_path(@company_job, @company_apply_job), 
                                                                 "ApplyJob")
             end
-            flash[:success] = "Thông tin của bạn đã được tiếp nhận và gửi tới nhà tuyển dụng..."
+            flash[:success] = "Đơn ứng tuyển của bạn đã được tiếp nhận và gửi tới nhà tuyển dụng..."
             redirect_to company_path(@company, tab_id: 'CompanyJobsID')
         else
             flash[:error] = "Lỗi, Không thể upload thông tin "
