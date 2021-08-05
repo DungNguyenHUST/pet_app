@@ -1,7 +1,7 @@
 <%if @job_searchs.total_count > 0%>
     <div class="company_job_search_index">
         <div class="company_job_label">
-            <span><%=@job_searchs.total_count%> việc làm cho từ khóa "<%= params[:search]%>" và địa điểm "<%= params[:location]%>"</span>						
+            <span><%=@job_searchs.total_count%> việc làm cho từ khóa "<%= params[:search]%>" tại "<%= params[:location]%>"</span>						
         </div>
         <div class="row">
             <%if @job_searchs != nil%>
@@ -17,7 +17,7 @@
 <%else%>
     <div class="company_job_search_not_found_block">
         <div class="company_job_search_not_found_label">
-            <span>Rất tiếc, không tìm được việc làm phù hợp với từ khóa "<%= params[:search]%>" và địa điểm "<%= params[:location]%>"</span>
+            <span>Rất tiếc, không tìm được việc làm phù hợp với từ khóa "<%= params[:search]%>" tại "<%= params[:location]%>"</span>
         </div>
         <div class="company_job_search_not_found_image">
             <%=image_tag("no_result_found.png")%>

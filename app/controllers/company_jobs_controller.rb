@@ -69,8 +69,12 @@ class CompanyJobsController < ApplicationController
 			@is_job_searched = true
 			@search = params[:search]
 			@location = params[:location]
-			@job_searchs = CompanyJob.friendly.search_advance(@search, @location).order('created_at DESC').page(params[:page]).per(12)
-		end
+            if @location.to_s == "Tất cả địa điểm"
+                @job_searchs = CompanyJob.friendly.search(@search).order('created_at DESC').page(params[:page]).per(12)
+            else
+			    @job_searchs = CompanyJob.friendly.search_advance(@search, @location).order('created_at DESC').page(params[:page]).per(12)
+            end
+        end
     end
 
     private
