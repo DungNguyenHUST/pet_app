@@ -26,7 +26,7 @@
                     <%else%> 
                         <%active = ""%>
                     <%end%>                                     
-                    <a class="nav-link <%=active%>" href="<%=user_path(current_user, tab_id: 'SaveJobID')%>"><i class="material-icons-outlined">bookmark_border</i>Việc làm đã lưu <span><%= convert_number_to_human(@company_save_job_current.count)%><span> </a>
+                    <a class="nav-link <%=active%>" href="<%=user_path(current_user, tab_id: 'SaveJobID')%>"><i class="material-icons-outlined">bookmark_border</i>Việc làm đã lưu <span><%= convert_number_to_human(@company_job_saved.total_count)%><span> </a>
                 </li>
                 <li class="nav-item">
                     <%if @tab_id == "ApplyJobID"%>
@@ -34,7 +34,7 @@
                     <%else%> 
                         <%active = ""%>
                     <%end%>                                     
-                    <a class="nav-link <%=active%>" href="<%=user_path(current_user, tab_id: 'ApplyJobID')%>"><i class="material-icons-outlined">check</i>Việc làm đã ứng tuyển <span><%= convert_number_to_human(@company_apply_job_current.count)%><span> </a>
+                    <a class="nav-link <%=active%>" href="<%=user_path(current_user, tab_id: 'ApplyJobID')%>"><i class="material-icons-outlined">check</i>Việc làm đã ứng tuyển <span><%= convert_number_to_human(@company_job_applied.total_count)%><span> </a>
                 </li>
                 <li class="nav-item">
                     <%if @tab_id == "CompanyFollowID"%>
@@ -42,7 +42,15 @@
                     <%else%> 
                         <%active = ""%>
                     <%end%>                                     
-                    <a class="nav-link <%=active%>" href="<%=user_path(current_user, tab_id: 'CompanyFollowID')%>"><i class="material-icons-outlined">favorite_border</i>Công ty đang theo dõi <span><%= convert_number_to_human(@company_follow_current.count)%><span> </a>
+                    <a class="nav-link <%=active%>" href="<%=user_path(current_user, tab_id: 'CompanyFollowID')%>"><i class="material-icons-outlined">favorite_border</i>Công ty đang theo dõi <span><%= convert_number_to_human(@company_followed.total_count)%><span> </a>
+                </li>
+                <li class="nav-item">
+                    <%if @tab_id == "ProblemID"%>
+                        <%active = "active"%>
+                    <%else%> 
+                        <%active = ""%>
+                    <%end%>                                     
+                    <a class="nav-link <%=active%>" href="<%=user_path(current_user, tab_id: 'ProblemID')%>"><i class="material-icons-outlined">lightbulb</i>Câu hỏi của tôi <span><%= convert_number_to_human(@problem_created.total_count)%><span> </a>
                 </li>
                 <li class="nav-item">
                     <%if @tab_id == "NotificationID"%>
@@ -50,7 +58,7 @@
                     <%else%> 
                         <%active = ""%>
                     <%end%>                                     
-                    <a class="nav-link <%=active%>" href="<%=user_path(current_user, tab_id: 'NotificationID')%>"><i class="material-icons-outlined">notifications</i>Thông báo <span><%= convert_number_to_human(current_user.user_notifications.count)%><span> </a>
+                    <a class="nav-link <%=active%>" href="<%=user_path(current_user, tab_id: 'NotificationID')%>"><i class="material-icons-outlined">notifications</i>Thông báo <span><%= convert_number_to_human(@user_notifications.total_count)%><span> </a>
                 </li>
             </ul>
         </div>
@@ -90,18 +98,6 @@
                             </div>
 
                             <div class="user_info_label">
-                                <strong>Mật khẩu:</strong>
-                            </div>
-
-                            <div class="user_info_des">
-                                <%=current_user.password_digest, type="********"%> 
-                            </div>
-
-                            <div class="user_info_edit_button">
-                                <i class="fa fa-edit"></i><%= link_to " Thay đổi mật khẩu", edit_user_path(current_user), class: "user_info_edit_link_to"  %>
-                            </div>
-
-                            <div class="user_info_label">
                                 <strong>Số điện thoại liên lạc:</strong>
                             </div>
 
@@ -137,64 +133,123 @@
 
             <%if @tab_id == "SaveJobID"%>
                 <div class="user_save_job_tab">
-                    <div class="user_save_job_label">
-                        <strong>Việc làm bạn đang theo dõi</strong>
-                    </div>
-
-                    <div class="user_save_job">
-                        <%if @company_save_job_current != nil%>
+                    <%if @company_job_saved.total_count > 0%>
+                        <div class="user_save_job">
                             <div class="row">
-                                <%@company_save_job_current.each do |company_job|%>
+                                <%@company_job_saved.each do |company_job|%>
                                     <div class="col-sm-6">
                                         <%=render company_job%>
                                     </div>
                                 <%end%>
                             </div>
-                        <%end%>
-                    </div>
+
+                            <%= paginate @company_job_saved, window: 1, outer_window: 1%>
+                        </div>
+                    <%else%>
+                        <div class="user_save_job_not_found_block">
+                            <div class="user_save_job_not_found_icon">
+                                <i class="material-icons">work</i>
+                            </div>
+                            <div class="user_save_job_not_found">
+                                <span>Bạn chưa lưu lại việc làm nào...</span>
+                            </div>
+                        </div>
+                    <%end%>  
                 </div>
             <%end%>
 
             <%if @tab_id == "ApplyJobID"%>
                 <div class="company_apply_job_tab">
-                    <div class="company_apply_job_tab_title">
-                        <strong>Việc làm đã ứng tuyển</strong>
-                    </div>
-                    <div class="company_apply_job">
-                        <%if @company_apply_job_current != nil%>
-                            <div class="row">
-                                <%@company_apply_job_current.each do |company_job|%>
-                                    <div class="col-sm-6">
-                                        <%=render company_job%>
-                                    </div>
-                                <%end%>
+                    <%if @company_job_applied.total_count > 0%>
+                        <div class="company_apply_job">
+                            <%if @company_job_applied != nil%>
+                                <div class="row">
+                                    <%@company_job_applied.each do |company_job|%>
+                                        <div class="col-sm-6">
+                                            <%=render company_job%>
+                                        </div>
+                                    <%end%>
+                                </div>
+                            <%end%>
+
+                            <%= paginate @company_job_applied, window: 1, outer_window: 1%>
+                        </div>
+                    <%else%>
+                        <div class="user_apply_job_not_found_block">
+                            <div class="user_apply_job_not_found_icon">
+                                <i class="material-icons">work</i>
                             </div>
-                        <%end%>
-                    </div>
+                            <div class="user_apply_job_not_found">
+                                <span>Bạn chưa ứng tuyển việc làm nào...</span>
+                            </div>
+                        </div>
+                    <%end%>  
                 </div>
             <%end%>
 
             <%if @tab_id == "CompanyFollowID"%>
                 <div class="user_follow_company_tab">
-                    <div class="user_follow_company_tab_title">
-                        <strong>Công ty đang theo dõi</strong>
-                    </div>
-                    <div class="user_follow_company_list">
-                        <div class="row">
-                            <%@company_follow_current.each do |company|%>
-                                <div class="col-sm-4">
-                                    <%=render company%>
-                                </div>
-                            <%end%>
+                    <%if @company_followed.total_count > 0%>
+                        <div class="user_follow_company_list">
+                            <div class="row">
+                                <%@company_followed.each do |company|%>
+                                    <div class="col-sm-4">
+                                        <%=render company%>
+                                    </div>
+                                <%end%>
+                            </div>
+
+                            <%= paginate @company_followed, window: 1, outer_window: 1%>
                         </div>
-                    </div>
+                    <%else%>
+                        <div class="user_follow_company_not_found_block">
+                            <div class="user_follow_company_not_found_icon">
+                                <i class="material-icons">business</i>
+                            </div>
+                            <div class="user_follow_company_not_found">
+                                <span>Bạn chưa theo dõi công ty nào...</span>
+                            </div>
+                        </div>
+                    <%end%>  
                 </div>
             <%end%>
 
             <%if @tab_id == "NotificationID"%>
                 <div class="user_notification_tab">
-                    <%current_user.user_notifications.each do |user_notification|%>
-                        <%=render user_notification%>
+                    <%if @user_notifications.total_count > 0%>
+                        <div class="user_notification_block">
+                            <%=render @user_notifications%>
+                        </div>
+                        <%= paginate @user_notifications, window: 1, outer_window: 1%>
+                    <%else%>
+                        <div class="user_notification_not_found_block">
+                            <div class="user_notification_not_found_icon">
+                                <i class="material-icons">notifications</i>
+                            </div>
+                            <div class="user_notification_not_found">
+                                <span>Bạn không có thông báo mới nào...</span>
+                            </div>
+                        </div>
+                    <%end%>
+                </div>
+            <%end%>
+
+            <%if @tab_id == "ProblemID"%>
+                <div class="user_problem_tab">
+                    <%if @problem_created.total_count > 0%>
+                        <div class="user_problem_block">
+                            <%=render @problem_created%>
+                        </div>
+                        <%= paginate @problem_created, window: 1, outer_window: 1%>
+                    <%else%>
+                        <div class="user_problem_not_found_block">
+                            <div class="user_problem_not_found_icon">
+                                <i class="material-icons">lightbulb</i>
+                            </div>
+                            <div class="user_problem_not_found">
+                                <span>Bạn chưa có câu hỏi nào...</span>
+                            </div>
+                        </div>
                     <%end%>
                 </div>
             <%end%>

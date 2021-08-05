@@ -23,35 +23,35 @@ class UsersController < ApplicationController
             @tab_id = "default"
         end
 
-        @users = User.all
-        @companies = Company.all.approved
-        @company_jobs = CompanyJob.all.approved
-        @company_reviews = CompanyReview.all
-        @posts = Post.all.approved
-        @problems = Problem.all.approved
-        @company_apply_job_current = []
-        @company_save_job_current = []
-
-        @company_jobs.each do |company_job|
+        @company_job_applied = []
+        @company_job_saved = []
+        CompanyJob.all.each do |company_job|
             # find job apply by current user
             if company_job.company_apply_jobs.find { |apply| apply.user_id == current_user.id}
-                @company_apply_job_current.push(company_job)
+                @company_job_applied.push(company_job)
             end
 
             # find job save by user
             if (company_job.company_save_jobs.find { |save| save.user_id == current_user.id})
-                @company_save_job_current.push(company_job)
+                @company_job_saved.push(company_job)
             end
         end
+        @company_job_applied = Kaminari.paginate_array(@company_job_applied).page(params[:page]).per(12)
+        @company_job_saved = Kaminari.paginate_array(@company_job_saved).page(params[:page]).per(10)
 
         #find all company folow by user
-        @company_all = Company.all
-        @company_follow_current = []
-        @company_all.each do |company|
+        @company_followed = []
+        Company.all.each do |company|
             if (company.company_follows.find { |follow| follow.user_id == current_user.id})
-                @company_follow_current.push(company)
+                @company_followed.push(company)
             end
         end
+        @company_followed = Kaminari.paginate_array(@company_followed).page(params[:page]).per(12)
+
+        @user_notifications = @user.user_notifications.page(params[:page]).per(20)
+
+        @problem_created = Problem.all.approved.find_all{ |problem| problem.user_id == current_user.id }
+        @problem_created = Kaminari.paginate_array(@problem_created).page(params[:page]).per(12)
     end
 
     def edit
