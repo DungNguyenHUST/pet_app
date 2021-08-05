@@ -5,13 +5,13 @@ class ApplicationController < ActionController::Base
     before_action :configure_permitted_parameters, if: :devise_controller?
 
     def require_user_login
-        unless user_signed_in?
+        unless user_signed_in? || admin_signed_in?
             redirect_to new_user_session_path
         end
     end
 
     def require_employer_login
-        unless employer_signed_in?
+        unless employer_signed_in? || admin_signed_in?
             redirect_to new_employer_session_path
         end
     end

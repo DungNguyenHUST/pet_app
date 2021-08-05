@@ -13,7 +13,8 @@ class ScrapJobsController < ApplicationController
         @scrap_job = ScrapJob.new(scrap_job_param)
         if @scrap_job.save
             ScraperJob.perform_now(@scrap_job)
-            redirect_to user_path(current_user, tab_id: 'ScrapJobID')
+            flash[:success] = "Scrap successed ..............."
+            redirect_to admin_path(current_admin, tab_id: 'ScrapJobID')
         end
     end
 

@@ -37,9 +37,6 @@ class ProblemsController < ApplicationController
 
         if admin_signed_in?
             @problem.approved = true
-            @problem.save!
-            redirect_to admin_path(tab_id: 'AdminProblemID')
-            return
         end
 
         if @problem.save!
