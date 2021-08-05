@@ -22,9 +22,8 @@ class EmployersController < ApplicationController
         else
             @tab_id = "default"
         end
-
-        @employers = Employer.all
-        @company_by_employer = find_owner_company_for_employer(@employer.company_id)
+        
+        @company_by_employer = find_owner_company_for_employer(@employer)
         if(@company_by_employer.present?)
             @company_job_by_employer = @company_by_employer.company_jobs
         end

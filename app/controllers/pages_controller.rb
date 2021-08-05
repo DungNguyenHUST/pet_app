@@ -10,7 +10,7 @@ class PagesController < ApplicationController
 			redirect_to admin_path(current_admin)
 		end
 
-		if employer_signed_in?
+		if employer_signed_in? && current_employer.approved?
 			redirect_to employer_path(current_employer)
 		end
     end

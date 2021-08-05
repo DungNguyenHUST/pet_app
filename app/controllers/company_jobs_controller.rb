@@ -19,7 +19,7 @@ class CompanyJobsController < ApplicationController
         end
 
         if @company_job.save
-			redirect_to company_job_path(@company_job)
+			redirect_to company_company_job_path(@company, @company_job)
         else
             flash[:danger] = "Lỗi, hãy điền đủ nội dung có dấu "
             render :new

@@ -28,6 +28,9 @@ class CompaniesController < ApplicationController
 
     def create
         @company = Company.new(company_param)
+        if employer_signed_in?
+            @company.employer_id = current_employer.id
+        end
 
         if @company.save!
 			redirect_to company_path(@company)
@@ -75,6 +78,6 @@ class CompaniesController < ApplicationController
 
     private
     def company_param
-        params.require(:company).permit(:name, :location, :address, :country, :website, :phone, :time_establish, :working_time, :working_date, :size, :field_operetion, :avatar, :wall_picture, :search, :overview, :policy, :values, :company_type, {:benefit => []})
+        params.require(:company).permit(:name, :location, :address, :country, :website, :phone, :time_establish, :working_time, :working_date, :size, :field_operetion, :avatar, :wall_picture, :search, :overview, :policy, :values, :company_type, :employer_id, {:benefit => []})
     end
 end

@@ -1,7 +1,7 @@
 
 <%if employer_signed_in?%>
     <div class="container">
-        <%if !current_employer.approved?%>
+        <%if current_employer.approved?%>
             <div class='employer_dasboard'>
                 <div class='employer_title'>
                     <%if (0..12).cover? Time.now.hour %>
@@ -23,7 +23,7 @@
                             <%end%>                                 
                             <a class="nav-link <%=active%>" href="<%=employer_path(current_employer, tab_id: 'EmployerCompanyID')%>"><i class="material-icons-outlined">business</i>Công ty</a>
                         </li>
-                        <%if @company_job_by_employer.present?%>
+                        <%if @company_by_employer.present?%>
                             <li class="nav-item">
                                 <%if @tab_id == "EmployerJobID"%>
                                     <%active = "active"%>
@@ -48,7 +48,7 @@
                     <%if @tab_id == "default" || @tab_id == "EmployerCompanyID"%>
                         <div class='employer_company_tab'>
                             <div class="employer_company">
-                                <%if @company_job_by_employer.present?%>
+                                <%if @company_by_employer.present?%>
                                     <div class="row">
                                         <div class="col-sm-3">
                                             <%= render @company_by_employer%>
@@ -93,7 +93,7 @@
                                             <div class="company_employer_job_container">
                                                 <div class="company_job_employer_block">
                                                     <div class='company_employer_job_edit'>
-                                                        <%= link_to 'Chỉnh sửa', edit_company_company_job_path(@company_by_employer, company_job), class: "btn btn-large btn-warning" %>
+                                                        <%= link_to 'Chỉnh sửa', edit_company_company_job_path(@company_by_employer, company_job), method: :get, class: "btn btn-large btn-warning" %>
                                                         <%= link_to 'Xóa', company_company_job_path(@company_by_employer, company_job), method: :delete, class: "btn btn-large btn-danger", data: { confirm: 'Bạn có chắc muốn xóa công việc này?' } %>
                                                     </div>
 
