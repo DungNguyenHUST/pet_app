@@ -39,7 +39,7 @@ class AdminsController < ApplicationController
     def destroy
         @admin = Admin.friendly.find params[:id]
         @admin.destroy
-        redirect_to root_path(tab_id: 'AdminAdminID')
+        redirect_to admin_path(current_admin)
     end
 
     def update

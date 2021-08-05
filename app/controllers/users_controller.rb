@@ -62,7 +62,7 @@ class UsersController < ApplicationController
     def destroy
         @user = User.friendly.find params[:id]
         @user.destroy
-        redirect_to root_path(tab_id: 'AdminUserID')
+        redirect_to admin_path(current_admin, tab_id: 'AdminUserID')
     end
 
     def update

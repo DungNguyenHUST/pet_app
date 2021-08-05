@@ -39,19 +39,9 @@ class CompaniesController < ApplicationController
         @company_interview = CompanyInterview.new
         @company_job = CompanyJob.new
 
-        if user_signed_in? && current_user.admin?
-            @company.approved = true
-            @company.save!
-            redirect_to root_path(tab_id: 'AdminCompanyID')
-            return
-        end
-
         if @company.save!
 			if @company.approved?
-				redirect_to company_path(@company)
-			else
-				flash[:success] = "Thông tin của bạn đã được tiếp nhận, vui lòng chờ quản trị viên sẽ xử lý trong 30min - 1h"
-				redirect_to companies_path
+                redirect_to company_path(@company)
 			end
         else
             flash[:danger] = "Lỗi, không thể lưu thông tin công ty"
@@ -106,7 +96,7 @@ class CompaniesController < ApplicationController
     def destroy
         @company = Company.friendly.find params[:id]
         @company.destroy
-        redirect_to root_path(tab_id: 'AdminCompanyID')
+        redirect_to companies_path
     end
 
     private

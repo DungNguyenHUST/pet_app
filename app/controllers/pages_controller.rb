@@ -1,27 +1,19 @@
 class PagesController < ApplicationController
     def home
-		if user_signed_in? && current_user.admin?
-			@users = User.all
-			@companies = Company.all
-			@company_jobs = CompanyJob.all
-			@posts = Post.all
-			@problems = Problem.all
-		else
-			@users = User.all
-			@companies = Company.all.approved.sort_by{|company| company.company_reviews.count}.reverse
-			@company_jobs = CompanyJob.all.order('created_at DESC').approved
-			@posts = Post.all.order('created_at DESC').approved
-			@problems = Problem.all.approved.sort_by{|problem| problem.problem_solutions.count}.reverse
-		end
+		@users = User.all
+		@companies = Company.all.sort_by{|company| company.company_reviews.count}.reverse
+		@company_jobs = CompanyJob.all.order('created_at DESC')
+		@posts = Post.all.order('created_at DESC')
+		@problems = Problem.all.sort_by{|problem| problem.problem_solutions.count}.reverse
 
 		if(params.has_key?(:company_search))
 		    @company_search = params[:company_search]
-            @company_searchs = Company.friendly.search(@company_search).approved.order('name ASC').page(params[:page]).per(12)
+            @company_searchs = Company.friendly.search(@company_search).order('name ASC').page(params[:page]).per(12)
         end
 
         if(params.has_key?(:job_search))
 		    @job_search = params[:job_search]
-            @job_searchs = CompanyJob.friendly.search(@job_search).approved.page(params[:page]).per(12)
+            @job_searchs = CompanyJob.friendly.search(@job_search).page(params[:page]).per(12)
         end
 
         if(params.has_key?(:user_search))
@@ -36,7 +28,7 @@ class PagesController < ApplicationController
 
         if(params.has_key?(:problem_search))
             @problem_search = params[:problem_search]
-            @problem_searchs = Problem.friendly.search(@problem_search).approved.page(params[:page]).per(12)
+            @problem_searchs = Problem.friendly.search(@problem_search).page(params[:page]).per(12)
         end
 
 		if(params.has_key?(:tab_id))

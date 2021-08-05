@@ -32,10 +32,10 @@ class ProblemsController < ApplicationController
         @problem.user_name = current_user.name
         @problem.user_id = current_user.id
 
-        if current_user.admin?
+        if admin_signed_in?
             @problem.approved = true
             @problem.save!
-            redirect_to root_path(tab_id: 'AdminProblemID')
+            redirect_to admin_path(tab_id: 'AdminProblemID')
             return
         end
 
@@ -115,7 +115,7 @@ class ProblemsController < ApplicationController
     def destroy
         @problem = Problem.friendly.find params[:id]
         @problem.destroy
-        redirect_to root_path(tab_id: 'AdminProblemID')
+        redirect_to admin_path(current_admin, tab_id: 'AdminProblemID')
     end
 
     private

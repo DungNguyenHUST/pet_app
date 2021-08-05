@@ -37,7 +37,7 @@ class ProblemSolutionsController < ApplicationController
         @problem = Problem.friendly.find params[:problem_id]
         @problem_solution = @problem.problem_solutions.find(params[:id])
         if(@problem_solution.update(problem_solution_param))
-            redirect_to root_path
+            redirect_to problem_path(@problem)
         else
             flash[:danger] = "Lỗi, hãy điền đủ nội dung có dấu '*'"
         end

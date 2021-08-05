@@ -37,7 +37,7 @@ include ::EmployersHelper
     def destroy
         @employer = Employer.friendly.find params[:id]
         @employer.destroy
-        redirect_to root_path(tab_id: 'AdminEmployerID')
+        redirect_to admin_path(current_admin, tab_id: 'AdminEmployerID')
     end
 
     def update

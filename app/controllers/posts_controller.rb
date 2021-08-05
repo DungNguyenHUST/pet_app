@@ -1,7 +1,7 @@
 class PostsController < ApplicationController
     before_action :require_user_login, only: [:new, :create, :edit, :update, :destroy]
     def index
-        @posts = Post.all.order('created_at DESC').approved.page(params[:page]).per(10)
+        @posts = Post.all.order('created_at DESC').page(params[:page]).per(10)
         @post_comments = PostComment.all
     end
 
@@ -14,20 +14,8 @@ class PostsController < ApplicationController
         @post.username = current_user.name
         @post.user_id = current_user.id
 
-        if current_user.admin?
-            @post.approved = true
-            @post.save!
-            redirect_to root_path(tab_id: 'AdminPostID')
-            return
-        end
-
         if @post.save
-            if @post.approved?
-				redirect_to post_path(@post)
-			else
-				flash[:success] = "Thông tin của bạn đã được tiếp nhận, vui lòng chờ quản trị viên sẽ xử lý trong 30min - 1h"
-				redirect_to posts_path
-			end
+            redirect_to post_path(@post)
         else
             flash[:danger] = "Lỗi, hãy điền đủ nội dung có dấu '*'"
             render :new
@@ -48,32 +36,18 @@ class PostsController < ApplicationController
     def update
         @post = Post.friendly.find params[:id]
 
-        if post_param.present? && !(post_param.has_key?(:approved))
-			if(@post.update(post_param))
-				if @post.approved?
-					redirect_to post_path(@post)
-				else
-					flash[:success] = "Thông tin của bạn đã được tiếp nhận, vui lòng chờ quản trị viên sẽ xử lý trong 30min - 1h"
-					redirect_to posts_path
-				end
-			else
-				flash[:danger] = "Lỗi, hãy điền đủ nội dung có dấu '*'"
-			end
+        if(@post.update(post_param))
+            flash[:success] = "Update thông tin thành công"
+            redirect_to post_path(@post)
         else
-            if (!@post.approved? && @post.update_column(:approved, true))
-                flash[:success] = "Approved"
-                redirect_to user_path(current_user, tab_id: 'AdminPostID')
-            elsif (@post.approved? && @post.update_column(:approved, false))
-                flash[:danger] = "Rejected"
-                redirect_to user_path(current_user, tab_id: 'AdminPostID')
-            end
+            flash[:danger] = "Lỗi, không thể cập nhật thông tin"
         end
     end
 
     def destroy
         @post = Post.friendly.find params[:id]
         @post.destroy
-        redirect_to root_path(tab_id: 'AdminPostID')
+        redirect_to posts_path
     end
 
     private
