@@ -1,5 +1,6 @@
 class CompanyDislikeReviewsController < ApplicationController
     before_action :require_user_login, only: [:new, :create, :edit, :update, :destroy]
+    
     def index 
         @company_review = CompanyReview.find(params[:company_review_id])
         @company = @company_review.company
@@ -16,11 +17,10 @@ class CompanyDislikeReviewsController < ApplicationController
         @company_review = CompanyReview.find(params[:company_review_id])
         @company = @company_review.company
         
-        if already_liked?
-            # flash[:notice] = "You can't dislike more than once"
-        else
+        if !already_liked?
             @company_dislike_review = @company_review.company_dislike_reviews.create(user_id: current_user.id)
         end
+
         # redirect_to company_path(@company)
         respond_to do |format|
             format.html {}

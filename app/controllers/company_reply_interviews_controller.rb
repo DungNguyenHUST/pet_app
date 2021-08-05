@@ -1,6 +1,7 @@
 class CompanyReplyInterviewsController < ApplicationController
     include ApplicationHelper
     before_action :require_user_login, only: [:new, :create, :edit, :update, :destroy]
+
     def index 
         @company_interview = CompanyInterview.find(params[:company_interview_id])
         @company = @company_interview.company
@@ -17,13 +18,22 @@ class CompanyReplyInterviewsController < ApplicationController
         @company_interview = CompanyInterview.find(params[:company_interview_id])
         @company = @company_interview.company
         @company_reply_interview = @company_interview.company_reply_interviews.build(company_reply_interview_param)
-        @company_reply_interview.user_name = current_user.name
-        @company_reply_interview.user_id = current_user.id
+
+        if user_signed_in?
+            @company_reply_interview.user_name = current_user.name
+            @company_reply_interview.user_id = current_user.id
+        end
 
         if @company_reply_interview.save
             if(find_owner_user(@company_interview).present?)
-                UserNotificationsController.new.create_notify(find_owner_user(@company_interview), current_user, @company_interview.position, @company_reply_interview.reply_content, company_path(@company, tab_id: 'CompanyInterviewsID'), "InterviewComment")
+                UserNotificationsController.new.create_notify(find_owner_user(@company_interview), 
+                                                                current_user, 
+                                                                @company_interview.position, 
+                                                                @company_reply_interview.reply_content, 
+                                                                company_path(@company, tab_id: 'CompanyInterviewsID'), 
+                                                                "InterviewComment")
             end
+
             # redirect_to company_path(@company, tab_id: 'CompanyInterviewsID')
             respond_to do |format|
                 format.html {}

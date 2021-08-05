@@ -1,7 +1,5 @@
 class CompanyLikeInterviewsController < ApplicationController
     before_action :require_user_login, only: [:new, :create, :edit, :update, :destroy]
-    before_action :find_company_interview
-    before_action :find_like, only: [:destroy]
     
     def index 
         @company_interview = CompanyInterview.find(params[:company_interview_id])
@@ -18,11 +16,11 @@ class CompanyLikeInterviewsController < ApplicationController
     def create
         @company_interview = CompanyInterview.find(params[:company_interview_id])
         @company = @company_interview.company
-        if already_liked?
-            # flash[:notice] = "You can't like more than once"
-        else
+
+        if !already_liked?
             @company_like_interview = @company_interview.company_like_interviews.create(user_id: current_user.id)
         end
+
         # redirect_to company_path(@company)
         respond_to do |format|
             format.html {}
@@ -41,6 +39,7 @@ class CompanyLikeInterviewsController < ApplicationController
         @company = @company_interview.company
         @company_like_interview = @company_interview.company_like_interviews.find(params[:id])
         @company_like_interview.destroy
+        
         # redirect_to company_path(@company)
         respond_to do |format|
             format.html {redirect_to :back}
@@ -58,13 +57,5 @@ class CompanyLikeInterviewsController < ApplicationController
 
     def already_liked?
         CompanyLikeInterview.where(user_id: current_user.id, company_interview_id: params[:company_interview_id]).exists?
-    end
-
-    def find_company_interview
-        @company_interview = CompanyInterview.find(params[:company_interview_id])
-    end
-
-    def find_like
-        @like = @company_interview.company_like_interviews.find(params[:id])
     end
 end

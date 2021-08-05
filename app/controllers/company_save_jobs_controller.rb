@@ -18,11 +18,11 @@ class CompanySaveJobsController < ApplicationController
         @company = @company_job.company
         @company_save_job = CompanySaveJob.new
         @type_param = params[:type_param]
-        if already_saved?
-            # flash[:notice] = "You can't save more than once"
-        else              
+
+        if !already_saved?      
             @company_save_job = @company_job.company_save_jobs.create(user_id: current_user.id)
         end
+
         # redirect_to company_company_job_path(@company, @company_job)
         respond_to do |format|
             format.html {}
@@ -42,6 +42,7 @@ class CompanySaveJobsController < ApplicationController
         @company_save_job = @company_job.company_save_jobs.find(params[:id])
         @company_save_job.destroy
         @type_param = params[:type_param]
+
         # redirect_to company_company_job_path(@company, @company_job)
         respond_to do |format|
             format.html {}
@@ -56,10 +57,6 @@ class CompanySaveJobsController < ApplicationController
     end
 
     private
-
-    def company_save_job_param
-        params.require(:company_save_job).permit(:id)
-    end
 
     def already_saved?
         CompanySaveJob.where(user_id: current_user.id, company_job_id: params[:company_job_id]).exists?

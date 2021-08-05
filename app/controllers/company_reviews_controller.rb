@@ -1,5 +1,6 @@
 class CompanyReviewsController < ApplicationController
     before_action :require_user_login, only: [:edit, :update, :destroy]
+
     def index 
         @company = Company.friendly.find(params[:company_id])
         @company_reviews = @company.company_reviews
@@ -12,20 +13,12 @@ class CompanyReviewsController < ApplicationController
 
     def create
         @company = Company.friendly.find(params[:company_id])
-
         @company_review = @company.company_reviews.build(company_review_param)
 
         if user_signed_in?
             @company_review.user_name = current_user.name
             @company_review.user_id = current_user.id
-        else
-            @company_review.user_name = "Ẩn danh"
-            @company_review.user_id = -1
         end
-
-        @company_review.companyName = @company.name
-
-        # @company_review.average_score = (@company_review.work_env_score + @company_review.salary_score + @company_review.ot_score + @company_review.manager_score + @company_review.career_score + @company_review.score) / 6
 
         if @company_review.save
             redirect_to company_path(@company, tab_id: 'CompanyReviewsID')
@@ -45,6 +38,7 @@ class CompanyReviewsController < ApplicationController
         @company = Company.friendly.find(params[:company_id])
         @company_review = @company.company_reviews.find(params[:id])
         @company_review.destroy
+        
         redirect_to company_path(@company, tab_id: 'CompanyReviewsID')
     end
 

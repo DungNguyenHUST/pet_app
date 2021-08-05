@@ -1,5 +1,6 @@
 class PostsController < ApplicationController
     before_action :require_user_login, only: [:new, :create, :edit, :update, :destroy]
+
     def index
         @posts = Post.all.order('created_at DESC').page(params[:page]).per(10)
         @post_comments = PostComment.all
@@ -51,7 +52,7 @@ class PostsController < ApplicationController
     end
 
     private
-    # define param for each post
+    
     def post_param
         params.require(:post).permit(:id, :wall_picture, :title, :content, :category)
     end

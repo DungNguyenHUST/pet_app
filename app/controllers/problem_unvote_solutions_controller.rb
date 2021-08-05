@@ -1,7 +1,5 @@
 class ProblemUnvoteSolutionsController < ApplicationController
     before_action :require_user_login, only: [:new, :create, :edit, :update, :destroy]
-    before_action :find_problem_solution
-    before_action :find_unvote, only: [:destroy]
     
     def index 
         @problem_solution = ProblemSolution.find(params[:problem_solution_id])
@@ -19,11 +17,10 @@ class ProblemUnvoteSolutionsController < ApplicationController
         @problem_solution = ProblemSolution.find(params[:problem_solution_id])
         @problem = @problem_solution.problem
 
-        if already_unvoted?
-            # flash[:notice] = "You can't unvote more than once"
-        else
+        if !already_unvoted?
             @problem_unvote_solution = @problem_solution.problem_unvote_solutions.create(user_id: current_user.id)
         end
+
         # redirect_to problem_path(@problem)
         respond_to do |format|
             format.html {}
@@ -42,6 +39,7 @@ class ProblemUnvoteSolutionsController < ApplicationController
         @problem = @problem_solution.problem
         @problem_unvote_solution = @problem_solution.problem_unvote_solutions.find(params[:id])
         @problem_unvote_solution.destroy
+
         # redirect_to problem_path(@problem)
         respond_to do |format|
             format.html {redirect_to :back}
@@ -59,13 +57,5 @@ class ProblemUnvoteSolutionsController < ApplicationController
 
     def already_unvoted?
         ProblemUnvoteSolution.where(user_id: current_user.id, problem_solution_id: params[:problem_solution_id]).exists?
-    end
-
-    def find_problem_solution
-        @problem_solution = ProblemSolution.find(params[:problem_solution_id])
-    end
-
-    def find_unvote
-        @unvote = @problem_solution.problem_unvote_solutions.find(params[:id])
     end
 end

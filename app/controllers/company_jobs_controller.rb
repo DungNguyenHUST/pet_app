@@ -13,6 +13,7 @@ class CompanyJobsController < ApplicationController
     def create
         @company = Company.friendly.find(params[:company_id])
         @company_job = @company.company_jobs.build(company_job_param)
+        
         if employer_signed_in?
             @company_job.user_id = current_employer.id
         end

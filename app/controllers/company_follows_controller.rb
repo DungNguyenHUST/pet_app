@@ -15,11 +15,10 @@ class CompanyFollowsController < ApplicationController
         @company = Company.friendly.find(params[:company_id])
         @company_follow = CompanyFollow.new
         
-        if already_followed?
-            # flash[:notice] = "You can't like more than once"
-        else                
+        if !already_followed?         
             @company_follow = @company.company_follows.create(user_id: current_user.id)
         end
+
         @type_param = params[:type_param]
         # redirect_to company_path(@company)
         respond_to do |format|
@@ -38,6 +37,7 @@ class CompanyFollowsController < ApplicationController
         @company = Company.friendly.find(params[:company_id])
         @company_follow = @company.company_follows.find(params[:id])
         @company_follow.destroy
+
         @type_param = params[:type_param]
         # redirect_to company_path(@company)
         respond_to do |format|
@@ -53,16 +53,7 @@ class CompanyFollowsController < ApplicationController
 
     private
 
-    def company_follow_param
-        # params.require(:company_follow).permit(:id)
-    end
-
     def already_followed?
         CompanyFollow.where(user_id: current_user.id, company_id: params[:company_id]).exists?
-    end
-
-    def find_company_follow
-        @company = Company.friendly.find(params[:company_id])
-        @company_follow = CompanyFollow.find(params[:id])
     end
 end

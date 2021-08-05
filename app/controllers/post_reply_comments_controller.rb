@@ -1,6 +1,7 @@
 class PostReplyCommentsController < ApplicationController
     include ApplicationHelper
     before_action :require_user_login, only: [:new, :create, :edit, :update, :destroy]
+
     def index 
         @post_comment = PostComment.find(params[:post_comment_id])
         @post = @post_comment.post
@@ -17,13 +18,22 @@ class PostReplyCommentsController < ApplicationController
         @post_comment = PostComment.find(params[:post_comment_id])
         @post = @post_comment.post
         @post_reply_comment = @post_comment.post_reply_comments.build(post_reply_comment_param)
-        @post_reply_comment.user_name = current_user.name
-        @post_reply_comment.user_id = current_user.id
+
+        if user_signed_in?
+            @post_reply_comment.user_name = current_user.name
+            @post_reply_comment.user_id = current_user.id
+        end
 
         if @post_reply_comment.save
             if(find_owner_user(@post_comment).present?)
-                UserNotificationsController.new.create_notify(find_owner_user(@post_comment), current_user, @post.title, @post_reply_comment.reply_content, post_path(@post), "PostComment")
+                UserNotificationsController.new.create_notify(find_owner_user(@post_comment), 
+                                                                current_user, 
+                                                                @post.title, 
+                                                                @post_reply_comment.reply_content, 
+                                                                post_path(@post), 
+                                                                "PostComment")
             end
+            
             # redirect_to post_path(@post)
             respond_to do |format|
                 format.html {}

@@ -1,20 +1,21 @@
 class ProblemsController < ApplicationController
     before_action :require_user_login, only: [:new, :create, :edit, :update, :destroy]
+
     def index
         @is_problem_searched = false
 		if(params.has_key?(:search))
             @is_problem_searched = true
 			@problem_searchs = Problem.friendly.search(params[:search]).order("created_at DESC").approved.page(params[:page]).per(12)
         end
+
 		@problems_all = Problem.all.order("id ASC").approved.page(params[:page]).per(20)
         @problems_newest = Problem.all.order("created_at DESC").approved
-        @problem_solutions = ProblemSolution.all
-
-        @problem_math = Problem.where(:category => "1").order("id ASC").page(params[:page]).per(20)
-        @problem_eq_test = Problem.where(:category => "2").order("id ASC").page(params[:page]).per(20)
-        @problem_iq_test = Problem.where(:category => "3").order("id ASC").page(params[:page]).per(20)
-        @problem_interview = Problem.where(:category => "4").order("id ASC").page(params[:page]).per(20)
-        @problem_other = Problem.where(:category => "5").order("id ASC").page(params[:page]).per(20)
+        @problem_solutions = ProblemSolution.all.approved
+        @problem_math = Problem.where(:category => "1").order("id ASC").approved.page(params[:page]).per(20)
+        @problem_eq_test = Problem.where(:category => "2").order("id ASC").approved.page(params[:page]).per(20)
+        @problem_iq_test = Problem.where(:category => "3").order("id ASC").approved.page(params[:page]).per(20)
+        @problem_interview = Problem.where(:category => "4").order("id ASC").approved.page(params[:page]).per(20)
+        @problem_other = Problem.where(:category => "5").order("id ASC").approved.page(params[:page]).per(20)
 
         if(params.has_key?(:tab_id))
             @tab_id = params[:tab_id]
@@ -29,8 +30,11 @@ class ProblemsController < ApplicationController
 
     def create
         @problem = Problem.new(problem_param)
-        @problem.user_name = current_user.name
-        @problem.user_id = current_user.id
+
+        if user_signed_in?
+            @problem.user_name = current_user.name
+            @problem.user_id = current_user.id
+        end
 
         if admin_signed_in?
             @problem.approved = true
@@ -90,25 +94,11 @@ class ProblemsController < ApplicationController
     def update
         @problem = Problem.friendly.find params[:id]
 
-        if problem_param.present? && !(problem_param.has_key?(:approved))
-            if(@problem.update(problem_param))
-				if @problem.approved?
-					redirect_to problem_path(@problem)
-				else
-					flash[:success] = "Thông tin của bạn đã được tiếp nhận, vui lòng chờ quản trị viên sẽ xử lý trong 30min - 1h"
-					redirect_to problems_path
-				end
-			else
-				flash[:danger] = "Lỗi, hãy điền đủ nội dung có dấu '*'"
-			end
+        if(@problem.update(problem_param))
+            redirect_to problem_path(@problem)
+            flash[:success] = "Update thông tin thành công"
         else
-            if (!@problem.approved? && @problem.update_column(:approved, true))
-                flash[:success] = "Approved"
-                redirect_to user_path(current_user, tab_id: 'AdminProblemID')
-            elsif (@problem.approved? && @problem.update_column(:approved, false))
-                flash[:danger] = "Rejected"
-                redirect_to user_path(current_user, tab_id: 'AdminProblemID')
-            end
+            flash[:danger] = "Lỗi, không thể update thông tin"
         end
     end
 
@@ -119,7 +109,7 @@ class ProblemsController < ApplicationController
     end
 
     private
-    # define param for each problem
+    
     def problem_param
         params.require(:problem).permit(:id, :title, :content, :difficult, :category, :search)
     end

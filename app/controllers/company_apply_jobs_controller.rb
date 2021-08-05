@@ -1,6 +1,7 @@
 class CompanyApplyJobsController < ApplicationController
     include ApplicationHelper
     before_action :require_user_login, only: [:new, :create, :edit, :update, :destroy]
+    
     def index 
         @company_job = CompanyJob.friendly.find(params[:company_job_id])
         @company = @company_job.company

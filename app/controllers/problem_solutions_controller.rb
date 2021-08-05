@@ -1,6 +1,7 @@
 class ProblemSolutionsController < ApplicationController
     include ApplicationHelper
     before_action :require_user_login, only: [:new, :create, :edit, :update, :destroy]
+
     def index 
         @problem = Problem.friendly.find(params[:problem_id])
         @problem_solutions = @problem.problem_solutions
@@ -14,13 +15,22 @@ class ProblemSolutionsController < ApplicationController
     def create
         @problem = Problem.friendly.find(params[:problem_id])
         @problem_solution = @problem.problem_solutions.build(problem_solution_param)
-        @problem_solution.user_name = current_user.name
-        @problem_solution.user_id = current_user.id
+
+        if user_signed_in?
+            @problem_solution.user_name = current_user.name
+            @problem_solution.user_id = current_user.id
+        end
 
         if @problem_solution.save
             if(find_owner_user(@problem).present?)
-                UserNotificationsController.new.create_notify(find_owner_user(@problem), current_user, @problem.title, @problem_solution.title, problem_path(@problem, tab_id: 'ProblemSolutionID'), "ProblemComment")
+                UserNotificationsController.new.create_notify(find_owner_user(@problem), 
+                                                            current_user, 
+                                                            @problem.title, 
+                                                            @problem_solution.title, 
+                                                            problem_path(@problem, tab_id: 'ProblemSolutionID'), 
+                                                            "ProblemComment")
             end
+            
             redirect_to problem_path(@problem, tab_id: 'ProblemSolutionID')
         else
             flash[:danger] = "Lỗi, hãy điền nội dung câu trả lời của bạn ..."

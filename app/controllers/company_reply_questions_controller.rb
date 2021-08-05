@@ -1,6 +1,7 @@
 class CompanyReplyQuestionsController < ApplicationController
     include ApplicationHelper
     before_action :require_user_login, only: [:new, :create, :edit, :update, :destroy]
+
     def index 
         @company_question = CompanyQuestion.find(params[:company_question_id])
         @company = @company_question.company
@@ -17,13 +18,22 @@ class CompanyReplyQuestionsController < ApplicationController
         @company_question = CompanyQuestion.find(params[:company_question_id])
         @company = @company_question.company
         @company_reply_question = @company_question.company_reply_questions.build(company_reply_question_param)
-        @company_reply_question.user_name = current_user.name
-        @company_reply_question.user_id = current_user.id
+
+        if user_signed_in?
+            @company_reply_question.user_name = current_user.name
+            @company_reply_question.user_id = current_user.id
+        end
 
         if @company_reply_question.save
             if(find_owner_user(@company_question).present?)
-                UserNotificationsController.new.create_notify(find_owner_user(@company_question), current_user, @company_question.title, @company_reply_question.reply_content, company_path(@company, tab_id: 'CompanyQuestionsID'), "QuestionComment")
+                UserNotificationsController.new.create_notify(find_owner_user(@company_question), 
+                                                            current_user, 
+                                                            @company_question.title, 
+                                                            @company_reply_question.reply_content, 
+                                                            company_path(@company, tab_id: 'CompanyQuestionsID'), 
+                                                            "QuestionComment")
             end
+
             # redirect_to company_path(@company, tab_id: 'CompanyquestionsID')
             respond_to do |format|
                 format.html {}

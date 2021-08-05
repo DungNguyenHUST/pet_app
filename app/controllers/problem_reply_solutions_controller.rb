@@ -1,6 +1,7 @@
 class ProblemReplySolutionsController < ApplicationController
     include ApplicationHelper
     before_action :require_user_login, only: [:new, :create, :edit, :update, :destroy]
+
     def index 
         @problem_solution = ProblemSolution.find(params[:problem_solution_id])
         @problem = @problem_solution.problem
@@ -17,13 +18,21 @@ class ProblemReplySolutionsController < ApplicationController
         @problem_solution = ProblemSolution.find(params[:problem_solution_id])
         @problem = @problem_solution.problem
         @problem_reply_solution = @problem_solution.problem_reply_solutions.build(problem_reply_solution_param)
-        @problem_reply_solution.user_name = current_user.name
-        @problem_reply_solution.user_id = current_user.id
+
+        if user_signed_in?
+            @problem_reply_solution.user_name = current_user.name
+            @problem_reply_solution.user_id = current_user.id
+        end
 
         if @problem_reply_solution.save
             if(find_owner_user(@problem_solution).present?)
-                UserNotificationsController.new.create_notify(find_owner_user(@problem_solution), current_user, @problem.title, @problem_reply_solution.reply_content, problem_path(@problem, tab_id: 'ProblemSolutionID'), "ProblemSolutionComment")
+                UserNotificationsController.new.create_notify(find_owner_user(@problem_solution), 
+                                                            current_user, @problem.title, 
+                                                            @problem_reply_solution.reply_content, 
+                                                            problem_path(@problem, tab_id: 'ProblemSolutionID'), 
+                                                            "ProblemSolutionComment")
             end
+            
             # redirect_to problem_path(@problem, tab_id: 'ProblemSolutionID')
             respond_to do |format|
                 format.html {}

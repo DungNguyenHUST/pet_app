@@ -1,6 +1,7 @@
 class CompanyReplyReviewsController < ApplicationController
     include ApplicationHelper
     before_action :require_user_login, only: [:new, :create, :edit, :update, :destroy]
+
     def index 
         @company_review = CompanyReview.find(params[:company_review_id])
         @company = @company_review.company
@@ -17,13 +18,22 @@ class CompanyReplyReviewsController < ApplicationController
         @company_review = CompanyReview.find(params[:company_review_id])
         @company = @company_review.company
         @company_reply_review = @company_review.company_reply_reviews.build(company_reply_review_param)
-        @company_reply_review.user_name = current_user.name
-        @company_reply_review.user_id = current_user.id
+
+        if user_signed_in?
+            @company_reply_review.user_name = current_user.name
+            @company_reply_review.user_id = current_user.id
+        end
 
         if @company_reply_review.save
             if(find_owner_user(@company_review).present?)
-                UserNotificationsController.new.create_notify(find_owner_user(@company_review), current_user, @company_review.position, @company_reply_review.reply_content, company_path(@company, tab_id: 'CompanyReviewsID'), "ReviewComment")
+                UserNotificationsController.new.create_notify(find_owner_user(@company_review), 
+                                                            current_user, 
+                                                            @company_review.position, 
+                                                            @company_reply_review.reply_content, 
+                                                            company_path(@company, tab_id: 'CompanyReviewsID'), 
+                                                            "ReviewComment")
             end
+            
             # redirect_to company_path(@company, tab_id: 'CompanyReviewsID')
             respond_to do |format|
                 format.html {}

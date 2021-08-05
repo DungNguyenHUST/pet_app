@@ -1,5 +1,6 @@
 class CompanySalariesController < ApplicationController
     before_action :require_user_login, only: [:edit, :update, :destroy]
+    
     def index 
         @company = Company.friendly.find(params[:company_id])
         @company_salaries = @company.company_salaries
@@ -12,15 +13,11 @@ class CompanySalariesController < ApplicationController
 
     def create
         @company = Company.friendly.find(params[:company_id])
-
         @company_salary = @company.company_salaries.build(company_salary_param)
 
         if user_signed_in?
             @company_salary.user_name = current_user.name
             @company_salary.user_id = current_user.id
-        else
-            @company_salary.user_name = "Ẩn danh"
-            @company_salary.user_id = -1
         end
 
         if @company_salary.save
@@ -41,6 +38,7 @@ class CompanySalariesController < ApplicationController
         @company = Company.friendly.find(params[:company_id])
         @company_salary = @company.company_salaries.find(params[:id])
         @company_salary.destroy
+        
         redirect_to company_path(@company, tab_id: 'CompanySalariesID')
     end
 

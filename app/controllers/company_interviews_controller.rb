@@ -1,5 +1,6 @@
 class CompanyInterviewsController < ApplicationController
     before_action :require_user_login, only: [:edit, :update, :destroy]
+
     def index 
         @company = Company.friendly.find(params[:company_id])
         @company_interviews = @company.company_interviews
@@ -18,12 +19,7 @@ class CompanyInterviewsController < ApplicationController
         if user_signed_in?
             @company_interview.user_name = current_user.name
             @company_interview.user_id = current_user.id
-        else
-            @company_interview.user_name = "Ẩn danh"
-            @company_interview.user_id = -1
         end
-
-        @company_interview.companyName = @company.name
 
         if @company_interview.save
             redirect_to company_path(@company, tab_id: 'CompanyInterviewsID')

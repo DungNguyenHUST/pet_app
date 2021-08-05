@@ -1,5 +1,6 @@
 class CompanyQuestionsController < ApplicationController
     before_action :require_user_login, only: [:new, :create, :edit, :update, :destroy]
+    
     def index 
         @company = Company.friendly.find(params[:company_id])
         @company_questions = @company.company_questions
@@ -12,15 +13,11 @@ class CompanyQuestionsController < ApplicationController
 
     def create
         @company = Company.friendly.find(params[:company_id])
-
         @company_question = @company.company_questions.build(company_question_param)
 
         if user_signed_in?
             @company_question.user_name = current_user.name
             @company_question.user_id = current_user.id
-        else
-            @company_question.user_name = "Ẩn danh"
-            @company_question.user_id = -1
         end
 
         if @company_question.save

@@ -4,8 +4,6 @@ class ApplicationController < ActionController::Base
     helper ActionText::Engine.helpers
     before_action :configure_permitted_parameters, if: :devise_controller?
 
-    # before_action :require_user_login
-
     def require_user_login
         unless user_signed_in?
             redirect_to new_user_session_path
