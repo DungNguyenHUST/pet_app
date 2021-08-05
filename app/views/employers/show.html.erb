@@ -3,13 +3,12 @@
     <div class="container">
         <%if !current_employer.approved?%>
             <div class='employer_dasboard'>
-                <%now = Time.now%>
                 <div class='employer_title'>
-                    <%if (0..12).cover? now.hour %>
+                    <%if (0..12).cover? Time.now.hour %>
                         <span href="<%=employer_path(current_employer)%>">Good morning, nhà tuyển dụng <%=current_employer.name%>!</span>
-                    <%elsif (12..18).cover? now.hour %>
+                    <%elsif (12..18).cover? Time.now.hour %>
                         <span href="<%=employer_path(current_employer)%>">Good afternoon, nhà tuyển dụng <%=current_employer.name%>!</span>
-                    <%elsif (18..24).cover? now.hour %>
+                    <%elsif (18..24).cover? Time.now.hour %>
                         <span href="<%=employer_path(current_employer)%>">Good evening, nhà tuyển dụng <%=current_employer.name%>!</span>
                     <%end%>
                 </div>

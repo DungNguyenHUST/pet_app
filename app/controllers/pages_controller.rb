@@ -45,10 +45,8 @@ class PagesController < ApplicationController
             @tab_id = "default"
         end
 		
-        if user_signed_in?
-			if current_user.admin?
-				redirect_to user_path(current_user, tab_id: @tab_id)
-			end
+        if admin_signed_in?
+			redirect_to admin_path(current_admin)
 		end
 
 		if employer_signed_in?

@@ -29,11 +29,6 @@ Rails.application.routes.draw do
   resources :admins
 
   resources :pages
-  get "admin_search"   => "pages#index"
-
-  resources :posts do
-    resources :comments
-  end
 
   resources :companies do
     resources :company_reviews
@@ -66,7 +61,7 @@ Rails.application.routes.draw do
     resources :company_reply_questions
   end
   
-  get 'company_job_list' => 'company_jobs#list'
+  get 'jobs' => 'company_jobs#list'
   
   resources :problems do
     resources :problem_solutions
@@ -77,12 +72,6 @@ Rails.application.routes.draw do
     resources :problem_vote_solutions
     resources :problem_unvote_solutions
   end
-
-  # New post
-  get 'posts/new' => 'posts#new'
-
-  # list posts
-  get 'posts' => 'posts#index'
 
   resources :posts do
     resources :post_comments
