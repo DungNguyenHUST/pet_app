@@ -32,7 +32,8 @@ class PostsController < ApplicationController
     def show
         @post = Post.friendly.find(params[:id])
         @post_comments = @post.post_comments.order('created_at DESC').page(params[:page]).per(10)
-        @posts = Post.all
+
+        @post_relateds = Post.all.order('created_at DESC').reject{|i| i.id == @post.id}
     end
 
     def edit
