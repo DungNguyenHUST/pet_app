@@ -1,4 +1,5 @@
 class ScraperJob < ApplicationJob
+include ApplicationHelper
     queue_as :default
 
     def perform(scrap_job)
@@ -187,8 +188,10 @@ class ScraperJob < ApplicationJob
             job_datas.each do |job_data|
             @company = Company.friendly.find_by_id(job_data.company_id)
             @company_job = @company.company_jobs.create!(:title => job_data.title,
+                                    :title_converted => convert_vie_to_eng(job_data.title),
                                     :detail => job_data.detail,
                                     :location => job_data.location,
+                                    :location_converted => convert_vie_to_eng(job_data.location),
                                     :salary => job_data.salary,
                                     :quantity => job_data.quantity,
                                     :category => job_data.category,
