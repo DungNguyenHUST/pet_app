@@ -81,4 +81,16 @@ module ApplicationHelper
 
         return number_in_human
     end
+
+    def convert_vie_to_eng(str)
+        new_str = str.downcase.to_s
+        new_str.gsub! /[àáạãảâậấẫầẩăặắằẵẳ]/, "a"
+        new_str.gsub! /[đ]/, "d"
+        new_str.gsub! /[èéẹẽẻêềếệễể]/, "e"
+        new_str.gsub! /[óòọõỏôốồộỗổơớợỡờở]/, "o"
+        new_str.gsub! /[úùụũủưứựừữử]/, "u"
+        new_str.gsub! /[íịìĩỉ]/, "i"
+        new_str.gsub! /[ýỵỹỳỷ]/, "y"
+        return new_str
+    end
 end

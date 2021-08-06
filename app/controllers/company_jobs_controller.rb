@@ -1,5 +1,7 @@
 class CompanyJobsController < ApplicationController
+    include ApplicationHelper
     before_action :require_employer_login, only: [:new, :create, :edit, :update, :destroy]
+
     def index 
         @companies = Company.all
         @company_jobs = CompanyJob.all
@@ -17,6 +19,9 @@ class CompanyJobsController < ApplicationController
         if employer_signed_in?
             @company_job.user_id = current_employer.id
         end
+
+        @company_job.title_coverted = convert_vie_to_eng(@company_job.title)
+        @company_job.location_coverted = convert_vie_to_eng(@company_job.location)
 
         if @company_job.save
 			redirect_to company_company_job_path(@company, @company_job)

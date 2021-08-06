@@ -1,5 +1,5 @@
 class EmployersController < ApplicationController
-    include ::EmployersHelper
+    include EmployersHelper
     before_action :require_employer_login, only: [:index, :show, :edit, :update, :destroy]
     
     def index

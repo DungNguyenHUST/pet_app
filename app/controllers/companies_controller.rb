@@ -1,5 +1,6 @@
 class CompaniesController < ApplicationController
-    include ::CompaniesHelper
+    include CompaniesHelper
+    include ApplicationHelper
     before_action :require_employer_login, only: [:new, :create, :edit, :update, :destroy]
 
     def index
@@ -31,6 +32,9 @@ class CompaniesController < ApplicationController
         if employer_signed_in?
             @company.employer_id = current_employer.id
         end
+
+        @company.name_coverted = convert_vie_to_eng(@company.name)
+        @company.location_coverted = convert_vie_to_eng(@company.location)
 
         if @company.save!
 			redirect_to company_path(@company)

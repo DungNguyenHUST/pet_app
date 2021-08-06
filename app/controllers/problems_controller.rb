@@ -1,4 +1,5 @@
 class ProblemsController < ApplicationController
+    include ApplicationHelper
     before_action :require_user_login, only: [:new, :create, :edit, :update, :destroy]
 
     def index
@@ -38,6 +39,8 @@ class ProblemsController < ApplicationController
         if admin_signed_in?
             @problem.approved = true
         end
+
+        @problem.title_coverted = convert_vie_to_eng(@problem.title)
 
         if @problem.save!
             if @problem.approved?

@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_08_05_085537) do
+ActiveRecord::Schema.define(version: 2021_08_06_024359) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -110,6 +110,8 @@ ActiveRecord::Schema.define(version: 2021_08_05_085537) do
     t.string "company_type"
     t.text "benefit", default: [], array: true
     t.integer "employer_id"
+    t.string "name_coverted"
+    t.string "location_coverted"
     t.index ["slug"], name: "index_companies_on_slug", unique: true
   end
 
@@ -205,6 +207,8 @@ ActiveRecord::Schema.define(version: 2021_08_05_085537) do
     t.text "skill", default: [], array: true
     t.integer "user_id"
     t.string "detail"
+    t.string "title_coverted"
+    t.string "location_coverted"
     t.index ["slug"], name: "index_company_jobs_on_slug", unique: true
   end
 
@@ -420,6 +424,7 @@ ActiveRecord::Schema.define(version: 2021_08_05_085537) do
     t.string "wall_picture"
     t.integer "category"
     t.integer "user_id"
+    t.string "title_coverted"
     t.index ["slug"], name: "index_posts_on_slug", unique: true
   end
 
@@ -480,6 +485,7 @@ ActiveRecord::Schema.define(version: 2021_08_05_085537) do
     t.boolean "approved", default: false
     t.string "slug"
     t.integer "user_id"
+    t.string "title_coverted"
     t.index ["slug"], name: "index_problems_on_slug", unique: true
   end
 

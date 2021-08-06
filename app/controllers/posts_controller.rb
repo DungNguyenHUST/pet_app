@@ -1,4 +1,5 @@
 class PostsController < ApplicationController
+    include ApplicationHelper
     before_action :require_user_login, only: [:new, :create, :edit, :update, :destroy]
 
     def index
@@ -17,6 +18,8 @@ class PostsController < ApplicationController
             @post.username = current_user.name
             @post.user_id = current_user.id
         end
+
+        @post.title_coverted = convert_vie_to_eng(@post.title)
 
         if @post.save
             redirect_to post_path(@post)
