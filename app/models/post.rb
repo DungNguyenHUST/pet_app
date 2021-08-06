@@ -1,6 +1,6 @@
 class Post < ApplicationRecord
 	extend FriendlyId
-	friendly_id :title_coverted, use: :slugged
+	friendly_id :title_converted, use: :slugged
     
   has_many :post_comments, dependent: :destroy
 
@@ -15,7 +15,7 @@ class Post < ApplicationRecord
 
   def self.search(search)
     if search
-      post_search = Post.where("title ILIKE?", "%#{search}%")
+      post_search = Post.where("title_converted ILIKE?", "%#{search}%")
       if(post_search)
         self.where(id: post_search)
       end

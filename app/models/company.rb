@@ -1,6 +1,6 @@
 class Company < ApplicationRecord
 	extend FriendlyId
-	friendly_id :name_coverted, use: :slugged
+	friendly_id :name_converted, use: :slugged
 	
     has_many :company_reviews, dependent: :destroy
     has_many :company_interviews, dependent: :destroy
@@ -23,7 +23,7 @@ class Company < ApplicationRecord
 
     def self.search(search)
         if search
-            company_search = Company.where("name ILIKE? OR location ILIKE?", "%#{search}%", "%#{search}%")
+            company_search = Company.where("name_converted ILIKE?", "%#{search}%")
             if(company_search)
                 self.where(id: company_search)
             end
@@ -32,7 +32,7 @@ class Company < ApplicationRecord
 	
 	def self.search_advance(search, location)
         if search && location
-            company_search = Company.where("name ILIKE? AND location ILIKE?", "%#{search}%", "%#{location}%")
+            company_search = Company.where("name_converted ILIKE? AND location_converted ILIKE?", "%#{search}%", "%#{location}%")
             if(company_search)
                 self.where(id: company_search)
             end

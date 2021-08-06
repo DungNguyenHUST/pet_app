@@ -1,5 +1,6 @@
 class AdminsController < ApplicationController
     include AdminsHelper
+    include ApplicationHelper
     before_action :require_admin_login, only: [:index, :show, :edit, :update, :destroy]
     
     def index

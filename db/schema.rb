@@ -110,8 +110,8 @@ ActiveRecord::Schema.define(version: 2021_08_06_024359) do
     t.string "company_type"
     t.text "benefit", default: [], array: true
     t.integer "employer_id"
-    t.string "name_coverted"
-    t.string "location_coverted"
+    t.string "name_converted"
+    t.string "location_converted"
     t.index ["slug"], name: "index_companies_on_slug", unique: true
   end
 
@@ -207,8 +207,8 @@ ActiveRecord::Schema.define(version: 2021_08_06_024359) do
     t.text "skill", default: [], array: true
     t.integer "user_id"
     t.string "detail"
-    t.string "title_coverted"
-    t.string "location_coverted"
+    t.string "title_converted"
+    t.string "location_converted"
     t.index ["slug"], name: "index_company_jobs_on_slug", unique: true
   end
 
@@ -424,7 +424,7 @@ ActiveRecord::Schema.define(version: 2021_08_06_024359) do
     t.string "wall_picture"
     t.integer "category"
     t.integer "user_id"
-    t.string "title_coverted"
+    t.string "title_converted"
     t.index ["slug"], name: "index_posts_on_slug", unique: true
   end
 
@@ -485,7 +485,7 @@ ActiveRecord::Schema.define(version: 2021_08_06_024359) do
     t.boolean "approved", default: false
     t.string "slug"
     t.integer "user_id"
-    t.string "title_coverted"
+    t.string "title_converted"
     t.index ["slug"], name: "index_problems_on_slug", unique: true
   end
 

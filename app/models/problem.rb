@@ -1,12 +1,12 @@
 class Problem < ApplicationRecord
 	extend FriendlyId
-	friendly_id :title_coverted, use: :slugged
+	friendly_id :title_converted, use: :slugged
 	
     has_many :problem_solutions, dependent: :destroy
 
     def self.search(search)
         if search
-            problem_search = Problem.where("title ILIKE ?", "%#{search}%")
+            problem_search = Problem.where("title_converted ILIKE ?", "%#{search}%")
             if(problem_search)
                 self.where(id: problem_search)
             end

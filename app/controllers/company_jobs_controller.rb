@@ -20,8 +20,8 @@ class CompanyJobsController < ApplicationController
             @company_job.user_id = current_employer.id
         end
 
-        @company_job.title_coverted = convert_vie_to_eng(@company_job.title)
-        @company_job.location_coverted = convert_vie_to_eng(@company_job.location)
+        @company_job.title_converted = convert_vie_to_eng(@company_job.title)
+        @company_job.location_converted = convert_vie_to_eng(@company_job.location)
 
         if @company_job.save
 			redirect_to company_company_job_path(@company, @company_job)
@@ -72,9 +72,9 @@ class CompanyJobsController < ApplicationController
 		@is_job_searched = false
 		if(params.has_key?(:search) && params.has_key?(:location))
 			@is_job_searched = true
-			@search = params[:search]
-			@location = params[:location]
-            if @location.to_s == "Tất cả địa điểm"
+			@search = convert_vie_to_eng(params[:search])
+			@location = convert_vie_to_eng(params[:location])
+            if @location.to_s == "tat ca dia diem"
                 @job_searchs = CompanyJob.friendly.search(@search).order('created_at DESC').page(params[:page]).per(12)
             else
 			    @job_searchs = CompanyJob.friendly.search_advance(@search, @location).order('created_at DESC').page(params[:page]).per(12)

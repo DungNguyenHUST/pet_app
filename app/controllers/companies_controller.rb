@@ -7,7 +7,8 @@ class CompaniesController < ApplicationController
         @is_company_searched = false
 		if(params.has_key?(:search))
             @is_company_searched = true
-			@company_searchs = Company.friendly.search(params[:search]).order('name ASC').page(params[:page]).per(12)
+            @search = convert_vie_to_eng(params[:search])
+			@company_searchs = Company.friendly.search(@search).order('name ASC').page(params[:page]).per(12)
 		end
 
         @companies_all = Company.all
@@ -33,8 +34,8 @@ class CompaniesController < ApplicationController
             @company.employer_id = current_employer.id
         end
 
-        @company.name_coverted = convert_vie_to_eng(@company.name)
-        @company.location_coverted = convert_vie_to_eng(@company.location)
+        @company.name_converted = convert_vie_to_eng(@company.name)
+        @company.location_converted = convert_vie_to_eng(@company.location)
 
         if @company.save!
 			redirect_to company_path(@company)
