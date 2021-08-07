@@ -1,312 +1,312 @@
 <div class="container">
-	<div class="new_job_form">
-		<%= form_for [@company, CompanyJob.new] do |f| %>
-			<div class="row">
-				<div class="col-sm-8">
-					<div class="new_job_title">
-						<%if !@is_edit%>
-							<a>Tạo một công việc mới cho <%=@company.name%></a>
-						<%else%>
-							<a>Update tin tuyển dụng <%=@company_job.title%></a>
-						<%end%>
-					</div>
-
-					<div class="new_job_title_sub">
-						<span>Note: Mục có dấu '*' là bắt buộc</span>
-					</div>
-
-					<div class="new_job_section">
-						<div class="new_job_content">
-							<div class="new_job_label">
-								<a><%= f.label :title, "Tên việc làm cần tuyển dụng*", class: "new_job_label" %></a>
-							</div>
-							
-							<div class="new_job_input">
-								<%= f.text_field :title,  autofocus: true, :required => true, class: "form-control", placeholder: "Nhập tên việc làm bạn cần tuyển dụng" %>
-							</div>
+	<div class="row">
+		<div class="col-sm-8">
+			<div class="new_job_form">
+				<%= form_for [@company, CompanyJob.new] do |f| %>
+						<div class="new_job_title">
+							<%if !@is_edit%>
+								<a>Tạo một công việc mới cho <%=@company.name%></a>
+							<%else%>
+								<a>Update tin tuyển dụng <%=@company_job.title%></a>
+							<%end%>
 						</div>
 
-						<!-- <div class="new_job_content">
-							<div class="new_job_label">
-								<a><%= f.label :urgent, "Bạn cần tuyển gấp hay không?*", class: "new_job_label" %></a>
-							</div>
-							<div class="new_job_input">
-								<%= f.select(:urgent, options_for_select([['Không, tôi không cần tuyển gấp', false], ['Có, tôi cần tuyển gấp', true]]), {include_blank: false}, { :class => 'form-control' }) %>
-							</div>
-						</div> -->
-						
-						<div class="new_job_content">
-							<div class="new_job_label">
-								<a><%= f.label :level, "Vị trí cần tuyển dụng*", class: "new_job_label" %></a>
-							</div>
-							
-							<div class="new_job_input">
-								<%= f.select(:level, options_for_select(['Intern', 'Junior', 'Middle', 'Senior', 'Expert', 'Leader', 'Architect'], 'Middle'), {include_blank: false}, { :class => 'form-control'}) %>
-							</div>
+						<div class="new_job_title_sub">
+							<span>Note: Mục có dấu '*' là bắt buộc</span>
 						</div>
 
-						<div class="new_job_content">
-							<div class="new_job_label">
-								<a><%= f.label :category, "Lĩnh vực chính của công việc*", class: "new_job_label" %></a>
-							</div>
-							
-							<div class="new_job_input">
-								<%= f.select(:category, options_for_select(['IT - Phần mềm', 
-																			'IT - Phần cứng', 
-																			'Viễn thông', 
-																			'Kiến trúc', 
-																			'Xây dựng', 
-																			'Sức khỏe', 
-																			'Online Media', 
-																			'Dịch vụ', 
-																			'Giải trí', 
-																			'Du lịch', 
-																			'Giáo dục', 
-																			'Government', 
-																			'Sản xuất', 
-																			'Nghiên cứu', 
-																			'Business Management', 
-																			'Ngân hàng', 
-																			'Tài chính', 
-																			'Đầu tư', 
-																			'Nhân sự', 
-																			'Luật', 
-																			'Marketing and Sales', 
-																			'Logistics', 
-																			'Lĩnh vực khác'], 'Lĩnh vực khác'), {include_blank: false}, { :class => 'form-control'}) %>
-							</div>
-						</div>
-
-						<div class="new_job_content">
-							<div class="new_job_label">
-								<a><%= f.label :location, "Thành phố nơi làm việc*", class: "new_job_label" %></a>
-							</div>
-							
-							<div class="new_job_input">
-								<%= f.select(:location, options_for_select(['Hà Nội','TP Hồ Chí Minh','Đà Nẵng','An Giang','Bà Rịa Vũng Tàu','Bạc Liêu','Bắc Kạn','Bắc Giang',
-														'Bắc Ninh','Bến Tre','Bình Dương','Bình Định','Bình Phước',
-														'Bình Thuận','Cà Mau','Cao Bằng','Cần Thơ','Đắk Lắk','Đắk Nông','Điện Biên',
-														'Đồng Nai','Đồng Tháp','Gia Lai','Hà Giang','Hà Nam','Hà Tây','Hà Tĩnh',
-														'Hải Dương','Hải Phòng','Hòa Bình','Hậu Giang','Hưng Yên','Khánh Hòa',
-														'Kiên Giang','Kon Tum','Lai Châu','Lào Cai',
-														'Lạng Sơn','Lâm Đồng','Long An','Nam Định','Nghệ An',
-														'Ninh Bình','Ninh Thuận','Phú Thọ','Phú Yên','Quảng Bình',
-														'Quảng Nam','Quảng Ngãi','Quảng Ninh','Quảng Trị',
-														'Sóc Trăng','Sơn La','Tây Ninh','Thái Bình','Thái Nguyên' ,
-														'Thanh Hóa','Thừa Thiên Huế','Tiền Giang','Trà Vinh',
-														'Tuyên Quang','Vĩnh Long','Vĩnh Phúc','Yên Bái' ], "Hà Nội"), {include_blank: false, :required => true}, { :class => 'form-control' }) %>
-							</div>
-						</div>
-
-						<div class="new_job_content">
-							<div class="new_job_label">
-								<a><%= f.label :address, "Địa chỉ cụ thể nơi làm việc(tùy chọn)", class: "new_job_label" %></a>
-							</div>
-							
-							<div class="new_job_input">
-								<%= f.text_field :address, class: "form-control", placeholder: "Nhập địa chỉ làm việc bao gồm tên đường, quận, huyện,..." %>
-							</div>
-						</div>
-					</div>
-
-					<div class="new_job_section">
-						<div class="new_job_content">
-							<div class="new_job_label">
-								<a><%= f.label :job_type, "Loại hình công việc*", class: "new_job_label" %></a>
-							</div>
-							
-							<div class="new_job_input">
-								<%= f.select(:job_type, options_for_select(['Full Time', 'Part Time', 'Remote', 'Tạm thời', "Thực tập sinh", "Khác"], 'Full Time'), {include_blank: false}, { :class => 'form-control' }) %>
-							</div>
-						</div>
-						<div class="new_job_content">
-							<div class="new_job_label">
-								<a><%= f.label :salary, "Mức lương dự kiến*", class: "new_job_label" %></a>
-							</div>
-							
-							<div class="new_job_input">
-								<%= f.select(:salary, options_for_select(['Thương lượng', 
-																		'1Tr - 5Tr', 
-																		'5Tr - 10Tr', 
-																		'10Tr - 15Tr', 
-																		'15Tr - 20Tr', 
-																		'20Tr - 25Tr', 
-																		'25Tr - 30Tr', 
-																		'30Tr - 35Tr', 
-																		'40Tr - 45Tr', 
-																		'45Tr - 50Tr', 
-																		'50Tr - 55Tr', 
-																		'55Tr - 60Tr', 
-																		'60Tr - 65Tr', 
-																		'65Tr - 70Tr', 
-																		'70Tr - 75Tr', 
-																		'75Tr - 80Tr', 
-																		'80Tr - 85Tr', 
-																		'85Tr - 90Tr', 
-																		'90Tr - 95Tr', 
-																		'95Tr - 100Tr', 
-																		'hơn 100Tr'], 
-																		['Thương lượng']), {include_blank: false}, { :class => 'form-control' }) %>
-							</div>
-						</div>
-
-						<div class="new_job_content">
-							<div class="new_job_label">
-								<a><%= f.label :quantity, "Số lượng vị trí cần tuyển dụng*", class: "new_job_label" %></a>
-							</div>
-							
-							<div class="new_job_input">
-								<%= f.number_field :quantity, :required => true, :value => 1, class: "form-control", placeholder: "Số lượng vị trí cần tuyển dụng" %>
-							</div>
-						</div>
-
-						<div class="new_job_content">
-							<div class="new_job_label">
-								<a><%= f.label :end_date, "Ngày hết hạn nộp hồ sơ*", class: "new_job_label" %></a>
-							</div>
-							
-							<div class="new_job_input">
-								<%= f.date_field :end_date, :required => true, value: (Date.current + 1.month), class: "form-control", placeholder: "Nhập ngày hết hạn nộp hồ sơ" %>
-							</div>
-						</div>
-
-						<div class="new_job_content">
-							<div class="new_job_label">
-								<a><%= f.label :language, "Ngôn ngữ trình bày hồ sơ", class: "new_job_label" %></a>
-							</div>
-							
-							<div class="new_job_input">
-								<%= f.select(:language, options_for_select(['English', 'Tiếng Việt', 'Tùy chọn'], 'Tùy chọn'), {include_blank: false}, { :class => 'form-control' }) %>
-							</div>
-						</div>
-
-						<%if admin_signed_in?%>
-							<%= f.hidden_field :apply_another_site_flag, :value => true %>
+						<div class="new_job_section">
 							<div class="new_job_content">
 								<div class="new_job_label">
-									<a><%= f.label :apply_site, "Company Site to apply - Admin only*", class: "new_job_label" %></a>
+									<a><%= f.label :title, "Tên việc làm cần tuyển dụng*", class: "new_job_label" %></a>
 								</div>
 								
 								<div class="new_job_input">
-									<%= f.text_field :apply_site, :required => true, class: "form-control", placeholder: "Nhâp site tuyển dụng của công ty" %>
+									<%= f.text_field :title,  autofocus: true, :required => true, class: "form-control", placeholder: "Nhập tên việc làm bạn cần tuyển dụng" %>
 								</div>
 							</div>
-						<%end%>
-					</div>
-					
-					<div class="new_job_section_content">
-						<div class="new_job_content">
-							<div class="new_job_label">
-								<a><%= f.label :description, "Mô tả chung về công việc*", class: "new_job_label" %></a>
-							</div>
+
+							<!-- <div class="new_job_content">
+								<div class="new_job_label">
+									<a><%= f.label :urgent, "Bạn cần tuyển gấp hay không?*", class: "new_job_label" %></a>
+								</div>
+								<div class="new_job_input">
+									<%= f.select(:urgent, options_for_select([['Không, tôi không cần tuyển gấp', false], ['Có, tôi cần tuyển gấp', true]]), {include_blank: false}, { :class => 'form-control' }) %>
+								</div>
+							</div> -->
 							
-							<div class="new_job_input">
-								<%= f.cktext_area :description, :required => true, class: "form-control-rich-text", ckeditor: {toolbar: "medium", height: 200}, placeholder: "Nhập mô tả chung về công việc" %>
+							<div class="new_job_content">
+								<div class="new_job_label">
+									<a><%= f.label :level, "Vị trí cần tuyển dụng*", class: "new_job_label" %></a>
+								</div>
+								
+								<div class="new_job_input">
+									<%= f.select(:level, options_for_select(['Intern', 'Junior', 'Middle', 'Senior', 'Expert', 'Leader', 'Architect'], 'Middle'), {include_blank: false}, { :class => 'form-control'}) %>
+								</div>
+							</div>
+
+							<div class="new_job_content">
+								<div class="new_job_label">
+									<a><%= f.label :category, "Lĩnh vực chính của công việc*", class: "new_job_label" %></a>
+								</div>
+								
+								<div class="new_job_input">
+									<%= f.select(:category, options_for_select(['IT - Phần mềm', 
+																				'IT - Phần cứng', 
+																				'Viễn thông', 
+																				'Kiến trúc', 
+																				'Xây dựng', 
+																				'Sức khỏe', 
+																				'Online Media', 
+																				'Dịch vụ', 
+																				'Giải trí', 
+																				'Du lịch', 
+																				'Giáo dục', 
+																				'Government', 
+																				'Sản xuất', 
+																				'Nghiên cứu', 
+																				'Business Management', 
+																				'Ngân hàng', 
+																				'Tài chính', 
+																				'Đầu tư', 
+																				'Nhân sự', 
+																				'Luật', 
+																				'Marketing and Sales', 
+																				'Logistics', 
+																				'Lĩnh vực khác'], 'Lĩnh vực khác'), {include_blank: false}, { :class => 'form-control'}) %>
+								</div>
+							</div>
+
+							<div class="new_job_content">
+								<div class="new_job_label">
+									<a><%= f.label :location, "Thành phố nơi làm việc*", class: "new_job_label" %></a>
+								</div>
+								
+								<div class="new_job_input">
+									<%= f.select(:location, options_for_select(['Hà Nội','TP Hồ Chí Minh','Đà Nẵng','An Giang','Bà Rịa Vũng Tàu','Bạc Liêu','Bắc Kạn','Bắc Giang',
+															'Bắc Ninh','Bến Tre','Bình Dương','Bình Định','Bình Phước',
+															'Bình Thuận','Cà Mau','Cao Bằng','Cần Thơ','Đắk Lắk','Đắk Nông','Điện Biên',
+															'Đồng Nai','Đồng Tháp','Gia Lai','Hà Giang','Hà Nam','Hà Tây','Hà Tĩnh',
+															'Hải Dương','Hải Phòng','Hòa Bình','Hậu Giang','Hưng Yên','Khánh Hòa',
+															'Kiên Giang','Kon Tum','Lai Châu','Lào Cai',
+															'Lạng Sơn','Lâm Đồng','Long An','Nam Định','Nghệ An',
+															'Ninh Bình','Ninh Thuận','Phú Thọ','Phú Yên','Quảng Bình',
+															'Quảng Nam','Quảng Ngãi','Quảng Ninh','Quảng Trị',
+															'Sóc Trăng','Sơn La','Tây Ninh','Thái Bình','Thái Nguyên' ,
+															'Thanh Hóa','Thừa Thiên Huế','Tiền Giang','Trà Vinh',
+															'Tuyên Quang','Vĩnh Long','Vĩnh Phúc','Yên Bái' ], "Hà Nội"), {include_blank: false, :required => true}, { :class => 'form-control' }) %>
+								</div>
+							</div>
+
+							<div class="new_job_content">
+								<div class="new_job_label">
+									<a><%= f.label :address, "Địa chỉ cụ thể nơi làm việc(tùy chọn)", class: "new_job_label" %></a>
+								</div>
+								
+								<div class="new_job_input">
+									<%= f.text_field :address, class: "form-control", placeholder: "Nhập địa chỉ làm việc bao gồm tên đường, quận, huyện,..." %>
+								</div>
 							</div>
 						</div>
 
-						<div class="new_job_content">
-							<div class="new_job_label">
-								<a><%= f.label :skill, "Kĩ năng cần có cho công việc này(bạn có thể chọn 1 hoặc nhiều kĩ năng)", class: "new_job_label" %></a>
+						<div class="new_job_section">
+							<div class="new_job_content">
+								<div class="new_job_label">
+									<a><%= f.label :job_type, "Loại hình công việc*", class: "new_job_label" %></a>
+								</div>
+								
+								<div class="new_job_input">
+									<%= f.select(:job_type, options_for_select(['Full Time', 'Part Time', 'Remote', 'Tạm thời', "Thực tập sinh", "Khác"], 'Full Time'), {include_blank: false}, { :class => 'form-control' }) %>
+								</div>
 							</div>
-							
-							<div class="new_job_input">
-								<%= f.select(:skill, options_for_select(["C,C++",
-																		"Java",
-																		"PHP",
-																		"Python",
-																		"C#",
-																		"Ruby",
-																		"Assembly",
-																		"Java script",
-																		"SQL Database",
-																		"Postgres Database",
-																		"Embedded",
-																		"Machine learning",
-																		"Sales",
-																		"Marketing",
-																		"Head hunter",
-																		"Bussiness Management",
-																		"Project Management",
-																		"Architecture Design",
-																		"Front End",
-																		"Back End",
-																		"Dev Ops",
-																		"Android",
-																		"iOS",
-																		"Hardware",
-																		"AI"]), 
-																		{include_blank: true}, { multiple: true, :class => 'form-control new_job_skill_select'}) %>
+							<div class="new_job_content">
+								<div class="new_job_label">
+									<a><%= f.label :salary, "Mức lương dự kiến*", class: "new_job_label" %></a>
+								</div>
+								
+								<div class="new_job_input">
+									<%= f.select(:salary, options_for_select(['Thương lượng', 
+																			'1Tr - 5Tr', 
+																			'5Tr - 10Tr', 
+																			'10Tr - 15Tr', 
+																			'15Tr - 20Tr', 
+																			'20Tr - 25Tr', 
+																			'25Tr - 30Tr', 
+																			'30Tr - 35Tr', 
+																			'40Tr - 45Tr', 
+																			'45Tr - 50Tr', 
+																			'50Tr - 55Tr', 
+																			'55Tr - 60Tr', 
+																			'60Tr - 65Tr', 
+																			'65Tr - 70Tr', 
+																			'70Tr - 75Tr', 
+																			'75Tr - 80Tr', 
+																			'80Tr - 85Tr', 
+																			'85Tr - 90Tr', 
+																			'90Tr - 95Tr', 
+																			'95Tr - 100Tr', 
+																			'hơn 100Tr'], 
+																			['Thương lượng']), {include_blank: false}, { :class => 'form-control' }) %>
+								</div>
 							</div>
 
-							<script>
-								$(document).ready(function() {
-									$('.new_job_skill_select').select2({
-										placeholder: "-- Chọn một hoạc nhiều kĩ năng --",
-										allowClear: true,
-										width: 'resolve',
-										theme: "bootstrap",
-										selectOnClose: true
+							<div class="new_job_content">
+								<div class="new_job_label">
+									<a><%= f.label :quantity, "Số lượng vị trí cần tuyển dụng*", class: "new_job_label" %></a>
+								</div>
+								
+								<div class="new_job_input">
+									<%= f.number_field :quantity, :required => true, :value => 1, class: "form-control", placeholder: "Số lượng vị trí cần tuyển dụng" %>
+								</div>
+							</div>
+
+							<div class="new_job_content">
+								<div class="new_job_label">
+									<a><%= f.label :end_date, "Ngày hết hạn nộp hồ sơ*", class: "new_job_label" %></a>
+								</div>
+								
+								<div class="new_job_input">
+									<%= f.date_field :end_date, :required => true, value: (Date.current + 1.month), class: "form-control", placeholder: "Nhập ngày hết hạn nộp hồ sơ" %>
+								</div>
+							</div>
+
+							<div class="new_job_content">
+								<div class="new_job_label">
+									<a><%= f.label :language, "Ngôn ngữ trình bày hồ sơ", class: "new_job_label" %></a>
+								</div>
+								
+								<div class="new_job_input">
+									<%= f.select(:language, options_for_select(['English', 'Tiếng Việt', 'Tùy chọn'], 'Tùy chọn'), {include_blank: false}, { :class => 'form-control' }) %>
+								</div>
+							</div>
+
+							<%if admin_signed_in?%>
+								<%= f.hidden_field :apply_another_site_flag, :value => true %>
+								<div class="new_job_content">
+									<div class="new_job_label">
+										<a><%= f.label :apply_site, "Company Site to apply - Admin only*", class: "new_job_label" %></a>
+									</div>
+									
+									<div class="new_job_input">
+										<%= f.text_field :apply_site, :required => true, class: "form-control", placeholder: "Nhâp site tuyển dụng của công ty" %>
+									</div>
+								</div>
+							<%end%>
+						</div>
+						
+						<div class="new_job_section_content">
+							<div class="new_job_content">
+								<div class="new_job_label">
+									<a><%= f.label :description, "Mô tả chung về công việc*", class: "new_job_label" %></a>
+								</div>
+								
+								<div class="new_job_input">
+									<%= f.cktext_area :description, :required => true, class: "form-control-rich-text", ckeditor: {toolbar: "medium", height: 200}, placeholder: "Nhập mô tả chung về công việc" %>
+								</div>
+							</div>
+
+							<div class="new_job_content">
+								<div class="new_job_label">
+									<a><%= f.label :skill, "Kĩ năng cần có cho công việc này(bạn có thể chọn 1 hoặc nhiều kĩ năng)", class: "new_job_label" %></a>
+								</div>
+								
+								<div class="new_job_input">
+									<%= f.select(:skill, options_for_select(["C,C++",
+																			"Java",
+																			"PHP",
+																			"Python",
+																			"C#",
+																			"Ruby",
+																			"Assembly",
+																			"Java script",
+																			"SQL Database",
+																			"Postgres Database",
+																			"Embedded",
+																			"Machine learning",
+																			"Sales",
+																			"Marketing",
+																			"Head hunter",
+																			"Bussiness Management",
+																			"Project Management",
+																			"Architecture Design",
+																			"Front End",
+																			"Back End",
+																			"Dev Ops",
+																			"Android",
+																			"iOS",
+																			"Hardware",
+																			"AI"]), 
+																			{include_blank: true}, { multiple: true, :class => 'form-control new_job_skill_select'}) %>
+								</div>
+
+								<script>
+									$(document).ready(function() {
+										$('.new_job_skill_select').select2({
+											placeholder: "-- Chọn một hoạc nhiều kĩ năng --",
+											allowClear: true,
+											width: 'resolve',
+											theme: "bootstrap",
+											selectOnClose: true
+										});
 									});
-								});
-							</script>
+								</script>
+							</div>
+
+							<div class="new_job_content">
+								<div class="new_job_label">
+									<a><%= f.label :requirement, "Yêu câu công việc chi tiết*", class: "new_job_label" %></a>
+								</div>
+								
+								<div class="new_job_input">
+									<%= f.cktext_area :requirement, :required => true, class: "form-control-rich-text", ckeditor: {toolbar: "medium", height: 200}, placeholder: "Nhập yêu cầu công việc" %>
+								</div>
+							</div>
+
+							<div class="new_job_content">
+								<div class="new_job_label">
+									<a><%= f.label :benefit, "Chế độ đãi ngộ*", class: "new_job_label" %></a>
+								</div>
+								
+								<div class="new_job_input">
+									<%= f.cktext_area :benefit, :required => true, class: "form-control-rich-text", ckeditor: {toolbar: "medium", height: 200}, placeholder: "Chế độ đãi ngộ của công ty, hãy cho biết ít nhất 3 lý do" %>
+								</div>
+							</div>
 						</div>
 
-						<div class="new_job_content">
-							<div class="new_job_label">
-								<a><%= f.label :requirement, "Yêu câu công việc chi tiết*", class: "new_job_label" %></a>
-							</div>
-							
-							<div class="new_job_input">
-								<%= f.cktext_area :requirement, :required => true, class: "form-control-rich-text", ckeditor: {toolbar: "medium", height: 200}, placeholder: "Nhập yêu cầu công việc" %>
-							</div>
-						</div>
-
-						<div class="new_job_content">
-							<div class="new_job_label">
-								<a><%= f.label :benefit, "Chế độ đãi ngộ*", class: "new_job_label" %></a>
-							</div>
-							
-							<div class="new_job_input">
-								<%= f.cktext_area :benefit, :required => true, class: "form-control-rich-text", ckeditor: {toolbar: "medium", height: 200}, placeholder: "Chế độ đãi ngộ của công ty, hãy cho biết ít nhất 3 lý do" %>
-							</div>
+						<div class="new_job_submit">
+							<%= f.submit "Đăng tin", class: "new_job_form_submit" %>
 						</div>
 					</div>
+				<%end%>
+			</div>
 
-					<div class="new_job_submit">
-						<%= f.submit "Đăng tin", class: "new_job_form_submit" %>
-					</div>
+		<div class="col-sm-4">
+			<div class="company_job_policy">
+				<div class="company_job_policy_title">
+					<a>Lưu ý trước khi đăng tin tuyển dụng</a>
 				</div>
-
-				<div class="col-sm-4">
-					<div class="company_job_policy">
-						<div class="company_job_policy_title">
-							<a>Lưu ý trước khi đăng tin tuyển dụng</a>
-						</div>
-						<div class="company_job_policy_content">
-							<div class="company_job_policy_content_index">
-								· Không sử dụng từ ngữ mang ý xúc phạm, miệt thị người khác
-							</div>
-							<div class="company_job_policy_content_index">
-								· Không sử dụng từ ngữ mang tính chất kích động, bạo lực
-							</div>
-							<div class="company_job_policy_content_index">
-								· Không cung cấp thông tin cá nhân
-							</div>
-							<div class="company_job_policy_content_index">
-								· Không cung cấp thông tin bảo mật, bí mật kinh doanh của công ty
-							</div>
-							<div class="company_job_policy_content_index">
-								· Đặt tiêu đề ngắn gọn xúc tích, giúp tin đăng của bạn dễ tìm kiếm nhất
-							</div>
-							<div class="company_job_policy_content_link">
-								Xem thêm thông tin chi tiết về 
-								<a href="https://www.firework.vn/posts/policy">thỏa thuận sử dụng </a>
-							</div>
-						</div>
+				<div class="company_job_policy_content">
+					<div class="company_job_policy_content_index">
+						· Không sử dụng từ ngữ mang ý xúc phạm, miệt thị người khác
+					</div>
+					<div class="company_job_policy_content_index">
+						· Không sử dụng từ ngữ mang tính chất kích động, bạo lực
+					</div>
+					<div class="company_job_policy_content_index">
+						· Không cung cấp thông tin cá nhân
+					</div>
+					<div class="company_job_policy_content_index">
+						· Không cung cấp thông tin bảo mật, bí mật kinh doanh của công ty
+					</div>
+					<div class="company_job_policy_content_index">
+						· Đặt tiêu đề ngắn gọn xúc tích, giúp tin đăng của bạn dễ tìm kiếm nhất
+					</div>
+					<div class="company_job_policy_content_link">
+						Xem thêm thông tin chi tiết về 
+						<a href="https://www.firework.vn/posts/policy">thỏa thuận sử dụng </a>
 					</div>
 				</div>
 			</div>
-		<%end%>
+		</div>
 	</div>
 </div>

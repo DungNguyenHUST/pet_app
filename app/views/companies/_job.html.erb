@@ -24,7 +24,7 @@
                                 <a>Bạn là nhà tuyển dụng?</a>
                             </div>
                             <div class="company_job_new_button">
-                                <%if employer_signed_in?%>
+                                <%if employer_signed_in? || admin_signed_in?%>
                                     <%= link_to '<button type="submit"><i class="material-icons-outlined">add</i><span>Đăng tin tuyển dụng miễn phí<span></button>'.html_safe, new_company_company_job_path(@company) %>
                                 <%else%>
                                     <%= link_to '<button type="submit"><i class="material-icons-outlined">add</i><span>Đăng tin tuyển dụng miễn phí<span></button>'.html_safe, new_employer_session_path %>
@@ -44,7 +44,7 @@
                             <strong>Bạn là nhà tuyển dụng</strong>
                         </div>
                         <div class="new_job_button">
-                            <%if employer_signed_in?%>
+                            <%if employer_signed_in? || admin_signed_in?%>
                                 <%= link_to '<button type="submit"><i class="material-icons-outlined">add</i><span>Đăng tin tuyển dụng miễn phí<span></button>'.html_safe, new_company_company_job_path(@company) %>
                             <%else%>
                                 <%= link_to '<button type="submit"><i class="material-icons-outlined">add</i><span>Đăng tin tuyển dụng miễn phí<span></button>'.html_safe, new_employer_session_path %>

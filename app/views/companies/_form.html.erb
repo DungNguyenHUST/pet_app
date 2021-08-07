@@ -1,19 +1,19 @@
 <div class="container">
-	<div class="new_company_form">
-		<%= form_for @company, :html => { :class => "form-horizontal company" } do |f| %>
-			<div class="new_company_title">
-				<%if !@is_edit%>
-					<h3>Tạo thông tin công ty mới</h3>
-				<%else%>
-					<h3>Update thông tin công ty <%=@company.name%></h3>
-				<%end%>
-			</div>
-			<div class="new_company_title_sub">
-				<span>Note: Mục có dấu '*' là bắt buộc</span>
-			</div>
-			
-			<div class="row">
-				<div class="col-sm-6">
+	<div class="row">
+		<div class="col-sm-8">
+			<div class="new_company_form">
+				<%= form_for @company, :html => { :class => "form-horizontal company" } do |f| %>
+					<div class="new_company_title">
+						<%if !@is_edit%>
+							<a>Tạo thông tin công ty mới</a>
+						<%else%>
+							<a>Update thông tin công ty <%=@company.name%></a>
+						<%end%>
+					</div>
+					<div class="new_company_title_sub">
+						<span>Note: Mục có dấu '*' là bắt buộc</span>
+					</div>
+
 					<div class="new_company_section">
 						<div class="new_company_content">
 							<div class="new_company_label">
@@ -331,8 +331,7 @@
 							</div>
 						</div>
 					</div>
-				</div>
-				<div class="col-sm-6">
+							
 					<div class="new_company_section">
 
 						<div class="new_company_content">
@@ -409,69 +408,95 @@
 							</div>
 						</div>
 					</div>
-				</div>
-			</div>
 
-			<div class="new_company_section_content">
-				<div class="new_company_content">
-					<div class="new_company_label">
-						<a><%= f.label :overview, "Mô tả chung về công ty* ", class: "new_company_label" %></a>
-					</div>
-					
-					<div class="new_company_input">
-						<%= f.cktext_area :overview, :required => true, class: "form-control-rich-text", ckeditor: {toolbar: "medium", height: 200}, placeholder: "Nhập mô tả chính, giới thiệu, lịch sử hoạt động ..." %>
-					</div>
-				</div>
+					<div class="new_company_section_content">
+						<div class="new_company_content">
+							<div class="new_company_label">
+								<a><%= f.label :overview, "Mô tả chung về công ty* ", class: "new_company_label" %></a>
+							</div>
+							
+							<div class="new_company_input">
+								<%= f.cktext_area :overview, :required => true, class: "form-control-rich-text", ckeditor: {toolbar: "medium", height: 200}, placeholder: "Nhập mô tả chính, giới thiệu, lịch sử hoạt động ..." %>
+							</div>
+						</div>
 
-				<div class="new_company_content">
-					<div class="new_company_label">
-						<a><%= f.label :benefit, "Chọn chính sách nổi bật công ty(bạn có thể chọn 1 hoặc nhiều chính sách)* ", class: "new_company_label" %></a>
-					</div>
-					
-					<div class="new_company_input_checkbox">
-						<div class="row">
-							<div class="col-sm-4">
-								<%select_data_1 = [0,1,2,3,4,5]%>
-								<%select_data_1.each do |select_data|%>
-									<div class="new_company_input_checkbox_block">
-										<a><%= f.check_box :benefit, { multiple: true, class: "check_box_style"}, select_data, nil %> <%=convert_benefit_to_string(select_data)%></a>
-									</div>
-								<%end%>
+						<div class="new_company_content">
+							<div class="new_company_label">
+								<a><%= f.label :benefit, "Chọn chính sách nổi bật công ty(bạn có thể chọn 1 hoặc nhiều chính sách)* ", class: "new_company_label" %></a>
 							</div>
-							<div class="col-sm-4">
-								<%select_data_2 = [6,7,8,9,10,11]%>
-								<%select_data_2.each do |select_data|%>
-									<div class="new_company_input_checkbox_block">
-										<a><%= f.check_box :benefit, { multiple: true, class: "check_box_style"}, select_data, nil %> <%=convert_benefit_to_string(select_data)%></a>
+							
+							<div class="new_company_input_checkbox">
+								<div class="row">
+									<div class="col-sm-4">
+										<%select_data_1 = [0,1,2,3,4,5]%>
+										<%select_data_1.each do |select_data|%>
+											<div class="new_company_input_checkbox_block">
+												<a><%= f.check_box :benefit, { multiple: true, class: "check_box_style"}, select_data, nil %> <%=convert_benefit_to_string(select_data)%></a>
+											</div>
+										<%end%>
 									</div>
-								<%end%>
+									<div class="col-sm-4">
+										<%select_data_2 = [6,7,8,9,10,11]%>
+										<%select_data_2.each do |select_data|%>
+											<div class="new_company_input_checkbox_block">
+												<a><%= f.check_box :benefit, { multiple: true, class: "check_box_style"}, select_data, nil %> <%=convert_benefit_to_string(select_data)%></a>
+											</div>
+										<%end%>
+									</div>
+									<div class="col-sm-4">
+										<%select_data_3 = [12,13,14,15,16]%>
+										<%select_data_3.each do |select_data|%>
+											<div class="new_company_input_checkbox_block">
+												<a><%= f.check_box :benefit, { multiple: true, class: "check_box_style"}, select_data, nil %> <%=convert_benefit_to_string(select_data)%></a>
+											</div>
+										<%end%>
+									</div>
+								</div>
 							</div>
-							<div class="col-sm-4">
-								<%select_data_3 = [12,13,14,15,16]%>
-								<%select_data_3.each do |select_data|%>
-									<div class="new_company_input_checkbox_block">
-										<a><%= f.check_box :benefit, { multiple: true, class: "check_box_style"}, select_data, nil %> <%=convert_benefit_to_string(select_data)%></a>
-									</div>
-								<%end%>
+						</div>
+						
+						<div class="new_company_content">
+							<div class="new_company_label">
+								<a><%= f.label :policy, "Thêm lý do tại sao nên làm việc tại công ty của bạn(nếu có)", class: "new_company_label" %></a>
+							</div>
+							
+							<div class="new_company_input">
+								<%= f.cktext_area :policy, class: "form-control-rich-text", ckeditor: {toolbar: "medium", height: 200}, placeholder: "Nhập ít nhất 3 lý do tại sao nên join công ty" %>
 							</div>
 						</div>
 					</div>
-				</div>
-				
-				<div class="new_company_content">
-					<div class="new_company_label">
-						<a><%= f.label :policy, "Thêm lý do tại sao nên làm việc tại công ty của bạn(nếu có)", class: "new_company_label" %></a>
-					</div>
-					
-					<div class="new_company_input">
-						<%= f.cktext_area :policy, class: "form-control-rich-text", ckeditor: {toolbar: "medium", height: 200}, placeholder: "Nhập ít nhất 3 lý do tại sao nên join công ty" %>
-					</div>
-				</div>
-			</div>
 
-			<div class="new_company_submit">
-				<%= f.submit "Submit", class: "new_company_form_submit" %>
+					<div class="new_company_submit">
+						<%= f.submit "Submit", class: "new_company_form_submit" %>
+					</div>
+				<%end%>
 			</div>
-		<%end%>
+		</div>
+
+		<div class="col-sm-4">
+			<div class="company_policy">
+				<div class="company_policy_title">
+					<a>Lưu ý trước khi tạo công ty mới</a>
+				</div>
+				<div class="company_policy_content">
+					<div class="company_policy_content_index">
+						· Không sử dụng từ ngữ mang ý xúc phạm, miệt thị người khác
+					</div>
+					<div class="company_policy_content_index">
+						· Không sử dụng từ ngữ mang tính chất kích động, bạo lực
+					</div>
+					<div class="company_policy_content_index">
+						· Không cung cấp thông tin cá nhân
+					</div>
+					<div class="company_policy_content_index">
+						· Không cung cấp thông tin bảo mật, bí mật kinh doanh của công ty
+					</div>
+					<div class="company_policy_content_link">
+						Xem thêm thông tin chi tiết về 
+						<a href="https://www.firework.vn/posts/policy">thỏa thuận sử dụng </a>
+					</div>
+				</div>
+			</div>
+		</div>
 	</div>
 </div>
