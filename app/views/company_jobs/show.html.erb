@@ -174,7 +174,9 @@
                             <div class="job_skill">
                                 <div class="job_content">
                                     <%@company_job.skill.each do |skill|%>
-                                        <a><%= convert_skill_to_string(skill)%></a>
+                                        <%if !skill.empty?%>
+                                            <a><%= skill.to_s%></a>
+                                        <%end%>
                                     <%end%>
                                 </div>
                             </div>

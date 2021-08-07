@@ -1,20 +1,20 @@
 <div class="container">
 	<div class="new_job_form">
 		<%= form_for [@company, CompanyJob.new] do |f| %>
-			<div class="new_job_title">
-				<%if !@is_edit%>
-					<h3>Tạo một công việc mới cho <%=@company.name%></h3>
-				<%else%>
-					<h3>Update tin tuyển dụng <%=@company_job.title%></h3>
-				<%end%>
-			</div>
-
-			<div class="new_job_title_sub">
-				<span>Note: Mục có dấu '*' là bắt buộc</span>
-			</div>
-			
 			<div class="row">
-				<div class="col-sm-6">
+				<div class="col-sm-8">
+					<div class="new_job_title">
+						<%if !@is_edit%>
+							<a>Tạo một công việc mới cho <%=@company.name%></a>
+						<%else%>
+							<a>Update tin tuyển dụng <%=@company_job.title%></a>
+						<%end%>
+					</div>
+
+					<div class="new_job_title_sub">
+						<span>Note: Mục có dấu '*' là bắt buộc</span>
+					</div>
+
 					<div class="new_job_section">
 						<div class="new_job_content">
 							<div class="new_job_label">
@@ -108,8 +108,7 @@
 							</div>
 						</div>
 					</div>
-				</div>
-				<div class="col-sm-6">
+
 					<div class="new_job_section">
 						<div class="new_job_content">
 							<div class="new_job_label">
@@ -194,90 +193,119 @@
 							</div>
 						<%end%>
 					</div>
-				</div>
-			</div>
-			
-			<div class="new_job_section_content">
-				<div class="new_job_content">
-					<div class="new_job_label">
-						<a><%= f.label :description, "Mô tả chung về công việc*", class: "new_job_label" %></a>
-					</div>
 					
-					<div class="new_job_input">
-						<%= f.cktext_area :description, :required => true, class: "form-control-rich-text", ckeditor: {toolbar: "medium", height: 200}, placeholder: "Nhập mô tả chung về công việc" %>
+					<div class="new_job_section_content">
+						<div class="new_job_content">
+							<div class="new_job_label">
+								<a><%= f.label :description, "Mô tả chung về công việc*", class: "new_job_label" %></a>
+							</div>
+							
+							<div class="new_job_input">
+								<%= f.cktext_area :description, :required => true, class: "form-control-rich-text", ckeditor: {toolbar: "medium", height: 200}, placeholder: "Nhập mô tả chung về công việc" %>
+							</div>
+						</div>
+
+						<div class="new_job_content">
+							<div class="new_job_label">
+								<a><%= f.label :skill, "Kĩ năng cần có cho công việc này(bạn có thể chọn 1 hoặc nhiều kĩ năng)", class: "new_job_label" %></a>
+							</div>
+							
+							<div class="new_job_input">
+								<%= f.select(:skill, options_for_select(["C,C++",
+																		"Java",
+																		"PHP",
+																		"Python",
+																		"C#",
+																		"Ruby",
+																		"Assembly",
+																		"Java script",
+																		"SQL Database",
+																		"Postgres Database",
+																		"Embedded",
+																		"Machine learning",
+																		"Sales",
+																		"Marketing",
+																		"Head hunter",
+																		"Bussiness Management",
+																		"Project Management",
+																		"Architecture Design",
+																		"Front End",
+																		"Back End",
+																		"Dev Ops",
+																		"Android",
+																		"iOS",
+																		"Hardware",
+																		"AI"]), 
+																		{include_blank: true}, { multiple: true, :class => 'form-control new_job_skill_select'}) %>
+							</div>
+
+							<script>
+								$(document).ready(function() {
+									$('.new_job_skill_select').select2({
+										placeholder: "-- Chọn một hoạc nhiều kĩ năng --",
+										allowClear: true,
+										width: 'resolve',
+										theme: "bootstrap",
+										selectOnClose: true
+									});
+								});
+							</script>
+						</div>
+
+						<div class="new_job_content">
+							<div class="new_job_label">
+								<a><%= f.label :requirement, "Yêu câu công việc chi tiết*", class: "new_job_label" %></a>
+							</div>
+							
+							<div class="new_job_input">
+								<%= f.cktext_area :requirement, :required => true, class: "form-control-rich-text", ckeditor: {toolbar: "medium", height: 200}, placeholder: "Nhập yêu cầu công việc" %>
+							</div>
+						</div>
+
+						<div class="new_job_content">
+							<div class="new_job_label">
+								<a><%= f.label :benefit, "Chế độ đãi ngộ*", class: "new_job_label" %></a>
+							</div>
+							
+							<div class="new_job_input">
+								<%= f.cktext_area :benefit, :required => true, class: "form-control-rich-text", ckeditor: {toolbar: "medium", height: 200}, placeholder: "Chế độ đãi ngộ của công ty, hãy cho biết ít nhất 3 lý do" %>
+							</div>
+						</div>
+					</div>
+
+					<div class="new_job_submit">
+						<%= f.submit "Đăng tin", class: "new_job_form_submit" %>
 					</div>
 				</div>
 
-				<div class="new_job_content">
-					<div class="new_job_label">
-						<a><%= f.label :skill, "Kĩ năng cần có cho công việc này(bạn có thể chọn 1 hoặc nhiều kĩ năng)", class: "new_job_label" %></a>
-					</div>
-					
-					<div class="new_job_input">
-						<%= f.select(:skill, options_for_select(["C,C++",
-																"Java",
-																"PHP",
-																"Python",
-																"C#",
-																"Ruby",
-																"Assembly",
-																"Java script",
-																"SQL Database",
-																"Postgres Database",
-																"Embedded",
-																"Machine learning",
-																"Sales",
-																"Marketing",
-																"Head hunter",
-																"Bussiness Management",
-																"Project Management",
-																"Architecture Design",
-																"Front End",
-																"Back End",
-																"Dev Ops",
-																"Android",
-																"iOS",
-																"Hardware",
-																"AI"]), 
-																{include_blank: false}, { multiple: true, :class => 'form-control new_job_skill_select'}) %>
-					</div>
-
-					<script>
-						$(document).ready(function() {
-							$('.new_job_skill_select').select2({
-								placeholder: "-- Chọn một hoạc nhiều kĩ năng --",
-								allowClear: true,
-								width: 'resolve',
-								theme: "bootstrap",
-								selectOnClose: true
-							});
-						});
-					</script>
-				</div>
-
-				<div class="new_job_content">
-					<div class="new_job_label">
-						<a><%= f.label :requirement, "Yêu câu công việc chi tiết*", class: "new_job_label" %></a>
-					</div>
-					
-					<div class="new_job_input">
-						<%= f.cktext_area :requirement, :required => true, class: "form-control-rich-text", ckeditor: {toolbar: "medium", height: 200}, placeholder: "Nhập yêu cầu công việc" %>
+				<div class="col-sm-4">
+					<div class="company_job_policy">
+						<div class="company_job_policy_title">
+							<a>Lưu ý trước khi đăng tin tuyển dụng</a>
+						</div>
+						<div class="company_job_policy_content">
+							<div class="company_job_policy_content_index">
+								· Không sử dụng từ ngữ mang ý xúc phạm, miệt thị người khác
+							</div>
+							<div class="company_job_policy_content_index">
+								· Không sử dụng từ ngữ mang tính chất kích động, bạo lực
+							</div>
+							<div class="company_job_policy_content_index">
+								· Không cung cấp thông tin cá nhân
+							</div>
+							<div class="company_job_policy_content_index">
+								· Không cung cấp thông tin bảo mật, bí mật kinh doanh của công ty
+							</div>
+							<div class="company_job_policy_content_index">
+								· Đặt tiêu đề ngắn gọn xúc tích, giúp tin đăng của bạn dễ tìm kiếm nhất
+							</div>
+							<div class="company_job_policy_content_link">
+								Xem thêm thông tin chi tiết về 
+								<a href="https://www.firework.vn/posts/policy">thỏa thuận sử dụng </a>
+							</div>
+						</div>
 					</div>
 				</div>
-
-				<div class="new_job_content">
-					<div class="new_job_label">
-						<a><%= f.label :benefit, "Chế độ đãi ngộ*", class: "new_job_label" %></a>
-					</div>
-					
-					<div class="new_job_input">
-						<%= f.cktext_area :benefit, :required => true, class: "form-control-rich-text", ckeditor: {toolbar: "medium", height: 200}, placeholder: "Chế độ đãi ngộ của công ty, hãy cho biết ít nhất 3 lý do" %>
-					</div>
-				</div>
-			</div>
-
-			<div class="new_job_submit">
-				<%= f.submit "Đăng tin", class: "new_job_form_submit" %>
 			</div>
 		<%end%>
 	</div>
