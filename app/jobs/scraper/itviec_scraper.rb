@@ -1,4 +1,5 @@
-module ItViecScraper
+module ItviecScraper
+    require_relative 'common_scraper.rb'
     include CommonScraper
 
     def get_data_itviec(scrap_job)

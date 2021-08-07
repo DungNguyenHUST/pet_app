@@ -35,7 +35,7 @@ module CompanyJobsHelper
         when 15
         	salary_string = ">100000000đ"
         else
-        	salary_string = "Thương lượng"
+        	salary_string = company_job.salary.to_s
         end
 
         return salary_string

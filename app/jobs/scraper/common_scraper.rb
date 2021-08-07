@@ -1,4 +1,5 @@
 module CommonScraper
+    include ApplicationHelper
     def job_params
         job_param = Struct.new(:title,
                 :detail,
@@ -18,6 +19,18 @@ module CommonScraper
                 :user_id,
                 :approved,
                 :company_id)
+    end
+
+    def job_summary_params
+        job_summary_param = Struct.new(:company_name,
+                                        :company_id,
+                                        :job_location, 
+                                        :job_salary,
+                                        :job_link)
+    end
+
+    def get_company_by_name(name)
+        name = convert_vie_to_eng(name)
     end
 
     def split_domain_name(url)
