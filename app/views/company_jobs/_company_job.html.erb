@@ -50,7 +50,7 @@
                 <div class="company_job_salary">
                     <%if !company_job.salary.to_s.empty?%>
                         <%if user_signed_in?%>
-                            <a><i class="material-icons-outlined">local_offer</i><%= convert_salary_to_string(company_job)%></a>
+                            <a><i class="material-icons-outlined">local_offer</i><%= company_job.salary.to_s%></a>
                         <%else%>
                             <a type="link" data-toggle="modal" data-target="#buttonModalLoginCenter" class="job_salary_login">
                                 <i class="material-icons-outlined">local_offer</i> <span>Đăng nhập để xem mức lương</span>

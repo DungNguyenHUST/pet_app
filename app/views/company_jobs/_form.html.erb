@@ -126,7 +126,28 @@
 							</div>
 							
 							<div class="new_job_input">
-								<%= f.select(:salary, options_for_select([['Thương lượng', 0], ['1000000đ-5000000đ', 1], ['5000000đ-10000000đ', 2], ['10000000đ-15000000đ', 3], ['15000000đ-20000000đ', 4], ['20000000đ-25000000đ', 5], ['25000000đ-30000000đ', 6], ['30000000đ-35000000đ', 7], ['35000000đ-40000000đ', 8], ['40000000đ-45000000đ', 9], ['45000000đ-50000000đ', 9], ['50000000đ-60000000đ', 10], ['600000000đ-70000000đ', 11], ['70000000đ-80000000đ', 12], ['800000000đ-90000000đ', 13], ['90000000đ-100000000đ', 14], ['hơn 100000000đ', 15]], ['Thương lượng', 0]), {include_blank: false}, { :class => 'form-control' }) %>
+								<%= f.select(:salary, options_for_select(['Thương lượng', 
+																		'1Tr - 5Tr', 
+																		'5Tr - 10Tr', 
+																		'10Tr - 15Tr', 
+																		'15Tr - 20Tr', 
+																		'20Tr - 25Tr', 
+																		'25Tr - 30Tr', 
+																		'30Tr - 35Tr', 
+																		'40Tr - 45Tr', 
+																		'45Tr - 50Tr', 
+																		'50Tr - 55Tr', 
+																		'55Tr - 60Tr', 
+																		'60Tr - 65Tr', 
+																		'65Tr - 70Tr', 
+																		'70Tr - 75Tr', 
+																		'75Tr - 80Tr', 
+																		'80Tr - 85Tr', 
+																		'85Tr - 90Tr', 
+																		'90Tr - 95Tr', 
+																		'95Tr - 100Tr', 
+																		'hơn 100Tr'], 
+																		['Thương lượng']), {include_blank: false}, { :class => 'form-control' }) %>
 							</div>
 						</div>
 
@@ -192,42 +213,46 @@
 						<a><%= f.label :skill, "Kĩ năng cần có cho công việc này(bạn có thể chọn 1 hoặc nhiều kĩ năng)", class: "new_job_label" %></a>
 					</div>
 					
-					<div class="new_job_input_checkbox">
-						<div class="row">
-							<div class="col-sm-3">
-								<%select_data_1 = [0,1,2,3,4,5]%>
-								<%select_data_1.each do |select_data|%>
-									<div class="new_job_input_checkbox_block">
-										<a><%= f.check_box :skill, { multiple: true, class: "check_box_style"}, select_data, nil %> <%=convert_skill_to_string(select_data)%></a>
-									</div>
-								<%end%>
-							</div>
-							<div class="col-sm-3">
-								<%select_data_2 = [6,7,8,9,10,11]%>
-								<%select_data_2.each do |select_data|%>
-									<div class="new_job_input_checkbox_block">
-										<a><%= f.check_box :skill, { multiple: true, class: "check_box_style"}, select_data, nil %> <%=convert_skill_to_string(select_data)%></a>
-									</div>
-								<%end%>
-							</div>
-							<div class="col-sm-3">
-								<%select_data_3 = [12,13,14,15,16,17]%>
-								<%select_data_3.each do |select_data|%>
-									<div class="new_job_input_checkbox_block">
-										<a><%= f.check_box :skill, { multiple: true, class: "check_box_style"}, select_data, nil %> <%=convert_skill_to_string(select_data)%></a>
-									</div>
-								<%end%>
-							</div>
-							<div class="col-sm-3">
-								<%select_data_4 = [18,19,20,21,22,23,24]%>
-								<%select_data_4.each do |select_data|%>
-									<div class="new_job_input_checkbox_block">
-										<a><%= f.check_box :skill, { multiple: true, class: "check_box_style"}, select_data, nil %> <%=convert_skill_to_string(select_data)%></a>
-									</div>
-								<%end%>
-							</div>
-						</div>
+					<div class="new_job_input">
+						<%= f.select(:skill, options_for_select(["C,C++",
+																"Java",
+																"PHP",
+																"Python",
+																"C#",
+																"Ruby",
+																"Assembly",
+																"Java script",
+																"SQL Database",
+																"Postgres Database",
+																"Embedded",
+																"Machine learning",
+																"Sales",
+																"Marketing",
+																"Head hunter",
+																"Bussiness Management",
+																"Project Management",
+																"Architecture Design",
+																"Front End",
+																"Back End",
+																"Dev Ops",
+																"Android",
+																"iOS",
+																"Hardware",
+																"AI"]), 
+																{include_blank: false}, { multiple: true, :class => 'form-control new_job_skill_select'}) %>
 					</div>
+
+					<script>
+						$(document).ready(function() {
+							$('.new_job_skill_select').select2({
+								placeholder: "-- Chọn một hoạc nhiều kĩ năng --",
+								allowClear: true,
+								width: 'resolve',
+								theme: "bootstrap",
+								selectOnClose: true
+							});
+						});
+					</script>
 				</div>
 
 				<div class="new_job_content">

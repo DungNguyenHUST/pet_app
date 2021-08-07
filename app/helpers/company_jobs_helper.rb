@@ -1,128 +1,18 @@
 module CompanyJobsHelper
-	def convert_salary_to_string(company_job)
-		salary_string = ""
-        case company_job.salary.to_i
-        when 0
-        	salary_string = "Thương lượng"
-        when 1
-        	salary_string = "1000000đ-5000000đ"
-        when 2
-        	salary_string = "5000000đ-10000000đ"
-        when 3
-        	salary_string = "10000000đ-15000000đ"
-        when 4
-        	salary_string = "15000000đ-200000000đ"
-        when 5
-        	salary_string = "20000000đ-25000000đ"
-        when 6
-        	salary_string = "25000000đ-30000000đ"
-        when 7
-        	salary_string = "30000000đ-35000000đ"
-        when 8
-        	salary_string = "35000000đ-40000000đ"
-        when 9
-        	salary_string = "40000000đ-50000000đ"
-        when 10
-        	salary_string = "50000000đ-60000000đ"
-        when 11
-        	salary_string = "60000000đ-70000000đ"
-        when 12
-        	salary_string = "70000000đ-80000000đ"
-        when 13
-        	salary_string = "80000000đ-90000000đ"
-        when 14
-        	salary_string = "90000000đ-100000000đ"
-        when 15
-        	salary_string = ">100000000đ"
-        else
-        	salary_string = company_job.salary.to_s
-        end
-
-        return salary_string
-    end
-
     def convert_salary_to_min(company_job)
-		min = 0
-        case company_job.salary.to_i
-        when 0
-        	min = 0
-        when 1
-        	min = 1000000
-        when 2
-        	min = 5000000
-        when 3
-        	min = 10000000
-        when 4
-        	min = 15000000
-        when 5
-        	min = 20000000
-        when 6
-        	min = 25000000
-        when 7
-        	min = 30000000
-        when 8
-        	min = 35000000
-        when 9
-        	min = 40000000
-        when 10
-        	min = 50000000
-        when 11
-        	min = 60000000
-        when 12
-        	min = 70000000
-        when 13
-        	min = 80000000
-        when 14
-        	min = 90000000
-        when 15
-        	min = 100000000
+		salary = company_job.salary.to_s
+        salary_min = salary.scan(/\d+/).map(&:to_i)
+        if salary_min.size > 1
+            return salary_min.first * 1000000
         else
-        	min = 0
+            return 0
         end
-
-        return min
     end
 
     def convert_salary_to_max(company_job)
-		max = 0
-        case company_job.salary.to_i
-        when 0
-        	max = 0
-        when 1
-        	max = 5000000
-        when 2
-        	max = 10000000
-        when 3
-        	max = 15000000
-        when 4
-        	max = 20000000
-        when 5
-        	max = 25000000
-        when 6
-        	max = 30000000
-        when 7
-        	max = 35000000
-        when 8
-        	max = 40000000
-        when 9
-        	max = 50000000
-        when 10
-        	max = 60000000
-        when 11
-        	max = 70000000
-        when 12
-        	max = 80000000
-        when 13
-        	max = 90000000
-        when 14
-        	max = 100000000
-        when 15
-        	max = 0
-        else
-        	max = 0
-        end
-        
-        return max
+		salary = company_job.salary.to_s
+        salary_max = salary.scan(/\d+/).map(&:to_i)
+        return salary_max.last * 1000000
     end
 
     def convert_skill_to_string(skill)
