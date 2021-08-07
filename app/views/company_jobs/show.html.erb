@@ -255,10 +255,10 @@
                         </div>
                         <div class="job_right">
                             <div class="job_right_title">
-                                <a> <i class="material-icons-outlined">check_circle_outline</i> LĨNH VỰC CHÍNH</a>
+                                <a> <i class="material-icons-outlined">check_circle_outline</i> LOẠI HÌNH CÔNG VIỆC</a>
                             </div>
-                            <%if !@company_job.category.to_s.empty?%>
-                                <span> <%= @company_job.category %></span>
+                            <%if !@company_job.job_type.to_s.empty?%>
+                                <span> <%= @company_job.job_type %></span>
                             <%else%>
                                 <span>---</span>
                             <%end%>
@@ -269,6 +269,16 @@
                             </div>
                             <%if !@company_job.level.to_s.empty?%>
                                 <span> <%= @company_job.level %></span>
+                            <%else%>
+                                <span>---</span>
+                            <%end%>
+                        </div>
+                        <div class="job_right">
+                            <div class="job_right_title">
+                                <a> <i class="material-icons-outlined">category</i> NGÀNH NGHỀ</a>
+                            </div>
+                            <%if !@company_job.category.to_s.empty?%>
+                                <span> <%= @company_job.category %></span>
                             <%else%>
                                 <span>---</span>
                             <%end%>
