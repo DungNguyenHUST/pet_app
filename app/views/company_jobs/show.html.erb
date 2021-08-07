@@ -88,12 +88,14 @@
 
                         <div class='job_block_info'>
                             <div class="job_shoft_info">
-                                <%if @company_job.address.present?%>
+                                <%if @company_job.location.present?%>
+                                    <a><i class="material-icons-outlined">room</i><%= @company_job.location %></a>
+                                <%elsif @company_job.address.present?%>
                                     <a><i class="material-icons-outlined">room</i><%= @company_job.address %></a>
                                 <%elsif @company.address.present? %>
                                     <a><i class="material-icons-outlined">room</i><%= @company.address %></a>
                                 <%else%>
-                                    <a><i class="material-icons-outlined">room</i><%= @company_job.location %></a>
+                                    <a><i class="material-icons-outlined">room</i>Đang cập nhật</a>
                                 <%end%>
                             </div>
                             <div class="job_shoft_info">

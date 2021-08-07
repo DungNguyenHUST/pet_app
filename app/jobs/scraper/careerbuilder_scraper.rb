@@ -3,44 +3,47 @@ module CareerbuilderScraper
     include CommonScraper
 
     def get_summary_data_careerbuilder(scrap_job)
-        if scrap_job.company_name.present?
-            @company = Company.friendly.search(scrap_job.company_name).first
-        else
-            @company = Company.friendly.find_by_id(scrap_job.company_id)
-        end
-
-        @company = Company.first
-        if @company.present?
-            # Root link
-            response = HTTParty.get(scrap_job.url.to_s)
-            doc = Nokogiri::HTML(response.body)
-
-            # Get job link in to map
-            processing_summary_blocks = doc.css("div.figcaption")
-            processing_summary_datas = []
-
-            processing_summary_blocks.first(2).each do |processing_summary_block|
-                job_link = processing_summary_block.css("div.title a").map { |link| link['href']}.first
-                job_location = processing_summary_block.css("div.location ul").text.strip
-                job_salary = processing_summary_block.css("div.salary p").text.strip
-                company_name = processing_summary_block.css("div.caption a.company-name").text.strip
-                company_id = @company.id
-                summary_data_temp = job_summary_params.new(company_name,
-                                                            company_id,
-                                                            job_location, 
-                                                            job_salary, 
-                                                            job_link)
-
-                processing_summary_datas.push(summary_data_temp)
-
-                puts company_name
-                puts company_id
-                puts job_location
-                puts job_salary
-                puts job_link
+        if check_exist_url(scrap_job.url.to_s)
+            if scrap_job.company_name.present?
+                @company = Company.friendly.search(scrap_job.company_name).first
+            else
+                @company = Company.friendly.find_by_id(scrap_job.company_id)
             end
+            @company = Company.first
+            
+            if @company.present?
+                # Root link
+                response = HTTParty.get(scrap_job.url.to_s)
+                doc = Nokogiri::HTML(response.body)
 
-            return processing_summary_datas
+                # Get job link in to map
+                processing_summary_blocks = doc.css("div.figcaption")
+                processing_summary_datas = []
+
+                processing_summary_blocks.each do |processing_summary_block|
+                    job_link = processing_summary_block.css("div.title a").map { |link| link['href']}.first
+                    job_location = processing_summary_block.css("div.location ul").text.strip
+                    job_salary = processing_summary_block.css("div.salary p").text.strip
+                    company_name = processing_summary_block.css("div.caption a.company-name").text.strip
+                    company_id = @company.id
+                    summary_data_temp = job_summary_params.new(company_name,
+                                                                company_id,
+                                                                job_location, 
+                                                                job_salary, 
+                                                                job_link)
+
+                    processing_summary_datas.push(summary_data_temp)
+                    # puts company_name
+                    # puts company_id
+                    # puts job_location
+                    # puts job_salary
+                    # puts job_link
+                end
+
+                return processing_summary_datas
+            else
+                return nil
+            end
         else
             return nil
         end
@@ -110,12 +113,12 @@ module CareerbuilderScraper
                                                         @company.id)
 
                     processing_detail_datas.push(deatail_data_temp)
-
-                    return processing_detail_datas
                 else
                     return nil
                 end
             end
+    
+            return processing_detail_datas
         end
     end
 end
