@@ -98,6 +98,7 @@ module CareerbuilderScraper
                     #######################job detail end##########################
                     location = job_summary_param.job_location.to_s
                     salary = job_summary_param.job_salary.to_s
+                    salary.sub!("Lương: ", "")
                     quantity = 1
                     if doc.css("div.detail-box ul li p").present?
                         category = doc.css("div.detail-box ul li p")[1].text.strip

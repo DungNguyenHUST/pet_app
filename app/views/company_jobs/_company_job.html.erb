@@ -32,24 +32,24 @@
 
             <div class="company_job_mark">
                 <div class="company_job_location">
-                    <%if !company_job.location.to_s.empty?%>
+                    <%if !company_job.location.to_s.blank?%>
                         <a><i class="material-icons-outlined">location_on</i><%= company_job.location %></a>
                     <%else%>
-                        <a>---</a>
+                        <a><i class="material-icons-outlined">location_on</i>Đang cập nhật</a>
                     <%end%>
                 </div>
 
                 <div class="company_job_salary">
-                    <%if !company_job.salary.to_s.empty?%>
+                    <%if !company_job.salary.to_s.blank?%>
                         <%if user_signed_in?%>
-                            <a><i class="material-icons-outlined">local_offer</i><%= company_job.salary.to_s%></a>
+                            <a><i class="material-icons-outlined">monetization_on</i><%= company_job.salary.to_s%></a>
                         <%else%>
                             <a type="link" data-toggle="modal" data-target="#buttonModalLoginCenter" class="job_salary_login">
-                                <i class="material-icons-outlined">local_offer</i> <span>Đăng nhập để xem mức lương</span>
+                                <i class="material-icons-outlined">monetization_on</i> <span>Đăng nhập để xem mức lương</span>
                             </a>
                         <%end%>
                     <%else%>
-                        <a>---</a>
+                        <a><i class="material-icons-outlined">monetization_on</i>Đang cập nhật</a>
                     <%end%>
                 </div>
             </div>
