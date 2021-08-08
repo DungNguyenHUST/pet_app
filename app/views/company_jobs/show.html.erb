@@ -98,8 +98,14 @@
                                     <a><i class="material-icons-outlined">room</i>Đang cập nhật</a>
                                 <%end%>
                             </div>
-                            <div class="job_shoft_info">
-                                <a><i class="material-icons-outlined">local_offer</i><%= @company_job.salary.to_s %></a>
+                            <div class="job_shoft_info_salary">
+                                <%if user_signed_in?%>
+                                    <a><i class="material-icons-outlined">local_offer</i><%= @company_job.salary.to_s %></a>
+                                <%else%>
+                                    <a type="link" data-toggle="modal" data-target="#buttonModalLoginCenter" class="job_salary_login">
+                                        <i class="material-icons-outlined">local_offer</i> <span>Đăng nhập để xem mức lương</span>
+                                    </a>
+                                <%end%>
                             </div>
                             <div class="job_shoft_info">
                                 <%if @company_job.apply_another_site_flag%>
