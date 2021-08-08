@@ -17,9 +17,11 @@ module CareerbuilderScraper
                     unless processing_summary_block.css("div.title a").nil?
                         job_link = processing_summary_block.css("div.title a").map { |link| link['href']}.first
                     end
+
                     unless processing_summary_block.css("div.location ul").nil?
                         job_location = processing_summary_block.css("div.location ul").text.strip
                     end
+                    
                     unless processing_summary_block.css("div.salary p").nil?
                         job_salary = processing_summary_block.css("div.salary p").text.strip
                     end

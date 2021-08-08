@@ -82,8 +82,8 @@ module CommonScraper
             return
         else
             job_datas.each do |job_data|
-                if job_data.apply_site.present?
-                    job_exsit = CompanyJob.find_by(apply_site: job_data.apply_site)
+                if job_data.apply_site.present? && job_data.company_id.present?
+                    job_exsit = CompanyJob.find_by(company_id: job_data.company_id, apply_site: job_data.apply_site)
                     unless job_exsit.present?
                         @company = Company.friendly.find_by_id(job_data.company_id)
                         @company_job = @company.company_jobs.create!(:title => job_data.title,
