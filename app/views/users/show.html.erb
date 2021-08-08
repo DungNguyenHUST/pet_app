@@ -137,13 +137,14 @@
                         <div class="user_save_job">
                             <div class="row">
                                 <%@company_job_saved.each do |company_job|%>
-                                    <div class="col-sm-6">
+                                    <div class="col-sm-6 col-no-padding">
                                         <%=render company_job%>
                                     </div>
                                 <%end%>
                             </div>
-
-                            <%= paginate @company_job_saved, window: 1, outer_window: 1%>
+                            <div class="company_job_paginate">
+                                <%= paginate @company_job_saved, window: 1, outer_window: 1%>
+                            </div>
                         </div>
                     <%else%>
                         <div class="user_save_job_not_found_block">
@@ -165,14 +166,15 @@
                             <%if @company_job_applied != nil%>
                                 <div class="row">
                                     <%@company_job_applied.each do |company_job|%>
-                                        <div class="col-sm-6">
+                                        <div class="col-sm-6 col-no-padding">
                                             <%=render company_job%>
                                         </div>
                                     <%end%>
                                 </div>
                             <%end%>
-
-                            <%= paginate @company_job_applied, window: 1, outer_window: 1%>
+                            <div class="company_job_paginate">
+                                <%= paginate @company_job_applied, window: 1, outer_window: 1%>
+                            </div>
                         </div>
                     <%else%>
                         <div class="user_apply_job_not_found_block">

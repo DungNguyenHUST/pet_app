@@ -109,12 +109,14 @@
 				</div>
 				<div class="row">
 					<%@company_jobs.each do |company_job|%>
-						<div class="col-sm-6">
+						<div class="col-sm-6 col-no-padding">
 							<%=render company_job%>
 						</div>
 					<%end%>
 				</div>
-				<%= paginate @company_jobs, window: 1, outer_window: 1%>
+				<div class="company_job_paginate">
+					<%= paginate @company_jobs, window: 1, outer_window: 1%>
+				</div>
 			</div>
 		<%end%>
 	</div>

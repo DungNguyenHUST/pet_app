@@ -7,10 +7,17 @@
                     <div class="company_job_tab_des_label">
                         <a><%=@company.company_jobs.approved.count%> việc làm đang tuyển dụng tại <%=@company.name%> </a> 
                     </div>
+                    
                     <div class="company_job_index_tab">
-                        <%= render @company_jobs%>
+                        <div class="row"> 
+                            <div class="col-sm-12 col-no-padding">
+                                <%= render @company_jobs%>
+                            </div>
+                        </div>
                     </div>
-                    <%= paginate @company_jobs, window: 1, outer_window: 1%>
+                    <div class="company_job_paginate">
+                        <%= paginate @company_jobs, window: 1, outer_window: 1%>
+                    </div>
                 <%else%>
                     <div class="company_job_new_not_found_block">
                         <div class="company_job_new_not_found_icon">
