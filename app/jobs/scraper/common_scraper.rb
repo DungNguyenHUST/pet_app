@@ -30,7 +30,31 @@ module CommonScraper
     end
 
     def get_company_by_name(name)
-        name = convert_vie_to_eng(name)
+        new_name = convert_vie_to_eng(name)
+        new_name.sub!("ct", "")
+        new_name.sub!("cong ty", "")
+        new_name.sub!("company", "")
+        new_name.sub!("limited", "")
+        new_name.sub!("tap doan", "")
+        new_name.sub!("vn", "")
+        new_name.sub!("viet nam", "")
+        new_name.sub!("vietnam", "")
+        new_name.sub!("cp", "")
+        new_name.sub!("co phan", "")
+        new_name.sub!("tnhh", "")
+        new_name.sub!("trach nhiem huu han", "")
+        new_name.sub!("mtv", "")
+        new_name.sub!("mot thanh vien", "")
+        new_name.sub!("thuong mai", "")
+        new_name.sub!("san xuat", "")
+        new_name.sub!("va", "")
+        new_name.sub!("co.,ltd", "")
+        new_name.sub!("co., ltd", "")
+        new_name.sub!("chi nhanh", "")
+        new_name.gsub!(/[!@#$%^&*({]>?/, "")
+        new_name.gsub!(/[-_+=)}|<.,;:]/, "")
+        new_name.squish!
+        return new_name
     end
 
     def split_domain_name(url)
@@ -58,7 +82,7 @@ module CommonScraper
             return
         else
             job_datas.each do |job_data|
-                unless apply_site.nil?
+                if job_data.apply_site.present?
                     job_exsit = CompanyJob.find_by(apply_site: job_data.apply_site)
                     unless job_exsit.present?
                         @company = Company.friendly.find_by_id(job_data.company_id)

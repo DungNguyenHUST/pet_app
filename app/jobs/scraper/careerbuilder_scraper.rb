@@ -4,55 +4,57 @@ module CareerbuilderScraper
 
     def get_summary_data_careerbuilder(scrap_job)
         if check_exist_url(scrap_job.url.to_s)
-            if scrap_job.company_name.present?
-                @company = Company.friendly.search(scrap_job.company_name).first
-            else
-                @company = Company.friendly.find_by_id(scrap_job.company_id)
-            end
-            @company = Company.first
-            
-            if @company.present?
-                # Root link
-                response = HTTParty.get(scrap_job.url.to_s)
-                doc = Nokogiri::HTML(response.body)
+            # Root link
+            response = HTTParty.get(scrap_job.url.to_s)
+            doc = Nokogiri::HTML(response.body)
 
-                # Get job link in to map
-                processing_summary_blocks = doc.css("div.figcaption")
-                processing_summary_datas = []
+            # Get job link in to map
+            processing_summary_blocks = doc.css("div.figcaption")
+            processing_summary_datas = []
 
-                if processing_summary_blocks.present?
-                    processing_summary_blocks.each do |processing_summary_block|
-                        unless processing_summary_block.css("div.title a").nil?
-                            job_link = processing_summary_block.css("div.title a").map { |link| link['href']}.first
-                        end
-                        unless processing_summary_block.css("div.location ul").nil?
-                            job_location = processing_summary_block.css("div.location ul").text.strip
-                        end
-                        unless processing_summary_block.css("div.salary p").nil?
-                            job_salary = processing_summary_block.css("div.salary p").text.strip
-                        end
-                        unless processing_summary_block.css("div.caption a.company-name").nil?
-                            company_name = processing_summary_block.css("div.caption a.company-name").text.strip
+            if processing_summary_blocks.present?
+                processing_summary_blocks.each do |processing_summary_block|
+                    unless processing_summary_block.css("div.title a").nil?
+                        job_link = processing_summary_block.css("div.title a").map { |link| link['href']}.first
+                    end
+                    unless processing_summary_block.css("div.location ul").nil?
+                        job_location = processing_summary_block.css("div.location ul").text.strip
+                    end
+                    unless processing_summary_block.css("div.salary p").nil?
+                        job_salary = processing_summary_block.css("div.salary p").text.strip
+                    end
+                    unless processing_summary_block.css("div.caption a.company-name").nil?
+                        company_name = processing_summary_block.css("div.caption a.company-name").text.strip
+                        if scrap_job.company_name.present?
+                            # Manual
+                            @company = Company.friendly.search(scrap_job.company_name).first
+                        elsif scrap_job.company_id.present?
+                            # Manual
+                            @company = Company.friendly.find_by_id(scrap_job.company_id)
+                        else
+                            # Auto
+                            company_name_converted = get_company_by_name(company_name) 
+                            @company = Company.friendly.search(company_name_converted).first
                         end
 
-                        company_id = @company.id
-
-                        unless job_link.nil? && job_location.nil? && job_salary.nil? && company_name.nil? && company_id.nil?
-                            summary_data_temp = job_summary_params.new(company_name,
-                                                                        company_id,
-                                                                        job_location, 
-                                                                        job_salary, 
-                                                                        job_link)
-    
-                            processing_summary_datas.push(summary_data_temp)
-                            
+                        if @company.present?
+                            company_id = @company.id
                         end
                     end
 
-                    return processing_summary_datas
+                    if job_link.present? && job_location.present? && job_salary.present? && company_name.present? && company_id.present?
+                        summary_data_temp = job_summary_params.new(company_name,
+                                                                    company_id,
+                                                                    job_location, 
+                                                                    job_salary, 
+                                                                    job_link)
+
+                        processing_summary_datas.push(summary_data_temp)
+                        
+                    end
                 end
-            else
-                return nil
+
+                return processing_summary_datas
             end
         else
             return nil
@@ -71,7 +73,7 @@ module CareerbuilderScraper
                     response = HTTParty.get(job_summary_param.job_link.to_s)
                     doc = Nokogiri::HTML(response.body)
                     
-                    unless doc.css("h1.title").first.nil?
+                    if doc.css("h1.title").first.present?
                         title = doc.css("h1.title").first.text.strip
                     end
                     @company = Company.friendly.find_by_id(job_summary_param.company_id)
@@ -110,7 +112,7 @@ module CareerbuilderScraper
                     approved = true
                     user_id = 1
                     
-                    unless title.nil? && apply_site.empty?
+                    if title.present? && apply_site.present?
                         deatail_data_temp = job_params.new(title,
                                                             detail,
                                                             location, 
