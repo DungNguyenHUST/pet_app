@@ -16,7 +16,7 @@ class ScraperJob < ApplicationJob
         puts "Start scrap data..."
         if check_exist_url(scrap_job.url)
             if split_domain_name(scrap_job.url) == "itviec.com"
-                processing_job(get_data_itviec(scrap_job))
+                processing_job(get_detail_data_itviec(scrap_job))
             end
         
             if split_domain_name(scrap_job.url) == "careerbuilder.vn"

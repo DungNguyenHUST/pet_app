@@ -23,23 +23,26 @@ module CareerbuilderScraper
                     unless processing_summary_block.css("div.salary p").nil?
                         job_salary = processing_summary_block.css("div.salary p").text.strip
                     end
-                    unless processing_summary_block.css("div.caption a.company-name").nil?
-                        company_name = processing_summary_block.css("div.caption a.company-name").text.strip
-                        if scrap_job.company_name.present?
-                            # Manual
-                            @company = Company.friendly.search(scrap_job.company_name).first
-                        elsif scrap_job.company_id.present?
-                            # Manual
-                            @company = Company.friendly.find_by_id(scrap_job.company_id)
-                        else
+
+                    if scrap_job.company_id.present?
+                        # Manual
+                        @company = Company.friendly.find_by_id(scrap_job.company_id)
+                        company_name = @company.name
+                    elsif scrap_job.company_name.present?
+                        # Manual
+                        @company = Company.friendly.search(scrap_job.company_name).first
+                        company_name = @company.name
+                    else
+                        unless processing_summary_block.css("div.caption a.company-name").nil?
                             # Auto
+                            company_name = processing_summary_block.css("div.caption a.company-name").text.strip
                             company_name_converted = get_company_by_name(company_name) 
                             @company = Company.friendly.search(company_name_converted).first
                         end
+                    end
 
-                        if @company.present?
-                            company_id = @company.id
-                        end
+                    if @company.present?
+                        company_id = @company.id
                     end
 
                     if job_link.present? && job_location.present? && job_salary.present? && company_name.present? && company_id.present?
