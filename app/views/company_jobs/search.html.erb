@@ -40,64 +40,64 @@
             </div>
         <%end%>
 
-        <%= form_for :filter, url: jobs_search_path, method: :get, remote: true do |form| %>
+        <%= form_for :filter, url: jobs_search_path, method: :get, remote: true do |f| %>
             <div class="company_job_filter_block">
                 <div class="row">
                     <div class="col-sm-2">
                         <div class="company_job_filter_input">
-                            <%= form.select(:category, options_for_select(['IT - Phần mềm', 
-                                                                            'IT - Phần cứng', 
-                                                                            'Viễn thông', 
-                                                                            'Kiến trúc', 
-                                                                            'Xây dựng', 
-                                                                            'Sức khỏe', 
-                                                                            'Online Media', 
-                                                                            'Dịch vụ', 
-                                                                            'Giải trí', 
-                                                                            'Du lịch', 
-                                                                            'Giáo dục', 
-                                                                            'Government', 
-                                                                            'Sản xuất', 
-                                                                            'Nghiên cứu', 
-                                                                            'Business Management', 
-                                                                            'Ngân hàng', 
-                                                                            'Tài chính', 
-                                                                            'Đầu tư', 
-                                                                            'Nhân sự', 
-                                                                            'Luật', 
-                                                                            'Marketing and Sales', 
-                                                                            'Logistics']), {include_blank: false, :prompt => "Tất cả ngành nghề"}, { :class => 'form-control'})  %>
+                            <%= f.select(:category, options_for_select(['IT - Phần mềm', 
+                                                                        'IT - Phần cứng', 
+                                                                        'Viễn thông', 
+                                                                        'Kiến trúc', 
+                                                                        'Xây dựng', 
+                                                                        'Sức khỏe', 
+                                                                        'Online Media', 
+                                                                        'Dịch vụ', 
+                                                                        'Giải trí', 
+                                                                        'Du lịch', 
+                                                                        'Giáo dục', 
+                                                                        'Government', 
+                                                                        'Sản xuất', 
+                                                                        'Nghiên cứu', 
+                                                                        'Business Management', 
+                                                                        'Ngân hàng', 
+                                                                        'Tài chính', 
+                                                                        'Đầu tư', 
+                                                                        'Nhân sự', 
+                                                                        'Luật', 
+                                                                        'Marketing and Sales', 
+                                                                        'Logistics']), {include_blank: false, :prompt => "Tất cả ngành nghề"}, { :class => 'form-control'})  %>
                         </div>
                     </div>
 
                     <div class="col-sm-2">
                         <div class="company_job_filter_input">
-                            <%= form.select(:salary, options_for_select(['1Tr - 5Tr', 
-                                                                        '5Tr - 10Tr', 
-                                                                        '10Tr - 15Tr', 
-                                                                        '15Tr - 20Tr', 
-                                                                        '20Tr - 25Tr', 
-                                                                        '25Tr - 30Tr', 
-                                                                        '30Tr - 35Tr', 
-                                                                        '40Tr - 45Tr', 
-                                                                        '45Tr - 50Tr', 
-                                                                        '50Tr - 55Tr', 
-                                                                        '55Tr - 60Tr', 
-                                                                        '60Tr - 65Tr', 
-                                                                        '65Tr - 70Tr', 
-                                                                        '70Tr - 75Tr', 
-                                                                        '75Tr - 80Tr', 
-                                                                        '80Tr - 85Tr', 
-                                                                        '85Tr - 90Tr', 
-                                                                        '90Tr - 95Tr', 
-                                                                        '95Tr - 100Tr', 
-                                                                        'hơn 100Tr']), {include_blank: false, :prompt => "Tất cả mức lương"}, { :class => 'form-control'})  %>
+                            <%= f.select(:salary, options_for_select(['1Tr - 5Tr', 
+                                                                    '5Tr - 10Tr', 
+                                                                    '10Tr - 15Tr', 
+                                                                    '15Tr - 20Tr', 
+                                                                    '20Tr - 25Tr', 
+                                                                    '25Tr - 30Tr', 
+                                                                    '30Tr - 35Tr', 
+                                                                    '40Tr - 45Tr', 
+                                                                    '45Tr - 50Tr', 
+                                                                    '50Tr - 55Tr', 
+                                                                    '55Tr - 60Tr', 
+                                                                    '60Tr - 65Tr', 
+                                                                    '65Tr - 70Tr', 
+                                                                    '70Tr - 75Tr', 
+                                                                    '75Tr - 80Tr', 
+                                                                    '80Tr - 85Tr', 
+                                                                    '85Tr - 90Tr', 
+                                                                    '90Tr - 95Tr', 
+                                                                    '95Tr - 100Tr', 
+                                                                    'hơn 100Tr']), {include_blank: false, :prompt => "Tất cả mức lương"}, { :class => 'form-control'})  %>
                         </div>
                     </div>
 
                     <div class="col-sm-2">
                         <div class="company_job_filter_input">
-                            <%= form.select(:level, options_for_select(['Nhân viên', 'Junior', 'Middle', 'Senior', 'Expert', 'Leader', 'Architect']), 
+                            <%= f.select(:level, options_for_select(['Nhân viên', 'Junior', 'Middle', 'Senior', 'Expert', 'Leader', 'Architect']), 
                                                                         {include_blank: false, :prompt => "Tất cả cấp bậc"}, 
                                                                         { :class => 'form-control'})  %>
                         </div>
@@ -105,7 +105,7 @@
 
                     <div class="col-sm-2">
                         <div class="company_job_filter_input">
-                            <%= form.select(:post_date, options_for_select(['24h qua', '3 ngày qua', '1 tuần qua', '2 tuần qua', '1 tháng qua']), 
+                            <%= f.select(:post_date, options_for_select(['24h qua', '3 ngày qua', '1 tuần qua', '2 tuần qua', '1 tháng qua']), 
                                                                             {include_blank: false, :prompt => "Tất cả thời gian"}, 
                                                                             { :class => 'form-control'})  %>
                         </div>
@@ -113,14 +113,14 @@
 
                     <div class="col-sm-2">
                         <div class="company_job_filter_input">
-                            <%= form.select(:job_type, options_for_select(['Full Time', 'Part Time', 'Remote', 'Tạm thời', "Thực tập sinh"]),
+                            <%= f.select(:job_type, options_for_select(['Full Time', 'Part Time', 'Remote', 'Tạm thời', "Thực tập sinh"]),
                                                                     {include_blank: false, :prompt => "Tất cả loại hình"},
                                                                     { :class => 'form-control'})  %>
                         </div>
                     </div>
 
-                    <%= form.hidden_field:search, :value => params[:search]%>
-                    <%= form.hidden_field:location, :value => params[:location]%>
+                    <%= f.hidden_field:search, :value => params[:search]%>
+                    <%= f.hidden_field:location, :value => params[:location]%>
                     
                     <div class="col-sm-2">
                         <div class="company_job_filter_submit">
