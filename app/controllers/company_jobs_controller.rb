@@ -68,10 +68,13 @@ class CompanyJobsController < ApplicationController
 	def list
         @companies = Company.all
 		@company_jobs = CompanyJob.all.order('created_at DESC').page(params[:page]).per(10)
-		
-		@is_job_searched = false
+    end
+
+    def search
+        @company_jobs = CompanyJob.all.order('created_at DESC').page(params[:page]).per(10)
+
+        # Search
 		if(params.has_key?(:search) && params.has_key?(:location))
-			@is_job_searched = true
 			@search = convert_vie_to_eng(params[:search])
 			@location = convert_vie_to_eng(params[:location])
             if @location.to_s == "tat ca dia diem"
@@ -80,11 +83,43 @@ class CompanyJobsController < ApplicationController
 			    @job_searchs = CompanyJob.friendly.search_advance(@search, @location).order('created_at DESC').page(params[:page]).per(12)
             end
         end
+
+        # Filter
+        if params.has_key?(:filter)
+            @category = filter_params[:category]
+            @salary = filter_params[:salary]
+            @level = filter_params[:level]
+            @post_date = filter_params[:post_date]
+            @job_type = filter_params[:job_type]
+            @search = filter_params[:search]
+            @location = filter_params[:location]
+            @filter_params_converted = filter_params_converted.new(@category, @salary, @level, @post_date, @job_type, @search, @location)
+
+            @job_filtereds = CompanyJob.friendly.filtered(@filter_params_converted ).order('created_at DESC').page(params[:page]).per(12)
+            respond_to do |format|
+                format.html {}
+                format.js
+            end
+        end
     end
 
     private
 
     def company_job_param
         params.require(:company_job).permit(:id, :title, :location, :description, :benefit, :requirement, :salary, :quantity, :category, :search, :end_date, :language, :level, :job_type, :urgent, :apply_another_site_flag, :apply_site, :address, {:skill => []})
+    end
+
+    def filter_params
+        filter_params = params.require(:filter).permit(:category, :salary, :level, :post_date, :job_type, :search, :location)
+    end
+
+    def filter_params_converted
+        filter_params_converted = Struct.new(:category,
+                                            :salary,
+                                            :level, 
+                                            :post_date,
+                                            :job_type,
+                                            :search,
+                                            :location)
     end
 end

@@ -27,6 +27,36 @@ class CompanyJob < ApplicationRecord
             end
         end
     end
+
+    def self.filtered(filter_params)
+        if filter_params.search
+            job_filter = CompanyJob.where("title ILIKE?", "%#{filter_params.search}%")
+        end
+
+        if filter_params.location && filter_params.location != "Tất cả địa điểm"
+            job_filter = job_filter.where("location ILIKE?", "%#{filter_params.location}%")
+        end
+
+        if filter_params.category
+            job_filter = job_filter.where("category ILIKE?", "%#{filter_params.category}%")
+        end
+
+        if filter_params.salary
+            job_filter = job_filter.where("salary ILIKE?", "%#{filter_params.salary}%")
+        end
+
+        if filter_params.job_type
+            job_filter = job_filter.where("job_type ILIKE?", "%#{filter_params.job_type}%")
+        end
+
+        if filter_params.level
+            job_filter = job_filter.where("level ILIKE?", "%#{filter_params.level}%")
+        end
+
+        if(job_filter)
+            self.where(id: job_filter)
+        end
+    end
 	
 	def self.approved
 	  where(approved: :true)

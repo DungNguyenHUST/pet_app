@@ -1,0 +1,139 @@
+<% content_for :meta_title, "Kết quả tìm kiếm việc làm"%>
+<div class="container">
+    <div class="company_job_search_index_block">
+        <%=form_tag jobs_search_path, :method => "get" do%>
+            <div class="company_job_searched_input">
+                <div class='row'>
+                    <div class='col-sm-7'>
+                        <div class="company_job_searched_what">
+                            <i class="material-icons-outlined">search</i>
+                            <%= text_field_tag :search, params[:search], required: true, class: 'form-control', placeholder: "Tìm kiếm theo tên công việc, kĩ năng ..."%>
+                        </div>
+                    </div>
+                        
+                    <div class='col-sm-3 padding_customize'>
+                        <div class="company_job_searched_where">
+                            <i class="material-icons-outlined">place</i></button>
+                            <%= select_tag :location, options_for_select(['Tất cả địa điểm','Hà Nội','TP Hồ Chí Minh','Đà Nẵng','An Giang','Bà Rịa Vũng Tàu','Bạc Liêu','Bắc Kạn','Bắc Giang',
+                                                            'Bắc Ninh','Bến Tre','Bình Dương','Bình Định','Bình Phước',
+                                                            'Bình Thuận','Cà Mau','Cao Bằng','Cần Thơ','Đắk Lắk','Đắk Nông','Điện Biên',
+                                                            'Đồng Nai','Đồng Tháp','Gia Lai','Hà Giang','Hà Nam','Hà Tây','Hà Tĩnh',
+                                                            'Hải Dương','Hải Phòng','Hòa Bình','Hậu Giang','Hưng Yên','Khánh Hòa',
+                                                            'Kiên Giang','Kon Tum','Lai Châu','Lào Cai',
+                                                            'Lạng Sơn','Lâm Đồng','Long An','Nam Định','Nghệ An',
+                                                            'Ninh Bình','Ninh Thuận','Phú Thọ','Phú Yên','Quảng Bình',
+                                                            'Quảng Nam','Quảng Ngãi','Quảng Ninh','Quảng Trị',
+                                                            'Sóc Trăng','Sơn La','Tây Ninh','Thái Bình','Thái Nguyên' ,
+                                                            'Thanh Hóa','Thừa Thiên Huế','Tiền Giang','Trà Vinh',
+                                                            'Tuyên Quang','Vĩnh Long','Vĩnh Phúc','Yên Bái' ], 'Tất cả địa điểm'), class: 'form-control'%> 
+                        </div>
+                    </div>
+                    
+                    <div class='col-sm-2'>
+                        <div class="company_job_searched_button">
+                            <%= button_to "", form_class: "searched_button", :name => nil do%>
+                                <a>Tìm kiếm</a>
+                            <%end%> 
+                        </div>
+                    </div>
+                </div>
+            </div>
+        <%end%>
+
+        <%= form_for :filter, url: jobs_search_path, method: :get, remote: true do |form| %>
+            <div class="company_job_filter_block">
+                <div class="row">
+                    <div class="col-sm-2">
+                        <div class="company_job_filter_input">
+                            <%= form.select(:category, options_for_select(['IT - Phần mềm', 
+                                                                            'IT - Phần cứng', 
+                                                                            'Viễn thông', 
+                                                                            'Kiến trúc', 
+                                                                            'Xây dựng', 
+                                                                            'Sức khỏe', 
+                                                                            'Online Media', 
+                                                                            'Dịch vụ', 
+                                                                            'Giải trí', 
+                                                                            'Du lịch', 
+                                                                            'Giáo dục', 
+                                                                            'Government', 
+                                                                            'Sản xuất', 
+                                                                            'Nghiên cứu', 
+                                                                            'Business Management', 
+                                                                            'Ngân hàng', 
+                                                                            'Tài chính', 
+                                                                            'Đầu tư', 
+                                                                            'Nhân sự', 
+                                                                            'Luật', 
+                                                                            'Marketing and Sales', 
+                                                                            'Logistics']), {include_blank: false, :prompt => "Tất cả ngành nghề"}, { :class => 'form-control'})  %>
+                        </div>
+                    </div>
+
+                    <div class="col-sm-2">
+                        <div class="company_job_filter_input">
+                            <%= form.select(:salary, options_for_select(['1Tr - 5Tr', 
+                                                                        '5Tr - 10Tr', 
+                                                                        '10Tr - 15Tr', 
+                                                                        '15Tr - 20Tr', 
+                                                                        '20Tr - 25Tr', 
+                                                                        '25Tr - 30Tr', 
+                                                                        '30Tr - 35Tr', 
+                                                                        '40Tr - 45Tr', 
+                                                                        '45Tr - 50Tr', 
+                                                                        '50Tr - 55Tr', 
+                                                                        '55Tr - 60Tr', 
+                                                                        '60Tr - 65Tr', 
+                                                                        '65Tr - 70Tr', 
+                                                                        '70Tr - 75Tr', 
+                                                                        '75Tr - 80Tr', 
+                                                                        '80Tr - 85Tr', 
+                                                                        '85Tr - 90Tr', 
+                                                                        '90Tr - 95Tr', 
+                                                                        '95Tr - 100Tr', 
+                                                                        'hơn 100Tr']), {include_blank: false, :prompt => "Tất cả mức lương"}, { :class => 'form-control'})  %>
+                        </div>
+                    </div>
+
+                    <div class="col-sm-2">
+                        <div class="company_job_filter_input">
+                            <%= form.select(:level, options_for_select(['Nhân viên', 'Junior', 'Middle', 'Senior', 'Expert', 'Leader', 'Architect']), 
+                                                                        {include_blank: false, :prompt => "Tất cả cấp bậc"}, 
+                                                                        { :class => 'form-control'})  %>
+                        </div>
+                    </div>
+
+                    <div class="col-sm-2">
+                        <div class="company_job_filter_input">
+                            <%= form.select(:post_date, options_for_select(['24h qua', '3 ngày qua', '1 tuần qua', '2 tuần qua', '1 tháng qua']), 
+                                                                            {include_blank: false, :prompt => "Tất cả thời gian"}, 
+                                                                            { :class => 'form-control'})  %>
+                        </div>
+                    </div>
+
+                    <div class="col-sm-2">
+                        <div class="company_job_filter_input">
+                            <%= form.select(:job_type, options_for_select(['Full Time', 'Part Time', 'Remote', 'Tạm thời', "Thực tập sinh"]),
+                                                                    {include_blank: false, :prompt => "Tất cả loại hình"},
+                                                                    { :class => 'form-control'})  %>
+                        </div>
+                    </div>
+
+                    <%= form.hidden_field:search, :value => params[:search]%>
+                    <%= form.hidden_field:location, :value => params[:location]%>
+                    
+                    <div class="col-sm-2">
+                        <div class="company_job_filter_submit">
+                            <%= button_to "", :class => 'form-control', :name => nil do%>
+                                <i class="material-icons-outlined">filter_alt</i>
+                                <a>Áp dụng bộ lọc</a>
+                            <%end%>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        <%end%>
+
+        <%= render :partial => 'company_jobs/search', locals: {job_searched: @job_searchs} %>
+    </div>
+</div>

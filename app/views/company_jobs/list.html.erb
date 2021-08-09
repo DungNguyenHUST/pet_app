@@ -1,123 +1,72 @@
 <%- model_class = CompanyJob -%>
-<%if (!@is_job_searched)%>
-	<% content_for :meta_title, "Tìm kiếm việc làm"%>
-<%else%>
-	<% content_for :meta_title, "Kết quả tìm kiếm việc làm"%>
-<%end%>
+<% content_for :meta_title, "Tìm kiếm việc làm"%>
 <% content_for :meta_description, "Thông tin tuyển dụng, việc làm mới nhất cho các nghành nghề được cập nhật liên tục tại firework.vn" %>
 <div class="company_job_list">
-	<%if (@is_job_searched)%>
+	<div class="company_list_job_search_input_block">
 		<div class="container">
-			<%=form_tag jobs_path, :method => "get" do%>
-				<div class="company_job_searched_input">
-					<div class='row'>
-						<div class='col-sm-7'>
-							<div class="company_job_searched_what">
-								<i class="material-icons-outlined">search</i>
-								<%= text_field_tag :search, params[:search], required: true, class: 'form-control', placeholder: "Tìm kiếm theo tên công việc, kĩ năng ..."%>
-							</div>
-						</div>
-							
-						<div class='col-sm-3 padding_customize'>
-							<div class="company_job_searched_where">
-								<i class="material-icons-outlined">place</i></button>
-								<%= select_tag :location, options_for_select(['Tất cả địa điểm','Hà Nội','TP Hồ Chí Minh','Đà Nẵng','An Giang','Bà Rịa Vũng Tàu','Bạc Liêu','Bắc Kạn','Bắc Giang',
-                                                                'Bắc Ninh','Bến Tre','Bình Dương','Bình Định','Bình Phước',
-                                                                'Bình Thuận','Cà Mau','Cao Bằng','Cần Thơ','Đắk Lắk','Đắk Nông','Điện Biên',
-                                                                'Đồng Nai','Đồng Tháp','Gia Lai','Hà Giang','Hà Nam','Hà Tây','Hà Tĩnh',
-                                                                'Hải Dương','Hải Phòng','Hòa Bình','Hậu Giang','Hưng Yên','Khánh Hòa',
-                                                                'Kiên Giang','Kon Tum','Lai Châu','Lào Cai',
-                                                                'Lạng Sơn','Lâm Đồng','Long An','Nam Định','Nghệ An',
-                                                                'Ninh Bình','Ninh Thuận','Phú Thọ','Phú Yên','Quảng Bình',
-                                                                'Quảng Nam','Quảng Ngãi','Quảng Ninh','Quảng Trị',
-                                                                'Sóc Trăng','Sơn La','Tây Ninh','Thái Bình','Thái Nguyên' ,
-                                                                'Thanh Hóa','Thừa Thiên Huế','Tiền Giang','Trà Vinh',
-                                                                'Tuyên Quang','Vĩnh Long','Vĩnh Phúc','Yên Bái' ], 'Tất cả địa điểm'), class: 'form-control'%> 
-							</div>
-						</div>
-						
-						<div class='col-sm-2'>
-							<div class="company_job_searched_button">
-								<%= button_to "", form_class: "searched_button", :name => nil do%>
-									<a>Tìm kiếm</a>
-								<%end%> 
-							</div>
-						</div>
-					</div>
+			<div class="company_job_bar">
+				<div class="company_job_bar_label">
+					<h3>Công việc tốt chính là tương lai của bạn</h3>
+					<a>Khám phá hàng ngàn cơ hội việc làm dành cho bạn hôm nay.</a>
 				</div>
-			<%end%>
-		</div>
-	<%else%>
-		<div class="company_job_search_input_block">
-			<div class="container">
-				<div class="company_job_bar">
-					<div class="company_job_bar_label">
-						<h3>Công việc tốt chính là tương lai của bạn</h3>
-						<a>Khám phá hàng ngàn cơ hội việc làm dành cho bạn hôm nay.</a>
-					</div>
-					
-					<%=form_tag jobs_path, :method => "get" do%>
-						<div class="company_job_search_input">
-							<div class='row'>
-								<div class='col-sm-7'>
-									<div class="company_job_search_what">
-										<i class="material-icons-outlined">search</i>
-										<%= text_field_tag :search, params[:search], required: true, class: 'form-control', placeholder: "Tìm kiếm theo tên công việc, kĩ năng ..."%>
-									</div>
+				
+				<%=form_tag jobs_search_path, :method => "get" do%>
+					<div class="company_job_search_input">
+						<div class='row'>
+							<div class='col-sm-7'>
+								<div class="company_job_search_what">
+									<i class="material-icons-outlined">search</i>
+									<%= text_field_tag :search, params[:search], required: true, class: 'form-control', placeholder: "Tìm kiếm theo tên công việc, kĩ năng ..."%>
 								</div>
-									
-								<div class='col-sm-3 padding_customize'>
-									<div class="company_job_search_where">
-										<i class="material-icons-outlined">place</i></button>
-										<%= select_tag :location, options_for_select(['Tất cả địa điểm','Hà Nội','TP Hồ Chí Minh','Đà Nẵng','An Giang','Bà Rịa Vũng Tàu','Bạc Liêu','Bắc Kạn','Bắc Giang',
-                                                                'Bắc Ninh','Bến Tre','Bình Dương','Bình Định','Bình Phước',
-                                                                'Bình Thuận','Cà Mau','Cao Bằng','Cần Thơ','Đắk Lắk','Đắk Nông','Điện Biên',
-                                                                'Đồng Nai','Đồng Tháp','Gia Lai','Hà Giang','Hà Nam','Hà Tây','Hà Tĩnh',
-                                                                'Hải Dương','Hải Phòng','Hòa Bình','Hậu Giang','Hưng Yên','Khánh Hòa',
-                                                                'Kiên Giang','Kon Tum','Lai Châu','Lào Cai',
-                                                                'Lạng Sơn','Lâm Đồng','Long An','Nam Định','Nghệ An',
-                                                                'Ninh Bình','Ninh Thuận','Phú Thọ','Phú Yên','Quảng Bình',
-                                                                'Quảng Nam','Quảng Ngãi','Quảng Ninh','Quảng Trị',
-                                                                'Sóc Trăng','Sơn La','Tây Ninh','Thái Bình','Thái Nguyên' ,
-                                                                'Thanh Hóa','Thừa Thiên Huế','Tiền Giang','Trà Vinh',
-                                                                'Tuyên Quang','Vĩnh Long','Vĩnh Phúc','Yên Bái' ], 'Tất cả địa điểm'), class: 'form-control'%>
-									</div>
-								</div>
+							</div>
 								
-								<div class='col-sm-2'>
-									<div class="company_job_search_button">
-										<%= button_to "", form_class: "search_button", :name => nil do%>
-											<a>Tìm kiếm</a>
-										<%end%> 
-									</div>
+							<div class='col-sm-3 padding_customize'>
+								<div class="company_job_search_where">
+									<i class="material-icons-outlined">place</i></button>
+									<%= select_tag :location, options_for_select(['Tất cả địa điểm','Hà Nội','TP Hồ Chí Minh','Đà Nẵng','An Giang','Bà Rịa Vũng Tàu','Bạc Liêu','Bắc Kạn','Bắc Giang',
+															'Bắc Ninh','Bến Tre','Bình Dương','Bình Định','Bình Phước',
+															'Bình Thuận','Cà Mau','Cao Bằng','Cần Thơ','Đắk Lắk','Đắk Nông','Điện Biên',
+															'Đồng Nai','Đồng Tháp','Gia Lai','Hà Giang','Hà Nam','Hà Tây','Hà Tĩnh',
+															'Hải Dương','Hải Phòng','Hòa Bình','Hậu Giang','Hưng Yên','Khánh Hòa',
+															'Kiên Giang','Kon Tum','Lai Châu','Lào Cai',
+															'Lạng Sơn','Lâm Đồng','Long An','Nam Định','Nghệ An',
+															'Ninh Bình','Ninh Thuận','Phú Thọ','Phú Yên','Quảng Bình',
+															'Quảng Nam','Quảng Ngãi','Quảng Ninh','Quảng Trị',
+															'Sóc Trăng','Sơn La','Tây Ninh','Thái Bình','Thái Nguyên' ,
+															'Thanh Hóa','Thừa Thiên Huế','Tiền Giang','Trà Vinh',
+															'Tuyên Quang','Vĩnh Long','Vĩnh Phúc','Yên Bái' ], 'Tất cả địa điểm'), class: 'form-control'%>
+								</div>
+							</div>
+							
+							<div class='col-sm-2'>
+								<div class="company_job_search_button">
+									<%= button_to "", form_class: "search_button", :name => nil do%>
+										<a>Tìm kiếm</a>
+									<%end%> 
 								</div>
 							</div>
 						</div>
-					<%end%>
-				</div>
+					</div>
+				<%end%>
 			</div>
 		</div>
-	<%end%>
+	</div>
 	
 	<div class="container">
-		<%if (@is_job_searched)%>
-			<%= render :partial => 'company_jobs/search', :object => @job_searchs %>
-		<%else%>
-			<div class="company_all_job_container">
-				<div class="job_label">
-					<span>Danh sách việc làm</span>
-				</div>
-				<div class="row">
-					<%@company_jobs.each do |company_job|%>
-						<div class="col-sm-6 col-no-padding">
-							<%=render company_job%>
-						</div>
-					<%end%>
-				</div>
-				<div class="company_job_paginate">
-					<%= paginate @company_jobs, window: 1, outer_window: 1%>
-				</div>
+		<div class="company_all_job_container">
+			<div class="job_all_label">
+				<span>Danh sách việc làm</span>
 			</div>
-		<%end%>
+			<div class="row">
+				<%@company_jobs.each do |company_job|%>
+					<div class="col-sm-6 col-no-padding">
+						<%=render company_job%>
+					</div>
+				<%end%>
+			</div>
+			<div class="company_job_paginate">
+				<%= paginate @company_jobs, window: 1, outer_window: 1%>
+			</div>
+		</div>
 	</div>
 </div>

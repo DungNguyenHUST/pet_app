@@ -1113,6 +1113,155 @@
 /////////////////list//////////////////////////
 .company_job_list{
 	padding-top: 0px;
+    .company_list_job_search_input_block{
+        min-height: 444px;
+        background-color: #f8f9fa;
+        .company_job_bar{
+            padding-top: 75px;
+            @media screen and (max-width: 600px){
+                padding-top: 30px;
+            }
+            .company_job_bar_label
+            {
+                text-align: left;
+                h3{
+                    font-size: 40px;
+                    margin-bottom: 10px;
+                    font-weight: 550;
+                    color: #222;
+                }
+                a{
+                    font-size: 22px;
+                    color: #444;
+                    @media screen and (max-width: 600px){
+                        display: none;
+                    }
+                }
+                margin-bottom: 50px;
+            }
+            
+            .company_job_search_input{
+                display: block;
+                .padding_customize{
+                    @media screen and (min-width: 600px){
+                        padding-left: 0px !important;
+                        padding-right: 0px !important;
+                    }
+                }
+                .company_job_search_what{
+                    background-color: #fff;
+                    border: 1px solid #e0e2e5;
+                    width: 100%;
+                    border-radius: 4px;
+                    position: relative;
+                    i{
+                        font-size: 22px;
+                        color: #888;
+                        position: absolute;
+                        left: 10px;
+                        top: 14px;
+                    }
+                    .form-control{
+                        padding-left: 40px;
+                        padding-right: 10px;
+                        width: 100%;
+                        height: 50px;
+                        border: none;
+                        box-shadow: none;
+                        color: #333;
+                        font-size: 16px;
+                        outline:none;
+                    }
+                }
+                .company_job_search_where{
+                    background-color: #fff;
+                    border: 1px solid #e0e2e5;
+                    width: 100%;
+                    border-radius: 4px;
+                    @media screen and (max-width: 600px){
+                        margin-top: 10px;
+                        margin-bottom: 20px;
+                    }
+                    position: relative;
+                    i{
+                        font-size: 22px;
+                        color: #888;
+                        position: absolute;
+                        left: 10px;
+                        top: 14px;
+                    }
+                    .form-control{
+                        padding-left: 40px;
+                        width: 100%;
+                        height: 50px;
+                        border: none;
+                        box-shadow: none;
+                        color: #333;
+                        font-size:16px;
+                        outline:none;
+                        background: none;
+                        // &:focus{
+                        //     border: 2px solid #1877f2;
+                        //     border-radius: 4px;
+                        // }
+                    }
+                    button:focus{
+                        border: none;
+                        background: none;
+                    }
+                    &:focus {outline:none;}
+                }
+                
+                .company_job_search_button{
+                    border: none;
+                    width: 100%;
+                    button{
+                        border: none;
+                        border-radius: 4px;
+                        background-color: #1877f2;
+                        height: 50px;
+                        color: #fff;
+                        width: 100%;
+                        font-size:16px;
+                        font-weight: 600;
+                        @media screen and (max-width: 600px){
+                            width: 100%;
+                            float: none;
+                        }
+                        &:focus {outline:none;}
+                    }
+                }
+            }
+        }
+    }
+
+    .company_all_job_container{
+		margin-top: 20px;
+		margin-bottom: 10px;
+		clear: both;
+		.job_all_label{
+			padding-top: 10px;
+			padding-bottom: 20px;
+			font-size: 26px;
+			margin-right: 13px;
+			border-top-right-radius: 1px;
+			border-top-left-radius: 1px;
+			font-weight: 550;
+			span{
+				border-left: 5px solid #febb02;
+				padding-left: 5px;
+			}
+			@media screen and (max-width: 600px){
+				margin-top: 10px;
+				width: 100%;
+			}
+		}
+	}
+}
+
+
+/////////////////////search///////////////////////
+.company_job_search_index_block{
     .company_job_searched_input{
         display: block;
         margin-top: 30px;
@@ -1203,198 +1352,53 @@
             }
         }
     }
-
-	.company_job_search_input_block{
-		min-height: 444px;
-		background-color: #f8f9fa;
-		.company_job_bar{
-			padding-top: 75px;
-			@media screen and (max-width: 600px){
-				padding-top: 30px;
-			}
-			.company_job_bar_label
-			{
-				text-align: left;
-				h3{
-					font-size: 40px;
-					margin-bottom: 10px;
-					font-weight: 550;
-					color: #222;
-				}
-				a{
-					font-size: 22px;
-					color: #444;
-					@media screen and (max-width: 600px){
-						display: none;
-					}
-				}
-				margin-bottom: 50px;
-			}
-			
-			.company_job_search_input{
-				display: block;
-				.padding_customize{
-					@media screen and (min-width: 600px){
-						padding-left: 0px !important;
-						padding-right: 0px !important;
-					}
-				}
-				.company_job_search_what{
-					background-color: #fff;
-					border: 1px solid #e0e2e5;
-					width: 100%;
-					border-radius: 4px;
-                    position: relative;
-					i{
-						font-size: 22px;
-						color: #888;
-						position: absolute;
-						left: 10px;
-						top: 14px;
-					}
-					.form-control{
-						padding-left: 40px;
-						padding-right: 10px;
-						width: 100%;
-						height: 50px;
-						border: none;
-						box-shadow: none;
-						color: #333;
-						font-size: 16px;
-						outline:none;
-					}
-				}
-				.company_job_search_where{
-					background-color: #fff;
-					border: 1px solid #e0e2e5;
-					width: 100%;
-					border-radius: 4px;
-					@media screen and (max-width: 600px){
-						margin-top: 10px;
-						margin-bottom: 20px;
-					}
-                    position: relative;
-					i{
-						font-size: 22px;
-						color: #888;
-						position: absolute;
-						left: 10px;
-						top: 14px;
-					}
-					.form-control{
-						padding-left: 40px;
-						width: 100%;
-						height: 50px;
-						border: none;
-						box-shadow: none;
-						color: #333;
-						font-size:16px;
-						outline:none;
-						background: none;
-                        // &:focus{
-                        //     border: 2px solid #1877f2;
-                        //     border-radius: 4px;
-                        // }
-					}
-					button:focus{
-						border: none;
-						background: none;
-					}
-                    &:focus {outline:none;}
-				}
-				
-				.company_job_search_button{
-					border: none;
-					width: 100%;
-					button{
-						border: none;
-						border-radius: 4px;
-						background-color: #1877f2;
-						height: 50px;
-						color: #fff;
-						width: 100%;
-						font-size:16px;
-                        font-weight: 600;
-						@media screen and (max-width: 600px){
-							width: 100%;
-							float: none;
-						}
-                        &:focus {outline:none;}
-					}
-				}
-			}
-		}
-	}
-	
-    .company_job_search_index{
-        margin-top: 30px;
-        padding-bottom: 30px;
-        clear: both;
-        .company_job_label{
-            padding-top: 10px;
-            padding-bottom: 20px;
-            font-size: 22px;
-            margin-right: 13px;
-            border-top-right-radius: 1px;
-            border-top-left-radius: 1px;
-            font-weight: 550;
-            span{
-                border-left: 5px solid #febb02;
-                padding-left: 5px;
+    .company_job_filter_block{
+        margin-top: 20px;
+        .company_job_filter_input{
+            .form-control{
+                font-size: 14px;
             }
-            @media screen and (max-width: 600px){
-                margin-top: 10px;
+            margin-bottom: 10px;
+        }
+    
+        .company_job_filter_submit{
+            .form-control{
+                border: none;
+                border-radius: 4px;
+                background-color: #fff;
+                border: 2px solid #1877f2;
+                color: #333;
                 width: 100%;
+                font-size:14px;
+                &:focus {outline:none;}
+                a{
+                    position: relative;
+                    top: -5px;
+                    font-weight: 600;
+                    color: #444;
+                }
+                i{
+                    font-size: 20px;
+                    color: #666;
+                }
             }
         }
-    }	
-
-    .company_job_search_not_found_block{
-        margin-top: 30px;
-        .company_job_search_not_found_label{
-            padding-top: 10px;
+    }
+    
+    .company_job_search_block_result{
+        .company_job_search_index{
+            margin-top: 20px;
             padding-bottom: 20px;
-            font-size: 24px;
-            margin-right: 13px;
-            border-top-right-radius: 1px;
-            border-top-left-radius: 1px;
-            font-weight: 550;
-            span{
-                // border-left: 5px solid #febb02;
-                // padding-left: 5px;
-            }
-            @media screen and (max-width: 600px){
-                margin-top: 10px;
-                width: 100%;
-            }
-        }
-        .company_job_search_not_found_image{
-            display: flex;
-            justify-content: center;
-            img{
-                height: 100px;
-                width: 200px;
-                object-fit: cover;
-            }
-        }
-        .company_job_search_not_found_help{
-            margin-top: 10px;
-            a{
-                font-size: 16px;
-                font-weight: 600;
-            }
-        }
-        .company_job_search_not_found_suggest{
-            margin-top: 30px;
-            .company_job_search_not_found_suggest_label{
+            clear: both;
+            .company_job_label{
                 padding-top: 10px;
                 padding-bottom: 20px;
-                font-size: 24px;
+                font-size: 22px;
                 margin-right: 13px;
                 border-top-right-radius: 1px;
                 border-top-left-radius: 1px;
                 font-weight: 550;
-                a{
+                span{
                     border-left: 5px solid #febb02;
                     padding-left: 5px;
                 }
@@ -1403,29 +1407,63 @@
                     width: 100%;
                 }
             }
+        }	
+    
+        .company_job_search_not_found_block{
+            margin-top: 30px;
+            .company_job_search_not_found_label{
+                padding-top: 10px;
+                padding-bottom: 20px;
+                font-size: 24px;
+                margin-right: 13px;
+                border-top-right-radius: 1px;
+                border-top-left-radius: 1px;
+                font-weight: 550;
+                span{
+                    // border-left: 5px solid #febb02;
+                    // padding-left: 5px;
+                }
+                @media screen and (max-width: 600px){
+                    margin-top: 10px;
+                    width: 100%;
+                }
+            }
+            .company_job_search_not_found_image{
+                display: flex;
+                justify-content: center;
+                img{
+                    height: 100px;
+                    width: 200px;
+                    object-fit: cover;
+                }
+            }
+            .company_job_search_not_found_help{
+                margin-top: 10px;
+                a{
+                    font-size: 16px;
+                    font-weight: 600;
+                }
+            }
+            .company_job_search_not_found_suggest{
+                margin-top: 30px;
+                .company_job_search_not_found_suggest_label{
+                    padding-top: 10px;
+                    padding-bottom: 20px;
+                    font-size: 24px;
+                    margin-right: 13px;
+                    border-top-right-radius: 1px;
+                    border-top-left-radius: 1px;
+                    font-weight: 550;
+                    a{
+                        border-left: 5px solid #febb02;
+                        padding-left: 5px;
+                    }
+                    @media screen and (max-width: 600px){
+                        margin-top: 10px;
+                        width: 100%;
+                    }
+                }
+            }
         }
     }
-
-	.company_all_job_container{
-		margin-top: 20px;
-		margin-bottom: 10px;
-		clear: both;
-		.job_label{
-			padding-top: 10px;
-			padding-bottom: 20px;
-			font-size: 26px;
-			margin-right: 13px;
-			border-top-right-radius: 1px;
-			border-top-left-radius: 1px;
-			font-weight: 550;
-			span{
-				border-left: 5px solid #febb02;
-				padding-left: 5px;
-			}
-			@media screen and (max-width: 600px){
-				margin-top: 10px;
-				width: 100%;
-			}
-		}
-	}
 }
