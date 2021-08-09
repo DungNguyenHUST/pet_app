@@ -19,9 +19,6 @@
 	</div>
 <%else%>
 	<div id="job_<%=@company_job.id%>">
-	    <%if @company_job.urgent%>
-	        <a class="hot_label">Urgent</a>
-	    <%end%>
 	    <%if user_signed_in?%>
 	        <% pre_save = @company_job.company_save_jobs.find { |save| save.user_id == current_user.id} %>
 	        <% if pre_save %> 

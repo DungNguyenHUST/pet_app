@@ -16,6 +16,20 @@
 
     <div class="company_job_right">
         <div class="company_job_des">
+            <%if company_job.created_at > 1.week.ago.utc || company_job.urgent?%>
+                <div class="company_job_new_hot">
+                    <%if company_job.created_at > 1.week.ago.utc%>
+                        <div class="company_job_new">
+                            <span>MỚI</span>
+                        </div>
+                    <%elsif company_job.urgent?%>
+                        <div class="company_job_hot">
+                            <span>HOT</span>
+                        </div>
+                    <%end%>
+                </div>
+            <%end%>
+
             <div class="company_job_title">
                 <a><%= link_to (company_job.title), company_company_job_path(company, company_job) %></a>
             </div>
@@ -59,11 +73,8 @@
             <div class="company_job_date">
                 <a><%= time_ago_in_words(company_job.created_at) %> </a>
             </div>
-            <div class="company_job_hot_save">
+            <div class="company_job_save">
                 <div class="company_job_button_save" id="job_<%=company_job.id%>">
-                    <%if company_job.urgent%>
-                        <a class="hot_label">Urgent</a>
-                    <%end%>
                     <%if user_signed_in?%>
                         <% pre_save = company_job.company_save_jobs.find { |save| save.user_id == current_user.id} %>
                         <% if pre_save %> 
