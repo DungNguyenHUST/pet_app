@@ -3,7 +3,7 @@
     <div class="company_job_left">
         <div class="company_avatar">
             <%if company.avatar?%>
-                <%= link_to (image_tag(company.avatar.thumb.url)), image_path(url_for(company.avatar.thumb.url)), rel: "gallery" , :href => company_path(company)%>
+                <%= link_to (image_tag(company.avatar.thumb.url)), image_path(url_for(company.avatar.thumb.url)), rel: "gallery" , :href => company_path(company), target: :_blank%>
             <%end%>
         </div>
         
@@ -31,11 +31,11 @@
             <%end%>
 
             <div class="company_job_title">
-                <a><%= link_to (company_job.title), company_company_job_path(company, company_job) %></a>
+                <a><%= link_to (company_job.title), company_company_job_path(company, company_job), target: :_blank %></a>
             </div>
 
             <div class="company_job_company_name">
-                <a><%= link_to (company.name), company_path(company)%> </a>
+                <a><%= link_to (company.name), company_path(company), target: :_blank%> </a>
             </div>
 
             <%if company_job.description.present?%>
