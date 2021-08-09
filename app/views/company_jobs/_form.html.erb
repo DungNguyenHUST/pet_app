@@ -5,9 +5,15 @@
 				<%= form_for [@company, CompanyJob.new] do |f| %>
 						<div class="new_job_title">
 							<%if !@is_edit%>
-								<a>Tạo một công việc mới cho <%=@company.name%></a>
+								<a>Tạo một công mới - <%=@company.name%></a>
 							<%else%>
 								<a>Update tin tuyển dụng <%=@company_job.title%></a>
+							<%end%>
+						</div>
+
+						<div class="new_company_job_image">
+							<%if @company.avatar?%>
+								<img><%= image_tag @company.avatar.thumb.url %>
 							<%end%>
 						</div>
 

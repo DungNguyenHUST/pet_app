@@ -897,19 +897,35 @@
 /////////////////new//////////////////
 .new_job_form
 {
-    margin-bottom: 30px;
+    margin-top: 20px;
+    margin-bottom: 20px;
     .new_job_title{
+        float: left;
+        max-width: 80%;
         a{
             font-size: 22px;
-            font-weight: 600;
             color: #333;
             text-align: left;
+            font-weight: 600;
         }
-        margin-top: 20px;
-        margin-bottom: 20px;
+    }
+
+    .new_company_job_image{
+        float: right;
+        img{
+            max-width: 80px;
+            max-height: 80px;
+            border: 1px solid #e0e2e5;
+            border-radius: 4px;
+            @media screen and (max-width: 600px){
+                max-width: 50px;
+                max-height: 50px;
+            }
+        }
     }
 
     .new_job_title_sub{
+        clear: both;
         span{
             font-size: 13px;
             text-align: left;
