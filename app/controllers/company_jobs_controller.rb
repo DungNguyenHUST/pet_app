@@ -90,10 +90,10 @@ class CompanyJobsController < ApplicationController
             @salary = filter_params[:salary]
             @level = filter_params[:level]
             @post_date = filter_params[:post_date]
-            @job_type = filter_params[:job_type]
+            @typical = filter_params[:typical]
             @search = filter_params[:search]
             @location = filter_params[:location]
-            @filter_params_converted = filter_params_converted.new(@category, @salary, @level, @post_date, @job_type, @search, @location)
+            @filter_params_converted = filter_params_converted.new(@category, @salary, @level, @post_date, @typical, @search, @location)
 
             @job_filtereds = CompanyJob.friendly.filtered(@filter_params_converted ).order('created_at DESC').page(params[:page]).per(12)
             respond_to do |format|
@@ -106,11 +106,11 @@ class CompanyJobsController < ApplicationController
     private
 
     def company_job_param
-        params.require(:company_job).permit(:id, :title, :location, :description, :benefit, :requirement, :salary, :quantity, :category, :search, :end_date, :language, :level, :job_type, :urgent, :apply_another_site_flag, :apply_site, :address, {:skill => []})
+        params.require(:company_job).permit(:id, :title, :location, :description, :benefit, :requirement, :salary, :quantity, :category, :search, :end_date, :language, :level, :typical, :urgent, :apply_another_site_flag, :apply_site, :address, {:skill => []})
     end
 
     def filter_params
-        filter_params = params.require(:filter).permit(:category, :salary, :level, :post_date, :job_type, :search, :location)
+        filter_params = params.require(:filter).permit(:category, :salary, :level, :post_date, :typical, :search, :location)
     end
 
     def filter_params_converted
@@ -118,7 +118,7 @@ class CompanyJobsController < ApplicationController
                                             :salary,
                                             :level, 
                                             :post_date,
-                                            :job_type,
+                                            :typical,
                                             :search,
                                             :location)
     end

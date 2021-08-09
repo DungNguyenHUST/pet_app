@@ -2,15 +2,15 @@
 <% content_for :meta_description, @company_job.description %>
 
 <%# Google job structure data start %>
-<%if @company_job.job_type == "Full Time"%>
+<%if @company_job.typical == "Full Time"%>
     <%employmentType = "FULL_TIME"%>
-<%elsif @company_job.job_type == "Part Time"%>
+<%elsif @company_job.typical == "Part Time"%>
     <%employmentType = "PART_TIME"%>
-<%elsif @company_job.job_type == "Remote"%>
+<%elsif @company_job.typical == "Remote"%>
     <%employmentType = "FULL_TIME"%>
-<%elsif @company_job.job_type == "Tạm thời"%>
+<%elsif @company_job.typical == "Tạm thời"%>
     <%employmentType = "TEMPORARY"%>
-<%elsif @company_job.job_type == "Thực tập sinh"%>
+<%elsif @company_job.typical == "Thực tập sinh"%>
     <%employmentType = "INTERN"%>
 <%else%>
     <%employmentType = "OTHER"%>
@@ -269,8 +269,8 @@
                             <div class="job_right_title">
                                 <a> <i class="material-icons-outlined">check_circle_outline</i> LOẠI HÌNH CÔNG VIỆC</a>
                             </div>
-                            <%if !@company_job.job_type.to_s.empty?%>
-                                <span> <%= @company_job.job_type %></span>
+                            <%if !@company_job.typical.to_s.empty?%>
+                                <span> <%= @company_job.typical %></span>
                             <%else%>
                                 <span>---</span>
                             <%end%>

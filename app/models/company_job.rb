@@ -45,8 +45,8 @@ class CompanyJob < ApplicationRecord
             job_filter = job_filter.where("salary ILIKE?", "%#{filter_params.salary}%")
         end
 
-        if filter_params.job_type
-            job_filter = job_filter.where("job_type ILIKE?", "%#{filter_params.job_type}%")
+        if filter_params.typical
+            job_filter = job_filter.where("typical ILIKE?", "%#{filter_params.typical}%")
         end
 
         if filter_params.level
