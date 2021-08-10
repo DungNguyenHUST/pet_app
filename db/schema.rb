@@ -215,6 +215,7 @@ ActiveRecord::Schema.define(version: 2021_08_10_023348) do
     t.string "company_name_converted"
     t.string "level_converted"
     t.string "skill_converted"
+    t.string "typical_converted"
     t.string "experience"
     t.string "experience_converted"
     t.string "policy"

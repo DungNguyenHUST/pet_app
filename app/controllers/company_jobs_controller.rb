@@ -82,14 +82,38 @@ class CompanyJobsController < ApplicationController
 
         # Filter
         if params.has_key?(:filter)
-            @category = filter_params[:category]
-            @salary = filter_params[:salary]
-            @level = filter_params[:level]
-            @post_date = filter_params[:post_date]
-            @typical = filter_params[:typical]
-            @search = filter_params[:search]
-            @location = filter_params[:location]
-            @filter_params_converted = filter_params_converted.new(@category, @salary, @level, @post_date, @typical, @search, @location)
+            @category = nil
+            @salary_min = nil
+            @salary_max = nil
+            @level = nil
+            @post_date = nil
+            @typical = nil
+
+            if filter_params[:category].present?
+                @category = convert_vie_to_eng(filter_params[:category])
+            end
+
+            if filter_params[:salary].present?
+                @salary_min = convert_salary_to_min(filter_params[:salary])
+                @salary_max = convert_salary_to_max(filter_params[:salary])
+            end
+
+            if filter_params[:level].present?
+                @level = convert_vie_to_eng(filter_params[:level])
+            end
+
+            if filter_params[:post_date].present?
+                @post_date = convert_vie_to_eng(filter_params[:post_date]).scan(/\d+/).map(&:to_i).first
+            end
+
+            if filter_params[:typical].present?
+                @typical = convert_vie_to_eng(filter_params[:typical])
+            end
+
+            @search = convert_vie_to_eng(filter_params[:search])
+            @location = convert_vie_to_eng(filter_params[:location])
+            @filter_params_converted = filter_params_converted.new(@category, @salary_min, @salary_max, @level, 
+                                                                    @post_date, @typical, @search, @location)
 
             @job_filtereds = CompanyJob.friendly.filtered(@filter_params_converted ).order('created_at DESC').page(params[:page]).per(12)
             respond_to do |format|
@@ -115,7 +139,8 @@ class CompanyJobsController < ApplicationController
 
     def filter_params_converted
         filter_params_converted = Struct.new(:category,
-                                            :salary,
+                                            :salary_min,
+                                            :salary_max,
                                             :level, 
                                             :post_date,
                                             :typical,

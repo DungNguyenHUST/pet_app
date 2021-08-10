@@ -45,28 +45,75 @@
                 <div class="row">
                     <div class="col-sm-2">
                         <div class="company_job_filter_input">
-                            <%= f.select(:category, options_for_select(['IT - Phần mềm', 
-                                                                        'IT - Phần cứng', 
-                                                                        'Viễn thông', 
-                                                                        'Kiến trúc', 
-                                                                        'Xây dựng', 
-                                                                        'Sức khỏe', 
-                                                                        'Online Media', 
-                                                                        'Dịch vụ', 
-                                                                        'Giải trí', 
-                                                                        'Du lịch', 
-                                                                        'Giáo dục', 
-                                                                        'Government', 
-                                                                        'Sản xuất', 
-                                                                        'Nghiên cứu', 
-                                                                        'Business Management', 
-                                                                        'Ngân hàng', 
-                                                                        'Tài chính', 
-                                                                        'Đầu tư', 
-                                                                        'Nhân sự', 
-                                                                        'Luật', 
-                                                                        'Marketing and Sales', 
-                                                                        'Logistics']), {include_blank: false, :prompt => "Tất cả ngành nghề"}, { :class => 'form-control'})  %>
+                            <%= f.select(:category, options_for_select(["Bác sĩ",
+                                                                        "Bán hàng kỹ thuật",
+                                                                        "Bán hàng",
+                                                                        "Bán lẻ - Bán sỉ",
+                                                                        "Bảo hiểm",
+                                                                        "Bảo trì - Sửa chữa",
+                                                                        "Bất động sản",
+                                                                        "Biên phiên dịch",
+                                                                        "Cấp quản lý điều hành",
+                                                                        "Chứng khoán",
+                                                                        "Cơ khí",
+                                                                        "Công nghệ cao",
+                                                                        "Dầu khí",
+                                                                        "Dệt may - Da giày",
+                                                                        "Dịch vụ khách hàng",
+                                                                        "Dược Phẩm - Công nghệ sinh học",
+                                                                        "Dược sĩ",
+                                                                        "Giáo dục - Đào tạo",
+                                                                        "Hàng cao cấp",
+                                                                        "Hàng gia dụng",
+                                                                        "Hàng hải",
+                                                                        "Hàng không - Du lịch",
+                                                                        "Hàng tiêu dùng",
+                                                                        "Hành chánh - Thư ký",
+                                                                        "Hóa học - Hóa sinh",
+                                                                        "Hoạch định - Dự án",
+                                                                        "In ấn -  Xuất bản",
+                                                                        "Internet - Online Media",
+                                                                        "IT - Phần mềm",
+                                                                        "IT-Phần cứng - Mạng",
+                                                                        "Kế toán",
+                                                                        "Khác",
+                                                                        "Kho vận",
+                                                                        "Kiểm toán",
+                                                                        "Kiến trúc - Thiết kế nội thất ",
+                                                                        "Marketing",
+                                                                        "Mới tốt nghiệp",
+                                                                        "Môi trường - Xử lý chất thải",
+                                                                        "Mỹ Thuật - Nghệ Thuật - Thiết Kế",
+                                                                        "Ngân hàng",
+                                                                        "Người nước ngoài - Việt Kiều",
+                                                                        "Nhà hàng - Khách sạn",
+                                                                        "Nhân sự",
+                                                                        "Nông nghiệp - Lâm nghiệp",
+                                                                        "Overseas Jobs",
+                                                                        "Pháp lý",
+                                                                        "Phi chính phủ - Phi lợi nhuận",
+                                                                        "QA - QC",
+                                                                        "Quảng cáo - Khuyến mãi - Đối ngoại",
+                                                                        "Sản phẩm công nghiệp",
+                                                                        "Sản Xuất",
+                                                                        "Tài chính - Đầu tư",
+                                                                        "Thời trang",
+                                                                        "Thời vụ - Hợp đồng ngắn hạn",
+                                                                        "Thu Mua - Vật Tư - Cung Vận",
+                                                                        "Thực phẩm &amp; Đồ uống",
+                                                                        "Trình dược viên",
+                                                                        "Truyền hình - Truyền thông - Báo chí",
+                                                                        "Tư vấn",
+                                                                        "Tự động hóa - Ô tô",
+                                                                        "Vận chuyển - Giao nhận",
+                                                                        "Viễn Thông",
+                                                                        "Xây dựng",
+                                                                        "Xuất nhập khẩu",
+                                                                        "Y sĩ - Hộ lý",
+                                                                        "Y tế - Chăm sóc sức khỏe",
+                                                                        "Địa chất - Khoáng sản",
+                                                                        "Điện lạnh - Nhiệt lạnh",
+                                                                        "Điện - Điện tử"]), {include_blank: false, :prompt => "Tất cả ngành nghề"}, { :class => 'form-control'})  %>
                         </div>
                     </div>
 
@@ -97,15 +144,21 @@
 
                     <div class="col-sm-2">
                         <div class="company_job_filter_input">
-                            <%= f.select(:level, options_for_select(['Nhân viên', 'Junior', 'Middle', 'Senior', 'Expert', 'Leader', 'Architect']), 
-                                                                        {include_blank: false, :prompt => "Tất cả cấp bậc"}, 
-                                                                        { :class => 'form-control'})  %>
+                            <%= f.select(:level, options_for_select(['Nhân viên', 
+                                                                    'Thực tập sinh', 
+                                                                    'Mới tốt nghiệp', 
+                                                                    'Trưởng nhóm',
+                                                                    'Quản lý', 
+                                                                    'Quản lý cấp cao',
+                                                                    'Giám đốc']), 
+                                                                    {include_blank: false, :prompt => "Tất cả cấp bậc"}, 
+                                                                    { :class => 'form-control'})  %>
                         </div>
                     </div>
 
                     <div class="col-sm-2">
                         <div class="company_job_filter_input">
-                            <%= f.select(:post_date, options_for_select(['24h qua', '3 ngày qua', '1 tuần qua', '2 tuần qua', '1 tháng qua']), 
+                            <%= f.select(:post_date, options_for_select(['1 ngày qua', '3 ngày qua', '7 ngày qua', '14 ngày qua', '30 ngày qua']), 
                                                                             {include_blank: false, :prompt => "Tất cả thời gian"}, 
                                                                             { :class => 'form-control'})  %>
                         </div>
@@ -113,9 +166,14 @@
 
                     <div class="col-sm-2">
                         <div class="company_job_filter_input">
-                            <%= f.select(:typical, options_for_select(['Full Time', 'Part Time', 'Remote', 'Tạm thời', "Thực tập sinh"]),
-                                                                    {include_blank: false, :prompt => "Tất cả loại hình"},
-                                                                    { :class => 'form-control'})  %>
+                            <%= f.select(:typical, options_for_select(['Toàn thời gian', 
+                                                                        'Bán thời gian', 
+                                                                        'Tự do', 
+                                                                        'Tạm thời', 
+                                                                        "Thực tập sinh",
+                                                                        "Remote - Làm việc từ xa"]),
+                                                                        {include_blank: false, :prompt => "Tất cả loại hình"},
+                                                                        { :class => 'form-control'})  %>
                         </div>
                     </div>
 

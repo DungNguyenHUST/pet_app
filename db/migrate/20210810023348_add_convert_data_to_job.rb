@@ -7,6 +7,7 @@ class AddConvertDataToJob < ActiveRecord::Migration[6.1]
     add_column :company_jobs, :company_name_converted, :string
     add_column :company_jobs, :level_converted, :string
     add_column :company_jobs, :skill_converted, :string
+    add_column :company_jobs, :typical_converted, :string
     add_column :company_jobs, :experience, :string
     add_column :company_jobs, :experience_converted, :string
     add_column :company_jobs, :policy, :string

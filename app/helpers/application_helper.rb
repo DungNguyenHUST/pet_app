@@ -94,6 +94,8 @@ module ApplicationHelper
             new_str.gsub! /[úùụũủưứựừữử]/, "u"
             new_str.gsub! /[íịìĩỉ]/, "i"
             new_str.gsub! /[ýỵỹỳỷ]/, "y"
+            new_str.gsub! /[-,.!@#$%^^&*():'"?<>]/, ""
+            new_str.squish!
             return new_str
         end
     end

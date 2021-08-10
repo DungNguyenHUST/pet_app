@@ -30,27 +30,31 @@ class CompanyJob < ApplicationRecord
 
     def self.filtered(filter_params)
         if filter_params.search
-            job_filter = CompanyJob.where("title ILIKE?", "%#{filter_params.search}%")
+            job_filter = CompanyJob.search(filter_params.search, filter_params.location)
         end
 
-        if filter_params.location && filter_params.location != "Tất cả địa điểm"
-            job_filter = job_filter.where("location ILIKE?", "%#{filter_params.location}%")
+        unless filter_params.category.nil?
+            job_filter = job_filter.where("category_converted ILIKE?", "%#{filter_params.category}%")
         end
 
-        if filter_params.category
-            job_filter = job_filter.where("category ILIKE?", "%#{filter_params.category}%")
+        unless filter_params.salary_min.nil?
+            job_filter = job_filter.where("salary_min >= ?", filter_params.salary_min.to_i)
         end
 
-        if filter_params.salary
-            job_filter = job_filter.where("salary ILIKE?", "%#{filter_params.salary}%")
+        unless filter_params.salary_max.nil?
+            job_filter = job_filter.where("salary_max <= ?", filter_params.salary_max.to_i)
         end
 
-        if filter_params.typical
-            job_filter = job_filter.where("typical ILIKE?", "%#{filter_params.typical}%")
+        unless filter_params.typical.nil?
+            job_filter = job_filter.where("typical_converted ILIKE?", "%#{filter_params.typical}%")
         end
 
-        if filter_params.level
-            job_filter = job_filter.where("level ILIKE?", "%#{filter_params.level}%")
+        unless filter_params.level.nil?
+            job_filter = job_filter.where("level_converted ILIKE?", "%#{filter_params.level}%")
+        end
+
+        unless filter_params.post_date.nil?
+            job_filter = job_filter.where("created_at >= ?", filter_params.post_date.day.ago.utc)
         end
 
         if(job_filter)

@@ -55,6 +55,10 @@ module CompanyJobsHelper
                 company_job.level_converted = convert_vie_to_eng(company_job.level)
             end
 
+            if company_job.typical
+                company_job.typical_converted = convert_vie_to_eng(company_job.typical)
+            end
+
             if company_job.skill
                 data_temp = ''
                 company_job.skill.each do |skill|
