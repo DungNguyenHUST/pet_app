@@ -26,42 +26,49 @@ module CompanyJobsHelper
     end
 
     def convert_job_param(company_job)
-        if company_job.title
-            company_job.title_converted = convert_vie_to_eng(company_job.title)
-        end
+        if company_job
+            company = company_job.company
 
-        if company_job.location
-            company_job.location_converted = convert_vie_to_eng(company_job.location)
-        end
-
-        if company_job.salary
-            company_job.salary_min = convert_salary_to_min(company_job.salary)
-            company_job.salary_max = convert_salary_to_max(company_job.salary)
-        end
-
-        if company_job.category
-            company_job.category_converted = convert_vie_to_eng(company_job.category)
-        end
-
-        if company_job.company_name
-            company_job.company_name_converted = convert_vie_to_eng(company_job.company_name)
-        end
-
-        if company_job.level
-            company_job.level_converted = convert_vie_to_eng(company_job.level)
-        end
-
-        if company_job.skill
-            data_temp = ''
-            company_job.skill.each do |skill|
-                data_temp += convert_vie_to_eng(skill)
+            if company_job.title
+                company_job.title_converted = convert_vie_to_eng(company_job.title)
             end
-            company_job.skill_converted = data_temp
-        end
 
-        if company_job.experience
-            company_job.experience_converted = convert_vie_to_eng(company_job.experience)
+            if company_job.location
+                company_job.location_converted = convert_vie_to_eng(company_job.location)
+            end
+
+            if company_job.salary
+                company_job.salary_min = convert_salary_to_min(company_job.salary)
+                company_job.salary_max = convert_salary_to_max(company_job.salary)
+            end
+
+            if company_job.category
+                company_job.category_converted = convert_vie_to_eng(company_job.category)
+            end
+
+            if company && company.name
+                company_job.company_name = company.name
+                company_job.company_name_converted = convert_vie_to_eng(company_job.company_name)
+            end
+
+            if company_job.level
+                company_job.level_converted = convert_vie_to_eng(company_job.level)
+            end
+
+            if company_job.skill
+                data_temp = ''
+                company_job.skill.each do |skill|
+                    data_temp += convert_vie_to_eng(skill)
+                end
+                company_job.skill_converted = data_temp
+            end
+
+            if company_job.experience
+                company_job.experience_converted = convert_vie_to_eng(company_job.experience)
+            end
+            return company_job
+        else
+            return nil
         end
-        return company_job
     end
 end

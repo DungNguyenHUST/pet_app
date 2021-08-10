@@ -21,7 +21,6 @@ class CompanyJobsController < ApplicationController
             @company_job.user_id = current_employer.id
         end
 
-        @company_job.company_name = @company.name
         @company_job = convert_job_param(@company_job)
 
         if @company_job.save
