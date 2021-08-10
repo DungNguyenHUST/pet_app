@@ -107,13 +107,14 @@ module ItviecScraper
                     language = "Tùy chọn"
                     dudate = Time.now
                     end_date = Time.now + 30.days
-                    typical = "Full Time"
+                    typical = "Toàn thời gian"
                     urgent = false
                     apply_another_site_flag = true
                     apply_site = job_summary_param.job_link.to_s
                     address = @company.address
                     approved = true
-                    user_id = 1
+                    user_id = Admin.first.id
+                    experience = "Không yêu cầu"
                     
                     if title.present? && apply_site.present?
                         deatail_data_temp = job_params.new(title,
@@ -133,7 +134,9 @@ module ItviecScraper
                                                             address,
                                                             user_id,
                                                             approved,
-                                                            @company.id)
+                                                            @company.id,
+                                                            @company.name,
+                                                            experience)
 
                         processing_detail_datas.push(deatail_data_temp)
                     end

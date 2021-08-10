@@ -1,5 +1,7 @@
 module CommonScraper
     include ApplicationHelper
+    include CompanyJobsHelper
+
     def job_params
         job_param = Struct.new(:title,
                 :detail,
@@ -18,7 +20,9 @@ module CommonScraper
                 :address,
                 :user_id,
                 :approved,
-                :company_id)
+                :company_id,
+                :company_name,
+                :experience)
     end
 
     def job_summary_params
@@ -86,11 +90,9 @@ module CommonScraper
                     job_exsit = CompanyJob.find_by(company_id: job_data.company_id, apply_site: job_data.apply_site)
                     unless job_exsit.present?
                         @company = Company.friendly.find_by_id(job_data.company_id)
-                        @company_job = @company.company_jobs.create!(:title => job_data.title,
-                                                :title_converted => convert_vie_to_eng(job_data.title),
+                        @company_job = @company.company_jobs.build(:title => job_data.title,
                                                 :detail => job_data.detail,
                                                 :location => job_data.location,
-                                                :location_converted => convert_vie_to_eng(job_data.location),
                                                 :salary => job_data.salary,
                                                 :quantity => job_data.quantity,
                                                 :category => job_data.category,
@@ -104,7 +106,11 @@ module CommonScraper
                                                 :apply_site => job_data.apply_site,
                                                 :address => job_data.address,
                                                 :user_id => job_data.user_id,
-                                                :approved => job_data.approved)
+                                                :approved => job_data.approved,
+                                                :company_name => job_data.company_name,
+                                                :experience => job_data.experience)
+                                                
+                        @company_job = convert_job_param(@company_job)
                         @company_job.save!
                     end
                 end

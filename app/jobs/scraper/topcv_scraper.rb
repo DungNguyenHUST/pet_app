@@ -116,7 +116,8 @@ module TopcvScraper
                     apply_site = job_summary_param.job_link.to_s
                     address = @company.address
                     approved = true
-                    user_id = 1
+                    user_id = Admin.first.id
+                    experience = "Không yêu cầu"
                     
                     if title.present? && apply_site.present? && detail.present?
                         deatail_data_temp = job_params.new(title,
@@ -136,7 +137,9 @@ module TopcvScraper
                                                             address,
                                                             user_id,
                                                             approved,
-                                                            @company.id)
+                                                            @company.id,
+                                                            @company.name,
+                                                            experience)
 
                         processing_detail_datas.push(deatail_data_temp)
                     end
