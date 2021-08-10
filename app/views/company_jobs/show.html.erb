@@ -60,8 +60,16 @@
         "currency": "VND",
         "value": {
         "@type": "QuantitativeValue",
-        "minValue": <%=convert_salary_to_min(@company_job)%>,
-        "maxValue": <%=convert_salary_to_max(@company_job)%>,
+    <%if @company_job.salary_min%>
+        "minValue": <%=@company_job.salary_min%>,
+    <%else%>
+        "minValue": 0,
+    <%end%>
+    <%if @company_job.salary_max%>
+        "maxValue": <%=@company_job.salary_max%>,
+    <%else%>
+        "maxValue": 0,
+    <%end%>
         "unitText": "MONTH"
         }
     }
