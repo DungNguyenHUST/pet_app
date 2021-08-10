@@ -340,9 +340,11 @@ module CompaniesHelper
         when 14
             benefit_string = "Câu lạc bộ âm nhạc"
         when 15
-            benefit_string = "Laptop, màn hình xịn"
+            benefit_string = "Laptop, màn hình, điện thoại"
         when 16
             benefit_string = "Đào tạo chuyên nghiệp"
+        when 17
+            benefit_string = "Trông trẻ"
         else
             benefit_string = "Đang cập nhật"
         end
@@ -385,6 +387,8 @@ module CompaniesHelper
             benefit_icon = "laptop"
         when 16
             benefit_icon = "school"
+        when 17
+            benefit_icon = "child_care"
         else
             benefit_icon = "scatter_plot"
         end

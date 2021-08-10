@@ -257,8 +257,19 @@
 																			'Việt Nam',
 																			'Yemen',
 																			'Zambia',
-																			'Zimbabwe'], "Việt Nam"), {include_blank: false}, { :class => 'form-control' }) %>
+																			'Zimbabwe'], "Việt Nam"), {include_blank: false}, { :class => 'form-control company_country_select' }) %>
 							</div>
+							<script>
+								$(document).ready(function() {
+									$('.company_country_select').select2({
+										placeholder: "-- Chọn một quốc gia --",
+										allowClear: true,
+										width: 'resolve',
+										theme: "bootstrap",
+										selectOnClose: true
+									});
+								});
+							</script>
 						</div>
 						
 						<div class="new_company_content">
@@ -277,38 +288,88 @@
 							</div>
 
 							<div class="new_company_input">
-								<%= f.select(:field_operetion, options_for_select(['Công nghệ thông tin - IT', 
-																				'Viễn thông - Telecommunication', 
-																				'Thương mại điện tử - E-commerce',
-																				'Tài chính, Ngân hàng - Finance', 
-																				'Chứng khoán - Stock index', 
-																				'Hàng không - Aerospace', 
-																				'Vận tải - Transport', 
-																				'Logistics',
-																				'Bán dẫn - Computer', 
-																				'Nông nghiệp - Agriculture', 
-																				'Xây dựng - Construction', 
-																				'Giáo dục - Education', 
-																				'Dược phẩm - Pharmaceutical', 
-																				'Du lịch - Travel', 
-																				'Dịch vụ - Service',
-																				'Sale, Marketing',
-																				'Ăn uống - Food', 
-																				'Chăm sóc sức khỏe - Health care', 
-																				'Bảo hiểm - Insurance', 
-																				'Bảo vệ - Security',
-																				'Luật - Law',
-																				'Bất động sản - Property',
-																				'Bệnh viện - Hospitality', 
-																				'Giải trí - Entertainment ', 
-																				'Truyền thông - Media', 
-																				'Năng lượng - Energy', 
-																				'Sản xuất - Manufacturing', 
-																				'Âm nhạc - Music', 
-																				'Khai thác mỏ, dầu khí - Mining', 
-																				'Worldwide web, hosting', 
-																				'Không xác định'], 'Không xác định'), {include_blank: false}, { :class => 'form-control' }) %>
+								<%= f.select(:field_operetion, options_for_select(["An Ninh - Bảo Vệ",
+																					"An toàn lao động",
+																					"Bán hàng - Kinh doanh",
+																					"Bán lẻ - Bán sỉ",
+																					"Bảo hiểm",
+																					"Bất động sản",
+																					"Biên phiên dịch",
+																					"Bưu chính viễn thông",
+																					"Chăn nuôi - Thú y",
+																					"Chứng khoán",
+																					"CNTT - Phần cứng - Mạng",
+																					"CNTT - Phần mềm",
+																					"Công nghệ sinh học",
+																					"Công nghệ thực phẩm - Dinh dưỡng",
+																					"Cơ khí - Ô tô - Tự động hóa",
+																					"Dầu khí",
+																					"Dệt may - Da giày - Thời trang",
+																					"Dịch vụ khách hàng",
+																					"Du lịch",
+																					"Dược phẩm",
+																					"Điện - Điện tử - Điện lạnh",
+																					"Đồ gỗ",
+																					"Giải trí",
+																					"Giáo dục - Đào tạo",
+																					"Hàng gia dụng - Chăm sóc cá nhân",
+																					"Hàng hải",
+																					"Hàng không",
+																					"Hành chính - Thư ký",
+																					"Hóa học",
+																					"In ấn - Xuất bản",
+																					"Kế toán - Kiểm toán",
+																					"Khoáng sản",
+																					"Kiến trúc",
+																					"Lao động phổ thông",
+																					"Lâm Nghiệp",
+																					"Luật - Pháp lý",
+																					"Môi trường",
+																					"Mới tốt nghiệp - Thực tập",
+																					"Mỹ thuật - Nghệ thuật - Thiết kế",
+																					"Ngân hàng",
+																					"Nhà hàng - Khách sạn",
+																					"Nhân sự",
+																					"Nội ngoại thất",
+																					"Nông nghiệp",
+																					"Phi chính phủ - Phi lợi nhuận",
+																					"Quản lý chất lượng (QA - QC)",
+																					"Quản lý điều hành",
+																					"Quảng cáo - Đối ngoại - Truyền Thông",
+																					"Sản xuất - Vận hành sản xuất",
+																					"Tài chính - Đầu tư",
+																					"Thống kê",
+																					"Thu mua - Vật tư",
+																					"Thủy lợi",
+																					"Thủy sản - Hải sản",
+																					"Thư viện",
+																					"Thực phẩm & Đồ uống",
+																					"Tiếp thị - Marketing",
+																					"Tiếp thị trực tuyến",
+																					"Tổ chức sự kiện",
+																					"Trắc địa - Địa Chất",
+																					"Truyền hình - Báo chí - Biên tập",
+																					"Tư vấn",
+																					"Vận chuyển - Giao nhận - Kho vận",
+																					"Xây dựng",
+																					"Xuất nhập khẩu",
+																					"Y tế - Chăm sóc sức khỏe",
+																					"Bảo trì - Sửa chữa",
+																					"Ngành khác",
+																					'Không xác định'], 'Không xác định'), {include_blank: false}, 
+																					{ :class => 'form-control company_field_operetion_select' }) %>
 							</div>
+							<script>
+								$(document).ready(function() {
+									$('.company_field_operetion_select').select2({
+										placeholder: "-- Chọn một ngành nghề công ty --",
+										allowClear: true,
+										width: 'resolve',
+										theme: "bootstrap",
+										selectOnClose: true
+									});
+								});
+							</script>
 						</div>
 
 						<div class="new_company_content">
@@ -444,7 +505,7 @@
 										<%end%>
 									</div>
 									<div class="col-sm-4">
-										<%select_data_3 = [12,13,14,15,16]%>
+										<%select_data_3 = [12,13,14,15,16,17]%>
 										<%select_data_3.each do |select_data|%>
 											<div class="new_company_input_checkbox_block">
 												<a><%= f.check_box :benefit, { multiple: true, class: "check_box_style"}, select_data, nil %> <%=convert_benefit_to_string(select_data)%></a>
