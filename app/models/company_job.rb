@@ -10,18 +10,18 @@ class CompanyJob < ApplicationRecord
     # validates :requirement, presence: true
     # validates :benefit, presence: true
 
-    def self.search(search)
+    def self.search(search, location)
         if search
-            job_search = CompanyJob.where("title_converted ILIKE?", "%#{search}%")
-            if(job_search)
-                self.where(id: job_search)
+            job_search = CompanyJob.where("title_converted ILIKE? OR company_name_converted ILIKE? OR skill_converted ILIKE? OR category_converted ILIKE?", 
+                                        "%#{search}%", 
+                                        "%#{search}%",
+                                        "%#{search}%",
+                                        "%#{search}%")
+            if job_search && location
+                job_search = job_search.where("location_converted ILIKE?",
+                                            "%#{location}%")
             end
-        end
-    end
-	
-	def self.search_advance(search, location)
-        if search && location
-            job_search = CompanyJob.where("title_converted ILIKE? AND location_converted ILIKE?", "%#{search}%", "%#{location}%")
+
             if(job_search)
                 self.where(id: job_search)
             end

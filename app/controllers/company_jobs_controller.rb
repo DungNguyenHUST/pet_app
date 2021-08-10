@@ -77,11 +77,7 @@ class CompanyJobsController < ApplicationController
 		if(params.has_key?(:search) && params.has_key?(:location))
 			@search = convert_vie_to_eng(params[:search])
 			@location = convert_vie_to_eng(params[:location])
-            if @location.to_s == "tat ca dia diem"
-                @job_searchs = CompanyJob.friendly.search(@search).order('created_at DESC').page(params[:page]).per(12)
-            else
-			    @job_searchs = CompanyJob.friendly.search_advance(@search, @location).order('created_at DESC').page(params[:page]).per(12)
-            end
+            @job_searchs = CompanyJob.friendly.search(@search, @location).order('created_at DESC').page(params[:page]).per(12)
         end
 
         # Filter

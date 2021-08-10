@@ -30,15 +30,6 @@ class Company < ApplicationRecord
         end
     end
 	
-	def self.search_advance(search, location)
-        if search && location
-            company_search = Company.where("name_converted ILIKE? AND location_converted ILIKE?", "%#{search}%", "%#{location}%")
-            if(company_search)
-                self.where(id: company_search)
-            end
-        end
-    end
-	
 	def self.approved
 		where(approved: :true)
 	end
