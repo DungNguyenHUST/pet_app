@@ -106,7 +106,11 @@ class CompanyJobsController < ApplicationController
     private
 
     def company_job_param
-        params.require(:company_job).permit(:id, :title, :location, :description, :benefit, :requirement, :salary, :quantity, :category, :search, :end_date, :language, :level, :typical, :urgent, :apply_another_site_flag, :apply_site, :address, {:skill => []})
+        params.require(:company_job).permit(:id, :title, :location, :description, :benefit, 
+                                            :requirement, :salary, :quantity, :category, 
+                                            :search, :end_date, :language, :level, :typical, 
+                                            :urgent, :apply_another_site_flag, :apply_site, 
+                                            :address, :experience, :policy, {:skill => []})
     end
 
     def filter_params
