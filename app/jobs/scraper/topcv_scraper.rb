@@ -110,7 +110,7 @@ module TopcvScraper
                     language = "Tùy chọn"
                     dudate = Time.now
                     end_date = Time.now + 30.days
-                    typical = "Full Time"
+                    typical = "Toàn thời gian"
                     urgent = false
                     apply_another_site_flag = true
                     apply_site = job_summary_param.job_link.to_s
