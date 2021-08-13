@@ -24,7 +24,7 @@
 						<div class="new_job_section">
 							<div class="new_job_content">
 								<div class="new_job_label">
-									<a><%= f.label :title, "Tên việc làm cần tuyển dụng*", class: "new_job_label" %></a>
+									<a><%= f.label :title, "Tên việc làm cần tuyển dụng", class: "new_job_label" %><span>*</span></a>
 								</div>
 								
 								<div class="new_job_input">
@@ -34,7 +34,7 @@
 
 							<!-- <div class="new_job_content">
 								<div class="new_job_label">
-									<a><%= f.label :urgent, "Bạn cần tuyển gấp hay không?*", class: "new_job_label" %></a>
+									<a><%= f.label :urgent, "Bạn cần tuyển gấp hay không?", class: "new_job_label" %></a>
 								</div>
 								<div class="new_job_input">
 									<%= f.select(:urgent, options_for_select([['Không, tôi không cần tuyển gấp', false], ['Có, tôi cần tuyển gấp', true]]), {include_blank: false}, { :class => 'form-control' }) %>
@@ -43,7 +43,7 @@
 							
 							<div class="new_job_content">
 								<div class="new_job_label">
-									<a><%= f.label :level, "Vị trí cần tuyển dụng*", class: "new_job_label" %></a>
+									<a><%= f.label :level, "Vị trí cần tuyển dụng", class: "new_job_label" %><span>*</span></a>
 								</div>
 								
 								<div class="new_job_input">
@@ -59,7 +59,7 @@
 
 							<div class="new_job_content">
 								<div class="new_job_label">
-									<a><%= f.label :location, "Thành phố nơi làm việc*", class: "new_job_label" %></a>
+									<a><%= f.label :location, "Thành phố nơi làm việc", class: "new_job_label" %><span>*</span></a>
 								</div>
 								
 								<div class="new_job_input">
@@ -90,7 +90,7 @@
 
 							<div class="new_job_content">
 								<div class="new_job_label">
-									<a><%= f.label :salary, "Mức lương dự kiến*", class: "new_job_label" %></a>
+									<a><%= f.label :salary, "Mức lương dự kiến", class: "new_job_label" %><span>*</span></a>
 								</div>
 								
 								<div class="new_job_input">
@@ -123,7 +123,7 @@
 						<div class="new_job_section">
 							<div class="new_job_content">
 								<div class="new_job_label">
-									<a><%= f.label :category, "Ngành nghề chính của công việc*", class: "new_job_label" %></a>
+									<a><%= f.label :category, "Ngành nghề chính của công việc", class: "new_job_label" %><span>*</span></a>
 								</div>
 								
 								<div class="new_job_input">
@@ -213,7 +213,7 @@
 
 							<div class="new_job_content">
 								<div class="new_job_label">
-									<a><%= f.label :typical, "Loại hình công việc*", class: "new_job_label" %></a>
+									<a><%= f.label :typical, "Loại hình công việc", class: "new_job_label" %><span>*</span></a>
 								</div>
 								
 								<div class="new_job_input">
@@ -230,7 +230,7 @@
 
 							<div class="new_job_content">
 								<div class="new_job_label">
-									<a><%= f.label :experience, "Số năm kinh nghiệm*", class: "new_job_label" %></a>
+									<a><%= f.label :experience, "Số năm kinh nghiệm", class: "new_job_label" %><span>*</span></a>
 								</div>
 								
 								<div class="new_job_input">
@@ -246,7 +246,7 @@
 
 							<div class="new_job_content">
 								<div class="new_job_label">
-									<a><%= f.label :quantity, "Số lượng vị trí cần tuyển dụng*", class: "new_job_label" %></a>
+									<a><%= f.label :quantity, "Số lượng vị trí cần tuyển dụng", class: "new_job_label" %><span>*</span></a>
 								</div>
 								
 								<div class="new_job_input">
@@ -256,7 +256,7 @@
 
 							<div class="new_job_content">
 								<div class="new_job_label">
-									<a><%= f.label :end_date, "Ngày hết hạn nộp hồ sơ*", class: "new_job_label" %></a>
+									<a><%= f.label :end_date, "Ngày hết hạn nộp hồ sơ", class: "new_job_label" %><span>*</span></a>
 								</div>
 								
 								<div class="new_job_input">
@@ -278,7 +278,7 @@
 								<%= f.hidden_field :apply_another_site_flag, :value => true %>
 								<div class="new_job_content">
 									<div class="new_job_label">
-										<a><%= f.label :apply_site, "Company Site to apply - Admin only*", class: "new_job_label" %></a>
+										<a><%= f.label :apply_site, "Company Site to apply - Admin only", class: "new_job_label" %><span>*</span></a>
 									</div>
 									
 									<div class="new_job_input">
@@ -288,10 +288,10 @@
 							<%end%>
 						</div>
 						
-						<div class="new_job_section_content">
+						<div class="new_job_section">
 							<div class="new_job_content">
 								<div class="new_job_label">
-									<a><%= f.label :description, "Mô tả chung về công việc*", class: "new_job_label" %></a>
+									<a><%= f.label :description, "Mô tả chung về công việc", class: "new_job_label" %><span>*</span></a>
 								</div>
 								
 								<div class="new_job_input">
@@ -646,7 +646,7 @@
 
 							<div class="new_job_content">
 								<div class="new_job_label">
-									<a><%= f.label :requirement, "Yêu câu công việc chi tiết*", class: "new_job_label" %></a>
+									<a><%= f.label :requirement, "Yêu câu công việc chi tiết", class: "new_job_label" %><span>*</span></a>
 								</div>
 								
 								<div class="new_job_input">
@@ -656,7 +656,7 @@
 
 							<div class="new_job_content">
 								<div class="new_job_label">
-									<a><%= f.label :benefit, "Chế độ đãi ngộ*", class: "new_job_label" %></a>
+									<a><%= f.label :benefit, "Chế độ đãi ngộ", class: "new_job_label" %><span>*</span></a>
 								</div>
 								
 								<div class="new_job_input">
