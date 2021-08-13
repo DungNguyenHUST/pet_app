@@ -421,25 +421,44 @@
 
     .new_interview_section
     {
-        // margin-top: 10px;
         border: 1px solid #e5e7ec;
 		padding: 15px;
+        padding-bottom: 0px;
 		border-radius: 4px;
 		margin-bottom: 20px;
-		@media screen and (max-width: 600px){
-			border: none;
-			border-top: 1px solid #e5e7ec;
-			padding: 0px;
-			padding-top: 20px;
-			border-radius: 0px;
-		}
+        .new_interview_label_sub{
+            font-size: 16px;
+            font-style: italic;
+            padding-bottom: 20px;
+            color: #1877f2;
+        }
         .new_interview_content{
             .new_interview_label{
                 font-weight: 550;
                 font-size: 16px;
                 color: #333;
                 text-align: left;
-                margin-bottom: 10px;
+                span{
+                    color: #ea1e30;
+                    padding-left: 3px;
+                }
+            }
+
+            .new_interview_label_score{
+                font-weight: 550;
+                font-size: 16px;
+                color: #333;
+                text-align: left;
+                span{
+                    color: #ea1e30;
+                    padding-left: 3px;
+                }
+                @media screen and (min-width: 600px){
+                    a{
+                        position: relative;
+                        top: 10px;
+                    }
+                }
             }
 
             .new_interview_input{
@@ -451,6 +470,9 @@
                 .new_interview_input_radio{
                     padding-top: 5px;
                     padding-bottom: 5px;
+                    @media screen and (min-width: 600px){
+                        text-align: right;
+                    }
                     input[type=radio], input[type=checkbox] {
                         display:none;
                     }
@@ -475,10 +497,6 @@
                         color: #fff;
                     }
                 }
-				
-				.form-control{
-					width: 100%;
-				}
 
                 .form-control{
                     margin-left: 0px;
@@ -492,6 +510,7 @@
                         border-radius: 4px;
                     }
                 }
+
                 .form-control-rich-text{
                     min-height: 150px;
                     height: auto;
@@ -502,69 +521,23 @@
                     font-size: 14px;
                 }
             }
-            .new_interview_input_time{
+
+            .new_interview_input_score{
                 left: 0px;
                 margin-top: 5px;
                 margin-bottom: 20px;
-                width: 300px;
-                .form-control{
-                    margin-left: 0px;
-                    height: 40px;
-                    width: 100%;
-                    border: 1px solid #e0e2e5;
-                    border-radius: 4px;
-                    font-size: 14px;
-                    &:focus{
-                        border: 2px solid #1877f2;
-                        border-radius: 4px;
-                    }
-                }
-            }
-
-            .new_interview_input_interview{
-                left: 0px;
-                margin-top: 5px;
-                margin-bottom: 20px;
-                width: 100%;
-                height: 50px;
-                .form-control{
-                    word-wrap: break-word;
-                    white-space: pre-wrap; 
-                    margin-left: 0px;
-                    height: 80px;
-                    width: 100%;
-                    border: 1px solid #e0e2e5;
-                    border-radius: 4px;
-                    font-size: 14px;
-                    &:focus{
-                        border: 2px solid #1877f2;
-                        border-radius: 4px;
-                    }
-                }
-            }
-        }
-        
-        .new_interview_difficultly_content{
-            padding-bottom: 10px;
-            .new_interview_difficultly_label{
-                font-weight: 550;
-                font-size: 16px;
-                color: #333;
-                text-align: left;
-            }
-
-            .new_interview_difficultly_input{
-                left: 0px;
-                margin-top: 5px;
-                margin-bottom: 30px;
                 width: 100%;
                 height: auto;
                 padding-left: 0px;
                 font-size: 14px;
-                .new_interview_form_difficultly_input{
+                .new_interview_input_score_form{
                     display: none;
                 }
-                .new_interview_difficultly_star_block{
+
+                .new_interview_input_score_star{
+                    @media screen and (min-width: 600px){
+                        text-align: right;
+                    }
                     button{
                         margin-right: 5px;
                         border-radius: 4px;
@@ -573,6 +546,7 @@
                         &:focus {outline:none;}
                         i{
                             padding: 3px;
+                            font-size: 24px;
                         }
                             
                         &:hover{
@@ -582,107 +556,22 @@
                     }
                 }
             }
-        }
-
-        .new_interview_satisfied_content{
-            padding-bottom: 10px;
-            .new_interview_satisfied_label{
-                font-weight: 550;
-                font-size: 16px;
-                color: #333;
-                text-align: left;
-            }
-
-            .new_interview_satisfied_input{
-                left: 0px;
-                margin-top: 5px;
-                margin-bottom: 30px;
-                width: 100%;
-                height: auto;
-                padding-left: 0px;
-                font-size: 14px;
-                .new_interview_form_satisfied_input{
-                    display: none;
-                }
-                .new_interview_satisfied_star_block{
-                    button{
-                        margin-right: 5px;
-                        border-radius: 4px;
-                        border: none;
-                        color: #666;
-                        &:focus {outline:none;}
-                        i{
-                            padding: 3px;
-                        }
-                            
-                        &:hover{
-                            background-color: #1877f2;
-                            color: #fff;
-                        }
-                    }
-                }
-            }
-        }
-    }
-
-    .new_interview_section_content{
-        // border: 1px solid #e5e7ec;
-		// padding: 15px;
-		border-radius: 4px;
-		margin-bottom: 20px;
-		@media screen and (max-width: 600px){
-			border: none;
-			border-top: 1px solid #e5e7ec;
-			padding: 0px;
-			padding-top: 20px;
-			border-radius: 0px;
-		}
-        margin-top: 20px;
-        
-        .new_interview_label_sub{
-            font-size: 14px;
-            font-style: italic;
-            padding-bottom: 10px;
-            color: #1877f2;
-        }
-        .new_interview_content{
-            .new_interview_label{
-                font-weight: 550;
-                font-size: 16px;
-                color: #333;
-                text-align: left;
-                margin-bottom: 10px;
-            }
-
-            .new_interview_input{
-                left: 0px;
-                margin-top: 5px;
-                margin-bottom: 30px;
-                width: 100%;
-                height: auto;
-            }
-        }
-    }
-
-    .new_interview_content_checkbox
-    {
-        margin-top: 50px;
-        .label-agree-term
-        {
-           font-size: 14px; 
         }
     }
 
     .new_interview_submit{
         width: 100%;
-        padding-top: 20px;
         .new_interview_form_submit{
-            height: 50px;
+            height: 40px;
             width: 100%;
+            @media screen and (min-width: 600px){
+                width: 200px;
+            }
+            font-weight: 600;
             border-radius: 4px;
             padding: 6px;
             background: #1877f2;
-            font-size: 16px;
+            font-size: 14px;
             border: none;
             cursor: pointer;
             text-align: center;

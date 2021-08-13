@@ -20,134 +20,152 @@
 					</div>
 
 					<div class="new_interview_section">
-						<div class="new_interview_satisfied_content">
-							<div class="new_interview_satisfied_label">
-								<a><%= f.label :satisfied, "Mức độ hài lòng của bạn với buổi phỏng vấn*", class: "new_interview_label_name" %></a>
-							</div>
-
-							<div class="new_interview_satisfied_input">
-								<div class="new_interview_form_satisfied_input">
-									<%= f.number_field :satisfied, :required => true, readonly: true, :id => "satisfied_id", :value => ''%>
+						<div class="new_interview_content">
+							<div class="row">
+								<div class="col-sm-6">
+									<div class="new_interview_label_score">
+										<a><%= f.label :satisfied, "Mức độ hài lòng của bạn với buổi phỏng vấn", class: "new_interview_label_name" %><span>*</span></a>
+									</div>
 								</div>
 
-								<div class="new_interview_satisfied_star_block">
-									<button type="button" class="btnrating_satisfied" data-attr="1" id="rating-star-satisfied-1">
-										<i class="material-icons-outlined">circle </i>
-									</button>
+								<div class="col-sm-6">
+									<div class="new_interview_input_score">
+										<div class="new_interview_input_score_form">
+											<%= f.number_field :satisfied, :required => true, readonly: true, :id => "satisfied_id", :value => ''%>
+										</div>
 
-									<button type="button" class="btnrating_satisfied" data-attr="2" id="rating-star-satisfied-2">
-										<i class="material-icons-outlined">circle </i>
-									</button>
+										<div class="new_interview_input_score_star">
+											<button type="button" class="btnrating_satisfied" data-attr="1" id="rating-star-satisfied-1">
+												<i class="material-icons-outlined">circle </i>
+											</button>
 
-									<button type="button" class="btnrating_satisfied" data-attr="3" id="rating-star-satisfied-3">
-										<i class="material-icons-outlined">circle </i>
-									</button>
+											<button type="button" class="btnrating_satisfied" data-attr="2" id="rating-star-satisfied-2">
+												<i class="material-icons-outlined">circle </i>
+											</button>
 
-									<button type="button" class="btnrating_satisfied" data-attr="4" id="rating-star-satisfied-4">
-										<i class="material-icons-outlined">circle </i>
-									</button>
-									
-									<button type="button" class="btnrating_satisfied" data-attr="5" id="rating-star-satisfied-5">
-										<i class="material-icons-outlined">circle </i>
-									</button>
+											<button type="button" class="btnrating_satisfied" data-attr="3" id="rating-star-satisfied-3">
+												<i class="material-icons-outlined">circle </i>
+											</button>
+
+											<button type="button" class="btnrating_satisfied" data-attr="4" id="rating-star-satisfied-4">
+												<i class="material-icons-outlined">circle </i>
+											</button>
+											
+											<button type="button" class="btnrating_satisfied" data-attr="5" id="rating-star-satisfied-5">
+												<i class="material-icons-outlined">circle </i>
+											</button>
+										</div>
+
+										<script>
+											jQuery(document).ready(function($){
+					
+												$(".btnrating_satisfied").on('click',(function(e) {
+												
+												var previous_value = $("#selected_rating").val();
+												
+												var selected_value = $(this).attr("data-attr");
+												$("#selected_rating").val(selected_value);
+
+												$("#satisfied_id").val(selected_value).attr("disable","false");
+												
+												for (i = 1; i <= selected_value; ++i) {
+													$("#rating-star-satisfied-"+i).toggleClass('btn-warning');
+													$("#rating-star-satisfied-"+i).toggleClass('btn-default');
+												}
+												
+												for (ix = 1; ix <= previous_value; ++ix) {
+													$("#rating-star-satisfied-"+ix).toggleClass('btn-warning');
+													$("#rating-star-satisfied-"+ix).toggleClass('btn-default');
+												}
+												
+												}));
+											});
+										</script>
+									</div>
 								</div>
-
-								<script>
-									jQuery(document).ready(function($){
-			
-										$(".btnrating_satisfied").on('click',(function(e) {
-										
-										var previous_value = $("#selected_rating").val();
-										
-										var selected_value = $(this).attr("data-attr");
-										$("#selected_rating").val(selected_value);
-
-										$("#satisfied_id").val(selected_value).attr("disable","false");
-										
-										for (i = 1; i <= selected_value; ++i) {
-											$("#rating-star-satisfied-"+i).toggleClass('btn-warning');
-											$("#rating-star-satisfied-"+i).toggleClass('btn-default');
-										}
-										
-										for (ix = 1; ix <= previous_value; ++ix) {
-											$("#rating-star-satisfied-"+ix).toggleClass('btn-warning');
-											$("#rating-star-satisfied-"+ix).toggleClass('btn-default');
-										}
-										
-										}));
-									});
-								</script>
-							</div>
-						</div>
-
-						<div class="new_interview_difficultly_content">
-							<div class="new_interview_difficultly_label">
-								<a><%= f.label :difficultly, "Bạn cảm nhận thế nào về độ khó của bài phỏng vấn?", class: "new_interview_label_name" %></a>
-							</div>
-
-							<div class="new_interview_difficultly_input">
-								<div class="new_interview_form_difficultly_input">
-									<%= f.number_field :difficultly, readonly: true, :id => "difficultly_id", :value => ''%>
-								</div>
-
-								<div class="new_interview_difficultly_star_block">
-									<button type="button" class="btnrating_difficultly" data-attr="1" id="rating-star-difficultly-1">
-										<i class="material-icons-outlined">crop_din </i>
-									</button>
-
-									<button type="button" class="btnrating_difficultly" data-attr="2" id="rating-star-difficultly-2">
-										<i class="material-icons-outlined">crop_din </i>
-									</button>
-
-									<button type="button" class="btnrating_difficultly" data-attr="3" id="rating-star-difficultly-3">
-										<i class="material-icons-outlined">crop_din </i>
-									</button>
-
-									<button type="button" class="btnrating_difficultly" data-attr="4" id="rating-star-difficultly-4">
-										<i class="material-icons-outlined">crop_din </i>
-									</button>
-									
-									<button type="button" class="btnrating_difficultly" data-attr="5" id="rating-star-difficultly-5">
-										<i class="material-icons-outlined">crop_din </i>
-									</button>
-								</div>
-
-								<script>
-									jQuery(document).ready(function($){
-			
-										$(".btnrating_difficultly").on('click',(function(e) {
-										
-										var previous_value = $("#selected_rating").val();
-										
-										var selected_value = $(this).attr("data-attr");
-										$("#selected_rating").val(selected_value);
-
-										$("#difficultly_id").val(selected_value).attr("disable","false");
-										
-										for (i = 1; i <= selected_value; ++i) {
-											$("#rating-star-difficultly-"+i).toggleClass('btn-warning');
-											$("#rating-star-difficultly-"+i).toggleClass('btn-default');
-										}
-										
-										for (ix = 1; ix <= previous_value; ++ix) {
-											$("#rating-star-difficultly-"+ix).toggleClass('btn-warning');
-											$("#rating-star-difficultly-"+ix).toggleClass('btn-default');
-										}
-										
-										}));
-									});
-								</script>
 							</div>
 						</div>
 
 						<div class="new_interview_content">
-							<div class="new_interview_label">
-								<a><%= f.label :offer, "Bạn có chấp nhận offer từ công ty không?", class: "new_interview_label_name" %></a>
-							</div>
+							<div class="row">
+								<div class="col-sm-6">
+									<div class="new_interview_label_score">
+										<a><%= f.label :difficultly, "Bạn cảm nhận thế nào về độ khó của bài phỏng vấn?", class: "new_interview_label_name" %><span>*</span></a>
+									</div>
+								</div>
 
-							<div class="new_interview_input">
-								<div class="new_interview_input_radio">
-									<%=f.collection_radio_buttons :offer, [[true, "Có"] ,[false, "Không"]], :first, :last, { checked: true }%>
+								<div class="col-sm-6">
+									<div class="new_interview_input_score">
+										<div class="new_interview_input_score_form">
+											<%= f.number_field :difficultly, readonly: true, :id => "difficultly_id", :value => ''%>
+										</div>
+
+										<div class="new_interview_input_score_star">
+											<button type="button" class="btnrating_difficultly" data-attr="1" id="rating-star-difficultly-1">
+												<i class="material-icons-outlined">crop_din </i>
+											</button>
+
+											<button type="button" class="btnrating_difficultly" data-attr="2" id="rating-star-difficultly-2">
+												<i class="material-icons-outlined">crop_din </i>
+											</button>
+
+											<button type="button" class="btnrating_difficultly" data-attr="3" id="rating-star-difficultly-3">
+												<i class="material-icons-outlined">crop_din </i>
+											</button>
+
+											<button type="button" class="btnrating_difficultly" data-attr="4" id="rating-star-difficultly-4">
+												<i class="material-icons-outlined">crop_din </i>
+											</button>
+											
+											<button type="button" class="btnrating_difficultly" data-attr="5" id="rating-star-difficultly-5">
+												<i class="material-icons-outlined">crop_din </i>
+											</button>
+										</div>
+
+										<script>
+											jQuery(document).ready(function($){
+					
+												$(".btnrating_difficultly").on('click',(function(e) {
+												
+												var previous_value = $("#selected_rating").val();
+												
+												var selected_value = $(this).attr("data-attr");
+												$("#selected_rating").val(selected_value);
+
+												$("#difficultly_id").val(selected_value).attr("disable","false");
+												
+												for (i = 1; i <= selected_value; ++i) {
+													$("#rating-star-difficultly-"+i).toggleClass('btn-warning');
+													$("#rating-star-difficultly-"+i).toggleClass('btn-default');
+												}
+												
+												for (ix = 1; ix <= previous_value; ++ix) {
+													$("#rating-star-difficultly-"+ix).toggleClass('btn-warning');
+													$("#rating-star-difficultly-"+ix).toggleClass('btn-default');
+												}
+												
+												}));
+											});
+										</script>
+									</div>
+								</div>
+							</div>
+						</div>
+
+						<div class="new_interview_content">
+							<div class="row">
+								<div class="col-sm-6">
+									<div class="new_interview_label_score">
+										<a><%= f.label :offer, "Bạn có chấp nhận offer từ công ty không?", class: "new_interview_label_name" %><span>*</span></a>
+									</div>
+								</div>
+
+								<div class="col-sm-6">
+									<div class="new_interview_input">
+										<div class="new_interview_input_radio">
+											<%=f.collection_radio_buttons :offer, [[true, "Có"] ,[false, "Không"]], :first, :last, { checked: true }%>
+										</div>
+									</div>
 								</div>
 							</div>
 						</div>
@@ -156,7 +174,7 @@
 					<div class="new_interview_section">
 						<div class="new_interview_content">
 							<div class="new_interview_label">
-								<a><%= f.label :position, "Vị trí, công việc bạn mà tham gia phỏng vấn*", class: "new_interview_label_name" %></a>
+								<a><%= f.label :position, "Vị trí, công việc bạn mà tham gia phỏng vấn", class: "new_interview_label_name" %><span>*</span></a>
 							</div>
 
 							<div class="new_interview_input">
@@ -166,7 +184,7 @@
 
 						<div class="new_interview_content">
 							<div class="new_interview_label">
-								<a><%= f.label :get_interview, "Bạn tìm đến công ty từ kênh thông tin nào?", class: "new_interview_label_name" %></a>
+								<a><%= f.label :get_interview, "Bạn tìm đến công ty từ kênh thông tin nào?", class: "new_interview_label_name" %><span>*</span></a>
 							</div>
 
 							<div class="new_interview_input">
@@ -176,7 +194,7 @@
 						
 						<div class="new_interview_content">
 							<div class="new_interview_label">
-								<a><%= f.label :process, "Số vòng phỏng vấn bạn đã tham gia", class: "new_interview_label_name" %></a>
+								<a><%= f.label :process, "Số vòng phỏng vấn bạn đã tham gia", class: "new_interview_label_name" %><span>*</span></a>
 							</div>
 
 							<div class="new_interview_input">
@@ -185,7 +203,7 @@
 						</div>
 					</div>
 					
-					<div class="new_interview_section_content">
+					<div class="new_interview_section">
 						<div class="new_interview_label_sub">
 							<span>Chia sẻ thêm của bạn về quá trình phỏng vấn tại <%=@company.name%>(tùy chọn) </span>
 						</div>
@@ -201,13 +219,13 @@
 					</div>
 
 					<div class="new_interview_submit">
-						<%= f.submit "Gửi phản hồi", class: "new_interview_form_submit" %>
+						<%= f.submit "Gửi chia sẻ", class: "new_interview_form_submit" %>
 					</div>
 				</div>
 				<div class="col-sm-4">
 					<div class="interview_policy">
 						<div class="interview_policy_title">
-							<a>Lưu ý trước khi viết bài interview</a>
+							<a>Lưu ý trước khi viết bài Interview</a>
 						</div>
 						<div class="interview_policy_content">
 							<div class="interview_policy_content_index">

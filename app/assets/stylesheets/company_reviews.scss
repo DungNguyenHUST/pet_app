@@ -419,30 +419,53 @@
     {
         border: 1px solid #e5e7ec;
 		padding: 15px;
+        padding-bottom: 0px;
 		border-radius: 4px;
-		@media screen and (max-width: 600px){
-			border: none;
-			border-top: 1px solid #e5e7ec;
-			padding: 0px;
-			padding-top: 20px;
-			border-radius: 0px;
-		}
         width: 100%;
         height: auto;
         margin-top: 20px;
+
         .new_review_label_sub{
-            font-size: 14px;
+            font-size: 16px;
             font-style: italic;
             padding-bottom: 20px;
             color: #1877f2;
         }
+
         .new_review_content{
-		
             .new_review_label{
                 font-weight: 550;
                 font-size: 16px;
                 color: #333;
                 text-align: left;
+                span{
+                    color: #ea1e30;
+                    padding-left: 3px;
+                }
+                i{
+                    font-size: 20px;
+                    position: relative;
+                    top: 3px;
+                    padding-right: 5px;
+                    color: #333;
+                }
+            }
+
+            .new_review_score_label{
+                font-weight: 550;
+                font-size: 16px;
+                color: #333;
+                text-align: left;
+                span{
+                    color: #ea1e30;
+                    padding-left: 3px;
+                }
+                @media screen and (min-width: 600px){
+                    a{
+                        position: relative;
+                        top: 10px;
+                    }
+                }
             }
 
             .new_review_input{
@@ -501,225 +524,6 @@
                     font-size: 14px;
                 }
             }
-			
-			.form-control{
-				min-height: 40px;
-				height: auto;
-				margin-left: 0px;
-				width: 100%;
-				border: 1px solid #e0e2e5;
-				border-radius: 4px;
-				overflow: auto;
-                font-size: 14px;
-                &:focus{
-                    border: 2px solid #1877f2;
-                    border-radius: 4px;
-                }
-			}
-        }
-
-        .new_review_work_env_content{
-            padding-bottom: 10px;
-            .new_review_work_env_label{
-                font-weight: 550;
-                font-size: 16px;
-                color: #333;
-                text-align: left;
-            }
-
-            .new_review_work_env_input{
-                left: 0px;
-                margin-top: 5px;
-                margin-bottom: 20px;
-                width: 100%;
-                height: auto;
-                padding-left: 0px;
-                font-size: 14px;
-                .new_review_form_work_env_input{
-                    display: none;
-                }
-                .new_review_work_env_star_block{
-                    button{
-                        margin-right: 5px;
-                        border-radius: 4px;
-                        border: none;
-                        color: #666;
-                        &:focus {outline:none;}
-                        i{
-                            padding: 3px;
-                        }
-                        &:hover{
-                            background-color: #1877f2;
-                            color: #fff;
-                        }
-                    }
-                }
-            }
-        }
-
-        .new_review_salary_content{
-            padding-bottom: 10px;
-            .new_review_salary_label{
-                font-weight: 550;
-                font-size: 16px;
-                color: #333;
-                text-align: left;
-            }
-
-            .new_review_salary_input{
-                left: 0px;
-                margin-top: 5px;
-                margin-bottom: 20px;
-                width: 100%;
-                height: auto;
-                padding-left: 0px;
-                font-size: 14px;
-                .new_review_form_salary_input{
-                    display: none;
-                }
-                .new_review_salary_star_block{
-                    button{
-                        margin-right: 5px;
-                        border-radius: 4px;
-                        border: none;
-                        color: #666;
-                        &:focus {outline:none;}
-                        i{
-                            padding: 3px;
-                        }
-                        &:hover{
-                            background-color: #1877f2;
-                            color: #fff;
-                        }
-                    }
-                }
-            }
-        }
-
-        .new_review_ot_content{
-            padding-bottom: 10px;
-            .new_review_ot_label{
-                font-weight: 550;
-                font-size: 16px;
-                color: #333;
-                text-align: left;
-            }
-
-            .new_review_ot_input{
-                left: 0px;
-                margin-top: 5px;
-                margin-bottom: 20px;
-                width: 100%;
-                height: auto;
-                padding-left: 0px;
-                font-size: 14px;
-                .new_review_form_ot_input{
-                    display: none;
-                }
-                .new_review_ot_star_block{
-                    button{
-                        margin-right: 5px;
-                        border-radius: 4px;
-                        border: none;
-                        color: #666;
-                        &:focus {outline:none;}
-                        i{
-                            padding: 3px;
-                        }
-                        &:hover{
-                            background-color: #1877f2;
-                            color: #fff;
-                        }
-                    }
-                }
-            }
-        }
-
-        .new_review_manager_content{
-            padding-bottom: 10px;
-            .new_review_manager_label{
-                font-weight: 550;
-                font-size: 16px;
-                color: #333;
-                text-align: left;
-            }
-
-            .new_review_manager_input{
-                left: 0px;
-                margin-top: 5px;
-                margin-bottom: 20px;
-                width: 100%;
-                height: auto;
-                padding-left: 0px;
-                font-size: 14px;
-                .new_review_form_manager_input{
-                    display: none;
-                }
-                .new_review_manager_star_block{
-                    button{
-                        margin-right: 5px;
-                        border-radius: 4px;
-                        border: none;
-                        color: #666;
-                        &:focus {outline:none;}
-                        i{
-                            padding: 3px;
-                        }
-                        &:hover{
-                            background-color: #1877f2;
-                            color: #fff;
-                        }
-                    }
-                }
-            }
-        }
-
-        .new_review_career_content{
-            padding-bottom: 10px;
-            .new_review_career_label{
-                font-weight: 550;
-                font-size: 16px;
-                color: #333;
-                text-align: left;
-            }
-
-            .new_review_career_input{
-                left: 0px;
-                margin-top: 5px;
-                margin-bottom: 20px;
-                width: 100%;
-                height: auto;
-                padding-left: 0px;
-                font-size: 14px;
-                .new_review_form_career_input{
-                    display: none;
-                }
-                .new_review_career_star_block{
-                    button{
-                        margin-right: 5px;
-                        border-radius: 4px;
-                        border: none;
-                        color: #666;
-                        &:focus {outline:none;}
-                        i{
-                            padding: 3px;
-                        }
-                        &:hover{
-                            background-color: #1877f2;
-                            color: #fff;
-                        }
-                    }
-                }
-            }
-        }
-
-        .new_review_total_score_content{
-            .new_review_score_label{
-                font-weight: 550;
-                font-size: 16px;
-                color: #333;
-                text-align: left;
-            }
 
             .new_review_score_input{
                 left: 0px;
@@ -728,10 +532,15 @@
                 height: auto;
                 padding-left: 0px;
                 font-size: 14px;
+                padding-bottom: 20px;
                 .new_review_form_score_input{
                     display: none;
                 }
                 .new_review_score_star_block{
+                    text-align: right;
+                    @media screen and (max-width: 600px){
+                        text-align: left;
+                    }
                     button{
                         margin-right: 5px;
                         border-radius: 4px;
@@ -740,6 +549,7 @@
                         &:focus {outline:none;}
                         i{
                             padding: 3px;
+                            font-size: 24px;
                         }
                         &:hover{
                             background-color: #1877f2;
@@ -750,7 +560,7 @@
             }
         }
 
-        .new_review_description{
+        .new_review_score_description{
             min-height: 30px;
             margin-bottom: 10px;
             font-style: italic;
@@ -768,65 +578,20 @@
         }
     }
 
-    .new_review_section_content{
-        border: 1px solid #e5e7ec;
-		padding: 15px;
-        .new_review_label_sub{
-            font-size: 14px;
-            font-style: italic;
-            padding-bottom: 20px;
-            color: #1877f2;
-        }
-		border-radius: 4px;
-		@media screen and (max-width: 600px){
-			border: none;
-			border-top: 1px solid #e5e7ec;
-			padding: 0px;
-			padding-top: 20px;
-			border-radius: 0px;
-		}
-        width: 100%;
-        height: auto;
-        margin-top: 20px;
-        padding-top: 20px;
-        .new_review_content{
-            .new_review_label{
-                font-weight: 550;
-                font-size: 16px;
-                color: #333;
-                text-align: left;
-            }
-            .new_review_input{
-                left: 0px;
-                margin-top: 5px;
-                margin-bottom: 20px;
-                width: 100%;
-                .form-control{
-                    margin-left: 0px;
-                    height: 40px;
-                    width: 100%;
-                    border: 1px solid #e0e2e5;
-                    border-radius: 4px;
-                    font-size: 14px;
-                    &:focus{
-                        border: 2px solid #1877f2;
-                        border-radius: 4px;
-                    }
-                }
-            }
-        }
-    }
-
     .new_review_submit{
         width: 100%;
         padding-top: 20px;
         padding-left: 0px;
         .new_review_form_submit{
-            height: 50px;
-            width: 100%;
+            height: 40px;
+            width: 200px;
+            @media screen and (max-width: 600px){
+                width: 100%;
+            }
             border-radius: 4px;
             background: #1877f2;
-            font-size: 16px;
+            font-size: 14px;
+            font-weight: 600;
             border: none;
             cursor: pointer;
             text-align: center;
