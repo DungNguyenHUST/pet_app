@@ -3,8 +3,16 @@
         <div class="col-sm-8">
             <div class="new_apply_job_form">
                 <%= form_for [@company_job, CompanyApplyJob.new] do |f| %>
-                    <div class="new_apply_job_title">
-                        <h3>Ứng tuyển vị trí "<%=@company_job.title%>" </h3>
+                    <div class="new_apply_job_title_block">
+                        <div class="new_apply_job_title">
+                            <h3>Ứng tuyển vị trí "<%=@company_job.title%>" </h3>
+                        </div>
+
+                        <div class="new_apply_job_image">
+                            <%if @company_job.company.avatar?%>
+                                <img><%= image_tag @company_job.company.avatar.thumb.url %>
+                            <%end%>
+                        </div>
                     </div>
 
                     <div class="new_apply_job_title_sub">
@@ -13,7 +21,7 @@
                     
                     <div class="new_apply_job_content">
                         <div class="new_apply_job_label">
-                            <a><%= f.label :name, "Họ và tên*", class: "new_apply_job_label_content" %></a>
+                            <a><%= f.label :name, "Họ và tên", class: "new_apply_job_label_content" %><span>*</span></a>
                         </div>
                         
                         <div class="new_apply_job_input_job">
@@ -23,7 +31,7 @@
 
                     <div class="new_apply_job_content">
                         <div class="new_apply_job_label">
-                            <a><%= f.label :email, "Địa chỉ Email*", class: "new_apply_job_label_content" %></a>
+                            <a><%= f.label :email, "Địa chỉ Email", class: "new_apply_job_label_content" %><span>*</span></a>
                         </div>
                         
                         <div class="new_apply_job_input_job">
@@ -33,7 +41,7 @@
 
                     <div class="new_apply_job_content">
                         <div class="new_apply_job_label">
-                            <a><%= f.label :cover_vitate, "Upload CV*", class: "new_apply_job_label_content" %></a>
+                            <a><%= f.label :cover_vitate, "Upload CV", class: "new_apply_job_label_content" %><span>*</span></a>
                         </div>
                         
                         <div class="new_apply_job_input_job">
@@ -43,7 +51,7 @@
 
                     <div class="new_apply_job_content">
                         <div class="new_apply_job_label">
-                            <a><%= f.label :cover_letter, "Giới thiệu về bản thân(khoảng 3000 từ)*", class: "new_apply_job_label_content" %></a>
+                            <a><%= f.label :cover_letter, "Giới thiệu về bản thân(khoảng 3000 từ)", class: "new_apply_job_label_content" %><span>*</span></a>
                         </div>
                         
                         <div class="new_apply_job_input_job">

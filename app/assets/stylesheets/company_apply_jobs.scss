@@ -5,15 +5,40 @@
 .new_apply_job_form
 {
     margin-bottom: 50px;
-	.new_apply_job_title{
-		font-size: 22px;
-        color: #333;
-        text-align: center;
-        margin-top: 50px;
-        margin-bottom: 30px;
-	}
-    
+
+    .new_apply_job_title_block{
+        margin-top: 20px;
+        margin-bottom: 20px;
+        .new_apply_job_title{
+            float: left;
+            max-width: 80%;
+            h3{
+                font-size: 22px;
+                color: #333;
+                text-align: left;
+                font-weight: 600;
+            }
+            a{
+                font-size: 16px;
+            }
+        }
+        .new_apply_job_image{
+            float: right;
+            img{
+                max-width: 80px;
+                max-height: 80px;
+                border: 1px solid #e0e2e5;
+                border-radius: 4px;
+                @media screen and (max-width: 600px){
+                    max-width: 50px;
+                    max-height: 44px;
+                }
+            }
+        }
+    }
+
     .new_apply_job_title_sub{
+        clear: both;
         span{
             font-size: 13px;
             text-align: left;
@@ -28,6 +53,11 @@
             color: #333;
             text-align: left;
             margin-top: 20px;
+            font-weight: 600;
+            span{
+                color: #ea1e30;
+                padding-left: 3px;
+            }
         }
 
         .new_apply_job_input_job
@@ -58,12 +88,16 @@
         padding-top: 20px;
         .new_apply_job_form_submit{
             border-radius: 4px;
-			font-size: 16px;
-            width: 100%;
+			font-size: 14px;
             min-height: 44px;
             color: #fff;
             background-color: #1877f2;
             border: none;
+            font-weight: 600;
+            width: 100%;
+            @media screen and (min-width: 600px){
+                width: 200px;
+            }
         }
     }
 }

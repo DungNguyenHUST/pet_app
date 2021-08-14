@@ -233,16 +233,16 @@
                         </div>
                     <%end%>
                     
-                    <div class="apply_job_button">
+                    <div class="apply_job_button_middle">
                         <%if user_signed_in?%>
                             <%if @company_job.apply_another_site_flag?%>
                                 <%= link_to '<button type="submit">Nộp đơn tại trang công ty</button>'.html_safe, @company_job.apply_site%>
                             <%else%>
-                                <%= link_to '<button type="submit"><i class="material-icons-outlined">send</i><a>Nộp đơn</a></button>'.html_safe, new_company_job_company_apply_job_path(@company_job)%>
+                                <%= link_to '<button type="submit">Nộp đơn ngay</button>'.html_safe, new_company_job_company_apply_job_path(@company_job)%>
                             <%end%>
                         <%else%>
                             <button type="button" data-toggle="modal" data-target="#buttonModalLoginCenter">
-                                <i class="material-icons-outlined">send</i><a>Nộp đơn</a>
+                                Nộp đơn ngay
                             </button>
                         <%end%>
                     </div>
