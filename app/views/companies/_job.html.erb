@@ -45,20 +45,6 @@
 
         <div class="col-sm-4">
             <div class='company_job_tab_des_right'>
-                <%if @company.company_jobs.approved.count > 0%>
-                    <div class="new_job">
-                        <div class="new_job_title">
-                            <strong>Bạn là nhà tuyển dụng</strong>
-                        </div>
-                        <div class="new_job_button">
-                            <%if employer_signed_in? || admin_signed_in?%>
-                                <%= link_to '<button type="submit"><i class="material-icons-outlined">add</i><span>Đăng tin tuyển dụng miễn phí<span></button>'.html_safe, new_company_company_job_path(@company) %>
-                            <%else%>
-                                <%= link_to '<button type="submit"><i class="material-icons-outlined">add</i><span>Đăng tin tuyển dụng miễn phí<span></button>'.html_safe, new_employer_session_path %>
-                            <%end%>
-                        </div>
-                    </div>
-                <%end%>
                 <div class='company_policy_overview_block_right_overview'>
                     <div class="company_policy_overview_label">
                         <span> Giới thiệu</span>

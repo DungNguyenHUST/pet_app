@@ -24,7 +24,15 @@
                     <%else%> 
                         <%active = ""%>
                     <%end%>                                 
-                    <a class="nav-link <%=active%>" href="<%=admin_path(current_admin, tab_id: 'AdminCompanyID')%>"><i class="material-icons-outlined">business</i>Company <span><%= convert_number_to_human(@companies.total_count)%><span></a>
+                    <a class="nav-link <%=active%>" href="<%=admin_path(current_admin, tab_id: 'AdminCompanyID')%>"><i class="material-icons-outlined">business</i>Company <span><%= (@companies.total_count)%><span></a>
+                </li>
+                <li class="nav-item">
+                    <%if @tab_id == "default" || @tab_id == "AdminJobID"%>
+                        <%active = "active"%>
+                    <%else%> 
+                        <%active = ""%>
+                    <%end%>                                 
+                    <a class="nav-link <%=active%>" href="<%=admin_path(current_admin, tab_id: 'AdminJobID')%>"><i class="material-icons-outlined">business</i>Job <span><%= (@company_jobs.total_count)%><span></a>
                 </li>
                 <li class="nav-item">
                     <%if @tab_id == "AdminUserID"%>
@@ -32,7 +40,7 @@
                     <%else%> 
                         <%active = ""%>
                     <%end%>                                     
-                    <a class="nav-link <%=active%>" href="<%=admin_path(current_admin, tab_id: 'AdminUserID')%>"><i class="material-icons-outlined">person</i>User <span><%= convert_number_to_human(@users.total_count)%><span></a>
+                    <a class="nav-link <%=active%>" href="<%=admin_path(current_admin, tab_id: 'AdminUserID')%>"><i class="material-icons-outlined">person</i>User <span><%= (@users.total_count)%><span></a>
                 </li>
                 <li class="nav-item">
                     <%if @tab_id == "AdminPostID"%>
@@ -40,7 +48,7 @@
                     <%else%> 
                         <%active = ""%>
                     <%end%>                                     
-                    <a class="nav-link <%=active%>" href="<%=admin_path(current_admin, tab_id: 'AdminPostID')%>"><i class="material-icons-outlined">post_add</i>Post <span><%= convert_number_to_human(@posts.total_count)%><span></a>
+                    <a class="nav-link <%=active%>" href="<%=admin_path(current_admin, tab_id: 'AdminPostID')%>"><i class="material-icons-outlined">post_add</i>Post <span><%= (@posts.total_count)%><span></a>
                 </li>
                 <li class="nav-item">
                     <%if @tab_id == "AdminProblemID"%>
@@ -48,7 +56,7 @@
                     <%else%> 
                         <%active = ""%>
                     <%end%>                                     
-                    <a class="nav-link <%=active%>" href="<%=admin_path(current_admin, tab_id: 'AdminProblemID')%>"><i class="material-icons-outlined">lightbulb</i>Problem <span><%= convert_number_to_human(@problems.total_count)%><span></a>
+                    <a class="nav-link <%=active%>" href="<%=admin_path(current_admin, tab_id: 'AdminProblemID')%>"><i class="material-icons-outlined">lightbulb</i>Problem <span><%= (@problems.total_count)%><span></a>
                 </li>
                 <li class="nav-item">
                     <%if @tab_id == "ScrapJobID"%>

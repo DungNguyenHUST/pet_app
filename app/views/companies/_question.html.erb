@@ -4,10 +4,7 @@
         <div class="col-sm-8">
             <div class="company_question_left"> 
                 <%if @company.company_questions.count > 0%>  
-                    <div class="company_question_index">    
-                        <div class="company_question_new_button">                     
-                            <%= link_to '<button type="submit"> <i class="material-icons-outlined">edit</i> <span> Thêm câu hỏi mới</span> </button>'.html_safe, new_company_company_question_path(@company) %>
-                        </div>
+                    <div class="company_question_index">
                         <%= render @company_questions%>
                         <%= paginate @company_questions, window: 1, outer_window: 1%>
                     </div>

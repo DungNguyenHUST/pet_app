@@ -160,7 +160,7 @@
                         <%else%>
                             <div class="apply_button">
                                 <button type="button" data-toggle="modal" data-target="#buttonModalLoginCenter">
-                                    <i class="material-icons-outlined">open_in_new</i>Nộp đơn
+                                    <i class="material-icons-outlined">send</i>Nộp đơn
                                 </button>
                             </div>
                             <div class="save_button">
@@ -238,11 +238,11 @@
                             <%if @company_job.apply_another_site_flag?%>
                                 <%= link_to '<button type="submit">Nộp đơn tại trang công ty</button>'.html_safe, @company_job.apply_site%>
                             <%else%>
-                                <%= link_to '<button type="submit"><i class="material-icons-outlined">open_in_new</i>Nộp đơn</button>'.html_safe, new_company_job_company_apply_job_path(@company_job)%>
+                                <%= link_to '<button type="submit"><i class="material-icons-outlined">send</i><a>Nộp đơn</a></button>'.html_safe, new_company_job_company_apply_job_path(@company_job)%>
                             <%end%>
                         <%else%>
                             <button type="button" data-toggle="modal" data-target="#buttonModalLoginCenter">
-                                <i class="material-icons-outlined">open_in_new</i>Nộp đơn
+                                <i class="material-icons-outlined">send</i><a>Nộp đơn</a>
                             </button>
                         <%end%>
                     </div>
@@ -439,7 +439,7 @@
                                     </div>
                                 </div>
                                 <div class="review_job_more">
-                                    <%= link_to '<button type="submit"> Xem thêm review <i class="material-icons-outlined">chevron_right</i></button>'.html_safe, company_path(@company, tab_id: "CompanyReviewsID") %>
+                                    <%= link_to '<button type="submit"> <a>Xem thêm review</a> <i class="material-icons-outlined">chevron_right</i></button>'.html_safe, company_path(@company, tab_id: "CompanyReviewsID") %>
                                 </div>
                             </div>
                         </div>
