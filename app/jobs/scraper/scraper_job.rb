@@ -4,10 +4,12 @@ class ScraperJob < ApplicationJob
     require_relative 'topcv_scraper.rb'
     require_relative 'mywork_scraper.rb'
     require_relative 'common_scraper.rb'
+    require_relative 'timviec365_scraper.rb'
     include CareerbuilderScraper
     include ItviecScraper
     include TopcvScraper
     include MyworkScraper
+    include Timviec365Scraper
     include CommonScraper
 
     queue_as :default
@@ -33,6 +35,10 @@ class ScraperJob < ApplicationJob
 
             if split_domain_name(scrap_job.url) == "mywork.com.vn"
                 processing_job(get_detail_data_mywork(scrap_job))
+            end
+
+            if split_domain_name(scrap_job.url) == "timviec365.vn"
+                processing_job(get_detail_data_timviec365(scrap_job))
             end
         else
             puts "Wrong url"

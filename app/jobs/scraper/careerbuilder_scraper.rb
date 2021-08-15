@@ -89,7 +89,7 @@ module CareerbuilderScraper
                     next_step = 0
                     loop do
                         break if next_step == 3 # stop before end_detail
-                        if !start_detail.next_element.nil?
+                        if start_detail.present? && !start_detail.next_element.nil?
                             start_detail = start_detail.next_element
                             detail << start_detail.to_s
                         end
@@ -105,7 +105,7 @@ module CareerbuilderScraper
                         level = doc.css("div.detail-box ul li p")[2].text.strip
                     else
                         category = ""
-                        level = ""
+                        level = "Nhân viên"
                     end
                     language = "Tùy chọn"
                     dudate = Time.now

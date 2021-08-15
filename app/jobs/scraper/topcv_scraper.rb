@@ -89,7 +89,7 @@ module TopcvScraper
                         next_step = 0
                         loop do
                             break if next_step == 6 # stop before end_detail
-                            if !start_detail.next_element.nil?
+                            if start_detail.present? && !start_detail.next_element.nil?
                                 detail << start_detail.to_s
                                 start_detail = start_detail.next_element
                             end

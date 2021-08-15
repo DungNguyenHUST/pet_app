@@ -94,7 +94,7 @@ module MyworkScraper
                     next_step = 0
                     loop do
                         break if next_step == 3 # stop before end_detail
-                        if !start_detail.next_element.nil?
+                        if start_detail.present? && !start_detail.next_element.nil?
                             start_detail = start_detail.next_element
                             detail << start_detail.to_s
                         end
@@ -104,7 +104,7 @@ module MyworkScraper
                     location = job_summary_param.job_location.to_s
                     salary = job_summary_param.job_salary.to_s
                     if doc.css("div.ex-sl").present?
-                        level = doc.css("div.ex-cb div.detail-01-info").first.text.strip
+                        quantity = doc.css("div.ex-cb div.detail-01-info").first.text.strip
                     else
                         quantity = 1
                     end
