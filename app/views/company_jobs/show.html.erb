@@ -260,7 +260,7 @@
                         </div>
                     </div>
                     <div class="company_job_paginate">
-                        <%= paginate @company_related_jobs, window: 1, outer_window: 1%>
+                        <%= paginate @company_related_jobs, window: 2%>
                     </div>
                 </div>
             </div>
@@ -289,6 +289,16 @@
                             </div>
                             <%if !@company_job.level.to_s.empty?%>
                                 <span> <%= @company_job.level %></span>
+                            <%else%>
+                                <span>---</span>
+                            <%end%>
+                        </div>
+                        <div class="job_right">
+                            <div class="job_right_title">
+                                <a> <i class="material-icons-outlined">supervised_user_circle</i> KINH NGHIỆM</a>
+                            </div>
+                            <%if !@company_job.experience.to_s.empty?%>
+                                <span> <%= @company_job.experience %></span>
                             <%else%>
                                 <span>---</span>
                             <%end%>
