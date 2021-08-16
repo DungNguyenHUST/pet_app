@@ -5,13 +5,28 @@
                 <span><%=job_searched.total_count%> việc làm phù hợp</span>						
             </div>
             <div class="row">
-                <%if job_searched != nil%>
-                    <%job_searched.each do |company_job|%>
-                        <div class="col-sm-6 col-no-padding">
+                <div class="col-sm-5 col-no-padding">
+                    <%if job_searched != nil%>
+                        <%job_searched.each do |company_job|%>
                             <%=render company_job%>
-                        </div>
+                        <%end%>
                     <%end%>
-                <%end%>
+                </div>
+
+                <div class='col-sm-7'>
+                    <div class='company_job_preview_index sticky-top' id="company_job_preview_id">
+                        <%= render :partial => 'company_jobs/company_job_preview', locals: {company_job: job_searched.first} %>
+                    </div>
+                </div>
+
+                <script>
+                    document.querySelector(".company_job_block:first-child").classList.add("highlight_job_item"); //select first element
+                    $('.company_job_block').click(function() {
+                        $(this).addClass('highlight_job_item') // add class to clicked element
+                        .siblings() // get siblings
+                        .removeClass('highlight_job_item'); // remove class from sibling elements 
+                    });
+                </script>
             </div>
             <div class="company_job_paginate">
                 <%= paginate job_searched, window: 2%>

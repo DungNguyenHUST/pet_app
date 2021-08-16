@@ -63,6 +63,12 @@ class CompanyJobsController < ApplicationController
         @company_jobs = @company.company_jobs.order('created_at DESC')
         @company_jobs = @company_jobs.reject{|i| i.id == @company_job.id}
         @company_related_jobs = Kaminari.paginate_array(@company_jobs).page(params[:page]).per(10)
+
+        # for preview mode
+        respond_to do |format|
+            format.html {}
+            format.js
+        end
     end
 	
 	def list

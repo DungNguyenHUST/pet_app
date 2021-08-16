@@ -1,4 +1,4 @@
-<%if !(@type_param == "mini")%>
+<%unless (@type_param == "mini")%>
 	<div id="save_job_<%=@company_job.id%>">
 	    <% pre_save = @company_job.company_save_jobs.find { |save| save.user_id == current_user.id} %>
 		<%if user_signed_in?%>
@@ -18,7 +18,7 @@
 		<%end%>
 	</div>
 <%else%>
-	<div id="job_<%=@company_job.id%>">
+	<div id="save_job_mini_<%=@company_job.id%>">
 	    <%if user_signed_in?%>
 	        <% pre_save = @company_job.company_save_jobs.find { |save| save.user_id == current_user.id} %>
 	        <% if pre_save %> 

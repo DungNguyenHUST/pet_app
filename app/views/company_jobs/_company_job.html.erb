@@ -1,5 +1,10 @@
 <div class="company_job_block">
     <%company = company_job.company%>
+
+    <div class="company_job_preview_btn">
+        <%= link_to content_tag(:span, ""), company_company_job_path(company, company_job), remote: true %>
+    </div>
+
     <div class="company_job_left">
         <div class="company_avatar">
             <%if company.avatar?%>
@@ -74,7 +79,7 @@
                 <a><%= time_ago_in_words(company_job.created_at) %> </a>
             </div>
             <div class="company_job_save">
-                <div class="company_job_button_save" id="job_<%=company_job.id%>">
+                <div class="company_job_button_save" id="save_job_mini_<%=company_job.id%>">
                     <%if user_signed_in?%>
                         <% pre_save = company_job.company_save_jobs.find { |save| save.user_id == current_user.id} %>
                         <% if pre_save %> 
