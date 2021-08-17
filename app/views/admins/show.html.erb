@@ -66,6 +66,14 @@
                     <%end%>                                     
                     <a class="nav-link <%=active%>" href="<%=admin_path(current_admin, tab_id: 'ScrapJobID')%>"><i class="material-icons-outlined">smart_toy</i>Job Scraper</a>
                 </li>
+                <li class="nav-item">
+                    <%if @tab_id == "ScrapReviewID"%>
+                        <%active = "active"%>
+                    <%else%> 
+                        <%active = ""%>
+                    <%end%>                                     
+                    <a class="nav-link <%=active%>" href="<%=admin_path(current_admin, tab_id: 'ScrapReviewID')%>"><i class="material-icons-outlined">star_border</i>Review Scraper</a>
+                </li>
             </ul>
         </div>
 
@@ -107,6 +115,11 @@
             <%if @tab_id == "ScrapJobID"%>
                 <%@scrap_job = ScrapJob.new%>
                 <%= render :partial => 'scrap_jobs/form', :local => @scrap_job %>
+            <%end%>
+
+            <%if @tab_id == "ScrapReviewID"%>
+                <%@scrap_review = ScrapReview.new%>
+                <%= render :partial => 'scrap_reviews/form', :local => @scrap_review %>
             <%end%>
         </div>
     </div>

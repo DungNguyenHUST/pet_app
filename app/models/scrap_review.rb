@@ -1,0 +1,2 @@
+class ScrapReview < ApplicationRecord
+end

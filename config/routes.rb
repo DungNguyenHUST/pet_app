@@ -83,6 +83,7 @@ Rails.application.routes.draw do
   end
 
   resources :scrap_jobs
+  resources :scrap_reviews
 
   resources :reports
 

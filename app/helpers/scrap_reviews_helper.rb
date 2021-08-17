@@ -1,0 +1,2 @@
+module ScrapReviewsHelper
+end

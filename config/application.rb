@@ -27,6 +27,8 @@ module PetApp
 
     config.autoload_paths += %W(#{config.root}/app/jobs/scraper/)
     config.eager_load_paths += %W(#{config.root}/app/jobs/scraper/)
+    config.autoload_paths += %W(#{config.root}/app/jobs/scraper_reviews/)
+    config.eager_load_paths += %W(#{config.root}/app/jobs/scraper_reviews/)
 
   end
 end
