@@ -34,6 +34,11 @@
                 <%unless company_review.working_time.blank?%>
                     <a>Làm việc · <%= company_review.working_time%> · </a>
                 <%end%>
+                <%if company_review.recommend%>
+                    <a>Khuyến khích làm việc · </a>
+                <%else%>
+                    <a>Không khuyến khích làm việc · </a>
+                <%end%>
                 <a><%= company_review.created_at.strftime("%B %d, %Y")%></a>
         </div>
 
