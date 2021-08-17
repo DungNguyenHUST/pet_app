@@ -23,14 +23,18 @@
         </div>
 
         <div class="user_review_status">
-                <a><%= company_review.position %></a>
-                <%if company_review.working_status%>
-                    <a> · Nhân viên đang làm việc</a>
-                <%else%>
-                    <a> · Đã nghỉ việc</a>
+                <%unless company_review.position.blank?%>
+                    <a><%= company_review.position %> · </a>
                 <%end%>
-                <a> · Làm việc <%= company_review.working_time%></a>
-                <a> · <%= company_review.created_at.strftime("%B %d, %Y")%></a>
+                <%if company_review.working_status%>
+                    <a>Nhân viên đang làm việc · </a>
+                <%else%>
+                    <a>Đã nghỉ việc · </a>
+                <%end%>
+                <%unless company_review.working_time.blank?%>
+                    <a>Làm việc · <%= company_review.working_time%> · </a>
+                <%end%>
+                <a><%= company_review.created_at.strftime("%B %d, %Y")%></a>
         </div>
 
         <div class="user_review_cotent">
