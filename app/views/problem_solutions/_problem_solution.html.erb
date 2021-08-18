@@ -1,9 +1,11 @@
 <div class="user_problem_solution_block">
     <div class="user_problem_solution_left">
         <%owner_user = find_owner_user(problem_solution)%>
-        <%if owner_user%>
-            <%= render owner_user%>  
-        <%end%>
+        <div class="problem_solution_user">
+            <%if owner_user%>
+                <%= render owner_user%>  
+            <%end%>
+        </div>
         <div class="user_vote_toolbar" id="react_solution_<%=problem_solution.id%>">
             <div class="user_vote_solution">
                 <%if user_signed_in?%>
