@@ -10,10 +10,12 @@
                             <strong><%=@post.title%></strong>
                         </div>
                         <div class="post_info">
-                            <%owner_user = find_owner_user(@post)%>
-                            <%if owner_user%>
-                                <%= render owner_user%>  
-                            <%end%> 
+                            <div class="post_user_avatar">
+                                <%owner_user = find_owner_user(@post)%>
+                                <%if owner_user%>
+                                    <%= render owner_user%>  
+                                <%end%> 
+                            </div>
                             <div class="user_name">
                                 <%if owner_user.present?%>
                                     <a><%= owner_user.name%></a>
