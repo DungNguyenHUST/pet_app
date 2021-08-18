@@ -72,42 +72,44 @@
                 <%end%>
             </div>
 
-            <div class="interview_like_block" id="like_interview_<%=company_interview.id%>">
-                <%if user_signed_in?%>
-                    <% pre_like = company_interview.company_like_interviews.find { |like| like.user_id == current_user.id} %>
-                    <% if pre_like %>  
-                        <%= button_to company_interview_company_like_interview_path(company_interview, pre_like), method: :delete, remote: true, form_class: "like_btn_highlight" do %>
-                            <i class="material-icons">thumb_up</i> <span><%= company_interview.company_like_interviews.count%></span> <a>Thích</a>
+            <div class="interview_react_block" id="react_interview_<%=company_interview.id%>">
+                <div class="interview_like_block">
+                    <%if user_signed_in?%>
+                        <% like_react = company_interview.company_react_interviews.find { |react| (react.user_id == current_user.id) && (react.react_type == 1)} %>
+                        <% if like_react %>  
+                            <%= button_to company_interview_company_react_interviews_path(company_interview, react_type: -1), method: :post, remote: true, form_class: "like_btn_highlight" do %>
+                                <i class="material-icons">thumb_up</i> <span><%= company_interview.company_react_interviews.where(:react_type => 1).count%></span> <a>Thích</a>
+                            <%end%>
+                        <%else%>
+                            <%= button_to company_interview_company_react_interviews_path(company_interview, react_type: 1), method: :post, remote: true, form_class: "like_btn" do %>
+                                <i class="material-icons-outlined">thumb_up</i> <span><%= company_interview.company_react_interviews.where(:react_type => 1).count%></span> <a>Thích</a>
+                            <%end%>
                         <%end%>
                     <%else%>
-                        <%= button_to company_interview_company_like_interviews_path(company_interview), method: :post, remote: true, form_class: "like_btn" do %>
-                            <i class="material-icons-outlined">thumb_up</i> <span><%= company_interview.company_like_interviews.count%></span> <a>Thích</a>
-                        <%end%>
+                        <button type="button" data-toggle="modal" data-target="#buttonModalLoginCenter" class="like_btn">
+                            <i class="material-icons-outlined">thumb_up</i> <span><%= company_interview.company_react_interviews.where(:react_type => 1).count%></span> <a>Thích</a>
+                        </button>
                     <%end%>
-                <%else%>
-                    <button type="button" data-toggle="modal" data-target="#buttonModalLoginCenter" class="like_btn">
-                        <i class="material-icons-outlined">thumb_up</i> <span><%= company_interview.company_like_interviews.count%></span> <a>Thích</a>
-                    </button>
-                <%end%>
-            </div>
+                </div>
 
-            <div class="interview_dislike_block" id="dislike_interview_<%=company_interview.id%>">
-                <%if user_signed_in?%>
-                    <% pre_dislike = company_interview.company_dislike_interviews.find { |dislike| dislike.user_id == current_user.id} %>
-                    <% if pre_dislike %>
-                        <%= button_to company_interview_company_dislike_interview_path(company_interview, pre_dislike), :method => :delete, remote: true, form_class: "dislike_btn_highlight" do%>
-                            <i class="material-icons">thumb_down</i> <span><%= company_interview.company_dislike_interviews.count%></span> <a>Không thích</a>
-                        <%end%> 
+                <div class="interview_dislike_block">
+                    <%if user_signed_in?%>
+                        <% dislike_react = company_interview.company_react_interviews.find { |react| (react.user_id == current_user.id) && (react.react_type == 0)} %>
+                        <% if dislike_react %>  
+                            <%= button_to company_interview_company_react_interviews_path(company_interview, react_type: -1), method: :post, remote: true, form_class: "dislike_btn_highlight" do %>
+                                <i class="material-icons">thumb_down</i> <span><%= company_interview.company_react_interviews.where(:react_type => 0).count%></span> <a>Không thích</a>
+                            <%end%>
+                        <%else%>
+                            <%= button_to company_interview_company_react_interviews_path(company_interview, react_type: 0), method: :post, remote: true, form_class: "dislike_btn" do %>
+                                <i class="material-icons-outlined">thumb_down</i> <span><%= company_interview.company_react_interviews.where(:react_type => 0).count%></span> <a>Không thích</a>
+                            <%end%>
+                        <%end%>
                     <%else%>
-                        <%= button_to company_interview_company_dislike_interviews_path(company_interview), method: :post, remote: true, form_class: "dislike_btn" do%>
-                            <i class="material-icons-outlined">thumb_down</i> <span><%= company_interview.company_dislike_interviews.count%></span> <a>Không thích</a>
-                        <%end%> 
+                        <button type="button" data-toggle="modal" data-target="#buttonModalLoginCenter" class="like_btn">
+                            <i class="material-icons-outlined">thumb_down</i> <span><%= company_interview.company_react_interviews.where(:react_type => 0).count%></span> <a>Không thích</a>
+                        </button>
                     <%end%>
-                <%else%>
-                    <button type="button" data-toggle="modal" data-target="#buttonModalLoginCenter" class="dislike_btn">
-                        <i class="material-icons-outlined">thumb_down</i> <span><%= company_interview.company_dislike_interviews.count%></span> <a>Không thích</a>
-                    </button>
-                <%end%>
+                </div>
             </div>
 
             <div class="interview_report_block">

@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_08_17_032653) do
+ActiveRecord::Schema.define(version: 2021_08_18_033758) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -252,6 +252,24 @@ ActiveRecord::Schema.define(version: 2021_08_17_032653) do
     t.index ["slug"], name: "index_company_questions_on_slug", unique: true
   end
 
+  create_table "company_react_interviews", force: :cascade do |t|
+    t.integer "user_id"
+    t.integer "react_type", default: -1
+    t.bigint "company_interview_id", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["company_interview_id"], name: "index_company_react_interviews_on_company_interview_id"
+  end
+
+  create_table "company_react_reviews", force: :cascade do |t|
+    t.integer "user_id"
+    t.integer "react_type", default: -1
+    t.bigint "company_review_id", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["company_review_id"], name: "index_company_react_reviews_on_company_review_id"
+  end
+
   create_table "company_reply_interviews", force: :cascade do |t|
     t.string "user_name"
     t.string "reply_content"
@@ -438,6 +456,15 @@ ActiveRecord::Schema.define(version: 2021_08_17_032653) do
     t.index ["slug"], name: "index_posts_on_slug", unique: true
   end
 
+  create_table "problem_react_solutions", force: :cascade do |t|
+    t.integer "user_id"
+    t.integer "react_type", default: -1
+    t.bigint "problem_solution_id", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["problem_solution_id"], name: "index_problem_react_solutions_on_problem_solution_id"
+  end
+
   create_table "problem_reply_solutions", force: :cascade do |t|
     t.string "user_name"
     t.string "reply_content"
@@ -600,7 +627,10 @@ ActiveRecord::Schema.define(version: 2021_08_17_032653) do
   add_foreign_key "company_like_interviews", "users"
   add_foreign_key "company_like_reviews", "company_reviews"
   add_foreign_key "company_like_reviews", "users"
+  add_foreign_key "company_react_interviews", "company_interviews"
+  add_foreign_key "company_react_reviews", "company_reviews"
   add_foreign_key "employer_notifications", "employers"
+  add_foreign_key "problem_react_solutions", "problem_solutions"
   add_foreign_key "problem_unvote_solutions", "problem_solutions"
   add_foreign_key "problem_unvote_solutions", "users"
   add_foreign_key "problem_vote_solutions", "problem_solutions"

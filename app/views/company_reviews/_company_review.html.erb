@@ -87,42 +87,44 @@
                     <%end%>
                 </div>
 
-                <div class="review_like_block" id="like_review_<%=company_review.id%>">
-                    <%if user_signed_in?%>
-                        <% pre_like = company_review.company_like_reviews.find { |like| like.user_id == current_user.id} %>
-                        <% if pre_like %>  
-                            <%= button_to company_review_company_like_review_path(company_review, pre_like), method: :delete, remote: true, form_class: "like_btn_highlight" do %>
-                                <i class="material-icons">thumb_up</i> <span><%= company_review.company_like_reviews.count%></span> <a>Thích</a>
+                <div class="review_react_block" id="react_review_<%=company_review.id%>">
+                    <div class="review_like_block">
+                        <%if user_signed_in?%>
+                            <% like_react = company_review.company_react_reviews.find { |react| (react.user_id == current_user.id) && (react.react_type == 1)} %>
+                            <% if like_react %>  
+                                <%= button_to company_review_company_react_reviews_path(company_review, react_type: -1), method: :post, remote: true, form_class: "like_btn_highlight" do %>
+                                    <i class="material-icons">thumb_up</i> <span><%= company_review.company_react_reviews.where(:react_type => 1).count%></span> <a>Thích</a>
+                                <%end%>
+                            <%else%>
+                                <%= button_to company_review_company_react_reviews_path(company_review, react_type: 1), method: :post, remote: true, form_class: "like_btn" do %>
+                                    <i class="material-icons-outlined">thumb_up</i> <span><%= company_review.company_react_reviews.where(:react_type => 1).count%></span> <a>Thích</a>
+                                <%end%>
                             <%end%>
                         <%else%>
-                            <%= button_to company_review_company_like_reviews_path(company_review), method: :post, remote: true, form_class: "like_btn" do %>
-                                <i class="material-icons-outlined">thumb_up</i> <span><%= company_review.company_like_reviews.count%></span> <a>Thích</a>
-                            <%end%>
+                            <button type="button" data-toggle="modal" data-target="#buttonModalLoginCenter" class="like_btn">
+                                <i class="material-icons-outlined">thumb_up</i> <span><%= company_review.company_react_reviews.where(:react_type => 1).count%></span> <a>Thích</a>
+                            </button>
                         <%end%>
-                    <%else%>
-                        <button type="button" data-toggle="modal" data-target="#buttonModalLoginCenter" class="like_btn">
-                            <i class="material-icons-outlined">thumb_up</i> <span><%= company_review.company_like_reviews.count%></span> <a>Thích</a>
-                        </button>
-                    <%end%>
-                </div>
+                    </div>
 
-                <div class="review_dislike_block" id="dislike_review_<%=company_review.id%>">
-                    <%if user_signed_in?%>
-                        <% pre_dislike = company_review.company_dislike_reviews.find { |dislike| dislike.user_id == current_user.id} %>
-                        <% if pre_dislike %>
-                            <%= button_to company_review_company_dislike_review_path(company_review, pre_dislike), :method => :delete, remote: true, form_class: "dislike_btn_highlight" do%>
-                                <i class="material-icons">thumb_down</i> <span><%= company_review.company_dislike_reviews.count%></span> <a>Không thích</a>
-                            <%end%> 
+                    <div class="review_dislike_block">
+                        <%if user_signed_in?%>
+                            <% dislike_react = company_review.company_react_reviews.find { |react| (react.user_id == current_user.id) && (react.react_type == 0)} %>
+                            <% if dislike_react %>  
+                                <%= button_to company_review_company_react_reviews_path(company_review, react_type: -1), method: :post, remote: true, form_class: "dislike_btn_highlight" do %>
+                                    <i class="material-icons">thumb_down</i> <span><%= company_review.company_react_reviews.where(:react_type => 0).count%></span> <a>Không thích</a>
+                                <%end%>
+                            <%else%>
+                                <%= button_to company_review_company_react_reviews_path(company_review, react_type: 0), method: :post, remote: true, form_class: "dislike_btn" do %>
+                                    <i class="material-icons-outlined">thumb_down</i> <span><%= company_review.company_react_reviews.where(:react_type => 0).count%></span> <a>Không thích</a>
+                                <%end%>
+                            <%end%>
                         <%else%>
-                            <%= button_to company_review_company_dislike_reviews_path(company_review), method: :post, remote: true, form_class: "dislike_btn" do%>
-                                <i class="material-icons-outlined">thumb_down</i> <span><%= company_review.company_dislike_reviews.count%></span> <a>Không thích</a>
-                            <%end%> 
+                            <button type="button" data-toggle="modal" data-target="#buttonModalLoginCenter" class="like_btn">
+                                <i class="material-icons-outlined">thumb_down</i> <span><%= company_review.company_react_reviews.where(:react_type => 0).count%></span> <a>Không thích</a>
+                            </button>
                         <%end%>
-                    <%else%>
-                        <button type="button" data-toggle="modal" data-target="#buttonModalLoginCenter" class="dislike_btn">
-                            <i class="material-icons-outlined">thumb_down</i> <span><%= company_review.company_dislike_reviews.count%></span> <a>Không thích</a>
-                        </button>
-                    <%end%>
+                    </div>
                 </div>
 
                 <div class="review_report_block">

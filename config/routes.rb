@@ -44,12 +44,14 @@ Rails.application.routes.draw do
     resources :company_reply_reviews
     resources :company_like_reviews
     resources :company_dislike_reviews
+    resources :company_react_reviews
   end
   
   resources :company_interviews do
     resources :company_reply_interviews
     resources :company_like_interviews
     resources :company_dislike_interviews
+    resources :company_react_interviews
   end
 
   resources :company_jobs do
@@ -72,6 +74,7 @@ Rails.application.routes.draw do
     resources :problem_reply_solutions
     resources :problem_vote_solutions
     resources :problem_unvote_solutions
+    resources :problem_react_solutions
   end
 
   resources :posts do

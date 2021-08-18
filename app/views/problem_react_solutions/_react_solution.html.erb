@@ -1,0 +1,43 @@
+<div id="react_solution_<%=problem_solution.id%>">
+	<div class="user_vote_solution">
+		<%if user_signed_in?%>
+			<% upvote_react = problem_solution.problem_react_solutions.find { |react| (react.user_id == current_user.id) && (react.react_type == 1)} %>
+			<% if upvote_react %>  
+				<%= button_to problem_solution_problem_react_solutions_path(problem_solution, react_type: -1), method: :post, remote: true, form_class: "problem_solution_like_highlight" do %>
+					<i class="material-icons-outlined">arrow_drop_up</i>
+				<%end%> 
+			<%else%>
+				<%= button_to problem_solution_problem_react_solutions_path(problem_solution, react_type: 1), method: :post, remote: true, form_class: "problem_solution_like" do %>
+					<i class="material-icons-outlined">arrow_drop_up</i>
+				<%end%> 
+			<%end%>
+		<%else%>
+			<button type="button" data-toggle="modal" data-target="#buttonModalLoginCenter" class="problem_solution_like">
+				<i class="material-icons-outlined">arrow_drop_up</i>
+			</button>
+		<%end%>
+	</div>
+
+	<div class="problem_solution_like_info">
+		<a><%= problem_solution.problem_react_solutions.where(:react_type => 1).count - problem_solution.problem_react_solutions.where(:react_type => 0).count%></a>
+	</div>
+
+	<div class="user_unvote_solution">
+		<%if user_signed_in?%>
+			<% downvote_react = problem_solution.problem_react_solutions.find { |react| (react.user_id == current_user.id) && (react.react_type == 0)} %>
+			<% if downvote_react %>
+				<%= button_to problem_solution_problem_react_solutions_path(problem_solution, react_type: -1), method: :post, remote: true, form_class: "problem_solution_dislike_highlight" do %>
+					<i class="material-icons-outlined">arrow_drop_down</i>
+				<%end%> 
+			<%else%>
+				<%= button_to problem_solution_problem_react_solutions_path(problem_solution, react_type: 0), method: :post, remote: true, form_class: "problem_solution_dislike" do %>
+					<i class="material-icons-outlined">arrow_drop_down</i>
+				<%end%> 
+			<%end%>
+		<%else%>
+			<button type="button" data-toggle="modal" data-target="#buttonModalLoginCenter" class="problem_solution_dislike">
+				<i class="material-icons-outlined">arrow_drop_down</i>
+			</button>
+		<%end%>
+	</div>
+</div>
