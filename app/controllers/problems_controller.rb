@@ -64,8 +64,9 @@ class ProblemsController < ApplicationController
         @problem_solutions_best = []
         count = 1
         @problem_solutions.each do |problem_solution|
-            if problem_solution.problem_vote_solutions.count - problem_solution.problem_unvote_solutions.count >= count
-                count = problem_solution.problem_vote_solutions.count - problem_solution.problem_unvote_solutions.count
+            temp_count = problem_solution.problem_react_solutions.where(:react_type => 1).count - problem_solution.problem_react_solutions.where(:react_type => 0).count
+            if temp_count >= count
+                count = temp_count
                 @problem_solutions_best = problem_solution
             end
         end

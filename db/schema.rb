@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_08_18_033758) do
+ActiveRecord::Schema.define(version: 2021_08_18_072729) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -128,24 +128,6 @@ ActiveRecord::Schema.define(version: 2021_08_18_033758) do
     t.index ["slug"], name: "index_company_apply_jobs_on_slug", unique: true
   end
 
-  create_table "company_dislike_interviews", force: :cascade do |t|
-    t.bigint "user_id", null: false
-    t.bigint "company_interview_id", null: false
-    t.datetime "created_at", precision: 6, null: false
-    t.datetime "updated_at", precision: 6, null: false
-    t.index ["company_interview_id"], name: "index_company_dislike_interviews_on_company_interview_id"
-    t.index ["user_id"], name: "index_company_dislike_interviews_on_user_id"
-  end
-
-  create_table "company_dislike_reviews", force: :cascade do |t|
-    t.bigint "company_review_id", null: false
-    t.bigint "user_id", null: false
-    t.datetime "created_at", precision: 6, null: false
-    t.datetime "updated_at", precision: 6, null: false
-    t.index ["company_review_id"], name: "index_company_dislike_reviews_on_company_review_id"
-    t.index ["user_id"], name: "index_company_dislike_reviews_on_user_id"
-  end
-
   create_table "company_follows", force: :cascade do |t|
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
@@ -220,24 +202,6 @@ ActiveRecord::Schema.define(version: 2021_08_18_033758) do
     t.string "experience_converted"
     t.string "policy"
     t.index ["slug"], name: "index_company_jobs_on_slug", unique: true
-  end
-
-  create_table "company_like_interviews", force: :cascade do |t|
-    t.bigint "user_id", null: false
-    t.bigint "company_interview_id", null: false
-    t.datetime "created_at", precision: 6, null: false
-    t.datetime "updated_at", precision: 6, null: false
-    t.index ["company_interview_id"], name: "index_company_like_interviews_on_company_interview_id"
-    t.index ["user_id"], name: "index_company_like_interviews_on_user_id"
-  end
-
-  create_table "company_like_reviews", force: :cascade do |t|
-    t.bigint "company_review_id", null: false
-    t.bigint "user_id", null: false
-    t.datetime "created_at", precision: 6, null: false
-    t.datetime "updated_at", precision: 6, null: false
-    t.index ["company_review_id"], name: "index_company_like_reviews_on_company_review_id"
-    t.index ["user_id"], name: "index_company_like_reviews_on_user_id"
   end
 
   create_table "company_questions", force: :cascade do |t|
@@ -489,24 +453,6 @@ ActiveRecord::Schema.define(version: 2021_08_18_033758) do
     t.index ["slug"], name: "index_problem_solutions_on_slug", unique: true
   end
 
-  create_table "problem_unvote_solutions", force: :cascade do |t|
-    t.bigint "user_id", null: false
-    t.bigint "problem_solution_id", null: false
-    t.datetime "created_at", precision: 6, null: false
-    t.datetime "updated_at", precision: 6, null: false
-    t.index ["problem_solution_id"], name: "index_problem_unvote_solutions_on_problem_solution_id"
-    t.index ["user_id"], name: "index_problem_unvote_solutions_on_user_id"
-  end
-
-  create_table "problem_vote_solutions", force: :cascade do |t|
-    t.bigint "user_id", null: false
-    t.bigint "problem_solution_id", null: false
-    t.datetime "created_at", precision: 6, null: false
-    t.datetime "updated_at", precision: 6, null: false
-    t.index ["problem_solution_id"], name: "index_problem_vote_solutions_on_problem_solution_id"
-    t.index ["user_id"], name: "index_problem_vote_solutions_on_user_id"
-  end
-
   create_table "problems", force: :cascade do |t|
     t.string "user_name"
     t.string "title"
@@ -619,21 +565,9 @@ ActiveRecord::Schema.define(version: 2021_08_18_033758) do
   end
 
   add_foreign_key "active_storage_attachments", "active_storage_blobs", column: "blob_id"
-  add_foreign_key "company_dislike_interviews", "company_interviews"
-  add_foreign_key "company_dislike_interviews", "users"
-  add_foreign_key "company_dislike_reviews", "company_reviews"
-  add_foreign_key "company_dislike_reviews", "users"
-  add_foreign_key "company_like_interviews", "company_interviews"
-  add_foreign_key "company_like_interviews", "users"
-  add_foreign_key "company_like_reviews", "company_reviews"
-  add_foreign_key "company_like_reviews", "users"
   add_foreign_key "company_react_interviews", "company_interviews"
   add_foreign_key "company_react_reviews", "company_reviews"
   add_foreign_key "employer_notifications", "employers"
   add_foreign_key "problem_react_solutions", "problem_solutions"
-  add_foreign_key "problem_unvote_solutions", "problem_solutions"
-  add_foreign_key "problem_unvote_solutions", "users"
-  add_foreign_key "problem_vote_solutions", "problem_solutions"
-  add_foreign_key "problem_vote_solutions", "users"
   add_foreign_key "user_notifications", "users"
 end
