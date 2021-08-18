@@ -1,0 +1,17 @@
+<div class="user_avatar_small">
+    <%if user.present?%>
+        <%if user.avatar?%>
+            <div class="user_avatar_small_img">
+                <%= image_tag(user.avatar.thumb.url)%>
+            </div>
+        <%else%>
+            <div class="user_avatar_small_text checked_<%=find_user_color(user.name)%>">
+                <a class="user_first_name_label"><%= user.name[0]%></a>
+            </div>
+        <%end%>
+    <%else%>
+        <div class="user_avatar_small_default checked_0">
+            <a>A</a>
+        </div>
+    <%end%>
+</div>

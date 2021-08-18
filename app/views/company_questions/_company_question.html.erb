@@ -1,24 +1,10 @@
 <div class="user_question_block">
     <div class="user_question_intro">
         <div class="user_question_intro_left">
-            <div class="user_avatar_small">
-                <%owner_user = find_owner_user(company_question)%>
-                <%if owner_user.present?%>
-                    <%if owner_user.avatar?%>
-                        <div class="user_avatar_small_img">
-                            <%= link_to (image_tag(owner_user.avatar.thumb.url)), image_path(url_for(owner_user.avatar.thumb.url)), rel: "gallery" , :href => user_path(owner_user)%>
-                        </div>
-                    <%else%>
-                        <div class="user_avatar_small_text checked_<%=find_user_color(owner_user.name)%>">
-                            <a><%= link_to owner_user.name[0], user_path(owner_user), class: "user_name_label"%></a>
-                        </div>
-                    <%end%>
-                <%else%>
-                    <div class="user_avatar_small_default checked_0">
-                        <a>A</a>
-                    </div>
-                <%end%>
-            </div>
+            <%owner_user = find_owner_user(company_question)%>
+            <%if owner_user%>
+                <%= render owner_user%>  
+            <%end%>
 
             <div class="user_info">
                 <div class="user_name">

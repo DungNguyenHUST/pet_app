@@ -26,13 +26,13 @@
 					<%end%>
 				</div>
 
-				<button class="user_avatar_small_moblie" onclick="openUserActionMenuMoblie()">
+				<button class="user_avatar_small_header_moblie" onclick="openUserActionMenuMoblie()">
 					<%if current_user.avatar?%>
-						<div class="user_avatar_small_img_moblie">
+						<div class="user_avatar_small_img_header_moblie">
 							<%= image_tag current_user.avatar.url %>
 						</div>
 					<%else%>
-						<div class="user_avatar_small_text_moblie checked_<%=find_user_color(current_user.name)%>">
+						<div class="user_avatar_small_text_header_moblie checked_<%=find_user_color(current_user.name)%>">
 							<%if current_user.name.present?%>
 								<span><%=current_user.name[0].upcase%></span>
 							<%else%>
@@ -101,13 +101,13 @@
 						<%end%>
 					</div>
 
-					<button class="user_avatar_small" type="button" id="dropdownUserMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+					<button class="user_avatar_small_header" type="button" id="dropdownUserMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
 						<%if current_user.avatar?%>
-							<div class="user_avatar_small_img">
+							<div class="user_avatar_small_img_header">
 								<%= image_tag current_user.avatar.url %>
 							</div>
 						<%else%>
-							<div class="user_avatar_small_text checked_<%=find_user_color(current_user.name)%>">
+							<div class="user_avatar_small_text_header checked_<%=find_user_color(current_user.name)%>">
 								<%if current_user.name.present?%>
 									<span><%=current_user.name[0].upcase%></span>
 								<%else%>
