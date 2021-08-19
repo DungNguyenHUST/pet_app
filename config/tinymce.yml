@@ -1,0 +1,53 @@
+default: &default
+  height: 500
+  menubar: true
+  selector: textarea
+  menubar: file edit view insert format tools table tc help
+  toolbar:
+    - undo redo | bold italic underline strikethrough | fontselect fontsizeselect formatselect | alignleft aligncenter alignright alignjustify | outdent indent |  numlist bullist checklist | forecolor backcolor casechange permanentpen formatpainter removeformat | pagebreak | charmap emoticons | fullscreen  preview save print | insertfile image media pageembed template link anchor codesample | a11ycheck ltr rtl | showcomments addcomment
+  plugins:
+    - print preview powerpaste casechange importcss tinydrive searchreplace autolink autosave save directionality advcode visualblocks visualchars fullscreen image 
+    - link media mediaembed template codesample table charmap hr pagebreak nonbreaking anchor toc insertdatetime advlist lists checklist wordcount tinymcespellchecker 
+    - a11ychecker imagetools textpattern noneditable help formatpainter permanentpen pageembed charmap tinycomments mentions quickbars linkchecker emoticons advtable export
+  skin: 
+    - oxide
+  icons:
+    - bootstrap
+  autosave_ask_before_unload: true
+  autosave_interval: 30s
+  autosave_restore_when_empty: false
+  autosave_retention: 2m
+  image_advtab: true
+  image_caption: true
+  quickbars_selection_toolbar: bold italic | quicklink h2 h3 blockquote quickimage quicktable
+  noneditable_noneditable_class: mceNonEditable
+  toolbar_mode: sliding
+  tinycomments_mode: embedded
+  contextmenu: link image imagetools table configurepermanentpen
+  a11y_advanced_options: true
+
+# Mini config editor
+mini:
+  <<: *default
+  height: 200
+  selector: textarea
+  menubar: false
+  toolbar:
+    - bold italic | emoticons | bullist numlist | undo redo
+  plugins:
+    - autoresize autolink autosave emoticons
+    - insertdatetime media table paste code help wordcount
+    - advlist autolink lists link image charmap print preview anchor
+
+# Medium config editor
+medium:
+  <<: *default
+  height: 400
+  selector: textarea
+  menubar: false
+  toolbar:
+    - undo redo | bold italic underline strikethrough | fontselect fontsizeselect formatselect | alignleft aligncenter alignright alignjustify | outdent indent |  numlist bullist checklist | forecolor backcolor | charmap emoticons | fullscreen  preview | image link | help
+  plugins:
+    - autoresize autolink autosave emoticons
+    - insertdatetime media table paste code help wordcount
+    - advlist autolink lists link image charmap print preview anchor

@@ -59,7 +59,8 @@
                         </div>
                         
                         <div class="new_post_input">
-                            <%= f.cktext_area :content, :required => true, class: "form-control-rich-text", ckeditor: {toolbar: "full", height: 500}, placeholder: "Nhập nội dung bài viết (ít nhất 3000 từ)" %>
+                            <%= f.text_area :content, :class => "tinymce"%>
+                            <%= tinymce :default %>
                         </div>
                     </div>
 

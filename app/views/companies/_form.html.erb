@@ -477,7 +477,8 @@
 							</div>
 							
 							<div class="new_company_input">
-								<%= f.cktext_area :overview, :required => true, class: "form-control-rich-text", ckeditor: {toolbar: "medium", height: 200}, placeholder: "Nhập mô tả chính, giới thiệu, lịch sử hoạt động ..." %>
+								<%= f.text_area :overview, :class => "tinymce"%>
+								<%= tinymce :medium %>
 							</div>
 						</div>
 
@@ -522,7 +523,8 @@
 							</div>
 							
 							<div class="new_company_input">
-								<%= f.cktext_area :policy, class: "form-control-rich-text", ckeditor: {toolbar: "medium", height: 200}, placeholder: "Nhập ít nhất 3 lý do tại sao nên join công ty" %>
+								<%= f.text_area :policy, :class => "tinymce"%>
+								<%= tinymce :medium %>
 							</div>
 						</div>
 					</div>

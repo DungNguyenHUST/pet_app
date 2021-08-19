@@ -213,7 +213,8 @@
 							</div>
 
 							<div class="new_interview_input">
-								<%= f.cktext_area :content, class: "form-control-rich-text", ckeditor: {toolbar: "mini", height: 100}, placeholder: "Chia sẻ nội dung phỏng vấn, câu hỏi hay cho mọi người nào" %>
+								<%= f.text_area :content, :class => "tinymce"%>
+								<%= tinymce :mini %>
 							</div>
 						</div>
 					</div>

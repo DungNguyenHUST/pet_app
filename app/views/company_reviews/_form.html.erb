@@ -137,7 +137,8 @@
 							</div>
 							
 							<div class="new_review_input">
-								<%= f.cktext_area :review, class: "form-control-rich-text", ckeditor: {toolbar: "mini", height: 100}, placeholder: "Nhập nội dung review của bạn" %>
+								<%= f.text_area :review, :class => "tinymce", data: { tinymce_target: 'mini' }%>
+								<%= tinymce :mini %>
 							</div>
 						</div>
 						<div class="new_review_content">
@@ -146,7 +147,8 @@
 							</div>
 
 							<div class="new_review_input">
-								<%= f.cktext_area :pros, class: "form-control-rich-text", ckeditor: {toolbar: "mini", height: 100}, placeholder: "Hãy nhập ít nhất 3 ưu điểm của công ty này" %>
+								<%= f.text_area :pros, :class => "tinymce"%>
+								<%= tinymce :mini %>
 							</div>
 						</div>
 
@@ -156,7 +158,8 @@
 							</div>
 
 							<div class="new_review_input">
-								<%= f.cktext_area :cons, class: "form-control-rich-text", ckeditor: {toolbar: "mini", height: 100}, placeholder: "Hãy nhập ít nhất 3 điểm không tốt của công ty này" %>
+								<%= f.text_area :cons, :class => "tinymce"%>
+								<%= tinymce :mini %>
 							</div>
 						</div>
 						

@@ -123,3 +123,6 @@ gem 'csv'
 
 # admin
 gem 'rails_admin'
+
+# tiny mce editor
+ gem 'tinymce-rails'

@@ -21,7 +21,8 @@
                 </div>
 
                 <div class="new_problem_solution_input">
-                    <%= f.cktext_area :content, :required => true, class: "form-control-rich-text", ckeditor: {toolbar: "high", height: 250}, placeholder: "Mô tả câu trả lời của bạn tại đây ..." %>
+                    <%= f.text_area :content, :class => "tinymce"%>
+                    <%= tinymce :medium %>
                 </div>
             </div>
         </div>
