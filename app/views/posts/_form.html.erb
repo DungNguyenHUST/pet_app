@@ -24,7 +24,7 @@
                             </div>
                             
                             <div class="new_post_input">
-                                <%= f.file_field :wall_picture, :required => true%>
+                                <%= f.file_field :wall_picture, :required => true, class: "form-control"%>
                             </div>
                         </div>
                     </div>
@@ -53,14 +53,16 @@
                         </div>
                     </div>
 
-                    <div class="new_post_content">
-                        <div class="new_post_label">
-                            <a><%= f.label :content, "Nội dung bài viết", class: "new_post_label_content" %><span>*</span></a>
-                        </div>
-                        
-                        <div class="new_post_input">
-                            <%= f.text_area :content, :class => "tinymce"%>
-                            <%= tinymce :default %>
+                    <div class="new_post_section">
+                        <div class="new_post_content">
+                            <div class="new_post_label">
+                                <a><%= f.label :content, "Nội dung bài viết", class: "new_post_label_name" %><span>*</span></a>
+                            </div>
+                            
+                            <div class="new_post_input">
+                                <%= f.text_area :content, :class => "tinymce"%>
+                                <%= tinymce :default %>
+                            </div>
                         </div>
                     </div>
 
