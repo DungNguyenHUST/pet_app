@@ -69,10 +69,6 @@ gem "bcrypt"
 # add bootstrap
 gem 'bootstrap', '~> 5.0.1'
 
-# For editor in post
-gem 'ckeditor'
-gem "twitter-bootstrap-rails"
-
 # For resize image
 gem 'image_processing'
 

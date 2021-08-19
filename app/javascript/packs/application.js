@@ -21,9 +21,6 @@ import "bootstrap"
 require("trix")
 require("@rails/actiontext")
 
-//= require ckeditor/init
-//= require_tree ./ckeditor
-
 //= require jquery
 //= require jquery_ujs
 //= require turbolinks
