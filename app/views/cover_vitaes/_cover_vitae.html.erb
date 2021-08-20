@@ -1,0 +1,10 @@
+<div class="cover_vitae_block">
+    <div class="cover_vitae_avatar">
+        <%if cover_vitae.avatar?%>
+            <%= link_to (image_tag(cover_vitae.avatar.url)), image_path(url_for(cover_vitae.avatar.url)), rel: "gallery" , :href => cover_vitae_path(cover_vitae), target: :_blank%>
+        <%end%>
+    </div>
+    <div class="cover_vitae_title">
+        <a><%=cover_vitae.title%></a>
+    </div>
+</div>

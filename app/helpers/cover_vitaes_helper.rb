@@ -1,0 +1,2 @@
+module CoverVitaesHelper
+end

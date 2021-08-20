@@ -83,6 +83,8 @@ Rails.application.routes.draw do
 
   resources :reports
 
+  resources :cover_vitaes
+
   get "search/index"
 
   get 'pages_select_company' => 'pages#select_company'

@@ -1,0 +1,167 @@
+<div class="container">
+    <div class ="row">
+        <div class="col-sm-8">
+            <div class="new_cover_vitae_form">
+                <%= form_for @cover_vitae, :html => { :class => "form-horizontal post" } do |f| %>
+                    <div class="new_cover_vitae_section">
+                        <div class="new_cover_vitae_content">
+                            <div class="new_cover_vitae_label">
+                                <a><%= f.label :title, "Title", class: "new_cover_vitae_label_name" %></a>
+                            </div>
+
+                            <div class="new_cover_vitae_input">
+                                <%= f.text_field :title, :required => true, class: "form-control", placeholder: " Nhập title" %>
+                            </div>
+                        </div>
+
+                        <div class="new_cover_vitae_content">
+                            <div class="new_cover_vitae_label">
+                                <a><%= f.label :description, "Mô tả", class: "new_cover_vitae_label_name" %></a>
+                            </div>
+
+                            <div class="new_cover_vitae_input">
+                                <%= f.text_field :description, :required => true, class: "form-control", placeholder: " Nhập mô tả" %>
+                            </div>
+                        </div>
+
+                        <div class="new_cover_vitae_content">
+                            <div class="new_cover_vitae_label">
+                                <a><%= f.label :avatar, "Ảnh bìa", class: "new_cover_vitae_label_name" %></a>
+                            </div>
+
+                            <div class="new_cover_vitae_input">
+                                <%= f.file_field :avatar, :required => true, class: "form-control"%>
+                            </div>
+                        </div>
+
+                        <div class="new_cover_vitae_content">
+                            <div class="new_cover_vitae_label">
+                                <a><%= f.label :language, "Ngôn ngữ", class: "new_cover_vitae_label_name" %></a>
+                            </div>
+
+                            <div class="new_cover_vitae_input">
+                                <%= f.select(:language, options_for_select(['Tiếng Việt', 'Tiếng Anh', 'Tiếng Nhật'], "Tiếng Việt"), 
+                                                                        {include_blank: false}, { :class => 'form-select' }) %>
+                            </div>
+                        </div>
+
+                        <div class="new_cover_vitae_content">
+                            <div class="new_cover_vitae_label">
+                                <a><%= f.label :style, "Style", class: "new_cover_vitae_label_name" %></a>
+                            </div>
+
+                            <div class="new_cover_vitae_input">
+                                <%= f.text_field :style, :required => true, class: "form-control", placeholder: " Style" %>
+                            </div>
+                        </div>
+
+                        <div class="new_cover_vitae_content">
+                            <div class="new_cover_vitae_label">
+                                <a><%= f.label :category, "Ngành nghề", class: "new_cover_vitae_label_name" %></a>
+                            </div>
+
+                            <div class="new_cover_vitae_input">
+								<%= f.select(:category, options_for_select(["An Ninh - Bảo Vệ",
+																					"An toàn lao động",
+																					"Bán hàng - Kinh doanh",
+																					"Bán lẻ - Bán sỉ",
+																					"Bảo hiểm",
+																					"Bất động sản",
+																					"Biên phiên dịch",
+																					"Bưu chính viễn thông",
+																					"Chăn nuôi - Thú y",
+																					"Chứng khoán",
+																					"CNTT - Phần cứng - Mạng",
+																					"CNTT - Phần mềm",
+																					"Công nghệ sinh học",
+																					"Công nghệ thực phẩm - Dinh dưỡng",
+																					"Cơ khí - Ô tô - Tự động hóa",
+																					"Dầu khí",
+																					"Dệt may - Da giày - Thời trang",
+																					"Dịch vụ khách hàng",
+																					"Du lịch",
+																					"Dược phẩm",
+																					"Điện - Điện tử - Điện lạnh",
+																					"Đồ gỗ",
+																					"Giải trí",
+																					"Giáo dục - Đào tạo",
+																					"Hàng gia dụng - Chăm sóc cá nhân",
+																					"Hàng hải",
+																					"Hàng không",
+																					"Hành chính - Thư ký",
+																					"Hóa học",
+																					"In ấn - Xuất bản",
+																					"Kế toán - Kiểm toán",
+																					"Khoáng sản",
+																					"Kiến trúc",
+																					"Lao động phổ thông",
+																					"Lâm Nghiệp",
+																					"Luật - Pháp lý",
+																					"Môi trường",
+																					"Mới tốt nghiệp - Thực tập",
+																					"Mỹ thuật - Nghệ thuật - Thiết kế",
+																					"Ngân hàng",
+																					"Nhà hàng - Khách sạn",
+																					"Nhân sự",
+																					"Nội ngoại thất",
+																					"Nông nghiệp",
+																					"Phi chính phủ - Phi lợi nhuận",
+																					"Quản lý chất lượng (QA - QC)",
+																					"Quản lý điều hành",
+																					"Quảng cáo - Đối ngoại - Truyền Thông",
+																					"Sản xuất - Vận hành sản xuất",
+																					"Tài chính - Đầu tư",
+																					"Thống kê",
+																					"Thu mua - Vật tư",
+																					"Thủy lợi",
+																					"Thủy sản - Hải sản",
+																					"Thư viện",
+																					"Thực phẩm & Đồ uống",
+																					"Tiếp thị - Marketing",
+																					"Tiếp thị trực tuyến",
+																					"Tổ chức sự kiện",
+																					"Trắc địa - Địa Chất",
+																					"Truyền hình - Báo chí - Biên tập",
+																					"Tư vấn",
+																					"Vận chuyển - Giao nhận - Kho vận",
+																					"Xây dựng",
+																					"Xuất nhập khẩu",
+																					"Y tế - Chăm sóc sức khỏe",
+																					"Bảo trì - Sửa chữa",
+																					"Ngành khác",
+																					'Không xác định'], 'Không xác định'), {include_blank: false}, 
+																					{ :class => 'form-control cv_field_operetion_select' }) %>
+							</div>
+							<script>
+								$(document).ready(function() {
+									$('.cv_field_operetion_select').select2({
+										placeholder: "-- Chọn một ngành nghề cho CV --",
+										allowClear: true,
+										width: 'resolve',
+										theme: "bootstrap",
+										selectOnClose: true
+									});
+								});
+							</script>
+                        </div>
+
+                        <div class="new_cover_vitae_content">
+                            <div class="new_cover_vitae_label">
+                                <a><%= f.label :detail, "CV", class: "new_cover_vitae_label_name" %></a>
+                            </div>
+
+                            <div class="new_cover_vitae_input">
+                                <%= f.text_area :detail, :class => "tinymce"%>
+                                <%= tinymce :default %>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="new_cover_vitae_submit">
+                        <%= f.submit "Create CV", class: "new_cover_vitae_form_submit" %>
+                    </div>
+                <%end%>
+            </div>
+        </div>
+    </div>
+</div>
