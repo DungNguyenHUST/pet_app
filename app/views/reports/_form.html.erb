@@ -30,7 +30,8 @@
                         <a><%= f.label :report_content, "Lý do khác(nếu có)"%></a>
                     </div>
                     <div class="new_report_input">
-                        <%= f.text_area :report_content, :required =>true, class: "form-control", placeholder: "Thêm lý do khác" %>
+                        <%= f.text_area :report_content, :class => "tinymce"%>
+                        <%= tinymce :mini %>                    
                     </div>
                 </div>
 

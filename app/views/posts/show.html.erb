@@ -56,7 +56,8 @@
                             <%= form_for([@post, PostComment.new], remote: true) do |f| %>
                                 <div class="new_post_show_comment_section">
                                     <div class="new_post_show_comment_input">
-                                        <%= f.text_area :comment_content, :required =>true, class: "form-control", placeholder: "Nhập bình luận của bạn tại đây" %>
+                                        <%= f.text_area :comment_content, :class => "tinymce"%>
+                                        <%= tinymce :mini %>
                                     </div>
                                 </div>
 

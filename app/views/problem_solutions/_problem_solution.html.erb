@@ -96,7 +96,8 @@
         <%= form_for([problem_solution, ProblemReplySolution.new], remote: true) do |f| %>
             <div class="new_reply_problem_solution_content">
                 <div class="new_reply_problem_solution_input_problem_solution">
-                    <%= f.text_area :reply_content, :required =>true, class: "form-control", placeholder: "Viết câu trả lời của bạn tại đây" %>
+                    <%= f.text_area :reply_content, :class => "tinymce"%>
+                    <%= tinymce :mini %>
                 </div>
             </div>
 

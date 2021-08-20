@@ -153,8 +153,9 @@
     <div class="new_reply_review_form_internal" id ="<%=company_review.id%>">
         <%= form_for([company_review, CompanyReplyReview.new], remote: true) do |f| %>
             <div class="new_reply_review_content">
-                <div class="new_reply_review_input_review">
-                    <%= f.text_area :reply_content, :required =>true, class: "form-control", placeholder: "Nhập câu trả lời của bạn tại đây" %>
+                <div class="new_reply_review_input_review">                    
+                    <%= f.text_area :reply_content, :class => "tinymce"%>
+                    <%= tinymce :mini %>
                 </div>
             </div>
 
