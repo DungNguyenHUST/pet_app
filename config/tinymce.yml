@@ -4,11 +4,11 @@ default: &default
   selector: textarea
   menubar: file edit view insert format tools table tc help
   toolbar:
-    - undo redo | bold italic underline strikethrough | fontselect fontsizeselect formatselect | alignleft aligncenter alignright alignjustify | outdent indent |  numlist bullist checklist | forecolor backcolor casechange permanentpen formatpainter removeformat | pagebreak | charmap emoticons | fullscreen  preview save print | insertfile image media pageembed template link anchor codesample | a11ycheck ltr rtl | showcomments addcomment
+    - undo redo | bold italic underline strikethrough | fontselect fontsizeselect formatselect | alignleft aligncenter alignright alignjustify | outdent indent |  numlist bullist | forecolor backcolor permanentpen formatpainter removeformat | pagebreak | charmap emoticons | fullscreen  preview save print | insertfile image media template link anchor codesample | a11ycheck ltr rtl | showcomments addcomment
   plugins:
-    - print preview powerpaste casechange importcss tinydrive searchreplace autolink autosave save directionality advcode visualblocks visualchars fullscreen image autoresize
-    - link media mediaembed template codesample table charmap hr pagebreak nonbreaking anchor toc insertdatetime advlist lists checklist wordcount tinymcespellchecker 
-    - a11ychecker imagetools textpattern noneditable help formatpainter permanentpen pageembed charmap tinycomments mentions quickbars linkchecker emoticons advtable export
+    - print preview importcss searchreplace autolink autosave save directionality visualblocks visualchars fullscreen image autoresize
+    - link media template codesample table charmap hr pagebreak nonbreaking anchor toc insertdatetime advlist lists wordcount 
+    - imagetools textpattern noneditable help charmap quickbars emoticons
   skin: 
     - oxide
   icons:
@@ -23,7 +23,7 @@ default: &default
   noneditable_noneditable_class: mceNonEditable
   toolbar_mode: sliding
   tinycomments_mode: embedded
-  contextmenu: link image imagetools table configurepermanentpen
+  contextmenu: link image imagetools table configure
   a11y_advanced_options: true
   branding: false
 
@@ -33,7 +33,7 @@ medium:
   height: 333
   menubar: false
   toolbar:
-    - bold | italic | underline | numlist | bullist | checklist | forecolor | backcolor | charmap | emoticons | image | link | fullscreen | preview | undo | redo
+    - bold | italic | underline | numlist | bullist | forecolor | backcolor | charmap | emoticons | image | link | fullscreen | preview | undo | redo
   plugins:
     - autolink autosave emoticons fullscreen charmap
     - insertdatetime media table paste code help wordcount
