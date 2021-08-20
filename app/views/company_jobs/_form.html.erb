@@ -37,7 +37,7 @@
 									<a><%= f.label :urgent, "Bạn cần tuyển gấp hay không?", class: "new_job_label" %></a>
 								</div>
 								<div class="new_job_input">
-									<%= f.select(:urgent, options_for_select([['Không, tôi không cần tuyển gấp', false], ['Có, tôi cần tuyển gấp', true]]), {include_blank: false}, { :class => 'form-control' }) %>
+									<%= f.select(:urgent, options_for_select([['Không, tôi không cần tuyển gấp', false], ['Có, tôi cần tuyển gấp', true]]), {include_blank: false}, { :class => 'form-select' }) %>
 								</div>
 							</div> -->
 							
@@ -53,7 +53,7 @@
 																			'Trưởng nhóm',
 																			'Quản lý', 
 																			'Quản lý cấp cao',
-																			'Giám đốc'], 'Nhân viên'), {include_blank: false}, { :class => 'form-control'}) %>
+																			'Giám đốc'], 'Nhân viên'), {include_blank: false}, { :class => 'form-select'}) %>
 								</div>
 							</div>
 
@@ -74,7 +74,7 @@
 															'Quảng Nam','Quảng Ngãi','Quảng Ninh','Quảng Trị',
 															'Sóc Trăng','Sơn La','Tây Ninh','Thái Bình','Thái Nguyên' ,
 															'Thanh Hóa','Thừa Thiên Huế','Tiền Giang','Trà Vinh',
-															'Tuyên Quang','Vĩnh Long','Vĩnh Phúc','Yên Bái' ], "Hà Nội"), {include_blank: false, :required => true}, { :class => 'form-control' }) %>
+															'Tuyên Quang','Vĩnh Long','Vĩnh Phúc','Yên Bái' ], "Hà Nội"), {include_blank: false, :required => true}, { :class => 'form-select' }) %>
 								</div>
 							</div>
 
@@ -115,7 +115,7 @@
 																			'90Tr - 95Tr', 
 																			'95Tr - 100Tr', 
 																			'hơn 100Tr'], 
-																			['Thương lượng']), {include_blank: false}, { :class => 'form-control' }) %>
+																			['Thương lượng']), {include_blank: false}, { :class => 'form-select' }) %>
 								</div>
 							</div>
 						</div>
@@ -196,7 +196,7 @@
 																				"Địa chất - Khoáng sản",
 																				"Điện lạnh - Nhiệt lạnh",
 																				"Điện - Điện tử",
-																				"Lĩnh vực khác"], "Lĩnh vực khác"), {include_blank: false}, { :class => 'new_job_category_select form-control'}) %>
+																				"Lĩnh vực khác"], "Lĩnh vực khác"), {include_blank: false}, { :class => 'new_job_category_select form-select'}) %>
 								</div>
 								<script>
 									$(document).ready(function() {
@@ -224,7 +224,7 @@
 																				"Thực tập sinh",
 																				"Remote - Làm việc từ xa", 
 																				"Khác"], 
-																				'Toàn thời gian'), {include_blank: false}, { :class => 'form-control' }) %>
+																				'Toàn thời gian'), {include_blank: false}, { :class => 'form-select' }) %>
 								</div>
 							</div>
 
@@ -240,7 +240,7 @@
 																				'Từ 5 ~ 10 năm', 
 																				"Từ 10 ~ 20 năm",
 																				"Trên 20 năm"], 
-																				'Không yêu cầu'), {include_blank: false}, { :class => 'form-control' }) %>
+																				'Không yêu cầu'), {include_blank: false}, { :class => 'form-select' }) %>
 								</div>
 							</div>
 
@@ -270,7 +270,7 @@
 								</div>
 								
 								<div class="new_job_input">
-									<%= f.select(:language, options_for_select(['English', 'Tiếng Việt', 'Tùy chọn'], 'Tùy chọn'), {include_blank: false}, { :class => 'form-control' }) %>
+									<%= f.select(:language, options_for_select(['English', 'Tiếng Việt', 'Tùy chọn'], 'Tùy chọn'), {include_blank: false}, { :class => 'form-select' }) %>
 								</div>
 							</div>
 
@@ -629,7 +629,7 @@
 																			"Điện Tử Viễn Thông ",
 																			"Đồ Họa ",
 																			"Đọc Hiểu Báo Cáo Tài Chính"]), 
-																			{include_blank: true}, { multiple: true, :class => 'form-control new_job_skill_select'}) %>
+																			{include_blank: true}, { multiple: true, :class => 'form-select new_job_skill_select'}) %>
 								</div>
 
 								<script>
