@@ -53,11 +53,14 @@
 <%- model_class = Company -%>
 <div class="company_area">
     <div class="company_overview">
-        <div class="company_wall_large">
-            <%if @company.wall_picture?%>
-                <%= image_tag @company.wall_picture.large.url %>
-            <%end%>
+        <div class="container">
+            <div class="company_wall_large">
+                <%if @company.wall_picture?%>
+                    <%= image_tag @company.wall_picture.large.url %>
+                <%end%>
+            </div>
         </div>
+        
         <div class="container">
             <div class="company_short_des">
                 <div class='row'>
