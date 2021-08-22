@@ -16,6 +16,10 @@ class CoverVitaesController < ApplicationController
         end
     end
 
+    def show
+        @cover_vitae = CoverVitae.find(params[:id])
+    end
+
     def cover_vitae_param
         params.require(:cover_vitae).permit(:id, :title, :description, :detail, :category, :language, :style, :avatar)
     end
