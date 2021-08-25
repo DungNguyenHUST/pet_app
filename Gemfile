@@ -116,6 +116,7 @@ gem 'kaminari'
 gem 'httparty'
 gem 'nokogiri'
 gem 'csv'
+gem 'kimurai'
 
 # admin
 gem 'rails_admin'

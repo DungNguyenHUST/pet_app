@@ -17,11 +17,11 @@ module PetApp
     # Application configuration can go into files in config/initializers
     # -- all .rb files in that directory are automatically loaded after loading
     # the framework and any gems in your application.
-
-    config.autoload_paths += %W(#{config.root}/app/jobs/scraper/)
-    config.eager_load_paths += %W(#{config.root}/app/jobs/scraper/)
-    config.autoload_paths += %W(#{config.root}/app/jobs/scraper_reviews/)
-    config.eager_load_paths += %W(#{config.root}/app/jobs/scraper_reviews/)
-
+    
+    # Crawler
+    config.autoload_paths += %W(#{config.root}/app/crawlers/jobs)
+    config.eager_load_paths += %W(#{config.root}/app/crawlers/jobs)
+    config.autoload_paths += %W(#{config.root}/app/crawlers/reviews)
+    config.eager_load_paths += %W(#{config.root}/app/crawlers/reviews)
   end
 end

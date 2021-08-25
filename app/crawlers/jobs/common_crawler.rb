@@ -1,4 +1,4 @@
-module CommonScraper
+module CommonCrawler
     include ApplicationHelper
     include CompanyJobsHelper
 
@@ -58,7 +58,8 @@ module CommonScraper
         new_name.gsub!(/[!@#$%^&*({]>?/, "")
         new_name.gsub!(/[-_+=)}|<.,;:]/, "")
         new_name.squish!
-        return new_name
+        company = Company.friendly.search(new_name).first
+        return company
     end
 
     def split_domain_name(url)
