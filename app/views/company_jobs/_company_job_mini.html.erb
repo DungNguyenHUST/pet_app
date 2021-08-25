@@ -2,7 +2,9 @@
     <%company = company_job.company%>
     <div class="company_job_mini_avatar">
         <%if company.avatar?%>
-            <img><%= link_to (image_tag(company.avatar.thumb.url)), image_path(url_for(company.avatar.thumb.url)), rel: "gallery" , :href => company_path(company)%>
+            <%= link_to (image_tag(company.avatar.thumb.url)), image_path(url_for(company.avatar.thumb.url)), rel: "gallery" , :href => company_path(company), target: :_blank%>
+        <%else%>
+            <%= link_to (image_tag("company_avatar_default.jpeg")), image_path(url_for("company_avatar_default.jpeg")), rel: "gallery" , :href => company_path(company), target: :_blank%>
         <%end%>
     </div>
 

@@ -1,13 +1,17 @@
 <div class="company_block">
     <div class="company_wall">
-        <%if company.avatar?%>
+        <%if company.wall_picture?%>
             <%= link_to (image_tag(company.wall_picture.large.url)), image_path(url_for(company.wall_picture.large.url)), rel: "gallery" , :href => company_path(company), target: :_blank%>
+        <%else%>
+            <%= link_to (image_tag("company_wall_default.jpeg")), image_path(url_for("company_wall_default.jpeg")), rel: "gallery" , :href => company_path(company), target: :_blank%>
         <%end%>
     </div>
 
     <div class="company_thumbnail">
         <%if company.avatar?%>
             <%= link_to (image_tag(company.avatar.thumb.url)), image_path(url_for(company.avatar.thumb.url)), rel: "gallery" , :href => company_path(company), target: :_blank%>
+        <%else%>
+            <%= link_to (image_tag("company_avatar_default.jpeg")), image_path(url_for("company_avatar_default.jpeg")), rel: "gallery" , :href => company_path(company), target: :_blank%>
         <%end%>
     </div>
 

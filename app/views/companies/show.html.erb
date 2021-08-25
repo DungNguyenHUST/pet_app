@@ -57,6 +57,8 @@
             <div class="company_wall_large">
                 <%if @company.wall_picture?%>
                     <%= image_tag @company.wall_picture.large.url %>
+                <%else%>
+                    <%= image_tag "company_wall_default.jpeg"%>
                 <%end%>
             </div>
         </div>
@@ -68,7 +70,9 @@
                         <div class="company_title_summary">
                             <div class="company_title_image">
                                 <%if @company.avatar?%>
-                                    <img> <%= image_tag @company.avatar.thumb.url %>
+                                    <%= image_tag @company.avatar.thumb.url %>
+                                <%else%>
+                                    <%= image_tag "company_avatar_default.jpeg" %>
                                 <%end%>
                             </div>
                             <div class="company_title_name">

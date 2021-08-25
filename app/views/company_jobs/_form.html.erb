@@ -13,7 +13,9 @@
 
 						<div class="new_company_job_image">
 							<%if @company.avatar?%>
-								<img><%= image_tag @company.avatar.thumb.url %>
+								<%= image_tag @company.avatar.thumb.url %>
+							<%else%>
+								<%= image_tag "company_avatar_default.jpeg" %>
 							<%end%>
 						</div>
 
