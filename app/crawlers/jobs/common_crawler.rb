@@ -90,7 +90,7 @@ module CommonCrawler
                 if job_data.apply_site.present? && job_data.company_id.present?
                     job_exsit = CompanyJob.find_by(company_id: job_data.company_id, apply_site: job_data.apply_site)
                     unless job_exsit.present?
-                        @company_job = CompanyJob.create!(:company_id => job_data.company_id,
+                        @company_job = CompanyJob.new(:company_id => job_data.company_id,
                                                         :title => job_data.title,
                                                         :detail => job_data.detail,
                                                         :location => job_data.location,
