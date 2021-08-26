@@ -82,6 +82,12 @@ module CommonCrawler
         # end
     end
 
+    def rotate_url(url)
+        api_token = '3E293888640B9883DEB34D96F4C4B62A'
+        rotate_url = 'https://api.scraperbox.com/scrape?token=' + api_token + '&url=' + url + '&javascript_enabled=true'
+        return rotate_url.to_s
+    end
+
     def processing_job(job_datas)
         if job_datas.nil?
             return

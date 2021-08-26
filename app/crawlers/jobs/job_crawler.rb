@@ -14,6 +14,7 @@ class JobCrawler < Kimurai::Base
 
     def self.process(scrap_job)
         if check_exist_url(scrap_job.url)
+            scrap_job.url = rotate_url(scrap_job.url)
             @start_urls = [scrap_job.url.to_s]
             self.crawl!
         end
@@ -21,12 +22,14 @@ class JobCrawler < Kimurai::Base
 
     def parse(response, url:, data: {})
         response = browser.current_response
+        print response
 
         # Root link
         if links = find_root_link(url, response)
             begin
                 links.each do |link|
                     if check_exist_url(link)
+                        link = rotate_url(link)
                         request_to :parse_job_page, url: absolute_url(link, base: url)
                     end
                 end
@@ -53,9 +56,9 @@ class JobCrawler < Kimurai::Base
 
     def find_root_link(url, response)
         links = nil
-        if split_domain_name(url) == "careerbuilder.vn"
+        # if split_domain_name(url) == "careerbuilder.vn"
             links = response.css("div.job-item a.job_link").map { |link| link['href']}
-        end
+        # end
 
         if split_domain_name(url) == "topcv.vn"
             links = response.css("div.job h4.job-title a").map { |link| link['href']}
