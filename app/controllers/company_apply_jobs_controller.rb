@@ -1,22 +1,23 @@
 class CompanyApplyJobsController < ApplicationController
     include ApplicationHelper
+    include CompanyJobsHelper
     before_action :require_user_login, only: [:new, :create, :edit, :update, :destroy]
     
     def index 
         @company_job = CompanyJob.friendly.find(params[:company_job_id])
-        @company = @company_job.company
+        @company = find_company_of_job(@company_job)
         @company_apply_jobs = @company_jobs.company_apply_jobs.order('created_at DESC')
     end
 
     def new
         @company_job = CompanyJob.friendly.find(params[:company_job_id])
-        @company = @company_job.company
+        @company = find_company_of_job(@company_job)
         @company_apply_job = CompanyApplyJob.new
     end
 
     def create
         @company_job = CompanyJob.friendly.find(params[:company_job_id])
-        @company = @company_job.company
+        @company = find_company_of_job(@company_job)
         @company_apply_job = @company_job.company_apply_jobs.build(company_apply_job_param)
         @company_apply_job.user_id = current_user.id
 
@@ -45,7 +46,7 @@ class CompanyApplyJobsController < ApplicationController
     
     def destroy
         @company_job = CompanyJob.friendly.find(params[:company_job_id])
-        @company = @company_job.company
+        @company = find_company_of_job(@company_job)
         @company_apply_job = @company_job.company_apply_jobs.find(params[:id])
 
         @company_apply_job.destroy
@@ -54,7 +55,7 @@ class CompanyApplyJobsController < ApplicationController
 
     def show
         @company_job = CompanyJob.friendly.find(params[:company_job_id])
-        @company = @company_job.company
+        @company = find_company_of_job(@company_job)
         @company_apply_job = @company_job.company_apply_jobs.find(params[:id])
     end
 

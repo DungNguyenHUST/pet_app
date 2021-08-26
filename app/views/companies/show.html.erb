@@ -136,7 +136,7 @@
                                     <%= link_to '<button type="submit"> <i class="material-icons-outlined">edit</i> <span> Viết Interview</span> </button>'.html_safe, new_company_company_interview_path(@company) %>
                                 <% elsif @tab_id == "CompanyJobsID" %>
                                     <%if employer_signed_in?%>
-                                        <%= link_to '<button type="submit"> <i class="material-icons-outlined">edit</i> <span> Đăng tuyển</span> </button>'.html_safe, new_company_company_job_path(@company) %>
+                                        <%= link_to '<button type="submit"> <i class="material-icons-outlined">edit</i> <span> Đăng tuyển</span> </button>'.html_safe, new_company_job_path%>
                                     <%else%>
                                         <%= link_to '<button type="submit"> <i class="material-icons-outlined">edit</i> <span> Viết Review</span> </button>'.html_safe, new_company_company_review_path(@company) %>
                                     <%end%>

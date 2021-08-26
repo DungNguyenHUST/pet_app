@@ -1,30 +1,32 @@
 class CompanyJobsController < ApplicationController
     include ApplicationHelper
     include CompanyJobsHelper
+    include CompaniesHelper
+    include EmployersHelper
     before_action :require_employer_login, only: [:new, :create, :edit, :update, :destroy]
 
-    def index 
-        @companies = Company.all
+    def index
         @company_jobs = CompanyJob.all
     end
 
     def new
-        @company = Company.friendly.find(params[:company_id])
         @company_job = CompanyJob.new
     end
 
     def create
-        @company = Company.friendly.find(params[:company_id])
-        @company_job = @company.company_jobs.build(company_job_param)
+        @company_job = CompanyJob.new(company_job_param)
         
         if employer_signed_in?
             @company_job.user_id = current_employer.id
+            @employer_company = find_owner_company_for_employer(current_employer)
+            @company_job.company_id = @employer_company.id
+            @company_job.company_name = @employer_company.name
         end
 
         @company_job = convert_job_param(@company_job)
 
         if @company_job.save
-			redirect_to company_company_job_path(@company, @company_job)
+			redirect_to company_job_path(@company_job)
         else
             flash[:danger] = "Lỗi, hãy điền đủ nội dung có dấu "
             render :new
@@ -33,13 +35,11 @@ class CompanyJobsController < ApplicationController
 
     def edit
         @is_edit = params[:is_edit]
-        @company = Company.friendly.find params[:company_id]
-        @company_job = @company.company_jobs.friendly.find(params[:id])
+        @company_job = CompanyJob.friendly.find(params[:id])
     end
 
     def update
-        @company = Company.friendly.find params[:company_id]
-        @company_job = @company.company_jobs.friendly.find(params[:id])
+        @company_job = CompanyJob.friendly.find(params[:id])
 
         if(@company_job.update(company_job_param))
             flash[:success] = "Update thông tin thành công"
@@ -50,19 +50,26 @@ class CompanyJobsController < ApplicationController
     end
     
     def destroy
-        @company = Company.friendly.find(params[:company_id])
-        @company_job = @company.company_jobs.friendly.find(params[:id])
+        @company_job = CompanyJob.friendly.find(params[:id])
         @company_job.destroy
         redirect_to company_path(@company, tab_id: 'CompanyJobsID')
     end
 
     def show
-        @company = Company.friendly.find(params[:company_id])
-        @company_job = @company.company_jobs.friendly.find(params[:id])
-
-        @company_jobs = @company.company_jobs.order('created_at DESC')
-        @company_jobs = @company_jobs.reject{|i| i.id == @company_job.id}
-        @company_related_jobs = Kaminari.paginate_array(@company_jobs).page(params[:page]).per(10)
+        @company_job = CompanyJob.friendly.find(params[:id])
+        @company = find_company_of_job(@company_job)
+        if @company.present?
+            if find_job_of_company(@company)
+                @company_jobs = find_job_of_company(@company)
+            else
+                @company_jobs = find_same_job(@company_job)
+            end
+            
+            if @company_jobs
+                @company_jobs = @company_jobs.reject{|i| i.id == @company_job.id}
+                @company_related_jobs = Kaminari.paginate_array(@company_jobs).page(params[:page]).per(10)
+            end
+        end
 
         # for preview mode
         respond_to do |format|
@@ -72,7 +79,6 @@ class CompanyJobsController < ApplicationController
     end
 	
 	def list
-        @companies = Company.all
 		@company_jobs = CompanyJob.all.order('created_at DESC').page(params[:page]).per(10)
     end
 

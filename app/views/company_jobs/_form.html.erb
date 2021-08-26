@@ -2,20 +2,12 @@
 	<div class="row">
 		<div class="col-sm-8">
 			<div class="new_job_form">
-				<%= form_for [@company, CompanyJob.new] do |f| %>
+				<%= form_for @company_job, :html => { :class => "form-horizontal company" } do |f| %>
 						<div class="new_job_title">
 							<%if !@is_edit%>
-								<a>Tạo việc làm mới - <%=@company.name%></a>
+								<a>Tạo việc làm mới</a>
 							<%else%>
 								<a>Update tin tuyển dụng <%=@company_job.title%></a>
-							<%end%>
-						</div>
-
-						<div class="new_company_job_image">
-							<%if @company.avatar?%>
-								<%= image_tag @company.avatar.thumb.url %>
-							<%else%>
-								<%= image_tag "company_avatar_default.jpeg" %>
 							<%end%>
 						</div>
 

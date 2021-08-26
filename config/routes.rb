@@ -32,7 +32,6 @@ Rails.application.routes.draw do
   resources :companies do
     resources :company_reviews
     resources :company_interviews
-    resources :company_jobs
     resources :company_questions
     resources :company_salaries
     resources :company_follows

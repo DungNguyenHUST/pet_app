@@ -81,7 +81,7 @@
                         <div class="employer_job_tab">
                             <%if @company_job_by_employer.count > 0%>
                                 <div class="employer_job_new">
-                                    <%= link_to '<button type="submit"><i class="material-icons-outlined">add</i><span>Đăng tin tuyển dụng miễn phí<span></button>'.html_safe, new_company_company_job_path(@company_by_employer) %>
+                                    <%= link_to '<button type="submit"><i class="material-icons-outlined">add</i><span>Đăng tin tuyển dụng miễn phí<span></button>'.html_safe, new_company_job_path%>
                                 </div>  
                                 <div class="employer_job_employer">
                                     <div class="employer_job_employer_label">
@@ -93,8 +93,8 @@
                                             <div class="company_employer_job_container">
                                                 <div class="company_job_employer_block">
                                                     <div class='company_employer_job_edit'>
-                                                        <%= link_to 'Chỉnh sửa', edit_company_company_job_path(@company_by_employer, company_job), method: :get, class: "btn btn-large btn-warning" %>
-                                                        <%= link_to 'Xóa', company_company_job_path(@company_by_employer, company_job), method: :delete, class: "btn btn-large btn-danger", data: { confirm: 'Bạn có chắc muốn xóa công việc này?' } %>
+                                                        <%= link_to 'Chỉnh sửa', edit_company_job_path(company_job), method: :get, class: "btn btn-large btn-warning" %>
+                                                        <%= link_to 'Xóa', company_job_path(company_job), method: :delete, class: "btn btn-large btn-danger", data: { confirm: 'Bạn có chắc muốn xóa công việc này?' } %>
                                                     </div>
 
                                                     <div class='company_employer_job_render'>
@@ -142,7 +142,7 @@
                                     </div>
                                     <div class="employer_job_not_found_action">
                                         <div class="employer_job_button">
-                                            <%= link_to '<button type="submit"> <i class="material-icons-outlined">edit</i> <span> Thêm việc làm mới</span> </button>'.html_safe, new_company_company_job_path(@company_by_employer)%>
+                                            <%= link_to '<button type="submit"> <i class="material-icons-outlined">edit</i> <span> Thêm việc làm mới</span> </button>'.html_safe, new_company_job_path%>
                                         </div>
                                     </div>
                                 </div>

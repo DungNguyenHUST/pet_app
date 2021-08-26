@@ -1,21 +1,22 @@
 class CompanySaveJobsController < ApplicationController
+    include CompanyJobsHelper
     before_action :require_user_login, only: [:new, :create, :edit, :update, :destroy]
         
     def index 
         @company_job = CompanyJob.friendly.find(params[:company_job_id])
-        @company = @company_job.company
+        @company = find_company_of_job(@company_job)
         @company_save_job = @company_job.company_save_jobs
     end
 
     def new
         @company_job = CompanyJob.friendly.find(params[:company_job_id])
-        @company = @company_job.company
+        @company = find_company_of_job(@company_job)
         @company_save_job = CompanySaveJob.new
     end
 
     def create
         @company_job = CompanyJob.friendly.find(params[:company_job_id])
-        @company = @company_job.company
+        @company = find_company_of_job(@company_job)
         @company_save_job = CompanySaveJob.new
         @type_param = params[:type_param]
 
@@ -23,7 +24,6 @@ class CompanySaveJobsController < ApplicationController
             @company_save_job = @company_job.company_save_jobs.create(user_id: current_user.id)
         end
 
-        # redirect_to company_company_job_path(@company, @company_job)
         respond_to do |format|
             format.html {}
             format.js
@@ -38,12 +38,11 @@ class CompanySaveJobsController < ApplicationController
 
     def destroy 
         @company_job = CompanyJob.friendly.find(params[:company_job_id])
-        @company = @company_job.company
+        @company = find_company_of_job(@company_job)
         @company_save_job = @company_job.company_save_jobs.find(params[:id])
         @company_save_job.destroy
         @type_param = params[:type_param]
 
-        # redirect_to company_company_job_path(@company, @company_job)
         respond_to do |format|
             format.html {}
             format.js
@@ -52,7 +51,7 @@ class CompanySaveJobsController < ApplicationController
 
     def show
         @company_job = CompanyJob.friendly.find(params[:company_job_id])
-        @company = @company_job.company
+        @company = find_company_of_job(@company_job)
         @company_save_job = @company_job.company_save_jobs.find(params[:id])
     end
 

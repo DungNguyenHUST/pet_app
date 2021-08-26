@@ -1,5 +1,6 @@
 class EmployersController < ApplicationController
     include EmployersHelper
+    include CompaniesHelper
     before_action :require_employer_login, only: [:index, :show, :edit, :update, :destroy]
     
     def index
@@ -25,7 +26,7 @@ class EmployersController < ApplicationController
         
         @company_by_employer = find_owner_company_for_employer(@employer)
         if(@company_by_employer.present?)
-            @company_job_by_employer = @company_by_employer.company_jobs
+            @company_job_by_employer = find_job_of_company(@company_by_employer)
         end
     end
 

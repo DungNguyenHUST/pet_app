@@ -24,15 +24,15 @@ class JobCrawler < Kimurai::Base
 
         # Root link
         if links = find_root_link(url, response)
-            begin
+            # begin
                 links.each do |link|
                     if check_exist_url(link)
                         request_to :parse_job_page, url: absolute_url(link, base: url)
                     end
                 end
-            rescue
-                print "*****************Handle link error*******************\n"
-            end
+            # rescue
+            #     print "*****************Handle link error*******************\n"
+            # end
         end
 
         # Next page press

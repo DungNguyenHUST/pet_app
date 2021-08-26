@@ -1,4 +1,4 @@
-<% content_for :meta_title, @company.name + " tuyển dụng " + @company_job.title %>
+<% content_for :meta_title, @company_job.company_name + " tuyển dụng " + @company_job.title %>
 <% content_for :meta_description, @company_job.description %>
 
 <%# Google job structure data start %>
@@ -35,9 +35,9 @@
     "employmentType" : "<%=employmentType%>",
     "hiringOrganization" : {
         "@type" : "Organization",
-        "name" : "<%=@company.name%>",
-        "sameAs" : "<%=@company.website%>",
-        <%if @company.avatar?%>
+        "name" : "<%=@company_job.company_name%>",
+        "sameAs" : "<%=@company_job.address%>",
+        <%if @company.present? && @company.avatar?%>
             "logo" : "<%= image_tag (@company.avatar.thumb.url) %>"
         <%else%>
             "logo" : "<%= image_tag ("company_avatar_default.jpeg") %>"
@@ -86,10 +86,10 @@
             <div class="col-sm-9">
                 <div class="job_overview_left">
                     <div class="company_avatar">
-                        <%if @company.avatar?%>
+                        <%if @company.present? && @company.avatar?%>
                             <%= link_to (image_tag(@company.avatar.thumb.url)), image_path(url_for(@company.avatar.thumb.url)), rel: "gallery" , :href => company_path(@company), target: :_blank%>
                         <%else%>
-                            <%= link_to (image_tag("company_avatar_default.jpeg")), image_path(url_for("company_avatar_default.jpeg")), rel: "gallery" , :href => company_path(@company), target: :_blank%>
+                            <%= image_tag("company_avatar_default.jpeg")%>
                         <%end%>
                     </div>
                     <div class="job_des">
@@ -97,7 +97,11 @@
                             <h4><%= @company_job.title %></h4>
                         </div>
                         <div class="company_job_name">
-                            <a><%= link_to (@company.name), company_path(@company), target: :_blank%> </a>
+                            <%if @company.present?%>
+                                <a><%= link_to (@company.name), company_path(@company), target: :_blank%> </a>
+                            <%else%>
+                                <a><%=@company_job.company_name%></a>
+                            <%end%>
                         </div>
 
                         <div class='job_block_info'>
@@ -106,8 +110,6 @@
                                     <a><i class="material-icons-outlined">room</i><%= @company_job.location %></a>
                                 <%elsif @company_job.address.present?%>
                                     <a><i class="material-icons-outlined">room</i><%= @company_job.address %></a>
-                                <%elsif @company.address.present? %>
-                                    <a><i class="material-icons-outlined">room</i><%= @company.address %></a>
                                 <%else%>
                                     <a><i class="material-icons-outlined">room</i>Đang cập nhật</a>
                                 <%end%>
@@ -253,22 +255,24 @@
                         <%end%>
                     </div>
                 </div>
-                  
-                <div class="company_job_index">
-                    <div class="more_job_section">
-                        <strong>Việc làm khác cùng công ty <%=@company.name%></strong>
-                    </div>
-                    <div class="more_job_content">
-                        <div class="row"> 
-                            <div class="col-sm-12 col-no-padding">
-                                <%= render @company_related_jobs%>
+                
+                <%if @company_related_jobs.present?%>
+                    <div class="company_job_index">
+                        <div class="more_job_section">
+                            <strong>Việc làm khác cùng công ty <%=@company_job.company_name%></strong>
+                        </div>
+                        <div class="more_job_content">
+                            <div class="row"> 
+                                <div class="col-sm-12 col-no-padding">
+                                    <%= render @company_related_jobs%>
+                                </div>
                             </div>
                         </div>
+                        <div class="company_job_paginate">
+                            <%= paginate @company_related_jobs, window: 2%>
+                        </div>
                     </div>
-                    <div class="company_job_paginate">
-                        <%= paginate @company_related_jobs, window: 2%>
-                    </div>
-                </div>
+                <%end%>
             </div>
             <div class="col-sm-4">
                 <div class='job_block_right'>
@@ -341,7 +345,7 @@
                         </div>
                     </div>
                     
-                    <%if @company.company_reviews.count > 0%>
+                    <%if @company.present? && @company.company_reviews.count > 0%>
                         <div class='job_block_right_company'>
                             <div class='job_block_right_label'>
                                 <a>Mọi người nói gì về <%=@company.name%></a>

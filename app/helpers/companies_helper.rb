@@ -429,4 +429,10 @@ module CompaniesHelper
         count = company.company_salaries.where(level: level_type, locate: locate_type).count
         return convert_number_to_human(count)
     end
+
+    def find_job_of_company(company)
+        if company.present?
+            company_job = CompanyJob.where(:company_id => company.id)
+        end
+    end
 end

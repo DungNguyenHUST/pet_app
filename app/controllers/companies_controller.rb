@@ -49,7 +49,7 @@ class CompaniesController < ApplicationController
         @company = Company.friendly.find params[:id]
         @company_reviews = @company.company_reviews.order('created_at DESC').page(params[:page]).per(10)
         @company_interviews = @company.company_interviews.order('created_at DESC').page(params[:page]).per(10)
-        @company_jobs = @company.company_jobs.order('created_at DESC').page(params[:page]).per(10)
+        @company_jobs = find_job_of_company(@company).order('created_at DESC').page(params[:page]).per(10)
         @company_questions = @company.company_questions.order('created_at DESC').page(params[:page]).per(10)
         @company_images = @company.company_images.order('created_at DESC').page(params[:page]).per(12)
 

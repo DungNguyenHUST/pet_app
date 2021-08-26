@@ -80,7 +80,7 @@
             
             <div class="job_point">
                 <div class="company_point_content">
-                    <a><%= company.company_jobs.count %></a>
+                    <a><%= find_job_of_company(company).count %></a>
                 </div>
                 <div class="company_point_label">
                     <a><%= link_to "Việc làm", company_path(company, tab_id: 'CompanyJobsID'), target: :_blank %></a>

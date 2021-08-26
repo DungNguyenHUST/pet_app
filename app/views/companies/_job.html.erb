@@ -3,9 +3,9 @@
     <div class="row"> 
         <div class="col-sm-8"> 
             <div class="company_job_tab_des_left">
-                <%if @company.company_jobs.approved.count > 0%>
+                <%if @company_jobs.total_count > 0%>
                     <div class="company_job_tab_des_label">
-                        <a><%=@company.company_jobs.approved.count%> việc làm đang tuyển dụng tại <%=@company.name%> </a> 
+                        <a><%=@company_jobs.total_count%> việc làm đang tuyển dụng tại <%=@company.name%> </a> 
                     </div>
                     
                     <div class="company_job_index_tab">
@@ -32,7 +32,7 @@
                             </div>
                             <div class="company_job_new_button">
                                 <%if employer_signed_in? || admin_signed_in?%>
-                                    <%= link_to '<button type="submit"><i class="material-icons-outlined">add</i><span>Đăng tin tuyển dụng miễn phí<span></button>'.html_safe, new_company_company_job_path(@company) %>
+                                    <%= link_to '<button type="submit"><i class="material-icons-outlined">add</i><span>Đăng tin tuyển dụng miễn phí<span></button>'.html_safe, new_company_job_path%>
                                 <%else%>
                                     <%= link_to '<button type="submit"><i class="material-icons-outlined">add</i><span>Đăng tin tuyển dụng miễn phí<span></button>'.html_safe, new_employer_session_path %>
                                 <%end%>

@@ -64,7 +64,7 @@
             img{ 
                 border-radius: 0px;
                 width: 50px;
-                height: 44px;
+                height: 50px;
                 border: 1px solid #efefef;
                 object-fit: cover;
                 border-radius: 5px;
@@ -614,15 +614,18 @@
     }
     .job_block_left{
         margin-top: 20px;
+        margin-bottom: 20px;
         clear: both;
         background-color: #fff;
         border-radius: 5px;
         border: 1px solid #e5e5e5;
         padding: 15px;
+        min-height: 700px;
         @media screen and (max-width: 600px){
             margin-top: 10px;
             border: none;
             padding: 0px;
+            min-height: 300px;
         }
         .job_detail_content{
             h1{
@@ -726,6 +729,19 @@
                 font-weight: 600;
                 &:focus {outline:none;}
             }
+        }
+    }
+
+    .company_job_index{
+        clear: both;
+        margin-bottom: 20px;
+        padding-top: 20px;
+        .more_job_section{
+            font-size: 22px;
+            margin-bottom: 20px;
+        }
+        .more_job_content{
+            margin-top: 20px;
         }
     }
 
@@ -898,23 +914,6 @@
     }
 }
 
-.company_job_index{
-    clear: both;
-    // margin-top: 50px;
-    margin-top: 20px;
-    margin-bottom: 20px;
-    padding-top: 20px;
-    .more_job_section{
-        font-size: 22px;
-        margin-bottom: 20px;
-        padding-top: 10px;
-    }
-    .more_job_content{
-        margin-top: 20px;
-        margin-bottom: 20px;
-    }
-}
-
 
 /////////////////new//////////////////
 .new_job_form
@@ -922,27 +921,12 @@
     margin-top: 20px;
     margin-bottom: 20px;
     .new_job_title{
-        float: left;
-        max-width: 80%;
+        margin-bottom: 20px;
         a{
             font-size: 22px;
             color: #333;
             text-align: left;
             font-weight: 600;
-        }
-    }
-
-    .new_company_job_image{
-        float: right;
-        img{
-            max-width: 80px;
-            max-height: 80px;
-            border: 1px solid #e5e5e5;
-            border-radius: 5px;
-            @media screen and (max-width: 600px){
-                max-width: 50px;
-                max-height: 44px;
-            }
         }
     }
 

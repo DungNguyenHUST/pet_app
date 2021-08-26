@@ -25,9 +25,25 @@ module CompanyJobsHelper
         end
     end
 
+    def find_company_of_job(company_job)
+        company = nil
+        if company_job.present?
+            company = Company.find_by_id(company_job.company_id)
+        end
+        return company
+    end
+
+    def find_same_job(company_job)
+        same_job = nil
+        if company_job.present?
+            same_job = CompanyJob.where(:company_name => company_job.company_name)
+        end
+        return same_job
+    end
+
     def convert_job_param(company_job)
         if company_job
-            company = company_job.company
+            company = find_company_of_job(company_job)
 
             if company_job.title
                 company_job.title_converted = convert_vie_to_eng(company_job.title)

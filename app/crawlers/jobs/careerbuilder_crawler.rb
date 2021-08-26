@@ -3,15 +3,19 @@ module CareerbuilderCrawler
     include CommonCrawler
 
     def get_job_data_careerbuilder(url, doc)
-        unless doc.css("div.job-desc a.job-company-name").nil?
-            company_name = doc.css("div.job-desc a.job-company-name").text.strip
-            @company = get_company_by_name(company_name)
-        end
-        @company = Company.first
-
-        if @company.present?
+        if doc.present?
             processing_detail_datas = []
-                    
+            unless doc.css("div.job-desc a.job-company-name").nil?
+                company_name = doc.css("div.job-desc a.job-company-name").text.strip
+                @company = get_company_by_name(company_name)
+            end
+
+            if @company.present?
+                company_id = @company.id
+            else
+                company_id = -1
+            end
+
             if doc.css("h1.title").first.present?
                 title = doc.css("h1.title").first.text.strip
             end
@@ -60,7 +64,7 @@ module CareerbuilderCrawler
             urgent = false
             apply_another_site_flag = true
             apply_site = url.to_s
-            address = @company.address
+            address = location
             approved = true
             user_id = Admin.first.id
             experience = "Không yêu cầu"
@@ -83,8 +87,8 @@ module CareerbuilderCrawler
                                                     address,
                                                     user_id,
                                                     approved,
-                                                    @company.id,
-                                                    @company.name,
+                                                    company_id,
+                                                    company_name,
                                                     experience)
 
                 processing_detail_datas.push(deatail_data_temp)

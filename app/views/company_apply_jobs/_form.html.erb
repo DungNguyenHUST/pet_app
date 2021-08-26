@@ -9,8 +9,8 @@
                         </div>
 
                         <div class="new_apply_job_image">
-                            <%if @company_job.company.avatar?%>
-                                <%= image_tag @company_job.company.avatar.thumb.url %>
+                            <%if @company.present? && @company.avatar?%>
+                                <%= image_tag @company.avatar.thumb.url %>
                             <%else%>
                                 <%= image_tag "company_avatar_default.jpeg" %>
                             <%end%>
