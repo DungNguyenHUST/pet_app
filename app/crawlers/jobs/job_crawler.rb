@@ -22,7 +22,6 @@ class JobCrawler < Kimurai::Base
 
     def parse(response, url:, data: {})
         response = browser.current_response
-        print response
 
         # Root link
         if links = find_root_link(url, response)
