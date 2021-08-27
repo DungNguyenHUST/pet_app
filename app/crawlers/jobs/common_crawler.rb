@@ -33,33 +33,16 @@ module CommonCrawler
                                         :job_link)
     end
 
-    def get_company_by_name(name)
-        new_name = convert_vie_to_eng(name)
-        new_name.sub!("ct", "")
-        new_name.sub!("cong ty", "")
-        new_name.sub!("company", "")
-        new_name.sub!("limited", "")
-        new_name.sub!("tap doan", "")
-        new_name.sub!("vn", "")
-        new_name.sub!("viet nam", "")
-        new_name.sub!("vietnam", "")
-        new_name.sub!("cp", "")
-        new_name.sub!("co phan", "")
-        new_name.sub!("tnhh", "")
-        new_name.sub!("trach nhiem huu han", "")
-        new_name.sub!("mtv", "")
-        new_name.sub!("mot thanh vien", "")
-        new_name.sub!("thuong mai", "")
-        new_name.sub!("san xuat", "")
-        new_name.sub!("va", "")
-        new_name.sub!("co.,ltd", "")
-        new_name.sub!("co., ltd", "")
-        new_name.sub!("chi nhanh", "")
-        new_name.gsub!(/[!@#$%^&*({]>?/, "")
-        new_name.gsub!(/[-_+=)}|<.,;:]/, "")
-        new_name.squish!
-        company = Company.friendly.search(new_name).first
-        return company
+    def split_company_name(name)
+        if name.split.size > 1
+            split_name_array = name.split(/\s/)
+                                .each_cons(2)
+                                .map(&:itself)
+                                .map { |str| str.join(" ") }
+            return split_name_array
+        else
+            return nil
+        end
     end
 
     def split_domain_name(url)
@@ -83,9 +66,82 @@ module CommonCrawler
     end
 
     def rotate_url(url)
-        api_token = '3E293888640B9883DEB34D96F4C4B62A'
-        rotate_url = 'https://api.scraperbox.com/scrape?token=' + api_token + '&url=' + url + '&javascript_enabled=true'
-        return rotate_url.to_s
+        # api_token = '3E293888640B9883DEB34D96F4C4B62A'
+        # rotate_url = 'https://api.scraperbox.com/scrape?token=' + api_token + '&url=' + url + '&javascript_enabled=true'
+        # return rotate_url.to_s
+        return url
+    end
+
+    def get_company_by_name(name)
+        new_name = convert_vie_to_eng(name)
+        new_name.sub!("ct", "")
+        new_name.sub!("cong ty", "")
+        new_name.sub!("tong cong ty", "")
+        new_name.sub!("company", "")
+        new_name.sub!("limited", "")
+        new_name.sub!("tap doan", "")
+        new_name.sub!("group", "")
+        new_name.sub!("vn", "")
+        new_name.sub!("viet nam", "")
+        new_name.sub!("vietnam", "")
+        new_name.sub!("vi na", "")
+        new_name.sub!("vina", "")
+        new_name.sub!("cp", "")
+        new_name.sub!("co phan", "")
+        new_name.sub!("tnhh", "")
+        new_name.sub!("trach nhiem huu han", "")
+        new_name.sub!("mtv", "")
+        new_name.sub!("mot thanh vien", "")
+        new_name.sub!("thuong mai", "")
+        new_name.sub!("dich vu", "")
+        new_name.sub!("tm", "")
+        new_name.sub!("san xuat", "")
+        new_name.sub!("va", "")
+        new_name.sub!("co ltd", "")
+        new_name.sub!("co.,ltd", "")
+        new_name.sub!("co., ltd", "")
+        new_name.sub!("chi nhanh", "")
+        new_name.sub!("trung tam", "")
+        new_name.sub!("ngan hang", "")
+        new_name.sub!("nghien cuu", "")
+        new_name.sub!("phat trien", "")
+        new_name.sub!("rnd", "")
+        new_name.sub!("tai chinh", "")
+        new_name.sub!("bao hiem", "")
+        new_name.sub!("xay dung", "")
+        new_name.sub!("nong nghiep", "")
+        new_name.sub!("dau tu", "")
+        new_name.sub!("chung khoan", "")
+        new_name.sub!("kinh doanh", "")
+        new_name.sub!("cong nghe", "")
+        new_name.sub!("thong tin", "")
+        new_name.sub!("giao duc", "")
+        new_name.sub!("sai gon", "")
+        new_name.sub!("ha noi", "")
+        new_name.gsub!(/[!@#$%^&*({]>?/, "")
+        new_name.gsub!(/[-_+=)}|<.,;:]/, "")
+        new_name.squish!
+
+        unless new_name.empty?
+            if split_name_array = split_company_name(new_name)
+                # Find company by each 2 word
+                split_name_array.each do |split_name|
+                    company_search = Company.friendly.search(split_name)
+                    if company_search.present?
+                        return company_search.first
+                    end
+                end
+            else
+                company_search = Company.friendly.search(new_name)
+                if company_search.present?
+                    return company_search.first
+                end
+            end
+
+            return nil
+        else
+            return nil
+        end
     end
 
     def processing_job(job_datas)
