@@ -38,9 +38,9 @@ class JobCrawler < Kimurai::Base
         end
 
         # Next page press
-        # if next_page = find_next_page(url, response)
-        #     request_to :parse, url: absolute_url(next_page[:href], base: url)
-        # end
+        if next_page = find_next_page(url, response)
+            request_to :parse, url: absolute_url(next_page[:href], base: url)
+        end
     end
 
     def parse_job_page(response, url:, data: {})
@@ -55,9 +55,9 @@ class JobCrawler < Kimurai::Base
 
     def find_root_link(url, response)
         links = nil
-        # if split_domain_name(url) == "careerbuilder.vn"
+        if split_domain_name(url) == "careerbuilder.vn"
             links = response.css("div.job-item a.job_link").map { |link| link['href']}
-        # end
+        end
 
         if split_domain_name(url) == "topcv.vn"
             links = response.css("div.job h4.job-title a").map { |link| link['href']}
