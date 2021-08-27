@@ -1,15 +1,19 @@
 require 'kimurai'
 require_relative 'careerbuilder_crawler.rb'
 require_relative 'topcv_crawler.rb'
+require_relative 'itviec_crawler.rb'
+require_relative 'mywork_crawler.rb'
 require_relative 'common_crawler.rb'
 include CareerbuilderCrawler
 include TopcvCrawler
+include ItviecCrawler
+include MyworkCrawler
 include CommonCrawler
 
 class JobCrawler < Kimurai::Base
     @name = "job_crawler"
     @engine = :mechanize
-    @start_urls = ["https://firework.vn"]
+    @start_urls = ["https://github.com"]
     @config = {}
 
     def self.process(scrap_job)
@@ -46,15 +50,16 @@ class JobCrawler < Kimurai::Base
     def parse_job_page(response, url:, data: {})
         # Detail link
         if response = browser.current_response
-            data = get_job_data(url, response)
-            if data.present?
-                processing_job(data)
+            job_data = get_job_data(url, response)
+            if job_data.present?
+                processing_job(job_data)
             end
         end
     end
 
     def find_root_link(url, response)
         links = nil
+
         if split_domain_name(url) == "careerbuilder.vn"
             links = response.css("div.job-item a.job_link").map { |link| link['href']}
         end
@@ -63,11 +68,20 @@ class JobCrawler < Kimurai::Base
             links = response.css("div.job h4.job-title a").map { |link| link['href']}
         end
 
+        if split_domain_name(url) == "itviec.com"
+            links = response.css("div.job__body h2.title a").map { |link| link['href'].prepend("https://itviec.com")}
+        end
+
+        if split_domain_name(url) == "mywork.com.vn"
+            links = response.css("div.jobslist-01-row-ttl a").map { |link| link['href'].prepend("https://mywork.com.vn")}
+        end
+
         return links
     end
 
     def find_next_page(url, response)
         next_page = nil
+
         if split_domain_name(url) == "careerbuilder.vn"
             next_page = response.at_css("div.pagination li.next-page a")
         end
@@ -76,17 +90,34 @@ class JobCrawler < Kimurai::Base
             next_page = response.css("ul.pagination li a").last
         end
 
+        if split_domain_name(url) == "itviec.com"
+            next_page = response.css("ul.pagination li a").last
+        end
+
+        if split_domain_name(url) == "mywork.com.vn"
+            next_page = response.at_css("div.pagination-not-bottom a.btn-next")
+        end
+
         return next_page
     end
 
     def get_job_data(url, response)
         job_data = nil
+
         if split_domain_name(url) == "careerbuilder.vn"
             job_data = get_job_data_careerbuilder(url, response)
         end
 
         if split_domain_name(url) == "topcv.vn"
             job_data = get_job_data_topcv(url, response)
+        end
+
+        if split_domain_name(url) == "itviec.com"
+            job_data = get_job_data_itviec(url, response)
+        end
+
+        if split_domain_name(url) == "mywork.com.vn"
+            job_data = get_job_data_mywork(url, response)
         end
 
         return job_data

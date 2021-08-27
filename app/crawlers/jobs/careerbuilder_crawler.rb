@@ -8,6 +8,8 @@ module CareerbuilderCrawler
             unless doc.css("div.job-desc a.job-company-name").nil?
                 company_name = doc.css("div.job-desc a.job-company-name").text.strip
                 @company = get_company_by_name(company_name)
+            else
+                company_name = ""
             end
 
             if @company.present?
@@ -38,7 +40,7 @@ module CareerbuilderCrawler
             if doc.css("div.map p").present?
                 location = doc.css("div.map p").text.strip
             else
-                location = "Hà Nội"
+                location = ""
             end
 
             if doc.css("div.detail-box ul li p").present?
