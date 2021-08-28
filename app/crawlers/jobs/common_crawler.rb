@@ -36,7 +36,7 @@ module CommonCrawler
     def split_company_name(name)
         if name.split.size > 1
             split_name_array = name.split(/\s/)
-                                .each_cons(3)
+                                .each_cons(2)
                                 .map { |str| str.join(" ") }
             return split_name_array
         else
