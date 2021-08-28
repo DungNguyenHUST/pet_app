@@ -78,6 +78,8 @@ Rails.application.routes.draw do
   end
 
   resources :scrap_jobs
+  get 'jobs_push' => 'scrap_jobs#push'
+
   resources :scrap_reviews
 
   resources :reports

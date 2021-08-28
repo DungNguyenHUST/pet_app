@@ -18,6 +18,16 @@ class ScrapJobsController < ApplicationController
         end
     end
 
+    def push
+        csv_text = File.read('tmp/jobs/jobs.csv')
+        csv = CSV.parse(csv_text, :headers => true)
+        csv.each do |row|
+            CompanyJob.create!(row.to_hash)
+        end
+        flash[:success] = "Job push successed ..............."
+        redirect_to admin_path(current_admin, tab_id: 'ScrapJobID')
+    end
+
     def scrap_job_param
         params.require(:scrap_job).permit(:id, :company_id, :company_name, :location, :url)
     end

@@ -2,6 +2,8 @@ module CommonCrawler
     include ApplicationHelper
     include CompanyJobsHelper
 
+    @PRO_COMPANY = nil
+
     def job_params
         job_param = Struct.new(:title,
                 :detail,
@@ -71,7 +73,7 @@ module CommonCrawler
         return url
     end
 
-    def get_company_by_name(name)
+    def get_company_id_by_name(name)
         new_name = convert_vie_to_eng(name)
         new_name.sub!("ct", "")
         new_name.sub!("cong ty", "")
@@ -125,21 +127,58 @@ module CommonCrawler
             if split_name_array = split_company_name(new_name)
                 # Find company by each 2 word
                 split_name_array.each do |split_name|
-                    company_search = Company.friendly.search(split_name)
-                    if company_search.present?
-                        return company_search.first
+                    # company_search = Company.friendly.search(split_name)
+                    # if company_search.present?
+                    #     return company_search.first.id
+                    # end
+                    company_search_id = search_production_company_list(split_name)
+                    if company_search_id.present?
+                        return company_search_id
                     end
                 end
             else
-                company_search = Company.friendly.search(new_name)
-                if company_search.present?
-                    return company_search.first
+                # company_search = Company.friendly.search(new_name)
+                # if company_search.present?
+                #     return company_search.first.id
+                # end
+                company_search_id = search_production_company_list(new_name)
+                if company_search_id.present?
+                    return company_search_id
                 end
             end
 
             return nil
         else
             return nil
+        end
+    end
+
+    def search_production_company_list(search)
+        if @PRO_COMPANY.nil?
+            doc = Nokogiri::HTML(URI.open('https://www.firework.vn/companies'))
+
+            company_id = doc.css("div.user_select_company option").map { |company| company['value']}
+            company_name = doc.css("div.user_select_company option").map { |company| company.text.strip}
+
+            @PRO_COMPANY = []
+            company_id.each_with_index do |id, i|
+                @PRO_COMPANY << {id: id, name: company_name[i]}
+            end
+            @PRO_COMPANY = @PRO_COMPANY.reject!{|h| h[:name] == "Chọn công ty" }
+        end
+        
+        search_result = @PRO_COMPANY.find {|h| h[:name].include?(search) }
+
+        if search_result
+            return search_result[:id]
+        else
+            return nil
+        end
+    end
+
+    def save_job_to_csv(job)
+        CSV.open("tmp/jobs/jobs.csv", "a") do |csv|
+            csv << job.attributes.values
         end
     end
 
@@ -173,6 +212,7 @@ module CommonCrawler
                                                         :experience => job_data.experience)
                                                 
                         @company_job = convert_job_param(@company_job)
+                        save_job_to_csv(@company_job)
                         @company_job.save!
                     end
                 end

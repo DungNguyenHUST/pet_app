@@ -121,8 +121,21 @@
             <%end%>
 
             <%if @tab_id == "ScrapJobID"%>
-                <%@scrap_job = ScrapJob.new%>
-                <%= render :partial => 'scrap_jobs/form', :local => @scrap_job %>
+                <div class="scrap_jobs_tab">
+                    <div class="row">
+                        <div class="col-sm-6">
+                            <div class="scrap_jobs_tab_top">
+                                <%@scrap_job = ScrapJob.new%>
+                                <%= render :partial => 'scrap_jobs/form', :local => @scrap_job %>
+                            </div>
+                        </div>
+                        <div class="col-sm-6">
+                            <div class="scrap_jobs_tab_bottom">
+                                <%= link_to '<button type="submit">Job Magic</button>'.html_safe, jobs_push_path%>
+                            </div>
+                        </div>
+                    </div>
+                </div>
             <%end%>
 
             <%if @tab_id == "ScrapReviewID"%>

@@ -8,14 +8,12 @@ module ItviecCrawler
 
             unless doc.css("h3.employer-long-overview__name a").nil?
                 company_name = doc.css("h3.employer-long-overview__name a").text.strip
-                @company = get_company_by_name(company_name)
+                company_id = get_company_id_by_name(company_name)
             else
                 company_name = ""
             end
 
-            if @company.present?
-                company_id = @company.id
-            else
+            unless company_id.present?
                 company_id = -1
             end
                     

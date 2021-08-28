@@ -1,68 +1,64 @@
 <div class="container">
-    <div class ="row">
-        <div class="col-sm-8">
-            <div class="new_scrap_job_form">
-                <%= form_for @scrap_job, :html => { :class => "form-horizontal post" } do |f| %>
-                    <div class="new_scrap_job_section">
-                        <div class="new_scrap_job_content">
-                            <div class="new_scrap_job_label">
-                                <a><%= f.label :url, "Link", class: "new_scrap_job_label_name" %></a>
-                            </div>
-
-                            <div class="new_scrap_job_input">
-                                <%= f.text_field :url, :required => true, class: "form-control", placeholder: " Start link" %>
-                            </div>
-                        </div>
-
-                        <div class="new_scrap_job_content">
-                            <div class="new_scrap_job_label">
-                                <a><%= f.label :location, "Địa điểm(optional)", class: "new_scrap_job_label_name" %></a>
-                            </div>
-
-                            <div class="new_scrap_job_input">
-                                <%= f.select :location, options_for_select(['Hà Nội','TP Hồ Chí Minh','Đà Nẵng','An Giang','Bà Rịa Vũng Tàu','Bạc Liêu','Bắc Kạn','Bắc Giang',
-                                                            'Bắc Ninh','Bến Tre','Bình Dương','Bình Định','Bình Phước',
-                                                            'Bình Thuận','Cà Mau','Cao Bằng','Cần Thơ','Đắk Lắk','Đắk Nông','Điện Biên',
-                                                            'Đồng Nai','Đồng Tháp','Gia Lai','Hà Giang','Hà Nam','Hà Tây','Hà Tĩnh',
-                                                            'Hải Dương','Hải Phòng','Hòa Bình','Hậu Giang','Hưng Yên','Khánh Hòa',
-                                                            'Kiên Giang','Kon Tum','Lai Châu','Lào Cai',
-                                                            'Lạng Sơn','Lâm Đồng','Long An','Nam Định','Nghệ An',
-                                                            'Ninh Bình','Ninh Thuận','Phú Thọ','Phú Yên','Quảng Bình',
-                                                            'Quảng Nam','Quảng Ngãi','Quảng Ninh','Quảng Trị',
-                                                            'Sóc Trăng','Sơn La','Tây Ninh','Thái Bình','Thái Nguyên' ,
-                                                            'Thanh Hóa','Thừa Thiên Huế','Tiền Giang','Trà Vinh',
-                                                            'Tuyên Quang','Vĩnh Long','Vĩnh Phúc','Yên Bái']), {include_blank: true, prompt: "Chọn địa điểm"}, class: 'form-select'%>
-                            </div>
-                        </div>
-
-                        <div class="new_scrap_job_content">
-                            <div class="new_scrap_job_label">
-                                <a><%= f.label :company_id, "ID Công ty(optional)", class: "new_scrap_job_label_name" %></a>
-                            </div>
-
-                            <div class="new_scrap_job_input">
-                                <%= f.select :company_id, Company.all.collect {|m| [m.name, m.id]}, {:prompt => '-- Chọn công ty --'}, {:class => 'form-select new_post_topic_select'}%>
-                            </div>
-                            
-                            <script>
-                                $(document).ready(function() {
-                                    $('.new_post_topic_select').select2({
-                                        placeholder: "-- Chọn công ty --",
-                                        allowClear: true,
-                                        width: 'resolve',
-                                        theme: "bootstrap-5",
-                                        selectOnClose: true
-                                    });
-                                });
-                            </script>
-                        </div>
+    <div class="new_scrap_job_form">
+        <%= form_for @scrap_job, :html => { :class => "form-horizontal post" } do |f| %>
+            <div class="new_scrap_job_section">
+                <div class="new_scrap_job_content">
+                    <div class="new_scrap_job_label">
+                        <a><%= f.label :url, "Link", class: "new_scrap_job_label_name" %></a>
                     </div>
 
-                    <div class="new_scrap_job_submit">
-                        <%= f.submit "Let's go", class: "new_scrap_job_form_submit" %>
+                    <div class="new_scrap_job_input">
+                        <%= f.text_field :url, :required => true, class: "form-control", placeholder: " Start link" %>
                     </div>
-                <%end%>
+                </div>
+
+                <div class="new_scrap_job_content">
+                    <div class="new_scrap_job_label">
+                        <a><%= f.label :location, "Địa điểm(optional)", class: "new_scrap_job_label_name" %></a>
+                    </div>
+
+                    <div class="new_scrap_job_input">
+                        <%= f.select :location, options_for_select(['Hà Nội','TP Hồ Chí Minh','Đà Nẵng','An Giang','Bà Rịa Vũng Tàu','Bạc Liêu','Bắc Kạn','Bắc Giang',
+                                                    'Bắc Ninh','Bến Tre','Bình Dương','Bình Định','Bình Phước',
+                                                    'Bình Thuận','Cà Mau','Cao Bằng','Cần Thơ','Đắk Lắk','Đắk Nông','Điện Biên',
+                                                    'Đồng Nai','Đồng Tháp','Gia Lai','Hà Giang','Hà Nam','Hà Tây','Hà Tĩnh',
+                                                    'Hải Dương','Hải Phòng','Hòa Bình','Hậu Giang','Hưng Yên','Khánh Hòa',
+                                                    'Kiên Giang','Kon Tum','Lai Châu','Lào Cai',
+                                                    'Lạng Sơn','Lâm Đồng','Long An','Nam Định','Nghệ An',
+                                                    'Ninh Bình','Ninh Thuận','Phú Thọ','Phú Yên','Quảng Bình',
+                                                    'Quảng Nam','Quảng Ngãi','Quảng Ninh','Quảng Trị',
+                                                    'Sóc Trăng','Sơn La','Tây Ninh','Thái Bình','Thái Nguyên' ,
+                                                    'Thanh Hóa','Thừa Thiên Huế','Tiền Giang','Trà Vinh',
+                                                    'Tuyên Quang','Vĩnh Long','Vĩnh Phúc','Yên Bái']), {include_blank: true, prompt: "Chọn địa điểm"}, class: 'form-select'%>
+                    </div>
+                </div>
+
+                <div class="new_scrap_job_content">
+                    <div class="new_scrap_job_label">
+                        <a><%= f.label :company_id, "ID Công ty(optional)", class: "new_scrap_job_label_name" %></a>
+                    </div>
+
+                    <div class="new_scrap_job_input">
+                        <%= f.select :company_id, Company.all.collect {|m| [m.name, m.id]}, {:prompt => '-- Chọn công ty --'}, {:class => 'form-select new_post_topic_select'}%>
+                    </div>
+                    
+                    <script>
+                        $(document).ready(function() {
+                            $('.new_post_topic_select').select2({
+                                placeholder: "-- Chọn công ty --",
+                                allowClear: true,
+                                width: 'resolve',
+                                theme: "bootstrap-5",
+                                selectOnClose: true
+                            });
+                        });
+                    </script>
+                </div>
             </div>
-        </div>
+
+            <div class="new_scrap_job_submit">
+                <%= f.submit "Let's go", class: "new_scrap_job_form_submit" %>
+            </div>
+        <%end%>
     </div>
 </div>
