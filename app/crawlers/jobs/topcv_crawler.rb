@@ -6,11 +6,11 @@ module TopcvCrawler
         if doc.present?
             processing_detail_datas = []
 
-            unless doc.css("div.company-title span").nil?
-                company_name = doc.css("div.company-title span").text.strip
+            if doc.css("div.company-title span").present?
+                company_name = doc.css("div.company-title span").first.text.strip
                 @company = get_company_by_name(company_name)
             else
-                company_name = ""
+                company_name = "Đang cập nhật"
             end
 
             if @company.present?

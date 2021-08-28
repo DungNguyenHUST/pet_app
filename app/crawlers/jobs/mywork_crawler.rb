@@ -47,13 +47,13 @@ module MyworkCrawler
             address = location
 
             if doc.css("div.ex-ml div.detail-01-info").present?
-                salary = doc.css("div.ex-addr div.detail-01-info").text.strip
+                salary = doc.css("div.ex-ml div.detail-01-info").text.strip
             else
                 salary = "Thương lượng"
             end
 
             if doc.css("div.ex-sl div.detail-01-info").present?
-                quantity = doc.css("div.ex-addr div.detail-01-info").text.strip
+                quantity = doc.css("div.ex-sl div.detail-01-info").text.strip
             else
                 quantity = 1
             end
