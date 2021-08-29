@@ -2,7 +2,8 @@ module CommonCrawler
     include ApplicationHelper
     include CompanyJobsHelper
 
-    @PRO_COMPANY = nil
+    @@COMPANY_HASH = nil
+    @@CSV_COUNT = 0
 
     def job_params
         job_param = Struct.new(:title,
@@ -154,20 +155,22 @@ module CommonCrawler
     end
 
     def search_production_company_list(search)
-        if @PRO_COMPANY.nil?
+        if @@COMPANY_HASH == nil
             doc = Nokogiri::HTML(URI.open('https://www.firework.vn/companies'))
 
             company_id = doc.css("div.user_select_company option").map { |company| company['value']}
-            company_name = doc.css("div.user_select_company option").map { |company| company.text.strip}
+            company_name = doc.css("div.user_select_company option").map { |company| convert_vie_to_eng(company.text.strip)}
 
-            @PRO_COMPANY = []
+            @@COMPANY_HASH = []
             company_id.each_with_index do |id, i|
-                @PRO_COMPANY << {id: id, name: company_name[i]}
+                @@COMPANY_HASH << {id: id, name: company_name[i]}
             end
-            @PRO_COMPANY = @PRO_COMPANY.reject!{|h| h[:name] == "Chọn công ty" }
+            @@COMPANY_HASH = @@COMPANY_HASH.reject!{|h| h[:name] == "chon cong ty" }
         end
         
-        search_result = @PRO_COMPANY.find {|h| h[:name].include?(search) }
+        if @@COMPANY_HASH
+            search_result = @@COMPANY_HASH.find {|h| h[:name].include?(search) }
+        end
 
         if search_result
             return search_result[:id]
@@ -176,9 +179,14 @@ module CommonCrawler
         end
     end
 
-    def save_job_to_csv(job)
-        CSV.open("tmp/jobs/jobs.csv", "a") do |csv|
-            csv << job.attributes.values
+    def save_job_to_csv(job_data)
+        filepath = "tmp/jobs/jobs.csv"
+        CSV.open(filepath, "a", :headers => true) do |csv|
+            if @@CSV_COUNT == 0
+                csv << CompanyJob.attribute_names
+                @@CSV_COUNT = 1
+            end
+            csv << job_data.attributes.values
         end
     end
 

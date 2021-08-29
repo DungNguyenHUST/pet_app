@@ -1,4 +1,9 @@
-<% content_for :meta_title, @company_job.company_name + " tuyển dụng " + @company_job.title %>
+<%if @company.present?%>
+    <%company_name_meta = @company.name%>
+<%else%>
+    <%company_name_meta = @company_job.company_name%>
+<%end%>
+<% content_for :meta_title, company_name_meta + " tuyển dụng " + @company_job.title %>
 <% content_for :meta_description, @company_job.description %>
 
 <%# Google job structure data start %>
@@ -35,12 +40,12 @@
     "employmentType" : "<%=employmentType%>",
     "hiringOrganization" : {
         "@type" : "Organization",
-        "name" : "<%=@company_job.company_name%>",
+        "name" : "<%=company_name_meta%>",
         "sameAs" : "<%=@company_job.address%>",
         <%if @company.present? && @company.avatar?%>
-            "logo" : "<%= image_tag (@company.avatar.thumb.url) %>"
+            "logo" : "<%= image_url(@company.avatar.thumb.url) %>"
         <%else%>
-            "logo" : "<%= image_tag ("company_avatar_default.png") %>"
+            "logo" : "<%= image_url("company_avatar_default.png") %>"
         <%end%>
     },
     "jobLocation": {
