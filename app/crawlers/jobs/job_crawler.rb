@@ -3,11 +3,13 @@ require_relative 'careerbuilder_crawler.rb'
 require_relative 'topcv_crawler.rb'
 require_relative 'itviec_crawler.rb'
 require_relative 'mywork_crawler.rb'
+require_relative 'jobsgo_crawler.rb'
 require_relative 'common_crawler.rb'
 include CareerbuilderCrawler
 include TopcvCrawler
 include ItviecCrawler
 include MyworkCrawler
+include JobsgoCrawler
 include CommonCrawler
 
 class JobCrawler < Kimurai::Base
@@ -43,6 +45,7 @@ class JobCrawler < Kimurai::Base
 
         # Next page press
         if next_page = find_next_page(url, response)
+            print "nextxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx"
             request_to :parse, url: absolute_url(next_page[:href], base: url)
         end
     end
@@ -76,6 +79,10 @@ class JobCrawler < Kimurai::Base
             links = response.css("div.jobslist-01-row-ttl a").map { |link| link['href'].prepend("https://mywork.com.vn")}
         end
 
+        if split_domain_name(url) == "jobsgo.vn"
+            links = response.css("div.brows-job-position div.h3 a").map { |link| link['href']}
+        end
+
         return links
     end
 
@@ -98,6 +105,10 @@ class JobCrawler < Kimurai::Base
             next_page = response.at_css("div.pagination-not-bottom a.btn-next")
         end
 
+        if split_domain_name(url) == "jobsgo.vn"
+            next_page = response.at_css("ul.pagination li.next a")
+        end
+
         return next_page
     end
 
@@ -118,6 +129,10 @@ class JobCrawler < Kimurai::Base
 
         if split_domain_name(url) == "mywork.com.vn"
             job_data = get_job_data_mywork(url, response)
+        end
+
+        if split_domain_name(url) == "jobsgo.vn"
+            job_data = get_job_data_jobsgo(url, response)
         end
 
         return job_data
