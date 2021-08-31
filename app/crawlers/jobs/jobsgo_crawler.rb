@@ -76,7 +76,14 @@ module JobsgoCrawler
 
             language = "Tùy chọn"
             dudate = Time.now
-            end_date = Time.now + 30.days
+
+            if doc.css("div.media-body-2 span.deadline").present?
+                date_str = doc.css("div.media-body-2 span.deadline").text.strip
+                end_date = Time.now + date_str.to_i.days
+            else
+                end_date = Time.now + 30.days
+            end
+
             urgent = false
             apply_another_site_flag = true
             apply_site = url.to_s

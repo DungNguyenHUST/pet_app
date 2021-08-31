@@ -14,7 +14,7 @@ module ItviecCrawler
             end
 
             if company_id.present?
-                company_name = Company.find_by_id(company_id).name
+                # company_name = Company.find_by_id(company_id).name
             else
                 company_id = -1
             end

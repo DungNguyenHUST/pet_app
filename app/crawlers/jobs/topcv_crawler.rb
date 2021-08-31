@@ -14,7 +14,7 @@ module TopcvCrawler
             end
 
             if company_id.present?
-                company_name = Company.find_by_id(company_id).name
+                # company_name = Company.find_by_id(company_id).name
             else
                 company_id = -1
             end
@@ -40,7 +40,7 @@ module TopcvCrawler
             end
             #######################job detail end##########################
 
-            if doc.css("div.job-info-item span").present?
+            if doc.css("div.job-info-item span")[6].present?
                 location = doc.css("div.job-info-item span")[6].text.strip
             else
                 location = "Hà Nội"
@@ -54,7 +54,7 @@ module TopcvCrawler
 
             salary = "Thương lượng"
 
-            if doc.css("div.job-info-item span").present?
+            if doc.css("div.job-info-item span")[2].present?
                 quantity = doc.css("div.job-info-item span")[2].text.strip
             else
                 quantity = 1
@@ -66,19 +66,19 @@ module TopcvCrawler
                 category = ""
             end
 
-            if doc.css("div.job-info-item span").present?
+            if doc.css("div.job-info-item span")[3].present?
                 level = doc.css("div.job-info-item span")[3].text.strip
             else
                 level = "Nhân viên"
             end
 
-            if doc.css("div.job-info-item span").present?
+            if doc.css("div.job-info-item span")[4].present?
                 experience = doc.css("div.job-info-item span")[4].text.strip
             else
                 experience = "Không yêu cầu"
             end
 
-            if doc.css("div.job-info-item span").present?
+            if doc.css("div.job-info-item span")[1].present?
                 typical = doc.css("div.job-info-item span")[1].text.strip
             else
                 typical = "Toàn thời gian"
@@ -86,7 +86,14 @@ module TopcvCrawler
 
             language = "Tùy chọn"
             dudate = Time.now
-            end_date = Time.now + 30.days
+
+            if doc.css("div.job-deadline").present?
+                date_str = doc.css("div.job-deadline").text.strip
+                end_date = Date.parse(date_str)
+            else
+                end_date = Time.now + 30.days
+            end
+
             urgent = false
             apply_another_site_flag = true
             apply_site = url

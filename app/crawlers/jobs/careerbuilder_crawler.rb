@@ -13,7 +13,7 @@ module CareerbuilderCrawler
             end
 
             if company_id.present?
-                company_name = Company.find_by_id(company_id).name
+                # company_name = Company.find_by_id(company_id).name
             else
                 company_id = -1
             end
@@ -43,7 +43,7 @@ module CareerbuilderCrawler
                 location = ""
             end
 
-            if doc.css("div.detail-box ul li p").present?
+            if doc.css("div.detail-box ul li p")[3].present?
                 salary = doc.css("div.detail-box ul li p")[3].text.strip
             else
                 salary = "Thương lượng"
@@ -51,7 +51,7 @@ module CareerbuilderCrawler
 
             quantity = 1
 
-            if doc.css("div.detail-box ul li p").present?
+            if doc.css("div.detail-box ul li p")[2].present?
                 category = doc.css("div.detail-box ul li p")[1].text.strip
                 level = doc.css("div.detail-box ul li p")[2].text.strip
             else
@@ -59,9 +59,22 @@ module CareerbuilderCrawler
                 level = "Nhân viên"
             end
 
+            if doc.css("div.detail-box ul li p")[4].present?
+                experience = doc.css("div.detail-box ul li p")[4].text.strip
+            else
+                experience = "Không yêu cầu"
+            end
+
             language = "Tùy chọn"
             dudate = Time.now
-            end_date = Time.now + 30.days
+
+            if doc.css("div.detail-box ul li p")[6].present?
+                date_str = doc.css("div.detail-box ul li p")[6].text.strip
+                end_date = Date.parse(date_str)
+            else
+                end_date = Time.now + 30.days
+            end
+
             typical = "Toàn thời gian"
             urgent = false
             apply_another_site_flag = true
@@ -69,7 +82,6 @@ module CareerbuilderCrawler
             address = location
             approved = true
             user_id = Admin.first.id
-            experience = "Không yêu cầu"
             
             if title.present? && apply_site.present?
                 deatail_data_temp = job_params.new(title,

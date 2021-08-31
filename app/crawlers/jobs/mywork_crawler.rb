@@ -14,7 +14,7 @@ module MyworkCrawler
             end
 
             if company_id.present?
-                company_name = Company.find_by_id(company_id).name
+                # company_name = Company.find_by_id(company_id).name
             else
                 company_id = -1
             end
@@ -84,7 +84,14 @@ module MyworkCrawler
 
             language = "Tùy chọn"
             dudate = Time.now
-            end_date = Time.now + 30.days
+
+            if doc.css("div.ex-han-nop div.detail-01-info").present?
+                date_str = doc.css("div.ex-han-nop div.detail-01-info").text.strip
+                end_date = Date.parse(date_str)
+            else
+                end_date = Time.now + 30.days
+            end
+
             urgent = false
             apply_another_site_flag = true
             apply_site = url

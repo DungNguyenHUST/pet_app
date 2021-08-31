@@ -41,21 +41,21 @@ module Job123Crawler
 
             detail_block = doc.css("div.box-info-job div.content-group-basic").last
 
-            if detail_block.css("div.item").present?
+            if detail_block.css("div.item")[0].present?
                 location = doc.css("div.item")[0].text.strip
                 location.gsub!(/Việc làm tại: /, "")
             else
                 location = ""
             end
 
-            if doc.css("div.item").present?
+            if doc.css("div.item")[1].present?
                 salary = doc.css("div.item")[1].text.strip
                 salary.gsub!(/Mức lương: /, "")
             else
                 salary = "Thương lượng"
             end
 
-            if doc.css("div.item").present?
+            if doc.css("div.item")[6].present?
                 quantity = doc.css("div.item")[6].text.strip
                 quantity.gsub!(/Số lượng: /, "")
             else
@@ -64,28 +64,28 @@ module Job123Crawler
 
             category = ""
 
-            if detail_block.css("div.item").present?
+            if detail_block.css("div.item")[3].present?
                 level = doc.css("div.item")[3].text.strip
                 level.gsub!(/Chức vụ: /, "")
             else
                 level = "Nhân viên"
             end
 
-            if detail_block.css("div.item").present?
+            if detail_block.css("div.item")[4].present?
                 typical = doc.css("div.item")[4].text.strip
                 typical.gsub!(/Hình thức: /, "")
             else
                 typical = "Toàn thời gian"
             end
 
-            if detail_block.css("div.item").present?
+            if detail_block.css("div.item")[5].present?
                 experience = doc.css("div.item")[5].text.strip
                 experience.gsub!(/Kinh nghiệm: /, "")
             else
                 experience = "Không yêu cầu"
             end
 
-            if detail_block.css("div.item").present?
+            if detail_block.css("div.item")[2].present?
                 date_str = doc.css("div.item")[2].text.strip
                 end_date = Date.parse(date_str)
             else
