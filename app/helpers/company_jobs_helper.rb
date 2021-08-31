@@ -36,7 +36,7 @@ module CompanyJobsHelper
     def find_same_job(company_job)
         same_job = nil
         if company_job.present?
-            same_job = CompanyJob.where(:company_name => company_job.company_name)
+            same_job = CompanyJob.where(:company_name => company_job.company_name).expire
         end
         return same_job
     end

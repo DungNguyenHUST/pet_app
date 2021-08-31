@@ -62,6 +62,10 @@ class CompanyJob < ApplicationRecord
     end
 	
 	def self.approved
-	  where(approved: :true)
+	    where(approved: :true)
 	end
+
+    def self.expire
+        where("end_date >= ?", Time.now)
+    end
 end

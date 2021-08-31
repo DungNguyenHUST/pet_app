@@ -2,7 +2,7 @@ class PagesController < ApplicationController
     def home
 		@users = User.all
 		@companies = Company.all.sort_by{|company| company.company_reviews.count}.reverse
-		@company_jobs = CompanyJob.all.order('created_at DESC')
+		@company_jobs = CompanyJob.all.order('created_at DESC').expire
 		@posts = Post.all.order('created_at DESC')
 		@problems = Problem.all.approved.sort_by{|problem| problem.problem_solutions.count}.reverse
 		
