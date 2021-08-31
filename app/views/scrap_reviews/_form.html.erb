@@ -20,8 +20,7 @@
                             </div>
 
                             <div class="new_scrap_review_input">
-                                <%= f.text_area :raw_data, :class => "tinymce"%>
-                                <%= tinymce :mini %>
+                                <%= f.text_area :raw_data, :class => "form-control", placeholder: " Nhập raw data"%>
                             </div>
                         </div>
 
@@ -31,7 +30,7 @@
                             </div>
 
                             <div class="new_scrap_review_input">
-                                <%= f.select :company_id, Company.all.collect {|m| [m.name, m.id]}, {:prompt => '-- Chọn công ty --'}, {:class => 'form-select new_post_topic_select'}%>
+                                <%= f.select :company_id, Company.all.collect {|m| [m.name, m.id]}, {:prompt => '-- Chọn công ty --', :required => true}, {:class => 'form-select new_post_topic_select'}%>
                             </div>
                             
                             <script>

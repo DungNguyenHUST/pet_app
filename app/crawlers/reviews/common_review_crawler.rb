@@ -1,7 +1,7 @@
-module CommonReviewScraper
-    include ApplicationHelper
-    include CompanyJobsHelper
+include ApplicationHelper
+include CompanyJobsHelper
 
+module CommonReviewCrawler
     def review_params
         review_param = Struct.new(:company_name,
                                     :score,

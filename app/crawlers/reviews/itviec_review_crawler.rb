@@ -1,17 +1,18 @@
-module ItviecReviewScraper
-    require_relative 'common_review_scraper.rb'
-    include CommonReviewScraper
 
-    def get_detail_review_data_itviec(scrap_review)
+require_relative 'common_review_crawler.rb'
+include CommonReviewCrawler
+
+module ItviecReviewCrawler
+    def get_detail_review_data_itviec(crawl_review)
         processing_detail_datas = []
-        if scrap_review.company_id.present?
-            @company = Company.friendly.find_by_id(scrap_review.company_id)
+        if crawl_review.company_id.present?
+            @company = Company.friendly.find_by_id(crawl_review.company_id)
 
-            if check_exist_url(scrap_review.url.to_s)
-                if scrap_review.raw_data.present?
-                    doc = Nokogiri::HTML(scrap_review.raw_data)
+            if check_exist_url(crawl_review.url.to_s)
+                if crawl_review.raw_data.present?
+                    doc = Nokogiri::HTML(crawl_review.raw_data)
                 else
-                    response = HTTParty.get(scrap_review.url.to_s)
+                    response = HTTParty.get(crawl_review.url.to_s)
                     doc = Nokogiri::HTML(response.body)
                 end
 
