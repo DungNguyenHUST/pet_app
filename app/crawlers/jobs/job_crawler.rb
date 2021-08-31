@@ -4,12 +4,14 @@ require_relative 'topcv_crawler.rb'
 require_relative 'itviec_crawler.rb'
 require_relative 'mywork_crawler.rb'
 require_relative 'jobsgo_crawler.rb'
+require_relative 'job123_crawler.rb'
 require_relative 'common_crawler.rb'
 include CareerbuilderCrawler
 include TopcvCrawler
 include ItviecCrawler
 include MyworkCrawler
 include JobsgoCrawler
+include Job123Crawler
 include CommonCrawler
 
 class JobCrawler < Kimurai::Base
@@ -83,6 +85,10 @@ class JobCrawler < Kimurai::Base
             links = response.css("div.brows-job-position div.h3 a").map { |link| link['href']}
         end
 
+        if split_domain_name(url) == "123job.vn"
+            links = response.css("div.job__list-item h2.job__list-item-title a").map { |link| link['href']}
+        end
+
         return links
     end
 
@@ -109,6 +115,10 @@ class JobCrawler < Kimurai::Base
             next_page = response.at_css("ul.pagination li.next a")
         end
 
+        if split_domain_name(url) == "123job.vn"
+            next_page = response.css("ul.pagination li a").last
+        end
+
         return next_page
     end
 
@@ -133,6 +143,10 @@ class JobCrawler < Kimurai::Base
 
         if split_domain_name(url) == "jobsgo.vn"
             job_data = get_job_data_jobsgo(url, response)
+        end
+
+        if split_domain_name(url) == "123job.vn"
+            job_data = get_job_data_123job(url, response)
         end
 
         return job_data
