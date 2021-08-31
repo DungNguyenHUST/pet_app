@@ -40,157 +40,208 @@
             </div>
         <%end%>
 
-        <%= form_for :filter, url: jobs_search_path, method: :get, remote: true do |f| %>
-            <div class="company_job_filter_block">
-                <div class="row">
-                    <div class="col-sm-2">
-                        <div class="company_job_filter_input">
-                            <%= f.select(:category, options_for_select(["Bác sĩ",
-                                                                        "Bán hàng kỹ thuật",
-                                                                        "Bán hàng",
-                                                                        "Bán lẻ - Bán sỉ",
-                                                                        "Bảo hiểm",
-                                                                        "Bảo trì - Sửa chữa",
-                                                                        "Bất động sản",
-                                                                        "Biên phiên dịch",
-                                                                        "Cấp quản lý điều hành",
-                                                                        "Chứng khoán",
-                                                                        "Cơ khí",
-                                                                        "Công nghệ cao",
-                                                                        "Dầu khí",
-                                                                        "Dệt may - Da giày",
-                                                                        "Dịch vụ khách hàng",
-                                                                        "Dược Phẩm - Công nghệ sinh học",
-                                                                        "Dược sĩ",
-                                                                        "Giáo dục - Đào tạo",
-                                                                        "Hàng cao cấp",
-                                                                        "Hàng gia dụng",
-                                                                        "Hàng hải",
-                                                                        "Hàng không - Du lịch",
-                                                                        "Hàng tiêu dùng",
-                                                                        "Hành chánh - Thư ký",
-                                                                        "Hóa học - Hóa sinh",
-                                                                        "Hoạch định - Dự án",
-                                                                        "In ấn -  Xuất bản",
-                                                                        "Internet - Online Media",
-                                                                        "IT - Phần mềm",
-                                                                        "IT-Phần cứng - Mạng",
-                                                                        "Kế toán",
-                                                                        "Khác",
-                                                                        "Kho vận",
-                                                                        "Kiểm toán",
-                                                                        "Kiến trúc - Thiết kế nội thất ",
-                                                                        "Marketing",
-                                                                        "Mới tốt nghiệp",
-                                                                        "Môi trường - Xử lý chất thải",
-                                                                        "Mỹ Thuật - Nghệ Thuật - Thiết Kế",
-                                                                        "Ngân hàng",
-                                                                        "Người nước ngoài - Việt Kiều",
-                                                                        "Nhà hàng - Khách sạn",
-                                                                        "Nhân sự",
-                                                                        "Nông nghiệp - Lâm nghiệp",
-                                                                        "Overseas Jobs",
-                                                                        "Pháp lý",
-                                                                        "Phi chính phủ - Phi lợi nhuận",
-                                                                        "QA - QC",
-                                                                        "Quảng cáo - Khuyến mãi - Đối ngoại",
-                                                                        "Sản phẩm công nghiệp",
-                                                                        "Sản Xuất",
-                                                                        "Tài chính - Đầu tư",
-                                                                        "Thời trang",
-                                                                        "Thời vụ - Hợp đồng ngắn hạn",
-                                                                        "Thu Mua - Vật Tư - Cung Vận",
-                                                                        "Thực phẩm &amp; Đồ uống",
-                                                                        "Trình dược viên",
-                                                                        "Truyền hình - Truyền thông - Báo chí",
-                                                                        "Tư vấn",
-                                                                        "Tự động hóa - Ô tô",
-                                                                        "Vận chuyển - Giao nhận",
-                                                                        "Viễn Thông",
-                                                                        "Xây dựng",
-                                                                        "Xuất nhập khẩu",
-                                                                        "Y sĩ - Hộ lý",
-                                                                        "Y tế - Chăm sóc sức khỏe",
-                                                                        "Địa chất - Khoáng sản",
-                                                                        "Điện lạnh - Nhiệt lạnh",
-                                                                        "Điện - Điện tử"]), {include_blank: false, :prompt => "Tất cả ngành nghề"}, { :class => 'form-select'})  %>
+        <div class="company_job_filter_container" id="company_job_filter">
+            <%= form_for :filter, url: jobs_search_path, method: :get, remote: true do |f| %>
+                <div class="company_job_filter_block">
+                    <div class="row">
+                        <div class="col-sm-2">
+                            <div class="company_job_filter_input">
+                                <%= f.select(:category, options_for_select(["Bác sĩ",
+                                                                            "Bán hàng kỹ thuật",
+                                                                            "Bán hàng",
+                                                                            "Bán lẻ - Bán sỉ",
+                                                                            "Bảo hiểm",
+                                                                            "Bảo trì - Sửa chữa",
+                                                                            "Bất động sản",
+                                                                            "Biên phiên dịch",
+                                                                            "Cấp quản lý điều hành",
+                                                                            "Chứng khoán",
+                                                                            "Cơ khí",
+                                                                            "Công nghệ cao",
+                                                                            "Dầu khí",
+                                                                            "Dệt may - Da giày",
+                                                                            "Dịch vụ khách hàng",
+                                                                            "Dược Phẩm - Công nghệ sinh học",
+                                                                            "Dược sĩ",
+                                                                            "Giáo dục - Đào tạo",
+                                                                            "Hàng cao cấp",
+                                                                            "Hàng gia dụng",
+                                                                            "Hàng hải",
+                                                                            "Hàng không - Du lịch",
+                                                                            "Hàng tiêu dùng",
+                                                                            "Hành chánh - Thư ký",
+                                                                            "Hóa học - Hóa sinh",
+                                                                            "Hoạch định - Dự án",
+                                                                            "In ấn -  Xuất bản",
+                                                                            "Internet - Online Media",
+                                                                            "IT - Phần mềm",
+                                                                            "IT-Phần cứng - Mạng",
+                                                                            "Kế toán",
+                                                                            "Khác",
+                                                                            "Kho vận",
+                                                                            "Kiểm toán",
+                                                                            "Kiến trúc - Thiết kế nội thất ",
+                                                                            "Marketing",
+                                                                            "Mới tốt nghiệp",
+                                                                            "Môi trường - Xử lý chất thải",
+                                                                            "Mỹ Thuật - Nghệ Thuật - Thiết Kế",
+                                                                            "Ngân hàng",
+                                                                            "Người nước ngoài - Việt Kiều",
+                                                                            "Nhà hàng - Khách sạn",
+                                                                            "Nhân sự",
+                                                                            "Nông nghiệp - Lâm nghiệp",
+                                                                            "Overseas Jobs",
+                                                                            "Pháp lý",
+                                                                            "Phi chính phủ - Phi lợi nhuận",
+                                                                            "QA - QC",
+                                                                            "Quảng cáo - Khuyến mãi - Đối ngoại",
+                                                                            "Sản phẩm công nghiệp",
+                                                                            "Sản Xuất",
+                                                                            "Tài chính - Đầu tư",
+                                                                            "Thời trang",
+                                                                            "Thời vụ - Hợp đồng ngắn hạn",
+                                                                            "Thu Mua - Vật Tư - Cung Vận",
+                                                                            "Thực phẩm &amp; Đồ uống",
+                                                                            "Trình dược viên",
+                                                                            "Truyền hình - Truyền thông - Báo chí",
+                                                                            "Tư vấn",
+                                                                            "Tự động hóa - Ô tô",
+                                                                            "Vận chuyển - Giao nhận",
+                                                                            "Viễn Thông",
+                                                                            "Xây dựng",
+                                                                            "Xuất nhập khẩu",
+                                                                            "Y sĩ - Hộ lý",
+                                                                            "Y tế - Chăm sóc sức khỏe",
+                                                                            "Địa chất - Khoáng sản",
+                                                                            "Điện lạnh - Nhiệt lạnh",
+                                                                            "Điện - Điện tử"]), {include_blank: false, :prompt => "Tất cả ngành nghề"}, { :class => 'form-select'})  %>
+                            </div>
                         </div>
-                    </div>
 
-                    <div class="col-sm-2">
-                        <div class="company_job_filter_input">
-                            <%= f.select(:salary, options_for_select(['1Tr - 5Tr', 
-                                                                    '5Tr - 10Tr', 
-                                                                    '10Tr - 15Tr', 
-                                                                    '15Tr - 20Tr', 
-                                                                    '20Tr - 25Tr', 
-                                                                    '25Tr - 30Tr', 
-                                                                    '30Tr - 35Tr', 
-                                                                    '40Tr - 45Tr', 
-                                                                    '45Tr - 50Tr', 
-                                                                    '50Tr - 55Tr', 
-                                                                    '55Tr - 60Tr', 
-                                                                    '60Tr - 65Tr', 
-                                                                    '65Tr - 70Tr', 
-                                                                    '70Tr - 75Tr', 
-                                                                    '75Tr - 80Tr', 
-                                                                    '80Tr - 85Tr', 
-                                                                    '85Tr - 90Tr', 
-                                                                    '90Tr - 95Tr', 
-                                                                    '95Tr - 100Tr', 
-                                                                    'hơn 100Tr']), {include_blank: false, :prompt => "Tất cả mức lương"}, { :class => 'form-select'})  %>
+                        <div class="col-sm-2">
+                            <div class="company_job_filter_input">
+                                <%= f.select(:salary, options_for_select(['1Tr - 5Tr', 
+                                                                        '5Tr - 10Tr', 
+                                                                        '10Tr - 15Tr', 
+                                                                        '15Tr - 20Tr', 
+                                                                        '20Tr - 25Tr', 
+                                                                        '25Tr - 30Tr', 
+                                                                        '30Tr - 35Tr', 
+                                                                        '40Tr - 45Tr', 
+                                                                        '45Tr - 50Tr', 
+                                                                        '50Tr - 55Tr', 
+                                                                        '55Tr - 60Tr', 
+                                                                        '60Tr - 65Tr', 
+                                                                        '65Tr - 70Tr', 
+                                                                        '70Tr - 75Tr', 
+                                                                        '75Tr - 80Tr', 
+                                                                        '80Tr - 85Tr', 
+                                                                        '85Tr - 90Tr', 
+                                                                        '90Tr - 95Tr', 
+                                                                        '95Tr - 100Tr', 
+                                                                        'hơn 100Tr']), {include_blank: false, :prompt => "Tất cả mức lương"}, { :class => 'form-select'})  %>
+                            </div>
                         </div>
-                    </div>
 
-                    <div class="col-sm-2">
-                        <div class="company_job_filter_input">
-                            <%= f.select(:level, options_for_select(['Nhân viên', 
-                                                                    'Thực tập sinh', 
-                                                                    'Mới tốt nghiệp', 
-                                                                    'Trưởng nhóm',
-                                                                    'Quản lý', 
-                                                                    'Quản lý cấp cao',
-                                                                    'Giám đốc']), 
-                                                                    {include_blank: false, :prompt => "Tất cả cấp bậc"}, 
-                                                                    { :class => 'form-select'})  %>
-                        </div>
-                    </div>
-
-                    <div class="col-sm-2">
-                        <div class="company_job_filter_input">
-                            <%= f.select(:post_date, options_for_select(['1 ngày qua', '3 ngày qua', '7 ngày qua', '14 ngày qua', '30 ngày qua']), 
-                                                                            {include_blank: false, :prompt => "Tất cả thời gian"}, 
-                                                                            { :class => 'form-select'})  %>
-                        </div>
-                    </div>
-
-                    <div class="col-sm-2">
-                        <div class="company_job_filter_input">
-                            <%= f.select(:typical, options_for_select(['Toàn thời gian', 
-                                                                        'Bán thời gian', 
-                                                                        'Tự do', 
-                                                                        'Tạm thời', 
-                                                                        "Thực tập sinh",
-                                                                        "Remote - Làm việc từ xa"]),
-                                                                        {include_blank: false, :prompt => "Tất cả loại hình"},
+                        <div class="col-sm-2">
+                            <div class="company_job_filter_input">
+                                <%= f.select(:level, options_for_select(['Nhân viên', 
+                                                                        'Thực tập sinh', 
+                                                                        'Mới tốt nghiệp', 
+                                                                        'Trưởng nhóm',
+                                                                        'Quản lý', 
+                                                                        'Quản lý cấp cao',
+                                                                        'Giám đốc']), 
+                                                                        {include_blank: false, :prompt => "Tất cả cấp bậc"}, 
                                                                         { :class => 'form-select'})  %>
+                            </div>
                         </div>
-                    </div>
 
-                    <%= f.hidden_field:search, :value => params[:search]%>
-                    <%= f.hidden_field:location, :value => params[:location]%>
-                    
-                    <div class="col-sm-2">
-                        <div class="company_job_filter_submit">
-                            <%= button_to "", :class => 'form-control', :name => nil do%>
-                                <i class="material-icons-outlined">filter_alt</i>
-                                <a>Áp dụng bộ lọc</a>
-                            <%end%>
+                        <div class="col-sm-2">
+                            <div class="company_job_filter_input">
+                                <%= f.select(:post_date, options_for_select(['1 ngày qua', '3 ngày qua', '7 ngày qua', '14 ngày qua', '30 ngày qua']), 
+                                                                                {include_blank: false, :prompt => "Tất cả thời gian"}, 
+                                                                                { :class => 'form-select'})  %>
+                            </div>
+                        </div>
+
+                        <div class="col-sm-2">
+                            <div class="company_job_filter_input">
+                                <%= f.select(:typical, options_for_select(['Toàn thời gian', 
+                                                                            'Bán thời gian', 
+                                                                            'Tự do', 
+                                                                            'Tạm thời', 
+                                                                            "Thực tập sinh",
+                                                                            "Remote - Làm việc từ xa"]),
+                                                                            {include_blank: false, :prompt => "Tất cả loại hình"},
+                                                                            { :class => 'form-select'})  %>
+                            </div>
+                        </div>
+
+                        <%= f.hidden_field:search, :value => params[:search]%>
+                        <%= f.hidden_field:location, :value => params[:location]%>
+                        
+                        <div class="col-sm-2">
+                            <div class="company_job_filter_submit">
+                                <%= button_to "", :class => 'form-control', :name => nil do%>
+                                    <i class="material-icons-outlined">filter_alt</i>
+                                    <a>Áp dụng bộ lọc</a>
+                                <%end%>
+                            </div>
                         </div>
                     </div>
                 </div>
-            </div>
-        <%end%>
+            <%end%>        
+            <button class="filter_button_off" onclick= "myFunctionFilterOff()"><i class="material-icons-outlined">expand_less</i> <a>Ẩn tìm kiếm nâng cao</a> </button>
+        </div>
+
+        <button class="filter_button_on" id="filter_button_on" onclick= "myFunctionFilter()"><i class="material-icons-outlined">expand_more</i> <a>Chọn tìm kiếm nâng cao</a> </button>
+
+        <script>
+            function myFunctionFilter() {
+                var x = document.getElementById("company_job_filter");
+                var y = document.getElementById("filter_button_on");
+                if (x.style.display == "block") 
+                {
+                    x.style.display = "none";
+                } 
+                else 
+                {
+                    x.style.display = "block";
+                }
+
+                if (y.style.display == "none") 
+                {
+                    y.style.display = "block";
+                } 
+                else 
+                {
+                    y.style.display = "none";
+                }
+            }
+
+            function myFunctionFilterOff() {
+                var x = document.getElementById("company_job_filter");
+                var y = document.getElementById("filter_button_on");
+                if (x.style.display == "none") 
+                {
+                    x.style.display = "block";
+                } 
+                else 
+                {
+                    x.style.display = "none";
+                }
+
+                if (y.style.display == "block") 
+                {
+                    y.style.display = "none";
+                } 
+                else 
+                {
+                    y.style.display = "block";
+                }
+            }
+        </script>
 
         <%= render :partial => 'company_jobs/search', locals: {job_searched: @job_searchs} %>
     </div>
