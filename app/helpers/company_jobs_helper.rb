@@ -91,4 +91,27 @@ module CompanyJobsHelper
             return nil
         end
     end
+
+    def find_job_location(address)
+        location_array = ['Hà Nội','TP Hồ Chí Minh','Hồ Chí Minh','HCM','Sài Gòn','Đà Nẵng','An Giang','Bà Rịa Vũng Tàu','Bạc Liêu','Bắc Kạn','Bắc Giang',
+                        'Bắc Ninh','Bến Tre','Bình Dương','Bình Định','Bình Phước',
+                        'Bình Thuận','Cà Mau','Cao Bằng','Cần Thơ','Đắk Lắk','Đắc Lắc','Đắk Nông','Đắc Nông','Điện Biên',
+                        'Đồng Nai','Đồng Tháp','Gia Lai','Hà Giang','Hà Nam','Hà Tây','Hà Tĩnh',
+                        'Hải Dương','Hải Phòng','Hòa Bình','Hậu Giang','Hưng Yên','Khánh Hòa',
+                        'Kiên Giang','Kon Tum','Lai Châu','Lào Cai',
+                        'Lạng Sơn','Lâm Đồng','Long An','Nam Định','Nghệ An',
+                        'Ninh Bình','Ninh Thuận','Phú Thọ','Phú Yên','Quảng Bình',
+                        'Quảng Nam','Quảng Ngãi','Quảng Ninh','Quảng Trị',
+                        'Sóc Trăng','Sơn La','Tây Ninh','Thái Bình','Thái Nguyên' ,
+                        'Thanh Hóa','Thừa Thiên Huế','Tiền Giang','Trà Vinh',
+                        'Tuyên Quang','Vĩnh Long','Vĩnh Phúc','Yên Bái' ]
+
+        location = location_array.find {|h| convert_vie_to_eng(address).include?(convert_vie_to_eng(h)) }
+
+        if location
+            return location
+        else
+            return address
+        end
+    end
 end

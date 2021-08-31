@@ -57,7 +57,7 @@
             <div class="company_job_mark">
                 <div class="company_job_location">
                     <%if !company_job.location.to_s.blank?%>
-                        <a><i class="material-icons-outlined">location_on</i><%= truncate(strip_tags(company_job.location), length: 40) %></a>
+                        <a><i class="material-icons-outlined">location_on</i><%= find_job_location(company_job.location) %></a>
                     <%else%>
                         <a><i class="material-icons-outlined">location_on</i>Đang cập nhật</a>
                     <%end%>
