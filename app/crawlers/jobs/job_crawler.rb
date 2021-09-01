@@ -6,6 +6,7 @@ require_relative 'mywork_crawler.rb'
 require_relative 'jobsgo_crawler.rb'
 require_relative 'job123_crawler.rb'
 require_relative 'vietnamwork_crawler.rb'
+require_relative 'timviec365_crawler.rb'
 require_relative 'common_crawler.rb'
 include CareerbuilderCrawler
 include TopcvCrawler
@@ -14,6 +15,7 @@ include MyworkCrawler
 include JobsgoCrawler
 include Job123Crawler
 include VietnamworkCrawler
+include Timviec365Crawler
 include CommonCrawler
 
 class JobCrawler < Kimurai::Base
@@ -95,6 +97,10 @@ class JobCrawler < Kimurai::Base
             links = response.css("div.job-item h3 a.job-title").map { |link| link['href'].prepend("https://vietnamworks.com")}
         end
 
+        if split_domain_name(url) == "timviec365.vn"
+            links = response.css("div.item_cate h3 a").map { |link| link['href'].prepend("https://timviec365.vn")}
+        end
+
         return links
     end
 
@@ -129,6 +135,10 @@ class JobCrawler < Kimurai::Base
             next_page = response.css("ul.pagination li.page-item a").last
         end
 
+        if split_domain_name(url) == "timviec365.vn"
+            next_page = response.at_css("div.pagination_wrap a.next")
+        end
+
         return next_page
     end
 
@@ -161,6 +171,10 @@ class JobCrawler < Kimurai::Base
 
         if split_domain_name(url) == "vietnamworks.com"
             job_data = get_job_data_vietnamwork(url, response)
+        end
+
+        if split_domain_name(url) == "timviec365.vn"
+            job_data = get_job_data_timviec365(url, response)
         end
 
         return job_data
