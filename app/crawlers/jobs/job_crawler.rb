@@ -25,6 +25,7 @@ class JobCrawler < Kimurai::Base
     @engine = :mechanize
     @start_urls = ["https://github.com"]
     @config = {}
+    @@PAGE_COUNT = 0
 
     def self.process(scrap_job)
         if check_exist_url(scrap_job.url)
@@ -52,9 +53,10 @@ class JobCrawler < Kimurai::Base
         end
 
         # Next page press
-        if next_page = find_next_page(url, response)
+        if next_page_link = find_next_page_link(url, response)
             print "nextxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx"
-            request_to :parse, url: absolute_url(next_page[:href], base: url)
+            print @@PAGE_COUNT
+            request_to :parse, url: absolute_url(next_page_link, base: url)
         end
     end
 
@@ -110,31 +112,39 @@ class JobCrawler < Kimurai::Base
         return links
     end
 
-    def find_next_page(url, response)
+    def find_next_page_link(url, response)
         next_page = nil
+        next_page_link = nil
+
+        @@PAGE_COUNT += 1
 
         if split_domain_name(url) == "careerbuilder.vn"
             next_page = response.at_css("div.pagination li.next-page a")
+            next_page_link = next_page[:href]
         end
 
         if split_domain_name(url) == "topcv.vn"
             next_page = response.css("ul.pagination li a").last
+            next_page_link = next_page[:href]
         end
 
         if split_domain_name(url) == "itviec.com"
             next_page = response.css("ul.pagination li a").last
+            next_page_link = next_page[:href]
         end
 
         if split_domain_name(url) == "mywork.com.vn"
-            next_page = response.at_css("div.pagination-not-bottom a.btn-next")
+            next_page_link = "https://mywork.com.vn/tuyen-dung?action=search&branch=mw.all&q=&page=#{@@PAGE_COUNT}"
         end
 
         if split_domain_name(url) == "jobsgo.vn"
             next_page = response.at_css("ul.pagination li.next a")
+            next_page_link = next_page[:href]
         end
 
         if split_domain_name(url) == "123job.vn"
             next_page = response.css("ul.pagination li a").last
+            next_page_link = next_page[:href]
         end
 
         if split_domain_name(url) == "vietnamworks.com"
@@ -143,13 +153,14 @@ class JobCrawler < Kimurai::Base
 
         if split_domain_name(url) == "timviec365.vn"
             next_page = response.at_css("div.pagination_wrap a.next")
+            next_page_link = next_page[:href]
         end
 
         if split_domain_name(url) == "vieclam24h.vn"
-            next_page = response.css("ul.pagination li a.page-link").last
+            next_page_link = "https://vieclam24h.vn/tim-kiem-viec-lam-nhanh?q=&province_ids&field_ids&action=search&page=#{@@PAGE_COUNT}"
         end
 
-        return next_page
+        return next_page_link
     end
 
     def get_job_data(url, response)
