@@ -7,11 +7,11 @@
 <% content_for :meta_description, @company_job.description %>
 
 <%# Google job structure data start %>
-<%if @company_job.typical == "Full Time"%>
+<%if @company_job.typical == "Full Time" || @company_job.typical == "Toàn thời gian"%>
     <%employmentType = "FULL_TIME"%>
-<%elsif @company_job.typical == "Part Time"%>
+<%elsif @company_job.typical == "Part Time" || @company_job.typical == "Bán thời gian"%>
     <%employmentType = "PART_TIME"%>
-<%elsif @company_job.typical == "Remote"%>
+<%elsif @company_job.typical == "Remote" || @company_job.typical == "Làm việc từ xa"%>
     <%employmentType = "FULL_TIME"%>
 <%elsif @company_job.typical == "Tạm thời"%>
     <%employmentType = "TEMPORARY"%>
@@ -42,11 +42,11 @@
         "@type" : "Organization",
         "name" : "<%=company_name_meta%>",
         "sameAs" : "<%=@company_job.address%>",
-        <%if @company.present? && @company.avatar?%>
-            "logo" : "<%= image_url(@company.avatar.thumb.url) %>"
-        <%else%>
-            "logo" : "<%= image_url("defaults/company_avatar_default.png") %>"
-        <%end%>
+    <%if @company.present? && @company.avatar?%>
+        "logo" : "<%= image_url(@company.avatar.thumb.url) %>"
+    <%else%>
+        "logo" : "<%= image_url("defaults/company_avatar_default.png") %>"
+    <%end%>
     },
     "jobLocation": {
     "@type": "Place",
