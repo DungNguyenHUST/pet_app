@@ -6,11 +6,11 @@
             <span>Blog</span>
         </div>
         <div class="row">
-            <div class="col-sm-8">
-                <% @posts.each do |post| %>
+            <% @posts.each do |post| %>
+                <div class="col-sm-4">
                     <%=render post%>
-                <% end %>
-            </div>
+                </div>
+            <% end %>
         </div>
         <%= paginate @posts, window: 2%>
     </div>
