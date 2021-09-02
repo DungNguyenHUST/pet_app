@@ -131,15 +131,11 @@
     <!-- Scroll top button end -->
 
     <!-- alert key of user -->
-    <section class="content" style="min-height: auto;">
-      <% flash.each do |key, value| %>
-        <div class="row">
-          <div class="alert alert-<%= key %>">
-            <%= value %>
-          </div>
-        </div>
-      <% end %>
-    </section>
+    <%if flash.first%>
+      <div class="container">
+        <%=render "pages/flash_message"%>
+      </div>
+    <%end%>
     <!-- end -->
 
     <!-- For login anywhere -->

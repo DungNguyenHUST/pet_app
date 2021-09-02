@@ -1,0 +1,19 @@
+<%flash.each do |name, msg|%>
+    <div class="row justify-content-end">
+        <div class="col-sm-4">
+            <div class="flash_message_block">
+                <div class="alert alert-<%=convert_flash_message(name)%> alert-dismissible fade show" role="alert" id="message-alert">
+                    <a><%=msg%></a>
+                    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <script>
+                    $("#message-alert").fadeTo(2000, 500).slideUp(500, function(){
+                        $("#message-alert").slideUp(500);
+                    });
+                </script>
+            </div>
+        </div>
+    </div>
+<%end%>

@@ -99,4 +99,13 @@ module ApplicationHelper
             return new_str
         end
     end
+
+    def convert_flash_message(name)
+        if name == "danger" || name == "error" || name == "alert" || name == "warning"
+            new_name = "danger"
+        else
+            new_name = "success"
+        end
+        return new_name
+    end
 end
