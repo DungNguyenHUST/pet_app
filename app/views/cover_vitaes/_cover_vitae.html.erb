@@ -5,6 +5,10 @@
         <%end%>
     </div>
     <div class="cover_vitae_title">
-        <a><%=cover_vitae.title%></a>
+        <%= link_to cover_vitae.title, cover_vitae_path(cover_vitae)%>
+    </div>
+
+    <div class="cover_vitae_action">
+        <%= link_to '<button type="submit">Dùng mẫu này</button>'.html_safe, new_cover_vitae_path(:cv_sample_id => cover_vitae.id)%>
     </div>
 </div>

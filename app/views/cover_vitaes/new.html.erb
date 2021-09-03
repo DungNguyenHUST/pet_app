@@ -1,1 +1,5 @@
-<%= render :partial => 'cover_vitaes/form' %>
+<%if @cv_copy%>
+    <%= render :partial => 'cover_vitaes/copy_form' %>
+<%else%>
+    <%= render :partial => 'cover_vitaes/form' %>
+<%end%>

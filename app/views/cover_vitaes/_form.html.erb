@@ -155,6 +155,10 @@
                                 <%= tinymce :default %>
                             </div>
                         </div>
+
+						<%if admin_signed_in?%>
+							<%= f.hidden_field :sample, :value => true %>
+						<%end%>
                     </div>
 
                     <div class="new_cover_vitae_submit">
