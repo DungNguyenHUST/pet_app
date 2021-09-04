@@ -3,7 +3,35 @@ module Job123Crawler
     include CommonCrawler
     include ActionView::Helpers::AssetUrlHelper
 
-    def get_job_data_123job(url, doc)
+    def get_job_pre_data_123job(url, doc)
+        job_items = doc.css("div.job__list-item")
+        job_pre_datas = []
+
+        if job_items
+            job_items.each do |job_item|
+                company_name = ""
+
+                company_avatar = ""
+
+                job_location = ""
+
+                job_salary = ""
+
+                if job_item.css(" h2.job__list-item-title a").present?
+                    job_link = job_item.css("h2.job__list-item-title a").map { |link| link['href']}.first
+                else
+                    job_link = ""
+                end
+
+                pre_data_temp = job_pre_params.new(company_name, company_avatar, job_location, job_salary, job_link)
+                job_pre_datas.push(pre_data_temp)
+            end
+
+            return job_pre_datas
+        end
+    end
+
+    def get_job_data_123job(url, doc, pre_data)
         if doc.present?
             processing_detail_datas = []
 
@@ -113,7 +141,7 @@ module Job123Crawler
             user_id = Admin.first.id
             
             if title.present? && apply_site.present?
-                deatail_data_temp = job_params.new(title,
+                detail_data_temp = job_params.new(title,
                                                     detail,
                                                     location, 
                                                     salary, 
@@ -135,7 +163,7 @@ module Job123Crawler
                                                     company_avatar,
                                                     experience)
 
-                processing_detail_datas.push(deatail_data_temp)
+                processing_detail_datas.push(detail_data_temp)
             end
 
             return processing_detail_datas

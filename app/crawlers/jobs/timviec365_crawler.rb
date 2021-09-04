@@ -3,7 +3,35 @@ module Timviec365Crawler
     include CommonCrawler
     include ActionView::Helpers::AssetUrlHelper
 
-    def get_job_data_timviec365(url, doc)
+    def get_job_pre_data_timviec365(url, doc)
+        job_items = doc.css("div.item_cate")
+        job_pre_datas = []
+
+        if job_items
+            job_items.each do |job_item|
+                company_name = ""
+
+                company_avatar = ""
+
+                job_location = ""
+
+                job_salary = ""
+
+                if job_item.css("div.center_cate_l h3 a").present?
+                    job_link = job_item.css("div.center_cate_l h3 a").map { |link| link['href'].prepend("https://timviec365.vn")}.first
+                else
+                    job_link = ""
+                end
+
+                pre_data_temp = job_pre_params.new(company_name, company_avatar, job_location, job_salary, job_link)
+                job_pre_datas.push(pre_data_temp)
+            end
+
+            return job_pre_datas
+        end
+    end
+
+    def get_job_data_timviec365(url, doc, pre_data)
         if doc.present?
             processing_detail_datas = []
 
@@ -111,7 +139,7 @@ module Timviec365Crawler
             user_id = Admin.first.id
             
             if title.present? && apply_site.present?
-                deatail_data_temp = job_params.new(title,
+                detail_data_temp = job_params.new(title,
                                                     detail,
                                                     location, 
                                                     salary, 
@@ -133,7 +161,7 @@ module Timviec365Crawler
                                                     company_avatar,
                                                     experience)
 
-                processing_detail_datas.push(deatail_data_temp)
+                processing_detail_datas.push(detail_data_temp)
             end
 
             return processing_detail_datas

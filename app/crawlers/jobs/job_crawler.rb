@@ -40,12 +40,12 @@ class JobCrawler < Kimurai::Base
         response = browser.current_response
 
         # Root link
-        if links = find_root_link(url, response)
+        if pre_datas = get_job_pre_data(url, response)
             begin
-                links.each do |link|
-                    if check_exist_url(link)
-                        link = rotate_url(link)
-                        request_to :parse_job_page, url: absolute_url(link, base: url)
+                pre_datas.each do |pre_data|
+                    if check_exist_url(pre_data.job_link)
+                        link = rotate_url(pre_data.job_link)
+                        request_to :parse_job_page, url: absolute_url(link, base: url), data: data.merge(pre_data: pre_data)
                     end
                 end
             rescue
@@ -62,55 +62,54 @@ class JobCrawler < Kimurai::Base
     end
 
     def parse_job_page(response, url:, data: {})
-        # Detail link
         if response = browser.current_response
-            job_data = get_job_data(url, response)
+            job_data = get_job_data(url, response, data[:pre_data])
             if job_data.present?
                 processing_job(job_data)
             end
         end
     end
 
-    def find_root_link(url, response)
-        links = nil
+    def get_job_pre_data(url, response)
+        pre_datas = nil
 
         if split_domain_name(url) == "careerbuilder.vn"
-            links = response.css("div.job-item a.job_link").map { |link| link['href']}
+            pre_datas = get_job_pre_data_careerbuilder(url, response)
         end
 
         if split_domain_name(url) == "topcv.vn"
-            links = response.css("div.job h4.job-title a").map { |link| link['href']}
+            pre_datas = get_job_pre_data_topcv(url, response)
         end
 
         if split_domain_name(url) == "itviec.com"
-            links = response.css("div.job__body h2.title a").map { |link| link['href'].prepend("https://itviec.com")}
+            pre_datas = get_job_pre_data_itviec(url, response)
         end
 
         if split_domain_name(url) == "mywork.com.vn"
-            links = response.css("div.jobslist-01-row-ttl a").map { |link| link['href'].prepend("https://mywork.com.vn")}
+            pre_datas = get_job_pre_data_mywork(url, response)
         end
 
         if split_domain_name(url) == "jobsgo.vn"
-            links = response.css("div.brows-job-position div.h3 a").map { |link| link['href']}
+            pre_datas = get_job_pre_data_jobsgo(url, response)
         end
 
         if split_domain_name(url) == "123job.vn"
-            links = response.css("div.job__list-item h2.job__list-item-title a").map { |link| link['href']}
+            pre_datas = get_job_pre_data_123job(url, response)
         end
 
         if split_domain_name(url) == "vietnamworks.com"
-            links = response.css("div.job-item h3 a.job-title").map { |link| link['href'].prepend("https://vietnamworks.com")}
+            pre_datas = get_job_pre_data_vietnamwork(url, response)
         end
 
         if split_domain_name(url) == "timviec365.vn"
-            links = response.css("div.item_cate h3 a").map { |link| link['href'].prepend("https://timviec365.vn")}
+            pre_datas = get_job_pre_data_timviec365(url, response)
         end
 
         if split_domain_name(url) == "vieclam24h.vn"
-            links = response.css("div.job-box a").map { |link| link['href'].prepend("https://vieclam24h.vn")}
+            pre_datas = get_job_pre_data_vieclam24h(url, response)
         end
 
-        return links
+        return pre_datas
     end
 
     def find_next_page_link(url, response)
@@ -120,18 +119,21 @@ class JobCrawler < Kimurai::Base
         @@PAGE_COUNT += 1
 
         if split_domain_name(url) == "careerbuilder.vn"
-            next_page = response.at_css("div.pagination li.next-page a")
-            next_page_link = next_page[:href]
+            if next_page = response.at_css("div.pagination li.next-page a")
+                next_page_link = next_page[:href]
+            end
         end
 
         if split_domain_name(url) == "topcv.vn"
-            next_page = response.css("ul.pagination li a").last
-            next_page_link = next_page[:href]
+            if next_page = response.css("ul.pagination li a").last
+                next_page_link = next_page[:href]
+            end
         end
 
         if split_domain_name(url) == "itviec.com"
-            next_page = response.css("ul.pagination li a").last
-            next_page_link = next_page[:href]
+            if next_page = response.css("ul.pagination li a").last
+                next_page_link = next_page[:href]
+            end
         end
 
         if split_domain_name(url) == "mywork.com.vn"
@@ -139,22 +141,27 @@ class JobCrawler < Kimurai::Base
         end
 
         if split_domain_name(url) == "jobsgo.vn"
-            next_page = response.at_css("ul.pagination li.next a")
-            next_page_link = next_page[:href]
+            if next_page = response.at_css("ul.pagination li.next a")
+                next_page_link = next_page[:href]
+            end
         end
 
         if split_domain_name(url) == "123job.vn"
-            next_page = response.css("ul.pagination li a").last
-            next_page_link = next_page[:href]
+            if next_page = response.css("ul.pagination li a").last
+                next_page_link = next_page[:href]
+            end
         end
 
         if split_domain_name(url) == "vietnamworks.com"
-            next_page = response.css("ul.pagination li.page-item a").last
+            if next_page = response.css("ul.pagination li.page-item a").last
+                next_page_link = next_page[:href]
+            end
         end
 
         if split_domain_name(url) == "timviec365.vn"
-            next_page = response.at_css("div.pagination_wrap a.next")
-            next_page_link = next_page[:href]
+            if next_page = response.at_css("div.pagination_wrap a.next")
+                next_page_link = next_page[:href]
+            end
         end
 
         if split_domain_name(url) == "vieclam24h.vn"
@@ -164,43 +171,43 @@ class JobCrawler < Kimurai::Base
         return next_page_link
     end
 
-    def get_job_data(url, response)
+    def get_job_data(url, response, pre_data)
         job_data = nil
 
         if split_domain_name(url) == "careerbuilder.vn"
-            job_data = get_job_data_careerbuilder(url, response)
+            job_data = get_job_data_careerbuilder(url, response, pre_data)
         end
 
         if split_domain_name(url) == "topcv.vn"
-            job_data = get_job_data_topcv(url, response)
+            job_data = get_job_data_topcv(url, response, pre_data)
         end
 
         if split_domain_name(url) == "itviec.com"
-            job_data = get_job_data_itviec(url, response)
+            job_data = get_job_data_itviec(url, response, pre_data)
         end
 
         if split_domain_name(url) == "mywork.com.vn"
-            job_data = get_job_data_mywork(url, response)
+            job_data = get_job_data_mywork(url, response, pre_data)
         end
 
         if split_domain_name(url) == "jobsgo.vn"
-            job_data = get_job_data_jobsgo(url, response)
+            job_data = get_job_data_jobsgo(url, response, pre_data)
         end
 
         if split_domain_name(url) == "123job.vn"
-            job_data = get_job_data_123job(url, response)
+            job_data = get_job_data_123job(url, response, pre_data)
         end
 
         if split_domain_name(url) == "vietnamworks.com"
-            job_data = get_job_data_vietnamwork(url, response)
+            job_data = get_job_data_vietnamwork(url, response, pre_data)
         end
 
         if split_domain_name(url) == "timviec365.vn"
-            job_data = get_job_data_timviec365(url, response)
+            job_data = get_job_data_timviec365(url, response, pre_data)
         end
 
         if split_domain_name(url) == "vieclam24h.vn"
-            job_data = get_job_data_vieclam24h(url, response)
+            job_data = get_job_data_vieclam24h(url, response, pre_data)
         end
 
         return job_data

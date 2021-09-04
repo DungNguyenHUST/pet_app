@@ -3,7 +3,39 @@ module CareerbuilderCrawler
     include CommonCrawler
     include ActionView::Helpers::AssetUrlHelper
 
-    def get_job_data_careerbuilder(url, doc)
+    def get_job_pre_data_careerbuilder(url, doc)
+        job_items = doc.css("div.job-item")
+        job_pre_datas = []
+
+        if job_items
+            job_items.each do |job_item|
+                company_name = ""
+
+                if job_item.css("div.image img").present?
+                    company_avatar = job_item.css("div.image img").map { |img| img['data-src']}.first
+                else
+                    company_avatar = image_url("defaults/company_avatar_default.png")
+                end
+
+                job_location = ""
+
+                job_salary = ""
+
+                if job_item.css("a.job_link").present?
+                    job_link = job_item.css("a.job_link").map { |link| link['href']}.first
+                else
+                    job_link = ""
+                end
+
+                pre_data_temp = job_pre_params.new(company_name, company_avatar, job_location, job_salary, job_link)
+                job_pre_datas.push(pre_data_temp)
+            end
+
+            return job_pre_datas
+        end
+    end
+
+    def get_job_data_careerbuilder(url, doc, pre_data)
         if doc.present?
             processing_detail_datas = []
 
@@ -23,8 +55,8 @@ module CareerbuilderCrawler
                 company_id = -1
             end
 
-            if doc.css("div.image img").present?
-                company_avatar = doc.css("div.image img").map { |img| img['src']}.first
+            if pre_data && pre_data.company_avatar
+                company_avatar = pre_data.company_avatar
             else
                 company_avatar = image_url("defaults/company_avatar_default.png")
             end
@@ -95,7 +127,7 @@ module CareerbuilderCrawler
             user_id = Admin.first.id
             
             if title.present? && apply_site.present?
-                deatail_data_temp = job_params.new(title,
+                detail_data_temp = job_params.new(title,
                                                     detail,
                                                     location, 
                                                     salary, 
@@ -114,9 +146,10 @@ module CareerbuilderCrawler
                                                     approved,
                                                     company_id,
                                                     company_name,
+                                                    company_avatar,
                                                     experience)
 
-                processing_detail_datas.push(deatail_data_temp)
+                processing_detail_datas.push(detail_data_temp)
             end
 
             return processing_detail_datas

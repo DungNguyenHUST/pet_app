@@ -29,12 +29,12 @@ module CommonCrawler
                 :experience)
     end
 
-    def job_summary_params
-        job_summary_param = Struct.new(:company_name,
-                                        :company_id,
-                                        :job_location, 
-                                        :job_salary,
-                                        :job_link)
+    def job_pre_params
+        job_pre_param = Struct.new(:company_name,
+                                    :company_avatar,
+                                    :job_location, 
+                                    :job_salary,
+                                    :job_link)
     end
 
     def split_company_name(name)

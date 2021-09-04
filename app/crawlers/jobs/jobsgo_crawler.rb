@@ -3,7 +3,35 @@ module JobsgoCrawler
     include CommonCrawler
     include ActionView::Helpers::AssetUrlHelper
 
-    def get_job_data_jobsgo(url, doc)
+    def get_job_pre_data_jobsgo(url, doc)
+        job_items = doc.css("div.brows-job-list")
+        job_pre_datas = []
+
+        if job_items
+            job_items.each do |job_item|
+                company_name = ""
+
+                company_avatar = ""
+
+                job_location = ""
+
+                job_salary = ""
+
+                if job_item.css("div.brows-job-position div.h3 a").present?
+                    job_link = job_item.css("div.brows-job-position div.h3 a").map { |link| link['href']}.first
+                else
+                    job_link = ""
+                end
+
+                pre_data_temp = job_pre_params.new(company_name, company_avatar, job_location, job_salary, job_link)
+                job_pre_datas.push(pre_data_temp)
+            end
+
+            return job_pre_datas
+        end
+    end
+
+    def get_job_data_jobsgo(url, doc, pre_data)
         if doc.present?
             processing_detail_datas = []
 
@@ -25,6 +53,10 @@ module JobsgoCrawler
 
             if doc.css("div.profile-thumb img").present?
                 company_avatar = doc.css("div.profile-thumb img").map { |img| img['data-src'].prepend("https://jobsgo.vn")}.last
+                if company_avatar == "https://123job.vn/images/logo/company_default_color.png" ||
+                    company_avatar == "https://123job.vn/images/logo/company_default.png"
+                    company_avatar = image_url("defaults/company_avatar_default.png")
+                end
             else
                 company_avatar = image_url("defaults/company_avatar_default.png")
             end
@@ -103,7 +135,7 @@ module JobsgoCrawler
             user_id = Admin.first.id
             
             if title.present? && apply_site.present?
-                deatail_data_temp = job_params.new(title,
+                detail_data_temp = job_params.new(title,
                                                     detail,
                                                     location, 
                                                     salary, 
@@ -125,7 +157,7 @@ module JobsgoCrawler
                                                     company_avatar,
                                                     experience)
 
-                processing_detail_datas.push(deatail_data_temp)
+                processing_detail_datas.push(detail_data_temp)
             end
 
             return processing_detail_datas
