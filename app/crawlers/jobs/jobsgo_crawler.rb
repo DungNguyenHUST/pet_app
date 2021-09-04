@@ -1,21 +1,32 @@
 module JobsgoCrawler
     require_relative 'common_crawler.rb'
     include CommonCrawler
+    include ActionView::Helpers::AssetUrlHelper
 
     def get_job_data_jobsgo(url, doc)
         if doc.present?
             processing_detail_datas = []
-            unless doc.css("div.media-body a.name h2").nil?
-                company_name = doc.css("div.media-body a.name h2").text.strip
-                company_id = get_company_id_by_name(company_name)
-            else
-                company_name = ""
+
+            if doc.css("div.media-body a.name h2").present?
+                company_search_name = doc.css("div.media-body a.name h2").first.text.strip
+                company = get_company_id_by_name(company_search_name)
             end
 
-            if company_id.present?
-                # company_name = Company.find_by_id(company_id).name
-            else
+            if company.present?
+                company_name = company[:name]
+                company_id = company[:id]
+            elsif company_search_name.present?
+                company_name = company_search_name
                 company_id = -1
+            else
+                company_name = ""
+                company_id = -1
+            end
+
+            if doc.css("div.profile-thumb img").present?
+                company_avatar = doc.css("div.profile-thumb img").map { |img| img['data-src'].prepend("https://jobsgo.vn")}.last
+            else
+                company_avatar = image_url("defaults/company_avatar_default.png")
             end
 
             if doc.css("div.job-detail-col-1 div.media-body-2 h1").first.present?
@@ -111,6 +122,7 @@ module JobsgoCrawler
                                                     approved,
                                                     company_id,
                                                     company_name,
+                                                    company_avatar,
                                                     experience)
 
                 processing_detail_datas.push(deatail_data_temp)

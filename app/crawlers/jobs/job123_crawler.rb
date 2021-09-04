@@ -1,21 +1,32 @@
 module Job123Crawler
     require_relative 'common_crawler.rb'
     include CommonCrawler
+    include ActionView::Helpers::AssetUrlHelper
 
     def get_job_data_123job(url, doc)
         if doc.present?
             processing_detail_datas = []
-            unless doc.css("div.company-review p.cpn-title").nil?
-                company_name = doc.css("div.company-review p.cpn-title").text.strip
-                company_id = get_company_id_by_name(company_name)
-            else
-                company_name = ""
+
+            if doc.css("div.company-review p.cpn-title").present?
+                company_search_name = doc.css("div.company-review p.cpn-title").first.text.strip
+                company = get_company_id_by_name(company_search_name)
             end
 
-            if company_id.present?
-                # company_name = Company.find_by_id(company_id).name
-            else
+            if company.present?
+                company_name = company[:name]
+                company_id = company[:id]
+            elsif company_search_name.present?
+                company_name = company_search_name
                 company_id = -1
+            else
+                company_name = ""
+                company_id = -1
+            end
+
+            if doc.css("div.company-info__avatar img").present?
+                company_avatar = doc.css("div.company-info__avatar img").map { |img| img['src']}.first
+            else
+                company_avatar = image_url("defaults/company_avatar_default.png")
             end
 
             if doc.css("h2.job-title strong").first.present?
@@ -121,6 +132,7 @@ module Job123Crawler
                                                     approved,
                                                     company_id,
                                                     company_name,
+                                                    company_avatar,
                                                     experience)
 
                 processing_detail_datas.push(deatail_data_temp)

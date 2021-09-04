@@ -23,6 +23,7 @@ include CommonCrawler
 class JobCrawler < Kimurai::Base
     @name = "job_crawler"
     @engine = :mechanize
+    # @engine = :selenium_firefox
     @start_urls = ["https://github.com"]
     @config = {}
     @@PAGE_COUNT = 0

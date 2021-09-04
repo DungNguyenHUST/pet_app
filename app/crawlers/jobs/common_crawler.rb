@@ -25,6 +25,7 @@ module CommonCrawler
                 :approved,
                 :company_id,
                 :company_name,
+                :company_avatar,
                 :experience)
     end
 
@@ -132,9 +133,9 @@ module CommonCrawler
                     # if company_search.present?
                     #     return company_search.first.id
                     # end
-                    company_search_id = search_production_company_list(split_name)
-                    if company_search_id.present?
-                        return company_search_id
+                    company_search = search_production_company_list(split_name)
+                    if company_search.present?
+                        return company_search
                     end
                 end
             else
@@ -142,9 +143,9 @@ module CommonCrawler
                 # if company_search.present?
                 #     return company_search.first.id
                 # end
-                company_search_id = search_production_company_list(new_name)
-                if company_search_id.present?
-                    return company_search_id
+                company_search = search_production_company_list(new_name)
+                if company_search.present?
+                    return company_search
                 end
             end
 
@@ -173,7 +174,7 @@ module CommonCrawler
         end
 
         if search_result
-            return search_result[:id]
+            return search_result
         else
             return nil
         end
@@ -218,6 +219,7 @@ module CommonCrawler
                                                             :user_id => job_data.user_id,
                                                             :approved => job_data.approved,
                                                             :company_name => job_data.company_name,
+                                                            :company_avatar => job_data.company_avatar,
                                                             :experience => job_data.experience)
                                                     
                             @company_job = convert_job_param(@company_job)

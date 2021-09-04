@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_09_03_095751) do
+ActiveRecord::Schema.define(version: 2021_09_03_113113) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -191,6 +191,7 @@ ActiveRecord::Schema.define(version: 2021_09_03_095751) do
     t.string "experience"
     t.string "experience_converted"
     t.string "policy"
+    t.string "company_avatar"
     t.index ["slug"], name: "index_company_jobs_on_slug", unique: true
   end
 
