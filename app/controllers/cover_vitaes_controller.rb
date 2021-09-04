@@ -1,8 +1,14 @@
 class CoverVitaesController < ApplicationController
-    before_action :require_admin_login, only: [:new, :create, :edit, :update, :destroy]
+    before_action :require_user_login, only: [:new, :create, :edit, :update, :destroy]
     
     def index
         @cover_vitaes = CoverVitae.sample.all
+
+        if(params.has_key?(:tab_id))
+            @tab_id = params[:tab_id]
+        else
+            @tab_id = "default"
+        end
     end
 
     def new
@@ -22,7 +28,13 @@ class CoverVitaesController < ApplicationController
         end
 
         if @cover_vitae.save
-            redirect_to admin_path(current_admin, tab_id: 'CoverVitaeID')
+            if admin_signed_in?
+                redirect_to admin_path(current_admin, tab_id: 'CoverVitaeID')
+            end
+
+            if user_signed_in?
+                redirect_to user_path(current_user, tab_id: 'CoverVitaeID')
+            end
         end
     end
 

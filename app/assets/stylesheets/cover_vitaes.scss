@@ -120,14 +120,18 @@
 
     .new_copy_cover_vitae_submit{
         width: 100%;
-        margin-top: 50px;
+        margin-top: 30px;
         .new_copy_cover_vitae_form_submit{
             height: 44px;
             width: 100%;
+            @media screen and (min-width: 600px){
+                width: 200px;
+            }
             border-radius: 5px;
             padding: 6px;
             background: #1877f2;
             font-size: 14px;
+            font-weight: 600;
             border: none;
             cursor: pointer;
             text-align: center;
@@ -144,15 +148,15 @@
 .cover_vitae_block{
     margin-bottom: 20px;
     width: 100%;
-    min-height: 300px;
-    border-radius: 5px;
-    border: 1px solid #e5e5e5;
+    min-height: 500px;
+    padding: 30px;
+    background-color: #f2f5fa;
     .cover_vitae_avatar{
         width: 100%;
-        height: 80%;
+        height: 100%;
         img{
             width: 100%;
-            height: 100%;
+            height: 400px;
             object-fit: cover;
             border-top-left-radius: 5px;
             border-top-right-radius: 5px;
@@ -160,28 +164,39 @@
     }
 
     .cover_vitae_title{
-        color: #333;
         font-size: 20px;
         font-weight: 600;
+        padding-top: 20px;
         a{
             text-decoration: none;
+            color: #333;
         }
     }
 
     .cover_vitae_action{
-        margin-top: 20px;
+        margin-top: 10px;
         button {
             width: 100%;
             height: 44px;
-            margin-bottom: 10px;
             background: #1877f2;
             font-size: 14px;
             border: 1px solid #1877f2;
             cursor: pointer;
             text-align: center;
             color: #fff;
-            border-radius: 5px;
+            border-radius: 4px;
             font-weight: 600;
+            i{
+                font-size: 20px;
+                position: relative;
+                top: 3px;
+                margin-right: 3px;
+            }
+
+            span{
+                position: relative;
+                top: -1px;
+            }
                         
             &:hover{
                 background-color: #369;
@@ -196,4 +211,70 @@
 .cv_index_block{
     margin-top: 20px;
     min-height: 900px;
+    .cover_vitae_index_tab_link{
+        clear: left;
+        overflow: hidden;
+        position: relative;
+        display: block;
+        background-color: #fff;
+        margin-bottom: 20px;
+        .nav {
+            overflow-x: auto;
+            overflow-y: hidden;
+            flex-wrap: nowrap;
+            border-bottom: 1px solid #e5e5e5;
+        }
+
+        .nav .nav-link {
+            white-space: nowrap;
+            font-size: 16px;
+            border: none;
+            min-width: 100%;
+            text-align: left;
+            display: flex;
+            justify-content: center;
+            font-weight: 600;
+            a{
+                color: #444;
+            }
+        }
+
+        .nav .nav-link, .nav .nav-link.active, .nav .nav-link:hover {
+            border: none;
+            color: #333;
+            text-align: left;
+            position: relative;
+            i{
+                padding-right: 3px;
+                padding-left: 0px;
+                color: #444;
+            }
+            span{
+                display: none;
+                position: absolute;
+                top: 0px;
+                right: 15px;
+                font-size: 12px;
+                color: #999;
+            }
+        }
+        .nav .nav-link.active {
+            border-radius: 0;
+            border-bottom: 3px solid #1877f2;
+            font-weight: 600;
+            color: #1877f2;
+            font-size: 16px;
+            text-align: left;
+            span{
+                color: #1877f2;
+            }
+            i{
+                color: #1877f2;
+            }
+        }
+    }
+    
+    .cover_vitae_index_tab_content{
+        width: 100%;
+    }
 }

@@ -23,35 +23,40 @@ class UsersController < ApplicationController
             @tab_id = "default"
         end
 
-        @company_job_applied = []
+        # User applied job
         @company_job_saved = []
-        CompanyJob.all.each do |company_job|
-            # find job apply by current user
-            if company_job.company_apply_jobs.find { |apply| apply.user_id == current_user.id}
-                @company_job_applied.push(company_job)
-            end
-
-            # find job save by user
-            if (company_job.company_save_jobs.find { |save| save.user_id == current_user.id})
-                @company_job_saved.push(company_job)
-            end
+        job_saves = CompanySaveJob.where(user_id: current_user.id)
+        job_saves.each do |job_save|
+            @company_job_saved.push(job_save.company_job)
         end
-        @company_job_applied = Kaminari.paginate_array(@company_job_applied).page(params[:page]).per(12)
         @company_job_saved = Kaminari.paginate_array(@company_job_saved).page(params[:page]).per(10)
 
-        #find all company folow by user
+        # User save job
+        @company_job_applied = []
+        job_applies = CompanyApplyJob.where(user_id: current_user.id)
+        job_applies.each do |job_apply|
+            @company_job_applied.push(job_apply.company_job)
+        end
+        @company_job_applied = Kaminari.paginate_array(@company_job_applied).page(params[:page]).per(10)
+
+        # Company folow by user
         @company_followed = []
-        Company.all.each do |company|
-            if (company.company_follows.find { |follow| follow.user_id == current_user.id})
-                @company_followed.push(company)
-            end
+        company_follows = CompanyFollow.where(user_id: current_user.id)
+        company_follows.each do |company_follow|
+            @company_followed.push(company_follow.company)
         end
         @company_followed = Kaminari.paginate_array(@company_followed).page(params[:page]).per(12)
 
+        # User notification
         @user_notifications = @user.user_notifications.page(params[:page]).per(20)
 
-        @problem_created = Problem.all.approved.find_all{ |problem| problem.user_id == current_user.id }
-        @problem_created = Kaminari.paginate_array(@problem_created).page(params[:page]).per(12)
+        # Problem create by user
+        @problem_created = Problem.where(user_id: current_user.id)
+        @problem_created = @problem_created.page(params[:page]).per(12)
+
+        # CV create by user
+        @cv_created = CoverVitae.where(user_id: current_user.id)
+        @cv_created = @cv_created.page(params[:page]).per(12)
     end
 
     def edit

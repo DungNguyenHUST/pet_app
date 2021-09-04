@@ -51,7 +51,8 @@
                             </div>
 
                             <div class="new_cover_vitae_input">
-                                <%= f.text_field :style, :required => true, class: "form-control", placeholder: " Style" %>
+                                <%= f.select :style, options_for_select(['Hiện đại', 'Sáng tạo', 'Đơn giản', 'Chuyên nghiệp'], "Chuyên nghiệp"), 
+                                                                        {include_blank: false}, { :class => 'form-select' } %>
                             </div>
                         </div>
 

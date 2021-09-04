@@ -1,5 +1,5 @@
 <div class="container">
-    <div class ="row">
+    <div class ="row justify-content-center">
         <div class="col-sm-8">
             <div class="new_copy_cover_vitae_form">
                 <%= form_for @cover_vitae, :html => { :class => "form-horizontal post" } do |f| %>
@@ -11,6 +11,9 @@
                             </div>
                         </div>
                     </div>
+
+                    <%= f.hidden_field :avatar, :value => @cv_copy.avatar.url %>
+                    <%= f.hidden_field :title, :value => @cv_copy.title %>
 
                     <div class="new_copy_cover_vitae_submit">
                         <%= f.submit "Lưu CV", class: "new_copy_cover_vitae_form_submit" %>

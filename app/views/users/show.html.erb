@@ -60,6 +60,14 @@
                     <%end%>                                     
                     <a class="nav-link <%=active%>" href="<%=user_path(current_user, tab_id: 'NotificationID')%>"><i class="material-icons-outlined">notifications</i>Thông báo <span><%= convert_number_to_human(@user_notifications.total_count)%><span> </a>
                 </li>
+                <li class="nav-item">
+                    <%if @tab_id == "CoverVitaeID"%>
+                        <%active = "active"%>
+                    <%else%> 
+                        <%active = ""%>
+                    <%end%>                                     
+                    <a class="nav-link <%=active%>" href="<%=user_path(current_user, tab_id: 'CoverVitaeID')%>"><i class="material-icons-outlined">content_copy</i>Cover Vitae <span><%= convert_number_to_human(@cv_created.total_count)%><span> </a>
+                </li>
             </ul>
         </div>
 
@@ -250,6 +258,32 @@
                             </div>
                             <div class="user_problem_not_found">
                                 <span>Bạn chưa có câu hỏi nào...</span>
+                            </div>
+                        </div>
+                    <%end%>
+                </div>
+            <%end%>
+
+            <%if @tab_id == "CoverVitaeID"%>
+                <div class="user_cv_tab">
+                    <%if @cv_created.total_count > 0%>
+                        <div class="user_cv_block">
+                            <div class="row">
+                                <%@cv_created.each do |cover_vitae|%>
+                                    <div class="col-sm-4">
+                                        <%=render cover_vitae%>
+                                    </div>
+                                <%end%>
+                            </div>
+                        </div>
+                        <%= paginate @cv_created, window: 2%>
+                    <%else%>
+                        <div class="user_cv_not_found_block">
+                            <div class="user_cv_not_found_icon">
+                                <i class="material-icons">content_copy</i>
+                            </div>
+                            <div class="user_cv_not_found">
+                                <span>Bạn chưa tạo CV nào...</span>
                             </div>
                         </div>
                     <%end%>

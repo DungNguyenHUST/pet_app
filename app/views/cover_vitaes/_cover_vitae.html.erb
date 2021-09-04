@@ -4,11 +4,18 @@
             <%= link_to (image_tag(cover_vitae.avatar.url)), image_path(url_for(cover_vitae.avatar.url)), rel: "gallery" , :href => cover_vitae_path(cover_vitae), target: :_blank%>
         <%end%>
     </div>
+
     <div class="cover_vitae_title">
         <%= link_to cover_vitae.title, cover_vitae_path(cover_vitae)%>
     </div>
 
     <div class="cover_vitae_action">
-        <%= link_to '<button type="submit">Dùng mẫu này</button>'.html_safe, new_cover_vitae_path(:cv_sample_id => cover_vitae.id)%>
+        <%if user_signed_in?%>
+            <%= link_to '<button type="submit"><i class="material-icons">edit</i><span>Dùng mẫu này</span></button>'.html_safe, new_cover_vitae_path(:cv_sample_id => cover_vitae.id)%>
+        <%else%>
+            <button type="button" data-toggle="modal" data-target="#buttonModalLoginCenter">
+                <i class="material-icons">edit</i><span>Dùng mẫu này</span>
+            </button>
+        <%end%>
     </div>
 </div>
