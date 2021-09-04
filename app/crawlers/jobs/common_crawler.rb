@@ -53,21 +53,6 @@ module CommonCrawler
         return uri.to_s
     end
 
-    def check_exist_url(url)
-        url = URI.parse(url) rescue false
-        return url
-        # if url
-        #     req = Net::HTTP.new(url.host, url.port)
-        #     res = req.request_head(url.path)
-        # end
-        
-        # if res.present?
-        #     return true
-        # else
-        #     return false
-        # end
-    end
-
     def rotate_url(url)
         # api_token = '3E293888640B9883DEB34D96F4C4B62A'
         # rotate_url = 'https://api.scraperbox.com/scrape?token=' + api_token + '&url=' + url + '&javascript_enabled=true'
@@ -196,9 +181,9 @@ module CommonCrawler
             return
         else
             job_datas.each do |job_data|
-                if job_data.apply_site.present? && job_data.company_id.present? && job_data.end_date.present?
+                if job_data.apply_site.present? && job_data.end_date.present?
                     if job_data.end_date >= Time.now # igorn old job
-                        job_exsit = CompanyJob.find_by(company_id: job_data.company_id, apply_site: job_data.apply_site)
+                        job_exsit = CompanyJob.find_by(apply_site: job_data.apply_site)
                         unless job_exsit.present? # igorn duplicate job
                             @company_job = CompanyJob.new(:company_id => job_data.company_id,
                                                             :title => job_data.title,

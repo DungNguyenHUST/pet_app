@@ -23,8 +23,8 @@ class ScrapJobsController < ApplicationController
         csv = CSV.parse(csv_text, :headers => true)
         csv.each do |row|
             job_data = row.to_hash
-            if job_data["apply_site"].present? && job_data["company_id"].present?
-                unless job_exsit = CompanyJob.find_by(company_id: job_data["company_id"], apply_site: job_data["apply_site"])
+            if job_data["apply_site"].present?
+                unless job_exsit = CompanyJob.find_by(apply_site: job_data["apply_site"])
                     CompanyJob.create!(job_data)
                 else
                     print "*********Duplicate data*********\n"

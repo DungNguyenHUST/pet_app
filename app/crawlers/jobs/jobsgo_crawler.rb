@@ -53,10 +53,6 @@ module JobsgoCrawler
 
             if doc.css("div.profile-thumb img").present?
                 company_avatar = doc.css("div.profile-thumb img").map { |img| img['data-src'].prepend("https://jobsgo.vn")}.last
-                if company_avatar == "https://123job.vn/images/logo/company_default_color.png" ||
-                    company_avatar == "https://123job.vn/images/logo/company_default.png"
-                    company_avatar = image_url("defaults/company_avatar_default.png")
-                end
             else
                 company_avatar = image_url("defaults/company_avatar_default.png")
             end

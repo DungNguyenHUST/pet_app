@@ -108,4 +108,19 @@ module ApplicationHelper
         end
         return new_name
     end
+
+    def check_exist_url(url)
+        url = URI.parse(url) rescue false
+        return url
+        # if url
+        #     req = Net::HTTP.new(url.host, url.port)
+        #     res = req.request_head(url.path)
+        # end
+        
+        # if res.present?
+        #     return true
+        # else
+        #     return false
+        # end
+    end
 end
