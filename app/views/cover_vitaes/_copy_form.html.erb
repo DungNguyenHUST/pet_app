@@ -6,17 +6,27 @@
                     <div class="new_copy_cover_vitae_section">
                         <div class="new_copy_cover_vitae_content">
                             <div class="new_copy_cover_vitae_input">
-                                <%= f.text_area :detail, :class => "tinymce", value: @cv_copy.detail%>
+                                <%= f.text_field :title, :required => true, value: @cover_vitae.title, class: "form-control", placeholder: " Nhập tên CV của bạn" %>
+                            </div>
+                        </div>
+
+                        <div class="new_copy_cover_vitae_content">
+                            <div class="new_copy_cover_vitae_input">
+                                <%if @cv_copy%>
+                                    <%= f.text_area :detail, :class => "tinymce", value: @cv_copy.detail%>
+                                <%else%>
+                                    <%= f.text_area :detail, :class => "tinymce", value: @cover_vitae.detail%>
+                                <%end%>
                                 <%= tinymce :default %>
                             </div>
                         </div>
+                        <%if @cv_copy%>
+                            <%= f.hidden_field :origin_id, :value => @cv_copy.id %>
+                        <%end%>
                     </div>
 
-                    <%= f.hidden_field :avatar, :value => @cv_copy.avatar.url %>
-                    <%= f.hidden_field :title, :value => @cv_copy.title %>
-
                     <div class="new_copy_cover_vitae_submit">
-                        <%= f.submit "Lưu CV", class: "new_copy_cover_vitae_form_submit" %>
+                        <%= f.submit "Lưu CV của tôi", class: "new_copy_cover_vitae_form_submit" %>
                     </div>
                 <%end%>
             </div>

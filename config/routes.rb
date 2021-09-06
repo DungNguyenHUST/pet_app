@@ -85,6 +85,8 @@ Rails.application.routes.draw do
   resources :reports
 
   resources :cover_vitaes
+  get 'cv_render_docx' => 'cover_vitaes#render_docx'
+  get 'set_primary_cover_viate' => 'cover_vitaes#primary'
 
   get "search/index"
 

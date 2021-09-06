@@ -1,0 +1,49 @@
+<%if cover_vitae.primary%>
+    <div class="copy_cover_vitae_block cv_block_highlight">
+<%else%>
+    <div class="copy_cover_vitae_block">
+<%end%>
+    <div class="copy_cover_vitae_avatar">
+        <%if cover_vitae.avatar?%>
+            <%= image_tag(cover_vitae.avatar)%>
+        <%else%>
+            <%= image_tag("defaults/cv_avatar_default.png")%>
+        <%end%>
+    </div>
+
+    <div class="copy_cover_vitae_title">
+        <%= cover_vitae.title%>
+    </div>
+
+    <div class="copy_cover_vitae_action">
+        <div class="row">
+            <div class="col-6">
+                <div class="copy_cover_vitae_use">
+                    <%= link_to '<button type="submit"><i class="material-icons">edit</i><span>Chỉnh sửa</span></button>'.html_safe, edit_cover_vitae_path(cover_vitae)%>
+                </div>
+
+                <div class="copy_cover_vitae_preview">
+                    <%= link_to '<button type="submit"><i class="material-icons">remove_red_eye</i><span>Xem chi tiết</span></button>'.html_safe, cover_vitae_path(cover_vitae)%>
+                </div>
+            </div>
+
+            <div class="col-6">
+                <div class="copy_cover_vitae_primary" id="primary_cover_vitae_<%=cover_vitae.id%>">
+                    <%if cover_vitae.primary%>
+                        <%= link_to '<button class="highlight_btn" type="submit"><i class="material-icons">done</i><span>CV mặc định</span></button>'.html_safe, 
+                            set_primary_cover_viate_path(:id => cover_vitae.id),
+                            remote: :true%>
+                    <%else%>                                    
+                        <%= link_to '<button type="submit"><i class="material-icons">done</i><span>Đặt làm CV mặc định</span></button>'.html_safe, 
+                            set_primary_cover_viate_path(:id => cover_vitae.id),
+                            remote: :true%>
+                    <%end%>
+                </div>
+
+                <div class="copy_cover_vitae_download">
+                    <%= link_to '<button type="submit"><i class="material-icons">file_download</i><span>Tải xuống</span></button>'.html_safe, cv_render_docx_path(id: cover_vitae.id)%>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

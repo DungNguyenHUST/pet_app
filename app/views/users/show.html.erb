@@ -271,7 +271,7 @@
                             <div class="row">
                                 <%@cv_created.each do |cover_vitae|%>
                                     <div class="col-sm-4">
-                                        <%=render cover_vitae%>
+                                        <%= render :partial => 'cover_vitaes/copy_cover_vitae', :locals => {:cover_vitae => cover_vitae} %>
                                     </div>
                                 <%end%>
                             </div>

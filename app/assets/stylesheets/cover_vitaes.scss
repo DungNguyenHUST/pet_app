@@ -150,67 +150,219 @@
     width: 100%;
     min-height: 500px;
     padding: 30px;
+    @media screen and (max-width: 600px){
+        padding: 20px;
+    }
     background-color: #f2f5fa;
+    position: relative;
+
     .cover_vitae_avatar{
         width: 100%;
         height: 100%;
         img{
             width: 100%;
-            height: 400px;
+            height: 444px;
             object-fit: cover;
-            border-top-left-radius: 5px;
-            border-top-right-radius: 5px;
+            border-radius: 5px;
         }
     }
 
     .cover_vitae_title{
-        font-size: 20px;
+        font-size: 18px;
         font-weight: 600;
         padding-top: 20px;
-        a{
-            text-decoration: none;
-            color: #333;
-        }
+        text-decoration: none;
+        color: #444;
+        text-align: center;
+    }
+
+    .cover_vitae_title_sub{
+        font-size: 14px;
+        color: #666;
+        text-align: center;
     }
 
     .cover_vitae_action{
-        margin-top: 10px;
-        button {
-            width: 100%;
-            height: 44px;
-            background: #1877f2;
-            font-size: 14px;
-            border: 1px solid #1877f2;
-            cursor: pointer;
-            text-align: center;
-            color: #fff;
-            border-radius: 4px;
-            font-weight: 600;
-            i{
-                font-size: 20px;
-                position: relative;
-                top: 3px;
-                margin-right: 3px;
-            }
-
-            span{
-                position: relative;
-                top: -1px;
-            }
-                        
-            &:hover{
-                background-color: #369;
+        opacity: 0.8;
+        @media screen and (min-width: 600px){
+            opacity: 0;
+        }
+        position: absolute;
+        top: 45%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        -ms-transform: translate(-50%, -50%);
+        
+        .cover_vitae_use{
+            button{
+                width: 200px;
+                height: 44px;
+                background: #1877f2;
+                font-size: 14px;
+                border: none;
+                cursor: pointer;
+                text-align: center;
                 color: #fff;
+                border-radius: 22px;
+                font-weight: 600;
+        
+                i{
+                    font-size: 20px;
+                    position: relative;
+                    top: 3px;
+                    margin-right: 3px;
+                }
+        
+                span{
+                    position: relative;
+                    top: -1px;
+                }
+                            
+                &:hover{
+                    background-color: #369;
+                    color: #fff;
+                }
+        
+                &:focus {outline:none;}
             }
-            &:focus {outline:none;}
+        }
+
+        .cover_vitae_preview{
+            margin-top: 15px;
+            button{
+                width: 200px;
+                height: 44px;
+                background: #ea1e30;
+                font-size: 14px;
+                border: none;
+                cursor: pointer;
+                text-align: center;
+                color: #fff;
+                border-radius: 22px;
+                font-weight: 600;
+        
+                i{
+                    font-size: 20px;
+                    position: relative;
+                    top: 3px;
+                    margin-right: 3px;
+                }
+        
+                span{
+                    position: relative;
+                    top: -1px;
+                }
+                            
+                &:hover{
+                    background-color: #f14a58;
+                    color: #fff;
+                }
+        
+                &:focus {outline:none;}
+            }
+        }
+    }
+    
+    @media screen and (min-width: 600px){
+        &:hover .cover_vitae_action {   
+            opacity: 1;
         }
     }
 }
 
 //////////////////////////index////////////////////////////////
+html {
+    scroll-behavior: smooth;
+}
+  
 .cv_index_block{
-    margin-top: 20px;
-    min-height: 900px;
+    .cv_index_intro_block{
+        min-height: 555px;
+        background-color: #fdfdfd;
+        @media screen and (max-width: 600px){
+            background-color: #f8f9fa;
+            min-height: 444px;
+        }
+        .cv_index_left_block{
+            padding-top: 135px;
+            @media screen and (max-width: 600px){
+                padding-top: 80px;
+                padding-bottom: 80px;
+            }
+            .cv_index_bar_label{
+                text-align: left;
+                @media screen and (max-width: 600px){
+                    text-align: center;
+                }
+                h3{  
+                    font-size: 40px;
+                    margin-bottom: 15px;
+                    font-weight: 550;
+                    color: #333;
+                    i{
+                        font-size: 50px;
+                    }
+                }
+            }
+
+            .cv_index_button{
+                margin-top: 20px;
+                @media screen and (max-width: 600px){
+                    display: flex;
+                    justify-content: center;
+                }
+                a{
+                    width: 200px;
+                    height: 44px;
+                    background: #ea1e30;
+                    text-decoration: none;
+                    padding: 12px 20px 12px 20px;
+                    font-size: 14px;
+                    border: none;
+                    cursor: pointer;
+                    text-align: center;
+                    color: #fff;
+                    border-radius: 4px;
+                    font-weight: 600;
+                    @media screen and (min-width: 600px){
+                        i{
+                            position: relative;
+                            top: 5px;
+                            font-size: 20px;
+                        }
+                        span{
+                            position: relative;
+                            top: -1px;
+                        }
+                    }
+
+                    @media screen and (max-width: 600px){
+                        i{
+                            // position: relative;
+                            // top: -3px;
+                            font-size: 20px;
+                        }
+                        span{
+                            position: relative;
+                            top: -6px;
+                        }
+                    }
+                                
+                    &:hover{
+                        background-color: #369;
+                        color: #fff;
+                    }
+                    &:focus {outline:none;}
+                }
+            }
+        }
+        .cv_index_right_block{
+            @media screen and (max-width: 600px){
+                display: none;
+            }
+        }
+    }
+
     .cover_vitae_index_tab_link{
         clear: left;
         overflow: hidden;
@@ -218,6 +370,7 @@
         display: block;
         background-color: #fff;
         margin-bottom: 20px;
+        margin-top: 20px;
         .nav {
             overflow-x: auto;
             overflow-y: hidden;
@@ -250,14 +403,14 @@
                 color: #444;
             }
             span{
-                display: none;
                 position: absolute;
-                top: 0px;
+                top: -2px;
                 right: 15px;
                 font-size: 12px;
                 color: #999;
             }
         }
+
         .nav .nav-link.active {
             border-radius: 0;
             border-bottom: 3px solid #1877f2;
@@ -276,10 +429,561 @@
     
     .cover_vitae_index_tab_content{
         width: 100%;
+        margin-bottom: 20px;
     }
 }
 
 ///////////////////show/////////////////////@at-root
 .cv_show_block{
     padding-top: 30px;
+    margin-bottom: 30px;
+    .cv_show_title{
+        a{
+            border-left: 5px solid #febb02;
+            text-align: left;
+            font-size: 22px;
+            color: #333;
+            font-weight: 550;
+            padding-left: 5px;
+        }
+        margin-bottom: 20px;
+    }
+    .cv_show_action{
+        padding-top: 15px;
+        .cv_show_index{
+            @media screen and (min-width: 600px){
+                float: left;
+            }
+            margin-bottom: 15px;
+            button{
+                @media screen and (min-width: 600px){
+                    width: 200px;
+                }
+                width: 100%;
+                height: 44px;
+                background: #fff;
+                border: 2px solid #ea1e30;
+                font-size: 14px;
+                cursor: pointer;
+                text-align: center;
+                color: #333;
+                border-radius: 22px;
+                font-weight: 600;
+        
+                i{
+                    font-size: 20px;
+                    position: relative;
+                    top: 3px;
+                    margin-right: 3px;
+                }
+        
+                span{
+                    position: relative;
+                    top: -1px;
+                }
+                            
+                &:hover{
+                    background-color: #f14a58;
+                    color: #fff;
+                }
+        
+                &:focus {outline:none;}
+            }
+        }
+        .cv_show_use{
+            @media screen and (min-width: 600px){
+                float: right;
+            }
+            button{
+                @media screen and (min-width: 600px){
+                    width: 200px;
+                }
+                width: 100%;
+                height: 44px;
+                background: #1877f2;
+                font-size: 14px;
+                border: none;
+                cursor: pointer;
+                text-align: center;
+                color: #fff;
+                border-radius: 22px;
+                font-weight: 600;
+        
+                i{
+                    font-size: 20px;
+                    position: relative;
+                    top: 3px;
+                    margin-right: 3px;
+                }
+        
+                span{
+                    position: relative;
+                    top: -1px;
+                }
+                            
+                &:hover{
+                    background-color: #f14a58;
+                    color: #fff;
+                }
+        
+                &:focus {outline:none;}
+            }
+        }
+        .cv_show_primary{
+            @media screen and (min-width: 600px){
+                float: left;
+            }
+            margin-bottom: 15px;
+            button{
+                @media screen and (min-width: 600px){
+                    width: 200px;
+                }
+                width: 100%;
+                height: 44px;
+                background: #fff;
+                border: 2px solid #ea1e30;
+                font-size: 14px;
+                cursor: pointer;
+                text-align: center;
+                color: #333;
+                border-radius: 22px;
+                font-weight: 600;
+        
+                i{
+                    font-size: 20px;
+                    position: relative;
+                    top: 3px;
+                    margin-right: 3px;
+                }
+        
+                span{
+                    position: relative;
+                    top: -1px;
+                }
+                            
+                &:hover{
+                    background-color: #f14a58;
+                    color: #fff;
+                }
+        
+                &:focus {outline:none;}
+            }
+            .highlight_btn{
+                background-color: #ea1e30;
+                color: #fff;
+            }
+        }
+        .cv_show_edit{
+            @media screen and (min-width: 600px){
+                float: right;
+            }
+            button{
+                @media screen and (min-width: 600px){
+                    width: 200px;
+                }
+                width: 100%;
+                height: 44px;
+                background: #1877f2;
+                font-size: 14px;
+                border: none;
+                cursor: pointer;
+                text-align: center;
+                color: #fff;
+                border-radius: 22px;
+                font-weight: 600;
+        
+                i{
+                    font-size: 20px;
+                    position: relative;
+                    top: 3px;
+                    margin-right: 3px;
+                }
+        
+                span{
+                    position: relative;
+                    top: -1px;
+                }
+                            
+                &:hover{
+                    background-color: #f14a58;
+                    color: #fff;
+                }
+        
+                &:focus {outline:none;}
+            }
+        }
+    }
+}
+
+///////////////////show copy/////////////////////@at-root
+.cv_copy_show_block{
+    padding-top: 30px;
+    margin-bottom: 30px;
+    .cv_copy_show_title{
+        a{
+            border-left: 5px solid #febb02;
+            text-align: left;
+            font-size: 22px;
+            color: #333;
+            font-weight: 550;
+            padding-left: 5px;
+        }
+        margin-bottom: 20px;
+    }
+    .cv_copy_show_action{
+        padding-top: 15px;
+        .cv_copy_show_index{
+            @media screen and (min-width: 600px){
+                float: left;
+            }
+            margin-bottom: 15px;
+            button{
+                @media screen and (min-width: 600px){
+                    width: 200px;
+                }
+                width: 100%;
+                height: 44px;
+                background: #fff;
+                border: 2px solid #ea1e30;
+                font-size: 14px;
+                cursor: pointer;
+                text-align: center;
+                color: #333;
+                border-radius: 22px;
+                font-weight: 600;
+        
+                i{
+                    font-size: 20px;
+                    position: relative;
+                    top: 3px;
+                    margin-right: 3px;
+                }
+        
+                span{
+                    position: relative;
+                    top: -1px;
+                }
+                            
+                &:hover{
+                    background-color: #f14a58;
+                    color: #fff;
+                }
+        
+                &:focus {outline:none;}
+            }
+        }
+        .cv_copy_show_use{
+            @media screen and (min-width: 600px){
+                float: right;
+            }
+            button{
+                @media screen and (min-width: 600px){
+                    width: 200px;
+                }
+                width: 100%;
+                height: 44px;
+                background: #1877f2;
+                font-size: 14px;
+                border: none;
+                cursor: pointer;
+                text-align: center;
+                color: #fff;
+                border-radius: 22px;
+                font-weight: 600;
+        
+                i{
+                    font-size: 20px;
+                    position: relative;
+                    top: 3px;
+                    margin-right: 3px;
+                }
+        
+                span{
+                    position: relative;
+                    top: -1px;
+                }
+                            
+                &:hover{
+                    background-color: #f14a58;
+                    color: #fff;
+                }
+        
+                &:focus {outline:none;}
+            }
+        }
+        .cv_copy_show_primary{
+            @media screen and (min-width: 600px){
+                float: left;
+            }
+            margin-bottom: 15px;
+            button{
+                @media screen and (min-width: 600px){
+                    width: 200px;
+                }
+                width: 100%;
+                height: 44px;
+                background: #fff;
+                border: 2px solid #ea1e30;
+                font-size: 14px;
+                cursor: pointer;
+                text-align: center;
+                color: #333;
+                border-radius: 22px;
+                font-weight: 600;
+        
+                i{
+                    font-size: 20px;
+                    position: relative;
+                    top: 3px;
+                    margin-right: 3px;
+                }
+        
+                span{
+                    position: relative;
+                    top: -1px;
+                }
+                            
+                &:hover{
+                    background-color: #f14a58;
+                    color: #fff;
+                }
+        
+                &:focus {outline:none;}
+            }
+            .highlight_btn{
+                background-color: #ea1e30;
+                color: #fff;
+            }
+        }
+        .cv_copy_show_edit{
+            @media screen and (min-width: 600px){
+                float: right;
+            }
+            button{
+                @media screen and (min-width: 600px){
+                    width: 200px;
+                }
+                width: 100%;
+                height: 44px;
+                background: #1877f2;
+                font-size: 14px;
+                border: none;
+                cursor: pointer;
+                text-align: center;
+                color: #fff;
+                border-radius: 22px;
+                font-weight: 600;
+        
+                i{
+                    font-size: 20px;
+                    position: relative;
+                    top: 3px;
+                    margin-right: 3px;
+                }
+        
+                span{
+                    position: relative;
+                    top: -1px;
+                }
+                            
+                &:hover{
+                    background-color: #f14a58;
+                    color: #fff;
+                }
+        
+                &:focus {outline:none;}
+            }
+        }
+    }
+}
+
+////////////////////////preview//////////////////@at-root
+.copy_cover_vitae_block{
+    margin-bottom: 20px;
+    width: 100%;
+    min-height: 500px;
+    padding: 30px;
+    @media screen and (max-width: 600px){
+        padding: 20px;
+    }
+    background-color: #f2f5fa;
+    position: relative;
+
+    .copy_cover_vitae_avatar{
+        width: 100%;
+        height: 100%;
+        img{
+            width: 100%;
+            height: 444px;
+            object-fit: cover;
+            border-radius: 5px;
+        }
+    }
+
+    .copy_cover_vitae_title{
+        font-size: 18px;
+        font-weight: 600;
+        padding-top: 20px;
+        text-decoration: none;
+        color: #555;
+    }
+
+    .copy_cover_vitae_action{
+        
+        .copy_cover_vitae_use{
+            margin-top: 15px;
+            button{
+                width: 100%;
+                height: 40px;
+                background: #fff;
+                border: 1px solid #1877f2;
+                font-size: 14px;
+                cursor: pointer;
+                text-align: center;
+                color: #555;
+                border-radius: 5px;
+                font-weight: 600;
+        
+                i{
+                    font-size: 20px;
+                    position: relative;
+                    top: 3px;
+                    margin-right: 3px;
+                }
+        
+                span{
+                    position: relative;
+                    top: -1px;
+                }
+                            
+                &:hover{
+                    background-color: #369;
+                    color: #fff;
+                }
+        
+                &:focus {outline:none;}
+            }
+        }
+
+        .copy_cover_vitae_preview{
+            margin-top: 15px;
+            button{
+                width: 100%;
+                height: 40px;
+                background: #fff;
+                border: 1px solid #1877f2;
+                font-size: 14px;
+                cursor: pointer;
+                text-align: center;
+                color: #555;
+                border-radius: 5px;
+                font-weight: 600;
+        
+                i{
+                    font-size: 20px;
+                    position: relative;
+                    top: 3px;
+                    margin-right: 3px;
+                }
+        
+                span{
+                    position: relative;
+                    top: -1px;
+                }
+                            
+                &:hover{
+                    background-color: #f14a58;
+                    color: #fff;
+                }
+        
+                &:focus {outline:none;}
+            }
+        }
+
+        .copy_cover_vitae_download{
+            margin-top: 15px;
+            button{
+                width: 100%;
+                height: 40px;
+                background: #fff;
+                border: 1px solid #1877f2;
+                font-size: 14px;
+                cursor: pointer;
+                text-align: center;
+                color: #555;
+                border-radius: 5px;
+                font-weight: 600;
+        
+                i{
+                    font-size: 20px;
+                    position: relative;
+                    top: 3px;
+                    margin-right: 3px;
+                }
+        
+                span{
+                    position: relative;
+                    top: -1px;
+                }
+                            
+                &:hover{
+                    background-color: #888;
+                    color: #fff;
+                }
+        
+                &:focus {outline:none;}
+            }
+        }
+
+        .copy_cover_vitae_primary{
+            margin-top: 15px;
+            button{
+                width: 100%;
+                height: 40px;
+                background: #fff;
+                border: 1px solid #1877f2;
+                font-size: 14px;
+                cursor: pointer;
+                text-align: center;
+                color: #555;
+                border-radius: 5px;
+                font-weight: 600;
+        
+                i{
+                    font-size: 20px;
+                    position: relative;
+                    top: 3px;
+                    margin-right: 3px;
+                }
+        
+                span{
+                    position: relative;
+                    top: -1px;
+                }
+                            
+                &:hover{
+                    background-color: #888;
+                    color: #fff;
+                }
+        
+                &:focus {outline:none;}
+            }
+
+            .highlight_btn{
+                background-color: #26bc4e;
+                border: none;
+                color: #fff;
+            }
+        }
+    }
+    
+    @media screen and (min-width: 600px){
+        &:hover .copy_cover_vitae_action {   
+            opacity: 1;
+        }
+    }
+}
+
+.cv_block_highlight{
+    background-color: #ffe49b;
 }

@@ -1,0 +1,39 @@
+<div class="cv_show_block">
+    <div class="container">
+        <div class ="row justify-content-center">
+            <div class="col-sm-8">
+                <%if @cover_vitae.title%>
+                    <div class="cv_show_title">
+                        <a><%=@cover_vitae.title%></a>
+                    </div>
+                <%end%>
+                
+                <div class="cv_show_detail">
+                    <%=@cover_vitae.detail.html_safe%>
+                </div>
+
+                <%if user_signed_in?%>
+                    <div class="cv_show_action">
+                        <div class="cv_show_index">
+                            <%= link_to '<button type="submit"><i class="material-icons">arrow_back</i><span>Xem mẫu khác</span></button>'.html_safe, cover_vitaes_path%>
+                        </div>
+                        <div class="cv_show_use">
+                            <%= link_to '<button type="submit"><i class="material-icons">edit</i><span>Dùng mẫu này</span></button>'.html_safe, new_cover_vitae_path(:cv_sample_id => @cover_vitae.id)%>
+                        </div>
+                    </div>
+                <%else%>
+                    <div class="cv_show_action">
+                        <div class="cv_show_index">
+                            <%= link_to '<button type="submit"><i class="material-icons">arrow_back</i><span>Xem mẫu khác</span></button>'.html_safe, cover_vitaes_path%>
+                        </div>
+                        <div  class="cv_show_use">
+                            <button type="button" data-toggle="modal" data-target="#buttonModalLoginCenter">
+                                <i class="material-icons">edit</i><span>Dùng mẫu này</span>
+                            </button>
+                        </div>
+                    </div>
+                <%end%>
+            </div>
+        </div>
+    </div>
+</div>

@@ -55,7 +55,7 @@ class UsersController < ApplicationController
         @problem_created = @problem_created.page(params[:page]).per(12)
 
         # CV create by user
-        @cv_created = CoverVitae.where(user_id: current_user.id)
+        @cv_created = CoverVitae.where(user_id: current_user.id).order('created_at DESC')
         @cv_created = @cv_created.page(params[:page]).per(12)
     end
 

@@ -1,9 +1,5 @@
-<div class="cv_show_block">
-    <div class="container">
-        <div class ="row justify-content-center">
-            <div class="col-sm-8">
-                <%=@cover_vitae.detail.html_safe%>
-            </div>
-        </div>
-    </div>
-</div>
+<%if @cover_vitae.sample%>
+    <%= render :partial => 'cover_vitaes/show' %>
+<%else%>
+    <%= render :partial => 'cover_vitaes/copy_show' %>
+<%end%>

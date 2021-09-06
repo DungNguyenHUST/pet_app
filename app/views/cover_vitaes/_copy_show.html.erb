@@ -1,0 +1,36 @@
+<div class="cv_copy_show_block">
+    <div class="container">
+        <div class ="row justify-content-center">
+            <div class="col-sm-8">
+                <%if @cover_vitae.title%>
+                    <div class="cv_copy_show_title">
+                        <a><%=@cover_vitae.title%></a>
+                    </div>
+                <%end%>
+                
+                <div class="cv_copy_show_detail">
+                    <%=@cover_vitae.detail.html_safe%>
+                </div>
+
+                <%if user_signed_in?%>
+                    <div class="cv_copy_show_action">
+                        <div class="cv_copy_show_primary" id="primary_cover_vitae_<%=@cover_vitae.id%>">
+                            <%if @cover_vitae.primary%>
+                                <%= link_to '<button class="highlight_btn" type="submit"><i class="material-icons">done</i><span>CV mặc định</span></button>'.html_safe, 
+                                    set_primary_cover_viate_path(:id => @cover_vitae.id),
+                                    remote: :true%>
+                            <%else%>                                    
+                                <%= link_to '<button type="submit"><i class="material-icons">done</i><span>Đặt làm CV mặc định</span></button>'.html_safe, 
+                                    set_primary_cover_viate_path(:id => @cover_vitae.id),
+                                    remote: :true%>
+                            <%end%>
+                        </div>
+                        <div class="cv_copy_show_edit">
+                            <%= link_to '<button type="submit"><i class="material-icons">edit</i><span>Chỉnh sửa</span></button>'.html_safe, edit_cover_vitae_path(@cover_vitae)%>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

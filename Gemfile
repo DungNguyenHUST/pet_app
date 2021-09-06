@@ -122,4 +122,7 @@ gem 'kimurai'
 gem 'rails_admin'
 
 # tiny mce editor
- gem 'tinymce-rails'
+gem 'tinymce-rails'
+
+# html->word
+gem 'htmltoword'

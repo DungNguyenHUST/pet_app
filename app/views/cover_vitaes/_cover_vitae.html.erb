@@ -1,21 +1,39 @@
 <div class="cover_vitae_block">
     <div class="cover_vitae_avatar">
         <%if cover_vitae.avatar?%>
-            <%= link_to (image_tag(cover_vitae.avatar.url)), image_path(url_for(cover_vitae.avatar.url)), rel: "gallery" , :href => cover_vitae_path(cover_vitae), target: :_blank%>
+            <%= image_tag(cover_vitae.avatar.url)%>
+        <%else%>
+            <%= image_tag("defaults/cv_avatar_default.png")%>
         <%end%>
     </div>
 
     <div class="cover_vitae_title">
-        <%= link_to cover_vitae.title, cover_vitae_path(cover_vitae)%>
+        <%= cover_vitae.title%>
     </div>
 
-    <div class="cover_vitae_action">
-        <%if user_signed_in?%>
-            <%= link_to '<button type="submit"><i class="material-icons">edit</i><span>Dùng mẫu này</span></button>'.html_safe, new_cover_vitae_path(:cv_sample_id => cover_vitae.id)%>
-        <%else%>
-            <button type="button" data-toggle="modal" data-target="#buttonModalLoginCenter">
-                <i class="material-icons">edit</i><span>Dùng mẫu này</span>
-            </button>
-        <%end%>
+    <div class="cover_vitae_title_sub">
+        <a><%=convert_number_to_human(count_copy_cover_vitae(cover_vitae))%> người đã sử dụng</a>
     </div>
+
+    <%if user_signed_in?%>
+        <div class="cover_vitae_action">
+            <div class="cover_vitae_use">
+                <%= link_to '<button type="submit"><i class="material-icons">edit</i><span>Dùng mẫu này</span></button>'.html_safe, new_cover_vitae_path(:cv_sample_id => cover_vitae.id)%>
+            </div>
+            <div  class="cover_vitae_preview">
+                <%= link_to '<button type="submit"><i class="material-icons">remove_red_eye</i><span>Xem trước</span></button>'.html_safe, cover_vitae_path(cover_vitae)%>
+            </div>
+        </div>
+    <%else%>
+        <div class="cover_vitae_action">
+            <div class="cover_vitae_use">
+                <button type="button" data-toggle="modal" data-target="#buttonModalLoginCenter">
+                    <i class="material-icons">edit</i><span>Dùng mẫu này</span>
+                </button>
+            </div>
+            <div class="cover_vitae_preview">
+                <%= link_to '<button type="submit"><i class="material-icons">remove_red_eye</i><span>Xem trước</span></button>'.html_safe, cover_vitae_path(cover_vitae)%>
+            </div>
+        </div>
+    <%end%>
 </div>
