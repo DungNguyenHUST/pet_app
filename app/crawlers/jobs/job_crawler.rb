@@ -8,6 +8,7 @@ require_relative 'job123_crawler.rb'
 require_relative 'vietnamwork_crawler.rb'
 require_relative 'timviec365_crawler.rb'
 require_relative 'vieclam24h_crawler.rb'
+require_relative 'viecoi_crawler.rb'
 require_relative 'common_crawler.rb'
 include CareerbuilderCrawler
 include TopcvCrawler
@@ -18,6 +19,7 @@ include Job123Crawler
 include VietnamworkCrawler
 include Timviec365Crawler
 include Vieclam24hCrawler
+include ViecoiCrawler
 include CommonCrawler
 
 class JobCrawler < Kimurai::Base
@@ -109,6 +111,10 @@ class JobCrawler < Kimurai::Base
             pre_datas = get_job_pre_data_vieclam24h(url, response)
         end
 
+        if split_domain_name(url) == "viecoi.vn"
+            pre_datas = get_job_pre_data_viecoi(url, response)
+        end
+
         return pre_datas
     end
 
@@ -168,6 +174,12 @@ class JobCrawler < Kimurai::Base
             next_page_link = "https://vieclam24h.vn/tim-kiem-viec-lam-nhanh?q=&province_ids&field_ids&action=search&page=#{@@PAGE_COUNT}"
         end
 
+        if split_domain_name(url) == "viecoi.vn"
+            if next_page = response.css("div.pagination li a").last
+                next_page_link = next_page[:href]
+            end
+        end
+
         return next_page_link
     end
 
@@ -208,6 +220,10 @@ class JobCrawler < Kimurai::Base
 
         if split_domain_name(url) == "vieclam24h.vn"
             job_data = get_job_data_vieclam24h(url, response, pre_data)
+        end
+
+        if split_domain_name(url) == "viecoi.vn"
+            job_data = get_job_data_viecoi(url, response, pre_data)
         end
 
         return job_data
