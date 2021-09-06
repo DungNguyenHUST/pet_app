@@ -45,8 +45,6 @@
         "sameAs" : "<%=@company_job.address%>",
     <%if @company.present? && @company.avatar?%>
         "logo" : "<%= image_url(@company.avatar.thumb.url) %>"
-    <%elsif @company_job.company_avatar && check_exist_url(@company_job.company_avatar)%>
-        "logo" : "<%= image_tag(@company_job.company_avatar) %>"
     <%else%>
         "logo" : "<%= image_url("defaults/company_avatar_default.png") %>"
     <%end%>
