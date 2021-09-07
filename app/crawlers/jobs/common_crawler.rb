@@ -206,33 +206,33 @@ module CommonCrawler
                                                         :experience => job_data.experience)
                                                 
                         @company_job = convert_job_param(@company_job)
-                        save_job_to_csv(@company_job)
 
                         job_exsit = CompanyJob.find_by(apply_site: job_data.apply_site)
                         unless job_exsit.present? # igorn duplicate job
                             @company_job.save!
+                            save_job_to_csv(@company_job)
                         else
-                            job_exsit.update!(:company_id => job_data.company_id,
-                                                :title => job_data.title,
-                                                :detail => job_data.detail,
-                                                :location => job_data.location,
-                                                :salary => job_data.salary,
-                                                :quantity => job_data.quantity,
-                                                :category => job_data.category,
-                                                :language => job_data.language,
-                                                :level => job_data.level,
-                                                :dudate => job_data.dudate,
-                                                :end_date => job_data.end_date,
-                                                :typical => job_data.typical,
-                                                :urgent => job_data.urgent,
-                                                :apply_another_site_flag => job_data.apply_another_site_flag,
-                                                :apply_site => job_data.apply_site,
-                                                :address => job_data.address,
-                                                :user_id => job_data.user_id,
-                                                :approved => job_data.approved,
-                                                :company_name => job_data.company_name,
-                                                :company_avatar => job_data.company_avatar,
-                                                :experience => job_data.experience)
+                            # job_exsit.update!(:company_id => job_data.company_id,
+                            #                     :title => job_data.title,
+                            #                     :detail => job_data.detail,
+                            #                     :location => job_data.location,
+                            #                     :salary => job_data.salary,
+                            #                     :quantity => job_data.quantity,
+                            #                     :category => job_data.category,
+                            #                     :language => job_data.language,
+                            #                     :level => job_data.level,
+                            #                     :dudate => job_data.dudate,
+                            #                     :end_date => job_data.end_date,
+                            #                     :typical => job_data.typical,
+                            #                     :urgent => job_data.urgent,
+                            #                     :apply_another_site_flag => job_data.apply_another_site_flag,
+                            #                     :apply_site => job_data.apply_site,
+                            #                     :address => job_data.address,
+                            #                     :user_id => job_data.user_id,
+                            #                     :approved => job_data.approved,
+                            #                     :company_name => job_data.company_name,
+                            #                     :company_avatar => job_data.company_avatar,
+                            #                     :experience => job_data.experience)
                         end
                     end
                 end

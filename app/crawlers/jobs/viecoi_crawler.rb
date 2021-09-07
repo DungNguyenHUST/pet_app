@@ -18,7 +18,7 @@ module ViecoiCrawler
                 job_salary = ""
 
                 if job_item.css("h3.title-jobs-home a").present?
-                    job_link = job_item.css("h4.job-title a").map { |link| link['href']}.first
+                    job_link = job_item.css("h3.title-jobs-home a").map { |link| link['href']}.first
                 else
                     job_link = ""
                 end
@@ -52,7 +52,7 @@ module ViecoiCrawler
             end
 
             if doc.css("div.div-in-logo a img").present?
-                company_avatar = doc.css("div.div-in-logo a img").map { |img| img['src']}.first
+                company_avatar = doc.css("div.div-in-logo a img").map { |img| img['src'].prepend("https://viecoi.vn/")}.first
             else
                 company_avatar = image_url("defaults/company_avatar_default.png")
             end
@@ -62,15 +62,15 @@ module ViecoiCrawler
             end
 
             #######################job detail start##########################
-            detail_block = doc.css("div.background_white")[1]
+            detail_block = doc.css("div.row-mobile-job-detail")
             if detail_block.present?
-                start_detail = detail_block.at_css("h2")
+                start_detail = detail_block.css("div.property-margin-detail")[2]
                 detail = ''
                 next_step = 0
                 loop do
                     break if next_step == 3 # stop before end_detail
                     if start_detail.present? && !start_detail.next_element.nil?
-                        detail << start_detail.to_s
+                        detail << start_detail.to_s 
                         start_detail = start_detail.next_element
                     end
                     next_step += 1
@@ -78,59 +78,64 @@ module ViecoiCrawler
             end
             #######################job detail end##########################
 
-            if doc.css("div.job-info-item span")[6].present?
-                location = doc.css("div.job-info-item span")[6].text.strip
+            if doc.css("div.div-salary div.color-orange")[0].present?
+                salary = doc.css("div.div-salary div.color-orange")[0].text.strip
+                salary.gsub!(/Lương:/, "")
+            else
+                salary = "Thương lượng"
+            end
+
+            detail_block_0 = doc.css("div.property-margin-detail")[0]
+
+            if detail_block_0.css("ul.ul-sub-detail li")[2].present?
+                location = detail_block_0.css("ul.ul-sub-detail li")[2].text.strip
+                location.gsub!(/Nơi làm:/, "")
             else
                 location = "Hà Nội"
             end
 
-            if doc.css("div.text-dark-gray").present?
-                address = doc.css("div.text-dark-gray").first.text.strip
-            else
-                address = location
-            end
+            address = location
 
-            salary = "Thương lượng"
-
-            if doc.css("div.job-info-item span")[2].present?
-                quantity = doc.css("div.job-info-item span")[2].text.strip
-            else
-                quantity = 1
-            end
-
-            if detail_block.present?
-                category = detail_block.css("span").text.strip.squish!
+            if detail_block_0.css("ul.ul-sub-detail li")[1].present?
+                category = detail_block_0.css("ul.ul-sub-detail li")[1].text.strip
+                category.gsub!(/Danh mục:/, "")
             else
                 category = ""
             end
 
-            if doc.css("div.job-info-item span")[3].present?
-                level = doc.css("div.job-info-item span")[3].text.strip
-            else
-                level = "Nhân viên"
-            end
-
-            if doc.css("div.job-info-item span")[4].present?
-                experience = doc.css("div.job-info-item span")[4].text.strip
-            else
-                experience = "Không yêu cầu"
-            end
-
-            if doc.css("div.job-info-item span")[1].present?
-                typical = doc.css("div.job-info-item span")[1].text.strip
-            else
-                typical = "Toàn thời gian"
-            end
-
-            language = "Tùy chọn"
-            dudate = Time.now
-
-            if doc.css("div.job-deadline").present?
-                date_str = doc.css("div.job-deadline").text.strip
+            if detail_block_0.css("ul.ul-sub-detail li")[3].present?
+                date_str = detail_block_0.css("ul.ul-sub-detail li")[3].text.strip
                 end_date = Date.parse(date_str)
             else
                 end_date = Time.now + 30.days
             end
+
+            detail_block_1 = doc.css("div.property-margin-detail")[1]
+
+            if detail_block_1.css("ul.ul-sub-detail li")[0].present?
+                quantity = detail_block_1.css("ul.ul-sub-detail li")[0].text.strip
+            else
+                quantity = 1
+            end
+
+            if detail_block_1.css("ul.ul-sub-detail li")[4].present?
+                level = detail_block_1.css("ul.ul-sub-detail li")[4].text.strip
+                level.gsub!(/Cấp bậc:/, "")
+            else
+                level = "Nhân viên"
+            end
+
+            if detail_block_1.css("ul.ul-sub-detail li")[2].present?
+                experience = detail_block_1.css("ul.ul-sub-detail li")[2].text.strip
+                experience.gsub!(/Kinh nghiệm làm việc:/, "")
+            else
+                experience = "Không yêu cầu"
+            end
+
+            typical = "Toàn thời gian"
+
+            language = "Tùy chọn"
+            dudate = Time.now
 
             urgent = false
             apply_another_site_flag = true
