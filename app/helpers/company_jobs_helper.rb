@@ -1,11 +1,16 @@
 module CompanyJobsHelper
     def convert_salary_to_min(salary)
-        salary_min = salary.scan(/\d+/).map(&:to_i)
-        if salary_min.size > 1
-            if salary_min.first >= 1000
-                return salary_min.first
+        if salary
+            salary_min = salary.scan(/\d+/).map(&:to_i)
+            salary_min = salary_min.reject{|i| i <= 0}
+            if salary_min.size > 0
+                if salary_min.first >= 1000
+                    return salary_min.first
+                else
+                    return salary_min.first * 1000000
+                end
             else
-                return salary_min.first * 1000000
+                return 0
             end
         else
             return 0
@@ -13,12 +18,17 @@ module CompanyJobsHelper
     end
 
     def convert_salary_to_max(salary)
-        salary_max = salary.scan(/\d+/).map(&:to_i)
-        if salary_max.size > 0
-            if salary_max.last >= 1000
-                return salary_max.last
+        if salary
+            salary_max = salary.scan(/\d+/).map(&:to_i)
+            salary_max = salary_max.reject{|i| i <= 0}
+            if salary_max.size > 1
+                if salary_max.last >= 1000
+                    return salary_max.last
+                else
+                    return salary_max.last * 1000000
+                end
             else
-                return salary_max.last * 1000000
+                return 0
             end
         else
             return 0

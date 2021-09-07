@@ -106,13 +106,8 @@ class CompanyJobsController < ApplicationController
             end
 
             if filter_params[:salary].present?
-                salary = filter_params[:salary].to_s.scan(/\d+/).map(&:to_i)
-                if salary.present? && salary.size == 1
-                    @salary_min = salary.first * 1000000
-                else
-                    @salary_min = convert_salary_to_min(filter_params[:salary])
-                    @salary_max = convert_salary_to_max(filter_params[:salary])
-                end
+                @salary_min = convert_salary_to_min(salary)
+                @salary_max = convert_salary_to_max(salary)
             end
 
             if filter_params[:level].present?
