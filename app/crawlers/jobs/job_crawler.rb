@@ -31,11 +31,14 @@ class JobCrawler < Kimurai::Base
     @start_urls = ["https://github.com"]
     @config = {}
     @@PAGE_COUNT = 0
+    @@PAGE_MAX = 0
 
     def self.process(scrap_job)
+        @@PAGE_MAX = 0
         if check_exist_url(scrap_job.url)
             scrap_job.url = rotate_url(scrap_job.url)
             @start_urls = [scrap_job.url.to_s]
+            @@PAGE_MAX = scrap_job.page_num
             self.crawl!
         end
     end
@@ -59,8 +62,7 @@ class JobCrawler < Kimurai::Base
 
         # Next page press
         if next_page_link = find_next_page_link(url, response)
-            print "nextxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx"
-            print @@PAGE_COUNT
+            print "------------------------------Next page #{@@PAGE_COUNT}/#{@@PAGE_MAX}--------------------------------"
             request_to :parse, url: absolute_url(next_page_link, base: url)
         end
     end
@@ -129,6 +131,12 @@ class JobCrawler < Kimurai::Base
         next_page_link = nil
 
         @@PAGE_COUNT += 1
+
+        if @@PAGE_COUNT == @@PAGE_MAX
+            print "------------------------------End at page #{@@PAGE_COUNT}--------------------------------"
+            @@PAGE_COUNT = 0
+            return nil
+        end
 
         if split_domain_name(url) == "careerbuilder.vn"
             if next_page = response.at_css("div.pagination li.next-page a")

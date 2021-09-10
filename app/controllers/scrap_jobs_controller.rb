@@ -12,7 +12,8 @@ class ScrapJobsController < ApplicationController
     def create
         @scrap_job = ScrapJob.new(scrap_job_param)
         if @scrap_job.save
-            JobCrawlerWorker.perform_async(@scrap_job.id)
+            # JobCrawlerWorker.perform_async(@scrap_job.id)
+            JobCrawler.process(@scrap_job)
             flash[:success] = "Scrap successed ..............."
             redirect_to admin_path(current_admin, tab_id: 'ScrapJobID')
         end
@@ -59,6 +60,6 @@ class ScrapJobsController < ApplicationController
     end
 
     def scrap_job_param
-        params.require(:scrap_job).permit(:id, :company_id, :company_name, :location, :url)
+        params.require(:scrap_job).permit(:id, :company_id, :company_name, :location, :url, :page_num)
     end
 end
