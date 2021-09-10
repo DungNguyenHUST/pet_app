@@ -12,7 +12,7 @@ class ScrapJobsController < ApplicationController
     def create
         @scrap_job = ScrapJob.new(scrap_job_param)
         if @scrap_job.save
-            JobCrawler.process(@scrap_job)
+            JobCrawlerWorker.perform_async(@scrap_job.id)
             flash[:success] = "Scrap successed ..............."
             redirect_to admin_path(current_admin, tab_id: 'ScrapJobID')
         end

@@ -126,3 +126,7 @@ gem 'tinymce-rails'
 
 # html->word
 gem 'htmltoword'
+
+# demon job
+gem "sidekiq", "~> 6.2", :group => :development
+gem "redis", "~> 4.4", :group => :development
