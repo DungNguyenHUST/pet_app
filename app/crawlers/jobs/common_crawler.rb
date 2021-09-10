@@ -208,7 +208,7 @@ module CommonCrawler
                         @company_job = convert_job_param(@company_job)
 
                         job_exsit = CompanyJob.find_by(apply_site: job_data.apply_site)
-                        # unless job_exsit.present? # igorn duplicate job
+                        unless job_exsit.present? # igorn duplicate job
                             save_job_to_csv(@company_job)
                             @company_job.save!
                         # else
@@ -233,7 +233,7 @@ module CommonCrawler
                             #                     :company_name => job_data.company_name,
                             #                     :company_avatar => job_data.company_avatar,
                             #                     :experience => job_data.experience)
-                        # end
+                        end
                     end
                 end
             end
