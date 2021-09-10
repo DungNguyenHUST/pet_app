@@ -21,6 +21,16 @@
                         <%= f.number_field :page_num, :required => true, class: "form-control"%>
                     </div>
                 </div>
+
+                <div class="new_scrap_job_content">
+                    <div class="new_scrap_job_label">
+                        <a><%= f.label :proxy, "Use Proxy", class: "new_scrap_job_label_name" %></a>
+                    </div>
+
+                    <div class="new_scrap_job_input">
+                        <%= f.select(:proxy, options_for_select([["Yes", true], ["No", false]], ["No", false]), {include_blank: false}, { :class => 'form-select' }) %>
+                    </div>
+                </div>
             </div>
 
             <div class="new_scrap_job_submit">

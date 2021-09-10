@@ -25,11 +25,14 @@ include CareerlinkCrawler
 include CommonCrawler
 
 class JobCrawler < Kimurai::Base
+    PROXIES = ["113.160.247.217:5678:https", "14.177.235.178:4145:https"]
     @name = "job_crawler"
     @engine = :mechanize
     # @engine = :selenium_firefox
     @start_urls = ["https://github.com"]
-    @config = {}
+    @config = {
+        skip_request_errors: [{ error: RuntimeError, message: "404 => Net::HTTPNotFound" }]
+    }
     @@PAGE_COUNT = 0
     @@PAGE_MAX = 0
 
@@ -39,6 +42,20 @@ class JobCrawler < Kimurai::Base
             scrap_job.url = rotate_url(scrap_job.url)
             @start_urls = [scrap_job.url.to_s]
             @@PAGE_MAX = scrap_job.page_num
+
+            # Change to use proxy mode
+            if scrap_job.proxy
+                @engine = :selenium_firefox
+                @config = {
+                    proxy: -> { PROXIES.sample },
+                    skip_request_errors: [{ error: RuntimeError, message: "404 => Net::HTTPNotFound" }],
+                    before_request: {
+                        change_proxy: true,
+                        delay: 1..3
+                    }
+                }
+            end
+
             self.crawl!
         end
     end

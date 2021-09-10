@@ -499,6 +499,7 @@ ActiveRecord::Schema.define(version: 2021_09_10_083140) do
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.integer "page_num"
+    t.boolean "proxy", default: false
   end
 
   create_table "scrap_reviews", force: :cascade do |t|
