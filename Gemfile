@@ -128,5 +128,5 @@ gem 'tinymce-rails'
 gem 'htmltoword'
 
 # demon job
-gem "sidekiq", "~> 6.2", :group => :development
-gem "redis", "~> 4.4", :group => :development
+gem "sidekiq"
+gem "redis"
