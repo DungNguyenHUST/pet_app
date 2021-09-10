@@ -166,7 +166,8 @@ module CommonCrawler
     end
 
     def save_job_to_csv(job_data)
-        filepath = "tmp/jobs/jobs.csv"
+        domain = split_domain_name(job_data.apply_site)
+        filepath = "tmp/jobs/jobs_#{domain}.csv"
         CSV.open(filepath, "a", :headers => true) do |csv|
             if @@CSV_COUNT == 0
                 csv << CompanyJob.attribute_names
