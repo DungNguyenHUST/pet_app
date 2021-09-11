@@ -211,7 +211,9 @@ module CommonCrawler
 
                         job_exsit = CompanyJob.find_by(apply_site: job_data.apply_site)
                         unless job_exsit.present? # igorn duplicate job
-                            save_job_to_csv(@company_job)
+                            unless @company_job.id || @company_job.created_at
+                                save_job_to_csv(@company_job)
+                            end
                             @company_job.save!
                         # else
                             # job_exsit.update!(:company_id => job_data.company_id,
