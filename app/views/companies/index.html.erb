@@ -67,9 +67,21 @@
                                 <%= select_tag :company_id, 
                                     options_from_collection_for_select(Company.all, "id", "name"), 
                                     required: true,
-                                    prompt: "Chọn công ty", 
-                                    class: "form-select"%>
+                                    include_blank: true,
+                                    class: "form-select company_review_select"%>
                             </div>
+
+                            <script>
+								$(document).ready(function() {
+									$('.company_review_select').select2({
+										placeholder: "-- Chọn công ty --",
+										allowClear: true,
+										width: 'resolve',
+										theme: "bootstrap-5",
+										selectOnClose: true
+									});
+								});
+							</script>
                         </div>
                         
                         <div class='col-sm-2'>
