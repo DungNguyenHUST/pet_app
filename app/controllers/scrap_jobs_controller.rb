@@ -13,8 +13,8 @@ class ScrapJobsController < ApplicationController
         @scrap_job = ScrapJob.new(scrap_job_param)
         if @scrap_job.save
             # JobCrawlerWorker.clear_sidekiq_queue
-            JobCrawlerWorker.perform_async(@scrap_job.id)
-            # JobCrawler.process(@scrap_job)
+            # JobCrawlerWorker.perform_async(@scrap_job.id)
+            JobCrawler.process(@scrap_job)
             flash[:success] = "Scrap successed ..............."
             redirect_to admin_path(current_admin, tab_id: 'ScrapJobID')
         end

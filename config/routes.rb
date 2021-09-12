@@ -24,6 +24,7 @@ Rails.application.routes.draw do
   end
 
   resources :employers
+  get 'employer_wellcome' => 'employers#wellcome'
 
   resources :admins
 

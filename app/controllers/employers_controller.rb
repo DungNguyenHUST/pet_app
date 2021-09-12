@@ -43,6 +43,9 @@ class EmployersController < ApplicationController
     def update
         @employer = Employer.friendly.find params[:id]
     end
+
+    def wellcome
+    end
     
     private
 
