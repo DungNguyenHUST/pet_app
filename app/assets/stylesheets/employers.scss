@@ -344,11 +344,45 @@
     .employer_title{
         padding-top: 30px;
         padding-bottom: 20px;
-        span{
+        a{
             font-size: 22px;
-            font-weight: 600px;
+            font-weight: 600;
+            text-decoration: none;
+            color: #333;
         }
     }
+
+    .employer_overview{
+        .employer_status{
+            color: #333;
+            span{
+                color: #1877f2;
+                font-weight: 600;
+            }
+        }
+
+        .employer_date{
+            color: #333;
+            span{
+                color: #1877f2;
+                font-weight: 600;
+            }
+        }
+    }
+
+    .employer_new_job{
+        @media screen and (min-width: 600px)
+        {
+            text-align: right;
+            padding-top: 0px;
+        }
+        padding-top: 10px;
+        .btn{
+            font-size: 14px;
+            font-weight: 600;
+        }
+    }
+
     .employer_log_out{
         font-size: 16px;
         text-decoration: underline;
@@ -485,7 +519,7 @@
                                 width: 250px;
                                 margin-right: 10px;
                                 background: #1877f2;
-                                font-size: 16px;
+                                font-size: 14px;
                                 border: none;
                                 cursor: pointer;
                                 text-align: center;
@@ -499,7 +533,7 @@
                                 }
         
                                 span{
-                                    font-size: 16px;
+                                    font-size: 14px;
                                     position: relative;
                                     top: -2px;
                                 }
@@ -517,155 +551,19 @@
         }
 
         .employer_job_tab{
-            .employer_job_new{
-                padding-top: 10px;   
-                padding-bottom: 10px; 
-                width: 100%;
-                button{
-                    height: 44px;
-                    @media screen and (max-width: 600px){
-                        width: 100%;
-                    }
-                    width: 250px;
-                    margin-right: 10px;
-                    background: #1877f2;
-                    font-size: 16px;
-                    border: none;
-                    cursor: pointer;
-                    text-align: center;
-                    color: #fff;
-                    border-radius: 5px;
-                    i{
-                        position: relative;
-                        top: 2px;
-                        font-size: 20px;
-                        margin-right: 3px;
-                    }
-
-                    span{
-                        font-size: 16px;
-                        position: relative;
-                        top: -2px;
-                    }
-                    
-                    &:hover{
-                        background-color: #369;
-                        color: #fff;
-                    }
-                }
-
-            }
             .employer_job_employer{
                 clear: both;
-                padding-top: 20px;
                 margin-bottom: 30px;
                 background-color: #fff;
-                .employer_job_employer_label{
-                    color: #202124;
-                    font-size: 22px;
-                    font-weight: 500;
-                    padding-bottom: 20px;
-                }
-        
-                .employer_job_employer_container{
-                    .company_employer_job_container{
-                        border: 2px solid #e5e5e5;
-                        padding: 15px;
-                        margin-bottom: 20px;
-                        border-radius: 5px;
-                        .company_job_employer_block {
-                            clear: left;
-                            height: auto;
-                            padding: 0px !important;
-                            display: block;
-                            .company_employer_job_edit{
-                                margin-bottom: 10px;
-                            }
-
-                            .company_employer_job_render{
-                                padding-top: 15px;
-                            }
-
-                            .company_job_apply_count{
-                                font-size: 18px;
-                                padding-top: 10px;
-                            }
-                        
-                            .employer_apply_job_not_found_block{
-                                background-color: #f8f9fa;
-                                padding: 30px 15px 30px 15px;
-                                border-radius: 5px;
-                                .employer_apply_job_not_found_icon{
-                                    i{
-                                        font-size: 30px;
-                                        color: #666;
-                                    }
-                                    text-align: center;
-                                }
-                                .employer_apply_job_not_found{
-                                    text-align: center;
-                                    font-size: 16px;
-                                    font-weight: 500;
-                                    padding-bottom: 10px;
-                                    color: #444;
-                                }
-                                .employer_apply_job_not_found_action{
-                                    span{
-                                        font-size: 20px;
-                                        font-weight: 550;
-                                    }
-                                    width: 100%;
-                                    min-height: 100px;
-                                    margin-top: 20px;
-                                    background-color: #ebfeff;
-                                    border: 1px solid #ebfeff;
-                                    border-radius: 5px;
-                                    .employer_apply_job_button{
-                                        display: flex;
-                                        justify-content: center;
-                                        padding: 15px;
-                                        margin-top: 10px;
-                                        @media screen and (max-width: 600px){
-                                            float: none;
-                                            padding-bottom: 30px;
-                                        }
-                                        button{
-                                            height: 44px;
-                                            @media screen and (max-width: 600px){
-                                                width: 100%;
-                                            }
-                                            width: 250px;
-                                            margin-right: 10px;
-                                            background: #1877f2;
-                                            font-size: 16px;
-                                            border: none;
-                                            cursor: pointer;
-                                            text-align: center;
-                                            color: #fff;
-                                            border-radius: 5px;
-                                            i{
-                                                position: relative;
-                                                top: 2px;
-                                                font-size: 20px;
-                                                margin-right: 3px;
-                                            }
-                    
-                                            span{
-                                                font-size: 16px;
-                                                position: relative;
-                                                top: -2px;
-                                            }
-                                            
-                                            &:hover{
-                                                background-color: #369;
-                                                color: #fff;
-                                            }
-                                            &:focus {outline:none;}
-                                        }
-                                    }
-                                }
-                            }
+                table{
+                    th{
+                        font-size: 16px;
+                        a{
+                            text-decoration: none;
                         }
+                    }
+                    td{
+                        font-size: 14px;
                     }
                 }
             }
@@ -716,7 +614,7 @@
                             width: 250px;
                             margin-right: 10px;
                             background: #1877f2;
-                            font-size: 16px;
+                            font-size: 14px;
                             border: none;
                             cursor: pointer;
                             text-align: center;
@@ -730,7 +628,7 @@
                             }
     
                             span{
-                                font-size: 16px;
+                                font-size: 14px;
                                 position: relative;
                                 top: -2px;
                             }
@@ -795,7 +693,7 @@
                             width: 250px;
                             margin-right: 10px;
                             background: #1877f2;
-                            font-size: 16px;
+                            font-size: 14px;
                             border: none;
                             cursor: pointer;
                             text-align: center;
@@ -825,24 +723,54 @@
             }
         }
     }
-}
 
-.employer_confim{
-    min-height: 700px;
-    padding-top: 30px;
-    a{
-        padding-top: 20px;
-    }
-    .employer_goback{
-        padding-top: 10px;
-        button{
-            color: #1877f2;
-            border: none;
-            background: none;
-            &:focus {outline:none;}
-            i{
-                position: relative;
-                top: 6px;
+    .employer_confim{
+        @media screen and (min-width: 600px){
+            min-height: 700px;
+            padding-top: 30px;
+        }
+        .employer_confirm_label{
+            margin-top: 20px;
+            text-align: center;
+            h3{
+                padding-top: 20px;
+                font-size: 22px;
+            }
+        }
+        .employer_confirm_goback{
+            padding-top: 10px;
+            display: flex;
+            justify-content: center;
+            button{
+                background-color: #1877f2;
+                color: #fff;
+                border: none;
+                height: 40px;
+                font-size: 14px;
+                font-weight: 600    ;
+                border-radius: 5px;
+                &:focus {outline:none;}
+                i{
+                    position: relative;
+                    top: 3px;
+                }
+                span{
+                    position: relative;
+                    top: -3px;
+                }
+            }
+        }
+        .employer_confirm_img{
+            margin-top: 30px;
+            display: flex;
+            justify-content: center;
+            img{
+                width: 33%;
+                height: 33%;
+                @media screen and (max-width: 600px){
+                    width: 100%;
+                    height: 100%;
+                }
             }
         }
     }
@@ -888,14 +816,14 @@
                 button{
                     width: 300px;
                     height: 44px;
-                    background: #ffc500;
+                    background: #fca120;
+                    color: #f8f9fa;
                     text-decoration: none;
                     padding: 12px 20px 12px 20px;
-                    font-size: 14px;
+                    font-size: 15px;
                     border: none;
                     cursor: pointer;
                     text-align: center;
-                    color: #444;
                     border-radius: 4px;
                     font-weight: 600;
                     margin-right: 10px;
@@ -928,11 +856,22 @@
             h3{
                 font-size: 25px;
                 font-weight: 600;
+                color: #333;
             }
         }
 
         .employer_wellcome_price_detail{
             padding-top: 20px;
+
+            h5{
+                color: #333;
+                font-weight: 600;
+            }
+
+            span{
+                color: #333;
+            }
+
             .card1{
                 background:#00ffb6;
             }
@@ -960,9 +899,9 @@
             }
             
             .card:hover .btn-outline-dark{
-                color:#444;
-                background:#ffc500;
-                border: 1px solid #ffc500;
+                background: #fca120;
+                color: #f8f9fa;
+                border: 1px solid #fca120;
             }
         }
 
@@ -971,6 +910,7 @@
             h3{
                 font-size: 25px;
                 font-weight: 600;
+                color: #333;
             }
         }
 
@@ -987,6 +927,7 @@
             h3{
                 font-size: 25px;
                 font-weight: 600;
+                color: #333;
             }
         }
 
@@ -1028,14 +969,14 @@
                     width: 100%;
                 }
                 height: 44px;
-                background: #ffc500;
+                background: #fca120;
+                color: #f8f9fa;
                 text-decoration: none;
                 padding: 12px 20px 12px 20px;
-                font-size: 14px;
+                font-size: 15px;
                 border: none;
                 cursor: pointer;
                 text-align: center;
-                color: #444;
                 border-radius: 4px;
                 font-weight: 600;
                 margin-right: 10px;
@@ -1059,4 +1000,261 @@
             
         }
     }
+}
+
+////////////////////////job////////////////////@at-root
+.employer_job_block{
+    margin-top: 40px;
+    margin-bottom: 40px;
+    @media screen and (min-width: 600px){
+        min-height: 700px;
+    }
+    .employer_job_status{
+        border-top: 1px solid #e5e5e5;
+        border-bottom: 1px solid #e5e5e5;
+        padding-top: 15px;
+        padding-bottom: 15px;
+        .employer_job_status_title{
+            h3{
+                font-size: 22px;
+                font-weight: 600;
+            }
+            padding-bottom: 10px;
+            a{
+                text-decoration: none;
+            }
+        }
+        
+        .employer_job_status_block{
+            a{
+                font-size: 16px;
+                span{
+                    font-size: 16px;
+                    font-weight: 600;
+                }
+            }
+        }
+
+        .employer_job_edit{
+            padding-top: 10px;
+            @media screen and (min-width: 600px){
+                text-align: right;
+            }
+        }
+    }
+
+    .employer_job_apply{
+        margin-top: 50px;
+        .employer_job_apply_title{
+            h3{
+                font-size: 22px;
+            }
+        }
+
+        table{
+            th{
+                font-size: 16px;
+                a{
+                    text-decoration: none;
+                }
+            }
+            td{
+                font-size: 14px;
+            }
+        }
+
+        .employer_job_apply_not_found_block{
+            margin-top: 20px;
+            background-color: #f8f9fa;
+            padding: 30px 15px 30px 15px;
+            border-radius: 5px;
+            .employer_job_apply_not_found_icon{
+                i{
+                    font-size: 30px;
+                    color: #666;
+                }
+                text-align: center;
+            }
+            .employer_job_apply_not_found{
+                text-align: center;
+                font-size: 16px;
+                font-weight: 500;
+                padding-bottom: 10px;
+                color: #444;
+            }
+            .employer_job_apply_not_found_action{
+                span{
+                    font-size: 20px;
+                    font-weight: 550;
+                }
+                width: 100%;
+                min-height: 100px;
+                margin-top: 20px;
+                background-color: #ebfeff;
+                border: 1px solid #ebfeff;
+                border-radius: 5px;
+                .employer_job_apply_button{
+                    display: flex;
+                    justify-content: center;
+                    padding: 15px;
+                    margin-top: 10px;
+                    @media screen and (max-width: 600px){
+                        float: none;
+                        padding-bottom: 30px;
+                    }
+                    button{
+                        height: 44px;
+                        @media screen and (max-width: 600px){
+                            width: 100%;
+                        }
+                        width: 250px;
+                        margin-right: 10px;
+                        background: #1877f2;
+                        font-size: 14px;
+                        border: none;
+                        cursor: pointer;
+                        text-align: center;
+                        color: #fff;
+                        border-radius: 5px;
+                        i{
+                            position: relative;
+                            top: 2px;
+                            font-size: 20px;
+                            margin-right: 3px;
+                        }
+
+                        span{
+                            font-size: 16px;
+                            position: relative;
+                            top: -2px;
+                        }
+                        
+                        &:hover{
+                            background-color: #369;
+                            color: #fff;
+                        }
+                        &:focus {outline:none;}
+                    }
+                }
+            }
+        }
+    }
+}
+
+///////////////////////plan////////////////////@at-root
+.employer_plan_price_block{
+    padding-top: 30px;
+    padding-bottom: 30px;
+    .employer_plan_price_title{
+        h3{
+            font-size: 24px;
+            font-weight: 600;
+        }
+    }
+
+    .employer_plan_price_detail{
+        margin-top: 20px;
+        .employer_plan_price_detail_more{
+            a{
+                text-decoration: none;
+                font-weight: 600;
+            }
+        }
+    }
+
+    .employer_plan_price_cart{
+        padding-top: 30px;
+        h3{
+            font-size: 24px;
+            font-weight: 600;
+            margin-bottom: 10px;
+        }
+
+        .employer_plan_price_cart_cal{
+            border: 1px solid #e5e5e5;
+            border-radius: 4px;
+            padding: 30px 15px 30px 15px;
+            margin-bottom: 20px;
+
+            .employer_plan_price_cart_cal_detail{
+                .employer_plan_price_cart_cal_temp{
+                    span{
+                        font-size: 16px;
+                        font-weight: 600;
+                    }
+                }
+
+                .employer_plan_price_cart_cal_total{
+                    a{
+                        font-size: 22px;
+                        color: #fca120;
+                        font-weight: 600;
+                    }
+                    span{
+                        font-size: 16px;
+                        font-weight: 600;
+                    }
+                }
+            }
+        }
+
+        .employer_plan_price_cart_atm_tranfer{
+            border: 1px dashed #e5e5e5;
+            border-radius: 4px;
+            padding: 15px;
+            .employer_plan_price_cart_atm_tranfer_icon{
+                float: left;
+                min-height: 120px;
+                padding-right: 15px;
+            }
+            .employer_plan_price_cart_atm_tranfer_text{
+                a{
+                    font-size: 16px;
+                    font-weight: 600;
+                    color: #1877f2;
+                }
+
+            }
+        }
+
+        .employer_plan_price_cart{
+            clear: both;
+            margin-top: 20px;
+            border: 1px dashed #e5e5e5;
+            border-radius: 4px;
+            padding: 15px;
+            .employer_plan_price_cart_icon{
+                float: left;
+                min-height: 120px;
+                padding-right: 15px;
+            }
+            .employer_plan_price_cart_text{
+                a{
+                    font-size: 16px;
+                    font-weight: 600;
+                    color: #1877f2;
+                }
+
+            }
+        }
+        
+    }
+
+    .employer_plan_price_support{
+        padding-top: 30px;
+        h3{
+            font-size: 24px;
+            font-weight: 600;
+        }
+        h4{
+            font-size: 20px;
+        }
+        ul{
+            li{
+                font-size: 14px;
+                margin-top: 5px;
+            }
+        }
+    }
+
 }

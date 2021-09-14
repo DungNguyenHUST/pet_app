@@ -17,8 +17,8 @@ module ApplicationHelper
 
     def find_owner_employer(object)
         @owner_employer = nil
-        if object.user_id.present?
-            @owner_employer = Employer.find_by(id: object.user_id)
+        if object.employer_id.present?
+            @owner_employer = Employer.find_by(id: object.employer_id)
         end
         return @owner_employer
     end

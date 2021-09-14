@@ -1,0 +1,159 @@
+<div class="container">
+    <div class="employer_plan_price_block">
+        <div class="employer_plan_price_title">
+            <h3>Hiện tại, chúng tôi đang cung cấp 3 gói tin đăng dưới đây dành cho quý khách hàng</h3>
+        </div>
+
+        <div class="employer_plan_price_detail">
+            <div class="row">
+                <div class="col-lg-4 col-md-12 mb-4">
+                    <div class="card border-primary card1 h-100">
+                        <div class="card-body">
+                            <h5 class="card-title">Cơ bản</h5>
+                                <small class='text-muted'>Được sử dụng nhiều nhất</small>
+                            <br><br>
+                                <span class="h2">0đ</span>/tháng
+                            <br><br>
+                            <div class="d-grid my-3">
+                                <%if current_employer.plan != "Standard" || current_employer.plan != "Pro"%>
+                                    <%= link_to '<button class="btn btn-outline-dark btn-block disabled">Miễn phí</button>'.html_safe, employer_plan_path %>
+                                <%else%>
+                                    <%= link_to employer_plan_path(:price => 0), :method => :get, remote: true  do%>
+                                        <button class="btn btn-outline-dark btn-block">Miễn phí</button>
+                                    <%end%>
+                                <%end%>
+                            </div>
+                            <ul>
+                                <li>Miễn phí 1 tin đăng/ngày trong 30 ngày</li>
+                                <li>Dịch vụ đăng tin cơ bản</li>
+                                <li>Hỗ trợ khách hàng 24/7</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-lg-4 col-md-12 mb-4">
+                    <div class="card card2 h-100">
+                        <div class="card-body">
+                            <h5 class="card-title">Tiêu chuẩn</h5>
+                            <small class='text-muted'>Tiết kiệm chi phí</small>
+                            <br><br>
+                            <span class="h2">499.000đ</span>/tháng <mark>-20%</mark>
+                            <br><br>
+                            <div class="d-grid my-3">
+                                <%if current_employer.plan == "Standard"%>
+                                    <%= link_to '<button class="btn btn-outline-dark btn-block disabled">Mua ngay</button>'.html_safe, employer_plan_path %>
+                                <%else%>
+                                    <%= link_to employer_plan_path(:price => 499), :method => :get, remote: true  do%>
+                                        <button class="btn btn-outline-dark btn-block">Mua ngay</button>
+                                    <%end%>
+                                <%end%>
+                            </div>
+                            <ul>
+                                <li>Miễn phí tin đăng</li>
+                                <li>Hiển thị nổi bật trong kết quả tìm kiếm</li>
+                                <li>Hỗ trợ khách hàng 24/7</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-lg-4 col-md-12 mb-4">
+                    <div class="card card3 h-100">
+                        <div class="card-body">
+                            <h5 class="card-title">Nâng cao</h5>
+                            <small class='text-muted'>Hiệu quả cao nhất</small>
+                            <br><br>
+                                <span class="h2">999.000đ</span>/tháng <mark>-25%</mark>
+                            <br><br>
+                            <div class="d-grid my-3">
+                                <%if current_employer.plan == "Pro"%>
+                                    <%= link_to '<button class="btn btn-outline-dark btn-block disabled">Mua ngay</button>'.html_safe, employer_plan_path %>
+                                <%else%>
+                                    <%= link_to employer_plan_path(:price => 999), :method => :get, remote: true  do%>
+                                        <button class="btn btn-outline-dark btn-block">Mua ngay</button>
+                                    <%end%>
+                                <%end%>
+                            </div>
+                            <ul>
+                                <li>Tiếp cận hồ sơ ứng viên</li>
+                                <li>Hiển thị nổi bật trong kết quả tìm kiếm</li>
+                                <li>Hỗ trợ khách hàng 24/7</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div> 
+            <div class="employer_plan_price_detail_more">
+                <%=link_to "Xem bảng so sánh chi tiết tại đây", employer_wellcome_path%>
+            </div>
+        </div>
+
+        <div class="employer_plan_price_cart">
+            <div class="row">
+                <div class="col-sm-6">
+                    <h3>Thông tin đơn hàng</h3>
+                    <div class="employer_plan_price_cart_cal" id="employer_price_cal">
+                        <div class="employer_plan_price_cart_cal_detail">
+                            <div class="employer_plan_price_cart_cal_temp">
+                                <a><span>Tạm tính:</span> <%=number_with_delimiter(@price)%>đ</a>
+                            </div>
+                            <div class="employer_plan_price_cart_cal_total">
+                                <a><span>Tổng cộng:</span> <%=number_with_delimiter(@price)%>đ</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-sm-6">
+                    <h3>Lựa chọn hình thức thanh toán</h3>
+                    <div class="employer_plan_price_cart_atm_tranfer">
+                        <div class="employer_plan_price_cart_atm_tranfer_icon">
+                            <%=image_tag("icons/mobile-payment.png")%>
+                        </div>
+                        <div class="employer_plan_price_cart_atm_tranfer_text">
+                            <a>Thanh toán bằng hình thức chuyển khoản</a>
+                            <br>
+                            <span>Chuyển khoản tới số TK: 01122222222222222222222</span>
+                            <br>
+                            <span>Ngân hàng: 01122222222222222222222</span>
+                            <br>
+                            <span>Nội dung: NTD_"số điện thoại"_"gói đăng kí"(ex:NTD_0123456789_Standard)</span>
+                            <br>
+                        </div>
+                    </div>
+                    <div class="employer_plan_price_cart">
+                        <div class="employer_plan_price_cart_icon">
+                            <%=image_tag("icons/atm_transfer.png")%>
+                        </div>
+                        <div class="employer_plan_price_cart_text">
+                            <a>Thanh toán thông qua thẻ ngân hàng nội địa</a>
+                            <br>
+                            <span>Hiện tại không khả dụng</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="employer_plan_price_support">
+            <h3>Hướng dẫn thanh toán và bảo hành thông tin</h3>
+                <h4>I. Đối với thanh toán thông qua chuyển khoản ngân hàng</h4>
+                <ul>
+                    <li>Nhà tuyển dụng vui lòng điền đầy đủ thông tin nội dung chuyển khoản</li>
+                    <li>Nhà tuyển dụng vui lòng chụp ảnh kết quả thanh toán để làm thông tin đối chiếu</li>
+                    <li>Nhà tuyển dụng có nhu cầu mở rộng gói đăng kí hoặc thông tin cần giải đáp vui lòng liên hệ với chúng tôi qua số điện thoại 0338275427 hoặc email hotro.firework@gmail.com</li>
+                </ul>
+
+                <h4>II. Đối với thanh toán thông qua chuyển khoản ngân hàng</h4>
+                <ul>
+                    <li>Chúng tôi sẽ sớm triển khai hình thức thanh toán này trong thời gian sớm nhất</li>
+                </ul>
+
+                <h4>III. Bảo hành thông tin</h4>
+                <ul>
+                    <li>Chúng tôi cam kết hoàn tiền cho khách hàng nếu không hoàn thành đúng thông tin trong gói đăng kí</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</div>

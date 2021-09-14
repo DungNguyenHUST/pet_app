@@ -24,10 +24,9 @@ class EmployersController < ApplicationController
             @tab_id = "default"
         end
         
-        @company_by_employer = find_owner_company_for_employer(@employer)
-        if(@company_by_employer.present?)
-            @company_job_by_employer = find_job_of_company(@company_by_employer)
-        end
+        @company_of_employer = find_company_of_employer(@employer)
+        @company_job_of_employer = find_job_of_employer(@employer).order('created_at DESC')
+        @company_job_of_employer = Kaminari.paginate_array(@company_job_of_employer).page(params[:page]).per(20)
     end
 
     def edit
@@ -45,6 +44,24 @@ class EmployersController < ApplicationController
     end
 
     def wellcome
+    end
+
+    def job
+        @company_job = CompanyJob.friendly.find(params[:id])
+        @company_apply_jobs = @company_job.company_apply_jobs.page(params[:page]).per(20)
+    end
+
+    def plan
+        @price = 0
+        if(params.has_key?(:price))
+            @price = params[:price].to_i * 1000
+
+            # for cal price mode
+            respond_to do |format|
+                format.html {}
+                format.js
+            end
+        end
     end
     
     private

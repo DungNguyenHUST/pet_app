@@ -128,7 +128,7 @@ module VietnamworkCrawler
             apply_another_site_flag = true
             apply_site = url
             approved = true
-            user_id = Admin.first.id
+            admin_id = Admin.first.id
             
             if title.present? && apply_site.present?
                 detail_data_temp = job_params.new(title,
@@ -146,7 +146,7 @@ module VietnamworkCrawler
                                                     apply_another_site_flag, 
                                                     apply_site, 
                                                     address,
-                                                    user_id,
+                                                    admin_id,
                                                     approved,
                                                     company_id,
                                                     company_name,

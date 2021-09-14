@@ -138,7 +138,7 @@ module Job123Crawler
             apply_site = url.to_s
             address = location
             approved = true
-            user_id = Admin.first.id
+            admin_id = Admin.first.id
             
             if title.present? && apply_site.present?
                 detail_data_temp = job_params.new(title,
@@ -156,7 +156,7 @@ module Job123Crawler
                                                     apply_another_site_flag, 
                                                     apply_site, 
                                                     address,
-                                                    user_id,
+                                                    admin_id,
                                                     approved,
                                                     company_id,
                                                     company_name,

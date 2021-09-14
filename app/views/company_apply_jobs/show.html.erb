@@ -1,30 +1,34 @@
-<div class="container">
-    <div class="company_job_apply_show_block">
-        <div class="company_job_apply_show_info">
-            <div class="company_job_apply_show_name">
-                <a>Họ và tên: <%=@company_apply_job.name%></a>
-            </div>
+<div class="company_job_apply_show_block">
+    <div class="container">
+        <div class="row justify-content-md-center">
+            <div class="col-sm-8">
+                <div class="company_job_apply_show_info">
+                    <div class="company_job_apply_show_name">
+                        <a>Họ và tên: <%=@company_apply_job.name%></a>
+                    </div>
 
-            <div class="company_job_apply_show_email">
-                <a> Địa chỉ email: <%=@company_apply_job.email%></a>
-            </div>
+                    <div class="company_job_apply_show_email">
+                        <a> Địa chỉ email: <%=@company_apply_job.email%></a>
+                    </div>
 
-            <div class="company_job_apply_show_letter">
-                <a> Mô tả bản thân: </a>
-                <div class="company_job_apply_show_sumary">
-                    <%=@company_apply_job.cover_letter.html_safe%>
+                    <div class="company_job_apply_show_letter">
+                        <a> Mô tả bản thân: </a>
+                        <div class="company_job_apply_show_sumary">
+                            <%=@company_apply_job.cover_letter.html_safe%>
+                        </div>
+                    </div>
+
+                    <div class="company_job_apply_show_time">
+                        </a>Ứng tuyển <%=time_ago_in_words(@company_apply_job.created_at)%></a>
+                    </div>
+
+                    <div class="company_job_apply_show_download">
+                        <i class="material-icons-outlined">download</i>
+                        <%if @company_apply_job.cover_vitate?%>
+                            <%=link_to "Download CV", @company_apply_job.cover_vitate.url%>
+                        <%end%>
+                    </div>
                 </div>
-            </div>
-
-            <div class="company_job_apply_show_time">
-                </a>Ứng tuyển <%=time_ago_in_words(@company_apply_job.created_at)%></a>
-            </div>
-
-            <div class="company_job_apply_show_download">
-                <i class="material-icons-outlined">download</i>
-                <%if @company_apply_job.cover_vitate?%>
-                    <%=link_to "Download CV tại đây", @company_apply_job.cover_vitate.url%>
-                <%end%>
             </div>
         </div>
     </div>

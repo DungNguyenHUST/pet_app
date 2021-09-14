@@ -38,7 +38,11 @@ class CompaniesController < ApplicationController
         @company.location_converted = convert_vie_to_eng(@company.location)
 
         if @company.save!
-			redirect_to company_path(@company)
+            if employer_signed_in?
+                redirect_to employer_path(current_employer, tab_id: 'EmployerCompanyID')
+            else
+                redirect_to company_path(@company)
+            end
         else
             flash[:danger] = "Lỗi, không thể lưu thông tin công ty"
             render :new

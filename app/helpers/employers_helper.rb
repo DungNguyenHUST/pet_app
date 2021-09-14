@@ -1,9 +1,16 @@
 module EmployersHelper
-    def find_owner_company_for_employer(employer)
-        @owner_company = nil
+    def find_company_of_employer(employer)
+        company = nil
         if employer.present?
-            @owner_company = Company.all.find{ |company| company.employer_id == employer.id}
+            company = Company.find_by(:employer_id => employer.id)
         end
-        return @owner_company
+        return company
+    end
+
+    def find_job_of_employer(employer)
+        if employer.present?
+            company_job = CompanyJob.where(:employer_id => employer.id).expire
+            return company_job
+        end
     end
 end

@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_09_10_083140) do
+ActiveRecord::Schema.define(version: 2021_09_14_082429) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -169,14 +169,13 @@ ActiveRecord::Schema.define(version: 2021_09_10_083140) do
     t.datetime "dudate"
     t.datetime "end_date"
     t.string "typical"
-    t.boolean "urgent", default: false
     t.boolean "approved", default: false
     t.string "slug"
     t.boolean "apply_another_site_flag", default: false
     t.string "apply_site"
     t.string "address"
     t.text "skill", default: [], array: true
-    t.integer "user_id"
+    t.integer "admin_id"
     t.string "detail"
     t.string "title_converted"
     t.string "location_converted"
@@ -192,6 +191,10 @@ ActiveRecord::Schema.define(version: 2021_09_10_083140) do
     t.string "experience_converted"
     t.string "policy"
     t.string "company_avatar"
+    t.integer "employer_id"
+    t.integer "view_count"
+    t.integer "sponsor", default: 0
+    t.integer "urgent", default: 0
     t.index ["slug"], name: "index_company_jobs_on_slug", unique: true
   end
 
@@ -374,6 +377,7 @@ ActiveRecord::Schema.define(version: 2021_09_10_083140) do
     t.datetime "locked_at"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.string "plan"
     t.index ["confirmation_token"], name: "index_employers_on_confirmation_token", unique: true
     t.index ["email"], name: "index_employers_on_email", unique: true
     t.index ["reset_password_token"], name: "index_employers_on_reset_password_token", unique: true

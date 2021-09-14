@@ -1,0 +1,87 @@
+<div class="container">
+    <div class="employer_job_block">
+        <div class="employer_job_status">
+            <div class="employer_job_status_title">
+                <h3><%= link_to (@company_job.title), company_job_path(@company_job), target: :_blank%></h3>
+            </div>
+            <div class="row">
+                <div class="col-sm-6">
+                    <div class="employer_job_status_block">
+                        <%if @company_job.end_date > DateTime.now%>
+                            <a><span>Trạng thái: </span>Đang tuyển dụng</a>
+                        <%else%>
+                            <a><span>Trạng thái: </span>Đã hết hạn nhận hồ sơ</a>
+                        <%end%>
+                    </div>
+
+                    <div class="employer_job_status_block">
+                        <a><span>Cập nhật lần cuối: </span><%=@company_job.created_at.strftime("%B %d, %Y")%></a>
+                    </div>
+
+                    <div class="employer_job_status_block">
+                        <a><span>Ngày hết hạn nhận hồ sơ: </span><%=@company_job.end_date.strftime("%B %d, %Y")%></a>
+                    </div>
+                </div>
+
+                <div class="col-sm-6">
+                    <div class='employer_job_edit'>
+                        <%= link_to 'Xem chi tiết', company_job_path(@company_job), method: :get, class: "btn btn-primary" %>
+                        <%= link_to 'Chỉnh sửa', edit_company_job_path(@company_job), method: :get, class: "btn btn-warning" %>
+                        <%= link_to 'Xóa', company_job_path(@company_job), method: :delete, class: "btn btn-danger", data: { confirm: 'Bạn có chắc muốn xóa công việc này?' } %>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="employer_job_apply">
+            <div class="employer_job_apply_title">
+                <h3>Danh sách hồ sơ ứng tuyển</h3>
+            </div>
+            <%if @company_apply_jobs.total_count > 0%>
+                <div class="table-responsive">
+                    <table class="table text-center table-hover">
+                        <thead>
+                            <tr>
+                                <th style="width: 2%;">No.</th>
+                                <th style="width: 12%;">Họ và tên</th>
+                                <th style="width: 5%;">Email</th>
+                                <th style="width: 50%;">Giới thiệu</th>
+                                <th style="width: 12%;">Ngày ứng tuyển</th>
+                                <th style="width: 12%;">Hồ sơ</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <%@company_apply_jobs.each_with_index do |company_apply_job, index|%>
+                                <tr>
+                                    <td><%=index + 1%></td>
+                                    <th scope="row" class="text-start"><%=link_to (company_apply_job.name), company_job_company_apply_job_path(@company_job, company_apply_job)%></th>
+                                    <td><%=company_apply_job.email%></td>
+                                    <td><%=truncate(strip_tags(company_apply_job.cover_letter), length: 90)%></td>
+                                    <td><%=company_apply_job.created_at.strftime("%B %d, %Y")%></td>
+                                    <%if company_apply_job.cover_vitate?%>
+                                        <td> <%=link_to "Download", company_apply_job.cover_vitate.url%></td>
+                                    <%end%>
+                                </tr>
+                            <%end%>
+                        </tbody>
+                    </table>
+                </div>
+                <%= paginate @company_apply_jobs, window: 2%>
+            <%else%>
+                <div class="employer_job_apply_not_found_block">
+                    <div class="employer_job_apply_not_found_icon">
+                        <i class="material-icons">pending_actions</i>
+                    </div>
+                    <div class="employer_job_apply_not_found">
+                        <span>Rất tiếc, hiện tại bạn chưa có đơn ứng tuyển nào cho tin tuyển dụng này</span>
+                    </div>
+                    <div class="employer_job_apply_not_found_action">
+                        <div class="employer_job_apply_button">
+                            <%= link_to '<button type="submit"> <i class="material-icons-outlined">arrow_back</i> <span> Quay trở lại trang việc làm</span> </button>'.html_safe, employer_path(current_employer, tab_id: 'EmployerJobID')%>
+                        </div>
+                    </div>
+                </div>
+            <%end%>
+        </div>
+    </div>
+</div>

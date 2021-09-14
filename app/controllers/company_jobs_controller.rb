@@ -17,8 +17,8 @@ class CompanyJobsController < ApplicationController
         @company_job = CompanyJob.new(company_job_param)
         
         if employer_signed_in?
-            @company_job.user_id = current_employer.id
-            @employer_company = find_owner_company_for_employer(current_employer)
+            @company_job.employer_id = current_employer.id
+            @employer_company = find_company_of_employer(current_employer)
             @company_job.company_id = @employer_company.id
             @company_job.company_name = @employer_company.name
         end
@@ -26,7 +26,11 @@ class CompanyJobsController < ApplicationController
         @company_job = convert_job_param(@company_job)
 
         if @company_job.save
-			redirect_to company_job_path(@company_job)
+            if employer_signed_in?
+                redirect_to employer_path(current_employer, tab_id: 'EmployerJobID')
+            else
+			    redirect_to company_job_path(@company_job)
+            end
         else
             flash[:danger] = "Lỗi, hãy điền đủ nội dung có dấu "
             render :new
@@ -58,6 +62,7 @@ class CompanyJobsController < ApplicationController
     def show
         @company_job = CompanyJob.friendly.find(params[:id])
         @company = find_company_of_job(@company_job)
+        @company_job.increment!(:view_count)
         if @company.present?
             if find_job_of_company(@company)
                 @company_jobs = find_job_of_company(@company)

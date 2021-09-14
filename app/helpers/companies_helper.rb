@@ -432,7 +432,7 @@ module CompaniesHelper
 
     def find_job_of_company(company)
         if company.present?
-            company_job = CompanyJob.where(:company_id => company.id).expire
+            company_job = CompanyJob.where(:company_id => company.id)
         end
     end
 end

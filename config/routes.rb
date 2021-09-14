@@ -25,6 +25,8 @@ Rails.application.routes.draw do
 
   resources :employers
   get 'employer_wellcome' => 'employers#wellcome'
+  get 'employer_job' => 'employers#job'
+  get 'employer_plan' => 'employers#plan'
 
   resources :admins
 
