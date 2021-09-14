@@ -83,11 +83,18 @@
 			</div>
 		<%end%>
 
-		<a href="<%=jobs_path %>">Việc làm </a>
-		<a href="<%=companies_path %>">Review công ty </a>
-		<a href="<%=problems_path %>">Câu hỏi phỏng vấn </a>
-		<a href="<%=cover_vitaes_path %>">CV & Resume </a>
-		<a href="<%=posts_path %>">Blog</a>
+		<%if employer_signed_in?%>
+			<a href="<%=employer_path(current_employer, tab_id: 'EmployerJobID') %>"> Tin tuyển dụng </a>
+			<a href="<%=employer_path(current_employer, tab_id: 'EmployerSearchProfileID') %>"> Tìm kiếm hồ sơ </a>
+			<a href="<%=employer_wellcome_path %>">Báo giá dịch vụ</a>
+			<a href="https://www.firework.vn/posts/contact-us">Liên hệ </a>
+		<%else%>
+			<a href="<%=jobs_path %>">Việc làm </a>
+			<a href="<%=companies_path %>">Review công ty </a>
+			<a href="<%=problems_path %>">Câu hỏi phỏng vấn </a>
+			<a href="<%=cover_vitaes_path %>">CV & Resume </a>
+			<a href="<%=posts_path %>">Blog</a>
+		<%end%>
 
 		<div class="nav_right">
 			<%if user_signed_in?%>
