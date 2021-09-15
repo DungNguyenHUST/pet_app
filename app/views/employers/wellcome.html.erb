@@ -31,16 +31,16 @@
                     <div class="col-lg-4 col-md-12 mb-4">
                         <div class="card card1 h-100">
                             <div class="card-body">
-                                <h5 class="card-title">Cơ bản</h5>
+                                <h5 class="card-title">F-Basic</h5>
                                     <small class='text-muted'>Được sử dụng nhiều nhất</small>
                                 <br><br>
                                     <span class="h2">0đ</span>/tháng
                                 <br><br>
                                 <div class="d-grid my-3">
-                                    <%= link_to '<button class="btn btn-outline-dark btn-block">Miễn phí</button>'.html_safe, new_employer_session_path %>
+                                    <%= link_to '<button class="btn btn-outline-dark btn-block">Miễn phí</button>'.html_safe, employer_plan_path %>
                                 </div>
                                 <ul>
-                                    <li>Miễn phí 1 tin đăng/ngày trong 30 ngày</li>
+                                    <li>Miễn phí 1 tin đăng/ngày không giới hạn</li>
                                     <li>Dịch vụ đăng tin cơ bản</li>
                                     <li>Hỗ trợ khách hàng 24/7</li>
                                 </ul>
@@ -51,16 +51,16 @@
                     <div class="col-lg-4 col-md-12 mb-4">
                         <div class="card card2 h-100">
                             <div class="card-body">
-                                <h5 class="card-title">Tiêu chuẩn</h5>
+                                <h5 class="card-title">F-Eco</h5>
                                 <small class='text-muted'>Tiết kiệm chi phí</small>
                                 <br><br>
                                 <span class="h2">499.000đ</span>/tháng <mark>-20%</mark>
                                 <br><br>
                                 <div class="d-grid my-3">
-                                    <%= link_to '<button class="btn btn-outline-dark btn-block">Mua ngay</button>'.html_safe, new_employer_session_path %>
+                                    <%= link_to '<button class="btn btn-outline-dark btn-block">Mua ngay</button>'.html_safe, employer_plan_path %>
                                 </div>
                                 <ul>
-                                    <li>Miễn phí tin đăng</li>
+                                    <li>Đăng tin không giới hạn</li>
                                     <li>Hiển thị nổi bật trong kết quả tìm kiếm</li>
                                     <li>Hỗ trợ khách hàng 24/7</li>
                                 </ul>
@@ -71,13 +71,13 @@
                     <div class="col-lg-4 col-md-12 mb-4">
                         <div class="card card3 h-100">
                             <div class="card-body">
-                                <h5 class="card-title">Nâng cao</h5>
+                                <h5 class="card-title">F-Pro</h5>
                                 <small class='text-muted'>Hiệu quả cao nhất</small>
                                 <br><br>
                                     <span class="h2">999.000đ</span>/tháng <mark>-25%</mark>
                                 <br><br>
                                 <div class="d-grid my-3">
-                                    <%= link_to '<button class="btn btn-outline-dark btn-block">Mua ngay</button>'.html_safe, new_employer_session_path %>
+                                    <%= link_to '<button class="btn btn-outline-dark btn-block">Mua ngay</button>'.html_safe, employer_plan_path %>
                                 </div>
                                 <ul>
                                     <li>Tiếp cận hồ sơ ứng viên</li>
@@ -100,15 +100,15 @@
                         <thead>
                             <tr>
                                 <th style="width: 34%;"></th>
-                                <th style="width: 22%;">Gói cơ bản</th>
-                                <th style="width: 22%;">Gói tiêu chuẩn</th>
-                                <th style="width: 22%;">Gói nâng cao</th>
+                                <th style="width: 22%;">F-Basic</th>
+                                <th style="width: 22%;">F-Eco</th>
+                                <th style="width: 22%;">F-Pro</th>
                             </tr>
                         </thead>
                         <tbody>
                             <tr>
                                 <th scope="row" class="text-start">Miễn phí tin đăng</th>
-                                <td>30</td>
+                                <td>1 tin/ngày</td>
                                 <td>Không giới hạn</td>
                                 <td>Không giới hạn</td>
                             </tr>
@@ -149,7 +149,7 @@
 
             <div class="employer_wellcome_support_block">
                 <div class="employer_wellcome_support_label">
-                    <h3>Liên hệ tư vấn</h3>
+                    <h3>Liên hệ tư vấn hỗ trợ</h3>
                 </div>
                 <div class="row">
                     <div class="col-sm-6">
@@ -165,7 +165,7 @@
                         <div class="employer_wellcome_support_signup">
                             <%= button_to new_employer_session_path, :method => :post do%>
                                 <i class="material-icons-outlined">work_outline</i>
-                                <a>Đăng kí trở thành nhà tuyển dụng</a>
+                                <a>Đăng kí nhà tuyển dụng</a>
                             <%end%>
                         </div>
                     </div>

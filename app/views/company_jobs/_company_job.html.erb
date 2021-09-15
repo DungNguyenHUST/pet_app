@@ -1,5 +1,9 @@
 <%company = find_company_of_job(company_job)%>
+<%if company_job.sponsor > 0%>
+<div class="company_job_block highlight_sponsor">
+<%else%>
 <div class="company_job_block">
+<%end%>
     <div class="company_job_preview_btn">
         <%= link_to content_tag(:span, ""), company_job_path(company_job), remote: true %>
     </div>
@@ -24,15 +28,15 @@
 
     <div class="company_job_right">
         <div class="company_job_des">
-            <%if company_job.created_at > 1.week.ago.utc || company_job.urgent?%>
+            <%if company_job.created_at > 1.week.ago.utc || company_job.urgent%>
                 <div class="company_job_new_hot">
-                    <%if company_job.created_at > 1.week.ago.utc%>
+                    <%if company_job.urgent > 0%>
+                        <div class="company_job_hot">
+                            <span>GẤP</span>
+                        </div>
+                    <%elsif company_job.created_at > 1.week.ago.utc%>
                         <div class="company_job_new">
                             <span>MỚI</span>
-                        </div>
-                    <%elsif company_job.urgent?%>
-                        <div class="company_job_hot">
-                            <span>HOT</span>
                         </div>
                     <%end%>
                 </div>
@@ -83,7 +87,11 @@
                                 
         <div class="company_job_info">
             <div class="company_job_date">
-                <a><%= time_ago_in_words(company_job.created_at) %> </a>
+                <%if company_job.sponsor > 0%>
+                    <a><%= time_ago_in_words(company_job.created_at) %> <span> · Được tài trợ</span></a>
+                <%else%>
+                    <a><%= time_ago_in_words(company_job.created_at) %> </a>
+                <%end%>
             </div>
             <div class="company_job_save">
                 <div class="company_job_button_save" id="save_job_mini_<%=company_job.id%>">

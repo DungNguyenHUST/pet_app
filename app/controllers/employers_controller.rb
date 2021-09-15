@@ -1,7 +1,7 @@
 class EmployersController < ApplicationController
     include EmployersHelper
     include CompaniesHelper
-    before_action :require_employer_login, only: [:index, :show, :edit, :update, :destroy]
+    before_action :require_employer_login, only: [:index, :show, :edit, :update, :destroy, :job, :plan]
     
     def index
         @employers = Employer.all
@@ -41,6 +41,12 @@ class EmployersController < ApplicationController
 
     def update
         @employer = Employer.friendly.find params[:id]
+        if(@employer.update(employer_params))
+            redirect_to employer_path(current_employer)
+            flash[:success] = "Update thông tin thành công"
+        else
+            flash[:danger] = "Lỗi, không thể cập nhật thông tin"
+        end
     end
 
     def wellcome

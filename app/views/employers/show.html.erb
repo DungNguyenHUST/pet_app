@@ -25,11 +25,21 @@
                         <div class='employer_date'>
                             <a><span>Ngày đăng kí: </span><%=current_employer.created_at.strftime("%B %d, %Y")%></a>
                         </div>
+                        <div class='employer_plan'>
+                            <a><span>Gói đăng kí: </span><%=current_employer.plan%></a>
+                        </div>
+                        <div class='employer_post'>
+                            <%if find_job_remain_of_employer(current_employer) == -1%>
+                                <a><span>Số tin đăng còn lại hôm nay: </span>Không giới hạn</a>
+                            <%else%>
+                                <a><span>Số tin đăng còn lại hôm nay: </span><%=find_job_remain_of_employer(current_employer).to_s%></a>
+                            <%end%>
+                        </div>
                     </div>
                 </div>
                 <div class='col-sm-6'>
                     <div class='employer_new_job'>
-                        <%if current_employer.approved && find_company_of_employer(current_employer)%>
+                        <%if current_employer.approved && find_company_of_employer(current_employer) && find_job_remain_of_employer(current_employer) != 0%>
                             <%= link_to 'Đăng tin tuyển dụng', new_company_job_path, method: :get, class: "btn btn-primary" %>
                         <%else%>
                             <%= link_to 'Đăng tin tuyển dụng', new_company_job_path, method: :get, class: "btn btn-primary disabled" %>
@@ -109,7 +119,7 @@
                                             <i class="material-icons">business</i>
                                         </div>
                                         <div class="employer_company_not_found">
-                                            <span>Rất tiếc, hiện tại công ty của bạn chưa có trên cơ sở dữ liệu của chúng tôi, bạn có thể dễ dàng tạo công ty của mình bằng cách sử dụng các bước dưới đây</span>
+                                            <span>Rất tiếc, hiện tại công ty của bạn chưa có trên cơ sở dữ liệu của chúng tôi, bạn có thể dễ dàng tạo công ty và bắt đầu đăng tin tuyển dụng bằng các bước dưới đây</span>
                                         </div>
                                         <div class="employer_company_not_found_action">
                                             <div class="employer_company_button">
@@ -174,39 +184,60 @@
                         </div>
                     <%end%>
 
+                    <%if @tab_id == "EmployerSearchProfileID"%>
+                        <div class="employer_search_profile_tab">
+                            <%if auth_find_personal_plan_of_employer(current_employer)%>
+                            <%else%>
+                                <div class="employer_search_profile_not_found_block">
+                                    <div class="employer_search_profile_not_found_icon">
+                                        <i class="material-icons">find_in_page</i>
+                                    </div>
+                                    <div class="employer_search_profile_not_found">
+                                        <span>Tính năng này hiện tại không khả dụng với gói tuyển dụng của bạn</span>
+                                    </div>
+                                    <div class="employer_search_profile_not_found_action">
+                                        <div class="employer_search_profile_button">
+                                            <%= link_to '<button type="submit"> <i class="material-icons-outlined">edit</i> <span> Đổi gói khác</span> </button>'.html_safe, employer_plan_path%>
+                                        </div>
+                                    </div>
+                                </div>
+                            <%end%>
+                        </div>
+                    <%end%>
+
                     <%if @tab_id == "EmployerPlanID"%>
                         <div class="row">
-                            <%if current_employer.plan == "Standard"%>
+                            <%if current_employer.plan == "F-Eco"%>
                                 <div class="col-lg-4 col-md-12 mb-4">
                                     <div class="card card2 h-100">
                                         <div class="card-body">
-                                            <h5 class="card-title">Tiêu chuẩn</h5>
-                                            <small class='text-muted'>Phù hợp với doanh nghiệp quy mô vừa</small>
+                                            <h5 class="card-title">F-Eco</h5>
+                                            <small class='text-muted'>Tiết kiệm chi phí</small>
                                             <br><br>
-                                            <span class="h2">500.000đ</span>/tháng <mark>-20%</mark>
+                                            <span class="h2">499.000đ</span>/tháng <mark>-20%</mark>
                                             <br><br>
                                             <div class="d-grid my-3">
-                                                <%= link_to '<button class="btn btn-outline-dark btn-block">Mua ngay</button>'.html_safe, new_employer_session_path %>
+                                                <%= link_to '<button class="btn btn-outline-dark btn-block">Đổi gói khác</button>'.html_safe, employer_plan_path %>
                                             </div>
                                             <ul>
-                                                <li>Miễn phí tin đăng</li>
+                                                <li>Đăng tin không giới hạn</li>
                                                 <li>Hiển thị nổi bật trong kết quả tìm kiếm</li>
                                                 <li>Hỗ trợ khách hàng 24/7</li>
                                             </ul>
                                         </div>
                                     </div>
                                 </div>
-                            <%elsif current_employer.plan == "Pro"%>
+                            <%elsif current_employer.plan == "F-Pro"%>
                                 <div class="col-lg-4 col-md-12 mb-4">
                                     <div class="card card3 h-100">
                                         <div class="card-body">
-                                            <h5 class="card-title">Nâng cao</h5>
-                                            <small class='text-muted'>Phù hợp với doanh nghiệp quy mô lớn</small>
+                                            <h5 class="card-title">F-Pro</h5>
+                                            <small class='text-muted'>Hiệu quả cao nhất</small>
                                             <br><br>
-                                                <span class="h2">1.000.000đ</span>/tháng <mark>-25%</mark>
+                                                <span class="h2">999.000đ</span>/tháng <mark>-25%</mark>
                                             <br><br>
                                             <div class="d-grid my-3">
-                                                <%= link_to '<button class="btn btn-outline-dark btn-block">Mua ngay</button>'.html_safe, new_employer_session_path %>
+                                                <%= link_to '<button class="btn btn-outline-dark btn-block">Đổi gói khác</button>'.html_safe, employer_plan_path %>
                                             </div>
                                             <ul>
                                                 <li>Tiếp cận hồ sơ ứng viên</li>
@@ -220,16 +251,16 @@
                                 <div class="col-lg-4 col-md-12 mb-4">
                                     <div class="card card1 h-100">
                                         <div class="card-body">
-                                            <h5 class="card-title">Cơ bản</h5>
-                                                <small class='text-muted'>Phù hợp với doanh nghiệp quy mô nhỏ</small>
+                                            <h5 class="card-title">F-Basic</h5>
+                                                <small class='text-muted'>Được sử dụng nhiều nhất</small>
                                             <br><br>
                                                 <span class="h2">0đ</span>/tháng
                                             <br><br>
                                             <div class="d-grid my-3">
-                                                <%= link_to '<button class="btn btn-outline-dark btn-block">Đổi gói khác</button>'.html_safe, employer_plan_path %>
+                                                <%= link_to '<button class="btn btn-outline-dark btn-block">Miễn phí</button>'.html_safe, employer_plan_path %>
                                             </div>
                                             <ul>
-                                                <li>Miễn phí 1 tin đăng/ngày trong 30 ngày</li>
+                                                <li>Miễn phí 1 tin đăng/ngày không giới hạn</li>
                                                 <li>Dịch vụ đăng tin cơ bản</li>
                                                 <li>Hỗ trợ khách hàng 24/7</li>
                                             </ul>

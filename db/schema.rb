@@ -378,6 +378,8 @@ ActiveRecord::Schema.define(version: 2021_09_14_082429) do
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.string "plan"
+    t.datetime "start_plan"
+    t.datetime "end_plan"
     t.index ["confirmation_token"], name: "index_employers_on_confirmation_token", unique: true
     t.index ["email"], name: "index_employers_on_email", unique: true
     t.index ["reset_password_token"], name: "index_employers_on_reset_password_token", unique: true

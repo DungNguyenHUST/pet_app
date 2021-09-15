@@ -21,6 +21,9 @@ class CompanyJobsController < ApplicationController
             @employer_company = find_company_of_employer(current_employer)
             @company_job.company_id = @employer_company.id
             @company_job.company_name = @employer_company.name
+            if auth_sponsor_plan_of_employer(current_employer)
+                @company_job.sponsor = true
+            end
         end
 
         @company_job = convert_job_param(@company_job)
