@@ -159,8 +159,8 @@
                         </div>
 
                         <div class="save_button" id="save_job_<%=@company_job.id%>">
-                            <% pre_save = @company_job.company_save_jobs.find { |save| save.user_id == current_user.id} %>
                             <%if user_signed_in?%>
+                                <% pre_save = @company_job.company_save_jobs.find { |save| save.user_id == current_user.id} %>
                                 <% if pre_save %> 
                                     <%= button_to company_job_company_save_job_path(@company_job, pre_save), :method => :delete, remote: true, form_class: "save_btn_highlight" do%>
                                         <i class="material-icons-outlined">favorite</i> <span>Đã lưu</span>
