@@ -49,45 +49,36 @@
             <div class="col-sm-4">
                 <div class="job_preview_right">
                     <div class="apply_job_preview_button">
-                        <%if user_signed_in?%>
-                            <div class="job_preview_apply_button">
-                                <%if company_job.apply_another_site_flag?%>
-                                    <%= link_to '<button type="submit">Nộp đơn tại trang công ty</button>'.html_safe, company_job.apply_site%>
-                                <%else%>
-                                    <%= link_to '<button type="submit"><i class="material-icons">send</i>Nộp đơn</button>'.html_safe, new_company_job_company_apply_job_path(company_job)%>
-                                <%end%>
-                            </div>
-
-                            <div class="job_preview_save_button" id="save_job_<%=company_job.id%>">
-                                <% pre_save = company_job.company_save_jobs.find { |save| save.user_id == current_user.id} %>
-                                <%if user_signed_in?%>
-                                    <% if pre_save %> 
-                                        <%= button_to company_job_company_save_job_path(company_job, pre_save), :method => :delete, remote: true, form_class: "save_btn_highlight" do%>
-                                            <i class="material-icons-outlined">favorite</i> <span>Đã lưu</span>
-                                        <%end%> 
-                                    <%else%>
-                                        <%= button_to company_job_company_save_jobs_path(company_job), :method => :post, remote: true, form_class: "save_btn" do%>
-                                            <i class="material-icons-outlined">favorite_border</i> <span>Lưu việc làm</span>
-                                        <%end%>
-                                    <%end%>
-                                <%else%>
-                                    <button type="button" data-toggle="modal" data-target="#buttonModalLoginCenter" class="save_btn">
-                                        <i class="material-icons-outlined">favorite_border</i> <span>Lưu việc làm</span>
-                                    </button>
-                                <%end%>
-                            </div>
-                        <%else%>
-                            <div class="job_preview_apply_button">
+                        <div class="job_preview_apply_button">
+                            <%if company_job.apply_another_site_flag?%>
+                                <%= link_to '<button type="submit">Nộp đơn tại trang công ty</button>'.html_safe, company_job.apply_site%>
+                            <%elsif user_signed_in?%>
+                                <%= link_to '<button type="submit"><i class="material-icons">send</i>Nộp đơn</button>'.html_safe, new_company_job_company_apply_job_path(company_job)%>
+                            <%else%>
                                 <button type="button" data-toggle="modal" data-target="#buttonModalLoginCenter">
                                     <i class="material-icons-outlined">send</i>Nộp đơn
                                 </button>
-                            </div>
-                            <div class="job_preview_save_button">
-                                <button type="button" data-toggle="modal" data-target="#buttonModalLoginCenter">
-                                    <i class="material-icons-outlined">favorite_border</i>Lưu việc làm
+                            <%end%>
+                        </div>
+
+                        <div class="job_preview_save_button" id="save_job_<%=company_job.id%>">
+                            <% pre_save = company_job.company_save_jobs.find { |save| save.user_id == current_user.id} %>
+                            <%if user_signed_in?%>
+                                <% if pre_save %> 
+                                    <%= button_to company_job_company_save_job_path(company_job, pre_save), :method => :delete, remote: true, form_class: "save_btn_highlight" do%>
+                                        <i class="material-icons-outlined">favorite</i> <span>Đã lưu</span>
+                                    <%end%> 
+                                <%else%>
+                                    <%= button_to company_job_company_save_jobs_path(company_job), :method => :post, remote: true, form_class: "save_btn" do%>
+                                        <i class="material-icons-outlined">favorite_border</i> <span>Lưu việc làm</span>
+                                    <%end%>
+                                <%end%>
+                            <%else%>
+                                <button type="button" data-toggle="modal" data-target="#buttonModalLoginCenter" class="save_btn">
+                                    <i class="material-icons-outlined">favorite_border</i> <span>Lưu việc làm</span>
                                 </button>
-                            </div>
-                        <%end%>
+                            <%end%>
+                        </div>
                     </div>
                 </div>
             </div>

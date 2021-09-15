@@ -19,7 +19,9 @@ class CompanyApplyJobsController < ApplicationController
         @company_job = CompanyJob.friendly.find(params[:company_job_id])
         @company = find_company_of_job(@company_job)
         @company_apply_job = @company_job.company_apply_jobs.build(company_apply_job_param)
-        @company_apply_job.user_id = current_user.id
+        if user_signed_in?
+            @company_apply_job.user_id = current_user.id
+        end
 
         if @company_apply_job.save!
             if(find_owner_employer(@company_job).present?)
@@ -62,6 +64,6 @@ class CompanyApplyJobsController < ApplicationController
     private
 
     def company_apply_job_param
-        params.require(:company_apply_job).permit(:name, :email, :cover_letter, :cover_vitate)
+        params.require(:company_apply_job).permit(:name, :email, :cover_letter, :cover_vitate, :phone, :address)
     end
 end
