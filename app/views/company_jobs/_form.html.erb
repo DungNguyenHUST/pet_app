@@ -5,9 +5,17 @@
 				<%= form_for @company_job, :html => { :class => "form-horizontal company" } do |f| %>
 						<div class="new_job_title">
 							<%if !@is_edit%>
-								<a>Tạo việc làm mới</a>
+								<h3>Tạo việc làm mới</h3>
 							<%else%>
-								<a>Update tin tuyển dụng <%=@company_job.title%></a>
+								<h3>Update tin tuyển dụng <%=@company_job.title%></h3>
+							<%end%>
+						</div>
+
+						<div class="new_job_image">
+							<%if @company.present? && @company.avatar?%>
+								<%= image_tag @company.avatar.thumb.url %>
+							<%else%>
+								<%= image_tag "defaults/company_avatar_default.png" %>
 							<%end%>
 						</div>
 

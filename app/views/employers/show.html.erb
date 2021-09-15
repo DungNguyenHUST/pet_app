@@ -109,7 +109,7 @@
                                             <%= render @company_of_employer%>
                                             
                                             <div class="employer_company_edit">
-                                                <a><%= link_to '<button type="submit"> Chỉnh sửa <i class="material-icons-outlined">border_color</i></button>'.html_safe, edit_company_path(@company_of_employer) %></a>
+                                                <a><%= link_to '<button type="submit"> Chỉnh sửa <i class="material-icons-outlined">border_color</i></button>'.html_safe, edit_company_path(@company_of_employer, :is_edit => true) %></a>
                                             </div>
                                         </div>
                                     </div>
@@ -197,7 +197,7 @@
                                     </div>
                                     <div class="employer_search_profile_not_found_action">
                                         <div class="employer_search_profile_button">
-                                            <%= link_to '<button type="submit"> <i class="material-icons-outlined">edit</i> <span> Đổi gói khác</span> </button>'.html_safe, employer_plan_path%>
+                                            <%= link_to '<button type="submit"> <span> Đổi gói khác</span> </button>'.html_safe, employer_plan_path%>
                                         </div>
                                     </div>
                                 </div>

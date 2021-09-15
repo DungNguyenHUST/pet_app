@@ -11,6 +11,9 @@ class CompanyJobsController < ApplicationController
 
     def new
         @company_job = CompanyJob.new
+        if employer_signed_in?
+            @company = find_company_of_employer(current_employer)
+        end
     end
 
     def create
@@ -43,6 +46,7 @@ class CompanyJobsController < ApplicationController
     def edit
         @is_edit = params[:is_edit]
         @company_job = CompanyJob.friendly.find(params[:id])
+        @company = find_company_of_job(@company_job)
     end
 
     def update
