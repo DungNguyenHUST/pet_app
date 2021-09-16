@@ -11,7 +11,7 @@
                     <a><%=company_question.user_name%></a>
                 </div>
                 <div class="user_time_question">
-                    <a><%= time_ago_in_words(company_question.created_at) %></a>
+                    <a><%= company_question.created_at.strftime("%B, %Y") %></a>
                 </div>
             </div>
         </div>
