@@ -56,17 +56,10 @@
 	<div class="container">
 		<div class="company_all_job_container">
 			<div class="job_all_label">
-				<span>Danh sách việc làm</span>
+				<span>Danh sách việc làm cập nhật tháng <%=Date.today.strftime("%m")%>/<%=Date.today.strftime("%Y")%></span>
 			</div>
-			<div class="row">
-				<%@company_jobs.each do |company_job|%>
-					<div class="col-sm-6 col-no-padding">
-						<%=render company_job%>
-					</div>
-				<%end%>
-			</div>
-			<div class="company_job_paginate">
-				<%= paginate @company_jobs, window: 2%>
+			<div class="job_all_render">
+				<%= render :partial => 'company_jobs/search', locals: {job_searched: @company_jobs, :is_all => true} %>
 			</div>
 		</div>
 	</div>

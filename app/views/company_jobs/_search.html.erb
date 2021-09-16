@@ -1,8 +1,10 @@
 <div class="company_job_search_block_result" id="company_job_search_block_result">
     <%if job_searched && job_searched.total_count > 0%>
         <div class="company_job_search_index">
-            <div class="company_job_label">
-                <span><%=job_searched.total_count%> việc làm phù hợp</span>						
+            <div class="company_job_search_label">
+                <%unless is_all%>
+                    <span><%=job_searched.total_count%> việc làm phù hợp</span>
+                <%end%>						
             </div>
             <div class="row">
                 <div class="col-sm-5 col-no-padding">
