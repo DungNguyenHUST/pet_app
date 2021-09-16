@@ -89,6 +89,35 @@
     <script type="text/javascript" src="/assets/tinymce.js"></script>
     <!-- Tiny MCE config end -->
 
+    <!-- Messenger Chat plugin Code -->
+    <div id="fb-root"></div>
+
+    <!-- FB messenger Chat plugin code Start -->
+    <div id="fb-customer-chat" class="fb-customerchat">
+    </div>
+
+    <script>
+      var chatbox = document.getElementById('fb-customer-chat');
+      chatbox.setAttribute("page_id", "100170282265854");
+      chatbox.setAttribute("attribution", "biz_inbox");
+
+      window.fbAsyncInit = function() {
+        FB.init({
+          xfbml            : true,
+          version          : 'v12.0'
+        });
+      };
+
+      (function(d, s, id) {
+        var js, fjs = d.getElementsByTagName(s)[0];
+        if (d.getElementById(id)) return;
+        js = d.createElement(s); js.id = id;
+        js.src = 'https://connect.facebook.net/vi_VN/sdk/xfbml.customerchat.js';
+        fjs.parentNode.insertBefore(js, fjs);
+      }(document, 'script', 'facebook-jssdk'));
+    </script>
+    <!-- FB messenger Chat plugin code End-->
+
     <%= javascript_pack_tag 'application' %>
     <%= render 'pages/header'%>
     <%= csrf_meta_tags %>
@@ -104,31 +133,6 @@
     <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-TP9TWNJ"
     height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     <!-- End Google Tag Manager (noscript) -->
-
-    <!-- Scroll top button start -->
-    <button onclick="topFunction()" id="scrollUpBtn" title="Go to top"><i class="material-icons-outlined"> keyboard_arrow_up</i></button>
-    <script>
-      //Get the button
-      var mybutton = document.getElementById("scrollUpBtn");
-
-      // When the user scrolls down 20px from the top of the document, show the button
-      window.onscroll = function() {scrollFunction()};
-
-      function scrollFunction() {
-        if (document.body.scrollTop > 1000 || document.documentElement.scrollTop > 1000) {
-          mybutton.style.display = "block";
-        } else {
-          mybutton.style.display = "none";
-        }
-      }
-
-      // When the user clicks on the button, scroll to the top of the document
-      function topFunction() {
-        document.body.scrollTop = 0;
-        document.documentElement.scrollTop = 0;
-      }
-    </script>
-    <!-- Scroll top button end -->
 
     <!-- alert key of user -->
     <%if flash.first%>
