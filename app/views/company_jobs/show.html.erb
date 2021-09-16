@@ -4,7 +4,11 @@
 <%else%>
     <%company_name_meta = @company_job.company_name%>
 <%end%>
-<% content_for :meta_title, company_name_meta + " tuyển dụng " + @company_job.title %>
+<%if company_name_meta%>
+    <% content_for :meta_title, company_name_meta + " tuyển dụng " + @company_job.title %>
+<%else%>
+    <% content_for :meta_title, @company_job.title %>
+<%end%>
 <% content_for :meta_description, @company_job.description %>
 
 <%# Google job structure data start %>
