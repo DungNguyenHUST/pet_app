@@ -6,7 +6,24 @@
                 <div class='col-sm-9'>
                     <div class="home_search_block">
                         <div class="home_search_bar_label">
-                            <h3>Việc làm cho tất cả mọi người.</h3>
+                            <h3>Nơi bạn tìm thấy <span class="textbox">công việc</span> mơ ước.</h3>
+                            <script>
+                                $(document).ready(function() {
+                                // List your words here:
+                                var words = [
+                                    'công ty',
+                                    'công việc',
+                                    'công ty',
+                                    ], i = 0;
+
+                                setInterval(function(){
+                                    $('.textbox').fadeOut(500, function(){
+                                        $(this).html(words[i=(i+1)%words.length]).fadeIn(500);
+                                    });
+                                }, 5000);
+
+                                });
+                            </script>
                         </div>
                         
                         <%=form_tag jobs_search_path, :method => "get" do%>
@@ -54,7 +71,7 @@
     <div class="home_explorer_container">
         <div class="container">
             <div class="home_explorer_label">
-                <h3>Khám phá Firework hôm nay</h3>
+                <h3>Khám phá Firework ngay bây giờ</h3>
             </div>
             <div class="home_explorer_block">
                 <div class="row">
