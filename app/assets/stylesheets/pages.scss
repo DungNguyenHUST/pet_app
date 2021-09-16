@@ -11,70 +11,51 @@
     .home_search_bar{
         min-height: 555px;
         background-color: #fff;
+        background-image: url("others/home_background.jpg");
+        background-position: center;
+        background-repeat: no-repeat;
+        background-size: cover;
+
         @media screen and (max-width: 600px){
             background-color: #f8f9fa;
             min-height: 444px;
         }
-        .home_search_left_block{
+        .home_search_block{
             padding-top: 80px;
             padding-bottom: 80px;
-            @media screen and (min-width: 600px){
-                width: 88%;
-            }
-            @media screen and (max-width: 600px){
-                padding-left: 0px;
-                padding-right: 0px;
-                padding-top: 20px;
-                padding-bottom: 20px;
-            }
             .home_search_bar_label{
-                padding-top: 33px;
-                text-align: left;
+                padding-top: 100px;
+                @media screen and (max-width: 600px){
+                    padding-top: 0px;
+                }
+                text-align: center;
+                margin-bottom: 50px;
+                @media screen and (max-width: 600px){
+                    margin-bottom: 36px;
+                }
                 h3{  
                     font-size: 40px;
                     margin-bottom: 15px;
                     font-weight: 550;
-                    color: #333;
+                    color: #fff;
                     i{
                         font-size: 50px;
                     }
-                }
-                a{
-                    // margin-top: 25px;
-                    font-size: 22px;
-                    color: #333;
-                    line-break: auto;
-                    font-weight: 400;
-                    display: none;
-                    @media screen and (max-width: 600px){
-                        display: none;
-                    }
-                }
-                span.textbox{
-                    color: #333;
-                    background-image: url('others/yellow_underline.png');
-                    background-repeat: no-repeat;
-                    background-size: cover;
-                    object-fit: cover;
-                    background-position: center;
-                    @media screen and (max-width: 600px){
-                        line-height: 1.4;
-                    }
-                }
-                margin-bottom: 50px;
-                @media screen and (max-width: 600px){
-                    margin-bottom: 36px;
                 }
             }
     
             .home_search_input{
                 display: block;
-                .home_search_what{
+                @media screen and (min-width: 600px){
                     background-color: #fff;
-                    border: 1px solid #e5e5e5;
-                    width: 100%;
                     border-radius: 5px;
+                }   
+                .home_search_what{
+                    width: 100%;
                     position: relative;
+                    @media screen and (min-width: 600px){
+                        border-right: 2px solid #e5e5e5;
+                    }
                     i{
                         font-size: 24px;
                         position: absolute;
@@ -86,23 +67,23 @@
                         padding-left: 45px;
                         padding-right: 10px;
                         width: 100%;
-                        height: 49px;
+                        height: 50px;
                         border: none;
                         color: #333;
                         font-size: 16px;
                         &:focus{
-                            border: 2px solid #0071e3;
-                            border-radius: 5px;
+                            border: none;
+                            box-shadow: none;
                         }
                     }
                 }
+
                 .home_search_where{
-                    margin-top: 10px;
-                    background-color: #fff;
-                    border: 1px solid #e5e5e5;
                     width: 100%;
-                    border-radius: 5px;
                     position: relative;
+                    @media screen and (max-width: 600px){
+                        margin-top: 10px;
+                    }
                     i{
                         font-size: 22px;
                         color: #888;
@@ -113,31 +94,28 @@
                     .form-select{
                         padding-left: 40px;
                         width: 100%;
-                        height: 49px;
+                        height: 50px;
                         border: none;
                         color: #333;
                         font-size: 16px;
                         &:focus{
-                            border: 2px solid #0071e3;
-                            border-radius: 5px;
+                            border: none;
+                            box-shadow: none;
                         }
                     }
-                    button:focus{
-                        border: none;
-                        background: none;
-                    }
-                    &:focus {outline:none;}
                 }
                 
                 .home_search_button{
-                    margin-top: 20px;
                     border: none;
                     width: 100%;
+                    @media screen and (max-width: 600px){
+                        margin-top: 15px;
+                    }
                     button{
                         border: none;
                         border-radius: 5px;
                         background-color: #0d6efd;
-                        height: 48px;
+                        height: 50px;
                         color: #fff;
                         width: 100%;
                         font-size:16px;
@@ -168,199 +146,117 @@
         }
     }
     
-    .home_top_company{
-        clear: both;
-        height: auto;
-        .home_top_company_label{
-            padding-top: 40px;
-            padding-bottom: 20px;
-            a{
-                border-left: 5px solid #febb02;
-                text-align: left;
-                font-size: 25px;
-                color: #333;
-                font-weight: 550;
-                padding-left: 5px;
-                i{
-                    padding-left: 5px;
-                    position: relative;
-                    top: 5px;
-                    font-size: 32px;
-                    padding-right: 5px;
-                }
-            }
-        }
-        .home_top_company_all{
-            margin-bottom: 20px;
-            float: right;
-            width: 200px;
-            @media screen and (max-width: 600px){
-                width: 100%;
-                float: none;
-            }
-            button{
-                width: 100%;
-                border-radius: 5px;
-                background-color: #fff;
-                border: 1px solid #0d6efd;
-                height: 44px;
-                color: #0d6efd;
-                font-size: 14px;
-                font-weight: 600;
-                &:focus {outline:none;}
-                i{
-                    position: relative;
-                    top: 5px;
-                    font-size: 20px;
-                }
-                &:hover{
-                    background-color: #0d6efd;
-                    color: #fff;
-                }
-            }
-        }
-    }
-
-    .home_top_job_home{
-        clear: both;
-        padding-top: 20px;
-        margin-bottom: 30px;
-        background-color: #fff;
-        .home_top_job_home_label{
-            padding-bottom: 20px;
-            a{
-                border-left: 5px solid #febb02;
-                text-align: left;
-                font-size: 25px;
-                color: #333;
-                font-weight: 550;
-                padding-left: 5px;
-                i{
-                    padding-left: 5px;
-                    position: relative;
-                    top: 5px;
-                    font-size: 32px;
-                    padding-right: 5px;
-                }
-            }
-        }
-
-        .home_top_job_home_container{
-        }
-
-        .home_top_job_all{
-            margin-bottom: 20px;
-            float: right;
-            width: 200px;
-            @media screen and (max-width: 600px){
-                width: 100%;
-                float: none;
-                margin-top: 20px;
-            }
-            button{
-                width: 100%;
-                border-radius: 5px;
-                background-color: #fff;
-                border: 1px solid #0d6efd;
-                height: 44px;
-                color: #0d6efd;
-                font-size: 14px;
-                font-weight: 600;
-                &:focus {outline:none;}
-                i{
-                    position: relative;
-                    top: 5px;
-                    font-size: 20px;
-                }
-                &:hover{
-                    background-color: #0d6efd;
-                    color: #fff;
-                }
-            }
-        }
-    }
-
-    .home_top_question{
-        clear: both;
-        padding-top: 30px;
-        padding-bottom: 65px;
-        background-color: #f8f9fa;
+    .home_explorer_container{
+        padding-top: 80px;
+        padding-bottom: 80px;
         @media screen and (max-width: 600px){
+            padding-top: 30px;
             padding-bottom: 30px;
         }
-        .home_top_question_label{
-            margin-bottom: 20px;
-            a{
-                border-left: 5px solid #febb02;
-                text-align: left;
-                font-size: 25px;
-                color: #333;
-                font-weight: 550;
-                padding-left: 5px;
-                i{
-                    padding-left: 5px;
-                    position: relative;
-                    top: 5px;
-                    font-size: 32px;
-                    padding-right: 5px;
-                }
+        background-color: #f8f9fa;
+        .home_explorer_label{
+            padding-bottom: 30px;
+            h3{
+                font-size: 28px;
+                font-weight: 600;
+                text-align: center;
             }
-        }
-        .home_top_question_container{
         }
 
-        .home_top_question_all{
-            margin-bottom: 20px;
-            float: right;
-            width: 200px;
-            @media screen and (max-width: 600px){
-                width: 100%;
-                float: none;
-            }
-            button{
-                width: 100%;
-                border-radius: 5px;
+        .home_explorer_block{
+            .home_explorer_section{
                 background-color: #fff;
-                border: 1px solid #0d6efd;
-                height: 44px;
-                color: #0d6efd;
-                font-size: 14px;
-                font-weight: 600;
-                &:focus {outline:none;}
-                i{
-                    position: relative;
-                    top: 5px;
-                    font-size: 20px;
-                }
+                border: 1px solid #e5e5e5;
+                border-radius: 5px;
+                padding: 30px 10px 30px 10px;
+                margin-bottom: 20px;
                 &:hover{
-                    background-color: #0d6efd;
-                    color: #fff;
+                    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+                    background-color: #fff;
+                }
+                .home_explorer_img{
+                    display: flex;
+                    justify-content: center;
+                    img{
+                        width: 80px;
+                        height: 80px;
+                    }
+                }
+        
+                .home_explorer_btn{
+                    text-align: center;
+                    padding-top: 20px;
+                    button{
+                        font-size: 20px;
+                        font-weight: 600;
+                        border: none;
+                        outline: none;
+                        background-color: #fff;
+                        color: #333;
+                    }
                 }
             }
         }
     }
 
-    .home_top_blog{
-        clear: both;
-        padding-top: 30px;
-        margin-bottom: 30px;
+    .home_signup_container{
         background-color: #fff;
-        .home_top_blog_label{
-            padding-bottom: 20px;
-            a{
-                border-left: 5px solid #febb02;
-                padding-left: 5px;
-                text-align: left;
-                font-size: 25px;
-                color: #333;
-                font-weight: 550;
+        padding-top: 100px;
+        padding-bottom: 100px;
+        @media screen and (max-width: 600px){
+            padding-top: 30px;
+            padding-bottom: 30px;
+        }
+        .home_signup_label{
+            padding-bottom: 10px;
+            padding-top: 5px;
+            h3{
+                font-size: 24px;
+                font-weight: 600;
                 i{
+                    font-size: 30px;
                     position: relative;
                     top: 5px;
-                    font-size: 32px;
                     padding-right: 5px;
-                    padding-left: 5px;
                 }
+            }
+        }
+
+        .home_signup_block{
+            padding-top: 10px;
+            button{
+                border: none;
+                border-radius: 5px;
+                background-color: #0d6efd;
+                height: 44px;
+                color: #fff;
+                width: 100%;
+                font-size:14px;
+                font-weight: 600;
+                @media screen and (max-width: 600px){
+                    width: 100%;
+                    float: none;
+                }
+                &:focus {outline:none;}
+            }
+
+        }
+        .home_signin_block{
+            padding-top: 10px;
+            button{
+                border: none;
+                border-radius: 5px;
+                background-color: #fca120;
+                height: 44px;
+                color: #fff;
+                width: 100%;
+                font-size:14px;
+                font-weight: 600;
+                @media screen and (max-width: 600px){
+                    width: 100%;
+                    float: none;
+                }
+                &:focus {outline:none;}
             }
         }
     }
