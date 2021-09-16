@@ -53,53 +53,10 @@
 
     <div class="companies_area">
         <div class="container">
-            <%=form_tag pages_select_company_path, :method => "get" do%>
-                <div class="company_current_review">
-                    <div class='row'>
-                        <div class="col-sm-4">
-                            <div class="company_current_review_title">
-                                <i class="material-icons-outlined checked">create</i><a> Review công ty của bạn </a>
-                            </div>
-                        </div>
-                            
-                        <div class="col-sm-6">
-                            <div class="user_select_company">
-                                <%= select_tag :company_id, 
-                                    options_from_collection_for_select(Company.all, "id", "name"), 
-                                    required: true,
-                                    include_blank: true,
-                                    class: "form-select company_review_select"%>
-                            </div>
-
-                            <script>
-								$(document).ready(function() {
-									$('.company_review_select').select2({
-										placeholder: "-- Chọn công ty --",
-										allowClear: true,
-										width: 'resolve',
-										theme: "bootstrap-5",
-										selectOnClose: true
-									});
-								});
-							</script>
-                        </div>
-                        
-                        <div class='col-sm-2'>
-                            <div class="user_select_start">
-                                <%= button_to "", form_class: "select_button", :name => nil do%>
-                                    <a>Review</a>
-                                <%end%> 
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            <%end%>
-
-            
             <%if (@is_company_searched)%>
                 <%= render :partial => 'companies/search', :object => @company_searchs %>
             <%else%>
-                <div class="section_title">
+                <div class="companies_section_title">
                     <span>Danh sách công ty</span>
                 </div>
                 
@@ -114,20 +71,20 @@
                             <a class="nav-link <%=active%>" href="<%=companies_path(tab_id: 'CompanyAllID')%>">Tất cả</a>
                         </li>
                         <li class="nav-item">
+                            <%if @tab_id == "CompanyMostRecentID"%>
+                                <%active = "active"%>
+                            <%else%> 
+                                <%active = ""%>
+                            <%end%>
+                            <a class="nav-link <%=active%>" href="<%=companies_path(tab_id: 'CompanyMostRecentID')%>">Đang được quan tâm</a>
+                        </li>
+                        <li class="nav-item">
                             <%if @tab_id == "CompanyNewestID"%>
                                 <%active = "active"%>
                             <%else%> 
                                 <%active = ""%>
                             <%end%>
                             <a class="nav-link <%=active%>" href="<%=companies_path(tab_id: 'CompanyNewestID')%>">Công ty mới nhất </a>
-                        </li>
-                        <li class="nav-item">
-                            <%if @tab_id == "CompanyMostRecentID"%>
-                                <%active = "active"%>
-                            <%else%> 
-                                <%active = ""%>
-                            <%end%>
-                            <a class="nav-link <%=active%>" href="<%=companies_path(tab_id: 'CompanyMostRecentID')%>">Nhiều người quan tâm nhất</a>
                         </li>
                         <li class="nav-item">
                             <%if @tab_id == "CompanyBestID"%>
@@ -170,32 +127,70 @@
                     <%if @tab_id == "CompanyMostRecentID"%>
                         <div class="company_most_recent_tab">
                             <div class="row">
-                                <%count = 0%>
                                 <% @companies_most_recent.each do |company| %>
-                                    <%count += 1%>
-                                    <%break if count > 20%>
                                     <div class="col-sm-4">
                                         <%=render company%>
                                     </div>
                                 <%end%>
                             </div>
+                            <%= paginate @companies_most_recent, window: 2%>
                         </div>
                     <%end%>
 
                     <%if @tab_id == "CompanyBestID"%>
                         <div class="company_best_tab">
                             <div class="row">
-                                <%count = 0%>
                                 <% @companies_best.each do |company| %>
-                                    <%count += 1%>
-                                    <%break if count > 20%>
                                     <div class="col-sm-4">
                                         <%=render company%>
                                     </div>
                                 <%end%>
                             </div>
+                            <%= paginate @companies_best, window: 2%>
                         </div>
                     <%end%>
+                </div>
+            <%end%>
+
+            <%=form_tag pages_select_company_path, :method => "get" do%>
+                <div class="company_current_review">
+                    <div class='row'>
+                        <div class="col-sm-4">
+                            <div class="company_current_review_title">
+                                <i class="material-icons-outlined checked">create</i><a> Review công ty của bạn </a>
+                            </div>
+                        </div>
+                            
+                        <div class="col-sm-6">
+                            <div class="user_select_company">
+                                <%= select_tag :company_id, 
+                                    options_from_collection_for_select(Company.all, "id", "name"), 
+                                    required: true,
+                                    include_blank: true,
+                                    class: "form-select company_review_select"%>
+                            </div>
+
+                            <script>
+								$(document).ready(function() {
+									$('.company_review_select').select2({
+										placeholder: "-- Chọn công ty --",
+										allowClear: true,
+										width: 'resolve',
+										theme: "bootstrap-5",
+										selectOnClose: true
+									});
+								});
+							</script>
+                        </div>
+                        
+                        <div class='col-sm-2'>
+                            <div class="user_select_start">
+                                <%= button_to "", form_class: "select_button", :name => nil do%>
+                                    <a>Review</a>
+                                <%end%> 
+                            </div>
+                        </div>
+                    </div>
                 </div>
             <%end%>
         </div>

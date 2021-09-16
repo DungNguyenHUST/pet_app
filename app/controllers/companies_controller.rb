@@ -10,17 +10,29 @@ class CompaniesController < ApplicationController
             @search = convert_vie_to_eng(params[:search])
 			@company_searchs = Company.friendly.search(@search).order('name ASC').page(params[:page]).per(12)
 		end
-
-        @companies_all = Company.all
-        @companies_oder_name = Company.all.order('name ASC').page(params[:page]).per(18)
-        @companies_oder_newest = Company.all.order('created_at DESC').page(params[:page]).per(18)
-        @companies_most_recent = @companies_all.sort_by{|company| company.company_reviews.count}.reverse
-        @companies_best = @companies_all.sort_by{|company| cal_rating_review_total_score(company).to_f}.reverse
         
         if(params.has_key?(:tab_id))
             @tab_id = params[:tab_id]
         else
             @tab_id = "default"
+        end
+
+        @companies_all = Company.all
+        
+        @companies_oder_name = Company.all.order('name ASC').page(params[:page]).per(18)
+
+        if @tab_id == "CompanyNewestID"
+            @companies_oder_newest = Company.all.order('created_at DESC').page(params[:page]).per(18)
+        end
+
+        if @tab_id == "CompanyMostRecentID"
+            @companies_most_recent = Company.all.sort_by{|company| company.company_reviews.count}.reverse
+            @companies_most_recent = Kaminari.paginate_array(@companies_most_recent).page(params[:page]).per(18)
+        end
+
+        if @tab_id == "CompanyBestID"
+            @companies_best = Company.all.sort_by{|company| cal_rating_review_total_score(company).to_f}.reverse
+            @companies_best = Kaminari.paginate_array(@companies_best).page(params[:page]).per(18)
         end
     end
 
