@@ -31,6 +31,7 @@ class User < ApplicationRecord
   # has_one_attached :avatar
   # has_one_attached :cover_letter_attach
   mount_uploader :avatar, ImageUploader
+  mount_uploader :wall_picture, ImageUploader
   mount_uploader :cover_letter_attach, FileUploader
 
   has_many :company_follows, dependent: :destroy

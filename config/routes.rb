@@ -22,6 +22,7 @@ Rails.application.routes.draw do
   resources :users do
     resources :user_notifications
   end
+  get 'user_profile' => 'users#profile'
 
   resources :employers
   get 'employer_wellcome' => 'employers#wellcome'

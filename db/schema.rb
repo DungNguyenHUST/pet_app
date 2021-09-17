@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_09_16_101010) do
+ActiveRecord::Schema.define(version: 2021_09_17_083731) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -542,9 +542,6 @@ ActiveRecord::Schema.define(version: 2021_09_16_101010) do
     t.string "phone"
     t.string "address"
     t.text "cover_letter"
-    t.boolean "root", default: false
-    t.boolean "admin", default: false
-    t.boolean "user", default: true
     t.string "encrypted_password", default: "", null: false
     t.string "reset_password_token"
     t.datetime "reset_password_sent_at"
@@ -556,9 +553,6 @@ ActiveRecord::Schema.define(version: 2021_09_16_101010) do
     t.boolean "expires"
     t.string "refresh_token"
     t.string "image_url"
-    t.boolean "employer", default: false
-    t.string "company"
-    t.integer "company_id"
     t.boolean "approved", default: false
     t.string "slug"
     t.string "wall_picture"
@@ -576,6 +570,15 @@ ActiveRecord::Schema.define(version: 2021_09_16_101010) do
     t.integer "failed_attempts", default: 0, null: false
     t.string "unlock_token"
     t.datetime "locked_at"
+    t.string "first_name"
+    t.string "last_name"
+    t.datetime "birthday"
+    t.string "sex"
+    t.string "matrimony"
+    t.string "headline"
+    t.text "summary"
+    t.string "highest_education"
+    t.string "highest_career"
     t.index ["confirmation_token"], name: "index_users_on_confirmation_token", unique: true
     t.index ["email"], name: "index_users_on_email", unique: true
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true

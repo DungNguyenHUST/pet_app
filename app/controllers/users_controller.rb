@@ -1,6 +1,6 @@
 class UsersController < ApplicationController
     # skip_before_action :require_user_login, only: [:new, :create]
-    before_action :require_user_login, only: [:index, :show, :edit, :update, :destroy]
+    before_action :require_user_login, only: [:index, :show, :edit, :update, :destroy, :profile]
     
     def index
         @users = User.all
@@ -73,15 +73,26 @@ class UsersController < ApplicationController
         @user = User.friendly.find params[:id]
 
         if(@user.update(user_params))
-            redirect_to user_path(current_user)
+            # redirect_to user_path(current_user)
             flash[:success] = "Update thông tin thành công"
         else
             flash[:danger] = "Lỗi, không thể cập nhật thông tin"
         end
+
+        respond_to do |format|
+            format.html {}
+            format.js
+        end
+    end
+
+    def profile
+        @user = current_user
     end
     
     private
     def user_params
-        params.require(:user).permit :name, :email, :password, :password_confirmation, :phone, :address, :cover_letter , :cover_letter_attach, :avatar, :root, :admin, :user, :employer, :company, :company_id
+        params.require(:user).permit(:name, :email, :password, :password_confirmation, :phone, :address, :cover_letter, 
+                                    :cover_letter_attach, :avatar, :wall_picture, :first_name, :last_name,:birthday,
+                                    :sex, :matrimony, :headline, :summary, :highest_education, :highest_career)
     end
 end
