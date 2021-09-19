@@ -1,0 +1,28 @@
+<div class="user_profile_certificate_block">
+    <div class="row">
+        <div class="col-10">
+            <div class="user_profile_certificate_section">
+                <a><%=user_certificate.cert_name%></a> 
+            </div>
+            
+            <div class="user_profile_certificate_section">
+                <span><%=user_certificate.start_date.strftime("%m/%Y")%> - <%=user_certificate.end_date.strftime("%m/%Y")%></span>
+            </div>
+
+            <%if user_certificate.cert_summary%>
+                <div class="user_profile_certificate_section">
+                    <span><%=user_certificate.cert_summary.html_safe%></span>
+                </div>
+            <%end%>
+        </div>
+        <div class="col-2">
+            <div class='user_profile_certificate_edit'>
+                <button class="user_profile_certificate_update_btn" onclick="myFunctionUserCertificate('profile_certificate_form_update_<%=user_certificate.id%>')"><i class="material-icons-outlined">edit</i></button>
+                <%= link_to '<button type="submit"> <i class="material-icons-outlined">delete_outline</i></button>'.html_safe, user_user_certificate_path(@user, user_certificate), method: :delete, remote: :true, data: { confirm: 'Bạn có chắc muốn xóa ?' } %>
+            </div>
+        </div>
+    </div>
+    <div class="user_profile_certificate_form_update_block" id="profile_certificate_form_update_<%=user_certificate.id%>">
+        <%= render :partial => 'user_certificates/form', :locals => {:user_certificate => user_certificate}%>
+    </div>
+</div>

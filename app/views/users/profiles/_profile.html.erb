@@ -1,0 +1,296 @@
+<div class="user_profile_container" id="user_profile_container">
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-8">
+                <div class="user_profile_info">
+                    <div class="user_profile_info_detail_block" id="profile_info_detail">
+                        <%= render :partial => 'users/profiles/info'%>
+                    </div>
+
+                    <div class="user_profile_info_form_block" id="profile_info_form">
+                        <%= render :partial => 'users/profiles/form_info'%>
+                    </div>
+
+                    <script>
+                        function myFunctionUserInfo(id) {
+                            var x = document.getElementById(id);
+                            if (x.style.display == "block") 
+                            {
+                                x.style.display = "none";
+                            } 
+                            else 
+                            {
+                                x.style.display = "block";
+                            }
+                        }
+                    </script>
+                </div>
+
+                <div class="user_profile_personal">
+                    <div class="user_profile_personal_label">
+                        <h3>Thông tin cá nhân</h3>
+                    </div>
+
+                    <div class="user_profile_personal_form_block" id="profile_personal_form">
+                        <%= render :partial => 'users/profiles/form_personal'%>
+                    </div>
+
+                    <div class="user_profile_personal_detail_block">
+                        <%= render :partial => 'users/profiles/personal'%>
+                    </div>
+
+                    <button class="user_profile_personal_edit_btn" onclick="myFunctionUserPersonal('profile_personal_form')"><i class="material-icons-outlined">edit</i></button>
+
+                    <script>
+                        function myFunctionUserPersonal(id) {
+                            var x = document.getElementById(id);
+                            if (x.style.display == "block") 
+                            {
+                                x.style.display = "none";
+                            } 
+                            else 
+                            {
+                                x.style.display = "block";
+                            }
+                        }
+                    </script>
+                </div>
+
+                <div class="user_profile_exp">
+                    <div class="user_profile_exp_label">
+                        <h3>Kinh nghiệm làm việc</h3>
+                    </div>
+                    <%if @user.user_experiences.count == 0%>
+                        <div class="user_profile_exp_guide">
+                            <div class="row">
+                                <div class="col-9">
+                                    <div class="user_profile_exp_guide_label">
+                                        <a>Cập nhật thông tin cá nhân giúp nhà tuyển dụng dễ dàng liên hệ và cung cấp cho bạn những cơ hội việc làm tuyệt vời</a>
+                                    </div>
+                                    <button class="user_profile_exp_update_btn" onclick="myFunctionUserExp('profile_exp_form')"><i class="material-icons-outlined">edit</i> <a>Cập nhật thông tin</a> </button>
+                                </div>
+                                <div class="col-3">
+                                    <div class="user_profile_exp_image">
+                                        <%= image_tag "icons/profile_person.png"%>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    <%else%>
+                        <button class="user_profile_exp_add_btn" onclick="myFunctionUserExp('profile_exp_form')"><i class="material-icons-outlined">add_circle_outline</i></button>
+                    <%end%>
+
+                    <div class="user_profile_exp_form_block" id="profile_exp_form">
+                        <%= render :partial => 'user_experiences/form', :locals => {:user_experience => UserExperience.new}%>
+                    </div>
+
+                    <div class="user_profile_exp_detail_block">
+                        <%= render @user.user_experiences%>
+                    </div>
+                    
+                    <script>
+                        function myFunctionUserExp(id) {
+                            var x = document.getElementById(id);
+                            if (x.style.display == "block") 
+                            {
+                                x.style.display = "none";
+                            } 
+                            else 
+                            {
+                                x.style.display = "block";
+                            }
+                        }
+                    </script>
+                </div>
+
+                <div class="user_profile_edu">
+                    <div class="user_profile_edu_label">
+                        <h3>Học vấn và bằng cấp</h3>
+                    </div>
+                    <%if @user.user_educations.count == 0%>
+                        <div class="user_profile_edu_guide">
+                            <div class="row">
+                                <div class="col-9">
+                                    <div class="user_profile_edu_guide_label">
+                                        <a>Cập nhật thông tin cá nhân giúp nhà tuyển dụng dễ dàng liên hệ và cung cấp cho bạn những cơ hội việc làm tuyệt vời</a>
+                                    </div>
+                                    <button class="user_profile_edu_update_btn" onclick="myFunctionUserEdu('profile_edu_form')"><i class="material-icons-outlined">edit</i> <a>Cập nhật thông tin</a> </button>
+                                </div>
+                                <div class="col-3">
+                                    <div class="user_profile_edu_image">
+                                        <%= image_tag "icons/profile_person.png"%>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    <%else%>
+                        <button class="user_profile_edu_add_btn" onclick="myFunctionUserEdu('profile_edu_form')"><i class="material-icons-outlined">add_circle_outline</i></button>
+                    <%end%>
+
+                    <div class="user_profile_edu_form_block" id="profile_edu_form">
+                        <%= render :partial => 'user_educations/form', :locals => {:user_education => UserEducation.new}%>
+                    </div>
+
+                    <div class="user_profile_edu_detail_block">
+                        <%= render @user.user_educations%>
+                    </div>
+                    
+                    <script>
+                        function myFunctionUserEdu(id) {
+                            var x = document.getElementById(id);
+                            if (x.style.display == "block") 
+                            {
+                                x.style.display = "none";
+                            } 
+                            else 
+                            {
+                                x.style.display = "block";
+                            }
+                        }
+                    </script>
+                </div>
+
+                <div class="user_profile_skill">
+                    <div class="user_profile_skill_label">
+                        <h3>Kĩ năng làm việc</h3>
+                    </div>
+                    <%if @user.user_skills.count == 0%>
+                        <div class="user_profile_skill_guide">
+                            <div class="row">
+                                <div class="col-9">
+                                    <div class="user_profile_skill_guide_label">
+                                        <a>Cập nhật thông tin cá nhân giúp nhà tuyển dụng dễ dàng liên hệ và cung cấp cho bạn những cơ hội việc làm tuyệt vời</a>
+                                    </div>
+                                    <button class="user_profile_skill_update_btn" onclick="myFunctionUserSkill('profile_skill_form')"><i class="material-icons-outlined">edit</i> <a>Cập nhật thông tin</a> </button>
+                                </div>
+                                <div class="col-3">
+                                    <div class="user_profile_skill_image">
+                                        <%= image_tag "icons/profile_person.png"%>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    <%else%>
+                        <button class="user_profile_skill_add_btn" onclick="myFunctionUserSkill('profile_skill_form')"><i class="material-icons-outlined">add_circle_outline</i></button>
+                    <%end%>
+
+                    <div class="user_profile_skill_form_block" id="profile_skill_form">
+                        <%= render :partial => 'user_skills/form', :locals => {:user_skill => UserSkill.new}%>
+                    </div>
+
+                    <div class="user_profile_skill_detail_block">
+                        <%= render @user.user_skills%>
+                    </div>
+                    
+                    <script>
+                        function myFunctionUserSkill(id) {
+                            var x = document.getElementById(id);
+                            if (x.style.display == "block") 
+                            {
+                                x.style.display = "none";
+                            } 
+                            else 
+                            {
+                                x.style.display = "block";
+                            }
+                        }
+                    </script>
+                </div>
+
+                <div class="user_profile_certificate">
+                    <div class="user_profile_certificate_label">
+                        <h3>Chứng chỉ/Bằng cấp</h3>
+                    </div>
+                    <%if @user.user_certificates.count == 0%>
+                        <div class="user_profile_certificate_guide">
+                            <div class="row">
+                                <div class="col-9">
+                                    <div class="user_profile_certificate_guide_label">
+                                        <a>Cập nhật thông tin cá nhân giúp nhà tuyển dụng dễ dàng liên hệ và cung cấp cho bạn những cơ hội việc làm tuyệt vời</a>
+                                    </div>
+                                    <button class="user_profile_certificate_update_btn" onclick="myFunctionUserCertificate('profile_certificate_form')"><i class="material-icons-outlined">edit</i> <a>Cập nhật thông tin</a> </button>
+                                </div>
+                                <div class="col-3">
+                                    <div class="user_profile_certificate_image">
+                                        <%= image_tag "icons/profile_person.png"%>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    <%else%>
+                        <button class="user_profile_certificate_add_btn" onclick="myFunctionUserCertificate('profile_certificate_form')"><i class="material-icons-outlined">add_circle_outline</i></button>
+                    <%end%>
+
+                    <div class="user_profile_certificate_form_block" id="profile_certificate_form">
+                        <%= render :partial => 'user_certificates/form', :locals => {:user_certificate => UserCertificate.new}%>
+                    </div>
+
+                    <div class="user_profile_certificate_detail_block">
+                        <%= render @user.user_certificates%>
+                    </div>
+                    
+                    <script>
+                        function myFunctionUserCertificate(id) {
+                            var x = document.getElementById(id);
+                            if (x.style.display == "block") 
+                            {
+                                x.style.display = "none";
+                            } 
+                            else 
+                            {
+                                x.style.display = "block";
+                            }
+                        }
+                    </script>
+                </div>
+
+                <div class="user_profile_adward">
+                    <div class="user_profile_adward_label">
+                        <h3>Giải thưởng đạt được</h3>
+                    </div>
+                    <%if @user.user_adwards.count == 0%>
+                        <div class="user_profile_adward_guide">
+                            <div class="row">
+                                <div class="col-9">
+                                    <div class="user_profile_adward_guide_label">
+                                        <a>Cập nhật thông tin cá nhân giúp nhà tuyển dụng dễ dàng liên hệ và cung cấp cho bạn những cơ hội việc làm tuyệt vời</a>
+                                    </div>
+                                    <button class="user_profile_adward_update_btn" onclick="myFunctionUserAdward('profile_adward_form')"><i class="material-icons-outlined">edit</i> <a>Cập nhật thông tin</a> </button>
+                                </div>
+                                <div class="col-3">
+                                    <div class="user_profile_adward_image">
+                                        <%= image_tag "icons/profile_person.png"%>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    <%else%>
+                        <button class="user_profile_adward_add_btn" onclick="myFunctionUserAdward('profile_adward_form')"><i class="material-icons-outlined">add_circle_outline</i></button>
+                    <%end%>
+
+                    <div class="user_profile_adward_form_block" id="profile_adward_form">
+                        <%= render :partial => 'user_adwards/form', :locals => {:user_adward => UserAdward.new}%>
+                    </div>
+
+                    <div class="user_profile_adward_detail_block">
+                        <%= render @user.user_adwards%>
+                    </div>
+                    
+                    <script>
+                        function myFunctionUserAdward(id) {
+                            var x = document.getElementById(id);
+                            if (x.style.display == "block") 
+                            {
+                                x.style.display = "none";
+                            } 
+                            else 
+                            {
+                                x.style.display = "block";
+                            }
+                        }
+                    </script>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

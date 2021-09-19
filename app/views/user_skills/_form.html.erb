@@ -1,0 +1,50 @@
+<div class="user_profile_form">
+    <%= form_for([@user, user_skill], remote: true) do |f| %> 
+        <div class="user_profile_content">
+            <div class="user_profile_label">
+                <a><%= f.label :skill_name, "Tên kĩ năng", class: "user_profile_label_name" %></a>
+            </div>
+
+            <div class="user_profile_input">
+                <%= f.text_field :skill_name, :required => true, class: "form-control", placeholder: "Ex: word, excel..."%>
+            </div>
+        </div>
+
+        <div class="user_profile_content">
+            <div class="user_profile_label">
+                <a><%= f.label :skill_level, "Mức độ thành thạo", class: "user_profile_label_name" %></a>
+            </div>
+
+            <div class="user_profile_input">
+                <%= f.select(:skill_level, options_for_select(['Đang tìm hiểu', 'Mới bắt đầu', 'Có kinh nghiệm', 'Tốt', 'Xuất sắc'], 'Tốt'), {include_blank: false}, { :class => 'form-select' }) %>
+            </div>
+        </div>
+
+        <div class="user_profile_content">
+            <div class="user_profile_label">
+                <a><%= f.label :skill_summary, "Mô tả kĩ năng", class: "user_profile_label_name" %></a>
+            </div>
+
+            <div class="user_profile_input">
+                <%= f.text_area :skill_summary, class: "form-control", placeholder: "..." %>
+                <%= tinymce :mini %>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-6">
+            </div>
+            <div class="col-sm-3">
+                <div class="user_profile_cancel">
+                    <button class="user_profile_cancel_btn" onclick="myFunctionUserSkill('profile_skill_form')"><a>Hủy bỏ</a></button>
+                </div>
+            </div>
+
+            <div class="col-sm-3">
+                <div class="user_profile_submit">
+                    <%= f.submit "Cập nhật", class: "user_profile_form_submit"%>
+                </div>
+            </div>
+        </div>
+    <%end%>
+</div>

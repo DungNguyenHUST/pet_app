@@ -1,0 +1,32 @@
+<div class="user_profile_exp_block">
+    <div class="row">
+        <div class="col-10">
+            <div class="user_profile_exp_section">
+                <a><%=user_experience.job_level%> - <%=user_experience.company_name%></a> 
+            </div>
+
+            <div class="user_profile_exp_section">
+                <span><%=user_experience.company_location%></span>
+            </div>
+
+            <div class="user_profile_exp_section">
+                <span><%=user_experience.start_date.strftime("%m/%Y")%> - <%=user_experience.end_date.strftime("%m/%Y")%></span>
+            </div>
+
+            <%if user_experience.job_summary%>
+                <div class="user_profile_exp_section">
+                    <span><%=user_experience.job_summary.html_safe%></span>
+                </div>
+            <%end%>
+        </div>
+        <div class="col-2">
+            <div class='user_profile_exp_edit'>
+                <button class="user_profile_exp_update_btn" onclick="myFunctionUserExp('profile_exp_form_update_<%=user_experience.id%>')"><i class="material-icons-outlined">edit</i></button>
+                <%= link_to '<button type="submit"> <i class="material-icons-outlined">delete_outline</i></button>'.html_safe, user_user_experience_path(@user, user_experience), method: :delete, remote: :true, data: { confirm: 'Bạn có chắc muốn xóa ?' } %>
+            </div>
+        </div>
+    </div>
+    <div class="user_profile_exp_form_update_block" id="profile_exp_form_update_<%=user_experience.id%>">
+        <%= render :partial => 'user_experiences/form', :locals => {:user_experience => user_experience}%>
+    </div>
+</div>

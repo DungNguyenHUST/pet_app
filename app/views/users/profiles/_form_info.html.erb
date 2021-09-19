@@ -1,0 +1,75 @@
+<div class="user_profile_form">
+    <%= form_for(@user, remote: true) do |f| %>
+        <div class="row">
+            <div class="col-sm-6">
+                <div class="user_profile_content">
+                    <div class="user_profile_label">
+                        <a><%= f.label :name, "Họ và tên", class: "user_profile_label_name" %></a>
+                    </div>
+
+                    <div class="user_profile_input">
+                        <%= f.text_field :name, :required => true, class: "form-control", placeholder: "Nhập họ tên của bạn ex: Nguyễn Văn A..." %>
+                    </div>
+                </div>
+                
+                <div class="user_profile_content">
+                    <div class="user_profile_label">
+                        <a><%= f.label :address, "Địa chỉ", class: "user_profile_label_name" %></a>
+                    </div>
+
+                    <div class="user_profile_input">
+                        <%= f.text_field :address, :required => true, class: "form-control", placeholder: "Nhập địa chỉ liên hệ của bạn ex: Hà Nội..." %>
+                    </div>
+                </div>
+
+                <div class="user_profile_content">
+                    <div class="user_profile_label">
+                        <a><%= f.label :birthday, "Ngày sinh nhật", class: "user_profile_label_name" %></a>
+                    </div>
+
+                    <div class="user_profile_input">
+                        <%= f.date_field :birthday, :required => true, class: "form-control"%>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-sm-6">
+                <div class="user_profile_content">
+                    <div class="user_profile_label">
+                        <a><%= f.label :avatar, "Ảnh đại diện(ảnh kích thước nhỏ)", class: "user_profile_label_name" %></a>
+                    </div>
+
+                    <div class="user_profile_input">
+                        <%= f.file_field :avatar, :required => true, class: "form-control"%>
+                    </div>
+                </div>
+
+                <div class="user_profile_content">
+                    <div class="user_profile_label">
+                        <a><%= f.label :wall_picture, "Ảnh bìa(ảnh kích thước lớn)", class: "user_profile_label_name" %></a>
+                    </div>
+
+                    <div class="user_profile_input">
+                        <%= f.file_field :wall_picture, :required => true, class: "form-control"%>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-6">
+            </div>
+            <div class="col-sm-3">
+                <div class="user_profile_cancel">
+                    <button class="user_profile_cancel_btn" onclick="myFunctionUserInfo('profile_info_form')"><a>Hủy bỏ</a></button>
+                </div>
+            </div>
+
+            <div class="col-sm-3">
+                <div class="user_profile_submit">
+                    <%= f.submit "Cập nhật", class: "user_profile_form_submit" %>
+                </div>
+            </div>
+        </div>
+    <%end%>
+</div>

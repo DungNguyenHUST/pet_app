@@ -18,27 +18,19 @@ class User < ApplicationRecord
     return slug
   end
   friendly_id :convert_slug, use: :slugged
-	
-  # using encryt pass
-  # has_secure_password
-  
-  # before_save { self.email = email.downcase }
-  # validates :name, presence: true
-  # VALID_EMAIL_REGEX = /\A[\w+\-.]+@[a-z\d\-.]+\.[a-z]+\z/i
-  # validates :email, presence: true, format: { with: VALID_EMAIL_REGEX }, uniqueness: { case_sensitive: false }
-  # validates :password, presence: true, length: { minimum: 6 }
 
-  # has_one_attached :avatar
-  # has_one_attached :cover_letter_attach
   mount_uploader :avatar, ImageUploader
   mount_uploader :wall_picture, ImageUploader
   mount_uploader :cover_letter_attach, FileUploader
 
   has_many :company_follows, dependent: :destroy
-
   has_many :company_save_jobs, dependent: :destroy
-
   has_many :user_notifications, dependent: :destroy
+  has_many :user_educations, dependent: :destroy
+  has_many :user_experiences, dependent: :destroy
+  has_many :user_skills, dependent: :destroy
+  has_many :user_certificates, dependent: :destroy
+  has_many :user_adwards, dependent: :destroy
 
   # after_create :send_welcome_email
 	

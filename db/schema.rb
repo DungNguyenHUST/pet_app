@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_09_17_083731) do
+ActiveRecord::Schema.define(version: 2021_09_19_052136) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -519,6 +519,57 @@ ActiveRecord::Schema.define(version: 2021_09_17_083731) do
     t.datetime "updated_at", precision: 6, null: false
   end
 
+  create_table "user_adwards", force: :cascade do |t|
+    t.bigint "user_id", null: false
+    t.string "adward_name"
+    t.string "adward_summary"
+    t.datetime "receive_date"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["user_id"], name: "index_user_adwards_on_user_id"
+  end
+
+  create_table "user_certificates", force: :cascade do |t|
+    t.bigint "user_id", null: false
+    t.string "cert_name"
+    t.string "cert_summary"
+    t.datetime "start_date"
+    t.datetime "end_date"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["user_id"], name: "index_user_certificates_on_user_id"
+  end
+
+  create_table "user_educations", force: :cascade do |t|
+    t.bigint "user_id", null: false
+    t.datetime "start_date"
+    t.datetime "end_date"
+    t.string "cert_level"
+    t.string "cert_type"
+    t.string "school_level"
+    t.string "school_name"
+    t.string "school_location"
+    t.string "school_field"
+    t.boolean "enrolled", default: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["user_id"], name: "index_user_educations_on_user_id"
+  end
+
+  create_table "user_experiences", force: :cascade do |t|
+    t.bigint "user_id", null: false
+    t.datetime "start_date"
+    t.datetime "end_date"
+    t.string "company_name"
+    t.string "company_location"
+    t.string "job_level"
+    t.string "job_summary"
+    t.boolean "enrolled", default: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["user_id"], name: "index_user_experiences_on_user_id"
+  end
+
   create_table "user_notifications", force: :cascade do |t|
     t.bigint "user_id", null: false
     t.datetime "created_at", precision: 6, null: false
@@ -530,6 +581,16 @@ ActiveRecord::Schema.define(version: 2021_09_17_083731) do
     t.boolean "readed", default: false
     t.string "noti_type"
     t.index ["user_id"], name: "index_user_notifications_on_user_id"
+  end
+
+  create_table "user_skills", force: :cascade do |t|
+    t.bigint "user_id", null: false
+    t.string "skill_name"
+    t.string "skill_summary"
+    t.string "skill_level"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["user_id"], name: "index_user_skills_on_user_id"
   end
 
   create_table "users", force: :cascade do |t|
@@ -591,5 +652,10 @@ ActiveRecord::Schema.define(version: 2021_09_17_083731) do
   add_foreign_key "company_react_reviews", "company_reviews"
   add_foreign_key "employer_notifications", "employers"
   add_foreign_key "problem_react_solutions", "problem_solutions"
+  add_foreign_key "user_adwards", "users"
+  add_foreign_key "user_certificates", "users"
+  add_foreign_key "user_educations", "users"
+  add_foreign_key "user_experiences", "users"
   add_foreign_key "user_notifications", "users"
+  add_foreign_key "user_skills", "users"
 end

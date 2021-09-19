@@ -1,0 +1,26 @@
+<div class="user_profile_edu_block">
+    <div class="row">
+        <div class="col-10">
+            <div class="user_profile_edu_section">
+                <a><%=user_education.cert_level%> - <%=user_education.cert_type%></a> 
+            </div>
+
+            <div class="user_profile_edu_section">
+                <span><%=user_education.school_level%> <%=user_education.school_name%> tại <%=user_education.school_location%></span>
+            </div>
+
+            <div class="user_profile_edu_section">
+                <span><%=user_education.start_date.strftime("%m/%Y")%> - <%=user_education.end_date.strftime("%m/%Y")%></span>
+            </div>
+        </div>
+        <div class="col-2">
+            <div class='user_profile_edu_edit'>
+                <button class="user_profile_edu_update_btn" onclick="myFunctionUserEdu('profile_edu_form_update_<%=user_education.id%>')"><i class="material-icons-outlined">edit</i></button>
+                <%= link_to '<button type="submit"> <i class="material-icons-outlined">delete_outline</i></button>'.html_safe, user_user_education_path(@user, user_education), method: :delete, remote: :true, data: { confirm: 'Bạn có chắc muốn xóa ?' } %>
+            </div>
+        </div>
+    </div>
+    <div class="user_profile_edu_form_update_block" id="profile_edu_form_update_<%=user_education.id%>">
+        <%= render :partial => 'user_educations/form', :locals => {:user_education => user_education}%>
+    </div>
+</div>

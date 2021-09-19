@@ -1,0 +1,30 @@
+<div class="user_profile_adward_block">
+    <div class="row">
+        <div class="col-10">
+            <div class="user_profile_adward_section">
+                <a><%=user_adward.adward_name%></a> 
+            </div>
+
+            <%if user_adward.receive_date%>
+                <div class="user_profile_adward_section">
+                    <span>Ngày nhận <%=user_adward.receive_date.strftime("%m/%Y")%></span>
+                </div>
+            <%end%>
+
+            <%if user_adward.adward_summary%>
+                <div class="user_profile_adward_section">
+                    <span><%=user_adward.adward_summary.html_safe%></span>
+                </div>
+            <%end%>
+        </div>
+        <div class="col-2">
+            <div class='user_profile_adward_edit'>
+                <button class="user_profile_adward_update_btn" onclick="myFunctionUserAdward('profile_adward_form_update_<%=user_adward.id%>')"><i class="material-icons-outlined">edit</i></button>
+                <%= link_to '<button type="submit"> <i class="material-icons-outlined">delete_outline</i></button>'.html_safe, user_user_adward_path(@user, user_adward), method: :delete, remote: :true, data: { confirm: 'Bạn có chắc muốn xóa ?' } %>
+            </div>
+        </div>
+    </div>
+    <div class="user_profile_adward_form_update_block" id="profile_adward_form_update_<%=user_adward.id%>">
+        <%= render :partial => 'user_adwards/form', :locals => {:user_adward => user_adward}%>
+    </div>
+</div>

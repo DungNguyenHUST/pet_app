@@ -1,0 +1,33 @@
+<div class="user_profile_info_detail">
+    <div class="user_profile_info_wall">
+        <%if @user.wall_picture?%>
+            <%= image_tag @user.wall_picture.url %>
+        <%else%>
+            <%= image_tag "defaults/user_wall_default.jpeg"%>
+        <%end%>
+    </div>
+    <div class="user_profile_info_avatar">
+        <%if @user.avatar?%>
+            <%= image_tag @user.avatar.url %>
+        <%else%>
+            <%= image_tag "defaults/user_avatar_default.png"%>
+        <%end%>
+    </div>
+    <div class="user_profile_info_name">
+        <h3><%=@user.name.upcase%></h3>
+    </div>
+    <div class="user_profile_info_short">
+        <%if @user.address%>
+            <a><i class="material-icons-outlined">room</i><%=@user.address%></a>
+        <%else%>
+            <a><i class="material-icons-outlined">room</i>---</a>
+        <%end%>
+        <%if @user.birthday%>
+            <a><i class="material-icons-outlined">cake</i><%=age_of_human(@user.birthday)%> tuổi</a>
+        <%else%>
+            <a><i class="material-icons-outlined">cake</i>---</a>
+        <%end%>
+    </div>
+
+    <button class="user_profile_info_edit_btn" onclick="myFunctionUserInfo('profile_info_form')"><i class="material-icons-outlined">edit</i></button>
+</div>

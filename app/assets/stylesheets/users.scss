@@ -1505,193 +1505,517 @@
 ////////////////////////profile/////////////////
 .user_profile_container{
     background-color: #f8f9fa;
-    .user_profile_main_block{
+    .user_profile_info{
         margin-top: 20px;
         margin-bottom: 20px;
         padding-bottom: 10px;
         border: 1px solid #e5e7ec;
         border-radius: 5px;
         background-color: #fff;
-        .user_profile_main_wall{
-            img{
-                width: 100%;
-                height: 200px;
-                object-fit: cover;
-                border-top-left-radius: 5px;
-                border-top-right-radius: 5px;
+        .user_profile_info_detail{
+            position: relative;
+            .user_profile_info_wall{
+                img{
+                    width: 100%;
+                    height: 200px;
+                    object-fit: cover;
+                    border-top-left-radius: 5px;
+                    border-top-right-radius: 5px;
+                }
             }
-        }
-
-        .user_profile_main_avatar{
-            display: flex;
-            justify-content: center;
-            img{
-                border: 5px solid #fff;
-                width: 100px;
-                height: 100px;
-                object-fit: cover;
-                border-radius: 50%;
-                position: relative;
-                top: -20px;
+    
+            .user_profile_info_avatar{
+                display: flex;
+                justify-content: center;
+                img{
+                    border: 5px solid #fff;
+                    width: 100px;
+                    height: 100px;
+                    object-fit: cover;
+                    border-radius: 50%;
+                    position: relative;
+                    top: -20px;
+                }
             }
-        }
-
-        .user_profile_main_name{
-            text-align: center;
-            h3{
-                color: #333;
+    
+            .user_profile_info_name{
+                text-align: center;
+                h3{
+                    color: #333;
+                    position: relative;
+                    top: -10px;
+                    font-size: 22px;
+                    font-weight: 600;
+                }
+            }
+    
+            .user_profile_info_short{
+                text-align: center;
                 position: relative;
                 top: -10px;
-                font-size: 22px;
-                font-weight: 600;
+                a{
+                    color: #555;
+                    font-size: 16px;
+                    font-weight: 600;
+                    padding-right: 5px;
+                    i{
+                        position: relative;
+                        top: 3px;
+                    }
+                }
             }
-        }
 
-        .user_profile_main_address{
-            text-align: center;
-            position: relative;
-            top: -10px;
-            a{
-                color: #555;
-                font-size: 16px;
-                font-weight: 600;
+            .user_profile_info_edit_btn{
+                border: none;
+                outline: none;
+                background-color: #fff;
+                color: #0d6efd;
+                position: absolute;
+                top: 215px;
+                right: 15px;
+                width: 36px;
                 i{
-                    position: relative;
-                    top: 5px;
+                    font-size: 24px;
                 }
             }
         }
+
+        .user_profile_info_form_block{
+            display: none;
+            padding-left: 15px;
+            padding-right: 15px;
+        }
     }
 
-    .user_profile_main_info{
+    .user_profile_personal{
         margin-bottom: 20px;
         padding: 15px;
         border: 1px solid #e5e7ec;
         border-radius: 5px;
         background-color: #fff;
-        .user_profile_main_info_label{
+        position: relative;
+        .user_profile_personal_label{
             h3{
                 font-size: 22px;
                 font-weight: 600;
+                margin-bottom: 5px;
             }
         }
-
-        .user_profile_main_info_label_sub{
-            font-size: 15px;
-        }
-
-        .user_profile_update_btn{
-            margin-top: 20px;
-            border: 2px solid #0d6efd;
-            border-radius: 5px;
-            background-color: #fff;
-            font-size: 14px;
-            font-weight: 600;
-            padding: 3px 5px 3px 5px;
-            color: #0d6efd;
-            a{
-                position: relative;
-                top: -3px;
-            }
-            i{
-                font-size: 20px;
-            }
-        }
-
-        .user_profile_main_info_detail{
-            text-align: right;
-            img{
-                width: 80px;
-                height: 80px;
-            }
-        }
-
-        .user_profile_main_info_section{
-            margin-top: 10px;
-            a{
-                font-size: 16px;
-                font-weight: 600;
-            }
-            span{
-                font-size: 15px;
-            }
-        }
-
-        .user_profile_main_info_form{
+        
+        .user_profile_personal_form_block{
             display: none;
         }
-    }
 
-    .user_profile_main_work{
-        margin-bottom: 20px;
-        padding: 15px;
-        border: 1px solid #e5e7ec;
-        background-color: #fff;
-        border-radius: 5px;
-        .user_profile_main_work_label{
-            h3{
-                font-size: 22px;
-                font-weight: 600;
+        .user_profile_personal_edit_btn{
+            border: none;
+            outline: none;
+            background-color: #fff;
+            color: #0d6efd;
+            position: absolute;
+            top: 15px;
+            right: 15px;
+            i{
+                font-size: 24px;
             }
         }
     }
 
-    .user_profile_main_edu{
+    .user_profile_exp{
         margin-bottom: 20px;
         padding: 15px;
         border: 1px solid #e5e7ec;
         border-radius: 5px;
         background-color: #fff;
-        .user_profile_main_edu_label{
+        position: relative;
+        .user_profile_exp_label{
             h3{
                 font-size: 22px;
                 font-weight: 600;
+                margin-bottom: 5px;
+            }
+        }
+        .user_profile_exp_guide{
+            .user_profile_exp_label_sub{
+                font-size: 15px;
+            }
+    
+            .user_profile_exp_update_btn{
+                margin-top: 15px;
+                border: 2px solid #0d6efd;
+                border-radius: 5px;
+                background-color: #fff;
+                font-size: 14px;
+                font-weight: 600;
+                padding: 3px 5px 3px 5px;
+                color: #0d6efd;
+                a{
+                    position: relative;
+                    top: -2px;
+                }
+                i{
+                    font-size: 20px;
+                    position: relative;
+                    top: 2px;
+                }
+            }
+        
+            .user_profile_exp_image{
+                text-align: right;
+                position: relative;
+                top: -10px;
+                img{
+                    width: 70px;
+                    height: 70px;
+                }
+            }
+        }
+        
+        .user_profile_exp_form_block{
+            display: none;
+        }
+    
+        .user_profile_exp_add_btn{
+            border: none;
+            outline: none;
+            background-color: #fff;
+            color: #0d6efd;
+            position: absolute;
+            top: 15px;
+            right: 15px;
+            i{
+                font-size: 24px;
             }
         }
     }
 
-    .user_profile_main_skill{
+    .user_profile_edu{
         margin-bottom: 20px;
         padding: 15px;
         border: 1px solid #e5e7ec;
         border-radius: 5px;
         background-color: #fff;
-        .user_profile_main_skill_label{
+        position: relative;
+        .user_profile_edu_label{
             h3{
                 font-size: 22px;
                 font-weight: 600;
+                margin-bottom: 5px;
+            }
+        }
+        .user_profile_edu_guide{
+            .user_profile_edu_label_sub{
+                font-size: 15px;
+            }
+    
+            .user_profile_edu_update_btn{
+                margin-top: 15px;
+                border: 2px solid #0d6efd;
+                border-radius: 5px;
+                background-color: #fff;
+                font-size: 14px;
+                font-weight: 600;
+                padding: 3px 5px 3px 5px;
+                color: #0d6efd;
+                a{
+                    position: relative;
+                    top: -2px;
+                }
+                i{
+                    font-size: 20px;
+                    position: relative;
+                    top: 2px;
+                }
+            }
+        
+            .user_profile_edu_image{
+                text-align: right;
+                position: relative;
+                top: -10px;
+                img{
+                    width: 70px;
+                    height: 70px;
+                }
+            }
+        }
+        
+        .user_profile_edu_form_block{
+            display: none;
+        }
+    
+        .user_profile_edu_add_btn{
+            border: none;
+            outline: none;
+            background-color: #fff;
+            color: #0d6efd;
+            position: absolute;
+            top: 15px;
+            right: 15px;
+            i{
+                font-size: 24px;
+            }
+        }
+    }
+
+    .user_profile_skill{
+        margin-bottom: 20px;
+        padding: 15px;
+        border: 1px solid #e5e7ec;
+        border-radius: 5px;
+        background-color: #fff;
+        position: relative;
+        .user_profile_skill_label{
+            h3{
+                font-size: 22px;
+                font-weight: 600;
+                margin-bottom: 5px;
+            }
+        }
+        .user_profile_skill_guide{
+            .user_profile_skill_label_sub{
+                font-size: 15px;
+            }
+    
+            .user_profile_skill_update_btn{
+                margin-top: 15px;
+                border: 2px solid #0d6efd;
+                border-radius: 5px;
+                background-color: #fff;
+                font-size: 14px;
+                font-weight: 600;
+                padding: 3px 5px 3px 5px;
+                color: #0d6efd;
+                a{
+                    position: relative;
+                    top: -2px;
+                }
+                i{
+                    font-size: 20px;
+                    position: relative;
+                    top: 2px;
+                }
+            }
+        
+            .user_profile_skill_image{
+                text-align: right;
+                position: relative;
+                top: -10px;
+                img{
+                    width: 70px;
+                    height: 70px;
+                }
+            }
+        }
+        
+        .user_profile_skill_form_block{
+            display: none;
+        }
+    
+        .user_profile_skill_add_btn{
+            border: none;
+            outline: none;
+            background-color: #fff;
+            color: #0d6efd;
+            position: absolute;
+            top: 15px;
+            right: 15px;
+            i{
+                font-size: 24px;
+            }
+        }
+    }
+
+    .user_profile_certificate{
+        margin-bottom: 20px;
+        padding: 15px;
+        border: 1px solid #e5e7ec;
+        border-radius: 5px;
+        background-color: #fff;
+        position: relative;
+        .user_profile_certificate_label{
+            h3{
+                font-size: 22px;
+                font-weight: 600;
+                margin-bottom: 5px;
+            }
+        }
+        .user_profile_certificate_guide{
+            .user_profile_certificate_label_sub{
+                font-size: 15px;
+            }
+    
+            .user_profile_certificate_update_btn{
+                margin-top: 15px;
+                border: 2px solid #0d6efd;
+                border-radius: 5px;
+                background-color: #fff;
+                font-size: 14px;
+                font-weight: 600;
+                padding: 3px 5px 3px 5px;
+                color: #0d6efd;
+                a{
+                    position: relative;
+                    top: -2px;
+                }
+                i{
+                    font-size: 20px;
+                    position: relative;
+                    top: 2px;
+                }
+            }
+        
+            .user_profile_certificate_image{
+                text-align: right;
+                position: relative;
+                top: -10px;
+                img{
+                    width: 70px;
+                    height: 70px;
+                }
+            }
+        }
+        
+        .user_profile_certificate_form_block{
+            display: none;
+        }
+    
+        .user_profile_certificate_add_btn{
+            border: none;
+            outline: none;
+            background-color: #fff;
+            color: #0d6efd;
+            position: absolute;
+            top: 15px;
+            right: 15px;
+            i{
+                font-size: 24px;
+            }
+        }
+    }
+
+    .user_profile_adward{
+        margin-bottom: 20px;
+        padding: 15px;
+        border: 1px solid #e5e7ec;
+        border-radius: 5px;
+        background-color: #fff;
+        position: relative;
+        .user_profile_adward_label{
+            h3{
+                font-size: 22px;
+                font-weight: 600;
+                margin-bottom: 5px;
+            }
+        }
+        .user_profile_adward_guide{
+            .user_profile_adward_label_sub{
+                font-size: 15px;
+            }
+    
+            .user_profile_adward_update_btn{
+                margin-top: 15px;
+                border: 2px solid #0d6efd;
+                border-radius: 5px;
+                background-color: #fff;
+                font-size: 14px;
+                font-weight: 600;
+                padding: 3px 5px 3px 5px;
+                color: #0d6efd;
+                a{
+                    position: relative;
+                    top: -2px;
+                }
+                i{
+                    font-size: 20px;
+                    position: relative;
+                    top: 2px;
+                }
+            }
+        
+            .user_profile_adward_image{
+                text-align: right;
+                position: relative;
+                top: -10px;
+                img{
+                    width: 70px;
+                    height: 70px;
+                }
+            }
+        }
+        
+        .user_profile_adward_form_block{
+            display: none;
+        }
+    
+        .user_profile_adward_add_btn{
+            border: none;
+            outline: none;
+            background-color: #fff;
+            color: #0d6efd;
+            position: absolute;
+            top: 15px;
+            right: 15px;
+            i{
+                font-size: 24px;
             }
         }
     }
 }
 
-.user_profile_personal_form{
+////////////////////////profile-form////////////
+.user_profile_form{
     margin-top: 20px;
-    border-top: 1px solid #e5e7ec;
     width: 100%;
     height: auto;
     padding-top: 20px;
     
-    .user_profile_personal_content{
-        .user_profile_personal_label{
+    .user_profile_content{
+        .user_profile_label{
             font-size: 16px;
             font-weight: 550;
         }
-        .user_profile_personal_input{
+        .user_profile_input{
             padding-bottom: 10px;
+        }
+        .user_profile_input_radio{
+            margin-top: 20px;
+            a{
+                font-size: 15px;
+                font-weight: 600;
+            }
         }
     }
 
-    .user_profile_personal_submit{
-        margin-top: 20px;
+    .user_profile_cancel{
+        margin-top: 10px;
+        margin-bottom: 10px;
         text-align: right;
-        .user_profile_personal_form_submit{
+        .user_profile_cancel_btn{
             width: 100%;
-            @media screen and (min-width: 600px){
-                width: 200px;
-            }
             font-weight: 600;
-            height: 44px;
+            height: 40px;
+            border-radius: 5px;
+            padding: 6px;
+            background: #fff;
+            border: 2px solid #e5e5e5;
+            font-size: 14px;
+            cursor: pointer;
+            text-align: center;
+            color: #0d6efd;
+            
+            &:hover{
+                background-color: #369;
+                color: #fff;
+            }
+        }
+    }
+
+    .user_profile_submit{
+        margin-top: 10px;
+        text-align: right;
+        .user_profile_form_submit{
+            width: 100%;
+            font-weight: 600;
+            height: 40px;
             border-radius: 5px;
             padding: 6px;
             background: #0d6efd;
@@ -1705,6 +2029,32 @@
                 background-color: #369;
                 color: #fff;
             }
+        }
+    }
+}
+
+//////////////////////personal/////////////////////
+.user_profile_personal_detail{
+    position: relative;
+    .user_profile_personal_section{
+        padding-top: 10px;
+        a{
+            font-size: 16px;
+            font-weight: 600;
+        }
+        span{
+            font-size: 15px;
+        }
+    }
+
+    .user_profile_personal_section_main{
+        padding-top: 15px;
+        a{
+            font-size: 16px;
+            font-weight: 600;
+        }
+        span{
+            font-size: 15px;
         }
     }
 }

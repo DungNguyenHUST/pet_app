@@ -21,6 +21,11 @@ Rails.application.routes.draw do
   
   resources :users do
     resources :user_notifications
+    resources :user_educations
+    resources :user_experiences
+    resources :user_skills
+    resources :user_certificates
+    resources :user_adwards
   end
   get 'user_profile' => 'users#profile'
 

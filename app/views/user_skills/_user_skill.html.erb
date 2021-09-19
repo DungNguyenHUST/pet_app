@@ -1,0 +1,24 @@
+<div class="user_profile_skill_block">
+    <div class="row">
+        <div class="col-10">
+            <div class="user_profile_skill_section">
+                <a><%=user_skill.skill_name%></a> - <span><%=user_skill.skill_level%></span>
+            </div>
+
+            <%if user_skill.skill_summary%>
+                <div class="user_profile_skill_section">
+                    <span><%=user_skill.skill_summary.html_safe%></span>
+                </div>
+            <%end%>
+        </div>
+        <div class="col-2">
+            <div class='user_profile_skill_edit'>
+                <button class="user_profile_skill_update_btn" onclick="myFunctionUserSkill('profile_skill_form_update_<%=user_skill.id%>')"><i class="material-icons-outlined">edit</i></button>
+                <%= link_to '<button type="submit"> <i class="material-icons-outlined">delete_outline</i></button>'.html_safe, user_user_skill_path(@user, user_skill), method: :delete, remote: :true, data: { confirm: 'Bạn có chắc muốn xóa ?' } %>
+            </div>
+        </div>
+    </div>
+    <div class="user_profile_skill_form_update_block" id="profile_skill_form_update_<%=user_skill.id%>">
+        <%= render :partial => 'user_skills/form', :locals => {:user_skill => user_skill}%>
+    </div>
+</div>
