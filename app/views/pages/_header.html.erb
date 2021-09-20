@@ -93,7 +93,7 @@
 			<a href="<%=companies_path %>">Review công ty </a>
 			<a href="<%=problems_path %>">Câu hỏi phỏng vấn </a>
 			<!--<a href="<%=cover_vitaes_path %>">CV & Resume </a>-->
-			<a href="<%=user_profile_path %>">Hồ sơ của tôi </a>
+			<a href="<%=user_profile_path %>">Tạo hồ sơ </a>
 			<a href="<%=posts_path %>">Blog</a>
 		<%end%>
 
@@ -127,6 +127,9 @@
 					</button>
 
 					<div class="dropdown-menu dropdown-menu-right" aria-labelledby="dropdownUserMenuButton">
+						<a class="dropdown-item" href="<%=user_profile_path%>">
+							<i class="material-icons-outlined">badge</i><span>Hồ sơ tìm việc</span>
+						</a>
 						<a class="dropdown-item" href="<%=user_path(current_user, tab_id: 'SaveJobID')%>">
 							<i class="material-icons-outlined">bookmark_border</i><span>Việc làm đã lưu</span>
 						</a>
