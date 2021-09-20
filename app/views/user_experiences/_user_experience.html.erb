@@ -10,7 +10,11 @@
             </div>
 
             <div class="user_profile_exp_section">
-                <span><%=user_experience.start_date.strftime("%m/%Y")%> - <%=user_experience.end_date.strftime("%m/%Y")%></span>
+                <%if user_experience.enrolled == true%>
+                    <span><%=user_experience.start_date.strftime("%m/%Y")%> - nay</span>
+                <%else%>
+                    <span><%=user_experience.start_date.strftime("%m/%Y")%> - <%=user_experience.end_date.strftime("%m/%Y")%></span>
+                <%end%>
             </div>
 
             <%if user_experience.job_summary%>
