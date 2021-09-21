@@ -74,7 +74,7 @@ class UsersController < ApplicationController
 
         if(@user.update(user_params))
             # redirect_to user_path(current_user)
-            flash[:success] = "Update thông tin thành công"
+            # flash[:success] = "Update thông tin thành công"
         else
             flash[:danger] = "Lỗi, không thể cập nhật thông tin"
         end
