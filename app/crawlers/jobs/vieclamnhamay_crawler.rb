@@ -9,8 +9,8 @@ module VieclamnhamayCrawler
 
         if job_items
             job_items.each do |job_item|
-                if job_item.css("p.job-title span.i-title").present?
-                    company_name = job_item.css("p.job-title span.i-title").first.text.strip
+                if job_item.css("div.job-info p.name").present?
+                    company_name = job_item.css("div.job-info p.name").first.text.strip
                 else
                     company_name = ""
                 end
@@ -97,18 +97,21 @@ module VieclamnhamayCrawler
             salary = "Thương lượng"
 
             if salary_block = doc.css("div.job-overview div.job-overview-item")[1]
-                salary = salary_block.css("a").text.strip
+                salary = salary_block.css("p").text.strip
+                salary.gsub!(/Mức lương /, "")
+                salary.squish!
             else
                 salary = "Thương lượng"
             end
 
             if quantity_block = doc.css("div.job-overview div.job-overview-item")[2]
-                quantity = quantity_block.css("a").text.strip
+                quantity = quantity_block.css("p").text.strip
+                quantity = quantity.to_i
             else
                 quantity = 1
             end
 
-            if category_block = doc.css("div.job-overview div.job-overview-item")[5]
+            if category_block = doc.css("div.job-overview div.job-overview-item")[6]
                 category = category_block.css("a").text.strip
             else
                 category = ""
@@ -123,7 +126,8 @@ module VieclamnhamayCrawler
             experience = "Không yêu cầu"
 
             if typical_block = doc.css("div.job-overview div.job-overview-item")[3]
-                typical = typical_block.css("a").text.strip
+                typical = typical_block.css("p").text.strip
+                typical.gsub!(/Giờ làm việc /, "")
             else
                 typical = "Toàn thời gian"
             end

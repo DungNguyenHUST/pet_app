@@ -12,7 +12,7 @@ class ScrapJobsController < ApplicationController
     def create
         @scrap_job = ScrapJob.new(scrap_job_param)
         if @scrap_job.save
-            JobCrawlerWorker.clear_sidekiq_queue
+            # JobCrawlerWorker.clear_sidekiq_queue
             JobCrawlerWorker.perform_async(@scrap_job.id)
             # JobCrawler.process(@scrap_job)
             flash[:success] = "Scrap successed ..............."
