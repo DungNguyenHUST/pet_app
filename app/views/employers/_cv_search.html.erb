@@ -1,0 +1,79 @@
+<div class="employer_cv_search_block_result" id="employer_cv_search_block_result">
+    <%if cv_searched && cv_searched.total_count > 0%>
+        <div class="employer_cv_search_index">
+            <div class="employer_cv_search_label">
+                <%unless is_all == true%>
+                    <span><%=cv_searched.total_count%> hồ sơ phù hợp</span>
+                <%end%>						
+            </div>
+            <div class="row">
+                <div class="col-sm-5 col-no-padding">
+                    <%if cv_searched != nil%>
+                        <%cv_searched.each do |user_cv|%>
+                            <%= render :partial => 'users/user_cv', locals: {user: user_cv} %>
+                        <%end%>
+                    <%end%>
+                </div>
+
+                <div class='col-sm-7'>
+                    <div class='employer_cv_preview_index sticky-top' id="employer_cv_preview_id">
+                        <%= render :partial => 'users/user_cv_preview', locals: {user: cv_searched.first}%>
+                    </div>
+                </div>
+
+                <script>
+                    document.querySelector(".employer_cv_block:first-child").classList.add("highlight_job_item"); //select first element
+                    $('.employer_cv_block').click(function() {
+                        $(this).addClass('highlight_job_item') // add class to clicked element
+                        .siblings() // get siblings
+                        .removeClass('highlight_job_item'); // remove class from sibling elements 
+                    });
+                </script>
+            </div>
+            <div class="employer_cv_paginate">
+                <%= paginate cv_searched, window: 2%>
+            </div>
+        </div>
+    <%else%>
+        <div class="employer_cv_search_not_found_block">
+            <div class="employer_cv_search_not_found_label">
+                <span>Rất tiếc, không tìm được việc làm phù hợp</span>
+            </div>
+            <div class="employer_cv_search_not_found_image">
+                <%=image_tag("others/no_result_found.png")%>
+            </div>
+            <div class="employer_cv_search_not_found_help">
+                <a>Gợi ý từ khóa tìm kiếm:</a>
+                <ul>
+                    <li>
+                        Tìm kiếm với từ khoá cụ thể như vị trí công việc. Ví dụ: Nhân viên kinh doanh, sales ...
+                    </li>
+
+                    <li>
+                        Tìm kiếm theo tên công ty bằng tiếng việt hoặc tiếng anh.
+                    </li>
+
+                    <li>
+                        Tìm kiếm theo danh sách việc làm mới cập nhật và lọc theo tỉnh/thành phố
+                    </li>
+                </ul>
+            </div>
+
+            <div class="employer_cv_search_not_found_suggest">
+                <div class="employer_cv_search_not_found_suggest_label">
+                    <a>Hồ sơ mới cập nhật</a>
+                </div>
+                <div class="row">
+                    <%@user_cvs.each do |user_cv|%>
+                        <div class="col-sm-6 col-no-padding">
+                            <%= render :partial => 'users/user_cv', locals: {user: user_cv} %>
+                        </div>
+                    <%end%>
+                </div>
+                <div class="employer_cv_paginate">
+                    <%= paginate @user_cvs, window: 2%>
+                </div>
+            </div>
+        </div>
+    <%end%>
+</div>

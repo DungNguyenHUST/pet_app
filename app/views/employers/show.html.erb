@@ -1,309 +1,86 @@
+<div class="container">
+    <div class='employer_dasboard'>
+        <div class='employer_title'>
+            <%if (0..12).cover? Time.now.hour %>
+                <a>Good morning, nhà tuyển dụng <%=current_employer.name%>!</a>
+            <%elsif (12..18).cover? Time.now.hour %>
+                <a>Good afternoon, nhà tuyển dụng <%=current_employer.name%>!</a>
+            <%elsif (18..24).cover? Time.now.hour %>
+                <a>Good evening, nhà tuyển dụng <%=current_employer.name%>!</a>
+            <%end%>
+        </div>
 
-<%if employer_signed_in?%>
-    <div class="container">
-        <div class='employer_dasboard'>
-            <div class='employer_title'>
-                <%if (0..12).cover? Time.now.hour %>
-                    <a href="<%=employer_path(current_employer)%>">Good morning, nhà tuyển dụng <%=current_employer.name%>!</a>
-                <%elsif (12..18).cover? Time.now.hour %>
-                    <a href="<%=employer_path(current_employer)%>">Good afternoon, nhà tuyển dụng <%=current_employer.name%>!</a>
-                <%elsif (18..24).cover? Time.now.hour %>
-                    <a href="<%=employer_path(current_employer)%>">Good evening, nhà tuyển dụng <%=current_employer.name%>!</a>
-                <%end%>
-            </div>
-
-            <div class='row'>
-                <div class='col-sm-6'>
-                    <div class='employer_overview'>
-                        <div class='employer_status'>
-                            <%if current_employer.approved%>
-                                <a><span>Trạng thái: </span>Đang hoạt động</a>
-                            <%else%>
-                                <a><span>Trạng thái: </span>Đang chờ duyệt hồ sơ</a>
-                            <%end%>
-                        </div>
-                        <div class='employer_date'>
-                            <a><span>Ngày đăng kí: </span><%=current_employer.created_at.strftime("%B %d, %Y")%></a>
-                        </div>
-                        <div class='employer_plan'>
-                            <a><span>Gói đăng kí: </span><%=current_employer.plan%></a>
-                        </div>
-                        <div class='employer_post'>
-                            <%if find_job_remain_of_employer(current_employer) == -1%>
-                                <a><span>Số tin đăng còn lại hôm nay: </span>Không giới hạn</a>
-                            <%else%>
-                                <a><span>Số tin đăng còn lại hôm nay: </span><%=find_job_remain_of_employer(current_employer).to_s%></a>
-                            <%end%>
-                        </div>
-                    </div>
-                </div>
-                <div class='col-sm-6'>
-                    <div class='employer_new_job'>
-                        <%if current_employer.approved && find_company_of_employer(current_employer) && find_job_remain_of_employer(current_employer) != 0%>
-                            <%= link_to 'Đăng tin tuyển dụng', new_company_job_path, method: :get, class: "btn btn-primary" %>
+        <div class='row'>
+            <div class='col-sm-6'>
+                <div class='employer_overview'>
+                    <div class='employer_status'>
+                        <%if current_employer.approved%>
+                            <a><span>Trạng thái: </span>Đang hoạt động</a>
                         <%else%>
-                            <%= link_to 'Đăng tin tuyển dụng', new_company_job_path, method: :get, class: "btn btn-primary disabled" %>
+                            <a><span>Trạng thái: </span>Đang chờ duyệt hồ sơ</a>
+                        <%end%>
+                    </div>
+                    <div class='employer_date'>
+                        <a><span>Ngày đăng kí: </span><%=current_employer.created_at.strftime("%B %d, %Y")%></a>
+                    </div>
+                    <div class='employer_plan'>
+                        <a><span>Gói đăng kí: </span><%=current_employer.plan%></a>
+                    </div>
+                    <div class='employer_post'>
+                        <%if find_job_remain_of_employer(current_employer) == -1%>
+                            <a><span>Số tin đăng còn lại hôm nay: </span>Không giới hạn</a>
+                        <%else%>
+                            <a><span>Số tin đăng còn lại hôm nay: </span><%=find_job_remain_of_employer(current_employer).to_s%></a>
                         <%end%>
                     </div>
                 </div>
             </div>
-
-            <div class="employer_tab_link">
-                <ul class="nav">
-                    <li class="nav-item">
-                        <%if @tab_id == "default" || @tab_id == "EmployerCompanyID"%>
-                            <%active = "active"%>
-                        <%else%> 
-                            <%active = ""%>
-                        <%end%>                                 
-                        <a class="nav-link <%=active%>" href="<%=employer_path(current_employer, tab_id: 'EmployerCompanyID')%>"><i class="material-icons-outlined">business</i>Công ty</a>
-                    </li>
-                    <%if @company_of_employer.present?%>
-                        <li class="nav-item">
-                            <%if @tab_id == "EmployerJobID"%>
-                                <%active = "active"%>
-                            <%else%> 
-                                <%active = ""%>
-                            <%end%>                                     
-                            <a class="nav-link <%=active%>" href="<%=employer_path(current_employer, tab_id: 'EmployerJobID')%>"><i class="material-icons-outlined">work_outline</i>Tin tuyển dụng <span><%= convert_number_to_human(@company_job_of_employer.total_count)%><span></a>
-                        </li>
+            <div class='col-sm-6'>
+                <div class='employer_new_job'>
+                    <%if current_employer.approved && find_company_of_employer(current_employer) && find_job_remain_of_employer(current_employer) != 0%>
+                        <%= link_to 'Đăng tin tuyển dụng miễn phí', new_company_job_path, method: :get, class: "btn btn-primary" %>
+                    <%else%>
+                        <%= link_to 'Đăng tin tuyển dụng miễn phí', new_company_job_path, method: :get, class: "btn btn-primary disabled" %>
                     <%end%>
-
-                    <li class="nav-item">
-                        <%if @tab_id == "EmployerSearchProfileID"%>
-                            <%active = "active"%>
-                        <%else%> 
-                            <%active = ""%>
-                        <%end%>                                     
-                        <a class="nav-link <%=active%>" href="<%=employer_path(current_employer, tab_id: 'EmployerSearchProfileID')%>"><i class="material-icons-outlined">find_in_page</i>Tìm kiếm hồ sơ ứng viên </a>
-                    </li>
-
-                    <li class="nav-item">
-                        <%if @tab_id == "EmployerPlanID"%>
-                            <%active = "active"%>
-                        <%else%> 
-                            <%active = ""%>
-                        <%end%>                                     
-                        <a class="nav-link <%=active%>" href="<%=employer_path(current_employer, tab_id: 'EmployerPlanID')%>"><i class="material-icons-outlined">next_plan</i>Nâng cấp gói tuyển dụng </a>
-                    </li>
-
-                    <li class="nav-item">
-                        <%if @tab_id == "EmployerNotificationID"%>
-                            <%active = "active"%>
-                        <%else%> 
-                            <%active = ""%>
-                        <%end%>                                     
-                        <a class="nav-link <%=active%>" href="<%=employer_path(current_employer, tab_id: 'EmployerNotificationID')%>"><i class="material-icons-outlined">notifications</i>Thông báo <span><%= convert_number_to_human(current_employer.employer_notifications.count)%><span> </a>
-                    </li>
-                </ul>
+                </div>
             </div>
+        </div>
 
-            <%if current_employer.approved?%>
-                <div class="employer_tab_content">
-                    <%if @tab_id == "default" || @tab_id == "EmployerCompanyID"%>
-                        <div class='employer_company_tab'>
-                            <div class="employer_company">
-                                <%if @company_of_employer.present?%>
-                                    <div class="row">
-                                        <div class="col-sm-3">
-                                            <%= render @company_of_employer%>
-                                            
-                                            <div class="employer_company_edit">
-                                                <a><%= link_to '<button type="submit"> Chỉnh sửa <i class="material-icons-outlined">border_color</i></button>'.html_safe, edit_company_path(@company_of_employer, :is_edit => true) %></a>
-                                            </div>
-                                        </div>
-                                    </div>
-                                <%else%>
-                                    <div class="employer_company_not_found_block">
-                                        <div class="employer_company_not_found_icon">
-                                            <i class="material-icons">business</i>
-                                        </div>
-                                        <div class="employer_company_not_found">
-                                            <span>Rất tiếc, hiện tại công ty của bạn chưa có trên cơ sở dữ liệu của chúng tôi, bạn có thể dễ dàng tạo công ty và bắt đầu đăng tin tuyển dụng bằng các bước dưới đây</span>
-                                        </div>
-                                        <div class="employer_company_not_found_action">
-                                            <div class="employer_company_button">
-                                                <%= link_to '<button type="submit"> <i class="material-icons-outlined">edit</i> <span> Thêm công ty của tôi</span> </button>'.html_safe, new_company_path%>
-                                            </div>
-                                        </div>
-                                    </div>
-                                <%end%>
+        <%if current_employer.approved?%>
+            <div class='employer_company_index'>
+                <div class="employer_company">
+                    <%if @company_of_employer.present?%>
+                        <div class="employer_company_title">
+                            <h3>Công ty hiện tại</h3>
+                        </div>
+                        <div class="row">
+                            <div class="col-sm-3">
+                                <%= render @company_of_employer%>
+                                
+                                <div class="employer_company_edit">
+                                    <a><%= link_to '<button type="submit"> Chỉnh sửa <i class="material-icons-outlined">border_color</i></button>'.html_safe, edit_company_path(@company_of_employer, :is_edit => true) %></a>
+                                </div>
+                            </div>
+                        </div>
+                    <%else%>
+                        <div class="employer_company_not_found_block">
+                            <div class="employer_company_not_found_icon">
+                                <i class="material-icons">business</i>
+                            </div>
+                            <div class="employer_company_not_found">
+                                <span>Rất tiếc, hiện tại công ty của bạn chưa có trên cơ sở dữ liệu của chúng tôi, bạn có thể dễ dàng tạo công ty và bắt đầu đăng tin tuyển dụng bằng các bước dưới đây</span>
+                            </div>
+                            <div class="employer_company_not_found_action">
+                                <div class="employer_company_button">
+                                    <%= link_to '<button type="submit"> <i class="material-icons-outlined">edit</i> <span> Thêm công ty của tôi</span> </button>'.html_safe, new_company_path%>
+                                </div>
                             </div>
                         </div>
                     <%end%>
-
-                    <%if @tab_id == "EmployerJobID"%>
-                        <div class="employer_job_tab">
-                            <%if @company_job_of_employer.total_count > 0%>
-                                <div class="employer_job_employer">
-                                    <div class="table-responsive">
-                                        <table class="table text-center table-hover">
-                                            <thead>
-                                                <tr>
-                                                    <th style="width: 2%;">No.</th>
-                                                    <th style="width: 33%;">Title</th>
-                                                    <th style="width: 8%;">Địa điểm</th>
-                                                    <th style="width: 10%;">Ngày đăng tuyển</th>
-                                                    <th style="width: 10%;">Ngày hết hạn</th>
-                                                    <th style="width: 8%;">Lượt xem</th>
-                                                    <th style="width: 8%;">Lượt ứng tuyển</th>
-                                                </tr>
-                                            </thead>
-                                            <tbody>
-                                                <%@company_job_of_employer.each_with_index do |company_job, index|%>
-                                                    <tr>
-                                                        <td><%=index + 1%></td>
-                                                        <th scope="row" class="text-start"><%=link_to (company_job.title), employer_job_path(:id => company_job.id)%></th>
-                                                        <td><%=find_job_location(company_job.location)%></td>
-                                                        <td><%=company_job.created_at.strftime("%B %d, %Y")%></td>
-                                                        <td><%=company_job.end_date.strftime("%B %d, %Y")%></td>
-                                                        <td><%=company_job.view_count.to_i%></td>
-                                                        <td><%=company_job.company_apply_jobs.count%></td>
-                                                    </tr>
-                                                <%end%>
-                                            </tbody>
-                                        </table>
-                                    </div>
-                                    <%= paginate @company_job_of_employer, window: 2%>
-                                </div>
-                            <%else%>
-                                <div class="employer_job_not_found_block">
-                                    <div class="employer_job_not_found_icon">
-                                        <i class="material-icons">work_outline</i>
-                                    </div>
-                                    <div class="employer_job_not_found">
-                                        <span>Hiện tại bạn chưa có việc làm nào đang tuyển dụng</span>
-                                    </div>
-                                    <div class="employer_job_not_found_action">
-                                        <div class="employer_job_button">
-                                            <%= link_to '<button type="submit"> <i class="material-icons-outlined">edit</i> <span> Đăng tin tuyển dụng</span> </button>'.html_safe, new_company_job_path%>
-                                        </div>
-                                    </div>
-                                </div>
-                            <%end%>
-                        </div>
-                    <%end%>
-
-                    <%if @tab_id == "EmployerSearchProfileID"%>
-                        <div class="employer_search_profile_tab">
-                            <%if auth_find_personal_plan_of_employer(current_employer)%>
-                            <%else%>
-                                <div class="employer_search_profile_not_found_block">
-                                    <div class="employer_search_profile_not_found_icon">
-                                        <i class="material-icons">find_in_page</i>
-                                    </div>
-                                    <div class="employer_search_profile_not_found">
-                                        <span>Tính năng này hiện tại không khả dụng với gói tuyển dụng của bạn</span>
-                                    </div>
-                                    <div class="employer_search_profile_not_found_action">
-                                        <div class="employer_search_profile_button">
-                                            <%= link_to '<button type="submit"> <span> Đổi gói khác</span> </button>'.html_safe, employer_plan_path%>
-                                        </div>
-                                    </div>
-                                </div>
-                            <%end%>
-                        </div>
-                    <%end%>
-
-                    <%if @tab_id == "EmployerPlanID"%>
-                        <div class="row">
-                            <%if current_employer.plan == "F-Eco"%>
-                                <div class="col-lg-4 col-md-12 mb-4">
-                                    <div class="card card2 h-100">
-                                        <div class="card-body">
-                                            <h5 class="card-title">F-Eco</h5>
-                                            <small class='text-muted'>Tiết kiệm chi phí</small>
-                                            <br><br>
-                                            <span class="h2">499.000đ</span>/tháng <mark>-20%</mark>
-                                            <br><br>
-                                            <div class="d-grid my-3">
-                                                <%= link_to '<button class="btn btn-outline-dark btn-block">Đổi gói khác</button>'.html_safe, employer_plan_path %>
-                                            </div>
-                                            <ul>
-                                                <li>Đăng tin không giới hạn</li>
-                                                <li>Hiển thị nổi bật trong kết quả tìm kiếm</li>
-                                                <li>Hỗ trợ khách hàng 24/7</li>
-                                            </ul>
-                                        </div>
-                                    </div>
-                                </div>
-                            <%elsif current_employer.plan == "F-Pro"%>
-                                <div class="col-lg-4 col-md-12 mb-4">
-                                    <div class="card card3 h-100">
-                                        <div class="card-body">
-                                            <h5 class="card-title">F-Pro</h5>
-                                            <small class='text-muted'>Hiệu quả cao nhất</small>
-                                            <br><br>
-                                                <span class="h2">999.000đ</span>/tháng <mark>-25%</mark>
-                                            <br><br>
-                                            <div class="d-grid my-3">
-                                                <%= link_to '<button class="btn btn-outline-dark btn-block">Đổi gói khác</button>'.html_safe, employer_plan_path %>
-                                            </div>
-                                            <ul>
-                                                <li>Tiếp cận hồ sơ ứng viên</li>
-                                                <li>Hiển thị nổi bật trong kết quả tìm kiếm</li>
-                                                <li>Hỗ trợ khách hàng 24/7</li>
-                                            </ul>
-                                        </div>
-                                    </div>
-                                </div>
-                            <%else%>
-                                <div class="col-lg-4 col-md-12 mb-4">
-                                    <div class="card card1 h-100">
-                                        <div class="card-body">
-                                            <h5 class="card-title">F-Basic</h5>
-                                                <small class='text-muted'>Được sử dụng nhiều nhất</small>
-                                            <br><br>
-                                                <span class="h2">0đ</span>/tháng
-                                            <br><br>
-                                            <div class="d-grid my-3">
-                                                <%= link_to '<button class="btn btn-outline-dark btn-block">Miễn phí</button>'.html_safe, employer_plan_path %>
-                                            </div>
-                                            <ul>
-                                                <li>Miễn phí 1 tin đăng/ngày không giới hạn</li>
-                                                <li>Dịch vụ đăng tin cơ bản</li>
-                                                <li>Hỗ trợ khách hàng 24/7</li>
-                                            </ul>
-                                        </div>
-                                    </div>
-                                </div>
-                            <%end%>
-                        </div> 
-                    <%end%>
-
-                    <%if @tab_id == "EmployerNotificationID"%>
-                        <div class="employer_notification_tab">
-                            <%if current_employer.employer_notifications.count > 0 %>
-                                <%current_employer.employer_notifications.each do |employer_notification|%>
-                                    <%=render employer_notification%>
-                                <%end%>
-                            <%else%>
-                                <div class="employer_notification_not_found_block">
-                                    <div class="employer_notification_not_found_icon">
-                                        <i class="material-icons">notifications_none</i>
-                                    </div>
-                                    <div class="employer_notification_not_found">
-                                        <span>Bạn chưa có thông báo mới nào</span>
-                                    </div>
-                                </div>
-                            <%end%>
-                        </div>
-                    <%end%>
                 </div>
-            <%else%>
-                <div class='employer_confim'>
-                    <div class='employer_confirm_label'>
-                        <h3>Tài khoản nhà tuyển dụng của bạn đang trong quá trình xác nhận thông tin, vui lòng đăng nhập lại sau 30p-1h ...</h3>
-                    </div>
-                    <div class='employer_confirm_goback'>
-                        <%= link_to '<button type="submit"><i class="material-icons-outlined">arrow_back</i><span>Quay trở lại trang chủ</span></button>'.html_safe, root_path %>
-                    </div>
-
-                    <div class="employer_confirm_img">
-                        <%=image_tag("others/employer_processing.jpg")%>
-                    </div>
-                </div>
-            <%end%>
-        </div>
+            </div>
+        <%else%>
+            <%= render "employers/approving"%>
+        <%end%>
     </div>
-<%end%>
+</div>

@@ -88,6 +88,16 @@ class UsersController < ApplicationController
     def profile
         @user = current_user
     end
+
+    def preview
+        # for preview mode
+        @user = User.friendly.find params[:id]
+        
+        respond_to do |format|
+            format.html {}
+            format.js
+        end
+    end
     
     private
     def user_params

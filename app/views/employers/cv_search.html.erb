@@ -1,0 +1,174 @@
+<div class="employer_cv_search_index_block">
+    <div class="container">
+        <%=form_tag employer_cv_search_path, :method => "get" do%>
+            <div class="employer_cv_searched_input">
+                <div class='row'>
+                    <div class='col-sm-10 padding_right_customize'>
+                        <div class="employer_cv_searched_what">
+                            <i class="material-icons-outlined">search</i>
+                            <%= text_field_tag :search, params[:search], required: true, class: 'form-control', placeholder: "Tìm kiếm theo chức danh, kinh nghiệm, kĩ năng ..."%>
+                        </div>
+                    </div>
+                    
+                    <div class='col-sm-2'>
+                        <div class="employer_cv_searched_button">
+                            <%= button_to "", form_class: "searched_button", :name => nil do%>
+                                <a>Tìm kiếm</a>
+                            <%end%> 
+                        </div>
+                    </div>
+                </div>
+            </div>
+        <%end%>
+    </div>
+
+    <div class="container">
+        <div class="employer_cv_filter_container" id="employer_cv_filter">
+            <%= form_for :filter, url: employer_cv_search_path, method: :get, remote: true do |f| %>
+                <div class="employer_cv_filter_block">
+                    <div class="row">
+                        <div class="col-sm-2">
+                            <div class="employer_cv_filter_input">
+                                <%= f.select(:address, options_for_select(['Hà Nội','TP Hồ Chí Minh','Đà Nẵng','An Giang','Bà Rịa Vũng Tàu','Bạc Liêu','Bắc Kạn','Bắc Giang',
+															'Bắc Ninh','Bến Tre','Bình Dương','Bình Định','Bình Phước',
+															'Bình Thuận','Cà Mau','Cao Bằng','Cần Thơ','Đắk Lắk','Đắk Nông','Điện Biên',
+															'Đồng Nai','Đồng Tháp','Gia Lai','Hà Giang','Hà Nam','Hà Tây','Hà Tĩnh',
+															'Hải Dương','Hải Phòng','Hòa Bình','Hậu Giang','Hưng Yên','Khánh Hòa',
+															'Kiên Giang','Kon Tum','Lai Châu','Lào Cai',
+															'Lạng Sơn','Lâm Đồng','Long An','Nam Định','Nghệ An',
+															'Ninh Bình','Ninh Thuận','Phú Thọ','Phú Yên','Quảng Bình',
+															'Quảng Nam','Quảng Ngãi','Quảng Ninh','Quảng Trị',
+															'Sóc Trăng','Sơn La','Tây Ninh','Thái Bình','Thái Nguyên' ,
+															'Thanh Hóa','Thừa Thiên Huế','Tiền Giang','Trà Vinh',
+															'Tuyên Quang','Vĩnh Long','Vĩnh Phúc','Yên Bái']), {include_blank: false, :prompt => "Tất cả địa điểm"}, { :class => 'form-select'})  %>
+                            </div>
+                        </div>
+
+                        <div class="col-sm-2">
+                            <div class="employer_cv_filter_input">
+                                <%= f.select(:salary, options_for_select(['1Tr - 5Tr', 
+                                                                        '5Tr - 10Tr', 
+                                                                        '10Tr - 15Tr', 
+                                                                        '15Tr - 20Tr', 
+                                                                        '20Tr - 25Tr', 
+                                                                        '25Tr - 30Tr', 
+                                                                        '30Tr - 35Tr', 
+                                                                        '40Tr - 45Tr', 
+                                                                        '45Tr - 50Tr', 
+                                                                        '50Tr - 55Tr', 
+                                                                        '55Tr - 60Tr', 
+                                                                        '60Tr - 65Tr', 
+                                                                        '65Tr - 70Tr', 
+                                                                        '70Tr - 75Tr', 
+                                                                        '75Tr - 80Tr', 
+                                                                        '80Tr - 85Tr', 
+                                                                        '85Tr - 90Tr', 
+                                                                        '90Tr - 95Tr', 
+                                                                        '95Tr - 100Tr', 
+                                                                        'hơn 100Tr']), {include_blank: false, :prompt => "Tất cả mức lương"}, { :class => 'form-select'})  %>
+                            </div>
+                        </div>
+
+                        <div class="col-sm-2">
+                            <div class="employer_cv_filter_input">
+                                <%= f.select(:level, options_for_select(['Nhân viên', 
+                                                                        'Thực tập sinh', 
+                                                                        'Mới tốt nghiệp', 
+                                                                        'Trưởng nhóm',
+                                                                        'Quản lý', 
+                                                                        'Quản lý cấp cao',
+                                                                        'Giám đốc']), 
+                                                                        {include_blank: false, :prompt => "Tất cả cấp bậc"}, 
+                                                                        { :class => 'form-select'})  %>
+                            </div>
+                        </div>
+
+                        <div class="col-sm-2">
+                            <div class="employer_cv_filter_input">
+                                <%= f.select(:post_date, options_for_select(['1 ngày qua', '3 ngày qua', '7 ngày qua', '14 ngày qua', '30 ngày qua']), 
+                                                                                {include_blank: false, :prompt => "Tất cả thời gian"}, 
+                                                                                { :class => 'form-select'})  %>
+                            </div>
+                        </div>
+
+                        <div class="col-sm-2">
+                            <div class="employer_cv_filter_input">
+                                <%= f.select(:experience, options_for_select(['Dưới 1 năm', 
+                                                                            '1 năm', 
+                                                                            '2 năm', 
+                                                                            '3 năm', 
+                                                                            "5 năm",
+                                                                            "Trên 5 năm"]),
+                                                                            {include_blank: false, :prompt => "Tất cả kinh nghiệm"},
+                                                                            { :class => 'form-select'})  %>
+                            </div>
+                        </div>
+
+                        <%= f.hidden_field:search, :value => params[:search]%>
+                        <%= f.hidden_field:location, :value => params[:location]%>
+                        
+                        <div class="col-sm-2">
+                            <div class="employer_cv_filter_submit">
+                                <%= button_to "", :class => 'form-control', :name => nil do%>
+                                    <i class="material-icons-outlined">filter_alt</i>
+                                    <a>Áp dụng bộ lọc</a>
+                                <%end%>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            <%end%>        
+            <button class="filter_button_off" onclick= "myFunctionFilterOff()"><i class="material-icons-outlined">expand_less</i> <a>Ẩn tìm kiếm nâng cao</a> </button>
+        </div>
+
+        <button class="filter_button_on" id="filter_button_on" onclick= "myFunctionFilter()"><i class="material-icons-outlined">expand_more</i> <a>Tìm kiếm nâng cao</a> </button>
+
+        <script>
+            function myFunctionFilter() {
+                var x = document.getElementById("employer_cv_filter");
+                var y = document.getElementById("filter_button_on");
+                if (x.style.display == "block") 
+                {
+                    x.style.display = "none";
+                } 
+                else 
+                {
+                    x.style.display = "block";
+                }
+
+                if (y.style.display == "none") 
+                {
+                    y.style.display = "block";
+                } 
+                else 
+                {
+                    y.style.display = "none";
+                }
+            }
+
+            function myFunctionFilterOff() {
+                var x = document.getElementById("employer_cv_filter");
+                var y = document.getElementById("filter_button_on");
+                if (x.style.display == "none") 
+                {
+                    x.style.display = "block";
+                } 
+                else 
+                {
+                    x.style.display = "none";
+                }
+
+                if (y.style.display == "block") 
+                {
+                    y.style.display = "none";
+                } 
+                else 
+                {
+                    y.style.display = "block";
+                }
+            }
+        </script>
+        
+        <%= render :partial => 'employers/cv_search', locals: {cv_searched: @cv_searchs, :is_all => false} %>
+    </div>
+</div>

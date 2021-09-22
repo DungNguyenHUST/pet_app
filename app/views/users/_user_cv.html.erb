@@ -1,0 +1,50 @@
+<div class="user_cv_block">
+    <div class="user_preview_cv_btn">
+        <%= link_to content_tag(:span, ""), user_preview_path(:id => user.id), remote: true %>
+    </div>
+
+    <%if user.avatar?%>
+        <div class="user_cv_avatar">
+            <%= image_tag(user.avatar.thumb.url)%>
+        </div>
+    <%else%>
+        <div class="user_cv_avatar">
+            <%= image_tag("defaults/user_avatar_default.png")%>
+        </div>
+    <%end%>
+
+    <div class="user_cv_right">
+        <div class="user_cv_name">
+            <a><%=user.name%></a>
+        </div>
+
+        <div class="user_cv_address">
+            <a><%=user.address%></a>
+        </div>
+
+        <%user.user_experiences.each do |exp|%>
+            <div class="user_cv_section">
+                <i class="material-icons-outlined">work_outline</i>
+                <a><%=exp.job_level%> - <%=exp.company_name%></a>
+            </div>
+        <%end%>
+
+        <%user.user_educations.each do |edu|%>
+            <div class="user_cv_section">
+                <i class="material-icons-outlined">school</i>
+                <a><%=edu.school_name%> - <%=edu.cert_type%></a>
+            </div>
+        <%end%>
+
+        <%user.user_skills.each do |skill|%>
+            <div class="user_cv_section">
+                <i class="material-icons-outlined">badge</i>
+                <a><%=skill.skill_name%> - <%=skill.skill_level%></a>
+            </div>
+        <%end%>
+
+        <div class="user_cv_update">
+            <a>Cập nhật <%=time_ago_in_words(user.updated_at)%></a>
+        </div>
+    </div>
+</div>

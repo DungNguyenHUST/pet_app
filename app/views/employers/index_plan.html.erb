@@ -1,0 +1,70 @@
+<div class="container">
+    <div class="employer_plan_index">
+        <div class="employer_plan_index_title">
+            <h3>Gói dịch vụ bạn đang sử dụng</h3>
+        </div>
+        <div class="row">
+            <%if current_employer.plan == "F-Eco"%>
+                <div class="col-lg-4 col-md-12 mb-4">
+                    <div class="card card2 h-100">
+                        <div class="card-body">
+                            <h5 class="card-title">F-Eco</h5>
+                            <small class='text-muted'>Tiết kiệm chi phí</small>
+                            <br><br>
+                            <span class="h2">499.000đ</span>/tháng <mark>-20%</mark>
+                            <br><br>
+                            <div class="d-grid my-3">
+                                <%= link_to '<button class="btn btn-outline-dark btn-block">Đổi gói khác</button>'.html_safe, employer_plan_path %>
+                            </div>
+                            <ul>
+                                <li>Miễn phí tin đăng không giới hạn</li>
+                                <li>Hiển thị nổi bật trong kết quả tìm kiếm</li>
+                                <li>Hỗ trợ khách hàng 24/7</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            <%elsif current_employer.plan == "F-Pro"%>
+                <div class="col-lg-4 col-md-12 mb-4">
+                    <div class="card card3 h-100">
+                        <div class="card-body">
+                            <h5 class="card-title">F-Pro</h5>
+                            <small class='text-muted'>Hiệu quả cao nhất</small>
+                            <br><br>
+                                <span class="h2">999.000đ</span>/tháng <mark>-25%</mark>
+                            <br><br>
+                            <div class="d-grid my-3">
+                                <%= link_to '<button class="btn btn-outline-dark btn-block">Đổi gói khác</button>'.html_safe, employer_plan_path %>
+                            </div>
+                            <ul>
+                                <li>Tiếp cận hồ sơ ứng viên</li>
+                                <li>Hiển thị nổi bật trong kết quả tìm kiếm</li>
+                                <li>Hỗ trợ khách hàng 24/7</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            <%else%>
+                <div class="col-lg-4 col-md-12 mb-4">
+                    <div class="card card1 h-100">
+                        <div class="card-body">
+                            <h5 class="card-title">F-Basic</h5>
+                                <small class='text-muted'>Được sử dụng nhiều nhất</small>
+                            <br><br>
+                                <span class="h2">0đ</span>/tháng
+                            <br><br>
+                            <div class="d-grid my-3">
+                                <%= link_to '<button class="btn btn-outline-dark btn-block">Miễn phí</button>'.html_safe, employer_plan_path %>
+                            </div>
+                            <ul>
+                                <li>Miễn phí tin đăng không giới hạn</li>
+                                <li>Dịch vụ đăng tin cơ bản</li>
+                                <li>Hỗ trợ khách hàng 24/7</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            <%end%>
+        </div> 
+    </div>
+</div>

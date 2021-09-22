@@ -84,9 +84,10 @@
 		<%end%>
 
 		<%if employer_signed_in?%>
-			<a href="<%=employer_path(current_employer, tab_id: 'EmployerJobID') %>"> Tin tuyển dụng </a>
-			<a href="<%=employer_path(current_employer, tab_id: 'EmployerSearchProfileID') %>"> Tìm kiếm hồ sơ </a>
-			<a href="<%=employer_wellcome_path %>">Báo giá dịch vụ</a>
+			<a href="<%=employer_index_job_path %>"> Tin tuyển dụng </a>
+			<a href="<%=employer_index_apply_path %>"> Hồ sơ ứng tuyển </a>
+			<a href="<%=employer_index_cv_path %>"> Tìm kiếm hồ sơ </a>
+			<a href="<%=employer_index_plan_path %>">Đổi gói dịch vụ</a>
 			<a href="https://www.firework.vn/posts/contact-us">Liên hệ </a>
 		<%else%>
 			<a href="<%=jobs_path %>">Việc làm </a>
@@ -185,7 +186,7 @@
 			<%elsif employer_signed_in?%>
 				<div class="nav_employer">
 					<div class="employer_notification">						
-						<%= link_to employer_path(current_employer, :tab_id => "NotificationID") do %>
+						<%= link_to employer_employer_notifications_path(current_employer) do %>
 							<%if current_employer.employer_notifications.count < 10%>
 								<i class="material-icons-outlined">notifications</i><span><%=current_employer.employer_notifications.count%></span>
 							<%else%>

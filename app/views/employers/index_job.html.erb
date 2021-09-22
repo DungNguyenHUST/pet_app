@@ -1,0 +1,58 @@
+<div class="container">
+    <div class="row">
+        <div class="col-sm-12">
+            <div class="employer_job_index">
+                <%if @company_job_of_employer.total_count > 0%>
+                    <div class="employer_job_index_title">
+                        <h3>Quản lý tin đăng</h3>
+                    </div>
+                    <div class="employer_job_employer">
+                        <div class="table-responsive">
+                            <table class="table text-center table-hover">
+                                <thead>
+                                    <tr>
+                                        <th style="width: 2%;">No.</th>
+                                        <th style="width: 33%;">Title</th>
+                                        <th style="width: 8%;">Địa điểm</th>
+                                        <th style="width: 10%;">Ngày đăng tuyển</th>
+                                        <th style="width: 10%;">Ngày hết hạn</th>
+                                        <th style="width: 8%;">Lượt xem</th>
+                                        <th style="width: 8%;">Lượt ứng tuyển</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <%@company_job_of_employer.each_with_index do |company_job, index|%>
+                                        <tr>
+                                            <td><%=index + 1%></td>
+                                            <th scope="row" class="text-start"><%=link_to (company_job.title), employer_job_path(:id => company_job.id)%></th>
+                                            <td><%=find_job_location(company_job.location)%></td>
+                                            <td><%=company_job.created_at.strftime("%B %d, %Y")%></td>
+                                            <td><%=company_job.end_date.strftime("%B %d, %Y")%></td>
+                                            <td><%=company_job.view_count.to_i%></td>
+                                            <td><%=company_job.company_apply_jobs.count%></td>
+                                        </tr>
+                                    <%end%>
+                                </tbody>
+                            </table>
+                        </div>
+                        <%= paginate @company_job_of_employer, window: 2%>
+                    </div>
+                <%else%>
+                    <div class="employer_job_not_found_block">
+                        <div class="employer_job_not_found_icon">
+                            <i class="material-icons">work_outline</i>
+                        </div>
+                        <div class="employer_job_not_found">
+                            <span>Hiện tại bạn chưa có việc làm nào đang tuyển dụng</span>
+                        </div>
+                        <div class="employer_job_not_found_action">
+                            <div class="employer_job_button">
+                                <%= link_to '<button type="submit"> <i class="material-icons-outlined">edit</i> <span> Đăng tin tuyển dụng miễn phí</span> </button>'.html_safe, new_company_job_path%>
+                            </div>
+                        </div>
+                    </div>
+                <%end%>
+            </div>
+        </div>
+    </div>
+</div>

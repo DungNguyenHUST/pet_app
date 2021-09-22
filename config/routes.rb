@@ -28,11 +28,19 @@ Rails.application.routes.draw do
     resources :user_adwards
   end
   get 'user_profile' => 'users#profile'
+  get 'user_preview' => 'users#preview'
 
-  resources :employers
+  resources :employers do
+    resources :employer_notifications
+  end
   get 'employer_wellcome' => 'employers#wellcome'
   get 'employer_job' => 'employers#job'
   get 'employer_plan' => 'employers#plan'
+  get 'employer_index_job' => 'employers#index_job'
+  get 'employer_index_apply' => 'employers#index_apply'
+  get 'employer_index_cv' => 'employers#index_cv'
+  get 'employer_index_plan' => 'employers#index_plan'
+  get 'employer_cv_search' => 'employers#cv_search'
 
   resources :admins
 

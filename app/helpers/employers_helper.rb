@@ -17,7 +17,7 @@ module EmployersHelper
     def find_job_remain_of_employer(employer)
         job_remain = -1
         if employer
-            if employer.plan == "F-Eco" || employer.plan == "F-Pro"
+            if employer.plan == "F-Basic" || employer.plan == "F-Eco" || employer.plan == "F-Pro"
                 job_remain = -1
             else
                 company_job = CompanyJob.where(:created_at => Time.zone.now.beginning_of_day..Time.zone.now.end_of_day)

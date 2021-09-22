@@ -2,8 +2,8 @@ class EmployerNotificationsController < ApplicationController
 	before_action :require_employer_login, only: [:index, :show, :edit, :update, :destroy]
 
 	def index 
-		@employers = Employer.all
-		@employer_notifications = EmployerNotification.all
+		@employer = current_employer
+		@employer_notifications = @employer.employer_notifications
 	end
 
 	def new

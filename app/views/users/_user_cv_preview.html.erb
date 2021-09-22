@@ -1,0 +1,141 @@
+<div class="user_preview_cv_block">
+    <div class="user_preview_cv_detail">
+        <div class="user_preview_cv_wall">
+            <%if user.wall_picture?%>
+                <%= image_tag user.wall_picture.url %>
+            <%else%>
+                <%= image_tag "defaults/user_wall_default.jpeg"%>
+            <%end%>
+        </div>
+        <div class="user_preview_cv_avatar">
+            <%if user.avatar?%>
+                <%= image_tag user.avatar.url %>
+            <%else%>
+                <%= image_tag "defaults/user_avatar_default.png"%>
+            <%end%>
+        </div>
+        <div class="user_preview_cv_name">
+            <h3><%=user.name.upcase%></h3>
+        </div>
+        <div class="user_preview_cv_short">
+            <%if user.address%>
+                <a><i class="material-icons-outlined">room</i><%=user.address%></a>
+            <%else%>
+                <a><i class="material-icons-outlined">room</i>---</a>
+            <%end%>
+            <%if user.birthday%>
+                <a><i class="material-icons-outlined">cake</i><%=age_of_human(user.birthday)%> tuổi</a>
+            <%else%>
+                <a><i class="material-icons-outlined">cake</i>---</a>
+            <%end%>
+        </div>
+    </div>
+
+    <%if user.user_educations.count > 0%>
+        <div class="user_preview_cv_edu">
+            <%user.user_educations.each do |user_education|%>
+                <div class="user_preview_cv_edu_section">
+                    <a><%=user_education.cert_level%> - <%=user_education.cert_type%></a>
+                </div>
+
+                <div class="user_preview_cv_edu_section">
+                    <span><%=user_education.school_level%> <%=user_education.school_name%> tại <%=user_education.school_location%></span>
+                </div>
+
+                <div class="user_preview_cv_edu_section">
+                    <%if user_education.enrolled == true%>
+                        <span><%=user_education.start_date.strftime("%m/%Y")%> - nay</span>
+                    <%else%>
+                        <span><%=user_education.start_date.strftime("%m/%Y")%> - <%=user_education.end_date.strftime("%m/%Y")%></span>
+                    <%end%>
+                </div>
+            <%end%>
+        </div>
+    <%end%>
+
+    <%if user.user_experiences.count > 0%>
+        <div class="user_preview_cv_exp">
+            <%user.user_experiences.each do |user_experience|%>
+                <div class="user_preview_cv_exp_section">
+                    <a><%=user_experience.job_level%> - <%=user_experience.company_name%></a> 
+                </div>
+
+                <div class="user_preview_cv_exp_section">
+                    <span><%=user_experience.company_location%></span>
+                </div>
+
+                <div class="user_preview_cv_exp_section">
+                    <%if user_experience.enrolled == true%>
+                        <span><%=user_experience.start_date.strftime("%m/%Y")%> - nay</span>
+                    <%else%>
+                        <span><%=user_experience.start_date.strftime("%m/%Y")%> - <%=user_experience.end_date.strftime("%m/%Y")%></span>
+                    <%end%>
+                </div>
+
+                <%if user_experience.job_summary%>
+                    <div class="user_preview_cv_exp_section">
+                        <span><%=user_experience.job_summary.html_safe%></span>
+                    </div>
+                <%end%>
+            <%end%>
+        </div>
+    <%end%>
+
+    <%if user.user_skills.count > 0%>
+        <div class="user_preview_cv_skill">
+            <%user.user_skills.each do |user_skill|%>
+                <div class="user_preview_cv_skill_section">
+                    <a><%=user_skill.skill_name%> - <%=user_skill.skill_level%></a>
+                </div>
+
+                <%if user_skill.skill_summary%>
+                    <div class="user_preview_cv_skill_section">
+                        <span><%=user_skill.skill_summary.html_safe%></span>
+                    </div>
+                <%end%>
+            <%end%>
+        </div>
+    <%end%>
+
+    <%if user.user_certificates.count > 0%>
+        <div class="user_preview_cv_certificate">
+            <%user.user_certificates.each do |user_certificate|%>
+                <div class="user_preview_cv_certificate_section">
+                    <a><%=user_certificate.cert_name%></a> 
+                </div>
+                
+                <div class="user_preview_cv_certificate_section">
+                    <span><%=user_certificate.start_date.strftime("%m/%Y")%> - <%=user_certificate.end_date.strftime("%m/%Y")%></span>
+                </div>
+
+                <%if user_certificate.cert_summary%>
+                    <div class="user_preview_cv_certificate_section">
+                        <span><%=user_certificate.cert_summary.html_safe%></span>
+                    </div>
+                <%end%>
+            <%end%>
+        </div>
+    <%end%>
+
+    <%if user.user_adwards.count > 0%>
+        <div class="user_preview_cv_adward">
+            <%user.user_adwards.each do |user_adward|%>
+                <div class="user_preview_cv_adward_section">
+                    <a><%=user_adward.adward_name%></a> 
+                </div>
+
+                <%if user_adward.receive_date%>
+                    <div class="user_preview_cv_adward_section">
+                        <span>Ngày nhận <%=user_adward.receive_date.strftime("%m/%Y")%></span>
+                    </div>
+                <%end%>
+
+                <%if user_adward.adward_summary%>
+                    <div class="user_preview_cv_adward_section">
+                        <span><%=user_adward.adward_summary.html_safe%></span>
+                    </div>
+                <%end%>
+            <%end%>
+        </div>
+    <%end%>
+</div>

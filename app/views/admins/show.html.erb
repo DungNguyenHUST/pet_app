@@ -2,11 +2,11 @@
     <div class='admin_dasboard'>
         <div class='admin_title'>
             <%if (0..12).cover? Time.now.hour %>
-                <span href="<%=admin_path(current_admin)%>">Good morning, <%=current_admin.name%>!</span>
+                <span>Good morning, <%=current_admin.name%>!</span>
             <%elsif (12..18).cover? Time.now.hour %>
-                <span href="<%=admin_path(current_admin)%>">Good afternoon, <%=current_admin.name%>!</span>
+                <span>Good afternoon, <%=current_admin.name%>!</span>
             <%elsif (18..24).cover? Time.now.hour %>
-                <span href="<%=admin_path(current_admin)%>">Good evening, <%=current_admin.name%>!</span>
+                <span>Good evening, <%=current_admin.name%>!</span>
             <%end%>
         </div>
 

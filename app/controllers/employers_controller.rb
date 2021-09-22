@@ -1,7 +1,8 @@
 class EmployersController < ApplicationController
     include EmployersHelper
     include CompaniesHelper
-    before_action :require_employer_login, only: [:index, :show, :edit, :update, :destroy, :job, :plan]
+    include ApplicationHelper
+    before_action :require_employer_login, only: [:index, :show, :edit, :update, :destroy, :job, :plan, :index_job, :index_apply, :index_cv, :cv_search]
     
     def index
         @employers = Employer.all
@@ -68,6 +69,40 @@ class EmployersController < ApplicationController
                 format.js
             end
         end
+    end
+
+    def index_job
+        @employer = current_employer
+        @company_of_employer = find_company_of_employer(@employer)
+        @company_job_of_employer = find_job_of_employer(@employer).order('created_at DESC')
+        @company_job_of_employer = Kaminari.paginate_array(@company_job_of_employer).page(params[:page]).per(20)
+    end
+
+    def index_apply
+        @employer = current_employer
+        @company_of_employer = find_company_of_employer(@employer)
+        @company_job_of_employer = find_job_of_employer(@employer).order('created_at DESC')
+        @company_job_of_employer = Kaminari.paginate_array(@company_job_of_employer).page(params[:page]).per(20)
+    end
+
+    def index_cv
+        @employer = current_employer
+        @user_cvs = User.all.order('updated_at DESC').page(params[:page]).per(12)
+    end
+
+    def index_plan
+        @employer = current_employer
+    end
+
+    def cv_search
+        @user_cvs = User.all.order('created_at DESC').page(params[:page]).per(12)
+
+        @is_cv_searched = false
+		if(params.has_key?(:search))
+            @is_cv_searched = true
+            @search = convert_vie_to_eng(params[:search])
+			@cv_searchs = User.friendly.search(@search).order('name ASC').page(params[:page]).per(12)
+		end
     end
     
     private
