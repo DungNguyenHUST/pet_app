@@ -1,10 +1,13 @@
 <div class="user_profile_form">
     <%= form_for(@user, remote: true) do |f| %>
+        <div class="user_profile_title_sub">
+            <a>Lưu ý: Mục có dấu <span>'*'</span> là bắt buộc</a>
+        </div>
         <div class="row">
             <div class="col-sm-6">
                 <div class="user_profile_content">
                     <div class="user_profile_label">
-                        <a><%= f.label :name, "Họ và tên", class: "user_profile_label_name" %></a>
+                        <a><%= f.label :name, "Họ và tên", class: "user_profile_label_name" %><span>*</span></a>
                     </div>
 
                     <div class="user_profile_input">
@@ -14,7 +17,7 @@
                 
                 <div class="user_profile_content">
                     <div class="user_profile_label">
-                        <a><%= f.label :address, "Địa chỉ", class: "user_profile_label_name" %></a>
+                        <a><%= f.label :address, "Địa chỉ", class: "user_profile_label_name" %><span>*</span></a>
                     </div>
 
                     <div class="user_profile_input">
@@ -24,7 +27,7 @@
 
                 <div class="user_profile_content">
                     <div class="user_profile_label">
-                        <a><%= f.label :birthday, "Ngày sinh nhật", class: "user_profile_label_name" %></a>
+                        <a><%= f.label :birthday, "Ngày sinh nhật", class: "user_profile_label_name" %><span>*</span></a>
                     </div>
 
                     <div class="user_profile_input">
@@ -36,7 +39,7 @@
             <div class="col-sm-6">
                 <div class="user_profile_content">
                     <div class="user_profile_label">
-                        <a><%= f.label :avatar, "Ảnh đại diện(ảnh kích thước nhỏ)", class: "user_profile_label_name" %></a>
+                        <a><%= f.label :avatar, "Ảnh đại diện(ảnh kích thước nhỏ)", class: "user_profile_label_name" %><span>*</span></a>
                     </div>
 
                     <div class="user_profile_input">
@@ -46,7 +49,7 @@
 
                 <div class="user_profile_content">
                     <div class="user_profile_label">
-                        <a><%= f.label :wall_picture, "Ảnh bìa(ảnh kích thước lớn)", class: "user_profile_label_name" %></a>
+                        <a><%= f.label :wall_picture, "Ảnh bìa(ảnh kích thước lớn)", class: "user_profile_label_name" %><span>*</span></a>
                     </div>
 
                     <div class="user_profile_input">

@@ -1,10 +1,13 @@
 <div class="user_profile_form">
     <%= form_for([@user, user_experience], remote: true) do |f| %> 
+        <div class="user_profile_title_sub">
+            <a>Lưu ý: Mục có dấu <span>'*'</span> là bắt buộc</a>
+        </div>
         <div class="row">
             <div class="col-sm-6">
                 <div class="user_profile_content">
                     <div class="user_profile_label">
-                        <a><%= f.label :job_level, "Chức danh hiện tại của bạn", class: "user_profile_label_name" %></a>
+                        <a><%= f.label :job_level, "Chức danh hiện tại của bạn", class: "user_profile_label_name" %><span>*</span></a>
                     </div>
 
                     <div class="user_profile_input">
@@ -14,7 +17,7 @@
 
                 <div class="user_profile_content">
                     <div class="user_profile_label">
-                        <a><%= f.label :company_name, "Công ty", class: "user_profile_label_name" %></a>
+                        <a><%= f.label :company_name, "Tên công ty", class: "user_profile_label_name" %><span>*</span></a>
                     </div>
 
                     <div class="user_profile_input">
@@ -24,7 +27,7 @@
 
                 <div class="user_profile_content">
                     <div class="user_profile_label">
-                        <a><%= f.label :company_location, "Địa điểm công ty", class: "user_profile_label_name" %></a>
+                        <a><%= f.label :company_location, "Địa điểm công ty", class: "user_profile_label_name" %><span>*</span></a>
                     </div>
 
                     <div class="user_profile_input">
@@ -47,7 +50,7 @@
             <div class="col-sm-6">
                 <div class="user_profile_content">
                     <div class="user_profile_label">
-                        <a><%= f.label :start_date, "Thời gian bắt đầu", class: "user_profile_label_name" %></a>
+                        <a><%= f.label :start_date, "Thời gian bắt đầu", class: "user_profile_label_name" %><span>*</span></a>
                     </div>
 
                     <div class="user_profile_input">
@@ -57,7 +60,7 @@
 
                 <div class="user_profile_content">
                     <div class="user_profile_label">
-                        <a><%= f.label :end_date, "Thời gian kết thúc", class: "user_profile_label_name" %></a>
+                        <a><%= f.label :end_date, "Thời gian kết thúc", class: "user_profile_label_name" %><span>*</span></a>
                     </div>
 
                     <div class="user_profile_input">
@@ -69,7 +72,7 @@
 
         <div class="user_profile_content">
             <div class="user_profile_label">
-                <a><%= f.label :job_summary, "Mô tả quá trình làm việc", class: "user_profile_label_name" %></a>
+                <a><%= f.label :job_summary, "Mô tả quá trình làm việc(khoảng 300 từ)", class: "user_profile_label_name" %><span>*</span></a>
             </div>
 
             <div class="user_profile_input">

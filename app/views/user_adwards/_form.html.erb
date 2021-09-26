@@ -1,8 +1,11 @@
 <div class="user_profile_form">
     <%= form_for([@user, user_adward], remote: true) do |f| %> 
+        <div class="user_profile_title_sub">
+            <a>Lưu ý: Mục có dấu <span>'*'</span> là bắt buộc</a>
+        </div>
         <div class="user_profile_content">
             <div class="user_profile_label">
-                <a><%= f.label :adward_name, "Tên giải thưởng", class: "user_profile_label_name" %></a>
+                <a><%= f.label :adward_name, "Tên giải thưởng", class: "user_profile_label_name" %><span>*</span></a>
             </div>
 
             <div class="user_profile_input">
@@ -12,7 +15,7 @@
 
         <div class="user_profile_content">
             <div class="user_profile_label">
-                <a><%= f.label :receive_date, "Ngày nhận giải thưởng", class: "user_profile_label_name" %></a>
+                <a><%= f.label :receive_date, "Ngày nhận giải thưởng", class: "user_profile_label_name" %><span>*</span></a>
             </div>
 
             <div class="user_profile_input">
@@ -22,7 +25,7 @@
 
         <div class="user_profile_content">
             <div class="user_profile_label">
-                <a><%= f.label :adward_summary, "Mô tả về giải thưởng", class: "user_profile_label_name" %></a>
+                <a><%= f.label :adward_summary, "Mô tả về giải thưởng(khoảng 300 từ)", class: "user_profile_label_name" %><span>*</span></a>
             </div>
 
             <div class="user_profile_input">

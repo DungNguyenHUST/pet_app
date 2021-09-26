@@ -1,8 +1,11 @@
 <div class="user_profile_form">
     <%= form_for([@user, user_skill], remote: true) do |f| %> 
+        <div class="user_profile_title_sub">
+            <a>Lưu ý: Mục có dấu <span>'*'</span> là bắt buộc</a>
+        </div>
         <div class="user_profile_content">
             <div class="user_profile_label">
-                <a><%= f.label :skill_name, "Tên kĩ năng", class: "user_profile_label_name" %></a>
+                <a><%= f.label :skill_name, "Tên kĩ năng", class: "user_profile_label_name" %><span>*</span></a>
             </div>
 
             <div class="user_profile_input">
@@ -12,7 +15,7 @@
 
         <div class="user_profile_content">
             <div class="user_profile_label">
-                <a><%= f.label :skill_level, "Mức độ thành thạo", class: "user_profile_label_name" %></a>
+                <a><%= f.label :skill_level, "Mức độ thành thạo", class: "user_profile_label_name" %><span>*</span></a>
             </div>
 
             <div class="user_profile_input">
@@ -22,7 +25,7 @@
 
         <div class="user_profile_content">
             <div class="user_profile_label">
-                <a><%= f.label :skill_summary, "Mô tả kĩ năng", class: "user_profile_label_name" %></a>
+                <a><%= f.label :skill_summary, "Mô tả kĩ năng", class: "user_profile_label_name" %><span>*</span></a>
             </div>
 
             <div class="user_profile_input">

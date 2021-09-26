@@ -1,8 +1,11 @@
 <div class="user_profile_form">
     <%= form_for([@user, user_certificate], remote: true) do |f| %> 
+        <div class="user_profile_title_sub">
+            <a>Lưu ý: Mục có dấu <span>'*'</span> là bắt buộc</a>
+        </div>
         <div class="user_profile_content">
             <div class="user_profile_label">
-                <a><%= f.label :cert_name, "Tên chứng chỉ", class: "user_profile_label_name" %></a>
+                <a><%= f.label :cert_name, "Tên chứng chỉ", class: "user_profile_label_name" %><span>*</span></a>
             </div>
 
             <div class="user_profile_input">
@@ -12,7 +15,7 @@
 
         <div class="user_profile_content">
             <div class="user_profile_label">
-                <a><%= f.label :start_date, "Ngày nhận chứng chỉ", class: "user_profile_label_name" %></a>
+                <a><%= f.label :start_date, "Ngày nhận chứng chỉ", class: "user_profile_label_name" %><span>*</span></a>
             </div>
 
             <div class="user_profile_input">
@@ -26,13 +29,13 @@
             </div>
 
             <div class="user_profile_input">
-                <%= f.date_field :end_date, :required => true, class: "form-control"%>
+                <%= f.date_field :end_date, class: "form-control"%>
             </div>
         </div>
 
         <div class="user_profile_content">
             <div class="user_profile_label">
-                <a><%= f.label :cert_summary, "Mô tả về chứng chỉ", class: "user_profile_label_name" %></a>
+                <a><%= f.label :cert_summary, "Mô tả về chứng chỉ(khoảng 300 từ)", class: "user_profile_label_name" %><span>*</span></a>
             </div>
 
             <div class="user_profile_input">

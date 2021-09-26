@@ -1,10 +1,13 @@
 <div class="user_profile_form">
     <%= form_for(@user, remote: true) do |f| %>
+        <div class="user_profile_title_sub">
+            <a>Lưu ý: Mục có dấu <span>'*'</span> là bắt buộc</a>
+        </div>
         <div class="row">
             <div class="col-sm-6">
                 <div class="user_profile_content">
                     <div class="user_profile_label">
-                        <a><%= f.label :phone, "Số điện thoại liên hệ", class: "user_profile_label_name" %></a>
+                        <a><%= f.label :phone, "Số điện thoại liên hệ", class: "user_profile_label_name" %><span>*</span></a>
                     </div>
 
                     <div class="user_profile_input">
@@ -13,7 +16,7 @@
                 </div>
                 <div class="user_profile_content">
                     <div class="user_profile_label">
-                        <a><%= f.label :sex, "Giới tính", class: "user_profile_label_name" %></a>
+                        <a><%= f.label :sex, "Giới tính", class: "user_profile_label_name" %><span>*</span></a>
                     </div>
 
                     <div class="user_profile_input">
@@ -54,7 +57,7 @@
             </div>
             <div class="user_profile_content">
                 <div class="user_profile_label">
-                    <a><%= f.label :summary, "Giới thiệu bản thân", class: "user_profile_label_name" %></a>
+                    <a><%= f.label :summary, "Giới thiệu bản thân(khoảng 300 từ)", class: "user_profile_label_name" %><span>*</span></a>
                 </div>
 
                 <div class="user_profile_input">
