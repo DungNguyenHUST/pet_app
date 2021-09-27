@@ -26,8 +26,6 @@ class EmployersController < ApplicationController
         end
         
         @company_of_employer = find_company_of_employer(@employer)
-        @company_job_of_employer = find_job_of_employer(@employer).order('created_at DESC')
-        @company_job_of_employer = Kaminari.paginate_array(@company_job_of_employer).page(params[:page]).per(20)
     end
 
     def edit
@@ -72,9 +70,29 @@ class EmployersController < ApplicationController
     end
 
     def index_job
+        if(params.has_key?(:tab_id))
+            @tab_id = params[:tab_id]
+        else
+            @tab_id = "default"
+        end
         @employer = current_employer
         @company_of_employer = find_company_of_employer(@employer)
-        @company_job_of_employer = find_job_of_employer(@employer).order('created_at DESC')
+        @company_job_all = CompanyJob.where(:employer_id => @employer.id)
+        @company_job_inprogress = @company_job_all.expire
+        @company_job_close_soons = @company_job_all.where("end_date >= ?", 3.day.ago.utc)
+        @company_job_closes = @company_job_all.where("end_date <= ?", Time.now)
+        if @tab_id == 'AllID'
+            @company_job_of_employer = @company_job_all
+        elsif @tab_id == 'InProgressID'
+            @company_job_of_employer = @company_job_inprogress
+        elsif @tab_id == 'CloseSoonID'
+            @company_job_of_employer = @company_job_close_soons
+        elsif @tab_id == 'ExpireID'
+            @company_job_of_employer = @company_job_closes
+        else
+            @company_job_of_employer = @company_job_all
+        end
+        @company_job_of_employer = @company_job_of_employer.order('created_at DESC')
         @company_job_of_employer = Kaminari.paginate_array(@company_job_of_employer).page(params[:page]).per(20)
     end
 
@@ -82,12 +100,16 @@ class EmployersController < ApplicationController
         @employer = current_employer
         @company_of_employer = find_company_of_employer(@employer)
         @company_job_of_employer = find_job_of_employer(@employer).order('created_at DESC')
-        @company_job_of_employer = Kaminari.paginate_array(@company_job_of_employer).page(params[:page]).per(20)
+        @company_apply_jobs = []
+        @company_job_of_employer.each do |company_job|
+            @company_apply_jobs += company_job.company_apply_jobs.page(params[:page]).per(20)
+        end
+        @company_apply_jobs = Kaminari.paginate_array(@company_apply_jobs).page(params[:page]).per(20)
     end
 
     def index_cv
         @employer = current_employer
-        @user_cvs = User.all.order('updated_at DESC').page(params[:page]).per(12)
+        @user_cvs = User.all.public.order('updated_at DESC').page(params[:page]).per(12)
     end
 
     def index_plan
@@ -95,7 +117,7 @@ class EmployersController < ApplicationController
     end
 
     def cv_search
-        @user_cvs = User.all.order('created_at DESC').page(params[:page]).per(12)
+        @user_cvs = User.all.public.order('created_at DESC').page(params[:page]).per(12)
 
         # Search
         @is_cv_searched = false

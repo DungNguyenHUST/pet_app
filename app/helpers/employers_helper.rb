@@ -32,7 +32,7 @@ module EmployersHelper
         return job_remain
     end
 
-    def auth_find_personal_plan_of_employer(employer)
+    def auth_cv_search_plan_of_employer(employer)
         auth = false
         if employer
             if employer.plan == "F-Pro"
@@ -75,7 +75,7 @@ module EmployersHelper
         @cv_searchs = []
 
         unless params.location.empty?
-            @user_searchs = User.friendly.search(params.location)
+            @user_searchs = User.public.friendly.search(params.location)
             @user_searchs.each do |user|
                 @cv_searchs.push(user)
             end

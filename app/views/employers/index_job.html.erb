@@ -2,10 +2,56 @@
     <div class="row">
         <div class="col-sm-12">
             <div class="employer_job_index">
-                <%if @company_job_of_employer.total_count > 0%>
+                <%if @company_job_all.count > 0%>
                     <div class="employer_job_index_title">
                         <h3>Quản lý tin đăng</h3>
                     </div>
+
+                    <div class="employer_job_index_btn">
+                        <%if current_employer.approved%>
+                            <%= link_to 'Đăng tin mới', new_company_job_path, method: :get, class: "btn btn-primary" %>
+                        <%else%>
+                            <%= link_to 'Đăng tin mới', new_company_job_path, method: :get, class: "btn btn-primary disabled" %>
+                        <%end%>
+                    </div>
+
+                    <div class="employer_job_index_tab_link">
+                        <ul class="nav">
+                            <li class="nav-item">
+                                <%if @tab_id == "default" || @tab_id == "AllID"%>
+                                    <%active = "active"%>
+                                <%else%> 
+                                    <%active = ""%>
+                                <%end%>                                 
+                                <a class="nav-link <%=active%>" href="<%=employer_index_job_path(current_employer, tab_id: 'AllID')%>"><i class="material-icons-outlined">reorder</i>Tất cả<span> <%=@company_job_all.count%></span></a>
+                            </li>
+                            <li class="nav-item">
+                                <%if @tab_id == "InProgressID"%>
+                                    <%active = "active"%>
+                                <%else%> 
+                                    <%active = ""%>
+                                <%end%>                                     
+                                <a class="nav-link <%=active%>" href="<%=employer_index_job_path(current_employer, tab_id: 'InProgressID')%>"><i class="material-icons-outlined">work_outline</i>Đang tuyển <span><%=@company_job_inprogress.count%></span></a>
+                            </li>
+                            <li class="nav-item">
+                                <%if @tab_id == "CloseSoonID"%>
+                                    <%active = "active"%>
+                                <%else%> 
+                                    <%active = ""%>
+                                <%end%>                                     
+                                <a class="nav-link <%=active%>" href="<%=employer_index_job_path(current_employer, tab_id: 'CloseSoonID')%>"><i class="material-icons-outlined">hourglass_empty</i>Sắp hết hạn <span><%=@company_job_close_soons.count%></span></a>
+                            </li>
+                            <li class="nav-item">
+                                <%if @tab_id == "ExpireID"%>
+                                    <%active = "active"%>
+                                <%else%> 
+                                    <%active = ""%>
+                                <%end%>                                     
+                                <a class="nav-link <%=active%>" href="<%=employer_index_job_path(current_employer, tab_id: 'ExpireID')%>"><i class="material-icons-outlined">history</i>Đã hết hạn <span><%=@company_job_closes.count%></span></a>
+                            </li>
+                        </ul>
+                    </div>
+
                     <div class="employer_job_employer">
                         <div class="table-responsive">
                             <table class="table text-center table-hover">
@@ -24,7 +70,7 @@
                                     <%@company_job_of_employer.each_with_index do |company_job, index|%>
                                         <tr>
                                             <td><%=index + 1%></td>
-                                            <th scope="row" class="text-start"><%=link_to (company_job.title), employer_job_path(:id => company_job.id)%></th>
+                                            <td scope="row" class="text-start"><%=link_to (company_job.title), employer_job_path(:id => company_job.id)%></td>
                                             <td><%=find_job_location(company_job.location)%></td>
                                             <td><%=company_job.created_at.strftime("%B %d, %Y")%></td>
                                             <td><%=company_job.end_date.strftime("%B %d, %Y")%></td>

@@ -34,9 +34,13 @@ class User < ApplicationRecord
 
     # after_create :send_welcome_email
         
-        def self.approved
+    def self.approved
         where(approved: :true)
-        end
+    end
+
+    def self.public
+        where(public: :true)
+    end
 
     def self.search(search)
         if search
@@ -74,7 +78,7 @@ class User < ApplicationRecord
     def self.search(search)
         if search
             search_result = User.where("address ILIKE?", 
-                                        "%#{search}%")
+                                            "%#{search}%")
 
             if(search_result)
                 self.where(id: search_result)

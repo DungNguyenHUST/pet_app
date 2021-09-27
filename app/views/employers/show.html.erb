@@ -24,7 +24,11 @@
                         <a><span>Ngày đăng kí: </span><%=current_employer.created_at.strftime("%B %d, %Y")%></a>
                     </div>
                     <div class='employer_plan'>
-                        <a><span>Gói đăng kí: </span><%=current_employer.plan%></a>
+                        <%if current_employer.plan.present?%>
+                            <a><span>Gói đăng kí: </span><%=current_employer.plan%></a>
+                        <%else%>
+                            <a><span>Gói đăng kí: </span>F-Basic</a>
+                        <%end%>
                     </div>
                 </div>
             </div>

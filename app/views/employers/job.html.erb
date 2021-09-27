@@ -54,7 +54,7 @@
                             <%@company_apply_jobs.each_with_index do |company_apply_job, index|%>
                                 <tr>
                                     <td><%=index + 1%></td>
-                                    <th scope="row" class="text-start"><%=link_to (company_apply_job.name), company_job_company_apply_job_path(@company_job, company_apply_job)%></th>
+                                    <td scope="row" class="text-start"><%=link_to (company_apply_job.name), company_job_company_apply_job_path(@company_job, company_apply_job)%></td>
                                     <td><%=company_apply_job.email%></td>
                                     <td><%=truncate(strip_tags(company_apply_job.cover_letter), length: 90)%></td>
                                     <td><%=company_apply_job.created_at.strftime("%B %d, %Y")%></td>
@@ -77,7 +77,7 @@
                     </div>
                     <div class="employer_job_apply_not_found_action">
                         <div class="employer_job_apply_button">
-                            <%= link_to '<button type="submit"> <i class="material-icons-outlined">arrow_back</i> <span> Quay trở lại trang việc làm</span> </button>'.html_safe, employer_path(current_employer, tab_id: 'EmployerJobID')%>
+                            <%= link_to '<button type="submit"> <i class="material-icons-outlined">arrow_back</i> <span> Quay trở lại trang việc làm</span> </button>'.html_safe, employer_index_job_path%>
                         </div>
                     </div>
                 </div>

@@ -2151,6 +2151,10 @@
             font-size: 18px;
             font-weight: 600;
             color: #333;
+            a{
+                text-decoration: none;
+                color: #333;
+            }
         }
 
         .user_cv_address{
@@ -2183,6 +2187,9 @@
 .user_preview_cv_block{
     border-radius: 5px;
     border: 1px solid #e5e5e5;
+    @media screen and (max-width: 600px){
+        display: none;
+    }
     .user_preview_cv_detail{
         position: relative;
         .user_preview_cv_wall{
@@ -2255,6 +2262,17 @@
             }
             span{
                 font-size: 15px;
+            }
+
+            button{
+                border: 1px dashed #0d6efd;
+                border-radius: 15px;
+                background-color: #fff;
+                a{
+                    font-size: 14px;
+                    text-decoration: none;
+                    font-weight: 500;
+                }
             }
         }
     
@@ -2388,5 +2406,45 @@
                 color: #444;
             }
         }
+    }
+}
+
+.display_mobile{
+    border: none;
+    padding: none;
+    border-radius: 0px;
+    @media screen and (max-width: 600px){
+        display: block;
+    }
+    position: relative;
+    .user_preview_cv_wall{
+        border-radius: 0px;
+        img{
+            border-radius: 0px;
+        }
+    }
+
+    .user_preview_cv_personal{
+        padding: 10px 0px 10px 0px;
+    }
+    
+    .user_preview_cv_edu{
+        padding: 10px 0px 10px 0px;
+    }
+
+    .user_preview_cv_exp{
+        padding: 10px 0px 10px 0px;
+    }
+
+    .user_preview_cv_skill{
+        padding: 10px 0px 10px 0px;
+    }
+
+    .user_preview_cv_certificate{
+        padding: 10px 00px 10px 0px;
+    }
+
+    .user_preview_cv_adward{
+        padding: 10px 0px 10px 0px;
     }
 }

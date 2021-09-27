@@ -339,6 +339,7 @@
 
 //////////////////employer overview////////////////////
 .employer_dasboard{
+    min-height: 700px;
     .employer_title{
         padding-top: 30px;
         padding-bottom: 20px;
@@ -563,26 +564,93 @@
 .employer_job_index{
     min-height: 700px;
     .employer_job_index_title{
+        float: left;
         h3{
             font-size: 22px;
             font-weight: 600;
             margin-top: 30px;
-            margin-bottom: 15px;
+            margin-bottom: 20px;
         }
     }
+    .employer_job_index_btn{
+        float: right;
+        margin-top: 30px;
+        margin-bottom: 20px;
+    }
+
+    .employer_job_index_tab_link{
+        clear: both;
+        overflow: hidden;
+        position: relative;
+        display: block;
+        background-color: #fff;
+        // border-bottom: 1px solid #e5e5e5;
+        .nav {
+            overflow-x: auto;
+            overflow-y: hidden;
+            flex-wrap: nowrap;
+            border: none;
+        }
+        .nav .nav-link {
+            white-space: nowrap;
+            font-size: 16px;
+        }
+        .nav .nav-link, .nav .nav-link.active, .nav .nav-link:hover {
+            border: none;
+            color: #333;
+            text-align: left;
+            position: relative;
+            font-weight: 600;
+            i{
+                position: relative;
+                top: 5px;
+                padding-right: 3px;
+                padding-left: 0px;
+                color: #444;
+            }
+            span{
+                position: absolute;
+                top: 0px;
+                right: 5px;
+                font-size: 13px;
+                color: #999;
+            }
+        }
+        .nav .nav-link.active {
+            border-radius: 0;
+            border-bottom: 3px solid #0d6efd;
+            font-weight: 600;
+            color: #0d6efd;
+            font-size: 16px;
+            text-align: left;
+            span{
+                color: #0d6efd;
+            }
+            i{
+                color: #0d6efd;
+            }
+        }
+    }
+
     .employer_job_employer{
         clear: both;
         margin-bottom: 30px;
         background-color: #fff;
-        table{
+
+        .table{
             th{
                 font-size: 16px;
+                text-decoration: none;
                 a{
                     text-decoration: none;
                 }
             }
             td{
+                text-decoration: none;
                 font-size: 14px;
+                a{
+                    text-decoration: none;
+                }
             }
         }
     }
@@ -829,26 +897,38 @@
 .employer_apply_job_index{
     min-height: 700px;
     .employer_apply_job_index_title{
+        float: left;
         h3{
             font-size: 22px;
             font-weight: 600;
             margin-top: 30px;
-            margin-bottom: 15px;
+            margin-bottom: 20px;
         }
     }
+    .employer_apply_job_index_btn{
+        float: right;
+        margin-top: 30px;
+        margin-bottom: 20px;
+    }
+
     .employer_apply_job_employer{
         clear: both;
         margin-bottom: 30px;
         background-color: #fff;
-        table{
+        .table{
             th{
                 font-size: 16px;
+                text-decoration: none;
                 a{
                     text-decoration: none;
                 }
             }
             td{
                 font-size: 14px;
+                text-decoration: none;
+                a{
+                    text-decoration: none;
+                }
             }
         }
     }
@@ -1158,13 +1238,12 @@
 
 ////////////////////////job////////////////////@at-root
 .employer_job_block{
-    margin-top: 40px;
+    margin-top: 20px;
     margin-bottom: 40px;
     @media screen and (min-width: 600px){
         min-height: 700px;
     }
     .employer_job_status{
-        border-top: 1px solid #e5e5e5;
         border-bottom: 1px solid #e5e5e5;
         padding-top: 15px;
         padding-bottom: 15px;
@@ -1205,8 +1284,7 @@
                 font-weight: 600;
             }
         }
-
-        table{
+        .table{
             th{
                 font-size: 16px;
                 a{
@@ -1215,6 +1293,9 @@
             }
             td{
                 font-size: 14px;
+                a{
+                    text-decoration: none;
+                }
             }
         }
 
@@ -1715,7 +1796,7 @@
                     width: 100%;
                 }
             }
-        }	
+        }
     
         .employer_cv_search_not_found_block{
             margin-top: 30px;
@@ -1772,9 +1853,6 @@
                     }
                 }
             }
-        }
-
-        .employer_cv_preview_index{
         }
     }
 

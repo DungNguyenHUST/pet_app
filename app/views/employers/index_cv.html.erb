@@ -1,83 +1,61 @@
 <div class="employer_search_cv_index">
-    <%if auth_find_personal_plan_of_employer(current_employer) == false%>
-        <div class="employer_search_cv_index_search">
-            <div class="container">
-                <div class="employer_search_cv_index_search_bar">
-                    <div class="employer_search_cv_index_search_label">
-                        <h3>Tìm kiếm ứng viên tiềm năng.</h3>
-                        <a>Khám phá danh sách hàng ngàn ứng viên đang có nhu cầu tìm việc hôm nay.</a>
-                    </div>
-                    
-                    <%=form_tag employer_cv_search_path, :method => "get" do%>
-                        <div class="employer_search_cv_index_search_input">
-                            <div class='row'>
-                                <div class='col-sm-7 padding_right_customize'>
-                                    <div class="employer_search_cv_index_search_what">
-                                        <i class="material-icons-outlined">search</i>
-                                        <%= text_field_tag :search, params[:search], required: true, class: 'form-control', placeholder: "Tìm kiếm vị trí, kĩ năng, kinh nghiệm ..."%>
-                                    </div>
+    <div class="employer_search_cv_index_search">
+        <div class="container">
+            <div class="employer_search_cv_index_search_bar">
+                <div class="employer_search_cv_index_search_label">
+                    <h3>Tìm kiếm ứng viên tiềm năng.</h3>
+                    <a>Khám phá danh sách hàng ngàn ứng viên đang có nhu cầu tìm việc hôm nay.</a>
+                </div>
+                
+                <%=form_tag employer_cv_search_path, :method => "get" do%>
+                    <div class="employer_search_cv_index_search_input">
+                        <div class='row'>
+                            <div class='col-sm-7 padding_right_customize'>
+                                <div class="employer_search_cv_index_search_what">
+                                    <i class="material-icons-outlined">search</i>
+                                    <%= text_field_tag :search, params[:search], required: true, class: 'form-control', placeholder: "Tìm kiếm vị trí, kĩ năng, kinh nghiệm ..."%>
                                 </div>
-                                    
-                                <div class='col-sm-3 padding_customize'>
-                                    <div class="employer_search_cv_index_search_where">
-                                        <i class="material-icons-outlined">place</i></button>
-                                        <%= select_tag :location, options_for_select(['Hà Nội','TP Hồ Chí Minh','Đà Nẵng','An Giang','Bà Rịa Vũng Tàu','Bạc Liêu','Bắc Kạn','Bắc Giang',
-                                                                'Bắc Ninh','Bến Tre','Bình Dương','Bình Định','Bình Phước',
-                                                                'Bình Thuận','Cà Mau','Cao Bằng','Cần Thơ','Đắk Lắk','Đắk Nông','Điện Biên',
-                                                                'Đồng Nai','Đồng Tháp','Gia Lai','Hà Giang','Hà Nam','Hà Tây','Hà Tĩnh',
-                                                                'Hải Dương','Hải Phòng','Hòa Bình','Hậu Giang','Hưng Yên','Khánh Hòa',
-                                                                'Kiên Giang','Kon Tum','Lai Châu','Lào Cai',
-                                                                'Lạng Sơn','Lâm Đồng','Long An','Nam Định','Nghệ An',
-                                                                'Ninh Bình','Ninh Thuận','Phú Thọ','Phú Yên','Quảng Bình',
-                                                                'Quảng Nam','Quảng Ngãi','Quảng Ninh','Quảng Trị',
-                                                                'Sóc Trăng','Sơn La','Tây Ninh','Thái Bình','Thái Nguyên' ,
-                                                                'Thanh Hóa','Thừa Thiên Huế','Tiền Giang','Trà Vinh',
-                                                                'Tuyên Quang','Vĩnh Long','Vĩnh Phúc','Yên Bái' ]), {:prompt => "Tất cả địa điểm", class: 'form-select'}%>
-                                    </div>
-                                </div>
+                            </div>
                                 
-                                <div class="col-sm-2">
-                                    <div class="employer_search_cv_index_search_button">
-                                        <%= button_to "", form_class: "search_button", :name => nil do%>
-                                            <a>Tìm kiếm</a>
-                                        <%end%> 
-                                    </div>
+                            <div class='col-sm-3 padding_customize'>
+                                <div class="employer_search_cv_index_search_where">
+                                    <i class="material-icons-outlined">place</i></button>
+                                    <%= select_tag :location, options_for_select(['Hà Nội','TP Hồ Chí Minh','Đà Nẵng','An Giang','Bà Rịa Vũng Tàu','Bạc Liêu','Bắc Kạn','Bắc Giang',
+                                                            'Bắc Ninh','Bến Tre','Bình Dương','Bình Định','Bình Phước',
+                                                            'Bình Thuận','Cà Mau','Cao Bằng','Cần Thơ','Đắk Lắk','Đắk Nông','Điện Biên',
+                                                            'Đồng Nai','Đồng Tháp','Gia Lai','Hà Giang','Hà Nam','Hà Tây','Hà Tĩnh',
+                                                            'Hải Dương','Hải Phòng','Hòa Bình','Hậu Giang','Hưng Yên','Khánh Hòa',
+                                                            'Kiên Giang','Kon Tum','Lai Châu','Lào Cai',
+                                                            'Lạng Sơn','Lâm Đồng','Long An','Nam Định','Nghệ An',
+                                                            'Ninh Bình','Ninh Thuận','Phú Thọ','Phú Yên','Quảng Bình',
+                                                            'Quảng Nam','Quảng Ngãi','Quảng Ninh','Quảng Trị',
+                                                            'Sóc Trăng','Sơn La','Tây Ninh','Thái Bình','Thái Nguyên' ,
+                                                            'Thanh Hóa','Thừa Thiên Huế','Tiền Giang','Trà Vinh',
+                                                            'Tuyên Quang','Vĩnh Long','Vĩnh Phúc','Yên Bái' ]), {:prompt => "Tất cả địa điểm", class: 'form-select'}%>
+                                </div>
+                            </div>
+                            
+                            <div class="col-sm-2">
+                                <div class="employer_search_cv_index_search_button">
+                                    <%= button_to "", form_class: "search_button", :name => nil do%>
+                                        <a>Tìm kiếm</a>
+                                    <%end%> 
                                 </div>
                             </div>
                         </div>
-                    <%end%>
-                </div>
-            </div>
-        </div>
-
-        <div class="container">
-            <div class="employer_search_cv_index_search_user">
-                <div class="employer_search_cv_index_search_user_label">
-                    <h3>Danh sách hồ sơ mới cập nhật</h3>
-                </div>
-
-                <%= render :partial => 'employers/cv_search', locals: {cv_searched: @user_cvs, :is_all => true} %>
-            </div>
-        </div>
-    <%else%>
-        <div class="container">
-            <div class="row">
-                <div class="col-sm-12">
-                    <div class="employer_search_cv_not_found_block">
-                        <div class="employer_search_cv_not_found_icon">
-                            <i class="material-icons">find_in_page</i>
-                        </div>
-                        <div class="employer_search_cv_not_found">
-                            <span>Tính năng này hiện tại không khả dụng với gói tuyển dụng của bạn</span>
-                        </div>
-                        <div class="employer_search_cv_not_found_action">
-                            <div class="employer_search_cv_button">
-                                <%= link_to '<button type="submit"> <span> Đổi gói khác</span> </button>'.html_safe, employer_plan_path%>
-                            </div>
-                        </div>
                     </div>
-                </div>
+                <%end%>
             </div>
         </div>
-    <%end%>
+    </div>
+
+    <div class="container">
+        <div class="employer_search_cv_index_search_user">
+            <div class="employer_search_cv_index_search_user_label">
+                <h3>Danh sách hồ sơ mới cập nhật</h3>
+            </div>
+
+            <%= render :partial => 'employers/cv_search', locals: {cv_searched: @user_cvs, :is_all => true} %>
+        </div>
+    </div>
 </div>
