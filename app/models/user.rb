@@ -73,12 +73,11 @@ class User < ApplicationRecord
 
     def self.search(search)
         if search
-            user_search = User.where("name ILIKE? OR address ILIKE?", 
-                                        "%#{search}%", 
-                                        "%#{search}%",)
+            search_result = User.where("address ILIKE?", 
+                                        "%#{search}%")
 
-            if(user_search)
-                self.where(id: user_search)
+            if(search_result)
+                self.where(id: search_result)
             end
         end
     end

@@ -97,15 +97,58 @@ class EmployersController < ApplicationController
     def cv_search
         @user_cvs = User.all.order('created_at DESC').page(params[:page]).per(12)
 
+        # Search
         @is_cv_searched = false
-		if(params.has_key?(:search))
+        if(params.has_key?(:search) && params.has_key?(:location))
             @is_cv_searched = true
-            @search = convert_vie_to_eng(params[:search])
-			@cv_searchs = User.friendly.search(@search).order('name ASC').page(params[:page]).per(12)
-		end
+            search_data = search_params.new(params[:search], params[:location])
+            @cv_searchs = search_cv(search_data).sort_by{|cv| cv.updated_at}.reverse
+            @cv_searchs = Kaminari.paginate_array(@cv_searchs).page(params[:page]).per(10)
+        end
+
+        # Filter
+        if params.has_key?(:filter)
+            search_data = search_params.new(filter_params[:search], filter_params[:location])
+            @cv_searchs = search_cv(search_data).sort_by{|cv| cv.updated_at}.reverse
+
+            filter_data = filter_params_converted.new(filter_params[:edu],
+                                                                filter_params[:sex],
+                                                                filter_params[:level],
+                                                                filter_params[:post_date], 
+                                                                filter_params[:experience],
+                                                                filter_params[:search],
+                                                                filter_params[:location])
+            @cv_filtereds = filter_cv(@cv_searchs, filter_data).sort_by{|cv| cv.updated_at}.reverse
+            
+            @cv_searchs = Kaminari.paginate_array(@cv_searchs).page(params[:page]).per(10)
+            @cv_filtereds = Kaminari.paginate_array(@cv_filtereds).page(params[:page]).per(10)
+
+            respond_to do |format|
+                format.html {}
+                format.js
+            end
+        end
     end
     
     private
+
+    def filter_params
+        filter_params = params.require(:filter).permit(:edu, :sex, :level, :post_date, :experience, :search, :location)
+    end
+
+    def search_params
+        search_param = Struct.new(:search, :location)
+    end
+
+    def filter_params_converted
+        filter_params_converted = Struct.new(:edu,
+                                            :sex,
+                                            :level,
+                                            :post_date, 
+                                            :experience,
+                                            :search,
+                                            :location)
+    end
 
     def employer_params
         params.require(:employer).permit :name, :email, :password, :password_confirmation, :phone, :address, :avatar, :company_name, :company_id, :company_field, :approved

@@ -70,5 +70,85 @@ module EmployersHelper
         end
         return auth
     end
-    
+
+    def search_cv(params)
+        @cv_searchs = []
+
+        unless params.location.empty?
+            @user_searchs = User.friendly.search(params.location)
+            @user_searchs.each do |user|
+                @cv_searchs.push(user)
+            end
+        end
+
+        @skill_searchs = UserSkill.search(params.search)
+        @skill_searchs.each do |skill|
+            @cv_searchs.push(skill.user)
+        end
+
+        @edu_searchs = UserEducation.search(params.search)
+        @edu_searchs.each do |edu|
+            @cv_searchs.push(edu.user)
+        end
+
+        @exp_searchs = UserExperience.search(params.search)
+        @exp_searchs.each do |exp|
+            @cv_searchs.push(exp.user)
+        end
+
+        @cert_searchs = UserCertificate.search(params.search)
+        @cert_searchs.each do |cert|
+            @cv_searchs.push(cert.user)
+        end
+
+        @adward_searchs = UserAdward.search(params.search)
+        @adward_searchs.each do |adward|
+            @cv_searchs.push(adward.user)
+        end
+
+        return @cv_searchs
+    end
+
+    def filter_cv(filter_datas, params)
+        if filter_datas.present?
+            unless params.post_date.nil?
+                date = params.post_date.to_i
+                filter_datas = filter_datas.delete_if{|a| a.updated_at <= date.day.ago.utc}
+            end
+
+            unless params.sex.empty?
+                filter_datas = filter_datas.delete_if{|a| a.sex != params.sex}
+            end
+
+            unless filter_datas.nil?
+                result_filters = nil
+                filter_datas.each do |filter_data|
+                    unless params.edu.empty?
+                        edu_datas = filter_data.user_educations.where("cert_level ILIKE?", "%#{params.edu}%")
+                        edu_datas.each do |edu|
+                            result_filters.push(edu.user)
+                        end
+                    end
+                    unless params.level.empty?
+                        exp_datas= filter_data.user_experiences.where("job_level ILIKE?", "%#{params.level}%")
+                        exp_datas.each do |exp|
+                            result_filters.push(exp.user)
+                        end
+                    end
+                    unless params.experience.empty?
+                        exp_datas = filter_data.user_experiences.map{|m| num_of_experience(m) >= params.experience.to_i}
+                        exp_datas.each do |exp|
+                            result_filters.push(exp.user)
+                        end
+                    end
+
+                    unless result_filters.nil?
+                        return result_filters
+                    end
+                end
+            end
+        end
+
+        return filter_datas
+    end
 end

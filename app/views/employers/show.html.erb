@@ -26,18 +26,11 @@
                     <div class='employer_plan'>
                         <a><span>Gói đăng kí: </span><%=current_employer.plan%></a>
                     </div>
-                    <div class='employer_post'>
-                        <%if find_job_remain_of_employer(current_employer) == -1%>
-                            <a><span>Số tin đăng còn lại hôm nay: </span>Không giới hạn</a>
-                        <%else%>
-                            <a><span>Số tin đăng còn lại hôm nay: </span><%=find_job_remain_of_employer(current_employer).to_s%></a>
-                        <%end%>
-                    </div>
                 </div>
             </div>
             <div class='col-sm-6'>
                 <div class='employer_new_job'>
-                    <%if current_employer.approved && find_company_of_employer(current_employer) && find_job_remain_of_employer(current_employer) != 0%>
+                    <%if current_employer.approved%>
                         <%= link_to 'Đăng tin tuyển dụng miễn phí', new_company_job_path, method: :get, class: "btn btn-primary" %>
                     <%else%>
                         <%= link_to 'Đăng tin tuyển dụng miễn phí', new_company_job_path, method: :get, class: "btn btn-primary disabled" %>
