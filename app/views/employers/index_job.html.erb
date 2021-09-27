@@ -2,19 +2,18 @@
     <div class="row">
         <div class="col-sm-12">
             <div class="employer_job_index">
+                <div class="employer_job_index_title">
+                    <h3>Quản lý tin đăng</h3>
+                </div>
+
+                <div class="employer_job_index_btn">
+                    <%if current_employer.approved%>
+                        <%= link_to 'Đăng tin mới', new_company_job_path, method: :get, class: "btn btn-primary" %>
+                    <%else%>
+                        <%= link_to 'Đăng tin mới', new_company_job_path, method: :get, class: "btn btn-primary disabled" %>
+                    <%end%>
+                </div>
                 <%if @company_job_all.count > 0%>
-                    <div class="employer_job_index_title">
-                        <h3>Quản lý tin đăng</h3>
-                    </div>
-
-                    <div class="employer_job_index_btn">
-                        <%if current_employer.approved%>
-                            <%= link_to 'Đăng tin mới', new_company_job_path, method: :get, class: "btn btn-primary" %>
-                        <%else%>
-                            <%= link_to 'Đăng tin mới', new_company_job_path, method: :get, class: "btn btn-primary disabled" %>
-                        <%end%>
-                    </div>
-
                     <div class="employer_job_index_tab_link">
                         <ul class="nav">
                             <li class="nav-item">
@@ -93,7 +92,11 @@
                         </div>
                         <div class="employer_job_not_found_action">
                             <div class="employer_job_button">
-                                <%= link_to '<button type="submit"> <i class="material-icons-outlined">edit</i> <span> Đăng tin tuyển dụng miễn phí</span> </button>'.html_safe, new_company_job_path%>
+                                <%if current_employer.approved%>
+                                    <%= link_to 'Đăng tin tuyển dụng miễn phí', new_company_job_path, method: :get, class: "btn btn-primary" %>
+                                <%else%>
+                                    <%= link_to 'Đăng tin tuyển dụng miễn phí', new_company_job_path, method: :get, class: "btn btn-primary disabled" %>
+                                <%end%>
                             </div>
                         </div>
                     </div>
