@@ -1,7 +1,7 @@
 <div class="container">
     <div class='employer_dasboard'>
         <div class='employer_title'>
-            <%if current_employer.sign_in_count == 0%>
+            <%if current_employer.sign_in_count <= 1%>
                 <a>Chào mừng nhà tuyển dụng <%=current_employer.name.upcase%> đến với Firework!</a>
             <%elsif (0..12).cover? Time.now.hour %>
                 <a>Good morning, nhà tuyển dụng <%=current_employer.name.upcase%>!</a>

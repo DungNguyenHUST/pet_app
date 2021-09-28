@@ -78,6 +78,8 @@
                             <br>
                             <a>Ngày hết hạn<a>
                             <br>
+                            <a>Số lượt đăng tin còn lại<a>
+                            <br>
                             <a>Số lượt hiển thị tin nổi bật còn lại<a>
                             <br>
                             <a>Số lượt hiển thị tin tìm kiếm nổi bật còn lại<a>
@@ -104,6 +106,8 @@
                             <%else%>
                                 <span><%=(current_employer.created_at + 30.days).strftime("%B %d, %Y")%><span>
                             <%end%>
+                            <br>
+                            <span>Không giới hạn<span>
                             <br>
                             <%if auth_urgent_plan_of_employer(current_employer)%>
                                 <span>Không giới hạn<span>
