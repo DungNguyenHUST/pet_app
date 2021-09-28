@@ -7,7 +7,7 @@
                 </div>
 
                 <div class="employer_job_index_btn">
-                    <%if current_employer.approved%>
+                    <%if auth_post_job_of_employer(current_employer)%>
                         <%= link_to 'Đăng tin mới', new_company_job_path, method: :get, class: "btn btn-primary" %>
                     <%else%>
                         <%= link_to 'Đăng tin mới', new_company_job_path, method: :get, class: "btn btn-primary disabled" %>
@@ -92,7 +92,7 @@
                         </div>
                         <div class="employer_job_not_found_action">
                             <div class="employer_job_button">
-                                <%if current_employer.approved%>
+                                <%if auth_post_job_of_employer(current_employer)%>
                                     <%= link_to 'Đăng tin tuyển dụng miễn phí', new_company_job_path, method: :get, class: "btn btn-primary" %>
                                 <%else%>
                                     <%= link_to 'Đăng tin tuyển dụng miễn phí', new_company_job_path, method: :get, class: "btn btn-primary disabled" %>

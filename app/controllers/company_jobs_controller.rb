@@ -33,7 +33,7 @@ class CompanyJobsController < ApplicationController
 
         if @company_job.save
             if employer_signed_in?
-                redirect_to employer_path(current_employer, tab_id: 'EmployerJobID')
+                redirect_to employer_index_job_path
             else
 			    redirect_to company_job_path(@company_job)
             end

@@ -112,10 +112,6 @@ class EmployersController < ApplicationController
         @user_cvs = User.all.public.order('updated_at DESC').page(params[:page]).per(12)
     end
 
-    def index_plan
-        @employer = current_employer
-    end
-
     def cv_search
         @user_cvs = User.all.public.order('created_at DESC').page(params[:page]).per(12)
 

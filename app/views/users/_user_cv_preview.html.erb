@@ -48,7 +48,7 @@
                         <%if auth_cv_search_plan_of_employer(current_employer) == true%>
                             <span><%=user.email%></span>
                         <%else%>
-                            <%= link_to '<button <a>Nâng cấp gói để xem thông tin</a> </button>'.html_safe, employer_index_plan_path %>
+                            <%= link_to '<button <a>Nâng cấp gói để xem thông tin</a> </button>'.html_safe, employer_plan_path %>
                         <%end%>
                     <%else%>
                         <span>---</span>
@@ -62,7 +62,7 @@
                         <%if auth_cv_search_plan_of_employer(current_employer) == true%>
                             <span><%=user.phone%></span>
                         <%else%>
-                            <%= link_to '<button <a>Nâng cấp gói để xem thông tin</a> </button>'.html_safe, employer_index_plan_path %>
+                            <%= link_to '<button <a>Nâng cấp gói để xem thông tin</a> </button>'.html_safe, employer_plan_path %>
                         <%end%>
                     <%else%>
                         <span>---</span>

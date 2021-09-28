@@ -344,7 +344,7 @@
         padding-top: 30px;
         padding-bottom: 20px;
         a{
-            font-size: 22px;
+            font-size: 24px;
             font-weight: 600;
             text-decoration: none;
             color: #333;
@@ -410,33 +410,130 @@
                 h3{
                     font-size: 22px;
                     font-weight: 600;
+                    color: #333;
                 }
             }
-            .employer_company_edit{    
+
+            .employer_company_info_label{
+                margin-top: 20px;
+                margin-bottom: 15px;
+                h3{
+                    font-size: 22px;
+                    font-weight: 600;
+                    color: #333;
+                }
+            }
+
+            .employer_company_info{
+                border: 1px solid #e5e5e5;
+                border-radius: 5px;
+                padding: 15px;
+                margin-bottom: 20px;
+                .employer_company_info_content_block{
+                    padding-top: 10px;
+                    padding-bottom: 10px;
+                    @media screen and (max-width: 600px){
+                        border-bottom: 1px solid #e5e5e5;
+                    }
+                    .employer_company_info_section{
+                        min-height: 20px;
+                        a{
+                            font-size: 16px;
+                            i{
+                                font-size: 24px;
+                                position: relative;
+                                top: 15px;
+                                color: #333;
+                            }
+                            span{
+                                color: #333;
+                                text-shadow: -0.3px 0px #333;
+                            }
+                        }
+                    }
+    
+                    .employer_company_info_content{
+                        font-size: 13px;
+                        padding-left: 28px;
+                        color: #444;
+                    }
+                }
+
+                .employer_company_info_summary_title{
+                    margin-top: 20px;
+                    h3{
+                        font-size: 22px;
+                    }
+                }
+
+                .employer_company_info_summary{
+                    font-size: 14px;
+                }
+
+                .employer_company_info_join_title{
+                    margin-top: 20px;
+                    h3{
+                        font-size: 22px;
+                    }
+                }
+
+                .employer_company_info_join{
+                    font-size: 14px;
+                }
+            }
+
+            .employer_company_action{    
                 margin-top: 15px;
                 margin-bottom: 20px;
-                button{
-                    width: 100%;
-                    border-radius: 5px;
-                    background-color: #fff;
-                    border: 1px solid #0d6efd;
-                    height: 44px;
-                    color: #0d6efd;
-                    font-size: 14px;
-                    font-weight: 600;
-                    &:focus {outline:none;}
-                    i{
-                        position: relative;
-                        top: 5px;
-                        font-size: 20px;
+                .employer_company_view{
+                    button{
+                        width: 100%;
+                        border-radius: 5px;
+                        background-color: #fff;
+                        border: 1px solid #0d6efd;
+                        height: 40px;
+                        color: #0d6efd;
+                        font-size: 14px;
+                        font-weight: 600;
+                        &:focus {outline:none;}
+                        i{
+                            position: relative;
+                            top: 5px;
+                            font-size: 20px;
+                        }
+                        &:hover{
+                            background-color: #0d6efd;
+                            color: #fff;
+                        }
                     }
-                    &:hover{
-                        background-color: #0d6efd;
-                        color: #fff;
+                }
+
+                .employer_company_edit{
+                    button{
+                        width: 100%;
+                        border-radius: 5px;
+                        background-color: #fff;
+                        border: 1px solid #ff424e;
+                        height: 40px;
+                        color: #ff424e;
+                        font-size: 14px;
+                        font-weight: 600;
+                        &:focus {outline:none;}
+                        i{
+                            position: relative;
+                            top: 5px;
+                            font-size: 20px;
+                        }
+                        &:hover{
+                            background-color: #0d6efd;
+                            color: #fff;
+                        }
                     }
                 }
             }
+            
             .employer_company_not_found_block{
+                margin-top: 20px;
                 background-color: #f8f9fa;
                 padding: 30px 15px 30px 15px;
                 border-radius: 5px;
@@ -453,6 +550,10 @@
                     font-weight: 500;
                     padding-bottom: 10px;
                     color: #444;
+                    @media screen and (min-width: 600px){
+                        padding-left: 15%;
+                        padding-right: 15%;
+                    }
                 }
                 .employer_company_not_found_action{
                     span{
@@ -598,6 +699,11 @@
         float: right;
         margin-top: 30px;
         margin-bottom: 20px;
+        
+        .btn{
+            font-size: 14px;
+            font-weight: 600;
+        }
     }
 
     .employer_job_index_tab_link{
@@ -902,21 +1008,6 @@
     }
 }
 
-//////////////////////index plan/////////////////////
-.employer_plan_index{
-    padding-top: 20px;
-    padding-bottom: 20px;
-    min-height: 700px;
-    .employer_plan_index_title{
-        h3{
-            padding-top: 30px;
-            padding-bottom: 15px;
-            font-size: 22px;
-            font-weight: 600;
-        }
-    }
-}
-
 ///////////////////////index apply job/////////////////////@at-root
 .employer_apply_job_index{
     min-height: 700px;
@@ -933,6 +1024,10 @@
         float: right;
         margin-top: 30px;
         margin-bottom: 20px;
+        .btn{
+            font-size: 14px;
+            font-weight: 600;
+        }
     }
 
     .employer_apply_job_employer{
@@ -1303,6 +1398,10 @@
             @media screen and (min-width: 600px){
                 text-align: right;
             }
+            .btn{
+                font-size: 14px;
+                font-weight: 600;
+            }
         }
     }
 
@@ -1408,139 +1507,197 @@
 }
 
 ///////////////////////plan////////////////////@at-root
-.employer_plan_price_block{
-    padding-top: 50px;
-    padding-bottom: 50px;
-    .employer_plan_price_title{
+.employer_plan_block{
+    padding-top: 30px;
+    padding-bottom: 20px;
+    min-height: 700px;
+    .employer_plan_title{
         h3{
+            padding-bottom: 15px;
             font-size: 24px;
             font-weight: 600;
         }
     }
+    .employer_plan_detail_block{
+        border-radius: 5px;
+        border: 1px solid #e5e5e5;
+        padding: 15px;
+        min-height: 333px;
+        .employer_plan_detail_title{
+            h3{
+                padding-bottom: 15px;
+                font-size: 22px;
+                font-weight: 500;
+            }
+        }
 
-    .employer_plan_price_detail{
-        margin-top: 20px;
-        .employer_plan_price_detail_more{
-            a{
-                text-decoration: none;
+        .employer_plan_detail{
+            .employer_plan_detail_section_title{
+                float: left;
+                width: 45%;
+                a{
+                    font-size: 16px;
+                    font-weight: 600;
+                }
+
+                span{
+                    font-size: 15px;
+                    font-weight: 500;
+                }
+            }
+
+            .employer_plan_detail_section{
+                float: right;
+                width: 45%;
+                a{
+                    font-size: 16px;
+                    font-weight: 600;
+                }
+
+                span{
+                    font-size: 15px;
+                    font-weight: 500;
+                }
+            }
+
+        }
+    }
+
+    .employer_plan_price_block{
+        clear: both;
+        padding-top: 20px;
+        padding-bottom: 40px;
+        .employer_plan_price_title{
+            h3{
+                font-size: 24px;
                 font-weight: 600;
             }
         }
-    }
-
-    .employer_plan_price_cart{
-        padding-top: 50px;
-        h3{
-            font-size: 24px;
-            font-weight: 600;
-            margin-bottom: 10px;
-        }
-
-        .employer_plan_price_cart_cal{
-            border: 1px solid #e5e5e5;
-            border-radius: 4px;
-            padding: 30px 15px 30px 15px;
-            margin-bottom: 20px;
-            @media screen and (min-width: 600px){
-                height: 250px;
-            }
-
-            .employer_plan_price_cart_cal_detail{
-                .employer_plan_price_cart_cal_temp{
-                    span{
-                        font-size: 16px;
-                        font-weight: 600;
-                    }
-                }
-
-                .employer_plan_price_cart_cal_total{
-                    a{
-                        font-size: 22px;
-                        color: #fca120;
-                        font-weight: 600;
-                    }
-                    span{
-                        font-size: 16px;
-                        font-weight: 600;
-                    }
-                }
-            }
-        }
-
-        .employer_plan_price_cart_atm_tranfer{
-            border: 1px dashed #e5e5e5;
-            border-radius: 4px;
-            padding: 15px;
-            .employer_plan_price_cart_atm_tranfer_icon{
-                float: left;
-                min-height: 120px;
-                padding-right: 15px;
-            }
-            .employer_plan_price_cart_atm_tranfer_text{
-                a{
-                    font-size: 16px;
-                    font-weight: 600;
-                    color: #0d6efd;
-                }
-
-            }
-        }
-
-        .employer_plan_price_cart{
-            clear: both;
+    
+        .employer_plan_price_detail{
             margin-top: 20px;
-            border: 1px dashed #e5e5e5;
-            border-radius: 4px;
-            padding: 15px;
-            .employer_plan_price_cart_icon{
-                float: left;
-                min-height: 120px;
-                padding-right: 15px;
-            }
-            .employer_plan_price_cart_text{
+            .employer_plan_price_detail_more{
                 a{
-                    font-size: 16px;
+                    text-decoration: none;
                     font-weight: 600;
-                    color: #0d6efd;
                 }
-
             }
         }
-        
-    }
-
-    .employer_plan_price_contact{
-        padding: 10px 20px 10px 20px;
-        border-radius: 5px;
-        border: 1px dashed #e5e5e5;
-        text-align: center;
-        i{
-            position: relative;
-            top: 5px;
+    
+        .employer_plan_price_cart{
+            padding-top: 50px;
+            h3{
+                font-size: 24px;
+                font-weight: 600;
+                margin-bottom: 10px;
+            }
+    
+            .employer_plan_price_cart_cal{
+                border: 1px solid #e5e5e5;
+                border-radius: 4px;
+                padding: 30px 15px 30px 15px;
+                margin-bottom: 20px;
+                @media screen and (min-width: 600px){
+                    height: 250px;
+                }
+    
+                .employer_plan_price_cart_cal_detail{
+                    .employer_plan_price_cart_cal_temp{
+                        span{
+                            font-size: 16px;
+                            font-weight: 600;
+                        }
+                    }
+    
+                    .employer_plan_price_cart_cal_total{
+                        a{
+                            font-size: 22px;
+                            color: #fca120;
+                            font-weight: 600;
+                        }
+                        span{
+                            font-size: 16px;
+                            font-weight: 600;
+                        }
+                    }
+                }
+            }
+    
+            .employer_plan_price_cart_atm_tranfer{
+                border: 1px dashed #e5e5e5;
+                border-radius: 4px;
+                padding: 15px;
+                .employer_plan_price_cart_atm_tranfer_icon{
+                    float: left;
+                    min-height: 120px;
+                    padding-right: 15px;
+                }
+                .employer_plan_price_cart_atm_tranfer_text{
+                    a{
+                        font-size: 16px;
+                        font-weight: 600;
+                        color: #0d6efd;
+                    }
+    
+                }
+            }
+    
+            .employer_plan_price_cart{
+                clear: both;
+                margin-top: 20px;
+                border: 1px dashed #e5e5e5;
+                border-radius: 4px;
+                padding: 15px;
+                .employer_plan_price_cart_icon{
+                    float: left;
+                    min-height: 120px;
+                    padding-right: 15px;
+                }
+                .employer_plan_price_cart_text{
+                    a{
+                        font-size: 16px;
+                        font-weight: 600;
+                        color: #0d6efd;
+                    }
+    
+                }
+            }
+            
         }
-        a{
-            padding-left: 5px;
-            padding-right: 10px;
-        }
-    }
-
-    .employer_plan_price_support{
-        padding-top: 30px;
-        h3{
-            font-size: 24px;
-            font-weight: 600;
-        }
-        h4{
-            font-size: 20px;
-        }
-        ul{
-            li{
-                font-size: 14px;
-                margin-top: 5px;
+    
+        .employer_plan_price_contact{
+            padding: 10px 20px 10px 20px;
+            border-radius: 5px;
+            border: 1px dashed #e5e5e5;
+            text-align: center;
+            i{
+                position: relative;
+                top: 5px;
+            }
+            a{
+                padding-left: 5px;
+                padding-right: 10px;
             }
         }
+    
+        .employer_plan_price_support{
+            padding-top: 30px;
+            h3{
+                font-size: 24px;
+                font-weight: 600;
+            }
+            h4{
+                font-size: 20px;
+            }
+            ul{
+                li{
+                    font-size: 14px;
+                    margin-top: 5px;
+                }
+            }
+        }
+    
     }
-
 }
 
 //////////////////update////////////////////

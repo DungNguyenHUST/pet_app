@@ -71,6 +71,16 @@ module EmployersHelper
         return auth
     end
 
+    def auth_post_job_of_employer(employer)
+        auth = false
+        if employer
+            if employer.approved == true && find_company_of_employer(employer) != nil
+                auth = true
+            end
+        end
+        return auth
+    end
+
     def search_cv(params)
         @cv_searchs = []
 

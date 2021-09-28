@@ -39,7 +39,6 @@ Rails.application.routes.draw do
   get 'employer_index_job' => 'employers#index_job'
   get 'employer_index_apply' => 'employers#index_apply'
   get 'employer_index_cv' => 'employers#index_cv'
-  get 'employer_index_plan' => 'employers#index_plan'
   get 'employer_cv_search' => 'employers#cv_search'
 
   resources :admins
