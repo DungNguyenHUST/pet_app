@@ -31,6 +31,7 @@ class AdminsController < ApplicationController
         @company_reviews = CompanyReview.all.page(params[:page]).per(20)
         @posts = Post.all.page(params[:page]).per(20)
         @problems = Problem.all.page(params[:page]).per(20)
+        @employers = Employer.all.page(params[:page]).per(20)
     end
 
     def edit

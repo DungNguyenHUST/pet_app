@@ -11,8 +11,14 @@
         </div>
 
         <div class="admin_log_out">
-            <%= button_to destroy_admin_session_path, method: :delete do%>
+            <%= button_to destroy_admin_session_path, method: :delete, class: "btn btn-danger" do%>
                 <span>Đăng xuất</span>
+            <%end%>
+        </div>
+
+        <div class="admin_log_out">
+            <%= button_to rails_admin_path, method: :get, class: "btn btn-warning" do%>
+                <span>Go Dashboard</span>
             <%end%>
         </div>
 
@@ -32,7 +38,7 @@
                     <%else%> 
                         <%active = ""%>
                     <%end%>                                 
-                    <a class="nav-link <%=active%>" href="<%=admin_path(current_admin, tab_id: 'AdminJobID')%>"><i class="material-icons-outlined">business</i>Job <span><%= (@company_jobs.total_count)%><span></a>
+                    <a class="nav-link <%=active%>" href="<%=admin_path(current_admin, tab_id: 'AdminJobID')%>"><i class="material-icons-outlined">work_outline</i>Job <span><%= (@company_jobs.total_count)%><span></a>
                 </li>
                 <li class="nav-item">
                     <%if @tab_id == "AdminUserID"%>
@@ -57,6 +63,14 @@
                         <%active = ""%>
                     <%end%>                                     
                     <a class="nav-link <%=active%>" href="<%=admin_path(current_admin, tab_id: 'AdminProblemID')%>"><i class="material-icons-outlined">lightbulb</i>Problem <span><%= (@problems.total_count)%><span></a>
+                </li>
+                <li class="nav-item">
+                    <%if @tab_id == "EmployerID"%>
+                        <%active = "active"%>
+                    <%else%> 
+                        <%active = ""%>
+                    <%end%>                                     
+                    <a class="nav-link <%=active%>" href="<%=admin_path(current_admin, tab_id: 'EmployerID')%>"><i class="material-icons-outlined">people</i>Employer <span><%= (@employers.total_count)%><span></a>
                 </li>
                 <li class="nav-item">
                     <%if @tab_id == "ScrapJobID"%>
@@ -111,6 +125,13 @@
                 <div class="admin_problem_tab">
                     <div class="new_problem">
                         <%= link_to '<button type="submit">Tạo câu hỏi mới</button>'.html_safe, new_problem_path%>
+                    </div>
+                </div>                        
+            <%end%>
+
+            <%if @tab_id == "AdminEmployerID"%>
+                <div class="admin_employer_tab">
+                    <div class="new_employer">
                     </div>
                 </div>                        
             <%end%>

@@ -224,7 +224,10 @@
 .admin_dasboard{
     .admin_title{
         float: left;
-        padding-top: 40px;
+        @media screen and (max-width: 600px){
+            float: none;
+        }
+        padding-top: 20px;
         padding-bottom: 10px;
         span{
             font-size: 22px;
@@ -233,15 +236,17 @@
     }
 
     .admin_log_out{
-        margin-top: 40px;
+        margin-top: 20px;
         margin-bottom: 10px;
         float: right;
+        @media screen and (max-width: 600px){
+            float: none;
+        }
         button{
             padding: 6px;
             height: 44px;
             width: 150px;
             margin-right: 10px;
-            background: red;
             font-size: 16px;
             border: none;
             border-radius: 22px;
