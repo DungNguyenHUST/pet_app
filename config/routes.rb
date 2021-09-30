@@ -44,6 +44,11 @@ Rails.application.routes.draw do
   resources :admins
 
   resources :pages
+  get 'about_us' => 'pages#about_us'
+  get 'contact_us' => 'pages#contact_us'
+  get 'our_product' => 'pages#our_product'
+  get 'policy' => 'pages#policy'
+  get 'term' => 'pages#term'
 
   resources :companies do
     resources :company_reviews
