@@ -1,6 +1,6 @@
 <% content_for :meta_title, "Kết quả tìm kiếm việc làm"%>
-<div class="container">
-    <div class="company_job_search_index_block">
+<div class="company_job_search_index_block">
+    <div class="container">
         <%=form_tag jobs_search_path, :method => "get" do%>
             <div class="company_job_searched_input">
                 <div class='row'>
@@ -242,7 +242,11 @@
                 }
             }
         </script>
+    </div>
+</div>
 
+<div class="container">
+    <div class="company_job_search_result">
         <%= render :partial => 'company_jobs/search', locals: {job_searched: @job_searchs, :is_all => false} %>
     </div>
 </div>
