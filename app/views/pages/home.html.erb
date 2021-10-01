@@ -68,6 +68,26 @@
         </div>
     </div>
 
+    <div class="home_job_block">
+        <div class="container">
+            <div class="home_job_label">
+                <h3>Tin tuyển dụng mới nhất</h3>
+            </div>
+            <div class="home_job_all_btn">
+                <%= link_to '<button type="submit">Xem tất cả việc làm <i class="material-icons-outlined">keyboard_double_arrow_right</i></button>'.html_safe, jobs_path%>
+            </div>
+            <div class="home_job_render">
+                <div class="row">
+                    <%@company_jobs.first(12).each do |company_job|%>
+                        <div class="col-sm-4">
+                            <%= render :partial => 'company_jobs/company_job_mini', :locals => {:company_job => company_job, :border => true} %>
+                        </div>
+                    <%end%>
+                </div>
+            </div>
+        </div>
+    </div>
+
     <div class="home_explorer_container">
         <div class="container">
             <div class="home_explorer_label">
@@ -120,23 +140,23 @@
         </div>
     </div>
 
-    <div class="home_signup_container">
-        <div class="container">
+    <div class="container">
+        <div class="home_signup_container">
             <div class="row">
                 <div class="col-sm-8">
                     <div class="home_signup_label">
-                        <h3><i class="material-icons-outlined">notifications_active</i>Tạo tài khoản để không bỏ lỡ hàng ngàn cơ hội việc làm mỗi ngày</h3>
+                        <h3><i class="material-icons-outlined">notifications_active</i>Tạo tài khoản để không bỏ lỡ hàng ngàn cơ hội việc làm mới mỗi ngày</h3>
                     </div>
                 </div>
 
                 <div class="col-sm-4">
                     <div class="row">
-                        <div class="col-6">
+                        <div class="col-sm-6">
                             <div class="home_signup_block">
                                 <%= link_to '<button type="submit"> <span> Tạo tài khoản mới</span> </button>'.html_safe, new_user_registration_path %>
                             </div>
                         </div>
-                        <div class="col-6">
+                        <div class="col-sm-6">
                             <div class="home_signin_block">
                                 <%= link_to '<button type="submit"> <span> Đăng nhập</span> </button>'.html_safe, new_user_session_path %>
                             </div>

@@ -114,7 +114,7 @@
                         </div>
                         <div class="company_job_des">
                             <%@company_jobs.order('created_at DESC').first(10).each do |company_job|%>
-                                <%= render :partial => 'company_jobs/company_job_mini', :locals => {:company_job => company_job} %>
+                                <%= render :partial => 'company_jobs/company_job_mini', :locals => {:company_job => company_job, :border => false} %>
                             <%end%>
                         </div>
                     </div>
