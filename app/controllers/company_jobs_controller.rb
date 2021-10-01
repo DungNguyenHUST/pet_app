@@ -118,8 +118,8 @@ class CompanyJobsController < ApplicationController
             end
 
             if filter_params[:salary].present?
-                @salary_min = convert_salary_to_min(salary)
-                @salary_max = convert_salary_to_max(salary)
+                @salary_min = convert_salary_to_min(filter_params[:salary])
+                @salary_max = convert_salary_to_max(filter_params[:salary])
             end
 
             if filter_params[:level].present?

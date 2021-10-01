@@ -51,12 +51,12 @@
                     <div class="apply_job_preview_button">
                         <div class="job_preview_apply_button">
                             <%if company_job.apply_another_site_flag?%>
-                                <%= link_to '<button type="submit">Nộp đơn tại trang công ty</button>'.html_safe, company_job.apply_site%>
+                                <%= link_to '<button type="submit">Xem thêm và nộp đơn</button>'.html_safe, company_job.apply_site%>
                             <%elsif user_signed_in?%>
-                                <%= link_to '<button type="submit"><i class="material-icons">send</i>Nộp đơn</button>'.html_safe, new_company_job_company_apply_job_path(company_job)%>
+                                <%= link_to '<button type="submit"><i class="material-icons">send</i>Nộp đơn ngay</button>'.html_safe, new_company_job_company_apply_job_path(company_job)%>
                             <%else%>
                                 <button type="button" data-toggle="modal" data-target="#buttonModalLoginCenter">
-                                    <i class="material-icons-outlined">send</i>Nộp đơn
+                                    <i class="material-icons-outlined">send</i>Nộp đơn ngay
                                 </button>
                             <%end%>
                         </div>
