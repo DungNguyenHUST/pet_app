@@ -214,10 +214,14 @@ module CommonCrawler
                             unless @company_job.id || @company_job.created_at
                                 save_job_to_csv(@company_job)
                             end
+                            
                             @company_job.save!
                         else
-                            # Change due date -> job update
-                            if job_data.end_date != job_exsit.end_date
+                            if job_data.end_date != job_exsit.end_date # Change due date -> job update 
+                                unless @company_job.id || @company_job.created_at
+                                    save_job_to_csv(@company_job)
+                                end
+                                
                                 job_exsit.update!(:company_id => job_data.company_id,
                                                     :title => job_data.title,
                                                     :detail => job_data.detail,
