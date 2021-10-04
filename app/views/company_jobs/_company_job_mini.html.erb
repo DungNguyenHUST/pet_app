@@ -16,7 +16,7 @@
 
     <div class="company_job_mini_info">
         <div class="company_job_mini_title">
-            <a><%= link_to (company_job.title), company_job_path(company_job), target: :_blank %></a>
+            <a><%= link_to (company_job.title.titleize), company_job_path(company_job), target: :_blank %></a>
         </div>
 
         <%if company_job.created_at > 1.week.ago.utc || company_job.urgent%>
