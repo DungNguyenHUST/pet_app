@@ -31,21 +31,19 @@
                 <div class="problem_index_block">
                     <div class="problem_search">
                         <%=form_tag problems_path, :method => "get" do%>
-                            <div class="problem_search_input">
-                                <div class='row'>
-                                    <div class="col-sm-9 padding_customize_right">
-                                        <div class="problem_search_what">
-                                            <i class="material-icons-outlined">search</i>
-                                            <%= text_field_tag :search, params[:search], required: true, class: 'form-control', placeholder: "Nhập tên câu hỏi cần tìm kiếm..."%>
-                                        </div>
+                            <div class='row'>
+                                <div class="col-sm-9 col_padding_customize_right">
+                                    <div class="problem_search_input">
+                                        <i class="material-icons-outlined">search</i>
+                                        <%= text_field_tag :search, params[:search], required: true, class: 'form-control', placeholder: "Nhập tên câu hỏi cần tìm kiếm..."%>
                                     </div>
+                                </div>
                                     
-                                    <div class="col-sm-3">
-                                        <div class="problem_search_button">
-                                            <%= button_to "", form_class: "search_button", :name => nil do%>
-                                                <a>Tìm kiếm</a>
-                                            <%end%> 
-                                        </div>
+                                <div class="col-sm-3 col_padding_customize">
+                                    <div class="problem_search_button">
+                                        <%= button_to "", form_class: "search_button", :name => nil do%>
+                                            <a>Tìm kiếm</a>
+                                        <%end%> 
                                     </div>
                                 </div>
                             </div>

@@ -42,7 +42,17 @@
         </div>
 
         <div class="company_job_mini_location">
-            <a><%= find_job_location(company_job.location) %></a>
+            <a><i class="material-icons-outlined">location_on</i><%= find_job_location(company_job.location) %></a>
         </div>
+        
+        <%if border%>
+            <div class="company_job_mini_salary">
+                <%if !company_job.salary.to_s.blank?%>
+                    <a><i class="material-icons-outlined">monetization_on</i><%= company_job.salary.to_s%></a>
+                <%else%>
+                    <a><i class="material-icons-outlined">monetization_on</i>Đang cập nhật</a>
+                <%end%>
+            </div>
+        <%end%>
     </div>
 </div>

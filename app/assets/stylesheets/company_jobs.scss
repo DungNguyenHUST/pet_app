@@ -320,7 +320,6 @@
     position: relative;
     .company_job_mini_avatar{
         border-radius: 5px;
-        border: 1px solid #f5f5f5;
         img{
             width: 60px;
             height: 60px;
@@ -393,10 +392,28 @@
             }
         }
         .company_job_mini_location{
+            display: inline-block;
             a{
                 font-size: 14px;
-                color: #555;
+                color: #666;
                 i{
+                    color: #666;
+                    font-size: 18px;
+                    position: relative;
+                    top: 3px;
+                    left: -3px;
+                }
+            }
+        }
+        .company_job_mini_salary{
+            display: inline-block;
+            padding-left: 15px;
+            a{
+                text-align: right;
+                font-size: 14px;
+                color: #666;
+                i{
+                    color: #666;
                     font-size: 18px;
                     position: relative;
                     top: 3px;
@@ -1185,25 +1202,15 @@
             
             .company_job_search_input{
                 display: block;
-                .padding_customize{
-                    @media screen and (min-width: 600px){
-                        padding-left: 0px !important;
-                        padding-right: 0px !important;
-                    }
-                }
-                .padding_right_customize{
-                    @media screen and (min-width: 600px){
-                        padding-right: 0px !important;
-                    }
-                }
                 .company_job_search_what{
                     background-color: #fff;
-                    border: 1px solid #EFEFEF;
                     width: 100%;
+                    border: 1px solid #EAEAF0;
                     border-top-left-radius: 5px;
                     border-bottom-left-radius: 5px;
                     @media screen and (max-width: 600px){
                         border-radius: 5px;
+                        border: 1px solid #EFEFEF;
                     }
                     position: relative;
                     i{
@@ -1217,7 +1224,7 @@
                         padding-left: 40px;
                         padding-right: 10px;
                         width: 100%;
-                        height: 49px;
+                        height: 50px;
                         border: none;
                         color: #333;
                         font-size: 16px;
@@ -1229,14 +1236,13 @@
                 }
                 .company_job_search_where{
                     background-color: #fff;
-                    border: 1px solid #EFEFEF;
                     width: 100%;
-                    border-top-right-radius: 5px;
-                    border-bottom-right-radius: 5px;
+                    border: 1px solid #EAEAF0;
                     @media screen and (max-width: 600px){
                         margin-top: 10px;
                         margin-bottom: 15px;
                         border-radius: 5px;
+                        border: 1px solid #EFEFEF;
                     }
                     position: relative;
                     i{
@@ -1246,10 +1252,10 @@
                         left: 10px;
                         top: 13px;
                     }
-                    .form-select{
+                    .form-control{
                         padding-left: 40px;
                         width: 100%;
-                        height: 49px;
+                        height: 50px;
                         border: none;
                         color: #333;
                         font-size:16px;
@@ -1265,9 +1271,10 @@
                     width: 100%;
                     button{
                         border: none;
-                        border-radius: 5px;
+                        border-top-right-radius: 5px;
+                        border-bottom-right-radius: 5px;
                         background-color: #0d6efd;
-                        height: 50px;
+                        height: 52px;
                         color: #fff;
                         width: 100%;
                         font-size:16px;
@@ -1275,6 +1282,8 @@
                         @media screen and (max-width: 600px){
                             width: 100%;
                             float: none;
+                            border-radius: 5px;
+                            height: 50px;
                         }
                         &:focus {outline:none;}
                     }
@@ -1345,31 +1354,21 @@
 /////////////////////search///////////////////////
 .company_job_search_index_block{
     background-color: #fff;
-    padding-top: 20px;
+    padding-top: 30px;
     padding-bottom: 50px;
     border-bottom: 2px solid #EFEFEF;
     margin-bottom: 20px;
     .company_job_searched_input{
         display: block;
-        .padding_customize{
-            @media screen and (min-width: 600px){
-                padding-left: 0px !important;
-                padding-right: 0px !important;
-            }
-        }
-        .padding_right_customize{
-            @media screen and (min-width: 600px){
-                padding-right: 0px !important;
-            }
-        }
         .company_job_searched_what{
             background-color: #fff;
-            border: 1px solid #EAEAF0;
             width: 100%;
+            border: 1px solid #EAEAF0;
             border-top-left-radius: 5px;
             border-bottom-left-radius: 5px;
             @media screen and (max-width: 600px){
                 border-radius: 5px;
+                border: 1px solid #EFEFEF;
             }
             position: relative;
             i{
@@ -1383,7 +1382,7 @@
                 padding-left: 40px;
                 padding-right: 10px;
                 width: 100%;
-                height: 49px;
+                height: 50px;
                 border: none;
                 color: #333;
                 font-size: 16px;
@@ -1395,14 +1394,13 @@
         }
         .company_job_searched_where{
             background-color: #fff;
-            border: 1px solid #EAEAF0;
             width: 100%;
-            border-top-right-radius: 5px;
-            border-bottom-right-radius: 5px;
+            border: 1px solid #EAEAF0;
             @media screen and (max-width: 600px){
-                border-radius: 5px;
                 margin-top: 10px;
                 margin-bottom: 15px;
+                border-radius: 5px;
+                border: 1px solid #EFEFEF;
             }
             position: relative;
             i{
@@ -1412,10 +1410,10 @@
                 left: 10px;
                 top: 13px;
             }
-            .form-select{
+            .form-control{
                 padding-left: 40px;
                 width: 100%;
-                height: 49px;
+                height: 50px;
                 border: none;
                 color: #333;
                 font-size:16px;
@@ -1431,15 +1429,19 @@
             width: 100%;
             button{
                 border: none;
-                border-radius: 5px;
+                border-top-right-radius: 5px;
+                border-bottom-right-radius: 5px;
                 background-color: #0d6efd;
-                height: 50px;
+                height: 52px;
                 color: #fff;
                 width: 100%;
                 font-size:16px;
+                font-weight: 600;
                 @media screen and (max-width: 600px){
                     width: 100%;
                     float: none;
+                    border-radius: 5px;
+                    height: 50px;
                 }
                 &:focus {outline:none;}
             }
