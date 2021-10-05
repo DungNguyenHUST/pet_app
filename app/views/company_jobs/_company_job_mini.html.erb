@@ -42,13 +42,13 @@
         </div>
 
         <div class="company_job_mini_location">
-            <a><i class="material-icons-outlined">location_on</i><%= find_job_location(company_job.location) %></a>
+            <a><i class="material-icons-outlined">location_on</i><%= truncate(strip_tags(find_job_location(company_job.location)), length: 20)%></a>
         </div>
         
         <%if border%>
             <div class="company_job_mini_salary">
                 <%if !company_job.salary.to_s.blank?%>
-                    <a><i class="material-icons-outlined">monetization_on</i><%= company_job.salary.to_s%></a>
+                    <a><i class="material-icons-outlined">monetization_on</i><%= truncate(strip_tags(company_job.salary.to_s), length: 18)%></a>
                 <%else%>
                     <a><i class="material-icons-outlined">monetization_on</i>Đang cập nhật</a>
                 <%end%>
