@@ -477,10 +477,6 @@ ActiveRecord::Schema.define(version: 2021_09_20_102649) do
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.string "difficult"
-    t.boolean "algorithms_question"
-    t.boolean "interview_question"
-    t.boolean "iq_question"
-    t.boolean "other_question"
     t.string "category"
     t.boolean "approved", default: false
     t.string "slug"
@@ -603,17 +599,6 @@ ActiveRecord::Schema.define(version: 2021_09_20_102649) do
     t.string "phone"
     t.string "address"
     t.text "cover_letter"
-    t.string "encrypted_password", default: "", null: false
-    t.string "reset_password_token"
-    t.datetime "reset_password_sent_at"
-    t.datetime "remember_created_at"
-    t.string "provider"
-    t.string "uid"
-    t.string "token"
-    t.integer "expires_at"
-    t.boolean "expires"
-    t.string "refresh_token"
-    t.string "image_url"
     t.boolean "approved", default: false
     t.string "slug"
     t.string "wall_picture"
@@ -631,6 +616,12 @@ ActiveRecord::Schema.define(version: 2021_09_20_102649) do
     t.integer "failed_attempts", default: 0, null: false
     t.string "unlock_token"
     t.datetime "locked_at"
+    t.string "encrypted_password", default: "", null: false
+    t.string "reset_password_token"
+    t.datetime "reset_password_sent_at"
+    t.datetime "remember_created_at"
+    t.string "provider", limit: 50, default: "", null: false
+    t.string "uid", limit: 500, default: "", null: false
     t.string "first_name"
     t.string "last_name"
     t.datetime "birthday"
@@ -644,7 +635,6 @@ ActiveRecord::Schema.define(version: 2021_09_20_102649) do
     t.boolean "finding_job", default: true
     t.index ["confirmation_token"], name: "index_users_on_confirmation_token", unique: true
     t.index ["email"], name: "index_users_on_email", unique: true
-    t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
     t.index ["slug"], name: "index_users_on_slug", unique: true
     t.index ["unlock_token"], name: "index_users_on_unlock_token", unique: true
   end

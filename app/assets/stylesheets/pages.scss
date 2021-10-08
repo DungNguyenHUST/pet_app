@@ -10,9 +10,9 @@
 {
     .home_search_bar{
         min-height: 444px;
-        background-color: #f8f9fa;
+        background-color: #fff;
         @media screen and (max-width: 600px){
-            background-color: #f8f9fa;
+            background-color: #fff;
             min-height: 444px;
         }
         .home_search_block{
@@ -56,6 +56,7 @@
                     border: 1px solid #EAEAF0;
                     border-top-left-radius: 5px;
                     border-bottom-left-radius: 5px;
+                    background-color: #fff;
                     @media screen and (max-width: 600px){
                         border: 1px solid #EAEAF0;
                         border-radius: 5px;
@@ -75,6 +76,7 @@
                         border: none;
                         color: #333;
                         font-size: 16px;
+                        background-color: #fff;
                         &:focus{
                             border: none;
                             box-shadow: none;
@@ -86,6 +88,7 @@
                     width: 100%;
                     position: relative;
                     border: 1px solid #EAEAF0;
+                    background-color: #fff;
                     @media screen and (max-width: 600px){
                         margin-top: 10px;
                         border: 1px solid #EAEAF0;
@@ -105,6 +108,7 @@
                         border: none;
                         color: #333;
                         font-size: 16px;
+                        background-color: #fff;
                         &:focus{
                             border: none;
                             box-shadow: none;
@@ -123,7 +127,7 @@
                         border-top-right-radius: 5px;
                         border-bottom-right-radius: 5px;
                         background-color: #0d6efd;
-                        height: 51px;
+                        height: 52px;
                         color: #fff;
                         width: 100%;
                         font-size:16px;
@@ -156,8 +160,10 @@
         }
     }
 
-    .home_job_block{
+    .home_job_container{
         padding-top: 40px;
+        padding-bottom: 30px;
+        background-color: #f8f9fa;
         .home_job_label{
             padding-bottom: 15px;
             float: left;
@@ -165,7 +171,7 @@
                 float: none;
             }
             h3{
-                font-size: 24px;
+                font-size: 25px;
                 font-weight: 600;
                 text-align: left;
                 color: #333;
@@ -185,7 +191,7 @@
                 font-weight: 600;
                 border: none;
                 outline: none;
-                background-color: #fff;
+                background-color: #f8f9fa;
                 color: #0d6efd;
                 i{
                     position: relative;
@@ -196,6 +202,134 @@
 
         .home_job_render{
             clear: both;
+            .home_job_block{
+                margin-bottom: 15px;
+                padding: 15px;
+                position: relative;
+                background-color: #fff;
+                box-shadow: 0 2px 4px 0 rgba(228, 226, 226, 0.2), 0 6px 20px 0 rgba(226, 225, 225, 0.19);
+                border-radius: 5px;
+                .home_job_company{
+                    .home_job_avatar{
+                        border-radius: 5px;
+                        margin-right: 10px;
+                        img{
+                            width: 50px;
+                            height: 50px;
+                            object-fit: cover;
+                            border-radius: 5px;
+                        }
+                        float: left;
+                    }
+    
+                    .home_job_company_right{
+                        .home_job_company_name{
+                            padding-right: 40px;
+                            a{
+                                text-decoration: none !important;overflow: hidden;
+                                text-overflow: ellipsis;
+                                display: -webkit-box;
+                                -webkit-line-clamp: 1; /* number of lines to show */
+                                -webkit-box-orient: vertical;
+                                font-size: 15px;
+                                color: #444;
+                                font-weight: 600;
+                            }
+                        }
+    
+                        .home_job_create_at{
+                            a{
+                                font-size: 14px;
+                                color: #333;
+                            }
+                        }
+    
+                    }
+                }
+                
+                .home_job_info{
+                    padding-top: 10px;
+                    clear: left;
+                    .home_job_title{
+                        color: #444;
+                        a{
+                            color: #444;
+                        }
+                        a:link{
+                            font-size: 18px;
+                            text-decoration: none !important;overflow: hidden;
+                            text-overflow: ellipsis;
+                            display: -webkit-box;
+                            -webkit-line-clamp: 2; /* number of lines to show */
+                            -webkit-box-orient: vertical;
+                            font-weight: 600;
+                            color: #333;
+                            min-height: 55px;
+                        }
+                    }
+                    .home_job_new_hot{
+                        position: absolute;
+                        top: 10px;
+                        right: 15px;
+                        .home_job_new{
+                            span{
+                                padding-top: 3px;
+                                padding-bottom: 3px;
+                                padding-left: 8px;
+                                padding-right: 8px;
+                                border-radius: 2px;
+                                font-size: 10px;
+                                color: #fff;
+                                background-color: #ff5a5f;
+                                font-weight: 600;
+                            }
+                        }
+                        .home_job_hot{
+                            span{
+                                padding-top: 3px;
+                                padding-bottom: 3px;
+                                padding-left: 8px;
+                                padding-right: 8px;
+                                border-radius: 2px;
+                                font-size: 10px;
+                                color: #fff;
+                                background-color: #ff9e34;
+                                font-weight: 600;
+                            }
+                        }
+                    }
+                    .home_job_location{
+                        display: inline-block;
+                        padding-right: 15px;
+                        a{
+                            font-size: 14px;
+                            color: #666;
+                            i{
+                                color: #666;
+                                font-size: 18px;
+                                position: relative;
+                                top: 3px;
+                                left: -3px;
+                            }
+                        }
+                    }
+                    .home_job_salary{
+                        display: inline-block;
+                        a{
+                            text-align: right;
+                            font-size: 14px;
+                            color: #666;
+                            i{
+                                color: #666;
+                                font-size: 18px;
+                                position: relative;
+                                top: 3px;
+                                left: -3px;
+                            }
+                        }
+                    }
+                }
+            }
         }
     }
     
@@ -209,7 +343,7 @@
         .home_explorer_label{
             padding-bottom: 15px;
             h3{
-                font-size: 24px;
+                font-size: 25px;
                 font-weight: 600;
                 text-align: left;
                 color: #333;
@@ -223,15 +357,13 @@
                 background-color: #fff;
                 border: 1px solid #EAEAF0;
                 border-radius: 5px;
-                padding: 33px 10px 33px 10px;
+                padding: 33px 15px 33px 15px;
                 margin-bottom: 15px;
                 &:hover{
                     box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
                     background-color: #fff;
                 }
                 .home_explorer_img{
-                    display: flex;
-                    justify-content: center;
                     img{
                         width: 50px;
                         height: 50px;
@@ -243,9 +375,10 @@
                 }
         
                 .home_explorer_btn{
-                    text-align: center;
+                    text-align: left;
                     padding-top: 20px;
                     button{
+                        text-align: left;
                         font-size: 20px;
                         font-weight: 600;
                         border: none;
@@ -253,6 +386,12 @@
                         background-color: #fff;
                         color: #333;
                     }
+                }
+
+                .home_explorer_detail{
+                    padding-top: 10px;
+                    font-size: 16px;
+                    color: #555;
                 }
             }
         }
