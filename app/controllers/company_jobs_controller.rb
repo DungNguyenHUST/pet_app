@@ -91,17 +91,17 @@ class CompanyJobsController < ApplicationController
     end
 	
 	def list
-		@company_jobs = CompanyJob.all.order('created_at DESC').expire.page(params[:page]).per(10)
+		@company_jobs = CompanyJob.all.order('created_at DESC').expire.page(params[:page]).per(20)
     end
 
     def search
-        @company_jobs = CompanyJob.all.order('created_at DESC').expire.page(params[:page]).per(10)
+        @company_jobs = CompanyJob.all.order('created_at DESC').expire.page(params[:page]).per(20)
 
         # Search
 		if(params.has_key?(:search) && params.has_key?(:location))
 			@search = convert_vie_to_eng(params[:search])
 			@location = convert_vie_to_eng(params[:location])
-            @job_searchs = CompanyJob.friendly.search(@search, @location).order('created_at DESC').expire.page(params[:page]).per(12)
+            @job_searchs = CompanyJob.friendly.search(@search, @location).order('created_at DESC').expire.page(params[:page]).per(20)
         end
 
         # Filter
@@ -139,7 +139,7 @@ class CompanyJobsController < ApplicationController
             @filter_params_converted = filter_params_converted.new(@category, @salary_min, @salary_max, @level, 
                                                                     @post_date, @typical, @search, @location)
 
-            @job_filtereds = CompanyJob.friendly.filtered(@filter_params_converted ).order('created_at DESC').expire.page(params[:page]).per(12)
+            @job_filtereds = CompanyJob.friendly.filtered(@filter_params_converted ).order('created_at DESC').expire.page(params[:page]).per(20)
             respond_to do |format|
                 format.html {}
                 format.js
