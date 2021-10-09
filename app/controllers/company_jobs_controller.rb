@@ -95,13 +95,23 @@ class CompanyJobsController < ApplicationController
     end
 
     def search
-        @company_jobs = CompanyJob.all.order('created_at DESC').expire.page(params[:page]).per(20)
+        @is_search_not_found = false
+        @is_search = false
+        @job_searchs = CompanyJob.all.order('created_at DESC').expire.page(params[:page]).per(20)
 
         # Search
 		if(params.has_key?(:search) && params.has_key?(:location))
 			@search = convert_vie_to_eng(params[:search])
 			@location = convert_vie_to_eng(params[:location])
             @job_searchs = CompanyJob.friendly.search(@search, @location).order('created_at DESC').expire.page(params[:page]).per(20)
+            @is_search = true
+            if @job_searchs.total_count == 0 
+                @is_search_not_found = true
+                @job_searchs = CompanyJob.all.order('created_at DESC').expire.page(params[:page]).per(20)
+            end
+        else
+            @job_searchs = CompanyJob.all.order('created_at DESC').expire.page(params[:page]).per(20)
+            @is_search = false
         end
 
         # Filter
@@ -112,6 +122,7 @@ class CompanyJobsController < ApplicationController
             @level = nil
             @post_date = nil
             @typical = nil
+            @is_search = true
 
             if filter_params[:category].present?
                 @category = convert_vie_to_eng(filter_params[:category])

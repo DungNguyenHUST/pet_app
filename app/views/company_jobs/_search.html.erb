@@ -1,79 +1,70 @@
 <div class="company_job_search_block_result" id="company_job_search_block_result">
-    <%if job_searched && job_searched.total_count > 0%>
-        <div class="company_job_search_index">
+    <div class="company_job_search_index">
+        <%if @is_search_not_found%>
+            <div class="company_job_search_not_found_block">
+                <div class="company_job_search_not_found_label">
+                    <span>Rất tiếc, không tìm được việc làm phù hợp</span>
+                </div>
+                <div class="company_job_search_not_found_image">
+                    <%=image_tag("others/no_result_found.png")%>
+                </div>
+                <div class="company_job_search_not_found_help">
+                    <a>Gợi ý từ khóa tìm kiếm:</a>
+                    <ul>
+                        <li>
+                            Tìm kiếm với từ khoá cụ thể như vị trí công việc. Ví dụ: Nhân viên kinh doanh, sales ...
+                        </li>
+
+                        <li>
+                            Tìm kiếm theo tên công ty bằng tiếng việt hoặc tiếng anh.
+                        </li>
+
+                        <li>
+                            Tìm kiếm theo danh sách việc làm mới cập nhật và lọc theo tỉnh/thành phố
+                        </li>
+                    </ul>
+                </div>
+            </div>
+            
             <div class="company_job_search_label">
-                <%unless is_all%>
-                    <span><%=job_searched.total_count%> việc làm phù hợp</span>
-                <%end%>						
+                <span>Việc làm gợi ý dành cho bạn</span>
             </div>
-            <div class="row">
-                <div class="col-sm-5 col-no-padding">
-                    <%if job_searched != nil%>
-                        <%job_searched.each do |company_job|%>
-                            <%=render company_job%>
-                        <%end%>
+        <%elsif @is_search%>
+            <div class="company_job_search_label">
+                <span><%=job_searched.total_count%> việc làm phù hợp</span>
+            </div>
+        <%else%>
+            <div class="company_job_search_label">
+                <span><%=job_searched.total_count%> việc làm đang tuyển dụng tháng <%=Date.today.strftime("%m")%>/<%=Date.today.strftime("%Y")%></span>
+            </div>
+        <%end%>	
+
+        <div class="row">
+            <div class="col-sm-5 col_padding_customize_right col_no_padding_small_screen">
+                <%if job_searched != nil%>
+                    <%job_searched.each do |company_job|%>
+                        <%=render company_job%>
                     <%end%>
-                </div>
-
-                <div class='col-sm-7'>
-                    <div class='company_job_preview_index sticky-top' id="company_job_preview_id">
-                        <%= render :partial => 'company_jobs/company_job_preview', locals: {company_job: job_searched.first} %>
-                    </div>
-                </div>
-
-                <script>
-                    document.querySelector(".company_job_block:first-child").classList.add("highlight_job_item"); //select first element
-                    $('.company_job_block').click(function() {
-                        $(this).addClass('highlight_job_item') // add class to clicked element
-                        .siblings() // get siblings
-                        .removeClass('highlight_job_item'); // remove class from sibling elements 
-                    });
-                </script>
+                <%end%>
             </div>
-            <div class="company_job_paginate">
-                <%= paginate job_searched, window: 2%>
+
+            <div class='col-sm-7 col_padding_customize_left'>
+                <div class='company_job_preview_index sticky-top' id="company_job_preview_id">
+                    <%= render :partial => 'company_jobs/company_job_preview', locals: {company_job: job_searched.first} %>
+                </div>
             </div>
+
+            <script>
+                document.querySelector(".company_job_block:first-child").classList.add("highlight_job_item"); //select first element
+                $('.company_job_block').click(function() {
+                    $(this).addClass('highlight_job_item') // add class to clicked element
+                    .siblings() // get siblings
+                    .removeClass('highlight_job_item'); // remove class from sibling elements 
+                });
+            </script>
         </div>
-    <%else%>
-        <div class="company_job_search_not_found_block">
-            <div class="company_job_search_not_found_label">
-                <span>Rất tiếc, không tìm được việc làm phù hợp</span>
-            </div>
-            <div class="company_job_search_not_found_image">
-                <%=image_tag("others/no_result_found.png")%>
-            </div>
-            <div class="company_job_search_not_found_help">
-                <a>Gợi ý từ khóa tìm kiếm:</a>
-                <ul>
-                    <li>
-                        Tìm kiếm với từ khoá cụ thể như vị trí công việc. Ví dụ: Nhân viên kinh doanh, sales ...
-                    </li>
-
-                    <li>
-                        Tìm kiếm theo tên công ty bằng tiếng việt hoặc tiếng anh.
-                    </li>
-
-                    <li>
-                        Tìm kiếm theo danh sách việc làm mới cập nhật và lọc theo tỉnh/thành phố
-                    </li>
-                </ul>
-            </div>
-
-            <div class="company_job_search_not_found_suggest">
-                <div class="company_job_search_not_found_suggest_label">
-                    <a>Việc làm nổi bật</a>
-                </div>
-                <div class="row">
-                    <%@company_jobs.each do |company_job|%>
-                        <div class="col-sm-6 col-no-padding">
-                            <%=render company_job%>
-                        </div>
-                    <%end%>
-                </div>
-                <div class="company_job_paginate">
-                    <%= paginate @company_jobs, window: 2%>
-                </div>
-            </div>
+        <div class="company_job_paginate">
+            <%= paginate job_searched, window: 2%>
         </div>
-    <%end%>
+    </div>
 </div>

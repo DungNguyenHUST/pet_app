@@ -7,7 +7,7 @@
                 <%end%>						
             </div>
             <div class="row">
-                <div class="col-sm-5 col-no-padding">
+                <div class="col-sm-5 col_no_padding_small_screen">
                     <%if cv_searched != nil%>
                         <%cv_searched.each do |user_cv|%>
                             <%= render :partial => 'users/user_cv', locals: {user: user_cv} %>
@@ -15,18 +15,18 @@
                     <%end%>
                 </div>
 
-                <div class='col-sm-7'>
+                <div class='col-sm-7 col_padding_customize_left'>
                     <div class='employer_cv_preview_index sticky-top' id="employer_cv_preview_id">
                         <%= render :partial => 'users/user_cv_preview', locals: {user: cv_searched.first, preview: true}%>
                     </div>
                 </div>
 
                 <script>
-                    document.querySelector(".employer_cv_block:first-child").classList.add("highlight_job_item"); //select first element
-                    $('.employer_cv_block').click(function() {
-                        $(this).addClass('highlight_job_item') // add class to clicked element
+                    document.querySelector(".user_cv_block:first-child").classList.add("highlight_cv_item"); //select first element
+                    $('.user_cv_block').click(function() {
+                        $(this).addClass('highlight_cv_item') // add class to clicked element
                         .siblings() // get siblings
-                        .removeClass('highlight_job_item'); // remove class from sibling elements 
+                        .removeClass('highlight_cv_item'); // remove class from sibling elements 
                     });
                 </script>
             </div>
@@ -65,7 +65,7 @@
                 </div>
                 <div class="row">
                     <%@user_cvs.each do |user_cv|%>
-                        <div class="col-sm-6 col-no-padding">
+                        <div class="col-sm-12 col_no_padding_small_screen">
                             <%= render :partial => 'users/user_cv', locals: {user: user_cv} %>
                         </div>
                     <%end%>

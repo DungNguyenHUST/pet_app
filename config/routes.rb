@@ -78,7 +78,6 @@ Rails.application.routes.draw do
     resources :company_reply_questions
   end
   
-  get 'jobs' => 'company_jobs#list'
   get 'jobs_search' => 'company_jobs#search'
   
   resources :problems do
