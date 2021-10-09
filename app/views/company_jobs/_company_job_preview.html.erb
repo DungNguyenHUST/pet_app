@@ -2,7 +2,7 @@
 <div class="job_preview_block">
     <div class="job_preview_company">
         <div class="row">
-            <div class="col-sm-8">
+            <div class="col-sm-9">
                 <div class="job_preview_left">
                     <div class="job_preview_des">
                         <div class="job_preview_title">
@@ -35,18 +35,23 @@
                                     </a>
                                 <%end%>
                             </div>
+
+                            <div class="job_preview_shoft_info">
+                                <a><i class="material-icons-outlined">hourglass_empty</i>Hạn nộp hồ sơ  · <%= company_job.end_date.strftime("%B %d, %Y") %> </a>
+                            </div>
+
                             <div class="job_preview_shoft_info">
                                 <%if company_job.apply_another_site_flag%>
-                                    <a><i class="material-icons-outlined">schedule</i> Đã đăng <%= time_ago_in_words(company_job.created_at) %> · từ <%=get_domain_name(company_job.apply_site)%></a>
+                                    <a><i class="material-icons-outlined">schedule</i> Đã đăng · <%= time_ago_in_words(company_job.created_at) %> từ <%=get_domain_name(company_job.apply_site)%></a>
                                 <%else%>
-                                    <a><i class="material-icons-outlined">schedule</i> Đã đăng <%= time_ago_in_words(company_job.created_at) %> </a>
+                                    <a><i class="material-icons-outlined">schedule</i> Đã đăng · <%= time_ago_in_words(company_job.created_at) %> </a>
                                 <%end%>
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
-            <div class="col-sm-4">
+            <div class="col-sm-3">
                 <div class="job_preview_right">
                     <div class="apply_job_preview_button">
                         <div class="job_preview_apply_button">
