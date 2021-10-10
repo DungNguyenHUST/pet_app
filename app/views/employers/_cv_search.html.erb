@@ -1,11 +1,11 @@
 <div class="employer_cv_search_block_result" id="employer_cv_search_block_result">
     <%if cv_searched && cv_searched.total_count > 0%>
         <div class="employer_cv_search_index">
-            <div class="employer_cv_search_label">
-                <%unless is_all == true%>
-                    <span><%=cv_searched.total_count%> hồ sơ phù hợp</span>
-                <%end%>						
-            </div>
+            <%unless is_all == true%>
+                <div class="employer_cv_search_label">
+                    <span><%=cv_searched.total_count%> hồ sơ phù hợp</span>						
+                </div>
+            <%end%>
             <div class="row">
                 <div class="col-sm-5 col_no_padding_small_screen">
                     <%if cv_searched != nil%>

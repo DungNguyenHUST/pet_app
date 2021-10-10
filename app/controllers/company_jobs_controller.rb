@@ -32,7 +32,7 @@ class CompanyJobsController < ApplicationController
 
             if @company_job.save
                 redirect_to employer_index_job_path
-                flash[:success] = "Để đảm bảo chất lượng thông tin, chúng tôi đang tiến hành xử lý để duyệt tin đăng của bạn, xin vui lòng chờ sau ít phút..."
+                flash[:success] = "Để đảm bảo chất lượng thông tin, tin đăng của bạn đang được xếp vào hàng chờ để duyệt thông tin. Xin vui lòng kiểm tra kết quả sau ít phút..."
             else
                 flash[:danger] = "Lỗi, hãy điền đủ nội dung có dấu *"
                 render :new

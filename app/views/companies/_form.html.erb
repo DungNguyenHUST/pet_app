@@ -21,7 +21,11 @@
 							</div>
 
 							<div class="new_company_input">
-								<%= f.text_field :name, autofocus: true, :required => true, class: "form-control", placeholder: "Nhập tên công ty của bạn" %>
+								<%if employer_signed_in?%>
+									<%= f.text_field :name, autofocus: true, :required => true, class: "form-control", :value => current_employer.company_name%>
+								<%else%>
+									<%= f.text_field :name, autofocus: true, :required => true, class: "form-control", placeholder: "Nhập tên công ty của bạn" %>
+								<%end%>
 							</div>
 						</div>
 
@@ -52,7 +56,11 @@
 							</div>
 
 							<div class="new_company_input">
-								<%= f.text_field :address, class: "form-control", placeholder: "Nhập địa chỉ công ty bao gồm số nhà, tên đường, phố ..." %>
+								<%if employer_signed_in?%>
+									<%= f.text_field :address, class: "form-control", :value => current_employer.address %>
+								<%else%>
+									<%= f.text_field :address, class: "form-control", placeholder: "Nhập địa chỉ công ty bao gồm số nhà, tên đường, phố ..." %>
+								<%end%>
 							</div>
 						</div>
 
@@ -388,7 +396,11 @@
 							</div>
 
 							<div class="new_company_input">
-								<%= f.text_field :phone, class: "form-control", placeholder: "Nhập địa số điện thoại liên hệ" %>
+								<%if employer_signed_in?%>
+									<%= f.text_field :phone, class: "form-control", :value => current_employer.phone %>
+								<%else%>
+									<%= f.text_field :phone, class: "form-control", placeholder: "Nhập địa số điện thoại liên hệ" %>
+								<%end%>
 							</div>
 						</div>
 					</div>
