@@ -25,82 +25,82 @@
         <div class="admin_tab_link">
             <ul class="nav">
                 <li class="nav-item">
-                    <%if @tab_id == "default" || @tab_id == "AdminCompanyID"%>
+                    <%if @tab == "default" || @tab == "AdminCompanyID"%>
                         <%active = "active"%>
                     <%else%> 
                         <%active = ""%>
                     <%end%>                                 
-                    <a class="nav-link <%=active%>" href="<%=admin_path(current_admin, tab_id: 'AdminCompanyID')%>"><i class="material-icons-outlined">business</i>Company <span><%= (@companies.total_count)%><span></a>
+                    <a class="nav-link <%=active%>" href="<%=admin_path(current_admin, tab: 'AdminCompanyID')%>"><i class="material-icons-outlined">business</i>Company <span><%= (@companies.total_count)%><span></a>
                 </li>
                 <li class="nav-item">
-                    <%if @tab_id == "AdminJobID"%>
+                    <%if @tab == "AdminJobID"%>
                         <%active = "active"%>
                     <%else%> 
                         <%active = ""%>
                     <%end%>                                 
-                    <a class="nav-link <%=active%>" href="<%=admin_path(current_admin, tab_id: 'AdminJobID')%>"><i class="material-icons-outlined">work_outline</i>Job <span><%= (@company_jobs.total_count)%><span></a>
+                    <a class="nav-link <%=active%>" href="<%=admin_path(current_admin, tab: 'AdminJobID')%>"><i class="material-icons-outlined">work_outline</i>Job <span><%= (@company_jobs.total_count)%><span></a>
                 </li>
                 <li class="nav-item">
-                    <%if @tab_id == "AdminUserID"%>
+                    <%if @tab == "AdminUserID"%>
                         <%active = "active"%>
                     <%else%> 
                         <%active = ""%>
                     <%end%>                                     
-                    <a class="nav-link <%=active%>" href="<%=admin_path(current_admin, tab_id: 'AdminUserID')%>"><i class="material-icons-outlined">person</i>User <span><%= (@users.total_count)%><span></a>
+                    <a class="nav-link <%=active%>" href="<%=admin_path(current_admin, tab: 'AdminUserID')%>"><i class="material-icons-outlined">person</i>User <span><%= (@users.total_count)%><span></a>
                 </li>
                 <li class="nav-item">
-                    <%if @tab_id == "AdminPostID"%>
+                    <%if @tab == "AdminPostID"%>
                         <%active = "active"%>
                     <%else%> 
                         <%active = ""%>
                     <%end%>                                     
-                    <a class="nav-link <%=active%>" href="<%=admin_path(current_admin, tab_id: 'AdminPostID')%>"><i class="material-icons-outlined">post_add</i>Post <span><%= (@posts.total_count)%><span></a>
+                    <a class="nav-link <%=active%>" href="<%=admin_path(current_admin, tab: 'AdminPostID')%>"><i class="material-icons-outlined">post_add</i>Post <span><%= (@posts.total_count)%><span></a>
                 </li>
                 <li class="nav-item">
-                    <%if @tab_id == "AdminProblemID"%>
+                    <%if @tab == "AdminProblemID"%>
                         <%active = "active"%>
                     <%else%> 
                         <%active = ""%>
                     <%end%>                                     
-                    <a class="nav-link <%=active%>" href="<%=admin_path(current_admin, tab_id: 'AdminProblemID')%>"><i class="material-icons-outlined">lightbulb</i>Problem <span><%= (@problems.total_count)%><span></a>
+                    <a class="nav-link <%=active%>" href="<%=admin_path(current_admin, tab: 'AdminProblemID')%>"><i class="material-icons-outlined">lightbulb</i>Problem <span><%= (@problems.total_count)%><span></a>
                 </li>
                 <li class="nav-item">
-                    <%if @tab_id == "EmployerID"%>
+                    <%if @tab == "EmployerID"%>
                         <%active = "active"%>
                     <%else%> 
                         <%active = ""%>
                     <%end%>                                     
-                    <a class="nav-link <%=active%>" href="<%=admin_path(current_admin, tab_id: 'EmployerID')%>"><i class="material-icons-outlined">people</i>Employer <span><%= (@employers.total_count)%><span></a>
+                    <a class="nav-link <%=active%>" href="<%=admin_path(current_admin, tab: 'EmployerID')%>"><i class="material-icons-outlined">people</i>Employer <span><%= (@employers.total_count)%><span></a>
                 </li>
                 <li class="nav-item">
-                    <%if @tab_id == "ScrapJobID"%>
+                    <%if @tab == "ScrapJobID"%>
                         <%active = "active"%>
                     <%else%> 
                         <%active = ""%>
                     <%end%>                                     
-                    <a class="nav-link <%=active%>" href="<%=admin_path(current_admin, tab_id: 'ScrapJobID')%>"><i class="material-icons-outlined">smart_toy</i>Job Scraper</a>
+                    <a class="nav-link <%=active%>" href="<%=admin_path(current_admin, tab: 'ScrapJobID')%>"><i class="material-icons-outlined">smart_toy</i>Job Scraper</a>
                 </li>
                 <li class="nav-item">
-                    <%if @tab_id == "ScrapReviewID"%>
+                    <%if @tab == "ScrapReviewID"%>
                         <%active = "active"%>
                     <%else%> 
                         <%active = ""%>
                     <%end%>                                     
-                    <a class="nav-link <%=active%>" href="<%=admin_path(current_admin, tab_id: 'ScrapReviewID')%>"><i class="material-icons-outlined">star_border</i>Review Scraper</a>
+                    <a class="nav-link <%=active%>" href="<%=admin_path(current_admin, tab: 'ScrapReviewID')%>"><i class="material-icons-outlined">star_border</i>Review Scraper</a>
                 </li>
                 <li class="nav-item">
-                    <%if @tab_id == "CoverVitaeID"%>
+                    <%if @tab == "CoverVitaeID"%>
                         <%active = "active"%>
                     <%else%> 
                         <%active = ""%>
                     <%end%>                                     
-                    <a class="nav-link <%=active%>" href="<%=admin_path(current_admin, tab_id: 'CoverVitaeID')%>"><i class="material-icons-outlined">auto_fix_high</i>CV Creater</a>
+                    <a class="nav-link <%=active%>" href="<%=admin_path(current_admin, tab: 'CoverVitaeID')%>"><i class="material-icons-outlined">auto_fix_high</i>CV Creater</a>
                 </li>
             </ul>
         </div>
 
         <div class="admin_tab_content">
-            <%if @tab_id == "default" || @tab_id == "AdminCompanyID"%>
+            <%if @tab == "default" || @tab == "AdminCompanyID"%>
                 <div class="admin_company_tab">
                     <div class="new_company">
                         <%= link_to '<button type="submit">Tạo công ty mới</button>'.html_safe, new_company_path%>
@@ -108,12 +108,12 @@
                 </div>                        
             <%end%>
 
-            <%if @tab_id == "AdminUserID"%>
+            <%if @tab == "AdminUserID"%>
                 <div class="admin_user_tab">
                 </div>                        
             <%end%>
 
-            <%if @tab_id == "AdminPostID"%>
+            <%if @tab == "AdminPostID"%>
                 <div class="admin_post_tab">
                     <div class="new_post">
                         <%= link_to '<button type="submit">Tạo post mới</button>'.html_safe, new_post_path%>
@@ -121,7 +121,7 @@
                 </div>                        
             <%end%>
 
-            <%if @tab_id == "AdminProblemID"%>
+            <%if @tab == "AdminProblemID"%>
                 <div class="admin_problem_tab">
                     <div class="new_problem">
                         <%= link_to '<button type="submit">Tạo câu hỏi mới</button>'.html_safe, new_problem_path%>
@@ -129,19 +129,19 @@
                 </div>                        
             <%end%>
 
-            <%if @tab_id == "AdminEmployerID"%>
+            <%if @tab == "AdminEmployerID"%>
                 <div class="admin_employer_tab">
                     <div class="new_employer">
                     </div>
                 </div>                        
             <%end%>
 
-            <%if @tab_id == "NotificationID"%>
+            <%if @tab == "NotificationID"%>
                 <div class="admin_notification_tab">
                 </div>
             <%end%>
 
-            <%if @tab_id == "ScrapJobID"%>
+            <%if @tab == "ScrapJobID"%>
                 <div class="scrap_jobs_tab">
                     <div class="row">
                         <div class="col-sm-6">
@@ -159,12 +159,12 @@
                 </div>
             <%end%>
 
-            <%if @tab_id == "ScrapReviewID"%>
+            <%if @tab == "ScrapReviewID"%>
                 <%@scrap_review = ScrapReview.new%>
                 <%= render :partial => 'scrap_reviews/form', :local => @scrap_review %>
             <%end%>
 
-            <%if @tab_id == "CoverVitaeID"%>
+            <%if @tab == "CoverVitaeID"%>
                 <%@cover_vitae = CoverVitae.new%>
                 <%= render :partial => 'cover_vitaes/form', :local => @cover_vitae %>
             <%end%>

@@ -1,5 +1,5 @@
 <% content_for :meta_robots, "all" %>
-<%case @tab_id%>
+<%case @tab%>
 <%when "default", "CompanyProfileID"%>
     <%title = "Tổng quan, giới thiệu về công ty"%>
     <%content = @company.overview%>
@@ -40,7 +40,7 @@
             "itemReviewed": {
                 "@type": "Organization",
                 "name" : "<%=@company.name%>",
-                "sameAs" : "<%=company_path(@company, tab_id: 'CompanyReviewsID')%>"
+                "sameAs" : "<%=company_path(@company, tab: 'CompanyReviewsID')%>"
             },
             "ratingValue": "<%=cal_rating_review_total_score(@company)%>",
             "bestRating": "5",
@@ -127,25 +127,25 @@
                             </div>
 
                             <div class="review_new_button">
-                                <%if @tab_id == "default" || @tab_id == "CompanyProfileID"%>
+                                <%if @tab == "default" || @tab == "CompanyProfileID"%>
                                     <%= link_to '<button type="submit"> <i class="material-icons-outlined">edit</i> <span> Viết Review</span> </button>'.html_safe, new_company_company_review_path(@company) %>
-                                <% elsif @tab_id == "CompanyPolicyID" %>
+                                <% elsif @tab == "CompanyPolicyID" %>
                                     <%= link_to '<button type="submit"> <i class="material-icons-outlined">edit</i> <span> Viết Review</span> </button>'.html_safe, new_company_company_review_path(@company) %>
-                                <% elsif @tab_id == "CompanyReviewsID" %>
+                                <% elsif @tab == "CompanyReviewsID" %>
                                     <%= link_to '<button type="submit"> <i class="material-icons-outlined">edit</i> <span> Viết Review</span> </button>'.html_safe, new_company_company_review_path(@company) %>
-                                <% elsif @tab_id == "CompanyInterviewsID" %>
+                                <% elsif @tab == "CompanyInterviewsID" %>
                                     <%= link_to '<button type="submit"> <i class="material-icons-outlined">edit</i> <span> Viết Interview</span> </button>'.html_safe, new_company_company_interview_path(@company) %>
-                                <% elsif @tab_id == "CompanyJobsID" %>
+                                <% elsif @tab == "CompanyJobsID" %>
                                     <%if employer_signed_in?%>
                                         <%= link_to '<button type="submit"> <i class="material-icons-outlined">edit</i> <span> Đăng tuyển</span> </button>'.html_safe, new_company_job_path%>
                                     <%else%>
                                         <%= link_to '<button type="submit"> <i class="material-icons-outlined">edit</i> <span> Viết Review</span> </button>'.html_safe, new_company_company_review_path(@company) %>
                                     <%end%>
-                                <% elsif @tab_id == "CompanyQuestionsID" %>
+                                <% elsif @tab == "CompanyQuestionsID" %>
                                     <%= link_to '<button type="submit"> <i class="material-icons-outlined">edit</i> <span> Đặt câu hỏi</span> </button>'.html_safe, new_company_company_question_path(@company) %>
-                                <% elsif @tab_id == "CompanySalariesID" %>
+                                <% elsif @tab == "CompanySalariesID" %>
                                     <%= link_to '<button type="submit"> <i class="material-icons-outlined">edit</i> <span> Thêm lương </span> </button>'.html_safe, new_company_company_salary_path(@company) %>
-                                <% elsif @tab_id == "CompanyImagesID" %>
+                                <% elsif @tab == "CompanyImagesID" %>
                                     <%= link_to '<button type="submit"> <i class="material-icons-outlined">edit</i> <span> Viết Review</span> </button>'.html_safe, new_company_company_review_path(@company) %>
                                 <%end%>
                             </div>
@@ -160,68 +160,68 @@
         <div class="container">
             <ul class="nav">
                 <li class="nav-item">
-                    <%if @tab_id == "default" || @tab_id == "CompanyProfileID"%>
+                    <%if @tab == "default" || @tab == "CompanyProfileID"%>
                         <%active = "active"%>
                     <%else%> 
                         <%active = ""%>
                     <%end%>                                 
-                    <a class="nav-link <%=active%>" href="<%=company_path(@company, tab_id: 'CompanyProfileID')%>"><i class="material-icons-outlined">corporate_fare</i>Giới thiệu</a>
+                    <a class="nav-link <%=active%>" href="<%=company_path(@company, tab: 'CompanyProfileID')%>"><i class="material-icons-outlined">corporate_fare</i>Giới thiệu</a>
                 </li>
                 <li class="nav-item">
-                    <%if @tab_id == "CompanyPolicyID"%>
+                    <%if @tab == "CompanyPolicyID"%>
                         <%active = "active"%>
                     <%else%> 
                         <%active = ""%>
                     <%end%>                                     
-                    <a class="nav-link <%=active%>" href="<%=company_path(@company, tab_id: 'CompanyPolicyID')%>"><i class="material-icons-outlined">favorite_border</i>Chính sách</a>
+                    <a class="nav-link <%=active%>" href="<%=company_path(@company, tab: 'CompanyPolicyID')%>"><i class="material-icons-outlined">favorite_border</i>Chính sách</a>
                 </li>
                 <li class="nav-item">
-                    <%if @tab_id == "CompanyReviewsID"%>
+                    <%if @tab == "CompanyReviewsID"%>
                         <%active = "active"%>
                     <%else%> 
                         <%active = ""%>
                     <%end%>                                     
-                    <a class="nav-link <%=active%>" href="<%=company_path(@company, tab_id: 'CompanyReviewsID')%>"><i class="material-icons-outlined">insert_emoticon</i>Review <span> <%= convert_number_to_human(@company_reviews.total_count)%><span></a>
+                    <a class="nav-link <%=active%>" href="<%=company_path(@company, tab: 'CompanyReviewsID')%>"><i class="material-icons-outlined">insert_emoticon</i>Review <span> <%= convert_number_to_human(@company_reviews.total_count)%><span></a>
                 </li>
                 <li class="nav-item">
-                    <%if @tab_id == "CompanyInterviewsID"%>
+                    <%if @tab == "CompanyInterviewsID"%>
                         <%active = "active"%>
                     <%else%> 
                         <%active = ""%>
                     <%end%> 
-                    <a class="nav-link <%=active%>" href="<%=company_path(@company, tab_id: 'CompanyInterviewsID')%>"><i class="material-icons-outlined">people_outline</i>Phỏng vấn <span> <%= convert_number_to_human(@company_interviews.total_count)%><span></a>
+                    <a class="nav-link <%=active%>" href="<%=company_path(@company, tab: 'CompanyInterviewsID')%>"><i class="material-icons-outlined">people_outline</i>Phỏng vấn <span> <%= convert_number_to_human(@company_interviews.total_count)%><span></a>
                 </li>
                 <li class="nav-item">
-                    <%if @tab_id == "CompanyJobsID"%>
+                    <%if @tab == "CompanyJobsID"%>
                         <%active = "active"%>
                     <%else%> 
                         <%active = ""%>
                     <%end%> 
-                    <a class="nav-link <%=active%>" href="<%=company_path(@company, tab_id: 'CompanyJobsID')%>"><i class="material-icons-outlined">work_outline</i>Tuyển dụng <span> <%= convert_number_to_human(@company_jobs.total_count)%><span></a>
+                    <a class="nav-link <%=active%>" href="<%=company_path(@company, tab: 'CompanyJobsID')%>"><i class="material-icons-outlined">work_outline</i>Tuyển dụng <span> <%= convert_number_to_human(@company_jobs.total_count)%><span></a>
                 </li>
                 <li class="nav-item">
-                    <%if @tab_id == "CompanySalariesID"%>
+                    <%if @tab == "CompanySalariesID"%>
                         <%active = "active"%>
                     <%else%> 
                         <%active = ""%>
                     <%end%>                                     
-                    <a class="nav-link <%=active%>" href="<%=company_path(@company, tab_id: 'CompanySalariesID')%>"><i class="material-icons-outlined">paid</i>Lương<span> <%= convert_number_to_human(@company.company_salaries.count)%><span></a>
+                    <a class="nav-link <%=active%>" href="<%=company_path(@company, tab: 'CompanySalariesID')%>"><i class="material-icons-outlined">paid</i>Lương<span> <%= convert_number_to_human(@company.company_salaries.count)%><span></a>
                 </li>
                 <li class="nav-item">
-                    <%if @tab_id == "CompanyImagesID"%>
+                    <%if @tab == "CompanyImagesID"%>
                         <%active = "active"%>
                     <%else%> 
                         <%active = ""%>
                     <%end%>                                     
-                    <a class="nav-link <%=active%>" href="<%=company_path(@company, tab_id: 'CompanyImagesID')%>"><i class="material-icons-outlined">image</i>Hình ảnh<span> <%= convert_number_to_human(@company_images.total_count)%><span></a>
+                    <a class="nav-link <%=active%>" href="<%=company_path(@company, tab: 'CompanyImagesID')%>"><i class="material-icons-outlined">image</i>Hình ảnh<span> <%= convert_number_to_human(@company_images.total_count)%><span></a>
                 </li>
                 <li class="nav-item">
-                    <%if @tab_id == "CompanyQuestionsID"%>
+                    <%if @tab == "CompanyQuestionsID"%>
                         <%active = "active"%>
                     <%else%> 
                         <%active = ""%>
                     <%end%>                                     
-                    <a class="nav-link <%=active%>" href="<%=company_path(@company, tab_id: 'CompanyQuestionsID')%>"><i class="material-icons-outlined">help_outline</i>Q&A<span> <%= convert_number_to_human(@company_questions.total_count)%><span></a>
+                    <a class="nav-link <%=active%>" href="<%=company_path(@company, tab: 'CompanyQuestionsID')%>"><i class="material-icons-outlined">help_outline</i>Q&A<span> <%= convert_number_to_human(@company_questions.total_count)%><span></a>
                 </li>
             </ul>
         </div>
@@ -229,35 +229,35 @@
 
     <div class="company_nav_content">
         <div class="container">
-            <%if @tab_id == "default" || @tab_id == "CompanyProfileID"%>
+            <%if @tab == "default" || @tab == "CompanyProfileID"%>
                 <%= render :partial => 'companies/profile', :object => @company, locals: {company: @company} %>                       
             <%end%>
 
-            <%if @tab_id == "CompanyPolicyID"%>
+            <%if @tab == "CompanyPolicyID"%>
                 <%= render :partial => 'companies/policy', :object => @company, locals: {company: @company} %>
             <%end%>
 
-            <%if @tab_id == "CompanyReviewsID"%>
+            <%if @tab == "CompanyReviewsID"%>
                 <%= render :partial => 'companies/review', :object => @company, locals: {company: @company} %>
             <%end%>
 
-            <%if @tab_id == "CompanyInterviewsID"%>
+            <%if @tab == "CompanyInterviewsID"%>
                 <%= render :partial => 'companies/interview', :object => @company, locals: {company: @company} %>
             <%end%>
             
-            <%if @tab_id == "CompanyJobsID"%>
+            <%if @tab == "CompanyJobsID"%>
                 <%= render :partial => 'companies/job', :object => @company, locals: {company: @company} %>
             <%end%>
 
-            <%if @tab_id == "CompanySalariesID"%>
+            <%if @tab == "CompanySalariesID"%>
                 <%= render :partial => 'companies/salary', :object => @company, locals: {company: @company} %>
             <%end%>
 
-            <%if @tab_id == "CompanyQuestionsID"%>
+            <%if @tab == "CompanyQuestionsID"%>
                 <%= render :partial => 'companies/question', :object => @company, locals: {company: @company} %>
             <%end%>
 
-            <%if @tab_id == "CompanyImagesID"%>
+            <%if @tab == "CompanyImagesID"%>
                 <%= render :partial => 'companies/image', :object => @company, locals: {company: @company} %>
             <%end%>
         </div>

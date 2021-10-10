@@ -21,7 +21,7 @@ class CompanyReviewsController < ApplicationController
         end
 
         if @company_review.save
-            redirect_to company_path(@company, tab_id: 'CompanyReviewsID')
+            redirect_to company_path(@company, tab: 'CompanyReviewsID')
         else
             flash[:danger] = "Lỗi, hãy điền đủ nội dung có dấu '*' "
             render :new
@@ -39,7 +39,7 @@ class CompanyReviewsController < ApplicationController
         @company_review = @company.company_reviews.find(params[:id])
         @company_review.destroy
         
-        redirect_to company_path(@company, tab_id: 'CompanyReviewsID')
+        redirect_to company_path(@company, tab: 'CompanyReviewsID')
     end
 
     def show

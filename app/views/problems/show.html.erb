@@ -1,5 +1,5 @@
 <% content_for :meta_robots, "all" %>
-<%case @tab_id%>
+<%case @tab%>
 <%when "default", "ProblemDescriptionID"%>
     <%title = "Câu hỏi"%>
 <%when "ProblemSolutionID"%>
@@ -22,42 +22,42 @@
 						<div class="problem_tab_link">
 							<ul class="nav nav-justified">
 								<li class="nav-item">
-									<%if @tab_id == "default" || @tab_id == "ProblemDescriptionID"%>
+									<%if @tab == "default" || @tab == "ProblemDescriptionID"%>
 										<%active = "active"%>
 									<%else%> 
 										<%active = ""%>
 									<%end%>                                 
-									<a class="nav-link <%=active%>" href="<%=problem_path(@problem, tab_id: 'ProblemDescriptionID')%>"><i class="material-icons-outlined">content_paste</i>Mô tả</a>
+									<a class="nav-link <%=active%>" href="<%=problem_path(@problem, tab: 'ProblemDescriptionID')%>"><i class="material-icons-outlined">content_paste</i>Mô tả</a>
 								</li>
 								<li class="nav-item">
-									<%if @tab_id == "ProblemSolutionID"%>
+									<%if @tab == "ProblemSolutionID"%>
 										<%active = "active"%>
 									<%else%> 
 										<%active = ""%>
 									<%end%>                                     
-									<a class="nav-link <%=active%>" href="<%=problem_path(@problem, tab_id: 'ProblemSolutionID')%>"><i class="material-icons-outlined">lightbulb</i>Trả lời<span> <%= convert_number_to_human(@problem.problem_solutions.count)%><span></a>
+									<a class="nav-link <%=active%>" href="<%=problem_path(@problem, tab: 'ProblemSolutionID')%>"><i class="material-icons-outlined">lightbulb</i>Trả lời<span> <%= convert_number_to_human(@problem.problem_solutions.count)%><span></a>
 								</li>
 								<li class="nav-item">
-									<%if @tab_id == "ProblemSubmitSolutionID"%>
+									<%if @tab == "ProblemSubmitSolutionID"%>
 										<%active = "active"%>
 									<%else%> 
 										<%active = ""%>
 									<%end%>                                     
-									<a class="nav-link <%=active%>" href="<%=problem_path(@problem, tab_id: 'ProblemSubmitSolutionID')%>"><i class="material-icons-outlined">bookmark_border</i>Submission<span> <%= convert_number_to_human(@problem_submition.count)%><span></a>
+									<a class="nav-link <%=active%>" href="<%=problem_path(@problem, tab: 'ProblemSubmitSolutionID')%>"><i class="material-icons-outlined">bookmark_border</i>Submission<span> <%= convert_number_to_human(@problem_submition.count)%><span></a>
 								</li>
 								<li class="nav-item">
-									<%if @tab_id == "ProblemRelatedID"%>
+									<%if @tab == "ProblemRelatedID"%>
 										<%active = "active"%>
 									<%else%> 
 										<%active = ""%>
 									<%end%>                                     
-									<a class="nav-link <%=active%>" href="<%=problem_path(@problem, tab_id: 'ProblemRelatedID')%>"><i class="material-icons">list</i>Câu hỏi liên quan<span> <%= convert_number_to_human(@problem_relateds.total_count)%><span></a>
+									<a class="nav-link <%=active%>" href="<%=problem_path(@problem, tab: 'ProblemRelatedID')%>"><i class="material-icons">list</i>Câu hỏi liên quan<span> <%= convert_number_to_human(@problem_relateds.total_count)%><span></a>
 								</li>
 							</ul>
 						</div>
 
 						<div class="problem_tab_content">
-							<%if @tab_id == "default" || @tab_id == "ProblemDescriptionID"%>
+							<%if @tab == "default" || @tab == "ProblemDescriptionID"%>
 								<div class="problem_des_tab">
 									<div class="problem_des_info">
 										<div class="problem_des_title">
@@ -117,7 +117,7 @@
 								</div>
 							<%end%>
 
-							<%if @tab_id == "ProblemSolutionID"%>
+							<%if @tab == "ProblemSolutionID"%>
 								<div class="problem_solution_tab" id="ProblemSolutionID">
 									<%if @problem_solutions_best.present?%>
 										<div class="problem_solution_best">
@@ -151,7 +151,7 @@
 								</div>
 							<%end%>
 
-							<%if @tab_id == "ProblemSubmitSolutionID"%>
+							<%if @tab == "ProblemSubmitSolutionID"%>
 								<div class="problem_submit_tab">  
 									<%if @problem_submition.count > 0%>  
 										<%= render @problem_submition%>
@@ -168,7 +168,7 @@
 								</div>
 							<%end%>
 							
-							<%if @tab_id == "ProblemRelatedID"%>
+							<%if @tab == "ProblemRelatedID"%>
 								<div class="problem_related_tab">
 									<table class="table table-hover table-striped table-bordere">
 										<thead>

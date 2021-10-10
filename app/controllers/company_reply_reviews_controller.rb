@@ -30,11 +30,11 @@ class CompanyReplyReviewsController < ApplicationController
                                                             current_user, 
                                                             @company_review.position, 
                                                             @company_reply_review.reply_content, 
-                                                            company_path(@company, tab_id: 'CompanyReviewsID'), 
+                                                            company_path(@company, tab: 'CompanyReviewsID'), 
                                                             "ReviewComment")
             end
             
-            # redirect_to company_path(@company, tab_id: 'CompanyReviewsID')
+            # redirect_to company_path(@company, tab: 'CompanyReviewsID')
             respond_to do |format|
                 format.html {}
                 format.js
@@ -57,7 +57,7 @@ class CompanyReplyReviewsController < ApplicationController
         @company_reply_review = @company_review.company_reply_reviews.find(params[:id])
 
         @company_reply_review.destroy
-        redirect_to company_path(@company, tab_id: 'CompanyReviewsID')
+        redirect_to company_path(@company, tab: 'CompanyReviewsID')
     end
 
     def show

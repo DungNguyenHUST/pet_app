@@ -18,10 +18,10 @@ class ProblemsController < ApplicationController
         @problem_interview = Problem.where(:category => "4").order("id ASC").approved.page(params[:page]).per(20)
         @problem_other = Problem.where(:category => "5").order("id ASC").approved.page(params[:page]).per(20)
 
-        if(params.has_key?(:tab_id))
-            @tab_id = params[:tab_id]
+        if(params.has_key?(:tab))
+            @tab = params[:tab]
         else
-            @tab_id = "default"
+            @tab = "default"
         end
     end
 
@@ -80,10 +80,10 @@ class ProblemsController < ApplicationController
             end
         end
 
-        if(params.has_key?(:tab_id))
-            @tab_id = params[:tab_id]
+        if(params.has_key?(:tab))
+            @tab = params[:tab]
         else
-            @tab_id = "default"
+            @tab = "default"
         end
 
         @problem_relateds = Problem.all.approved.reject{|i| i.id == @problem.id}
@@ -109,7 +109,7 @@ class ProblemsController < ApplicationController
     def destroy
         @problem = Problem.friendly.find params[:id]
         @problem.destroy
-        redirect_to admin_path(current_admin, tab_id: 'AdminProblemID')
+        redirect_to admin_path(current_admin, tab: 'AdminProblemID')
     end
 
     private

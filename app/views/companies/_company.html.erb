@@ -65,7 +65,7 @@
                     <a><%= company.company_reviews.count%></a>
                 </div>
                 <div class="company_point_label">
-                    <a><%= link_to "Đánh giá", company_path(company, tab_id: 'CompanyReviewsID'), target: :_blank %></a>
+                    <a><%= link_to "Đánh giá", company_path(company, tab: 'CompanyReviewsID'), target: :_blank %></a>
                 </div>
             </div>
             
@@ -74,7 +74,7 @@
                     <a><%= company.company_interviews.count %></a>
                 </div>
                 <div class="company_point_label">
-                    <a><%= link_to "Phỏng vấn", company_path(company, tab_id: 'CompanyInterviewsID'), target: :_blank %></a>
+                    <a><%= link_to "Phỏng vấn", company_path(company, tab: 'CompanyInterviewsID'), target: :_blank %></a>
                 </div>
             </div>
             
@@ -83,7 +83,7 @@
                     <a><%= find_job_of_company(company).count %></a>
                 </div>
                 <div class="company_point_label">
-                    <a><%= link_to "Việc làm", company_path(company, tab_id: 'CompanyJobsID'), target: :_blank %></a>
+                    <a><%= link_to "Việc làm", company_path(company, tab: 'CompanyJobsID'), target: :_blank %></a>
                 </div>
             </div>
         </div>

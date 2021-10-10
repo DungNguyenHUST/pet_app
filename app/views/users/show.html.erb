@@ -13,66 +13,66 @@
         <div class="user_tab_link">
             <ul class="nav">
                 <li class="nav-item">
-                    <%if @tab_id == "default" || @tab_id == "PersonalID"%>
+                    <%if @tab == "default" || @tab == "PersonalID"%>
                         <%active = "active"%>
                     <%else%> 
                         <%active = ""%>
                     <%end%>                                 
-                    <a class="nav-link <%=active%>" href="<%=user_path(current_user, tab_id: 'PersonalID')%>"><i class="material-icons-outlined">person</i>Thông tin cá nhân</a>
+                    <a class="nav-link <%=active%>" href="<%=user_path(current_user, tab: 'PersonalID')%>"><i class="material-icons-outlined">person</i>Thông tin cá nhân</a>
                 </li>
                 <li class="nav-item">
-                    <%if @tab_id == "SaveJobID"%>
+                    <%if @tab == "SaveJobID"%>
                         <%active = "active"%>
                     <%else%> 
                         <%active = ""%>
                     <%end%>                                     
-                    <a class="nav-link <%=active%>" href="<%=user_path(current_user, tab_id: 'SaveJobID')%>"><i class="material-icons-outlined">bookmark_border</i>Việc làm đã lưu <span><%= convert_number_to_human(@company_job_saved.total_count)%><span> </a>
+                    <a class="nav-link <%=active%>" href="<%=user_path(current_user, tab: 'SaveJobID')%>"><i class="material-icons-outlined">bookmark_border</i>Việc làm đã lưu <span><%= convert_number_to_human(@company_job_saved.total_count)%><span> </a>
                 </li>
                 <li class="nav-item">
-                    <%if @tab_id == "ApplyJobID"%>
+                    <%if @tab == "ApplyJobID"%>
                         <%active = "active"%>
                     <%else%> 
                         <%active = ""%>
                     <%end%>                                     
-                    <a class="nav-link <%=active%>" href="<%=user_path(current_user, tab_id: 'ApplyJobID')%>"><i class="material-icons-outlined">check</i>Việc làm đã ứng tuyển <span><%= convert_number_to_human(@company_job_applied.total_count)%><span> </a>
+                    <a class="nav-link <%=active%>" href="<%=user_path(current_user, tab: 'ApplyJobID')%>"><i class="material-icons-outlined">check</i>Việc làm đã ứng tuyển <span><%= convert_number_to_human(@company_job_applied.total_count)%><span> </a>
                 </li>
                 <li class="nav-item">
-                    <%if @tab_id == "CompanyFollowID"%>
+                    <%if @tab == "CompanyFollowID"%>
                         <%active = "active"%>
                     <%else%> 
                         <%active = ""%>
                     <%end%>                                     
-                    <a class="nav-link <%=active%>" href="<%=user_path(current_user, tab_id: 'CompanyFollowID')%>"><i class="material-icons-outlined">favorite_border</i>Công ty đang theo dõi <span><%= convert_number_to_human(@company_followed.total_count)%><span> </a>
+                    <a class="nav-link <%=active%>" href="<%=user_path(current_user, tab: 'CompanyFollowID')%>"><i class="material-icons-outlined">favorite_border</i>Công ty đang theo dõi <span><%= convert_number_to_human(@company_followed.total_count)%><span> </a>
                 </li>
                 <li class="nav-item">
-                    <%if @tab_id == "ProblemID"%>
+                    <%if @tab == "ProblemID"%>
                         <%active = "active"%>
                     <%else%> 
                         <%active = ""%>
                     <%end%>                                     
-                    <a class="nav-link <%=active%>" href="<%=user_path(current_user, tab_id: 'ProblemID')%>"><i class="material-icons-outlined">lightbulb</i>Câu hỏi của tôi <span><%= convert_number_to_human(@problem_created.total_count)%><span> </a>
+                    <a class="nav-link <%=active%>" href="<%=user_path(current_user, tab: 'ProblemID')%>"><i class="material-icons-outlined">lightbulb</i>Câu hỏi của tôi <span><%= convert_number_to_human(@problem_created.total_count)%><span> </a>
                 </li>
                 <li class="nav-item">
-                    <%if @tab_id == "NotificationID"%>
+                    <%if @tab == "NotificationID"%>
                         <%active = "active"%>
                     <%else%> 
                         <%active = ""%>
                     <%end%>                                     
-                    <a class="nav-link <%=active%>" href="<%=user_path(current_user, tab_id: 'NotificationID')%>"><i class="material-icons-outlined">notifications</i>Thông báo <span><%= convert_number_to_human(@user_notifications.total_count)%><span> </a>
+                    <a class="nav-link <%=active%>" href="<%=user_path(current_user, tab: 'NotificationID')%>"><i class="material-icons-outlined">notifications</i>Thông báo <span><%= convert_number_to_human(@user_notifications.total_count)%><span> </a>
                 </li>
                 <li class="nav-item">
-                    <%if @tab_id == "CoverVitaeID"%>
+                    <%if @tab == "CoverVitaeID"%>
                         <%active = "active"%>
                     <%else%> 
                         <%active = ""%>
                     <%end%>                                     
-                    <a class="nav-link <%=active%>" href="<%=user_path(current_user, tab_id: 'CoverVitaeID')%>"><i class="material-icons-outlined">content_copy</i>CV của tôi <span><%= convert_number_to_human(@cv_created.total_count)%><span> </a>
+                    <a class="nav-link <%=active%>" href="<%=user_path(current_user, tab: 'CoverVitaeID')%>"><i class="material-icons-outlined">content_copy</i>CV của tôi <span><%= convert_number_to_human(@cv_created.total_count)%><span> </a>
                 </li>
             </ul>
         </div>
 
         <div class="user_tab_content">
-            <%if @tab_id == "default" || @tab_id == "PersonalID"%>
+            <%if @tab == "default" || @tab == "PersonalID"%>
                 <div class="user_personal_tab">
                     <div class="user_info">
                         <div class="user_info_des_label">
@@ -139,7 +139,7 @@
                 </div>
             <%end%>
 
-            <%if @tab_id == "SaveJobID"%>
+            <%if @tab == "SaveJobID"%>
                 <div class="user_save_job_tab">
                     <%if @company_job_saved.total_count > 0%>
                         <div class="user_save_job">
@@ -167,7 +167,7 @@
                 </div>
             <%end%>
 
-            <%if @tab_id == "ApplyJobID"%>
+            <%if @tab == "ApplyJobID"%>
                 <div class="company_apply_job_tab">
                     <%if @company_job_applied.total_count > 0%>
                         <div class="company_apply_job">
@@ -197,7 +197,7 @@
                 </div>
             <%end%>
 
-            <%if @tab_id == "CompanyFollowID"%>
+            <%if @tab == "CompanyFollowID"%>
                 <div class="user_follow_company_tab">
                     <%if @company_followed.total_count > 0%>
                         <div class="user_follow_company_list">
@@ -224,7 +224,7 @@
                 </div>
             <%end%>
 
-            <%if @tab_id == "NotificationID"%>
+            <%if @tab == "NotificationID"%>
                 <div class="user_notification_tab">
                     <%if @user_notifications.total_count > 0%>
                         <div class="user_notification_block">
@@ -244,7 +244,7 @@
                 </div>
             <%end%>
 
-            <%if @tab_id == "ProblemID"%>
+            <%if @tab == "ProblemID"%>
                 <div class="user_problem_tab">
                     <%if @problem_created.total_count > 0%>
                         <div class="user_problem_block">
@@ -264,7 +264,7 @@
                 </div>
             <%end%>
 
-            <%if @tab_id == "CoverVitaeID"%>
+            <%if @tab == "CoverVitaeID"%>
                 <div class="user_cv_tab">
                     <%if @cv_created.total_count > 0%>
                         <div class="user_cv_block">

@@ -21,7 +21,7 @@ class CompanySalariesController < ApplicationController
         end
 
         if @company_salary.save
-            redirect_to company_path(@company, tab_id: 'CompanySalariesID')
+            redirect_to company_path(@company, tab: 'CompanySalariesID')
         else
             flash[:danger] = "Lỗi, hãy điền đủ nội dung có dấu '*' "
             render :new
@@ -39,7 +39,7 @@ class CompanySalariesController < ApplicationController
         @company_salary = @company.company_salaries.find(params[:id])
         @company_salary.destroy
         
-        redirect_to company_path(@company, tab_id: 'CompanySalariesID')
+        redirect_to company_path(@company, tab: 'CompanySalariesID')
     end
 
     def show

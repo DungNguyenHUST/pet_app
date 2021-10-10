@@ -30,11 +30,11 @@ class CompanyReplyQuestionsController < ApplicationController
                                                             current_user, 
                                                             @company_question.title, 
                                                             @company_reply_question.reply_content, 
-                                                            company_path(@company, tab_id: 'CompanyQuestionsID'), 
+                                                            company_path(@company, tab: 'CompanyQuestionsID'), 
                                                             "QuestionComment")
             end
 
-            # redirect_to company_path(@company, tab_id: 'CompanyquestionsID')
+            # redirect_to company_path(@company, tab: 'CompanyquestionsID')
             respond_to do |format|
                 format.html {}
                 format.js
@@ -57,7 +57,7 @@ class CompanyReplyQuestionsController < ApplicationController
         @company_reply_question = @company_question.company_reply_questions.find(params[:id])
 
         @company_reply_question.destroy
-        redirect_to company_path(@company, tab_id: 'CompanyquestionsID')
+        redirect_to company_path(@company, tab: 'CompanyquestionsID')
     end
 
     def show

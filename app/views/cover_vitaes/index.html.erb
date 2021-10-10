@@ -27,68 +27,68 @@
                 <div class="cover_vitae_index_tab_link" id="cover_viate_index">
                     <ul class="nav nav-justified">
                         <li class="nav-item">
-                            <%if @tab_id == "default" || @tab_id == "CVIndexAllID"%>
+                            <%if @tab == "default" || @tab == "CVIndexAllID"%>
                                 <%active = "active"%>
                             <%else%> 
                                 <%active = ""%>
                             <%end%>                                 
-                            <a class="nav-link <%=active%>" href="<%=cover_vitaes_path(tab_id: 'CVIndexAllID')%>"><i class="material-icons-outlined">content_copy</i>Tất cả<span><%=@cover_vitaes.total_count%></span></a>
+                            <a class="nav-link <%=active%>" href="<%=cover_vitaes_path(tab: 'CVIndexAllID')%>"><i class="material-icons-outlined">content_copy</i>Tất cả<span><%=@cover_vitaes.total_count%></span></a>
                         </li>
                         <li class="nav-item">
-                            <%if @tab_id == "CVIndexMordemID"%>
+                            <%if @tab == "CVIndexMordemID"%>
                                 <%active = "active"%>
                             <%else%> 
                                 <%active = ""%>
                             <%end%>                                     
-                            <a class="nav-link <%=active%>" href="<%=cover_vitaes_path(tab_id: 'CVIndexMordemID')%>"><i class="material-icons-outlined">track_changes</i>Hiện đại<span><%=@cover_vitaes_moderm.total_count%></span></a>
+                            <a class="nav-link <%=active%>" href="<%=cover_vitaes_path(tab: 'CVIndexMordemID')%>"><i class="material-icons-outlined">track_changes</i>Hiện đại<span><%=@cover_vitaes_moderm.total_count%></span></a>
                         </li>
                         <li class="nav-item">
-                            <%if @tab_id == "CVIndexCreativeID"%>
+                            <%if @tab == "CVIndexCreativeID"%>
                                 <%active = "active"%>
                             <%else%> 
                                 <%active = ""%>
                             <%end%>                                     
-                            <a class="nav-link <%=active%>" href="<%=cover_vitaes_path(tab_id: 'CVIndexCreativeID')%>"><i class="material-icons-outlined">emoji_objects</i>Sáng tạo <span><%=@cover_vitaes_creative.total_count%></span></a>
+                            <a class="nav-link <%=active%>" href="<%=cover_vitaes_path(tab: 'CVIndexCreativeID')%>"><i class="material-icons-outlined">emoji_objects</i>Sáng tạo <span><%=@cover_vitaes_creative.total_count%></span></a>
                         </li>
                         <li class="nav-item">
-                            <%if @tab_id == "CVIndexSimpleID"%>
+                            <%if @tab == "CVIndexSimpleID"%>
                                 <%active = "active"%>
                             <%else%> 
                                 <%active = ""%>
                             <%end%>                                     
-                            <a class="nav-link <%=active%>" href="<%=cover_vitaes_path(tab_id: 'CVIndexSimpleID')%>"><i class="material-icons-outlined">auto_awesome</i>Đơn giản<span><%=@cover_vitaes_simple.total_count%></span></a>
+                            <a class="nav-link <%=active%>" href="<%=cover_vitaes_path(tab: 'CVIndexSimpleID')%>"><i class="material-icons-outlined">auto_awesome</i>Đơn giản<span><%=@cover_vitaes_simple.total_count%></span></a>
                         </li>
                         <li class="nav-item">
-                            <%if @tab_id == "CVIndexProID"%>
+                            <%if @tab == "CVIndexProID"%>
                                 <%active = "active"%>
                             <%else%> 
                                 <%active = ""%>
                             <%end%>                                     
-                            <a class="nav-link <%=active%>" href="<%=cover_vitaes_path(tab_id: 'CVIndexProID')%>"><i class="material-icons-outlined">card_travel</i>Chuyên nghiệp<span><%=@cover_vitaes_pro.total_count%></span></a>
+                            <a class="nav-link <%=active%>" href="<%=cover_vitaes_path(tab: 'CVIndexProID')%>"><i class="material-icons-outlined">card_travel</i>Chuyên nghiệp<span><%=@cover_vitaes_pro.total_count%></span></a>
                         </li>
                         <li class="nav-item">
-                            <%if @tab_id == "CVIndexENGID"%>
+                            <%if @tab == "CVIndexENGID"%>
                                 <%active = "active"%>
                             <%else%> 
                                 <%active = ""%>
                             <%end%>                                     
-                            <a class="nav-link <%=active%>" href="<%=cover_vitaes_path(tab_id: 'CVIndexENGID')%>"><i class="material-icons-outlined">language</i>Tiếng Anh<span><%=@cover_vitaes_eng.total_count%></span></a>
+                            <a class="nav-link <%=active%>" href="<%=cover_vitaes_path(tab: 'CVIndexENGID')%>"><i class="material-icons-outlined">language</i>Tiếng Anh<span><%=@cover_vitaes_eng.total_count%></span></a>
                         </li>
                         <li class="nav-item">
-                            <%if @tab_id == "CVIndexVEIID"%>
+                            <%if @tab == "CVIndexVEIID"%>
                                 <%active = "active"%>
                             <%else%> 
                                 <%active = ""%>
                             <%end%>                                     
-                            <a class="nav-link <%=active%>" href="<%=cover_vitaes_path(tab_id: 'CVIndexVEIID')%>"><i class="material-icons-outlined">language</i>Tiếng Việt<span><%=@cover_vitaes_vie.total_count%></span></a>
+                            <a class="nav-link <%=active%>" href="<%=cover_vitaes_path(tab: 'CVIndexVEIID')%>"><i class="material-icons-outlined">language</i>Tiếng Việt<span><%=@cover_vitaes_vie.total_count%></span></a>
                         </li>
                         <li class="nav-item">
-                            <%if @tab_id == "CVIndexJAPID"%>
+                            <%if @tab == "CVIndexJAPID"%>
                                 <%active = "active"%>
                             <%else%> 
                                 <%active = ""%>
                             <%end%>                                     
-                            <a class="nav-link <%=active%>" href="<%=cover_vitaes_path(tab_id: 'CVIndexJAPID')%>"><i class="material-icons-outlined">language</i>Tiếng Nhật<span><%=@cover_vitaes_jap.total_count%></span></a>
+                            <a class="nav-link <%=active%>" href="<%=cover_vitaes_path(tab: 'CVIndexJAPID')%>"><i class="material-icons-outlined">language</i>Tiếng Nhật<span><%=@cover_vitaes_jap.total_count%></span></a>
                         </li>
                     </ul>
                 </div>
@@ -96,7 +96,7 @@
         </div>
 
         <div class="cover_vitae_index_tab_content">
-            <%if @tab_id == "default" || @tab_id == "CVIndexAllID"%>
+            <%if @tab == "default" || @tab == "CVIndexAllID"%>
                 <div class="cover_vitae_index_all_tab">
                     <div class="row">
                         <%@cover_vitaes.each do |cover_vitae|%>
@@ -109,7 +109,7 @@
                 </div>
             <%end%>
 
-            <%if @tab_id == "CVIndexMordemID"%>
+            <%if @tab == "CVIndexMordemID"%>
                 <div class="cover_vitae_index_morderm_tab">
                     <div class="row">
                         <%@cover_vitaes_moderm.each do |cover_vitae|%>
@@ -122,7 +122,7 @@
                 </div>
             <%end%>
 
-            <%if @tab_id == "CVIndexCreativeID"%>
+            <%if @tab == "CVIndexCreativeID"%>
                 <div class="cover_vitae_index_creative_tab">
                     <div class="row">
                         <%@cover_vitaes_creative.each do |cover_vitae|%>
@@ -135,7 +135,7 @@
                 </div>
             <%end%>
 
-            <%if @tab_id == "CVIndexSimpleID"%>
+            <%if @tab == "CVIndexSimpleID"%>
                 <div class="cover_vitae_index_simple_tab">
                     <div class="row">
                         <%@cover_vitaes_simple.each do |cover_vitae|%>
@@ -148,7 +148,7 @@
                 </div>
             <%end%>
 
-            <%if @tab_id == "CVIndexProID"%>
+            <%if @tab == "CVIndexProID"%>
                 <div class="cover_vitae_index_pro_tab">
                     <div class="row">
                         <%@cover_vitaes_pro.each do |cover_vitae|%>
@@ -161,7 +161,7 @@
                 </div>
             <%end%>
 
-            <%if @tab_id == "CVIndexENGID"%>
+            <%if @tab == "CVIndexENGID"%>
                 <div class="cover_vitae_index_eng_tab">
                     <div class="row">
                         <%@cover_vitaes_eng.each do |cover_vitae|%>
@@ -174,7 +174,7 @@
                 </div>
             <%end%>
 
-            <%if @tab_id == "CVIndexVEIID"%>
+            <%if @tab == "CVIndexVEIID"%>
                 <div class="cover_vitae_index_vei_tab">
                     <div class="row">
                         <%@cover_vitaes_vie.each do |cover_vitae|%>
@@ -187,7 +187,7 @@
                 </div>
             <%end%>
 
-            <%if @tab_id == "CVIndexJAPID"%>
+            <%if @tab == "CVIndexJAPID"%>
                 <div class="cover_vitae_index_jap_tab">
                     <div class="row">
                         <%@cover_vitaes_jap.each do |cover_vitae|%>

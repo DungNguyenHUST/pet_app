@@ -19,10 +19,10 @@ class EmployersController < ApplicationController
     def show
         @employer = current_employer
 
-        if(params.has_key?(:tab_id))
-            @tab_id = params[:tab_id]
+        if(params.has_key?(:tab))
+            @tab = params[:tab]
         else
-            @tab_id = "default"
+            @tab = "default"
         end
         
         @company_of_employer = find_company_of_employer(@employer)
@@ -35,7 +35,7 @@ class EmployersController < ApplicationController
     def destroy
         @employer = Employer.friendly.find params[:id]
         @employer.destroy
-        redirect_to admin_path(current_admin, tab_id: 'AdminEmployerID')
+        redirect_to admin_path(current_admin, tab: 'AdminEmployerID')
     end
 
     def update
@@ -70,12 +70,12 @@ class EmployersController < ApplicationController
     end
 
     def index_job
-        if(params.has_key?(:tab_id))
-            @tab_id = params[:tab_id]
+        if(params.has_key?(:tab))
+            @tab = params[:tab]
         else
-            @tab_id = "default"
+            @tab = "default"
         end
-        
+
         @employer = current_employer
         @company_of_employer = find_company_of_employer(@employer)
 
@@ -84,15 +84,15 @@ class EmployersController < ApplicationController
         @company_job_inprogress = @company_job_all.expire.approved
         @company_job_close_soons = @company_job_all.where("end_date >= ?", 3.day.ago.utc).approved
         @company_job_closes = @company_job_all.where("end_date <= ?", Time.now).approved
-        if @tab_id == 'AllID'
+        if @tab == 'AllID'
             @company_job_of_employer = @company_job_all
-        elsif @tab_id == 'ApprovingID'
+        elsif @tab == 'ApprovingID'
             @company_job_of_employer = @company_job_approving
-        elsif @tab_id == 'InProgressID'
+        elsif @tab == 'InProgressID'
             @company_job_of_employer = @company_job_inprogress
-        elsif @tab_id == 'CloseSoonID'
+        elsif @tab == 'CloseSoonID'
             @company_job_of_employer = @company_job_close_soons
-        elsif @tab_id == 'ExpireID'
+        elsif @tab == 'ExpireID'
             @company_job_of_employer = @company_job_closes
         else
             @company_job_of_employer = @company_job_all

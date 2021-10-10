@@ -17,7 +17,7 @@
 		<%if user_signed_in?%>
 			<div class="nav_login_moblie" >
 				<div class="user_notification_mobile">
-					<%= link_to user_path(current_user, :tab_id => "NotificationID") do %>
+					<%= link_to user_path(current_user, :tab => "NotificationID") do %>
 						<%if current_user.user_notifications.count < 10%>
 							<i class="material-icons-outlined">notifications</i><span><%=current_user.user_notifications.count%></span>
 						<%else%>
@@ -102,7 +102,7 @@
 			<%if user_signed_in?%>
 				<div class="nav_user">
 					<div class="user_notification">						
-						<%= link_to user_path(current_user, :tab_id => "NotificationID") do %>
+						<%= link_to user_path(current_user, :tab => "NotificationID") do %>
 							<%if current_user.user_notifications.count < 10%>
 								<i class="material-icons-outlined">notifications</i><span><%=current_user.user_notifications.count%></span>
 							<%else%>
@@ -131,26 +131,26 @@
 						<a class="dropdown-item" href="<%=user_profile_path%>">
 							<i class="material-icons-outlined">badge</i><span>Hồ sơ tìm việc</span>
 						</a>
-						<a class="dropdown-item" href="<%=user_path(current_user, tab_id: 'SaveJobID')%>">
+						<a class="dropdown-item" href="<%=user_path(current_user, tab: 'SaveJobID')%>">
 							<i class="material-icons-outlined">bookmark_border</i><span>Việc làm đã lưu</span>
 						</a>
 						<div class="dropdown-divider"></div>
-						<a class="dropdown-item" href="<%=user_path(current_user, tab_id: 'ApplyJobID')%>">
+						<a class="dropdown-item" href="<%=user_path(current_user, tab: 'ApplyJobID')%>">
 							<i class="material-icons-outlined">check</i><span>Việc làm đã ứng tuyển</span>
 						</a>
 						<div class="dropdown-divider"></div>
-						<a class="dropdown-item" href="<%=user_path(current_user, tab_id: 'CompanyFollowID')%>">
+						<a class="dropdown-item" href="<%=user_path(current_user, tab: 'CompanyFollowID')%>">
 							<i class="material-icons-outlined">favorite_border</i><span>Công ty đang theo dõi</span>
 						</a>
 						<div class="dropdown-divider"></div>
-						<a class="dropdown-item" href="<%=user_path(current_user, tab_id: 'ProblemID')%>">
+						<a class="dropdown-item" href="<%=user_path(current_user, tab: 'ProblemID')%>">
 							<i class="material-icons-outlined">lightbulb</i><span>Câu hỏi của tôi</span>
 						</a>
-						<a class="dropdown-item" href="<%=user_path(current_user, tab_id: 'CoverVitaeID')%>">
+						<a class="dropdown-item" href="<%=user_path(current_user, tab: 'CoverVitaeID')%>">
 							<i class="material-icons-outlined">content_copy</i><span>CV của tôi</span>
 						</a>
 						<div class="dropdown-divider"></div>
-						<a class="dropdown-item" href="<%=user_path(current_user, tab_id: 'PersonalID')%>">
+						<a class="dropdown-item" href="<%=user_path(current_user, tab: 'PersonalID')%>">
 							<i class="material-icons-outlined">account_circle</i><span>Thông tin cá nhân</span>
 						</a>
 						<div class="dropdown-divider"></div>

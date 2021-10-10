@@ -17,44 +17,44 @@
                     <div class="employer_job_index_tab_link">
                         <ul class="nav">
                             <li class="nav-item">
-                                <%if @tab_id == "default" || @tab_id == "AllID"%>
+                                <%if @tab == "default" || @tab == "AllID"%>
                                     <%active = "active"%>
                                 <%else%> 
                                     <%active = ""%>
                                 <%end%>                                 
-                                <a class="nav-link <%=active%>" href="<%=employer_index_job_path(current_employer, tab_id: 'AllID')%>"><i class="material-icons-outlined">reorder</i>Tất cả<span> <%=@company_job_all.count%></span></a>
+                                <a class="nav-link <%=active%>" href="<%=employer_index_job_path(current_employer, tab: 'AllID')%>"><i class="material-icons-outlined">reorder</i>Tất cả<span> <%=@company_job_all.count%></span></a>
                             </li>
                             <li class="nav-item">
-                                <%if @tab_id == "ApprovingID"%>
+                                <%if @tab == "ApprovingID"%>
                                     <%active = "active"%>
                                 <%else%> 
                                     <%active = ""%>
                                 <%end%>                                     
-                                <a class="nav-link <%=active%>" href="<%=employer_index_job_path(current_employer, tab_id: 'ApprovingID')%>"><i class="material-icons-outlined">library_add_check</i>Đang chờ duyệt <span><%=@company_job_approving.count%></span></a>
+                                <a class="nav-link <%=active%>" href="<%=employer_index_job_path(current_employer, tab: 'ApprovingID')%>"><i class="material-icons-outlined">library_add_check</i>Đang chờ duyệt <span><%=@company_job_approving.count%></span></a>
                             </li>
                             <li class="nav-item">
-                                <%if @tab_id == "InProgressID"%>
+                                <%if @tab == "InProgressID"%>
                                     <%active = "active"%>
                                 <%else%> 
                                     <%active = ""%>
                                 <%end%>                                     
-                                <a class="nav-link <%=active%>" href="<%=employer_index_job_path(current_employer, tab_id: 'InProgressID')%>"><i class="material-icons-outlined">work_outline</i>Đang tuyển <span><%=@company_job_inprogress.count%></span></a>
+                                <a class="nav-link <%=active%>" href="<%=employer_index_job_path(current_employer, tab: 'InProgressID')%>"><i class="material-icons-outlined">work_outline</i>Đang tuyển <span><%=@company_job_inprogress.count%></span></a>
                             </li>
                             <li class="nav-item">
-                                <%if @tab_id == "CloseSoonID"%>
+                                <%if @tab == "CloseSoonID"%>
                                     <%active = "active"%>
                                 <%else%> 
                                     <%active = ""%>
                                 <%end%>                                     
-                                <a class="nav-link <%=active%>" href="<%=employer_index_job_path(current_employer, tab_id: 'CloseSoonID')%>"><i class="material-icons-outlined">hourglass_empty</i>Sắp hết hạn <span><%=@company_job_close_soons.count%></span></a>
+                                <a class="nav-link <%=active%>" href="<%=employer_index_job_path(current_employer, tab: 'CloseSoonID')%>"><i class="material-icons-outlined">hourglass_empty</i>Sắp hết hạn <span><%=@company_job_close_soons.count%></span></a>
                             </li>
                             <li class="nav-item">
-                                <%if @tab_id == "ExpireID"%>
+                                <%if @tab == "ExpireID"%>
                                     <%active = "active"%>
                                 <%else%> 
                                     <%active = ""%>
                                 <%end%>                                     
-                                <a class="nav-link <%=active%>" href="<%=employer_index_job_path(current_employer, tab_id: 'ExpireID')%>"><i class="material-icons-outlined">history</i>Đã hết hạn <span><%=@company_job_closes.count%></span></a>
+                                <a class="nav-link <%=active%>" href="<%=employer_index_job_path(current_employer, tab: 'ExpireID')%>"><i class="material-icons-outlined">history</i>Đã hết hạn <span><%=@company_job_closes.count%></span></a>
                             </li>
                         </ul>
                     </div>

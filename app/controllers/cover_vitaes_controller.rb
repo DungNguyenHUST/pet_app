@@ -27,10 +27,10 @@ class CoverVitaesController < ApplicationController
         @cover_vitaes_jap = CoverVitae.sample.all.where(language: "Tiếng Nhật")
         @cover_vitaes_jap = @cover_vitaes_jap.page(params[:page]).per(12)
 
-        if(params.has_key?(:tab_id))
-            @tab_id = params[:tab_id]
+        if(params.has_key?(:tab))
+            @tab = params[:tab]
         else
-            @tab_id = "default"
+            @tab = "default"
         end
     end
 
@@ -52,11 +52,11 @@ class CoverVitaesController < ApplicationController
 
         if @cover_vitae.save
             if admin_signed_in?
-                redirect_to admin_path(current_admin, tab_id: 'CoverVitaeID')
+                redirect_to admin_path(current_admin, tab: 'CoverVitaeID')
             end
 
             if user_signed_in?
-                redirect_to user_path(current_user, tab_id: 'CoverVitaeID')
+                redirect_to user_path(current_user, tab: 'CoverVitaeID')
             end
         end
     end

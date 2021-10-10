@@ -17,10 +17,10 @@ class UsersController < ApplicationController
     def show
         @user = current_user
 
-        if(params.has_key?(:tab_id))
-            @tab_id = params[:tab_id]
+        if(params.has_key?(:tab))
+            @tab = params[:tab]
         else
-            @tab_id = "default"
+            @tab = "default"
         end
 
         # User applied job
@@ -66,7 +66,7 @@ class UsersController < ApplicationController
     def destroy
         @user = User.friendly.find params[:id]
         @user.destroy
-        redirect_to admin_path(current_admin, tab_id: 'AdminUserID')
+        redirect_to admin_path(current_admin, tab: 'AdminUserID')
     end
 
     def update

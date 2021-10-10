@@ -18,10 +18,10 @@ class AdminsController < ApplicationController
     def show
         @admin = current_admin
 
-        if(params.has_key?(:tab_id))
-            @tab_id = params[:tab_id]
+        if(params.has_key?(:tab))
+            @tab = params[:tab]
         else
-            @tab_id = "default"
+            @tab = "default"
         end
 
         @admins = Admin.all

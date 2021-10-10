@@ -29,11 +29,11 @@ class ProblemReplySolutionsController < ApplicationController
                 UserNotificationsController.new.create_notify(find_owner_user(@problem_solution), 
                                                             current_user, @problem.title, 
                                                             @problem_reply_solution.reply_content, 
-                                                            problem_path(@problem, tab_id: 'ProblemSolutionID'), 
+                                                            problem_path(@problem, tab: 'ProblemSolutionID'), 
                                                             "ProblemSolutionComment")
             end
             
-            # redirect_to problem_path(@problem, tab_id: 'ProblemSolutionID')
+            # redirect_to problem_path(@problem, tab: 'ProblemSolutionID')
             respond_to do |format|
                 format.html {}
                 format.js
@@ -56,7 +56,7 @@ class ProblemReplySolutionsController < ApplicationController
         @problem_reply_solution = @problem_solution.problem_reply_solutions.find(params[:id])
 
         @problem_reply_solution.destroy
-        redirect_to problem_path(@problem, tab_id: 'ProblemSolutionID')
+        redirect_to problem_path(@problem, tab: 'ProblemSolutionID')
     end
 
     def show

@@ -27,14 +27,14 @@ class ProblemSolutionsController < ApplicationController
                                                             current_user, 
                                                             @problem.title, 
                                                             @problem_solution.title, 
-                                                            problem_path(@problem, tab_id: 'ProblemSolutionID'), 
+                                                            problem_path(@problem, tab: 'ProblemSolutionID'), 
                                                             "ProblemComment")
             end
             
-            redirect_to problem_path(@problem, tab_id: 'ProblemSolutionID')
+            redirect_to problem_path(@problem, tab: 'ProblemSolutionID')
         else
             flash[:danger] = "Lỗi, hãy điền nội dung câu trả lời của bạn ..."
-            redirect_to problem_path(@problem, tab_id: 'ProblemSolutionID')
+            redirect_to problem_path(@problem, tab: 'ProblemSolutionID')
         end
     end
 
@@ -57,7 +57,7 @@ class ProblemSolutionsController < ApplicationController
         @problem = Problem.friendly.find(params[:problem_id])
         @problem_solution = @problem.problem_solutions.find(params[:id])
         @problem_solution.destroy
-        redirect_to problem_path(@problem, tab_id: 'ProblemSolutionID')
+        redirect_to problem_path(@problem, tab: 'ProblemSolutionID')
     end
 
     def show

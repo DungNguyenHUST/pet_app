@@ -69,7 +69,7 @@ class CompanyJobsController < ApplicationController
     def destroy
         @company_job = CompanyJob.friendly.find(params[:id])
         @company_job.destroy
-        redirect_to company_path(@company, tab_id: 'CompanyJobsID')
+        redirect_to company_path(@company, tab: 'CompanyJobsID')
     end
 
     def show

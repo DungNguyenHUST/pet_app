@@ -11,26 +11,26 @@ class CompaniesController < ApplicationController
 			@company_searchs = Company.friendly.search(@search).order('name ASC').page(params[:page]).per(12)
 		end
         
-        if(params.has_key?(:tab_id))
-            @tab_id = params[:tab_id]
+        if(params.has_key?(:tab))
+            @tab = params[:tab]
         else
-            @tab_id = "default"
+            @tab = "default"
         end
 
         @companies_all = Company.all
         
         @companies_oder_name = Company.all.order('name ASC').page(params[:page]).per(18)
 
-        if @tab_id == "CompanyNewestID"
+        if @tab == "CompanyNewestID"
             @companies_oder_newest = Company.all.order('created_at DESC').page(params[:page]).per(18)
         end
 
-        if @tab_id == "CompanyMostRecentID"
+        if @tab == "CompanyMostRecentID"
             @companies_most_recent = Company.all.sort_by{|company| company.company_reviews.count}.reverse
             @companies_most_recent = Kaminari.paginate_array(@companies_most_recent).page(params[:page]).per(18)
         end
 
-        if @tab_id == "CompanyBestID"
+        if @tab == "CompanyBestID"
             @companies_best = Company.all.sort_by{|company| cal_rating_review_total_score(company).to_f}.reverse
             @companies_best = Kaminari.paginate_array(@companies_best).page(params[:page]).per(18)
         end
@@ -51,7 +51,7 @@ class CompaniesController < ApplicationController
 
         if @company.save!
             if employer_signed_in?
-                redirect_to employer_path(current_employer, tab_id: 'EmployerCompanyID')
+                redirect_to employer_path(current_employer, tab: 'EmployerCompanyID')
             else
                 redirect_to company_path(@company)
             end
@@ -69,10 +69,10 @@ class CompaniesController < ApplicationController
         @company_questions = @company.company_questions.order('created_at DESC').page(params[:page]).per(10)
         @company_images = @company.company_images.order('created_at DESC').page(params[:page]).per(12)
 
-        if(params.has_key?(:tab_id))
-            @tab_id = params[:tab_id]
+        if(params.has_key?(:tab))
+            @tab = params[:tab]
         else
-            @tab_id = "default"
+            @tab = "default"
         end
     end
 

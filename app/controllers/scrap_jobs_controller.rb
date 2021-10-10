@@ -16,7 +16,7 @@ class ScrapJobsController < ApplicationController
             JobCrawlerWorker.perform_async(@scrap_job.id)
             # JobCrawler.process(@scrap_job)
             flash[:success] = "Scrap successed ..............."
-            redirect_to admin_path(current_admin, tab_id: 'ScrapJobID')
+            redirect_to admin_path(current_admin, tab: 'ScrapJobID')
         end
     end
 
@@ -57,7 +57,7 @@ class ScrapJobsController < ApplicationController
             
         end
         flash[:success] = "Job push successed ..............."
-        redirect_to admin_path(current_admin, tab_id: 'ScrapJobID')
+        redirect_to admin_path(current_admin, tab: 'ScrapJobID')
     end
 
     def scrap_job_param
