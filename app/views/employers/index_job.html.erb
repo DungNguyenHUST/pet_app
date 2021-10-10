@@ -25,6 +25,14 @@
                                 <a class="nav-link <%=active%>" href="<%=employer_index_job_path(current_employer, tab_id: 'AllID')%>"><i class="material-icons-outlined">reorder</i>Tất cả<span> <%=@company_job_all.count%></span></a>
                             </li>
                             <li class="nav-item">
+                                <%if @tab_id == "ApprovingID"%>
+                                    <%active = "active"%>
+                                <%else%> 
+                                    <%active = ""%>
+                                <%end%>                                     
+                                <a class="nav-link <%=active%>" href="<%=employer_index_job_path(current_employer, tab_id: 'ApprovingID')%>"><i class="material-icons-outlined">library_add_check</i>Đang chờ duyệt <span><%=@company_job_approving.count%></span></a>
+                            </li>
+                            <li class="nav-item">
                                 <%if @tab_id == "InProgressID"%>
                                     <%active = "active"%>
                                 <%else%> 
@@ -52,34 +60,46 @@
                     </div>
 
                     <div class="employer_job_employer">
-                        <div class="table-responsive">
-                            <table class="table text-center table-hover">
-                                <thead>
-                                    <tr>
-                                        <th style="width: 2%;">No.</th>
-                                        <th style="width: 33%;">Title</th>
-                                        <th style="width: 8%;">Địa điểm</th>
-                                        <th style="width: 10%;">Ngày đăng tuyển</th>
-                                        <th style="width: 10%;">Ngày hết hạn</th>
-                                        <th style="width: 8%;">Lượt xem</th>
-                                        <th style="width: 8%;">Lượt ứng tuyển</th>
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                    <%@company_job_of_employer.each_with_index do |company_job, index|%>
+                        <%if @company_job_of_employer.total_count > 0%>
+                            <div class="table-responsive">
+                                <table class="table text-center table-hover">
+                                    <thead>
                                         <tr>
-                                            <td><%=index + 1%></td>
-                                            <td scope="row" class="text-start"><%=link_to (company_job.title), employer_job_path(:id => company_job.id)%></td>
-                                            <td><%=find_job_location(company_job.location)%></td>
-                                            <td><%=company_job.created_at.strftime("%B %d, %Y")%></td>
-                                            <td><%=company_job.end_date.strftime("%B %d, %Y")%></td>
-                                            <td><%=company_job.view_count.to_i%></td>
-                                            <td><%=company_job.company_apply_jobs.count%></td>
+                                            <th style="width: 2%;">No.</th>
+                                            <th style="width: 25%;">Title</th>
+                                            <th style="width: 8%;">Địa điểm</th>
+                                            <th style="width: 8%;">Trạng thái</th>
+                                            <th style="width: 10%;">Ngày đăng tuyển</th>
+                                            <th style="width: 10%;">Ngày hết hạn</th>
+                                            <th style="width: 8%;">Lượt xem</th>
+                                            <th style="width: 8%;">Lượt ứng tuyển</th>
                                         </tr>
-                                    <%end%>
-                                </tbody>
-                            </table>
-                        </div>
+                                    </thead>
+                                    <tbody>
+                                        <%@company_job_of_employer.each_with_index do |company_job, index|%>
+                                            <tr>
+                                                <td><%=index + 1%></td>
+                                                <td scope="row" class="text-start"><%=link_to (company_job.title), employer_job_path(:id => company_job.id)%></td>
+                                                <td><%=find_job_location(company_job.location)%></td>
+                                                <%if company_job.approved?%>
+                                                    <td>Đã kích hoạt</td>
+                                                <%else%>
+                                                    <td>Đang chờ duyệt</td>
+                                                <%end%>
+                                                <td><%=company_job.created_at.strftime("%B %d, %Y")%></td>
+                                                <td><%=company_job.end_date.strftime("%B %d, %Y")%></td>
+                                                <td><%=company_job.view_count.to_i%></td>
+                                                <td><%=company_job.company_apply_jobs.count%></td>
+                                            </tr>
+                                        <%end%>
+                                    </tbody>
+                                </table>
+                            </div>
+                        <%else%>
+                            <div class="employer_job_employer_not_found">
+                                <a>Chưa có tin đăng nào để hiển thị</a>
+                            </div>
+                        <%end%>
                         <%= paginate @company_job_of_employer, window: 2%>
                     </div>
                 <%else%>
@@ -93,9 +113,9 @@
                         <div class="employer_job_not_found_action">
                             <div class="employer_job_button">
                                 <%if auth_post_job_of_employer(current_employer)%>
-                                    <%= link_to 'Đăng tin tuyển dụng miễn phí', new_company_job_path, method: :get, class: "btn btn-primary" %>
+                                    <%= link_to 'Đăng tin tuyển dụng mới', new_company_job_path, method: :get, class: "btn btn-primary" %>
                                 <%else%>
-                                    <%= link_to 'Đăng tin tuyển dụng miễn phí', new_company_job_path, method: :get, class: "btn btn-primary disabled" %>
+                                    <%= link_to 'Đăng tin tuyển dụng mới', new_company_job_path, method: :get, class: "btn btn-primary disabled" %>
                                 <%end%>
                             </div>
                         </div>

@@ -75,14 +75,19 @@ class EmployersController < ApplicationController
         else
             @tab_id = "default"
         end
+        
         @employer = current_employer
         @company_of_employer = find_company_of_employer(@employer)
+
         @company_job_all = CompanyJob.where(:employer_id => @employer.id)
-        @company_job_inprogress = @company_job_all.expire
-        @company_job_close_soons = @company_job_all.where("end_date >= ?", 3.day.ago.utc)
-        @company_job_closes = @company_job_all.where("end_date <= ?", Time.now)
+        @company_job_approving = CompanyJob.where(:approved => false, :employer_id => current_employer.id)
+        @company_job_inprogress = @company_job_all.expire.approved
+        @company_job_close_soons = @company_job_all.where("end_date >= ?", 3.day.ago.utc).approved
+        @company_job_closes = @company_job_all.where("end_date <= ?", Time.now).approved
         if @tab_id == 'AllID'
             @company_job_of_employer = @company_job_all
+        elsif @tab_id == 'ApprovingID'
+            @company_job_of_employer = @company_job_approving
         elsif @tab_id == 'InProgressID'
             @company_job_of_employer = @company_job_inprogress
         elsif @tab_id == 'CloseSoonID'

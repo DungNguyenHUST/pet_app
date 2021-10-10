@@ -1,290 +1,288 @@
-<div class="container">
-    <div class='employer_dasboard'>
-        <div class='employer_title'>
-            <%if current_employer.sign_in_count <= 1%>
-                <a>Chào mừng nhà tuyển dụng <%=current_employer.name.upcase%> đến với Firework!</a>
-            <%elsif (0..12).cover? Time.now.hour %>
-                <a>Good morning, nhà tuyển dụng <%=current_employer.name.upcase%>!</a>
-            <%elsif (12..18).cover? Time.now.hour %>
-                <a>Good afternoon, nhà tuyển dụng <%=current_employer.name.upcase%>!</a>
-            <%elsif (18..24).cover? Time.now.hour %>
-                <a>Good evening, nhà tuyển dụng <%=current_employer.name.upcase%>!</a>
-            <%end%>
-        </div>
 
-        <div class='row'>
-            <div class='col-sm-6'>
-                <div class='employer_overview'>
-                    <div class='employer_status'>
-                        <%if current_employer.approved%>
+<div class='employer_dasboard'>
+    <div class='employer_status_block'>
+        <div class="container">
+            <div class='employer_title'>
+                <%if current_employer.sign_in_count <= 1%>
+                    <a>Chào mừng nhà tuyển dụng <%=current_employer.name.upcase%> đến với Firework!</a>
+                <%elsif (0..12).cover? Time.now.hour %>
+                    <a>Good morning, nhà tuyển dụng <%=current_employer.name.upcase%>!</a>
+                <%elsif (12..18).cover? Time.now.hour %>
+                    <a>Good afternoon, nhà tuyển dụng <%=current_employer.name.upcase%>!</a>
+                <%elsif (18..24).cover? Time.now.hour %>
+                    <a>Good evening, nhà tuyển dụng <%=current_employer.name.upcase%>!</a>
+                <%end%>
+            </div>
+
+            <div class='row'>
+                <div class='col-sm-6'>
+                    <div class='employer_overview'>
+                        <div class='employer_status'>
                             <a><span>Trạng thái: </span>Đang hoạt động</a>
-                        <%else%>
-                            <a><span>Trạng thái: </span>Đang chờ duyệt hồ sơ</a>
-                        <%end%>
-                    </div>
-                    <div class='employer_date'>
-                        <a><span>Ngày đăng kí: </span><%=current_employer.created_at.strftime("%B %d, %Y")%></a>
-                    </div>
-                    <div class='employer_plan'>
-                        <%if current_employer.plan.present?%>
-                            <a><span>Gói đăng kí: </span><%=current_employer.plan%></a>
-                        <%else%>
-                            <a><span>Gói đăng kí: </span>F-Basic</a>
-                        <%end%>
+                        </div>
+                        <div class='employer_date'>
+                            <a><span>Ngày đăng kí: </span><%=current_employer.created_at.strftime("%B %d, %Y")%></a>
+                        </div>
+                        <div class='employer_plan'>
+                            <%if current_employer.plan.present?%>
+                                <a><span>Gói dịch vụ đang sử dụng: </span><%=current_employer.plan%></a>
+                            <%else%>
+                                <a><span>Gói dịch vụ đang sử dụng: </span>F-Basic</a>
+                            <%end%>
+                        </div>
                     </div>
                 </div>
-            </div>
-            <div class='col-sm-6'>
-                <div class='employer_new_job'>
-                    <%if auth_post_job_of_employer(current_employer)%>
-                        <%= link_to 'Đăng tin tuyển dụng miễn phí', new_company_job_path, method: :get, class: "btn btn-primary" %>
-                    <%else%>
-                        <%= link_to 'Đăng tin tuyển dụng miễn phí', new_company_job_path, method: :get, class: "btn btn-primary disabled" %>
-                    <%end%>
+                <div class='col-sm-6'>
+                    <div class='employer_new_job'>
+                        <%if auth_post_job_of_employer(current_employer)%>
+                            <%= link_to 'Đăng tin tuyển dụng', new_company_job_path, method: :get, class: "btn btn-primary" %>
+                        <%else%>
+                            <%= link_to 'Đăng tin tuyển dụng', new_company_job_path, method: :get, class: "btn btn-primary disabled" %>
+                        <%end%>
+                    </div>
                 </div>
             </div>
         </div>
+    </div>
 
-        <%if current_employer.approved?%>
-            <div class='employer_company_index'>
-                <div class="employer_company">
-                    <%if @company_of_employer.present?%>
-                        <div class="row">
-                            <div class="col-sm-3">
-                                <div class="employer_company_title">
-                                    <h3>Công ty hiện tại</h3>
-                                </div>
-
-                                <%= render @company_of_employer%>
+    <div class="container">
+        <div class='employer_company_index'>
+            <div class="employer_company">
+                <%if @company_of_employer.present?%>
+                    <div class="row">
+                        <div class="col-sm-3">
+                            <div class="employer_company_title">
+                                <h3>Công ty hiện tại</h3>
                             </div>
 
-                            <div class="col-sm-9">
-                                <div class="employer_company_info_label">
-                                    <h3>Thông tin công ty</h3>
-                                </div>
-                                <div class="employer_company_info">
-                                    <div class="row">
-                                        <div class="col-sm-4">
-                                            <div class="employer_company_info_content_block">
-                                                <div class="employer_company_info_section">
-                                                    <a> <i class="material-icons-outlined">business</i> <span>Trụ sở chính</span> </a>
-                                                </div>
-                                                <div class="employer_company_info_content">
-                                                    <%if !@company_of_employer.location.to_s.empty?%>
-                                                        <span><%= @company_of_employer.location %></span>
-                                                    <%else%>
-                                                        <span>---</span>
-                                                    <%end%>
-                                                </div>
-                                            </div>
+                            <%= render @company_of_employer%>
+                        </div>
 
-                                            <div class="employer_company_info_content_block">
-                                                <div class="employer_company_info_section">
-                                                    <a> <i class="material-icons-outlined">open_in_new</i> <span>Website</span> </a>
-                                                </div>
-                                                <div class="employer_company_info_content">
-                                                    <%if !@company_of_employer.website.to_s.empty?%>
-                                                        <%=h auto_link(simple_format(@company_of_employer.website), :link => :urls) %>
-                                                    <%else%>
-                                                        <span>---</span>
-                                                    <%end%>
-                                                </div>
+                        <div class="col-sm-9">
+                            <div class="employer_company_info_label">
+                                <h3>Thông tin công ty</h3>
+                            </div>
+                            <div class="employer_company_info">
+                                <div class="row">
+                                    <div class="col-sm-4">
+                                        <div class="employer_company_info_content_block">
+                                            <div class="employer_company_info_section">
+                                                <a> <i class="material-icons-outlined">business</i> <span>Trụ sở chính</span> </a>
                                             </div>
-
-                                            <div class="employer_company_info_content_block">
-                                                <div class="employer_company_info_section">
-                                                    <a> <i class="material-icons-outlined">phone</i> <span>Số điện thoại</span> </a>
-                                                </div>
-                                                <div class="employer_company_info_content">
-                                                    <%if !@company_of_employer.phone.to_s.empty?%>
-                                                        <span><%= @company_of_employer.phone %></span>
-                                                    <%else%>
-                                                        <span>---</span>
-                                                    <%end%>
-                                                </div>
-                                            </div>
-
-                                            <div class="employer_company_info_content_block">
-                                                <div class="employer_company_info_section">
-                                                    <a><i class="material-icons-outlined">people</i> <span>Quy mô công ty</span> </a>
-                                                </div>
-                                                <div class="employer_company_info_content">
-                                                    <%if !@company_of_employer.size.to_s.empty?%>
-                                                        <span><%= @company_of_employer.size %></span>
-                                                    <%else%>
-                                                        <span>---</span>
-                                                    <%end%>
-                                                </div>
+                                            <div class="employer_company_info_content">
+                                                <%if !@company_of_employer.location.to_s.empty?%>
+                                                    <span><%= @company_of_employer.location %></span>
+                                                <%else%>
+                                                    <span>---</span>
+                                                <%end%>
                                             </div>
                                         </div>
 
-                                        <div class="col-sm-4">
-                                            <div class="employer_company_info_content_block">
-                                                <div class="employer_company_info_section">
-                                                    <a> <i class="material-icons-outlined">event_available</i> <span>Năm thành lập</span> </a>
-                                                </div>
-                                                <div class="employer_company_info_content">
-                                                    <%if !@company_of_employer.time_establish.to_s.empty?%>
-                                                        <%= @company_of_employer.time_establish.strftime("%B %d, %Y")%>
-                                                    <%else%>
-                                                        <span>---</span>
-                                                    <%end%>
-                                                </div>
+                                        <div class="employer_company_info_content_block">
+                                            <div class="employer_company_info_section">
+                                                <a> <i class="material-icons-outlined">open_in_new</i> <span>Website</span> </a>
                                             </div>
-
-                                            <div class="employer_company_info_content_block">
-                                                <div class="employer_company_info_section">
-                                                    <a> <i class="material-icons-outlined">money</i> <span>Doanh thu</span> </a>
-                                                </div>
-                                                <div class="employer_company_info_content">
-                                                    <%if !@company_of_employer.values.to_s.empty?%>
-                                                        <%= @company_of_employer.values%>
-                                                    <%else%>
-                                                        <span>---</span>
-                                                    <%end%>
-                                                </div>
-                                            </div>
-
-                                            <div class="employer_company_info_content_block">
-                                                <div class="employer_company_info_section">
-                                                    <a> <i class="material-icons-outlined">flag</i> <span>Quốc gia</span> </a>
-                                                </div>
-                                                <div class="employer_company_info_content">
-                                                    <%if !@company_of_employer.country.to_s.empty?%>
-                                                        <%= @company_of_employer.country%>
-                                                    <%else%>
-                                                        <span>---</span>
-                                                    <%end%>
-                                                </div>
-                                            </div>
-
-                                            <div class="employer_company_info_content_block">
-                                                <div class="employer_company_info_section">
-                                                    <a> <i class="material-icons-outlined">local_police</i> <span>Loại hình hoạt động</span> </a>
-                                                </div>
-                                                <div class="employer_company_info_content">
-                                                    <%if !@company_of_employer.company_type.to_s.empty?%>
-                                                        <%= @company_of_employer.company_type%>
-                                                    <%else%>
-                                                        <span>---</span>
-                                                    <%end%>
-                                                </div>
+                                            <div class="employer_company_info_content">
+                                                <%if !@company_of_employer.website.to_s.empty?%>
+                                                    <%=h auto_link(simple_format(@company_of_employer.website), :link => :urls) %>
+                                                <%else%>
+                                                    <span>---</span>
+                                                <%end%>
                                             </div>
                                         </div>
 
-                                        <div class="col-sm-4">
-                                            <div class="employer_company_info_content_block">
-                                                <div class="employer_company_info_section">
-                                                    <a> <i class="material-icons-outlined">favorite_border</i> <span>Lĩnh vực hoạt động</span> </a>
-                                                </div>
-                                                <div class="employer_company_info_content">
-                                                    <%if !@company_of_employer.field_operetion.to_s.empty?%>
-                                                        <%= @company_of_employer.field_operetion%>
-                                                    <%else%>
-                                                        <span>---</span>
-                                                    <%end%>
-                                                </div>
+                                        <div class="employer_company_info_content_block">
+                                            <div class="employer_company_info_section">
+                                                <a> <i class="material-icons-outlined">phone</i> <span>Số điện thoại</span> </a>
                                             </div>
+                                            <div class="employer_company_info_content">
+                                                <%if !@company_of_employer.phone.to_s.empty?%>
+                                                    <span><%= @company_of_employer.phone %></span>
+                                                <%else%>
+                                                    <span>---</span>
+                                                <%end%>
+                                            </div>
+                                        </div>
 
-                                            <div class="employer_company_info_content_block">
-                                                <div class="employer_company_info_section">
-                                                    <a> <i class="material-icons-outlined">date_range</i> <span>Ngày làm việc trong tuần</span> </a>
-                                                </div>
-                                                <div class="employer_company_info_content">
-                                                    <%if !@company_of_employer.working_date.to_s.empty?%>
-                                                        <%= @company_of_employer.working_date%>
-                                                    <%else%>
-                                                        <span>---</span>
-                                                    <%end%>
-                                                </div>
+                                        <div class="employer_company_info_content_block">
+                                            <div class="employer_company_info_section">
+                                                <a><i class="material-icons-outlined">people</i> <span>Quy mô công ty</span> </a>
                                             </div>
-                                            
-                                            <div class="employer_company_info_content_block">
-                                                <div class="employer_company_info_section">
-                                                    <a> <i class="material-icons-outlined">history_toggle_off</i> <span>Thời gian làm việc</span> </a>
-                                                </div>
-                                                <div class="employer_company_info_content">
-                                                    <%if !@company_of_employer.working_time.to_s.empty?%>
-                                                        <%= @company_of_employer.working_time%>
-                                                    <%else%>
-                                                        <span>---</span>
-                                                    <%end%>
-                                                </div>
-                                            </div>
-
-                                            <div class="employer_company_info_content_block">
-                                                <div class="employer_company_info_section">
-                                                    <a> <i class="material-icons-outlined">history</i> <span>Cập nhật lần cuối</span> </a>
-                                                </div>
-                                                <div class="employer_company_info_content">
-                                                    <%if !@company_of_employer.updated_at.to_s.empty?%>
-                                                        <%= @company_of_employer.updated_at.strftime("%B %d, %Y")%>
-                                                    <%else%>
-                                                        <span>---</span>
-                                                    <%end%>
-                                                </div>
+                                            <div class="employer_company_info_content">
+                                                <%if !@company_of_employer.size.to_s.empty?%>
+                                                    <span><%= @company_of_employer.size %></span>
+                                                <%else%>
+                                                    <span>---</span>
+                                                <%end%>
                                             </div>
                                         </div>
                                     </div>
 
-                                    <div class="employer_company_info_summary_title">
-                                        <h3>Giới thiệu công ty</h3>
-                                    </div>
-                                    <div class="employer_company_info_summary">
-                                        <%if @company_of_employer.overview%>
-                                            <a><%= @company_of_employer.overview.html_safe %></a>
-                                        <%else%>
-                                            <a>Chưa có thông tin</a>
-                                        <%end%>
+                                    <div class="col-sm-4">
+                                        <div class="employer_company_info_content_block">
+                                            <div class="employer_company_info_section">
+                                                <a> <i class="material-icons-outlined">event_available</i> <span>Năm thành lập</span> </a>
+                                            </div>
+                                            <div class="employer_company_info_content">
+                                                <%if !@company_of_employer.time_establish.to_s.empty?%>
+                                                    <%= @company_of_employer.time_establish.strftime("%B %d, %Y")%>
+                                                <%else%>
+                                                    <span>---</span>
+                                                <%end%>
+                                            </div>
+                                        </div>
+
+                                        <div class="employer_company_info_content_block">
+                                            <div class="employer_company_info_section">
+                                                <a> <i class="material-icons-outlined">money</i> <span>Doanh thu</span> </a>
+                                            </div>
+                                            <div class="employer_company_info_content">
+                                                <%if !@company_of_employer.values.to_s.empty?%>
+                                                    <%= @company_of_employer.values%>
+                                                <%else%>
+                                                    <span>---</span>
+                                                <%end%>
+                                            </div>
+                                        </div>
+
+                                        <div class="employer_company_info_content_block">
+                                            <div class="employer_company_info_section">
+                                                <a> <i class="material-icons-outlined">flag</i> <span>Quốc gia</span> </a>
+                                            </div>
+                                            <div class="employer_company_info_content">
+                                                <%if !@company_of_employer.country.to_s.empty?%>
+                                                    <%= @company_of_employer.country%>
+                                                <%else%>
+                                                    <span>---</span>
+                                                <%end%>
+                                            </div>
+                                        </div>
+
+                                        <div class="employer_company_info_content_block">
+                                            <div class="employer_company_info_section">
+                                                <a> <i class="material-icons-outlined">local_police</i> <span>Loại hình hoạt động</span> </a>
+                                            </div>
+                                            <div class="employer_company_info_content">
+                                                <%if !@company_of_employer.company_type.to_s.empty?%>
+                                                    <%= @company_of_employer.company_type%>
+                                                <%else%>
+                                                    <span>---</span>
+                                                <%end%>
+                                            </div>
+                                        </div>
                                     </div>
 
-                                    <div class="employer_company_info_join_title">
-                                        <h3>Lý do bạn nên gia nhập công ty</h3>
-                                    </div>
-                                    <div class="employer_company_info_join">
-                                        <%if @company_of_employer.policy%>
-                                            <a><%= @company_of_employer.policy.html_safe %></a>
-                                        <%else%>
-                                            <a>Chưa có thông tin</a>
-                                        <%end%>
+                                    <div class="col-sm-4">
+                                        <div class="employer_company_info_content_block">
+                                            <div class="employer_company_info_section">
+                                                <a> <i class="material-icons-outlined">favorite_border</i> <span>Lĩnh vực hoạt động</span> </a>
+                                            </div>
+                                            <div class="employer_company_info_content">
+                                                <%if !@company_of_employer.field_operetion.to_s.empty?%>
+                                                    <%= @company_of_employer.field_operetion%>
+                                                <%else%>
+                                                    <span>---</span>
+                                                <%end%>
+                                            </div>
+                                        </div>
+
+                                        <div class="employer_company_info_content_block">
+                                            <div class="employer_company_info_section">
+                                                <a> <i class="material-icons-outlined">date_range</i> <span>Ngày làm việc trong tuần</span> </a>
+                                            </div>
+                                            <div class="employer_company_info_content">
+                                                <%if !@company_of_employer.working_date.to_s.empty?%>
+                                                    <%= @company_of_employer.working_date%>
+                                                <%else%>
+                                                    <span>---</span>
+                                                <%end%>
+                                            </div>
+                                        </div>
+                                        
+                                        <div class="employer_company_info_content_block">
+                                            <div class="employer_company_info_section">
+                                                <a> <i class="material-icons-outlined">history_toggle_off</i> <span>Thời gian làm việc</span> </a>
+                                            </div>
+                                            <div class="employer_company_info_content">
+                                                <%if !@company_of_employer.working_time.to_s.empty?%>
+                                                    <%= @company_of_employer.working_time%>
+                                                <%else%>
+                                                    <span>---</span>
+                                                <%end%>
+                                            </div>
+                                        </div>
+
+                                        <div class="employer_company_info_content_block">
+                                            <div class="employer_company_info_section">
+                                                <a> <i class="material-icons-outlined">history</i> <span>Cập nhật lần cuối</span> </a>
+                                            </div>
+                                            <div class="employer_company_info_content">
+                                                <%if !@company_of_employer.updated_at.to_s.empty?%>
+                                                    <%= @company_of_employer.updated_at.strftime("%B %d, %Y")%>
+                                                <%else%>
+                                                    <span>---</span>
+                                                <%end%>
+                                            </div>
+                                        </div>
                                     </div>
                                 </div>
 
-                                <div class="employer_company_action">
-                                    <div class="row">
-                                        <div class="col-6">
-                                            <div class="employer_company_view">
-                                                <a><%= link_to '<button type="submit"><i class="material-icons-outlined">visibility</i> Xem trước </button>'.html_safe, company_path(@company_of_employer) %></a>
-                                            </div>
+                                <div class="employer_company_info_summary_title">
+                                    <h3>Giới thiệu công ty</h3>
+                                </div>
+                                <div class="employer_company_info_summary">
+                                    <%if @company_of_employer.overview%>
+                                        <a><%= @company_of_employer.overview.html_safe %></a>
+                                    <%else%>
+                                        <a>Chưa có thông tin</a>
+                                    <%end%>
+                                </div>
+
+                                <div class="employer_company_info_join_title">
+                                    <h3>Lý do bạn nên gia nhập công ty</h3>
+                                </div>
+                                <div class="employer_company_info_join">
+                                    <%if @company_of_employer.policy%>
+                                        <a><%= @company_of_employer.policy.html_safe %></a>
+                                    <%else%>
+                                        <a>Chưa có thông tin</a>
+                                    <%end%>
+                                </div>
+                            </div>
+
+                            <div class="employer_company_action">
+                                <div class="row justify-content-md-end">
+                                    <div class="col-sm-3">
+                                        <div class="employer_company_view">
+                                            <a><%= link_to '<button type="submit"><i class="material-icons-outlined">visibility</i> Xem trước </button>'.html_safe, company_path(@company_of_employer) %></a>
                                         </div>
-                                        <div class="col-6">
-                                            <div class="employer_company_edit">
-                                                <a><%= link_to '<button type="submit"><i class="material-icons-outlined">border_color</i> Chỉnh sửa </button>'.html_safe, edit_company_path(@company_of_employer, :is_edit => true) %></a>
-                                            </div>
+                                    </div>
+                                    <div class="col-sm-3">
+                                        <div class="employer_company_edit">
+                                            <a><%= link_to '<button type="submit"><i class="material-icons-outlined">border_color</i> Chỉnh sửa </button>'.html_safe, edit_company_path(@company_of_employer, :is_edit => true) %></a>
                                         </div>
                                     </div>
                                 </div>
                             </div>
                         </div>
-                    <%else%>
-                        <div class="employer_company_not_found_block">
-                            <div class="employer_company_not_found_icon">
-                                <i class="material-icons">business</i>
-                            </div>
-                            <div class="employer_company_not_found">
-                                <span>Rất tiếc, hiện tại công ty của bạn chưa có trên cơ sở dữ liệu của chúng tôi, bạn cần tạo thông tin công ty trước khi bắt đầu đăng tin tuyển dụng bằng các bước dưới đây</span>
-                            </div>
-                            <div class="employer_company_not_found_action">
-                                <div class="employer_company_button">
-                                    <%= link_to '<button type="submit"> <i class="material-icons-outlined">add</i> <span> Thêm công ty của tôi</span> </button>'.html_safe, new_company_path%>
-                                </div>
+                    </div>
+                <%else%>
+                    <div class="employer_company_not_found_block">
+                        <div class="employer_company_not_found_icon">
+                            <i class="material-icons">business</i>
+                            <a>ĐĂNG KÍ THÔNG TIN CÔNG TY</a>
+                        </div>
+                        <div class="employer_company_not_found">
+                            <span>Bạn cần thêm thông tin công ty trước khi bắt đầu đăng tin tuyển dụng. Thông tin công ty sẽ tạo sự tin tưởng từ ứng viên tham gia ứng tuyển, giúp cho quá trình tuyển dụng của bạn được nhanh chóng, chính xác hơn.</span>
+                        </div>
+                        <div class="employer_company_not_found_action">
+                            <div class="employer_company_button">
+                                <%= link_to '<button type="submit"> <i class="material-icons-outlined">add</i> <span> Thêm công ty của tôi</span> </button>'.html_safe, new_company_path%>
                             </div>
                         </div>
-                    <%end%>
-                </div>
+                    </div>
+                <%end%>
             </div>
-        <%else%>
-            <%= render "employers/approving"%>
-        <%end%>
+        </div>
     </div>
 </div>

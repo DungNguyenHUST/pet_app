@@ -66,6 +66,6 @@ class CompanyJob < ApplicationRecord
 	end
 
     def self.expire
-        where("end_date >= ?", Time.now)
+        where("end_date >= ?", Time.now).approved
     end
 end

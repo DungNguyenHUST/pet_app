@@ -9,7 +9,7 @@ module EmployersHelper
 
     def find_job_of_employer(employer)
         if employer.present?
-            company_job = CompanyJob.where(:employer_id => employer.id).expire
+            company_job = CompanyJob.where(:employer_id => employer.id)
             return company_job
         end
     end
@@ -21,7 +21,7 @@ module EmployersHelper
                 job_remain = -1
             else
                 company_job = CompanyJob.where(:created_at => Time.zone.now.beginning_of_day..Time.zone.now.end_of_day)
-                company_job = CompanyJob.where(:employer_id => employer.id).expire
+                company_job = CompanyJob.where(:employer_id => employer.id)
                 if company_job && company_job.count > 0
                     job_remain = 0
                 else
@@ -74,7 +74,7 @@ module EmployersHelper
     def auth_post_job_of_employer(employer)
         auth = false
         if employer
-            if employer.approved == true && find_company_of_employer(employer) != nil
+            if find_company_of_employer(employer) != nil
                 auth = true
             end
         end

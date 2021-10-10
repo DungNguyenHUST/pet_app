@@ -27,19 +27,25 @@ class CompanyJobsController < ApplicationController
             if auth_sponsor_plan_of_employer(current_employer)
                 @company_job.sponsor = true
             end
-        end
 
-        @company_job = convert_job_param(@company_job)
+            @company_job = convert_job_param(@company_job)
 
-        if @company_job.save
-            if employer_signed_in?
+            if @company_job.save
                 redirect_to employer_index_job_path
+                flash[:success] = "Để đảm bảo chất lượng thông tin, chúng tôi đang tiến hành xử lý để duyệt tin đăng của bạn, xin vui lòng chờ sau ít phút..."
             else
-			    redirect_to company_job_path(@company_job)
+                flash[:danger] = "Lỗi, hãy điền đủ nội dung có dấu *"
+                render :new
             end
         else
-            flash[:danger] = "Lỗi, hãy điền đủ nội dung có dấu "
-            render :new
+            @company_job = convert_job_param(@company_job)
+
+            if @company_job.save
+                redirect_to company_job_path(@company_job)
+            else
+                flash[:danger] = "Lỗi, hãy điền đủ nội dung có dấu *"
+                render :new
+            end
         end
     end
 
