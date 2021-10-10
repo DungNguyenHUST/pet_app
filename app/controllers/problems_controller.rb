@@ -47,7 +47,7 @@ class ProblemsController < ApplicationController
             if @problem.approved?
 				redirect_to problem_path(@problem)
 			else
-				flash[:success] = "Câu hỏi của bạn đã được tiếp nhận, vui lòng chờ quản trị viên sẽ xử lý trong 30min - 1h"
+				flash[:success] = "Để đảm bảo chất lượng thông tin, câu hỏi của bạn đang được xếp vào hàng chờ duyệt. Vui lòng kiểm tra lại sau ít phút..."
 				redirect_to problems_path
 			end
         else

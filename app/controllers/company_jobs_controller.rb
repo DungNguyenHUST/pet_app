@@ -37,7 +37,8 @@ class CompanyJobsController < ApplicationController
                 flash[:danger] = "Lỗi, hãy điền đủ nội dung có dấu *"
                 render :new
             end
-        else
+        elsif admin_signed_in?
+            @company_job.approved = true
             @company_job = convert_job_param(@company_job)
 
             if @company_job.save
@@ -46,6 +47,8 @@ class CompanyJobsController < ApplicationController
                 flash[:danger] = "Lỗi, hãy điền đủ nội dung có dấu *"
                 render :new
             end
+        else
+            flash[:danger] = "Error, no permission for this action"
         end
     end
 

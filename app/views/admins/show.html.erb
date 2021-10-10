@@ -102,8 +102,16 @@
         <div class="admin_tab_content">
             <%if @tab == "default" || @tab == "AdminCompanyID"%>
                 <div class="admin_company_tab">
-                    <div class="new_company">
+                    <div class="new_admin_company">
                         <%= link_to '<button type="submit">Tạo công ty mới</button>'.html_safe, new_company_path%>
+                    </div>
+                </div>                        
+            <%end%>
+
+            <%if @tab == "AdminJobID"%>
+                <div class="admin_job_tab">
+                    <div class="new_admin_job">
+                        <%= link_to '<button type="submit">Tạo việc làm mới</button>'.html_safe, new_company_job_path%>
                     </div>
                 </div>                        
             <%end%>

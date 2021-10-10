@@ -34,7 +34,7 @@
 								</div>
 							</div>
 
-							<%if auth_urgent_plan_of_employer(current_employer)%>
+							<%if employer_signed_in? && auth_urgent_plan_of_employer(current_employer)%>
 								<div class="new_job_content">
 									<div class="new_job_label">
 										<a><%= f.label :urgent, "Bạn cần tuyển gấp hay không(áp dụng cho F-Eco và F-Pro)?", class: "new_job_label" %></a>
@@ -279,14 +279,21 @@
 							</div>
 
 							<%if admin_signed_in?%>
-								<%= f.hidden_field :apply_another_site_flag, :value => true %>
 								<div class="new_job_content">
 									<div class="new_job_label">
-										<a><%= f.label :apply_site, "Company Site to apply - Admin only", class: "new_job_label" %><span>*</span></a>
+										<a><%= f.label :apply_another_site_flag, "Apply on Company site Option - For Admin Only", class: "new_job_label" %><span>*</span></a>
+									</div>
+									<div class="new_job_input">
+										<%= f.select(:apply_another_site_flag, options_for_select([['Không', false], ['Có', true]]), {include_blank: false}, { :class => 'form-select' }) %>
+									</div>
+								</div>
+								<div class="new_job_content">
+									<div class="new_job_label">
+										<a><%= f.label :apply_site, "Company Site to apply - For Admin Only", class: "new_job_label" %><span>*</span></a>
 									</div>
 									
 									<div class="new_job_input">
-										<%= f.text_field :apply_site, :required => true, class: "form-control", placeholder: "Nhâp site tuyển dụng của công ty" %>
+										<%= f.text_field :apply_site, class: "form-control", placeholder: "Nhâp site tuyển dụng của công ty" %>
 									</div>
 								</div>
 							<%end%>
