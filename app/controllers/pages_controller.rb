@@ -4,9 +4,7 @@ class PagesController < ApplicationController
 		
         if admin_signed_in?
 			redirect_to admin_path(current_admin)
-		end
-
-		if employer_signed_in?
+		elsif employer_signed_in?
 			redirect_to employer_path(current_employer)
 		end
     end
