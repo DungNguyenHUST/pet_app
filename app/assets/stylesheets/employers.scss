@@ -1802,7 +1802,9 @@
 
 /////////////////////////search cv////////////////////
 .employer_cv_search_index_block{
-    margin-top: 30px;
+    padding-top: 30px;
+    padding-bottom: 50px;
+    border-bottom: 1px solid #EFEFEF;
     .employer_cv_searched_input{
         display: block;
         .employer_cv_searched_what{
@@ -1911,6 +1913,9 @@
 
     .employer_cv_filter_container{
         display: none;
+        @media screen and (min-width: 600px){
+            display: block;
+        }
         .employer_cv_filter_block{
             margin-top: 20px;
             .employer_cv_filter_input{
@@ -1959,6 +1964,9 @@
     }
 
     .filter_button_on{
+        @media screen and (min-width: 600px){
+            display: none;
+        }
         float: right;
         border: none;
         background-color: #fff;
@@ -1982,7 +1990,9 @@
         color: #0d6efd;
         font-size: 14px;
         font-weight: 600;
-        margin-top: 5px;
+        @media screen and (max-width: 600px){
+            margin-top: 5px;
+        }
         i{
             position: relative;
             top: 5px;
@@ -1991,22 +2001,78 @@
             outline: none;
         }
     }
+}
     
-    .employer_cv_search_block_result{
+.employer_cv_search_block_result{
+    clear: both;
+    .employer_cv_search_index{
+        margin-top: 20px;
+        padding-bottom: 20px;
         clear: both;
-        .employer_cv_search_index{
-            margin-top: 20px;
+        .employer_cv_search_label{
+            padding-top: 10px;
             padding-bottom: 20px;
-            clear: both;
-            .employer_cv_search_label{
+            font-size: 22px;
+            margin-right: 13px;
+            border-top-right-radius: 1px;
+            border-top-left-radius: 1px;
+            font-weight: 550;
+            span{
+                border-left: 5px solid #febb02;
+                padding-left: 5px;
+            }
+            @media screen and (max-width: 600px){
+                margin-top: 10px;
+                width: 100%;
+            }
+        }
+    }
+
+    .employer_cv_search_not_found_block{
+        padding-top: 20px;
+        .employer_cv_search_not_found_label{
+            padding-bottom: 20px;
+            font-size: 24px;
+            margin-right: 13px;
+            border-top-right-radius: 1px;
+            border-top-left-radius: 1px;
+            font-weight: 550;
+            span{
+                // border-left: 5px solid #febb02;
+                // padding-left: 5px;
+            }
+            @media screen and (max-width: 600px){
+                margin-top: 10px;
+                width: 100%;
+            }
+        }
+        .employer_cv_search_not_found_image{
+            display: flex;
+            justify-content: center;
+            img{
+                height: 100px;
+                width: 200px;
+                object-fit: cover;
+            }
+        }
+        .employer_cv_search_not_found_help{
+            margin-top: 10px;
+            a{
+                font-size: 16px;
+                font-weight: 600;
+            }
+        }
+        .employer_cv_search_not_found_suggest{
+            margin-top: 20px;
+            .employer_cv_search_not_found_suggest_label{
                 padding-top: 10px;
-                padding-bottom: 20px;
-                font-size: 22px;
+                padding-bottom: 15px;
+                font-size: 24px;
                 margin-right: 13px;
                 border-top-right-radius: 1px;
                 border-top-left-radius: 1px;
                 font-weight: 550;
-                span{
+                a{
                     border-left: 5px solid #febb02;
                     padding-left: 5px;
                 }
@@ -2016,66 +2082,10 @@
                 }
             }
         }
-    
-        .employer_cv_search_not_found_block{
-            margin-top: 30px;
-            .employer_cv_search_not_found_label{
-                padding-top: 10px;
-                padding-bottom: 20px;
-                font-size: 24px;
-                margin-right: 13px;
-                border-top-right-radius: 1px;
-                border-top-left-radius: 1px;
-                font-weight: 550;
-                span{
-                    // border-left: 5px solid #febb02;
-                    // padding-left: 5px;
-                }
-                @media screen and (max-width: 600px){
-                    margin-top: 10px;
-                    width: 100%;
-                }
-            }
-            .employer_cv_search_not_found_image{
-                display: flex;
-                justify-content: center;
-                img{
-                    height: 100px;
-                    width: 200px;
-                    object-fit: cover;
-                }
-            }
-            .employer_cv_search_not_found_help{
-                margin-top: 10px;
-                a{
-                    font-size: 16px;
-                    font-weight: 600;
-                }
-            }
-            .employer_cv_search_not_found_suggest{
-                margin-top: 30px;
-                .employer_cv_search_not_found_suggest_label{
-                    padding-top: 10px;
-                    padding-bottom: 20px;
-                    font-size: 24px;
-                    margin-right: 13px;
-                    border-top-right-radius: 1px;
-                    border-top-left-radius: 1px;
-                    font-weight: 550;
-                    a{
-                        border-left: 5px solid #febb02;
-                        padding-left: 5px;
-                    }
-                    @media screen and (max-width: 600px){
-                        margin-top: 10px;
-                        width: 100%;
-                    }
-                }
-            }
-        }
     }
+}
 
-    .employer_cv_searched_result{
-        padding-top: 30px;
-    }
+.employer_cv_searched_result{
+    padding-top: 20px;
+    padding-bottom: 20px;
 }
