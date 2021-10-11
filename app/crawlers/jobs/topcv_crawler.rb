@@ -4,7 +4,7 @@ module TopcvCrawler
     include ActionView::Helpers::AssetUrlHelper
 
     def get_job_pre_data_topcv(url, doc)
-        job_items = doc.css("div.job-ta")
+        job_items = doc.css("div.job-item")
         job_pre_datas = []
 
         if job_items
@@ -17,8 +17,8 @@ module TopcvCrawler
 
                 job_salary = ""
 
-                if job_item.css("h4.job-title a").present?
-                    job_link = job_item.css("h4.job-title a").map { |link| link['href']}.first
+                if job_item.css("h3.title a").present?
+                    job_link = job_item.css("h3.title a").map { |link| link['href']}.first
                 else
                     job_link = ""
                 end
