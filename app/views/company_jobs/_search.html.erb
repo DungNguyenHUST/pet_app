@@ -27,15 +27,15 @@
             </div>
             
             <div class="company_job_search_label">
-                <span>Việc làm gợi ý dành cho bạn</span>
+                <a>Việc làm gợi ý dành cho bạn</a>
             </div>
         <%elsif @is_search%>
             <div class="company_job_search_label">
-                <span><%=job_searched.total_count%> việc làm phù hợp</span>
+                <a><%=job_searched.total_count%> việc làm phù hợp</a>
             </div>
         <%else%>
-            <div class="company_job_search_label">
-                <span><%=job_searched.total_count%> việc làm đang tuyển dụng tháng <%=Date.today.strftime("%m")%>/<%=Date.today.strftime("%Y")%></span>
+            <div class="company_job_search_label_all">
+                <a><%=job_searched.total_count%> việc làm đang tuyển dụng tháng <%=Date.today.strftime("%m")%>/<%=Date.today.strftime("%Y")%></a>
             </div>
         <%end%>	
 
