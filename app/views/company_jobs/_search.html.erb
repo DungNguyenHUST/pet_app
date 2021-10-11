@@ -3,11 +3,11 @@
         <%if job_results.present? && job_results.count > 0%>
             <%if @is_search || @is_filter%>
                 <div class="company_job_search_label">
-                    <a><%=job_results.total_count%> việc làm phù hợp</a>
+                    <a><strong><%=job_results.total_count%></strong> việc làm phù hợp</a>
                 </div>
             <%else%>
                 <div class="company_job_search_label_all">
-                    <a><%=job_results.total_count%> việc làm đang tuyển dụng tháng <%=Date.today.strftime("%m")%>/<%=Date.today.strftime("%Y")%></a>
+                    <a><strong><%=job_results.total_count%></strong> việc làm đang tuyển dụng tháng <%=Date.today.strftime("%m")%>/<%=Date.today.strftime("%Y")%></a>
                 </div>
             <%end%>
             <div class="row">
@@ -61,7 +61,7 @@
                 </div>
             </div>
             
-            <div class="company_job_search_label">
+            <div class="company_job_search_label_recomand">
                 <a>Một số việc làm gợi ý dành cho bạn</a>
             </div>
             
