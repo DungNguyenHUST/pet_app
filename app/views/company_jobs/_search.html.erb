@@ -1,6 +1,41 @@
 <div class="company_job_search_block_result" id="company_job_search_block_result">
     <div class="company_job_search_index">
-        <%if @is_search_not_found%>
+        <%if job_results.present? && job_results.count > 0%>
+            <%if @is_search || @is_filter%>
+                <div class="company_job_search_label">
+                    <a><%=job_results.total_count%> việc làm phù hợp</a>
+                </div>
+            <%else%>
+                <div class="company_job_search_label_all">
+                    <a><%=job_results.total_count%> việc làm đang tuyển dụng tháng <%=Date.today.strftime("%m")%>/<%=Date.today.strftime("%Y")%></a>
+                </div>
+            <%end%>
+            <div class="row">
+                <div class="col-sm-5 col_padding_customize_right col_no_padding_small_screen">
+                    <%job_results.each do |company_job|%>
+                        <%=render company_job%>
+                    <%end%>
+                </div>
+
+                <div class='col-sm-7 col_padding_customize_left'>
+                    <div class='company_job_preview_index sticky-top' id="company_job_preview_id">
+                        <%= render :partial => 'company_jobs/company_job_preview', locals: {company_job: job_results.first} %>
+                    </div>
+                </div>
+
+                <script>
+                    document.querySelector(".company_job_block:first-child").classList.add("highlight_job_item"); //select first element
+                    $('.company_job_block').click(function() {
+                        $(this).addClass('highlight_job_item') // add class to clicked element
+                        .siblings() // get siblings
+                        .removeClass('highlight_job_item'); // remove class from sibling elements 
+                    });
+                </script>
+            </div>
+            <div class="company_job_paginate">
+                <%= paginate job_results, window: 2%>
+            </div>
+        <%else%>
             <div class="company_job_search_not_found_block">
                 <div class="company_job_search_not_found_label">
                     <span>Rất tiếc, không tìm được việc làm phù hợp</span>
@@ -27,44 +62,34 @@
             </div>
             
             <div class="company_job_search_label">
-                <a>Việc làm gợi ý dành cho bạn</a>
+                <a>Một số việc làm gợi ý dành cho bạn</a>
             </div>
-        <%elsif @is_search%>
-            <div class="company_job_search_label">
-                <a><%=job_searched.total_count%> việc làm phù hợp</a>
-            </div>
-        <%else%>
-            <div class="company_job_search_label_all">
-                <a><%=job_searched.total_count%> việc làm đang tuyển dụng tháng <%=Date.today.strftime("%m")%>/<%=Date.today.strftime("%Y")%></a>
-            </div>
-        <%end%>	
-
-        <div class="row">
-            <div class="col-sm-5 col_padding_customize_right col_no_padding_small_screen">
-                <%if job_searched != nil%>
-                    <%job_searched.each do |company_job|%>
+            
+            <div class="row">
+                <div class="col-sm-5 col_padding_customize_right col_no_padding_small_screen">
+                    <%@job_recommands.each do |company_job|%>
                         <%=render company_job%>
                     <%end%>
-                <%end%>
-            </div>
-
-            <div class='col-sm-7 col_padding_customize_left'>
-                <div class='company_job_preview_index sticky-top' id="company_job_preview_id">
-                    <%= render :partial => 'company_jobs/company_job_preview', locals: {company_job: job_searched.first} %>
                 </div>
-            </div>
 
-            <script>
-                document.querySelector(".company_job_block:first-child").classList.add("highlight_job_item"); //select first element
-                $('.company_job_block').click(function() {
-                    $(this).addClass('highlight_job_item') // add class to clicked element
-                    .siblings() // get siblings
-                    .removeClass('highlight_job_item'); // remove class from sibling elements 
-                });
-            </script>
-        </div>
-        <div class="company_job_paginate">
-            <%= paginate job_searched, window: 2%>
-        </div>
+                <div class='col-sm-7 col_padding_customize_left'>
+                    <div class='company_job_preview_index sticky-top' id="company_job_preview_id">
+                        <%= render :partial => 'company_jobs/company_job_preview', locals: {company_job: @job_recommands.first} %>
+                    </div>
+                </div>
+
+                <script>
+                    document.querySelector(".company_job_block:first-child").classList.add("highlight_job_item"); //select first element
+                    $('.company_job_block').click(function() {
+                        $(this).addClass('highlight_job_item') // add class to clicked element
+                        .siblings() // get siblings
+                        .removeClass('highlight_job_item'); // remove class from sibling elements 
+                    });
+                </script>
+            </div>
+            <div class="company_job_paginate">
+                <%= paginate @job_recommands, window: 2%>
+            </div>
+        <%end%>
     </div>
 </div>

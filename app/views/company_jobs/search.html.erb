@@ -255,7 +255,11 @@
 <div class="company_job_search_result_container">
     <div class="container">
         <div class="company_job_search_result">
-            <%= render :partial => 'company_jobs/search', locals: {job_searched: @job_searchs} %>
+            <%if @is_search%>
+                <%= render :partial => 'company_jobs/search', locals: {job_results: @job_searchs} %>
+            <%else%>
+                <%= render :partial => 'company_jobs/search', locals: {job_results: @job_recommands} %>
+            <%end%>
         </div>
         
         <div class="company_search_job_profile">

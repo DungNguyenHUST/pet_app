@@ -104,27 +104,21 @@ class CompanyJobsController < ApplicationController
     end
 
     def search
-        @is_search_not_found = false
-        @is_search = false
-        @job_searchs = CompanyJob.all.order('created_at DESC').expire.page(params[:page]).per(20)
+        @job_recommands = CompanyJob.all.order('created_at DESC').expire.page(params[:page]).per(20)
 
         # Search
+        @is_search = false
 		if(params.has_key?(:search) && params.has_key?(:location))
+            @is_search = true
 			@search = convert_vie_to_eng(params[:search])
 			@location = convert_vie_to_eng(params[:location])
             @job_searchs = CompanyJob.friendly.search(@search, @location).order('created_at DESC').expire.page(params[:page]).per(20)
-            @is_search = true
-            if @job_searchs.total_count == 0 
-                @is_search_not_found = true
-                @job_searchs = CompanyJob.all.order('created_at DESC').expire.page(params[:page]).per(20)
-            end
-        else
-            @job_searchs = CompanyJob.all.order('created_at DESC').expire.page(params[:page]).per(20)
-            @is_search = false
         end
 
         # Filter
+        @is_filter = false
         if params.has_key?(:filter)
+            @is_filter = true
             @category = nil
             @salary_min = nil
             @salary_max = nil
@@ -160,6 +154,7 @@ class CompanyJobsController < ApplicationController
                                                                     @post_date, @typical, @search, @location)
 
             @job_filtereds = CompanyJob.friendly.filtered(@filter_params_converted ).order('created_at DESC').expire.page(params[:page]).per(20)
+
             respond_to do |format|
                 format.html {}
                 format.js
