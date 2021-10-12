@@ -15,7 +15,7 @@
 		</div>
 
 		<%if user_signed_in?%>
-			<div class="nav_login_moblie" >
+			<div class="nav_user_login_moblie" >
 				<div class="user_notification_mobile">
 					<%= link_to user_path(current_user, :tab => "NotificationID") do %>
 						<%if current_user.user_notifications.count < 10%>
@@ -32,32 +32,65 @@
 							<%= image_tag current_user.avatar.url %>
 						</div>
 					<%else%>
-						<div class="user_avatar_small_text_header_moblie checked_<%=find_user_color(current_user.name)%>">
-							<%if current_user.name.present?%>
-								<span><%=current_user.name[0].upcase%></span>
-							<%else%>
-								<span>A</span>
-							<%end%>
+						<div class="user_avatar_small_img_header_moblie">
+							<%= image_tag("defaults/user_avatar_default.png")%>
 						</div>
 					<%end%>
 				</button>
 
 				<div class="user_action_select_mobile" id ="user_action_menu_moblie">
 					<div class="user_action_mobile">
-						<%= button_to user_path(current_user), :method => :get do%>
-							<i class="material-icons-outlined">account_circle</i> <span>Thông tin cá nhân</span>
+						<%= link_to user_profile_path, :method => :get do%>
+							<i class="material-icons-outlined">badge</i><span>Hồ sơ tìm việc</span>
 						<%end%>
 					</div>
 					<div class="user_action_mobile">
-						<%= button_to user_path(current_user), :method => :get do%>
-							<i class="material-icons-outlined">settings</i> <span>Cài đặt tài khoản</span>
+						<%= link_to user_path(current_user, tab: 'SaveJobID'), :method => :get do%>
+							<i class="material-icons-outlined">bookmark_border</i><span>Việc làm đã lưu</span>
 						<%end%>
 					</div>
+					
+					<div class="user_action_mobile">
+						<%= link_to user_path(current_user, tab: 'ApplyJobID'), :method => :get do%>
+							<i class="material-icons-outlined">check</i><span>Việc làm đã ứng tuyển</span>
+						<%end%>
+					</div>
+					
+					<div class="user_action_mobile">
+						<%= link_to user_path(current_user, tab: 'CompanyFollowID'), :method => :get do%>
+							<i class="material-icons-outlined">favorite_border</i><span>Công ty đang theo dõi</span>
+						<%end%>
+					</div>
+
+					<div class="user_action_mobile">
+						<%= link_to user_path(current_user, tab: 'ProblemID'), :method => :get do%>
+							<i class="material-icons-outlined">lightbulb</i><span>Câu hỏi của tôi</span>
+						<%end%>
+					</div>
+
+					<div class="user_action_mobile">
+						<%= link_to user_path(current_user, tab: 'CoverVitaeID'), :method => :get do%>
+							<i class="material-icons-outlined">content_copy</i><span>CV của tôi</span>
+						<%end%>
+					</div>
+
+					<div class="user_action_mobile">
+						<%= link_to user_path(current_user, tab: 'PersonalID'), :method => :get do%>
+							<i class="material-icons-outlined">account_circle</i><span>Thông tin cá nhân</span>
+						<%end%>
+					</div>
+
+					<div class="user_action_mobile">
+						<%= link_to edit_user_path(current_user), :method => :get do%>
+							<i class="material-icons-outlined">settings</i><span>Cài đặt tài khoản</span>
+						<%end%>
+					</div>
+
 					<div class="user_action_mobile">
 						<button class="dropdown-item" type="button" class="btn" data-toggle="modal" data-target="#buttonModalHeaderCenterMobile">
 							<i class="material-icons-outlined">logout</i><span>Đăng xuất</span>
 						</button>
-					</div>
+					</div>	
 				</div>
 
 				<!-- Modal -->
@@ -81,21 +114,90 @@
 					</div>
 				</div>
 			</div>
+		<%elsif employer_signed_in?%>
+			<div class="nav_employer_login_moblie" >
+				<div class="employer_notification_mobile">
+					<%= link_to employer_path(current_employer, :tab => "NotificationID") do %>
+						<%if current_employer.employer_notifications.count < 10%>
+							<i class="material-icons-outlined">notifications</i><span><%=current_employer.employer_notifications.count%></span>
+						<%else%>
+							<i class="material-icons-outlined">notifications</i><span>9+</span>
+						<%end%>
+					<%end%>
+				</div>
+
+				<button class="employer_avatar_small_header_moblie" onclick="openEmployerActionMenuMoblie()">
+					<%if current_employer.avatar?%>
+						<div class="employer_avatar_small_img_header_moblie">
+							<%= image_tag current_employer.avatar.url %>
+						</div>
+					<%else%>
+						<div class="employer_avatar_small_img_header_moblie">
+							<%= image_tag("defaults/user_avatar_default.png")%>
+						</div>
+					<%end%>
+				</button>
+
+				<div class="employer_action_select_mobile" id ="employer_action_menu_moblie">
+					<div class="employer_action_mobile">
+						<%= link_to employer_path(current_employer, tab: 'PersonalID'), :method => :get do%>
+							<i class="material-icons-outlined">space_dashboard</i><span>Bảng điều khiển</span>
+						<%end%>
+					</div>
+
+					<div class="employer_action_mobile">
+						<%= link_to edit_employer_path(current_employer), :method => :get do%>
+							<i class="material-icons-outlined">settings</i><span>Cài đặt tài khoản</span>
+						<%end%>
+					</div>
+
+					<div class="employer_action_mobile">
+						<a class="dropdown-item" type="button" class="btn" data-toggle="modal" data-target="#buttonModalHeaderCenter">
+							<i class="material-icons-outlined">logout</i><span>Đăng xuất</span>
+						</a>
+					</div>	
+				</div>
+
+				<!-- Modal -->
+				<div class="modal fade" id="buttonModalHeaderCenterMobile" tabindex="-1" role="dialog" aria-hidden="true">
+					<div class="modal-dialog modal-dialog-centered" role="document">
+						<div class="modal-content">
+							<div class="modal-header">
+								<h5 class="modal-title">Bạn có chắc chắn muốn đăng xuất không?</h5>
+								<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+								<span aria-hidden="true">&times;</span>
+								</button>
+							</div>
+							<div class="modal-body">
+								<div class="nav_header_employer_action_mobile">
+									<%= button_to destroy_employer_session_path, method: :delete do%>
+										<i class="material-icons-outlined">logout</i><span>Có, đăng xuất ngay bây giờ</span>
+									<%end%>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
 		<%end%>
 
 		<%if employer_signed_in?%>
-			<a href="<%=employer_index_job_path %>"> Quản lý tin đăng </a>
-			<a href="<%=employer_index_apply_path %>"> Quản lý hồ sơ ứng tuyển </a>
-			<a href="<%=employer_index_cv_path %>"> Tìm kiếm ứng viên </a>
-			<a href="<%=employer_plan_path %>">Đổi gói dịch vụ</a>
-			<a href="<%=contact_us_path%>">Liên hệ </a>
+			<div class="nav_main_menu">
+				<a href="<%=employer_index_job_path %>"> Quản lý tin đăng </a>
+				<a href="<%=employer_index_apply_path %>"> Quản lý hồ sơ ứng tuyển </a>
+				<a href="<%=employer_index_cv_path %>"> Tìm kiếm ứng viên </a>
+				<a href="<%=employer_plan_path %>">Đổi gói dịch vụ</a>
+				<a href="<%=contact_us_path%>">Liên hệ </a>
+			</div>
 		<%else%>
-			<a href="<%=jobs_search_path %>">Việc làm </a>
-			<a href="<%=companies_path %>">Review công ty </a>
-			<a href="<%=user_profile_path %>">Tạo hồ sơ tìm việc</a>
-			<a href="<%=problems_path %>">Câu hỏi phỏng vấn </a>
-			<!--<a href="<%=cover_vitaes_path %>">CV & Resume </a>-->
-			<a href="<%=posts_path %>">Blog</a>
+			<div class="nav_main_menu">
+				<a href="<%=jobs_search_path %>">Việc làm </a>
+				<a href="<%=companies_path %>">Review công ty </a>
+				<a href="<%=user_profile_path %>">Tạo hồ sơ tìm việc</a>
+				<a href="<%=problems_path %>">Câu hỏi phỏng vấn </a>
+				<!--<a href="<%=cover_vitaes_path %>">CV & Resume </a>-->
+				<a href="<%=posts_path %>">Blog</a>
+			</div>
 		<%end%>
 
 		<div class="nav_right">
@@ -103,11 +205,12 @@
 				<div class="nav_user">
 					<div class="user_notification">						
 						<%= link_to user_path(current_user, :tab => "NotificationID") do %>
-							<%if current_user.user_notifications.count < 10%>
-								<i class="material-icons-outlined">notifications</i><span><%=current_user.user_notifications.count%></span>
-							<%else%>
-								<i class="material-icons-outlined">notifications</i><span>9+</span>
-							<%end%>
+							<i class="material-icons-outlined">notifications</i>
+						<%end%>
+						<%if current_user.user_notifications.count < 10%>
+							<span><%=current_user.user_notifications.count%></span>
+						<%else%>
+							<span>9+</span>
 						<%end%>
 					</div>
 
@@ -117,12 +220,8 @@
 								<%= image_tag current_user.avatar.url %>
 							</div>
 						<%else%>
-							<div class="user_avatar_small_text_header checked_<%=find_user_color(current_user.name)%>">
-								<%if current_user.name.present?%>
-									<span><%=current_user.name[0].upcase%></span>
-								<%else%>
-									<span>A</span>
-								<%end%>
+							<div class="user_avatar_small_img_header">
+								<%= image_tag("defaults/user_avatar_default.png")%>
 							</div>
 						<%end%>
 					</button>
@@ -131,6 +230,7 @@
 						<a class="dropdown-item" href="<%=user_profile_path%>">
 							<i class="material-icons-outlined">badge</i><span>Hồ sơ tìm việc</span>
 						</a>
+						<div class="dropdown-divider"></div>
 						<a class="dropdown-item" href="<%=user_path(current_user, tab: 'SaveJobID')%>">
 							<i class="material-icons-outlined">bookmark_border</i><span>Việc làm đã lưu</span>
 						</a>
@@ -146,6 +246,7 @@
 						<a class="dropdown-item" href="<%=user_path(current_user, tab: 'ProblemID')%>">
 							<i class="material-icons-outlined">lightbulb</i><span>Câu hỏi của tôi</span>
 						</a>
+						<div class="dropdown-divider"></div>
 						<a class="dropdown-item" href="<%=user_path(current_user, tab: 'CoverVitaeID')%>">
 							<i class="material-icons-outlined">content_copy</i><span>CV của tôi</span>
 						</a>
@@ -201,12 +302,8 @@
 								<%= image_tag current_employer.avatar.url %>
 							</div>
 						<%else%>
-							<div class="employer_avatar_small_text checked_<%=find_user_color(current_employer.name)%>">
-								<%if current_employer.name.present?%>
-									<span><%=current_employer.name[0].upcase%></span>
-								<%else%>
-									<span>A</span>
-								<%end%>
+							<div class="employer_avatar_small_img">
+								<%= image_tag("defaults/user_avatar_default.png")%>
 							</div>
 						<%end%>
 					</button>
@@ -247,10 +344,10 @@
 				</div>
 			<%else%>
 				<a class="nav_recrui" href="<%=employer_wellcome_path%>">
-					<span>Tuyển dụng</span>
+					Tuyển dụng
 				</a>
 				<a class="nav_login" href="<%=new_user_session_path%>">
-					<span>Đăng nhập</span>
+					Đăng nhập
 				</a>
 			<%end%>
 		</div>
@@ -276,8 +373,8 @@
 		}
 	}
 
-	function openUserActionMenu() {
-		var x = document.getElementById("user_action_menu");
+	function openUserActionMenuMoblie() {
+		var x = document.getElementById("user_action_menu_moblie");
 		if (x.style.display == "block") 
 		{
 			x.style.display = "none";
@@ -288,8 +385,8 @@
 		}
 	}
 
-	function openUserActionMenuMoblie() {
-		var x = document.getElementById("user_action_menu_moblie");
+	function openEmployerActionMenuMoblie() {
+		var x = document.getElementById("employer_action_menu_moblie");
 		if (x.style.display == "block") 
 		{
 			x.style.display = "none";
