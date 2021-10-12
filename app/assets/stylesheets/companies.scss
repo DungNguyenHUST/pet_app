@@ -6,7 +6,10 @@
 .companies_index{
     .companies_search{
         min-height: 444px;
-        background-color: #f8f9fa;
+        background-color: #fff;
+        @media screen and (max-width: 600px){
+            background-color: #f8f9fa;
+        }
         .company_bar{
             padding-top: 120px;
             padding-bottom: 120px;
@@ -111,6 +114,18 @@
                 }
             }
 		}
+        .company_bar_background{
+            @media screen and (max-width: 600px){
+                display: none;
+            }
+            img{
+                width: 100%;
+                height: 444px;
+                object-fit: cover;
+                position: relative;
+                top: 20px;
+            }
+        }
     }
     
     .companies_area{
@@ -201,7 +216,9 @@
         {
             font-size: 23px;
             margin-right: 13px;
-            padding-top: 20px;
+            @media screen and (min-width: 600px){
+                padding-top: 20px;
+            }
             border-top-right-radius: 1px;
             border-top-left-radius: 1px;
             margin-bottom: 20px;
