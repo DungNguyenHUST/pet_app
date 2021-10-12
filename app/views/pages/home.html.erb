@@ -6,24 +6,7 @@
                 <div class='col-sm-10'>
                     <div class="home_search_block">
                         <div class="home_search_bar_label">
-                            <h3>Nơi bạn tìm thấy <span class="textbox">công việc</span> mơ ước.</h3>
-                            <script>
-                                $(document).ready(function() {
-                                // List your words here:
-                                var words = [
-                                    'công ty',
-                                    'công việc',
-                                    'công ty',
-                                    ], i = 0;
-
-                                setInterval(function(){
-                                    $('.textbox').fadeOut(500, function(){
-                                        $(this).html(words[i=(i+1)%words.length]).fadeIn(500);
-                                    });
-                                }, 5000);
-
-                                });
-                            </script>
+                            <h3>Tìm kiếm cơ hội mới dành cho bạn, nhanh hơn.</h3>
                         </div>
                         
                         <%=form_tag jobs_search_path, :method => "get" do%>
@@ -35,7 +18,7 @@
                                             <%= text_field_tag :search, params[:search], required: true, class: 'form-control', placeholder: "Tìm kiếm công việc, kĩ năng, tên công ty..."%>
                                         </div>
                                     </div>
-                                    <div class='col-sm-5 col_padding_customize'>
+                                    <div class='col-sm-4 col_padding_customize'>
                                         <div class="home_search_where">
                                             <i class="material-icons-outlined">place</i></button>
                                             <%= select_tag :location, options_for_select(['Hà Nội','TP Hồ Chí Minh','Đà Nẵng','An Giang','Bà Rịa Vũng Tàu','Bạc Liêu','Bắc Kạn','Bắc Giang',
@@ -52,10 +35,9 @@
                                                                         'Tuyên Quang','Vĩnh Long','Vĩnh Phúc','Yên Bái' ]), {:prompt => "Tất cả địa điểm", class: 'form-control'}%>
                                         </div>
                                     </div>
-                                    <div class='col-sm-1 col_padding_customize_left'>
+                                    <div class='col-sm-2'>
                                         <div class="home_search_button">
                                             <%= button_to "", form_class: "search_button", :name => nil do%>
-                                                <i class="material-icons-outlined">search</i>
                                                 <a>Tìm kiếm</a>
                                             <%end%> 
                                         </div>
