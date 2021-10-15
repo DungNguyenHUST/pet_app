@@ -1,39 +1,54 @@
 class CompanyJob < ApplicationRecord
+    include PgSearch::Model
+    
 	extend FriendlyId
 	friendly_id :title_converted, use: :slugged
     
     has_many :company_apply_jobs, dependent: :destroy
     has_many :company_save_jobs, dependent: :destroy
 
-    # validates :description, presence: true
-    # validates :requirement, presence: true
-    # validates :benefit, presence: true
+    pg_search_scope :search_job_by_query, 
+                    against: [[:title, 'A'], [:company_name, 'B'], [:category, 'C'], [:skill, 'D']], 
+                    using: {
+                        tsearch: { prefix: true, dictionary: "english", any_word: true }
+                    }
 
-    def self.search(search, location)
-        if search
-            job_search = CompanyJob.where("title_converted ILIKE? OR company_name_converted ILIKE? OR skill_converted ILIKE? OR category_converted ILIKE?", 
-                                        "%#{search}%", 
-                                        "%#{search}%",
-                                        "%#{search}%",
-                                        "%#{search}%")
-            if job_search && location
-                job_search = job_search.where("location_converted ILIKE?",
-                                            "%#{location}%")
-            end
+    pg_search_scope :search_job_by_location, 
+                    against: :location,
+                    using: {
+                        tsearch: { prefix: true, dictionary: "english", any_word: true }
+                    }
 
-            if(job_search)
-                self.where(id: job_search)
-            end
-        end
-    end
+    pg_search_scope :search_job_by_category, 
+                    against: :category,
+                    using: {
+                        tsearch: { prefix: true, dictionary: "english", any_word: true }
+                    }
+
+    pg_search_scope :search_job_by_typical, 
+                    against: :typical,
+                    using: {
+                        tsearch: { prefix: true, dictionary: "english", any_word: true }
+                    }
+
+    pg_search_scope :search_job_by_level, 
+                    against: :level,
+                    using: {
+                        tsearch: { prefix: true, dictionary: "english", any_word: true }
+                    }
 
     def self.filtered(filter_params)
-        if filter_params.search
-            job_filter = CompanyJob.search(filter_params.search, filter_params.location)
+        job_filter = CompanyJob.all
+        unless filter_params.search.nil?
+            job_filter = job_filter.search_job_by_query(filter_params.search)
+        end
+
+        unless filter_params.location.nil?
+            job_filter = job_filter.search_job_by_location(filter_params.location)
         end
 
         unless filter_params.category.nil?
-            job_filter = job_filter.where("category_converted ILIKE?", "%#{filter_params.category}%")
+            job_filter = job_filter.search_job_by_category(filter_params.category)
         end
 
         unless filter_params.salary_min.nil?
@@ -45,11 +60,11 @@ class CompanyJob < ApplicationRecord
         end
 
         unless filter_params.typical.nil?
-            job_filter = job_filter.where("typical_converted ILIKE?", "%#{filter_params.typical}%")
+            job_filter = job_filter.search_job_by_typical(filter_params.typical)
         end
 
         unless filter_params.level.nil?
-            job_filter = job_filter.where("level_converted ILIKE?", "%#{filter_params.level}%")
+            job_filter = job_filter.search_job_by_level(filter_params.level)
         end
 
         unless filter_params.post_date.nil?

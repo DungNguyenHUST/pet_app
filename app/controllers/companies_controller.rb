@@ -7,8 +7,7 @@ class CompaniesController < ApplicationController
         @is_company_searched = false
 		if(params.has_key?(:search))
             @is_company_searched = true
-            @search = convert_vie_to_eng(params[:search])
-			@company_searchs = Company.friendly.search(@search).order('name ASC').page(params[:page]).per(12)
+			@company_searchs = Company.search_company_by_name(params[:search]).order('name ASC').page(params[:page]).per(12)
 		end
         
         if(params.has_key?(:tab))

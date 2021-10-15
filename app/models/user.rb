@@ -5,6 +5,8 @@ class User < ApplicationRecord
             :recoverable, :rememberable, :validatable, :trackable,
             :omniauthable, omniauth_providers: [:facebook, :google_oauth2]
 
+    include PgSearch::Model
+
     extend FriendlyId
     def convert_slug
         slug = name.downcase.to_s
@@ -33,6 +35,97 @@ class User < ApplicationRecord
     has_many :user_adwards, dependent: :destroy
 
     # after_create :send_welcome_email
+
+    pg_search_scope :search_user_by_query, 
+                    against: [[:name, 'A'], [:email, 'B']], 
+                    using: {
+                        tsearch: { prefix: true, dictionary: "english", any_word: true }
+                    }
+
+    pg_search_scope :search_user_by_address, 
+                    against: :address, 
+                    using: {
+                        tsearch: { prefix: true, dictionary: "english", any_word: true }
+                    }
+
+    pg_search_scope :search_user_by_sex, 
+                    against: :sex, 
+                    using: {
+                        tsearch: { prefix: true, dictionary: "english", any_word: true }
+                    }
+
+    pg_search_scope :search_user_associate_by_query, 
+                    associated_against: {
+                        user_educations: [:school_name, :cert_type],
+                        user_experiences: [:job_level, :company_name],
+                        user_skills: :skill_name,
+                        user_adwards: :adward_name,
+                        user_certificates: :cert_name
+                    },
+                    using: {
+                        tsearch: { prefix: true, dictionary: "english", any_word: true }
+                    }
+
+    pg_search_scope :search_user_associate_by_edu, 
+                    associated_against: {
+                        user_educations: :school_level
+                    },
+                    using: {
+                        tsearch: { prefix: true, dictionary: "english", any_word: true }
+                    }
+
+    pg_search_scope :search_user_associate_by_exp, 
+                    associated_against: {
+                        user_experiences: :job_level
+                    },
+                    using: {
+                        tsearch: { prefix: true, dictionary: "english", any_word: true }
+                    }
+
+    def cal_user_experience
+        exp = 0
+        user_exp = self.user_experiences.sort_by{|data| data.start_date}
+        unless user_exp.first.nil?
+            exp = Time.now.year - user_exp.first.start_date.year
+        end
+        return exp
+    end
+
+    def self.filtered(filter_params)
+        user_filter = User.all
+        
+        unless filter_params.search.nil?
+            user_filter = user_filter.search_user_associate_by_query(filter_params.search)
+        end
+
+        unless filter_params.location.nil?
+            user_filter = user_filter.search_user_by_address(filter_params.location)
+        end
+
+        unless filter_params.sex.nil?
+            user_filter = user_filter.search_user_by_sex(filter_params.sex)
+        end
+
+        unless filter_params.school_level.nil?
+            user_filter = user_filter.search_user_associate_by_edu(filter_params.school_level)
+        end
+
+        unless filter_params.job_level.nil?
+            user_filter = user_filter.search_user_associate_by_exp(filter_params.job_level)
+        end
+
+        unless filter_params.job_exp.nil?
+            user_filter = user_filter.map{|m| m.cal_user_experience >= filter_params.job_exp.to_i}
+        end
+
+        unless filter_params.updated_date.nil?
+            user_filter = user_filter.where("updated_at >= ?", filter_params.updated_date.day.ago.utc)
+        end
+
+        if(user_filter)
+            self.where(id: user_filter)
+        end
+    end
         
     def self.approved
         where(approved: :true)
@@ -40,15 +133,6 @@ class User < ApplicationRecord
 
     def self.public
         where(public: :true)
-    end
-
-    def self.search(search)
-        if search
-        user_type = User.where("name ILIKE? OR email ILIKE?", "%#{search}%", "%#{search}%")
-        if(user_type)
-            self.where(id: user_type)
-        end
-        end
     end
 
     def self.from_omniauth(auth)
@@ -73,16 +157,5 @@ class User < ApplicationRecord
 
     def send_welcome_email
         UserMailer.welcome_email(self).deliver
-    end
-
-    def self.search(search)
-        if search
-            search_result = User.where("address ILIKE?", 
-                                            "%#{search}%")
-
-            if(search_result)
-                self.where(id: search_result)
-            end
-        end
     end
 end

@@ -48,7 +48,7 @@
                     <div class="row">
                         <div class="col-sm-2">
                             <div class="employer_cv_filter_input">
-                                <%= f.select(:edu, options_for_select(['THCS', 'THPT', 'Trung cấp', 'Cao đẳng', 'Cử nhân', 'Kĩ sư', 'Thạc sĩ', 'Tiến sĩ', 'Giáo sư']), {include_blank: false, :prompt => "Tất cả trình độ"}, { :class => 'form-select'})  %>
+                                <%= f.select(:school_level, options_for_select(['THCS', 'THPT', 'Trung cấp', 'Cao đẳng', 'Cử nhân', 'Kĩ sư', 'Thạc sĩ', 'Tiến sĩ', 'Giáo sư']), {include_blank: false, :prompt => "Tất cả trình độ"}, { :class => 'form-select'})  %>
                             </div>
                         </div>
 
@@ -60,7 +60,7 @@
 
                         <div class="col-sm-2">
                             <div class="employer_cv_filter_input">
-                                <%= f.select(:level, options_for_select(['Nhân viên', 
+                                <%= f.select(:job_level, options_for_select(['Nhân viên', 
                                                                         'Thực tập sinh', 
                                                                         'Mới tốt nghiệp', 
                                                                         'Trưởng nhóm',
@@ -74,15 +74,7 @@
 
                         <div class="col-sm-2">
                             <div class="employer_cv_filter_input">
-                                <%= f.select(:post_date, options_for_select(['1 ngày qua', '3 ngày qua', '7 ngày qua', '14 ngày qua', '30 ngày qua']), 
-                                                                                {include_blank: false, :prompt => "Tất cả thời gian"}, 
-                                                                                { :class => 'form-select'})  %>
-                            </div>
-                        </div>
-
-                        <div class="col-sm-2">
-                            <div class="employer_cv_filter_input">
-                                <%= f.select(:experience, options_for_select(['Dưới 1 năm', 
+                                <%= f.select(:job_exp, options_for_select(['Dưới 1 năm', 
                                                                             '1 năm', 
                                                                             '2 năm', 
                                                                             '3 năm', 
@@ -90,6 +82,14 @@
                                                                             "Trên 5 năm"]),
                                                                             {include_blank: false, :prompt => "Tất cả kinh nghiệm"},
                                                                             { :class => 'form-select'})  %>
+                            </div>
+                        </div>
+
+                        <div class="col-sm-2">
+                            <div class="employer_cv_filter_input">
+                                <%= f.select(:updated_date, options_for_select(['1 ngày qua', '3 ngày qua', '7 ngày qua', '14 ngày qua', '30 ngày qua']), 
+                                                                                {include_blank: false, :prompt => "Cập nhật lần cuối"}, 
+                                                                                { :class => 'form-select'})  %>
                             </div>
                         </div>
 

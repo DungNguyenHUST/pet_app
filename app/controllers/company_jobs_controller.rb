@@ -110,25 +110,45 @@ class CompanyJobsController < ApplicationController
         @is_search = false
 		if(params.has_key?(:search) && params.has_key?(:location))
             @is_search = true
-			@search = convert_vie_to_eng(params[:search])
-			@location = convert_vie_to_eng(params[:location])
-            @job_searchs = CompanyJob.friendly.search(@search, @location).order('created_at DESC').expire.page(params[:page]).per(20)
+            @job_searchs = CompanyJob.all
+
+            unless params[:search].empty?
+                @job_searchs = @job_searchs.search_job_by_query(params[:search])
+            end
+
+            unless params[:location].empty?
+                @job_searchs = @job_searchs.search_job_by_location(params[:location])
+            end
+            
+            @job_searchs = @job_searchs.order('created_at DESC').expire.page(params[:page]).per(20)
         end
 
         # Filter
         @is_filter = false
         if params.has_key?(:filter)
             @is_filter = true
+            @is_search = true
+            @job_filtereds = CompanyJob.all
+
+            @search = nil
+            @location = nil
             @category = nil
             @salary_min = nil
             @salary_max = nil
             @level = nil
             @post_date = nil
             @typical = nil
-            @is_search = true
+            
+            if filter_params[:search].present?
+                @search = filter_params[:search]
+            end
+
+            if filter_params[:location].present?
+                @location = filter_params[:location]
+            end
 
             if filter_params[:category].present?
-                @category = convert_vie_to_eng(filter_params[:category])
+                @category = filter_params[:category]
             end
 
             if filter_params[:salary].present?
@@ -137,23 +157,21 @@ class CompanyJobsController < ApplicationController
             end
 
             if filter_params[:level].present?
-                @level = convert_vie_to_eng(filter_params[:level])
+                @level = filter_params[:level]
             end
 
             if filter_params[:post_date].present?
-                @post_date = convert_vie_to_eng(filter_params[:post_date]).scan(/\d+/).map(&:to_i).first
+                @post_date = filter_params[:post_date].scan(/\d+/).map(&:to_i).first
             end
 
             if filter_params[:typical].present?
-                @typical = convert_vie_to_eng(filter_params[:typical])
+                @typical = filter_params[:typical]
             end
 
-            @search = convert_vie_to_eng(filter_params[:search])
-            @location = convert_vie_to_eng(filter_params[:location])
-            @filter_params_converted = filter_params_converted.new(@category, @salary_min, @salary_max, @level, 
+            @filter_params_input = filter_params_input.new(@category, @salary_min, @salary_max, @level, 
                                                                     @post_date, @typical, @search, @location)
 
-            @job_filtereds = CompanyJob.friendly.filtered(@filter_params_converted ).order('created_at DESC').expire.page(params[:page]).per(20)
+            @job_filtereds = CompanyJob.friendly.filtered(@filter_params_input ).order('created_at DESC').expire.page(params[:page]).per(20)
 
             respond_to do |format|
                 format.html {}
@@ -176,8 +194,8 @@ class CompanyJobsController < ApplicationController
         filter_params = params.require(:filter).permit(:category, :salary, :level, :post_date, :typical, :search, :location)
     end
 
-    def filter_params_converted
-        filter_params_converted = Struct.new(:category,
+    def filter_params_input
+        filter_params_input = Struct.new(:category,
                                             :salary_min,
                                             :salary_max,
                                             :level, 

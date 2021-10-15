@@ -1,17 +1,16 @@
 class Problem < ApplicationRecord
+    include PgSearch::Model
+
 	extend FriendlyId
 	friendly_id :title_converted, use: :slugged
 	
     has_many :problem_solutions, dependent: :destroy
 
-    def self.search(search)
-        if search
-            problem_search = Problem.where("title_converted ILIKE ?", "%#{search}%")
-            if(problem_search)
-                self.where(id: problem_search)
-            end
-        end
-    end
+    pg_search_scope :search_problem_by_title, 
+                    against: :title,
+                    using: {
+                        tsearch: { prefix: true, dictionary: "english", any_word: true }
+                    }
 	
 	def self.approved
 	  where(approved: :true)

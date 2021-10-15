@@ -128,13 +128,4 @@ module ApplicationHelper
         now = Time.now.utc.to_date
         now.year - dob.year - ((now.month > dob.month || (now.month == dob.month && now.day >= dob.day)) ? 0 : 1)
     end
-
-    def num_of_experience(user)
-        exp = 0
-        if user
-            user_exp = user.user_experiences.sort_by{|data| data.end_date}
-            exp = Time.now.year - user_exp.first.end_date.year
-        end
-        return exp
-    end
 end

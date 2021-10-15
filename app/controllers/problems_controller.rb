@@ -6,8 +6,7 @@ class ProblemsController < ApplicationController
         @is_problem_searched = false
 		if(params.has_key?(:search))
             @is_problem_searched = true
-            @search = convert_vie_to_eng(params[:search])
-			@problem_searchs = Problem.friendly.search(@search).order("created_at DESC").approved.page(params[:page]).per(12)
+			@problem_searchs = Problem.search_problem_by_title(params[:search]).order("created_at DESC").approved.page(params[:page]).per(12)
         end
 
 		@problems_all = Problem.all.order("id ASC").approved.page(params[:page]).per(20)

@@ -130,3 +130,6 @@ gem 'htmltoword'
 # demon job
 gem "sidekiq"
 gem "redis"
+
+# search
+gem 'pg_search'

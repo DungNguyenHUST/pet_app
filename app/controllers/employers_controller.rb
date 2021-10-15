@@ -124,27 +124,64 @@ class EmployersController < ApplicationController
         @is_cv_searched = false
         if(params.has_key?(:search) && params.has_key?(:location))
             @is_cv_searched = true
-            search_data = search_params.new(params[:search], params[:location])
-            @cv_searchs = search_cv(search_data).sort_by{|cv| cv.updated_at}.reverse
-            @cv_searchs = Kaminari.paginate_array(@cv_searchs).page(params[:page]).per(10)
+            @cv_searchs = User.all
+
+            unless params[:search].empty?
+                @cv_searchs = @cv_searchs.search_user_associate_by_query(params[:search])
+            end
+
+            unless params[:location].empty?
+                @cv_searchs = @cv_searchs.search_user_by_address(params[:location])
+            end
+
+            @cv_searchs = @cv_searchs.public.order('created_at DESC').page(params[:page]).per(12)
         end
 
         # Filter
         if params.has_key?(:filter)
-            search_data = search_params.new(filter_params[:search], filter_params[:location])
-            @cv_searchs = search_cv(search_data).sort_by{|cv| cv.updated_at}.reverse
+            @cv_filtereds = User.all
 
-            filter_data = filter_params_converted.new(filter_params[:edu],
-                                                                filter_params[:sex],
-                                                                filter_params[:level],
-                                                                filter_params[:post_date], 
-                                                                filter_params[:experience],
-                                                                filter_params[:search],
-                                                                filter_params[:location])
-            @cv_filtereds = filter_cv(@cv_searchs, filter_data).sort_by{|cv| cv.updated_at}.reverse
+            @search = nil
+            @location = nil
+            @school_level = nil
+            @sex = nil
+            @job_level = nil
+            @job_exp = nil
+            @updated_date = nil
             
-            @cv_searchs = Kaminari.paginate_array(@cv_searchs).page(params[:page]).per(10)
-            @cv_filtereds = Kaminari.paginate_array(@cv_filtereds).page(params[:page]).per(10)
+            if filter_params[:search].present?
+                @search = filter_params[:search]
+            end
+
+            if filter_params[:location].present?
+                @location = filter_params[:location]
+            end
+
+            if filter_params[:school_level].present?
+                @category = filter_params[:school_level]
+            end
+
+            if filter_params[:sex].present?
+                @sex = filter_params[:sex]
+            end
+
+            if filter_params[:job_exp].present?
+                @job_exp = filter_params[:job_exp]
+            end
+
+            if filter_params[:job_level].present?
+                @job_level = filter_params[:job_level]
+            end
+
+            if filter_params[:updated_date].present?
+                @post_date = filter_params[:updated_date].scan(/\d+/).map(&:to_i).first
+            end
+
+            @filter_params_input = filter_params_input.new(@school_level, @sex, @job_level, @job_exp, 
+                                                                    @updated_date, @search, @location)
+
+            @cv_filtereds = @cv_filtereds.filtered(@filter_params_input)
+            @cv_filtereds = @cv_filtereds.public.order('created_at DESC').page(params[:page]).per(12)
 
             respond_to do |format|
                 format.html {}
@@ -156,21 +193,17 @@ class EmployersController < ApplicationController
     private
 
     def filter_params
-        filter_params = params.require(:filter).permit(:edu, :sex, :level, :post_date, :experience, :search, :location)
+        filter_params = params.require(:filter).permit(:school_level, :sex, :job_level, :job_exp, :updated_date, :search, :location)
     end
 
-    def search_params
-        search_param = Struct.new(:search, :location)
-    end
-
-    def filter_params_converted
-        filter_params_converted = Struct.new(:edu,
-                                            :sex,
-                                            :level,
-                                            :post_date, 
-                                            :experience,
-                                            :search,
-                                            :location)
+    def filter_params_input
+        filter_params_input = Struct.new(:school_level,
+                                        :sex,
+                                        :job_level,
+                                        :job_exp, 
+                                        :updated_date,
+                                        :search,
+                                        :location)
     end
 
     def employer_params

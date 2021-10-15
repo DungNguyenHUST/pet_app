@@ -1,4 +1,6 @@
 class Company < ApplicationRecord
+    include PgSearch::Model
+    
 	extend FriendlyId
 	friendly_id :name_converted, use: :slugged
 	
@@ -20,14 +22,12 @@ class Company < ApplicationRecord
     # validates :overview, presence: true
     # validates :policy, presence: true
 
-    def self.search(search)
-        if search
-            company_search = Company.where("name_converted ILIKE?", "%#{search}%")
-            if(company_search)
-                self.where(id: company_search)
-            end
-        end
-    end
+    pg_search_scope :search_company_by_name, 
+                    against: :name,
+                    using: {
+                        tsearch: { prefix: true, dictionary: "english", any_word: true }
+                    }
+
 	
 	def self.approved
 		where(approved: :true)
