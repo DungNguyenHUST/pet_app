@@ -3,7 +3,6 @@ module CommonCrawler
     include CompanyJobsHelper
 
     @@COMPANY_HASH = nil
-    @@CSV_COUNT = 0
 
     def job_params
         job_param = Struct.new(:title,
@@ -168,11 +167,16 @@ module CommonCrawler
     def save_job_to_csv(job_data)
         domain = split_domain_name(job_data.apply_site)
         filepath = "tmp/jobs/jobs_#{domain}.csv"
-        # filepath = "tmp/jobs/jobs.csv"
+
+        # Delete old data
+        if File.mtime(filepath) < 2.day.ago.utc
+            File.open(filepath, 'w') {|file| file.truncate(0) }
+        end
+        
         CSV.open(filepath, "a", :headers => true) do |csv|
-            if @@CSV_COUNT == 0
+            # Write header if file empty
+            if File.zero?(filepath)
                 csv << CompanyJob.attribute_names
-                @@CSV_COUNT = 1
             end
             csv << job_data.attributes.values
         end
