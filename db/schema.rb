@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_09_20_102649) do
+ActiveRecord::Schema.define(version: 2021_10_15_094135) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -100,8 +100,6 @@ ActiveRecord::Schema.define(version: 2021_09_20_102649) do
     t.string "company_type"
     t.text "benefit", default: [], array: true
     t.integer "employer_id"
-    t.string "name_converted"
-    t.string "location_converted"
     t.index ["slug"], name: "index_companies_on_slug", unique: true
   end
 
@@ -179,18 +177,10 @@ ActiveRecord::Schema.define(version: 2021_09_20_102649) do
     t.text "skill", default: [], array: true
     t.integer "admin_id"
     t.string "detail"
-    t.string "title_converted"
-    t.string "location_converted"
     t.integer "salary_min"
     t.integer "salary_max"
-    t.string "category_converted"
     t.string "company_name"
-    t.string "company_name_converted"
-    t.string "level_converted"
-    t.string "skill_converted"
-    t.string "typical_converted"
     t.string "experience"
-    t.string "experience_converted"
     t.string "policy"
     t.string "company_avatar"
     t.integer "employer_id"
@@ -433,7 +423,6 @@ ActiveRecord::Schema.define(version: 2021_09_20_102649) do
     t.string "wall_picture"
     t.integer "category"
     t.integer "user_id"
-    t.string "title_converted"
     t.index ["slug"], name: "index_posts_on_slug", unique: true
   end
 
@@ -481,7 +470,6 @@ ActiveRecord::Schema.define(version: 2021_09_20_102649) do
     t.boolean "approved", default: false
     t.string "slug"
     t.integer "user_id"
-    t.string "title_converted"
     t.index ["slug"], name: "index_problems_on_slug", unique: true
   end
 

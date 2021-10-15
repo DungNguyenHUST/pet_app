@@ -19,8 +19,6 @@ class PostsController < ApplicationController
             @post.user_id = current_user.id
         end
 
-        @post.title_converted = convert_vie_to_eng(@post.title)
-
         if @post.save
             redirect_to post_path(@post)
         else

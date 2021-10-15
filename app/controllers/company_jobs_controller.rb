@@ -28,8 +28,6 @@ class CompanyJobsController < ApplicationController
                 @company_job.sponsor = true
             end
 
-            @company_job = convert_job_param(@company_job)
-
             if @company_job.save
                 redirect_to employer_index_job_path
                 flash[:success] = "Để đảm bảo chất lượng thông tin, tin đăng của bạn đang được xếp vào hàng chờ để duyệt thông tin. Xin vui lòng kiểm tra kết quả sau ít phút..."
@@ -39,7 +37,6 @@ class CompanyJobsController < ApplicationController
             end
         elsif admin_signed_in?
             @company_job.approved = true
-            @company_job = convert_job_param(@company_job)
 
             if @company_job.save
                 redirect_to company_job_path(@company_job)

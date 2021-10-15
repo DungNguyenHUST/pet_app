@@ -40,8 +40,6 @@ class ProblemsController < ApplicationController
             @problem.approved = true
         end
 
-        @problem.title_converted = convert_vie_to_eng(@problem.title)
-
         if @problem.save!
             if @problem.approved?
 				redirect_to problem_path(@problem)

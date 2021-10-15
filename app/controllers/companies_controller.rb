@@ -45,9 +45,6 @@ class CompaniesController < ApplicationController
             @company.employer_id = current_employer.id
         end
 
-        @company.name_converted = convert_vie_to_eng(@company.name)
-        @company.location_converted = convert_vie_to_eng(@company.location)
-
         if @company.save!
             if employer_signed_in?
                 redirect_to employer_path(current_employer, tab: 'EmployerCompanyID')
