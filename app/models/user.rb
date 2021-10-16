@@ -39,19 +39,19 @@ class User < ApplicationRecord
     pg_search_scope :search_user_by_query, 
                     against: [[:name, 'A'], [:email, 'B']], 
                     using: {
-                        tsearch: { prefix: true, dictionary: "english", any_word: true }
+                        tsearch: { prefix: true, dictionary: "english", any_word: true, tsvector_column: "tsv" }
                     }
 
     pg_search_scope :search_user_by_address, 
                     against: :address, 
                     using: {
-                        tsearch: { prefix: true, dictionary: "english", any_word: true }
+                        tsearch: { prefix: true, dictionary: "english", any_word: true, tsvector_column: "tsv" }
                     }
 
     pg_search_scope :search_user_by_sex, 
                     against: :sex, 
                     using: {
-                        tsearch: { prefix: true, dictionary: "english", any_word: true }
+                        tsearch: { prefix: true, dictionary: "english", any_word: true, tsvector_column: "tsv" }
                     }
 
     pg_search_scope :search_user_associate_by_query, 

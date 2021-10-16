@@ -36,7 +36,7 @@ class Company < ApplicationRecord
     pg_search_scope :search_company_by_name, 
                     against: :name,
                     using: {
-                        tsearch: { prefix: true, dictionary: "english", any_word: true }
+                        tsearch: { prefix: true, dictionary: "english", any_word: true, tsvector_column: "tsv" }
                     }
 
 	

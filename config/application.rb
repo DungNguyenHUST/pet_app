@@ -28,5 +28,8 @@ module PetApp
     config.active_job.queue_adapter = :sidekiq
     config.autoload_paths += %W(#{config.root}/app/workers)
     config.eager_load_paths += %W(#{config.root}/app/workers)
+
+    # Search optimize
+    config.active_record.schema_format = :sql
   end
 end

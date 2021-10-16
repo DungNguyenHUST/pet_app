@@ -29,7 +29,7 @@ class Post < ApplicationRecord
     pg_search_scope :search_post_by_title, 
                     against: :title,
                     using: {
-                        tsearch: { prefix: true, dictionary: "english", any_word: true }
+                        tsearch: { prefix: true, dictionary: "english", any_word: true, tsvector_column: "tsv" }
                     }
 
     mount_uploader :wall_picture, ImageUploader
