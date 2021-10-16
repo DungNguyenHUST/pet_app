@@ -1326,7 +1326,8 @@ CREATE TABLE public.user_adwards (
     adward_summary character varying,
     receive_date timestamp without time zone,
     created_at timestamp(6) without time zone NOT NULL,
-    updated_at timestamp(6) without time zone NOT NULL
+    updated_at timestamp(6) without time zone NOT NULL,
+    tsv tsvector
 );
 
 
@@ -1361,7 +1362,8 @@ CREATE TABLE public.user_certificates (
     start_date timestamp without time zone,
     end_date timestamp without time zone,
     created_at timestamp(6) without time zone NOT NULL,
-    updated_at timestamp(6) without time zone NOT NULL
+    updated_at timestamp(6) without time zone NOT NULL,
+    tsv tsvector
 );
 
 
@@ -1401,7 +1403,8 @@ CREATE TABLE public.user_educations (
     school_field character varying,
     enrolled boolean DEFAULT false,
     created_at timestamp(6) without time zone NOT NULL,
-    updated_at timestamp(6) without time zone NOT NULL
+    updated_at timestamp(6) without time zone NOT NULL,
+    tsv tsvector
 );
 
 
@@ -1439,7 +1442,8 @@ CREATE TABLE public.user_experiences (
     job_summary character varying,
     enrolled boolean DEFAULT false,
     created_at timestamp(6) without time zone NOT NULL,
-    updated_at timestamp(6) without time zone NOT NULL
+    updated_at timestamp(6) without time zone NOT NULL,
+    tsv tsvector
 );
 
 
@@ -1510,7 +1514,8 @@ CREATE TABLE public.user_skills (
     skill_summary character varying,
     skill_level character varying,
     created_at timestamp(6) without time zone NOT NULL,
-    updated_at timestamp(6) without time zone NOT NULL
+    updated_at timestamp(6) without time zone NOT NULL,
+    tsv tsvector
 );
 
 
@@ -2502,10 +2507,24 @@ CREATE INDEX index_problems_on_tsv ON public.problems USING gin (tsv);
 
 
 --
+-- Name: index_user_adwards_on_tsv; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE INDEX index_user_adwards_on_tsv ON public.user_adwards USING gin (tsv);
+
+
+--
 -- Name: index_user_adwards_on_user_id; Type: INDEX; Schema: public; Owner: -
 --
 
 CREATE INDEX index_user_adwards_on_user_id ON public.user_adwards USING btree (user_id);
+
+
+--
+-- Name: index_user_certificates_on_tsv; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE INDEX index_user_certificates_on_tsv ON public.user_certificates USING gin (tsv);
 
 
 --
@@ -2516,10 +2535,24 @@ CREATE INDEX index_user_certificates_on_user_id ON public.user_certificates USIN
 
 
 --
+-- Name: index_user_educations_on_tsv; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE INDEX index_user_educations_on_tsv ON public.user_educations USING gin (tsv);
+
+
+--
 -- Name: index_user_educations_on_user_id; Type: INDEX; Schema: public; Owner: -
 --
 
 CREATE INDEX index_user_educations_on_user_id ON public.user_educations USING btree (user_id);
+
+
+--
+-- Name: index_user_experiences_on_tsv; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE INDEX index_user_experiences_on_tsv ON public.user_experiences USING gin (tsv);
 
 
 --
@@ -2534,6 +2567,13 @@ CREATE INDEX index_user_experiences_on_user_id ON public.user_experiences USING 
 --
 
 CREATE INDEX index_user_notifications_on_user_id ON public.user_notifications USING btree (user_id);
+
+
+--
+-- Name: index_user_skills_on_tsv; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE INDEX index_user_skills_on_tsv ON public.user_skills USING gin (tsv);
 
 
 --
@@ -2604,6 +2644,41 @@ CREATE TRIGGER tsvectorupdate BEFORE INSERT OR UPDATE ON public.posts FOR EACH R
 --
 
 CREATE TRIGGER tsvectorupdate BEFORE INSERT OR UPDATE ON public.problems FOR EACH ROW EXECUTE FUNCTION tsvector_update_trigger('tsv', 'pg_catalog.english', 'title');
+
+
+--
+-- Name: user_adwards tsvectorupdate; Type: TRIGGER; Schema: public; Owner: -
+--
+
+CREATE TRIGGER tsvectorupdate BEFORE INSERT OR UPDATE ON public.user_adwards FOR EACH ROW EXECUTE FUNCTION tsvector_update_trigger('tsv', 'pg_catalog.english', 'adward_name');
+
+
+--
+-- Name: user_certificates tsvectorupdate; Type: TRIGGER; Schema: public; Owner: -
+--
+
+CREATE TRIGGER tsvectorupdate BEFORE INSERT OR UPDATE ON public.user_certificates FOR EACH ROW EXECUTE FUNCTION tsvector_update_trigger('tsv', 'pg_catalog.english', 'cert_name');
+
+
+--
+-- Name: user_educations tsvectorupdate; Type: TRIGGER; Schema: public; Owner: -
+--
+
+CREATE TRIGGER tsvectorupdate BEFORE INSERT OR UPDATE ON public.user_educations FOR EACH ROW EXECUTE FUNCTION tsvector_update_trigger('tsv', 'pg_catalog.english', 'school_name', 'cert_type', 'school_level', 'school_field', 'cert_level');
+
+
+--
+-- Name: user_experiences tsvectorupdate; Type: TRIGGER; Schema: public; Owner: -
+--
+
+CREATE TRIGGER tsvectorupdate BEFORE INSERT OR UPDATE ON public.user_experiences FOR EACH ROW EXECUTE FUNCTION tsvector_update_trigger('tsv', 'pg_catalog.english', 'job_level', 'company_name');
+
+
+--
+-- Name: user_skills tsvectorupdate; Type: TRIGGER; Schema: public; Owner: -
+--
+
+CREATE TRIGGER tsvectorupdate BEFORE INSERT OR UPDATE ON public.user_skills FOR EACH ROW EXECUTE FUNCTION tsvector_update_trigger('tsv', 'pg_catalog.english', 'skill_name', 'skill_level');
 
 
 --
@@ -2904,6 +2979,11 @@ INSERT INTO "schema_migrations" (version) VALUES
 ('20211016041909'),
 ('20211016042803'),
 ('20211016042823'),
-('20211016042833');
+('20211016042833'),
+('20211016044137'),
+('20211016044148'),
+('20211016044216'),
+('20211016044229'),
+('20211016044240');
 
 

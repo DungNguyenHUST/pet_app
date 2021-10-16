@@ -56,14 +56,14 @@ class User < ApplicationRecord
 
     pg_search_scope :search_user_associate_by_query, 
                     associated_against: {
-                        user_educations: [:school_name, :cert_type],
+                        user_educations: [:school_name, :cert_type, :school_field, :cert_level],
                         user_experiences: [:job_level, :company_name],
                         user_skills: :skill_name,
                         user_adwards: :adward_name,
                         user_certificates: :cert_name
                     },
                     using: {
-                        tsearch: { prefix: true, dictionary: "english", any_word: true }
+                        tsearch: { prefix: true, dictionary: "english", any_word: true, tsvector_column: "tsv" }
                     }
 
     pg_search_scope :search_user_associate_by_edu, 
@@ -71,7 +71,7 @@ class User < ApplicationRecord
                         user_educations: :school_level
                     },
                     using: {
-                        tsearch: { prefix: true, dictionary: "english", any_word: true }
+                        tsearch: { prefix: true, dictionary: "english", any_word: true, tsvector_column: "tsv" }
                     }
 
     pg_search_scope :search_user_associate_by_exp, 
@@ -79,7 +79,7 @@ class User < ApplicationRecord
                         user_experiences: :job_level
                     },
                     using: {
-                        tsearch: { prefix: true, dictionary: "english", any_word: true }
+                        tsearch: { prefix: true, dictionary: "english", any_word: true, tsvector_column: "tsv" }
                     }
 
     def cal_user_experience
