@@ -169,8 +169,10 @@ module CommonCrawler
         filepath = "tmp/jobs/jobs_#{domain}.csv"
 
         # Delete old data
-        if File.mtime(filepath) < 2.day.ago.utc
-            File.open(filepath, 'w') {|file| file.truncate(0) }
+        if File.exist?(filepath) 
+            if File.mtime(filepath) < 2.day.ago.utc
+                File.open(filepath, 'w') {|file| file.truncate(0) }
+            end
         end
         
         CSV.open(filepath, "a", :headers => true) do |csv|
