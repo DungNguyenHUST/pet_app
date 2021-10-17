@@ -101,6 +101,14 @@ class CompanyJobsController < ApplicationController
     end
 
     def search
+        @company_jobs    = CompanyJob.search_job_by_query(params[:search])
+        respond_to do |format|
+            format.html {}
+            format.json {
+                @company_jobs    = @company_jobs.limit(10)
+            }
+        end
+
         @job_recommands = CompanyJob.all.order('created_at DESC').expire.page(params[:page]).per(20)
 
         # Search

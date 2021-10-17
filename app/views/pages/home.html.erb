@@ -15,7 +15,7 @@
                                     <div class='col-sm-6 col_padding_customize_right'>
                                         <div class="home_search_what">
                                             <i class="material-icons-outlined">search</i>
-                                            <%= text_field_tag :search, params[:search], required: true, class: 'form-control', placeholder: "Tìm kiếm công việc, kĩ năng, tên công ty..."%>
+                                            <%= text_field_tag :search, params[:search], data: { behavior: "autocomplete" }, required: true, class: 'form-control', placeholder: "Tìm kiếm công việc, kĩ năng, tên công ty..."%>
                                         </div>
                                     </div>
                                     <div class='col-sm-4 col_padding_customize'>
@@ -45,6 +45,32 @@
                                 </div>
                             </div>
                         <%end%>
+                        <script>
+                            document.addEventListener("turbolinks:load", function() {
+                                $input = $("[data-behavior='autocomplete']")
+
+                                var options = {
+                                    getValue: "title",
+                                    url: function(phrase) {
+                                        return "/jobs_search.json?search=" + phrase;
+                                    },
+                                    categories: [
+                                    {
+                                        listLocation: "company_jobs"
+                                    },
+                                    ],
+                                    list: {
+                                    onChooseEvent: function() {
+                                            var url = $input.getSelectedItemData().url
+                                            $input.val("")
+                                            Turbolinks.visit(url)
+                                        }
+                                    }
+                                }
+
+                                $input.easyAutocomplete(options)
+                                });
+                        </script>
                     </div>
                 </div>
             </div>
