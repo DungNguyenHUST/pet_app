@@ -4,6 +4,16 @@ class CompaniesController < ApplicationController
     before_action :require_employer_login, only: [:new, :create, :edit, :update, :destroy]
 
     def index
+        # Auto complete
+        @suggest_companies = Company.search_company_by_name(params[:search])
+        respond_to do |format|
+            format.html {}
+            format.json {
+                @suggest_companies = @suggest_companies.limit(10)
+            }
+        end
+
+        # Search
         @is_company_searched = false
 		if(params.has_key?(:search))
             @is_company_searched = true

@@ -45,6 +45,7 @@
                                 </div>
                             </div>
                         <%end%>
+
                         <script>
                             document.addEventListener("turbolinks:load", function() {
                                 $input = $("[data-behavior='autocomplete']")
@@ -55,9 +56,9 @@
                                         return "/jobs_search.json?search=" + phrase;
                                     },
                                     categories: [
-                                    {
-                                        listLocation: "company_jobs"
-                                    },
+                                        {
+                                            listLocation: "suggest_jobs"
+                                        },
                                     ],
                                     list: {
                                     onChooseEvent: function() {
@@ -69,7 +70,7 @@
                                 }
 
                                 $input.easyAutocomplete(options)
-                                });
+                            });
                         </script>
                     </div>
                 </div>
