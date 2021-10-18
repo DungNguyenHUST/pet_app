@@ -52,7 +52,7 @@ var EasyAutocomplete = (function(scope){
 					}
 				},
 
-				maxNumberOfElements: 10,
+				maxNumberOfElements: 8,
 
 				hideOnEmptyPhrase: true,
 
@@ -116,7 +116,7 @@ var EasyAutocomplete = (function(scope){
 			categoriesAssigned: false,
 
 			categories: [{
-				maxNumberOfElements: 10
+				maxNumberOfElements: 8
 			}]
 
 		};
