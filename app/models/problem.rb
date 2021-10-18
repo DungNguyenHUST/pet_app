@@ -20,7 +20,7 @@ class Problem < ApplicationRecord
     pg_search_scope :search_problem_by_title, 
                     against: :title,
                     using: {
-                        tsearch: { prefix: true, dictionary: "english", any_word: true, tsvector_column: "tsv" }
+                        tsearch: { prefix: true, dictionary: "english", tsvector_column: "tsv" }
                     }
 	
 	def self.approved

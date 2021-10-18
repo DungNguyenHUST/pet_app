@@ -21,31 +21,31 @@ class CompanyJob < ApplicationRecord
     pg_search_scope :search_job_by_query, 
                     against: [[:title, 'A'], [:company_name, 'B'], [:category, 'C'], [:skill, 'D']], 
                     using: {
-                        tsearch: { prefix: true, dictionary: "english", any_word: true, tsvector_column: "tsv" }
+                        tsearch: { prefix: true, dictionary: "english", tsvector_column: "tsv" }
                     }
 
     pg_search_scope :search_job_by_location, 
                     against: :location,
                     using: {
-                        tsearch: { prefix: true, dictionary: "english", any_word: true, tsvector_column: "tsv" }
+                        tsearch: { prefix: true, dictionary: "english", tsvector_column: "tsv" }
                     }
 
     pg_search_scope :search_job_by_category, 
                     against: :category,
                     using: {
-                        tsearch: { prefix: true, dictionary: "english", any_word: true, tsvector_column: "tsv" }
+                        tsearch: { prefix: true, dictionary: "english", tsvector_column: "tsv" }
                     }
 
     pg_search_scope :search_job_by_typical, 
                     against: :typical,
                     using: {
-                        tsearch: { prefix: true, dictionary: "english", any_word: true, tsvector_column: "tsv" }
+                        tsearch: { prefix: true, dictionary: "english", tsvector_column: "tsv" }
                     }
 
     pg_search_scope :search_job_by_level, 
                     against: :level,
                     using: {
-                        tsearch: { prefix: true, dictionary: "english", any_word: true, tsvector_column: "tsv" }
+                        tsearch: { prefix: true, dictionary: "english", tsvector_column: "tsv" }
                     }
 
     def self.filtered(filter_params)
