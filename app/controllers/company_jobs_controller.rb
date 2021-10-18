@@ -113,16 +113,20 @@ class CompanyJobsController < ApplicationController
         @job_recommands = CompanyJob.all.order('created_at DESC').expire.page(params[:page]).per(20)
         # Search
         @is_search = false
-		if(params.has_key?(:search) && params.has_key?(:location))
+		if(params.has_key?(:search) || params.has_key?(:location))
             @is_search = true
             @job_searchs = CompanyJob.all
 
-            unless params[:search].empty?
-                @job_searchs = @job_searchs.search_job_by_query(params[:search])
+            if params.has_key?(:search)
+                unless params[:search].empty?
+                    @job_searchs = @job_searchs.search_job_by_query(params[:search])
+                end
             end
-
-            unless params[:location].empty?
-                @job_searchs = @job_searchs.search_job_by_location(params[:location])
+            
+            if params.has_key?(:location)
+                unless params[:location].empty?
+                    @job_searchs = @job_searchs.search_job_by_location(params[:location])
+                end
             end
             
             @job_searchs = @job_searchs.order('created_at DESC').expire.page(params[:page]).per(20)
