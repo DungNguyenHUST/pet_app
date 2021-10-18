@@ -35,7 +35,7 @@
                                 <div class="col-sm-11 col_padding_customize_right">
                                     <div class="problem_search_input">
                                         <i class="material-icons-outlined">search</i>
-                                        <%= text_field_tag :search, params[:search], required: true, class: 'form-control', placeholder: "Nhập tên câu hỏi cần tìm kiếm..."%>
+                                        <%= text_field_tag :search, params[:search], data: { behavior: "autocomplete" }, required: true, class: 'form-control', placeholder: "Nhập tên câu hỏi cần tìm kiếm..."%>
                                     </div>
                                 </div>
                                     
@@ -49,6 +49,33 @@
                                 </div>
                             </div>
                         <%end%>
+
+                        <script>
+                            document.addEventListener("turbolinks:load", function() {
+                                $input = $("[data-behavior='autocomplete']")
+
+                                var options = {
+                                    getValue: "title",
+                                    url: function(phrase) {
+                                        return "/problems.json?search=" + phrase;
+                                    },
+                                    categories: [
+                                        {
+                                            listLocation: "suggest_problems"
+                                        },
+                                    ],
+                                    list: {
+                                    onChooseEvent: function() {
+                                            var url = $input.getSelectedItemData().url
+                                            $input.val("")
+                                            Turbolinks.visit(url)
+                                        }
+                                    }
+                                }
+
+                                $input.easyAutocomplete(options)
+                            });
+                        </script>
                     </div>
                     
                     <%if @is_problem_searched%>

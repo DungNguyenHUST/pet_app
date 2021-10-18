@@ -3,6 +3,16 @@ class ProblemsController < ApplicationController
     before_action :require_user_login, only: [:new, :create, :edit, :update, :destroy]
 
     def index
+        # Auto complete
+        @suggest_problems = Problem.search_problem_by_title(params[:search])
+        respond_to do |format|
+            format.html {}
+            format.json {
+                @suggest_problems = @suggest_problems.limit(10)
+            }
+        end
+
+        # Search
         @is_problem_searched = false
 		if(params.has_key?(:search))
             @is_problem_searched = true
