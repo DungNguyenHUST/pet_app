@@ -102,16 +102,18 @@ class CompanyJobsController < ApplicationController
 
     def search
         # Auto complete
-        @suggest_jobs = CompanyJob.search_job_by_query(params[:search])
-        respond_to do |format|
-            format.html {}
-            format.json {
-                @suggest_jobs = @suggest_jobs.limit(10)
-            }
+        if params.has_key?(:search) && !params.has_key?(:filter)
+            @suggest_jobs = CompanyJob.search_job_by_query(params[:search])
+            respond_to do |format|
+                format.html {}
+                format.json {
+                    @suggest_jobs = @suggest_jobs.limit(10)
+                }
+            end
         end
 
-        @job_recommands = CompanyJob.all.order('created_at DESC').expire.page(params[:page]).per(20)
         # Search
+        @job_recommands = CompanyJob.all.order('created_at DESC').expire.page(params[:page]).per(20)
         @is_search = false
 		if(params.has_key?(:search) || params.has_key?(:location))
             @is_search = true

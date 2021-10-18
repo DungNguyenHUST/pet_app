@@ -1,24 +1,28 @@
 <div class="company_job_search_block_result" id="company_job_search_block_result">
     <div class="company_job_search_index">
         <%if job_results.present? && job_results.count > 0%>
-            <%if @is_search || @is_filter%>
-                <div class="company_job_search_label">
-                    <a><strong><%=job_results.total_count%></strong> việc làm phù hợp</a>
-                </div>
-            <%else%>
-                <div class="company_job_search_label_all">
-                    <a><strong><%=job_results.total_count%></strong> việc làm đang tuyển dụng tháng <%=Date.today.strftime("%m")%>/<%=Date.today.strftime("%Y")%></a>
-                </div>
-            <%end%>
             <div class="row">
                 <div class="col-sm-5 col_padding_customize_right col_no_padding_small_screen">
-                    <%job_results.each do |company_job|%>
-                        <%=render company_job%>
-                    <%end%>
+                    <div class='company_job_result_index'>
+                        <%if @is_search || @is_filter%>
+                            <div class="company_job_search_label">
+                                <a><strong><%=job_results.total_count%></strong> việc làm "<%=params[:search]%>"</a>
+                            </div>
+                        <%else%>
+                            <div class="company_job_search_label_all">
+                                <a><strong><%=job_results.total_count%></strong> việc làm đang tuyển dụng tháng <%=Date.today.strftime("%m")%>/<%=Date.today.strftime("%Y")%></a>
+                            </div>
+                        <%end%>
+                        <div class='company_job_result_render'>
+                            <%job_results.each do |company_job|%>
+                                <%=render company_job%>
+                            <%end%>
+                        </div>
+                    </div>
                 </div>
 
                 <div class='col-sm-7 col_padding_customize_left'>
-                    <div class='company_job_preview_index sticky-top' id="company_job_preview_id">
+                    <div class='company_job_preview_index' id="company_job_preview_id">
                         <%= render :partial => 'company_jobs/company_job_preview', locals: {company_job: job_results.first} %>
                     </div>
                 </div>
@@ -61,19 +65,22 @@
                 </div>
             </div>
             
-            <div class="company_job_search_label_recomand">
-                <a>Một số việc làm gợi ý dành cho bạn</a>
-            </div>
-            
             <div class="row">
                 <div class="col-sm-5 col_padding_customize_right col_no_padding_small_screen">
-                    <%@job_recommands.each do |company_job|%>
-                        <%=render company_job%>
-                    <%end%>
+                    <div class='company_job_result_index'>
+                        <div class="company_job_search_label_recomand">
+                            <a>Việc làm gợi ý dành cho bạn</a>
+                        </div>
+                        <div class='company_job_result_render'>
+                            <%@job_recommands.each do |company_job|%>
+                                <%=render company_job%>
+                            <%end%>
+                        </div>
+                    </div>
                 </div>
 
                 <div class='col-sm-7 col_padding_customize_left'>
-                    <div class='company_job_preview_index sticky-top' id="company_job_preview_id">
+                    <div class='company_job_preview_index' id="company_job_preview_id">
                         <%= render :partial => 'company_jobs/company_job_preview', locals: {company_job: @job_recommands.first} %>
                     </div>
                 </div>
