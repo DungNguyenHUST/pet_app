@@ -474,20 +474,51 @@
                     <%end%>
 
                     <%if @tab == "ScrapJobID"%>
-                        <div class="scrap_jobs_tab">
-                            <div class="row">
-                                <div class="col-sm-6">
-                                    <div class="scrap_jobs_tab_top">
-                                        <%@scrap_job = ScrapJob.new%>
-                                        <%= render :partial => 'scrap_jobs/form', :local => @scrap_job %>
-                                    </div>
-                                </div>
-                                <div class="col-sm-6">
-                                    <div class="scrap_jobs_tab_bottom">
-                                        <%= link_to '<button type="submit">Job Magic</button>'.html_safe, jobs_push_path%>
-                                    </div>
-                                </div>
+                        <div class="admin_tab">
+                            <div class="new_admin_action">
+                                <%= link_to '<button type="submit">Tạo Job mới</button>'.html_safe, new_scrap_job_path%>
                             </div>
+                            <div class="admin_table">
+                                <div class="table-responsive">
+                                    <table class="table text-center table-hover">
+                                        <thead>
+                                            <tr>
+                                                <th style="width: 2%;">No.</th>
+                                                <th style="width: 25%;">Url</th>
+                                                <th style="width: 8%;">Site</th>
+                                                <th style="width: 10%;">Ngày tạo</th>
+                                                <th style="width: 10%;">Cập nhật lần cuối</th>
+                                                <th style="width: 16%;">Action</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <%@scrap_jobs.each_with_index do |scrap_job, index|%>
+                                                <tr>
+                                                    <td><%=index + 1%></td>
+                                                    <td scope="row" class="text-start"><%=link_to (scrap_job.url), scrap_job_path(:id => scrap_job.id)%></td>
+                                                    <%if JobCrawler::split_domain_name(scrap_job.url).present?%>
+                                                        <td><%=JobCrawler::split_domain_name(scrap_job.url).upcase%></td>
+                                                    <%else%>
+                                                        <td>---</td>
+                                                    <%end%>
+                                                    <td><%=scrap_job.created_at.strftime("%B %d, %Y")%></td>
+                                                    <td><%=scrap_job.updated_at.strftime("%B %d, %Y")%></td>
+                                                    <td>
+                                                        <%= link_to 'Process', scrap_jobs_processing_path(:id => scrap_job.id), method: :get, class: "admin_approving"%>
+                                                        <%= link_to 'Xem', scrap_job_path(scrap_job), method: :get, class: "admin_preview" %>
+                                                        <%= link_to 'Chỉnh sửa', edit_scrap_job_path(scrap_job, :is_edit => true), method: :get, class: "admin_edit" %>
+                                                        <%= link_to 'Xóa', scrap_job_path(scrap_job), method: :delete, class: "admin_delete", data: { confirm: 'Bạn có chắc muốn xóa công việc này?' } %>
+                                                    </td>
+                                                </tr>
+                                            <%end%>
+                                        </tbody>
+                                    </table>
+                                </div>
+                                <%= paginate @scrap_jobs, window: 2%>
+                            </div>
+                        </div>
+                        <div class="scrap_jobs_tab_bottom">
+                            <%= link_to '<button type="submit">Job Magic</button>'.html_safe, scrap_jobs_push_path%>
                         </div>
                     <%end%>
 

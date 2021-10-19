@@ -100,7 +100,8 @@ Rails.application.routes.draw do
   end
 
   resources :scrap_jobs
-  get 'jobs_push' => 'scrap_jobs#push'
+  get 'scrap_jobs_push' => 'scrap_jobs#push'
+  get 'scrap_jobs_processing' => 'scrap_jobs#processing'
 
   resources :scrap_reviews
 
