@@ -133,3 +133,6 @@ gem "redis"
 
 # search
 gem 'pg_search'
+
+# job
+gem 'resque'

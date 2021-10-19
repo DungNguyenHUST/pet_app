@@ -25,7 +25,7 @@ module PetApp
     config.eager_load_paths += %W(#{config.root}/app/crawlers/reviews)
 
     # Job worker
-    config.active_job.queue_adapter = :sidekiq
+    config.active_job.queue_adapter = :resque
     config.autoload_paths += %W(#{config.root}/app/workers)
     config.eager_load_paths += %W(#{config.root}/app/workers)
 
