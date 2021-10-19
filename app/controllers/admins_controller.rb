@@ -25,13 +25,15 @@ class AdminsController < ApplicationController
         end
 
         @admins = Admin.all
-        @users = User.all.page(params[:page]).per(20)
-        @companies = Company.all.page(params[:page]).per(20)
-        @company_jobs = CompanyJob.all.page(params[:page]).per(20)
-        @company_reviews = CompanyReview.all.page(params[:page]).per(20)
-        @posts = Post.all.page(params[:page]).per(20)
-        @problems = Problem.all.page(params[:page]).per(20)
-        @employers = Employer.all.page(params[:page]).per(20)
+        @users = User.all.order('created_at DESC').page(params[:page]).per(25)
+        @companies = Company.all.page(params[:page]).order('created_at DESC').per(25)
+        @company_jobs = CompanyJob.all.page(params[:page]).order('created_at DESC').per(25)
+        @company_jobs_approving = CompanyJob.all.approving.page(params[:page]).order('created_at DESC').per(25)
+        @company_reviews = CompanyReview.all.page(params[:page]).order('created_at DESC').per(25)
+        @posts = Post.all.order('created_at DESC').page(params[:page]).per(25)
+        @problems = Problem.all.order('created_at DESC').page(params[:page]).per(25)
+        @problems_approving = Problem.all.approving.page(params[:page]).order('created_at DESC').per(25)
+        @employers = Employer.all.order('created_at DESC').page(params[:page]).per(25)
     end
 
     def edit

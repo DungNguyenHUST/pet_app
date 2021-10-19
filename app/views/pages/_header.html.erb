@@ -189,6 +189,12 @@
 				<a href="<%=employer_plan_path %>">Đổi gói dịch vụ</a>
 				<a href="<%=contact_us_path%>">Liên hệ </a>
 			</div>
+		<%elsif admin_signed_in?%>
+			<div class="nav_main_menu">
+				<a href="<%=admin_path(current_admin, tab: 'AdminJobApprovingID') %>">Việc làm chờ duyệt</a>
+				<a href="<%=admin_path(current_admin, tab: 'AdminProblemApprovingID') %>">Câu hỏi chờ duyệt</a>
+				<a href="<%=rails_admin_path%>"> Pro Dashboard</a>
+			</div>
 		<%else%>
 			<div class="nav_main_menu">
 				<a href="<%=jobs_search_path %>">Việc làm </a>
@@ -342,6 +348,10 @@
 						</div>
 					</div>
 				</div>
+			<%elsif admin_signed_in?%>
+				<%= button_to destroy_admin_session_path, method: :delete, class: "nav_admin_logout" do%>
+					<a> Đăng xuất </a>
+				<%end%>
 			<%else%>
 				<a class="nav_recrui" href="<%=employer_wellcome_path%>">
 					Tuyển dụng

@@ -4,6 +4,7 @@ class CompanyJobsController < ApplicationController
     include CompaniesHelper
     include EmployersHelper
     before_action :require_employer_login, only: [:new, :create, :edit, :update, :destroy]
+    before_action :require_admin_login, only: [:approve]
 
     def index
         @company_jobs = CompanyJob.all.expire
@@ -64,6 +65,16 @@ class CompanyJobsController < ApplicationController
         else
             flash[:danger] = "Lỗi, không thể cập nhật thông tin"
         end
+    end
+
+    def approve
+        @company_job = CompanyJob.friendly.find(params[:id])
+        if @company_job.update(:approved => true)
+            flash[:success] = "Approved"
+        else
+            flash[:danger] = "Error"
+        end
+        redirect_to admin_path(current_admin, tab: 'AdminJobApprovingID')
     end
     
     def destroy

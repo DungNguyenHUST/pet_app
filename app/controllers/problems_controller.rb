@@ -1,6 +1,7 @@
 class ProblemsController < ApplicationController
     include ApplicationHelper
     before_action :require_user_login, only: [:new, :create, :edit, :update, :destroy]
+    before_action :require_admin_login, only: [:approve]
 
     def index
         # Auto complete
@@ -111,6 +112,16 @@ class ProblemsController < ApplicationController
         else
             flash[:danger] = "Lỗi, không thể update thông tin"
         end
+    end
+
+    def approve
+        @problem = Problem.friendly.find(params[:id])
+        if @problem.update(:approved => true)
+            flash[:success] = "Approved"
+        else
+            flash[:danger] = "Error"
+        end
+        redirect_to admin_path(current_admin, tab: 'AdminProblemApprovingID')
     end
 
     def destroy

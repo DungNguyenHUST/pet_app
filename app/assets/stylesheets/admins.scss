@@ -222,54 +222,18 @@
 
 //////////////////show admin////////////////////
 .admin_dasboard{
-    .admin_title{
-        float: left;
-        @media screen and (max-width: 600px){
-            float: none;
-        }
-        padding-top: 20px;
-        padding-bottom: 10px;
-        span{
-            font-size: 23px;
-            font-weight: 600px;
-        }
-    }
-
-    .admin_log_out{
-        margin-top: 20px;
-        margin-bottom: 10px;
-        float: right;
-        @media screen and (max-width: 600px){
-            float: none;
-        }
-        button{
-            padding: 6px;
-            height: 44px;
-            width: 150px;
-            margin-right: 10px;
-            font-size: 15px;
-            border: none;
-            border-radius: 4px;
-            cursor: pointer;
-            text-align: center;
-            color: #fff;
-            &:focus {outline:none;}
-            
-            &:hover{
-                background-color: #369;
-                color: #fff;
-            }
-        }
-    }
-
+    background-color: #f8f9fa;
+    padding-top: 20px;
     .admin_tab_link{
+        margin-bottom: 20px;
         clear: both;
-        padding-top: 40px;
         overflow: hidden;
         position: relative;
         display: block;
         background-color: #fff;
-        border-bottom: 2px solid #EAEAF0;
+        border: 1px solid #EAEAF0;
+        border-radius: 4px;
+        min-height: 900px;
         .nav {
             overflow-x: auto;
             overflow-y: hidden;
@@ -285,6 +249,8 @@
             color: #333;
             text-align: left;
             position: relative;
+            padding-bottom: 10px;
+            border-bottom: 1px solid #EAEAF0;
             i{
                 position: relative;
                 top: 5px;
@@ -294,9 +260,9 @@
             }
             span{
                 position: absolute;
-                top: 0px;
+                bottom: 10px;
                 right: 15px;
-                font-size: 12px;
+                font-size: 14px;
                 color: #999;
             }
         }
@@ -316,71 +282,65 @@
         }
     }
     .admin_tab_content{
-        padding-top: 20px;
-        padding-bottom: 20px;
+        padding: 15px;
         min-height: 900px;
-        .admin_company_tab{
-            .new_admin_company{
-                padding-top: 20px;
+        border: 1px solid #EAEAF0;
+        border-radius: 4px;
+        margin-bottom: 20px;
+        background-color: #fff;
+        .admin_tab{
+            .new_admin_action{
+                text-align: right;
                 button{
-                    padding: 10px;
+                    padding: 7px;
                     width: 200px;
-                    background-color: #0d6efd;
                     border: none;
-                    color: #fff;
-                    &:focus {outline:none;}
-                    border-radius: 4px;
-                }
-            }
-        } 
-
-        .admin_job_tab{
-            .new_admin_job{
-                padding-top: 20px;
-                button{
-                    padding: 10px;
-                    width: 200px;
                     background-color: #0d6efd;
-                    border: none;
                     color: #fff;
-                    &:focus {outline:none;}
-                    border-radius: 4px;
-                }
-            }
-        } 
-
-        .admin_user_tab{
-        }
-
-        .admin_post_tab{
-            .new_post{
-                padding-top: 20px;
-                button{
-                    padding: 10px;
-                    width: 200px;
-                    background-color: #0d6efd;
-                    border: none;
-                    color: #fff;
-                    &:focus {outline:none;}
-                    border-radius: 4px;
-                }
-            }
-        }
-
-        .admin_problem_tab{
-            .new_problem{
-                padding-top: 20px;
-                button{
-                    padding: 10px;
-                    width: 200px;
-                    background-color: #0d6efd;
-                    border: none;
-                    color: #fff;
-                    &:focus {outline:none;}
-                    border-radius: 4px;
-                    font-weight: 600;
                     font-size: 14px;
+                    font-weight: 600;
+                    border-radius: 4px;
                 }
+            }
+            .admin_table{
+                margin-top: 20px;
+                th{
+                    font-size: 15px;
+                    text-decoration: none;
+                }
+                td{
+                    font-size: 14px;
+                    a{
+                        text-decoration: none;
+                    }
+                }
+            }
+            .admin_approving{
+                color: #333;
+                text-decoration: none;
+                font-size: 14px;
+                font-weight: 600;
+                margin-right: 10px;
+                border: 2px solid #33ac61;
+                padding: 2px;
+                border-radius: 4px;
+            }
+            .admin_preview{
+                margin-right: 10px;
+                color: #0d6efd;
+                text-decoration: none;
+                font-size: 14px;
+            }
+            .admin_edit{
+                margin-right: 10px;
+                color: #333;
+                text-decoration: none;
+                font-size: 14px;
+            }
+            .admin_delete{
+                color: #ff424e;
+                text-decoration: none;
+                font-size: 14px;
             }
         }
 

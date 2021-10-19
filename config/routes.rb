@@ -73,6 +73,7 @@ Rails.application.routes.draw do
     resources :company_apply_jobs
     resources :company_save_jobs
   end
+  get 'jobs_approve' => 'company_jobs#approve'
 
   resources :company_questions do
     resources :company_reply_questions
@@ -83,6 +84,7 @@ Rails.application.routes.draw do
   resources :problems do
     resources :problem_solutions
   end
+  get 'problems_approve' => 'problems#approve'
 
   resources :problem_solutions do
     resources :problem_reply_solutions

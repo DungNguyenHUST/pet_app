@@ -1,41 +1,39 @@
-<div class="container">
-    <div class="new_scrap_job_form">
-        <%= form_for @scrap_job, :html => { :class => "form-horizontal post" } do |f| %>
-            <div class="new_scrap_job_section">
-                <div class="new_scrap_job_content">
-                    <div class="new_scrap_job_label">
-                        <a><%= f.label :url, "Link", class: "new_scrap_job_label_name" %></a>
-                    </div>
-
-                    <div class="new_scrap_job_input">
-                        <%= f.text_field :url, :required => true, class: "form-control", placeholder: " Start link" %>
-                    </div>
-                </div>
-                
-                <div class="new_scrap_job_content">
-                    <div class="new_scrap_job_label">
-                        <a><%= f.label :page_num, "Page Number to Crawl", class: "new_scrap_job_label_name" %></a>
-                    </div>
-
-                    <div class="new_scrap_job_input">
-                        <%= f.number_field :page_num, :required => true, class: "form-control"%>
-                    </div>
+<div class="new_scrap_job_form">
+    <%= form_for @scrap_job, :html => { :class => "form-horizontal post" } do |f| %>
+        <div class="new_scrap_job_section">
+            <div class="new_scrap_job_content">
+                <div class="new_scrap_job_label">
+                    <a><%= f.label :url, "Link", class: "new_scrap_job_label_name" %></a>
                 </div>
 
-                <div class="new_scrap_job_content">
-                    <div class="new_scrap_job_label">
-                        <a><%= f.label :proxy, "Use Proxy", class: "new_scrap_job_label_name" %></a>
-                    </div>
+                <div class="new_scrap_job_input">
+                    <%= f.text_field :url, :required => true, class: "form-control", placeholder: " Start link" %>
+                </div>
+            </div>
+            
+            <div class="new_scrap_job_content">
+                <div class="new_scrap_job_label">
+                    <a><%= f.label :page_num, "Page Number to Crawl", class: "new_scrap_job_label_name" %></a>
+                </div>
 
-                    <div class="new_scrap_job_input">
-                        <%= f.select(:proxy, options_for_select([["Yes", true], ["No", false]], ["No", false]), {include_blank: false}, { :class => 'form-select' }) %>
-                    </div>
+                <div class="new_scrap_job_input">
+                    <%= f.number_field :page_num, :required => true, class: "form-control"%>
                 </div>
             </div>
 
-            <div class="new_scrap_job_submit">
-                <%= f.submit "Let's go", class: "new_scrap_job_form_submit" %>
+            <div class="new_scrap_job_content">
+                <div class="new_scrap_job_label">
+                    <a><%= f.label :proxy, "Use Proxy", class: "new_scrap_job_label_name" %></a>
+                </div>
+
+                <div class="new_scrap_job_input">
+                    <%= f.select(:proxy, options_for_select([["Yes", true], ["No", false]], ["No", false]), {include_blank: false}, { :class => 'form-select' }) %>
+                </div>
             </div>
-        <%end%>
-    </div>
+        </div>
+
+        <div class="new_scrap_job_submit">
+            <%= f.submit "Let's go", class: "new_scrap_job_form_submit" %>
+        </div>
+    <%end%>
 </div>

@@ -24,8 +24,12 @@ class Problem < ApplicationRecord
                     }
 	
 	def self.approved
-	  where(approved: :true)
+	    where(approved: :true)
 	end
+
+    def self.approving
+        where(approved: :false)
+    end
 
     # def self.sort(soft_type)
     #     if soft_type

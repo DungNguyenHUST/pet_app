@@ -86,6 +86,10 @@ class CompanyJob < ApplicationRecord
             self.where(id: job_filter)
         end
     end
+
+    def self.approving
+	    where(approved: :false)
+	end
 	
 	def self.approved
 	    where(approved: :true)
