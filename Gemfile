@@ -128,11 +128,8 @@ gem 'tinymce-rails'
 gem 'htmltoword'
 
 # demon job
-gem "sidekiq"
 gem "redis"
+gem 'resque'
 
 # search
 gem 'pg_search'
-
-# job
-gem 'resque'
