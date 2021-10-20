@@ -12,18 +12,26 @@ class ScrapJobsController < ApplicationController
     def create
         @scrap_job = ScrapJob.new(scrap_job_param)
         if @scrap_job.save
-            redirect_to admin_path(current_admin, tab: 'ScrapJobID')
+            redirect_to admin_path(current_admin, tab: 'AdminScrapJobID')
         end
     end
 
     def processing
-        @scrap_job = ScrapJob.find params[:id]
-        if @scrap_job
-            # JobCrawler.process(@scrap_job)
-            CrawlerJob.perform_later(@scrap_job.id)
-            flash[:success] = "Add Scrap successed ..............."
-            redirect_to admin_path(current_admin, tab: 'ScrapJobID')
+        if params.has_key?(:all)
+            ScrapJob.all.each do |scrap_job|
+                CrawlerJob.perform_later(scrap_job.id)
+            end
+            flash[:success] = "Scrap all site ..............."
+        else
+            @scrap_job = ScrapJob.find params[:id]
+            if @scrap_job
+                # JobCrawler.process(@scrap_job)
+                CrawlerJob.perform_later(@scrap_job.id)
+                flash[:success] = "Add Scrap successed ..............."
+            end
         end
+
+        redirect_to admin_path(current_admin, tab: 'AdminScrapJobID')
     end
 
     def push
@@ -68,13 +76,13 @@ class ScrapJobsController < ApplicationController
             end
             flash[:success] = "Job push successed on ...............#{filename}"
         end
-        redirect_to admin_path(current_admin, tab: 'ScrapJobID')
+        redirect_to admin_path(current_admin, tab: 'AdminScrapJobID')
     end
 
     def destroy
         @scrap_job = ScrapJob.find params[:id]
         @scrap_job.destroy
-        redirect_to admin_path(current_admin, tab: 'ScrapJobID')
+        redirect_to admin_path(current_admin, tab: 'AdminScrapJobID')
     end
 
     def edit

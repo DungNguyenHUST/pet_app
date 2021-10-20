@@ -70,28 +70,28 @@
                             <a class="nav-link <%=active%>" href="<%=admin_path(current_admin, tab: 'AdminEmployerID')%>"><i class="material-icons-outlined">people</i>Employer <span><%= (@employers.total_count)%><span></a>
                         </li>
                         <li class="nav-item">
-                            <%if @tab == "ScrapJobID"%>
+                            <%if @tab == "AdminScrapJobID"%>
                                 <%active = "active"%>
                             <%else%> 
                                 <%active = ""%>
                             <%end%>                                     
-                            <a class="nav-link <%=active%>" href="<%=admin_path(current_admin, tab: 'ScrapJobID')%>"><i class="material-icons-outlined">smart_toy</i>Job Scraper</a>
+                            <a class="nav-link <%=active%>" href="<%=admin_path(current_admin, tab: 'AdminScrapJobID')%>"><i class="material-icons-outlined">smart_toy</i>Job Scraper</a>
                         </li>
                         <li class="nav-item">
-                            <%if @tab == "ScrapReviewID"%>
+                            <%if @tab == "AdminScrapReviewID"%>
                                 <%active = "active"%>
                             <%else%> 
                                 <%active = ""%>
                             <%end%>                                     
-                            <a class="nav-link <%=active%>" href="<%=admin_path(current_admin, tab: 'ScrapReviewID')%>"><i class="material-icons-outlined">star_border</i>Review Scraper</a>
+                            <a class="nav-link <%=active%>" href="<%=admin_path(current_admin, tab: 'AdminScrapReviewID')%>"><i class="material-icons-outlined">star_border</i>Review Scraper</a>
                         </li>
                         <li class="nav-item">
-                            <%if @tab == "CoverVitaeID"%>
+                            <%if @tab == "AdminCoverVitaeID"%>
                                 <%active = "active"%>
                             <%else%> 
                                 <%active = ""%>
                             <%end%>                                     
-                            <a class="nav-link <%=active%>" href="<%=admin_path(current_admin, tab: 'CoverVitaeID')%>"><i class="material-icons-outlined">auto_fix_high</i>CV Creater</a>
+                            <a class="nav-link <%=active%>" href="<%=admin_path(current_admin, tab: 'AdminCoverVitaeID')%>"><i class="material-icons-outlined">auto_fix_high</i>CV Creater</a>
                         </li>
                     </ul>
                 </div>
@@ -473,7 +473,7 @@
                         </div>
                     <%end%>
 
-                    <%if @tab == "ScrapJobID"%>
+                    <%if @tab == "AdminScrapJobID"%>
                         <div class="admin_tab">
                             <div class="new_admin_action">
                                 <%= link_to '<button type="submit">Tạo Job mới</button>'.html_safe, new_scrap_job_path%>
@@ -516,18 +516,28 @@
                                 </div>
                                 <%= paginate @scrap_jobs, window: 2%>
                             </div>
-                        </div>
-                        <div class="scrap_jobs_tab_bottom">
-                            <%= link_to '<button type="submit">Job Magic</button>'.html_safe, scrap_jobs_push_path%>
+                        </div>  
+
+                        <div class="row">
+                            <div class="col-sm-6">
+                                <div class="scrap_jobs_all_btn">
+                                    <%= link_to '<button type="submit">Process All</button>'.html_safe, scrap_jobs_processing_path(:all => true), method: :get%>
+                                </div>
+                            </div>
+                            <div class="col-sm-6">
+                                <div class="scrap_jobs_tab_bottom">
+                                    <%= link_to '<button type="submit">Job Magic</button>'.html_safe, scrap_jobs_push_path%>
+                                </div>
+                            </div>
                         </div>
                     <%end%>
 
-                    <%if @tab == "ScrapReviewID"%>
+                    <%if @tab == "AdminScrapReviewID"%>
                         <%@scrap_review = ScrapReview.new%>
                         <%= render :partial => 'scrap_reviews/form', :local => @scrap_review %>
                     <%end%>
 
-                    <%if @tab == "CoverVitaeID"%>
+                    <%if @tab == "AdminCoverVitaeID"%>
                         <%@cover_vitae = CoverVitae.new%>
                         <%= render :partial => 'cover_vitaes/form', :local => @cover_vitae %>
                     <%end%>

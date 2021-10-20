@@ -52,11 +52,11 @@ class CoverVitaesController < ApplicationController
 
         if @cover_vitae.save
             if admin_signed_in?
-                redirect_to admin_path(current_admin, tab: 'CoverVitaeID')
+                redirect_to admin_path(current_admin, tab: 'AdminCoverVitaeID')
             end
 
             if user_signed_in?
-                redirect_to user_path(current_user, tab: 'CoverVitaeID')
+                redirect_to user_path(current_user, tab: 'AdminCoverVitaeID')
             end
         end
     end
