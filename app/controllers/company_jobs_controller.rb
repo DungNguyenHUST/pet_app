@@ -80,7 +80,11 @@ class CompanyJobsController < ApplicationController
     def destroy
         @company_job = CompanyJob.friendly.find(params[:id])
         @company_job.destroy
-        redirect_to company_path(@company, tab: 'CompanyJobsID')
+        if employer_signed_in?
+            redirect_to employer_index_job_path
+        else
+            redirect_to admin_path(current_admin, tab: 'AdminJobID')
+        end
     end
 
     def show

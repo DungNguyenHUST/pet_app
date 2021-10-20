@@ -52,7 +52,7 @@ class CompanyApplyJobsController < ApplicationController
         @company_apply_job = @company_job.company_apply_jobs.find(params[:id])
 
         @company_apply_job.destroy
-        redirect_to company_path(@company, tab: 'CompanyJobsID')
+        redirect_to company_job_path(@company_job)
     end
 
     def show
