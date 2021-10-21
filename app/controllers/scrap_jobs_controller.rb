@@ -89,6 +89,17 @@ class ScrapJobsController < ApplicationController
         @is_edit = params[:is_edit]
         @scrap_job = ScrapJob.find params[:id]
     end
+    
+    def update
+        @scrap_job = ScrapJob.find(params[:id])
+
+        if(@scrap_job.update(scrap_job_param))
+            flash[:success] = "Update thông tin thành công"
+        else
+            flash[:danger] = "Lỗi, không thể cập nhật thông tin"
+        end
+        redirect_to admin_path(current_admin, tab: 'AdminScrapJobID')
+    end
 
     def scrap_job_param
         params.require(:scrap_job).permit(:id, :company_id, :company_name, :location, :url, :page_num, :proxy)

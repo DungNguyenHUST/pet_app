@@ -12,6 +12,7 @@ require_relative 'viecoi_crawler.rb'
 require_relative 'careerlink_crawler.rb'
 require_relative 'vieclamnhamay_crawler.rb'
 require_relative 'joboko_crawler.rb'
+require_relative 'timviec_crawler.rb'
 require_relative 'common_crawler.rb'
 include CareerbuilderCrawler
 include TopcvCrawler
@@ -26,6 +27,7 @@ include ViecoiCrawler
 include CareerlinkCrawler
 include VieclamnhamayCrawler
 include JobokoCrawler
+include TimviecCrawler
 include CommonCrawler
 
 class JobCrawler < Kimurai::Base
@@ -152,6 +154,10 @@ class JobCrawler < Kimurai::Base
             pre_datas = get_job_pre_data_joboko(url, response)
         end
 
+        if split_domain_name(url) == "timviec.com.vn"
+            pre_datas = get_job_pre_data_timviec(url, response)
+        end
+
         return pre_datas
     end
 
@@ -239,6 +245,12 @@ class JobCrawler < Kimurai::Base
             next_page_link = url.to_s + "?p=#{@@PAGE_COUNT+1}"
         end
 
+        if split_domain_name(url) == "timviec.com.vn"
+            if next_page = response.css("ul.pagination li.page-item a").last
+                next_page_link = next_page[:href]
+            end
+        end
+
         return next_page_link
     end
 
@@ -295,6 +307,10 @@ class JobCrawler < Kimurai::Base
 
         if split_domain_name(url) == "vn.joboko.com"
             job_data = get_job_data_joboko(url, response, pre_data)
+        end
+
+        if split_domain_name(url) == "timviec.com.vn"
+            job_data = get_job_data_timviec(url, response, pre_data)
         end
 
         return job_data
