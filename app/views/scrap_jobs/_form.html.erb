@@ -33,6 +33,16 @@
                                 <%= f.select(:proxy, options_for_select([["Yes", true], ["No", false]], ["No", false]), {include_blank: false}, { :class => 'form-select' }) %>
                             </div>
                         </div>
+
+                        <div class="new_scrap_job_content">
+                            <div class="new_scrap_job_label">
+                                <a><%= f.label :approved, "Default Link", class: "new_scrap_job_label_name" %></a>
+                            </div>
+
+                            <div class="new_scrap_job_input">
+                                <%= f.select(:approved, options_for_select([["Yes", true], ["No", false]], ["No", false]), {include_blank: false}, { :class => 'form-select' }) %>
+                            </div>
+                        </div>
                     </div>
 
                     <div class="new_scrap_job_submit">

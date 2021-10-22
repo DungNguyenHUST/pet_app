@@ -1258,7 +1258,8 @@ CREATE TABLE public.scrap_jobs (
     created_at timestamp(6) without time zone NOT NULL,
     updated_at timestamp(6) without time zone NOT NULL,
     page_num integer,
-    proxy boolean DEFAULT false
+    proxy boolean DEFAULT false,
+    approved boolean DEFAULT false
 );
 
 
@@ -1292,7 +1293,8 @@ CREATE TABLE public.scrap_reviews (
     url character varying,
     raw_data text,
     created_at timestamp(6) without time zone NOT NULL,
-    updated_at timestamp(6) without time zone NOT NULL
+    updated_at timestamp(6) without time zone NOT NULL,
+    approved boolean DEFAULT false
 );
 
 
@@ -2984,6 +2986,7 @@ INSERT INTO "schema_migrations" (version) VALUES
 ('20211016044148'),
 ('20211016044216'),
 ('20211016044229'),
-('20211016044240');
+('20211016044240'),
+('20211022042854');
 
 

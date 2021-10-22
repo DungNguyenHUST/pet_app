@@ -41,8 +41,8 @@ module JobsgoCrawler
             end
 
             if company.present?
-                company_name = company[:name]
-                company_id = company[:id]
+                company_name = company["name"]
+                company_id = company["id"]
             elsif company_search_name.present?
                 company_name = company_search_name
                 company_id = -1

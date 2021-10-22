@@ -2,8 +2,6 @@ module CommonCrawler
     include ApplicationHelper
     include CompanyJobsHelper
 
-    @@COMPANY_HASH = nil
-
     def job_params
         job_param = Struct.new(:title,
                 :detail,
@@ -140,28 +138,59 @@ module CommonCrawler
     end
 
     def search_production_company_list(search)
-        if @@COMPANY_HASH == nil
-            doc = Nokogiri::HTML(URI.open('https://www.firework.vn/companies'))
-
-            company_id = doc.css("div.user_select_company option").map { |company| company['value']}
-            company_name = doc.css("div.user_select_company option").map { |company| convert_vie_to_eng(company.text.strip)}
-
-            @@COMPANY_HASH = []
-            company_id.each_with_index do |id, i|
-                @@COMPANY_HASH << {id: id, name: company_name[i]}
-            end
-            @@COMPANY_HASH = @@COMPANY_HASH.reject!{|h| h[:name] == "chon cong ty" }
-        end
+        company_list = get_company_production_list
         
-        if @@COMPANY_HASH
-            search_result = @@COMPANY_HASH.find {|h| h[:name].include?(search) }
+        unless company_list.nil?
+            search_result = company_list.find {|h| h["name"].include?(search) }
         end
 
-        if search_result
+        if search_result.present?
             return search_result
         else
             return nil
         end
+    end
+
+    def get_company_production_list
+        company_list = []
+        filepath = "tmp/jobs/company_list.csv"
+
+        # Delete old data each day
+        if File.exist?(filepath) 
+            if File.mtime(filepath) < 1.day.ago.utc
+                File.delete(filepath)
+            end
+        end
+        
+        # Push data in csv file
+        unless File.exist?(filepath)
+            doc = Nokogiri::HTML(URI.open('https://www.firework.vn/companies'))
+
+            company_id = doc.css("div.user_select_company option").map { |company| company['value']}
+            company_name = doc.css("div.user_select_company option").map { |company| convert_vie_to_eng(company.text.strip)}
+            
+            data = []
+            company_id.each_with_index do |id, i|
+                data << {id: id, name: company_name[i]}
+            end
+
+            column_names = data.first.keys
+            CSV.open(filepath, "a", :headers => true) do |csv|
+                csv << column_names
+                data.each do |hash|
+                    csv << hash.values
+                end
+            end
+        end
+
+        # Read data into hash
+        if File.exist?(filepath)
+            CSV.foreach(filepath, :headers => true) do |row|
+                company_list << Hash[row.headers.zip(row.fields)]
+            end
+        end
+
+        return company_list
     end
 
     def save_job_to_csv(job_data)

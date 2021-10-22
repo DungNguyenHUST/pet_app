@@ -24,6 +24,6 @@ class ScrapReviewsController < ApplicationController
     end
 
     def scrap_review_param
-        params.require(:scrap_review).permit(:id, :company_id, :company_name, :url, :raw_data)
+        params.require(:scrap_review).permit(:id, :company_id, :company_name, :url, :raw_data, :approved)
     end
 end

@@ -41,8 +41,8 @@ module TimviecCrawler
             end
 
             if company.present?
-                company_name = company[:name]
-                company_id = company[:id]
+                company_name = company["name"]
+                company_id = company["id"]
             elsif company_search_name.present?
                 company_name = company_search_name
                 company_id = -1
@@ -68,7 +68,7 @@ module TimviecCrawler
                 detail = ''
                 next_step = 0
                 loop do
-                    break if next_step == 6 # stop before end_detail
+                    break if next_step == 7 # stop before end_detail
                     if start_detail.present? && !start_detail.next_element.nil?
                         detail << start_detail.to_s
                         start_detail = start_detail.next_element

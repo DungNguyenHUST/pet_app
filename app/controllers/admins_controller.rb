@@ -34,7 +34,8 @@ class AdminsController < ApplicationController
         @problems = Problem.all.order('created_at DESC').page(params[:page]).per(25)
         @problems_approving = Problem.all.approving.page(params[:page]).order('created_at DESC').per(25)
         @employers = Employer.all.order('created_at DESC').page(params[:page]).per(25)
-        @scrap_jobs = ScrapJob.all.order('created_at DESC').page(params[:page]).per(25)
+        @scrap_jobs = ScrapJob.all.approved.order('created_at DESC').page(params[:page]).per(25)
+        @scrap_reviews = ScrapReview.all.approved.order('created_at DESC').page(params[:page]).per(25)
     end
 
     def edit

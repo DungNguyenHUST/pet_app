@@ -44,6 +44,16 @@
                             });
                         </script>
                     </div>
+                        
+                    <div class="new_scrap_review_content">
+                        <div class="new_scrap_review_label">
+                            <a><%= f.label :approved, "Default Link", class: "new_scrap_review_label_name" %></a>
+                        </div>
+
+                        <div class="new_scrap_review_input">
+                            <%= f.select(:approved, options_for_select([["Yes", true], ["No", false]], ["No", false]), {include_blank: false}, { :class => 'form-select' }) %>
+                        </div>
+                    </div>
                 </div>
 
                 <div class="new_scrap_review_submit">
