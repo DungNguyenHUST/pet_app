@@ -91,18 +91,20 @@ class CompanyJobsController < ApplicationController
         @company_job = CompanyJob.friendly.find(params[:id])
         @company = find_company_of_job(@company_job)
         @company_job.increment!(:view_count)
-        if @company.present?
+        
+        if verified_job(@company_job)
             if find_job_of_company(@company)
                 @company_jobs = find_job_of_company(@company)
-            else
-                @company_jobs = find_same_job(@company_job)
             end
             
             if @company_jobs
+                @company_jobs = @company_jobs.reject{|i| verified_job(i) == false}
                 @company_jobs = @company_jobs.reject{|i| i.id == @company_job.id}
-                @company_related_jobs = Kaminari.paginate_array(@company_jobs).page(params[:page]).per(10)
+                @company_related_jobs = Kaminari.paginate_array(@company_jobs).page(params[:page]).per(15)
             end
         end
+
+        @company_job_recommands = CompanyJob.all.order('created_at DESC').expire.limit(15)
 
         # for preview mode
         respond_to do |format|

@@ -43,12 +43,15 @@ module CompanyJobsHelper
         return company
     end
 
-    def find_same_job(company_job)
-        same_job = nil
+    def verified_job(company_job)
+        verified = false
         if company_job.present?
-            same_job = CompanyJob.where(:company_name => company_job.company_name).expire
+            if find_company_of_job(company_job) && company_job.employer_id.present?
+                verified = true
+            end
         end
-        return same_job
+
+        return verified
     end
 
     def find_job_location(address)

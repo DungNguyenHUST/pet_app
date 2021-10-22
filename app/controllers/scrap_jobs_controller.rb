@@ -19,7 +19,7 @@ class ScrapJobsController < ApplicationController
 
     def processing
         if params.has_key?(:all)
-            ScrapJob.all.each do |scrap_job|
+            ScrapJob.all.approved.each do |scrap_job|
                 CrawlerJob.perform_later(scrap_job.id)
             end
             flash[:success] = "Scrap all site ..............."

@@ -68,7 +68,7 @@ module TimviecCrawler
                 detail = ''
                 next_step = 0
                 loop do
-                    break if next_step == 7 # stop before end_detail
+                    break if next_step == 8 # stop before end_detail
                     if start_detail.present? && !start_detail.next_element.nil?
                         detail << start_detail.to_s
                         start_detail = start_detail.next_element

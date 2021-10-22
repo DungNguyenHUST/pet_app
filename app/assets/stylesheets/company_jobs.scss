@@ -436,19 +436,42 @@
         @media screen and (max-width: 600px){
             padding-bottom: 0px;
         }
-        .company_avatar {
-            display: block;
-            margin-right: auto;
-            width: 90px;
-            height: 120px;
+        .company_job_show_company_info{
+            width: 93px;
+            min-height: 130px;
             float: left;
-            margin-right: 10px;
-            img{
-                border: 1px solid #efefef;
-                width: 80px;
-                height: 80px;
-                object-fit: cover;
-                border-radius: 4px;
+            .company_avatar {
+                display: block;
+                margin-right: auto;
+                margin-right: 10px;
+                img{
+                    border: 1px solid #efefef;
+                    width: 80px;
+                    height: 80px;
+                    object-fit: cover;
+                    border-radius: 4px;
+                }
+            }
+            .company_job_show_company_rate{
+                a{
+                    padding-left: 5px;
+                    padding-top: 10px;
+                    font-size: 18px;
+                    color: #333;
+                    overflow: hidden;
+                    text-overflow: ellipsis;
+                    display: -webkit-box;
+                    -webkit-line-clamp: 1; /* number of lines to show */
+                    -webkit-box-orient: vertical;
+                    i{
+                        color: #febb02;
+                        font-size: 20px;
+                        position: relative;
+                        top: 3px;
+                        padding-left: 3px;
+                        // background-color: #febb02;
+                    }
+                }
             }
         }
 
@@ -866,6 +889,24 @@
             margin-top: 20px;
             @media screen and (min-width: 600px){
                 border-top: 1px solid #EAEAF0;
+            }
+        }
+        .more_job_btn{    
+            margin-top: 15px;
+            button{
+                border-radius: 4px;
+                background-color: #fff;
+                height: 44px;
+                color: #0d6efd;
+                font-size: 14px;
+                font-weight: 600;
+                border: none;
+                &:focus {outline:none;}
+                i{
+                    position: relative;
+                    top: 5px;
+                    font-size: 20px;
+                }
             }
         }
     }
@@ -1974,6 +2015,7 @@
             background-color: #f8f9fa;
             padding: 15px;
             border-radius: 4px;
+            margin-right: 15px;
             .job_preview_company_avatar{
                 float: left;
                 img{ 
