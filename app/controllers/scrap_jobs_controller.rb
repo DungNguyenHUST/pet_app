@@ -26,7 +26,6 @@ class ScrapJobsController < ApplicationController
         else
             @scrap_job = ScrapJob.find params[:id]
             if @scrap_job
-                # JobCrawler.process(@scrap_job)
                 CrawlerJob.perform_later(@scrap_job.id)
                 flash[:success] = "Add Scrap successed ..............."
             end
