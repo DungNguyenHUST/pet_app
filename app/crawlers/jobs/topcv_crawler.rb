@@ -35,8 +35,8 @@ module TopcvCrawler
         if doc.present?
             processing_detail_datas = []
 
-            if doc.css("div.company-title span").present?
-                company_search_name = doc.css("div.company-title span").first.text.strip
+            if doc.css("div.box-info-job div.company-title a").present?
+                company_search_name = doc.css("div.box-info-job div.company-title a").first.text.strip
                 company = get_company_id_by_name(company_search_name)
             end
 
@@ -51,18 +51,18 @@ module TopcvCrawler
                 company_id = -1
             end
 
-            if doc.css("div.company-logo-wraper a img").present?
-                company_avatar = doc.css("div.company-logo-wraper a img").map { |img| img['src']}.first
+            if doc.css("div.box-company-logo img").present?
+                company_avatar = doc.css("div.box-company-logo img").map { |img| img['src']}.first
             else
                 company_avatar = image_url("defaults/company_avatar_default.png")
             end
                     
-            if doc.css("div.col-sm-9 h1.job-title").present?
-                title = doc.css("div.col-sm-9 h1.job-title").text.strip
+            if doc.css("div.box-info-job h1.job-title").present?
+                title = doc.css("div.box-info-job h1.job-title").text.strip
             end
 
             #######################job detail start##########################
-            detail_block = doc.css("div.col-md-8[id=col-job-left]").first
+            detail_block = doc.css("div.job-data").first
             if detail_block.present?
                 start_detail = detail_block.at_css("h2")
                 detail = ''
@@ -78,46 +78,53 @@ module TopcvCrawler
             end
             #######################job detail end##########################
 
-            if doc.css("div.job-info-item span")[6].present?
-                location = doc.css("div.job-info-item span")[6].text.strip
+            if doc.css("div.box-address div.text-dark-gray")[0].present?
+                location = doc.css("div.box-address div.text-dark-gray")[0].text.strip
+                location.gsub!(/- Khu vực: /, "")
             else
                 location = "Hà Nội"
             end
 
-            if doc.css("div.text-dark-gray").present?
-                address = doc.css("div.text-dark-gray").first.text.strip
+            if doc.css("div.box-address div.text-dark-gray")[1].present?
+                address = doc.css("div.box-address div.text-dark-gray")[1].text.strip
+                address.gsub!(/-/, "")
             else
                 address = location
             end
 
             salary = "Thương lượng"
 
-            if doc.css("div.job-info-item span")[2].present?
-                quantity = doc.css("div.job-info-item span")[2].text.strip
+            if doc.css("div.box-main div.box-item")[1].present?
+                quantity = doc.css("div.box-main div.box-item")[1].text.strip
+                quantity.gsub!(/Số lượng tuyển /, "")
             else
                 quantity = 1
             end
 
-            if detail_block.present?
-                category = detail_block.css("span").text.strip.squish!
+            if doc.css("div.box-keyword-job")[0].present?
+                category = doc.css("div.box-keyword-job")[0].text.strip.squish!
+                category.gsub!(/Ngành nghề/, "")
             else
                 category = ""
             end
 
-            if doc.css("div.job-info-item span")[3].present?
-                level = doc.css("div.job-info-item span")[3].text.strip
+            if doc.css("div.box-main div.box-item")[3].present?
+                level = doc.css("div.box-main div.box-item")[3].text.strip
+                level.gsub!(/Cấp bậc /, "")
             else
                 level = "Nhân viên"
             end
 
-            if doc.css("div.job-info-item span")[4].present?
-                experience = doc.css("div.job-info-item span")[4].text.strip
+            if doc.css("div.box-main div.box-item")[5].present?
+                experience = doc.css("div.box-main div.box-item")[5].text.strip
+                experience.gsub!(/Kinh nghiệm /, "")
             else
                 experience = "Không yêu cầu"
             end
 
-            if doc.css("div.job-info-item span")[1].present?
-                typical = doc.css("div.job-info-item span")[1].text.strip
+            if doc.css("div.box-main div.box-item")[2].present?
+                typical = doc.css("div.box-main div.box-item")[2].text.strip
+                typical.gsub!(/Hình thức làm việc /, "")
             else
                 typical = "Toàn thời gian"
             end
@@ -125,8 +132,8 @@ module TopcvCrawler
             language = "Tùy chọn"
             dudate = Time.now
 
-            if doc.css("div.job-deadline").present?
-                date_str = doc.css("div.job-deadline").text.strip
+            if doc.css("div.box-info-job div.job-deadline").present?
+                date_str = doc.css("div.box-info-job div.job-deadline").text.strip
                 end_date = Date.parse(date_str)
             else
                 end_date = Time.now + 30.days
