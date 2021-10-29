@@ -82,57 +82,105 @@ module TuoitreCrawler
             data_box2 = doc.css("ul.DetailJobNew li.bgLine2")[0]
             data_box3 = doc.css("ul.DetailJobNew li.bgLine1")[1]
 
-            if data_box1.css("p.fl_left").present?
-                location = data_box1.css("p.fl_left").text.strip
-                location.gsub!(/Nơi làm việc: /, "")
-            else
-                location = "Hà Nội"
-            end
+            if data_box3.css("p.fl_right").present? # 6 items
+                if data_box1.css("p.fl_left").present?
+                    location = data_box1.css("p.fl_left").text.strip
+                    location.gsub!(/Nơi làm việc: /, "")
+                else
+                    location = "Hà Nội"
+                end
 
-            address = location
+                address = location
 
-            if data_box2.css("p.fl_right").present?
-                salary = data_box2.css("p.fl_right").text.strip
-                salary.gsub!(/Lương: /, "")
-            else
-                salary = "Thương lượng"
+                if data_box2.css("p.fl_right").present?
+                    salary = data_box2.css("p.fl_right").text.strip
+                    salary.gsub!(/Lương: /, "")
+                else
+                    salary = "Thương lượng"
+                end
+
+                if data_box3.css("p.fl_left").present?
+                    category = data_box3.css("p.fl_left").text.strip.squish!
+                    category.gsub!(/Ngành nghề: /, "")
+                else
+                    category = ""
+                end
+
+                if data_box1.css("p.fl_right").present?
+                    level = data_box1.css("p.fl_right").text.strip
+                    level.gsub!(/Cấp bậc: /, "")
+                else
+                    level = "Nhân viên"
+                end
+
+                if data_box2.css("p.fl_left").present?
+                    experience = data_box2.css("p.fl_left").text.strip
+                    experience.gsub!(/Kinh nghiệm: /, "")
+                else
+                    experience = "Không yêu cầu"
+                end
+
+                if data_box3.css("p.fl_right").present?
+                    date_str = data_box3.css("p.fl_right").text.strip
+                    date_str.gsub!(/Hết hạn nộp: /, "")
+                    end_date = Date.parse(date_str)
+                else
+                    end_date = Time.now + 30.days
+                end
+            else # 5 items
+                if data_box1.css("p.fl_left").present?
+                    location = data_box1.css("p.fl_left").text.strip
+                    location.gsub!(/Nơi làm việc: /, "")
+                else
+                    location = "Hà Nội"
+                end
+
+                address = location
+
+                if data_box1.css("p.fl_right").present?
+                    salary = data_box1.css("p.fl_right").text.strip
+                    salary.gsub!(/Lương: /, "")
+                else
+                    salary = "Thương lượng"
+                end
+
+                if data_box2.css("p.fl_left").present?
+                    category = data_box2.css("p.fl_left").text.strip.squish!
+                    category.gsub!(/Ngành nghề: /, "")
+                else
+                    category = ""
+                end
+
+                if data_box3.css("p.fl_left").present?
+                    level = data_box3.css("p.fl_left").text.strip
+                    level.gsub!(/Cấp bậc: /, "")
+                else
+                    level = "Nhân viên"
+                end
+
+                # if data_box2.css("p.fl_left").present?
+                #     experience = data_box2.css("p.fl_left").text.strip
+                #     experience.gsub!(/Kinh nghiệm: /, "")
+                # else
+                #     experience = "Không yêu cầu"
+                # end
+
+                if data_box2.css("p.fl_right").present?
+                    date_str = data_box2.css("p.fl_right").text.strip
+                    date_str.gsub!(/Hết hạn nộp: /, "")
+                    end_date = Date.parse(date_str)
+                else
+                    end_date = Time.now + 30.days
+                end
             end
 
             quantity = 1
 
-            if data_box3.css("p.fl_left").present?
-                category = data_box3.css("p.fl_left").text.strip.squish!
-                category.gsub!(/Ngành nghề: /, "")
-            else
-                category = ""
-            end
-
-            if data_box1.css("p.fl_right").present?
-                level = data_box1.css("p.fl_right").text.strip
-                level.gsub!(/Cấp bậc: /, "")
-            else
-                level = "Nhân viên"
-            end
-
-            if data_box2.css("p.fl_left").present?
-                experience = data_box2.css("p.fl_left").text.strip
-                experience.gsub!(/Kinh nghiệm: /, "")
-            else
-                experience = "Không yêu cầu"
-            end
-
             typical = "Toàn thời gian"
 
             language = "Tùy chọn"
-            dudate = Time.now
 
-            if data_box3.css("p.fl_right").present?
-                date_str = data_box3.css("p.fl_right").text.strip
-                date_str.gsub!(/Hết hạn nộp: /, "")
-                end_date = Date.parse(date_str)
-            else
-                end_date = Time.now + 30.days
-            end
+            dudate = Time.now
 
             urgent = false
             apply_another_site_flag = true
