@@ -167,7 +167,7 @@
                                         <%@company_jobs.each_with_index do |company_job, index|%>
                                             <tr>
                                                 <td><%=index + 1%></td>
-                                                <td scope="row" class="text-start"><%=link_to (company_job.title), employer_job_path(:id => company_job.id)%></td>
+                                                <td scope="row" class="text-start"><%=link_to (truncate(strip_tags(company_job.title), length: 60)), company_job_path(company_job)%></td>
                                                 <%if company_job.approved?%>
                                                     <td>Đã kích hoạt</td>
                                                 <%else%>
@@ -217,7 +217,7 @@
                                             <%@company_jobs_approving.each_with_index do |company_job, index|%>
                                                 <tr>
                                                     <td><%=index + 1%></td>
-                                                    <td scope="row" class="text-start"><%=link_to (company_job.title), employer_job_path(:id => company_job.id)%></td>
+                                                    <td scope="row" class="text-start"><%=link_to (truncate(strip_tags(company_job.title), length: 60)), company_job_path(company_job)%></td>
                                                     <%if company_job.approved?%>
                                                         <td>Đã kích hoạt</td>
                                                     <%else%>
@@ -495,7 +495,7 @@
                                             <%@scrap_jobs.each_with_index do |scrap_job, index|%>
                                                 <tr>
                                                     <td><%=index + 1%></td>
-                                                    <td scope="row" class="text-start"><%=link_to (scrap_job.url), scrap_job_path(:id => scrap_job.id)%></td>
+                                                    <td scope="row" class="text-start"><%=link_to truncate(strip_tags(scrap_job.url), length: 60), scrap_job_path(:id => scrap_job.id)%></td>
                                                     <%if JobCrawler::split_domain_name(scrap_job.url).present?%>
                                                         <td><%=JobCrawler::split_domain_name(scrap_job.url).upcase%></td>
                                                     <%else%>
