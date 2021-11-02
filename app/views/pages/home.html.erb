@@ -111,8 +111,18 @@
                                                 <a><%= company_job.company_name%> </a>
                                             <%end%>
                                         </div>
-                                        <div class="home_job_create_at">
-                                            <a><%= time_ago_in_words(company_job.created_at) %> </a>
+                                        <div class="home_job_created_at">
+                                            <%if company_job.sponsor || verified_job(company_job) || company_job.urgent%>
+                                                <a><%= time_ago_in_words(company_job.created_at) %>
+                                                    <%if company_job.urgent > 0%>
+                                                        <span class="home_job_urgent">HOT</span>
+                                                    <%elsif verified_job(company_job)%>
+                                                        <span class="home_job_easy_apply">Nộp đơn nhanh</span>
+                                                    <%end%>
+                                                </a>
+                                            <%else%>
+                                                <a><%= time_ago_in_words(company_job.created_at) %> </a>
+                                            <%end%>
                                         </div>
                                     </div>
                                 </div>
@@ -122,27 +132,13 @@
                                         <a><%= link_to (company_job.title.titleize), company_job_path(company_job), target: :_blank %></a>
                                     </div>
 
-                                    <%if company_job.created_at > 1.week.ago.utc || company_job.urgent%>
-                                        <div class="home_job_new_hot">
-                                            <%if company_job.urgent > 0%>
-                                                <div class="home_job_hot">
-                                                    <span>GẤP</span>
-                                                </div>
-                                            <%elsif company_job.created_at > 1.week.ago.utc%>
-                                                <div class="home_job_new">
-                                                    <span>MỚI</span>
-                                                </div>
-                                            <%end%>
-                                        </div>
-                                    <%end%>
-
                                     <div class="home_job_location">
-                                        <a><i class="material-icons-outlined">location_on</i><%= truncate(strip_tags(find_job_location(company_job.location)), length: 20)%></a>
+                                        <a><i class="material-icons-outlined">location_on</i><%= truncate(strip_tags(find_job_location(company_job.location)), length: 100)%></a>
                                     </div>
 
                                     <div class="home_job_salary">
                                         <%if !company_job.salary.to_s.blank?%>
-                                            <a><i class="material-icons-outlined">monetization_on</i><%= truncate(strip_tags(company_job.salary.to_s), length: 18)%></a>
+                                            <a><i class="material-icons-outlined">monetization_on</i><%= truncate(strip_tags(company_job.salary.to_s), length: 100)%></a>
                                         <%else%>
                                             <a><i class="material-icons-outlined">monetization_on</i>Đang cập nhật</a>
                                         <%end%>

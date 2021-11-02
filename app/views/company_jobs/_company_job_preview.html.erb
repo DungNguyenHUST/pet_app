@@ -58,10 +58,10 @@
                             <%if company_job.apply_another_site_flag?%>
                                 <%= link_to '<button type="submit">Xem thêm và nộp đơn</button>'.html_safe, company_job.apply_site, target: :_blank%>
                             <%elsif user_signed_in?%>
-                                <%= link_to '<button type="submit"><i class="material-icons">send</i>Nộp đơn ngay</button>'.html_safe, new_company_job_company_apply_job_path(company_job)%>
+                                <%= link_to '<button type="submit"><i class="material-icons">send</i><span>Nộp đơn ngay</span></button>'.html_safe, new_company_job_company_apply_job_path(company_job)%>
                             <%else%>
                                 <button type="button" data-toggle="modal" data-target="#buttonModalLoginCenter">
-                                    <i class="material-icons-outlined">send</i>Nộp đơn ngay
+                                    <i class="material-icons-outlined">send</i><span>Nộp đơn ngay</span>
                                 </button>
                             <%end%>
                         </div>

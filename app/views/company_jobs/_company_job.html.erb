@@ -28,20 +28,6 @@
 
     <div class="company_job_right">
         <div class="company_job_des">
-            <%if company_job.created_at > 1.week.ago.utc || company_job.urgent%>
-                <div class="company_job_new_hot">
-                    <%if company_job.urgent > 0%>
-                        <div class="company_job_hot">
-                            <span>GẤP</span>
-                        </div>
-                    <%elsif company_job.created_at > 1.week.ago.utc%>
-                        <div class="company_job_new">
-                            <span>MỚI</span>
-                        </div>
-                    <%end%>
-                </div>
-            <%end%>
-
             <div class="company_job_title">
                 <a><%= link_to (company_job.title.titleize), company_job_path(company_job), target: :_blank %></a>
             </div>
@@ -53,12 +39,6 @@
                     <a><%= company_job.company_name%> </a>
                 <%end%>
             </div>
-
-            <%if company_job.description.present?%>
-                <div class="company_job_description">
-                    <a><%= company_job.description.html_safe %></a>
-                </div>
-            <%end%>
 
             <div class="company_job_mark">
                 <div class="company_job_location">
@@ -86,27 +66,39 @@
         </div>
                                 
         <div class="company_job_info">
-            <div class="company_job_date">
-                <%if company_job.sponsor > 0%>
-                    <a><%= time_ago_in_words(company_job.created_at) %> <span> · Được tài trợ</span></a>
-                <%else%>
-                    <a><%= time_ago_in_words(company_job.created_at) %> </a>
-                <%end%>
-            </div>
-            <div class="company_job_save">
-                <div class="company_job_button_save" id="save_job_mini_<%=company_job.id%>">
-                    <%if user_signed_in?%>
-                        <% pre_save = company_job.company_save_jobs.find { |save| save.user_id == current_user.id} %>
-                        <% if pre_save %> 
-                            <%= link_to '<button class="save_btn_highlight"><i class="material-icons">favorite</i> </button>'.html_safe, company_job_company_save_job_path(company_job, pre_save, type_param: 'mini'), method: :delete, remote: true %>
+            <div class="row">
+                <div class="col-10">
+                    <div class="company_job_date">
+                        <%if company_job.sponsor || verified_job(company_job) || company_job.urgent%>
+                            <a><%= time_ago_in_words(company_job.created_at) %>
+                                <%if company_job.urgent > 0%>
+                                    <span class="job_urgent">HOT</span>
+                                <%elsif verified_job(company_job)%>
+                                    <span class="job_easy_apply">Nộp đơn nhanh</span>
+                                <%end%>
+                            </a>
                         <%else%>
-                            <%= link_to '<button class="save_btn"><i class="material-icons-outlined">favorite_border</i> </button>'.html_safe, company_job_company_save_jobs_path(company_job, type_param: 'mini'), method: :post, remote: true %>
+                            <a><%= time_ago_in_words(company_job.created_at) %> </a>
                         <%end%>
-                    <%else%>
-                        <button type="button" data-toggle="modal" data-target="#buttonModalLoginCenter" class="save_btn">
-                            <i class="material-icons-outlined">favorite_border</i>
-                        </button>
-                    <%end%>
+                    </div>
+                </div>
+                <div class="col-2">
+                    <div class="company_job_save">
+                        <div class="company_job_button_save" id="save_job_mini_<%=company_job.id%>">
+                            <%if user_signed_in?%>
+                                <% pre_save = company_job.company_save_jobs.find { |save| save.user_id == current_user.id} %>
+                                <% if pre_save %> 
+                                    <%= link_to '<button class="save_btn_highlight"><i class="material-icons">favorite</i> </button>'.html_safe, company_job_company_save_job_path(company_job, pre_save, type_param: 'mini'), method: :delete, remote: true %>
+                                <%else%>
+                                    <%= link_to '<button class="save_btn"><i class="material-icons-outlined">favorite_border</i> </button>'.html_safe, company_job_company_save_jobs_path(company_job, type_param: 'mini'), method: :post, remote: true %>
+                                <%end%>
+                            <%else%>
+                                <button type="button" data-toggle="modal" data-target="#buttonModalLoginCenter" class="save_btn">
+                                    <i class="material-icons-outlined">favorite_border</i>
+                                </button>
+                            <%end%>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>

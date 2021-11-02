@@ -13,6 +13,7 @@ class ScrapJobsController < ApplicationController
         @scrap_job = ScrapJob.new(scrap_job_param)
         if @scrap_job.save
             # JobCrawler.process(@scrap_job)
+            # CrawlerJob.perform_later(@scrap_job.id)
             redirect_to admin_path(current_admin, tab: 'AdminScrapJobID')
         end
     end
