@@ -74,12 +74,11 @@ Rails.application.routes.draw do
     resources :company_save_jobs
   end
   get 'jobs_approve' => 'company_jobs#approve'
+  get 'jobs_search' => 'company_jobs#search'
 
   resources :company_questions do
     resources :company_reply_questions
   end
-  
-  get 'jobs_search' => 'company_jobs#search'
   
   resources :problems do
     resources :problem_solutions
