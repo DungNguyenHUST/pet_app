@@ -93,29 +93,34 @@
     <div id="fb-root"></div>
 
     <!-- FB messenger Chat plugin code Start -->
-    <div id="fb-customer-chat" class="fb-customerchat">
-    </div>
+    <%if employer_signed_in? \
+        || current_page?(employer_wellcome_path) \
+        || current_page?(employer_registration_path) \
+        || current_page?(employer_session_path)%>
+        <div id="fb-customer-chat" class="fb-customerchat">
+        </div>
 
-    <script>
-    var chatbox = document.getElementById('fb-customer-chat');
-    chatbox.setAttribute("page_id", "100170282265854");
-    chatbox.setAttribute("attribution", "biz_inbox");
+        <script>
+        var chatbox = document.getElementById('fb-customer-chat');
+        chatbox.setAttribute("page_id", "100170282265854");
+        chatbox.setAttribute("attribution", "biz_inbox");
 
-    window.fbAsyncInit = function() {
-        FB.init({
-        xfbml            : true,
-        version          : 'v12.0'
-        });
-    };
+        window.fbAsyncInit = function() {
+            FB.init({
+            xfbml            : true,
+            version          : 'v12.0'
+            });
+        };
 
-    (function(d, s, id) {
-        var js, fjs = d.getElementsByTagName(s)[0];
-        if (d.getElementById(id)) return;
-        js = d.createElement(s); js.id = id;
-        js.src = 'https://connect.facebook.net/vi_VN/sdk/xfbml.customerchat.js';
-        fjs.parentNode.insertBefore(js, fjs);
-    }(document, 'script', 'facebook-jssdk'));
-    </script>
+        (function(d, s, id) {
+            var js, fjs = d.getElementsByTagName(s)[0];
+            if (d.getElementById(id)) return;
+            js = d.createElement(s); js.id = id;
+            js.src = 'https://connect.facebook.net/vi_VN/sdk/xfbml.customerchat.js';
+            fjs.parentNode.insertBefore(js, fjs);
+        }(document, 'script', 'facebook-jssdk'));
+        </script>
+    <%end%>
     <!-- FB messenger Chat plugin code End-->
 
     <%= javascript_pack_tag 'application' %>
@@ -124,11 +129,11 @@
     <%= csp_meta_tag %>
     <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
 
+    <!-- Easy Auto complete search start -->
     <%if current_page?(jobs_search_path) \
         ||current_page?(root_path) \
         || current_page?(companies_path) \
         || current_page?(problems_path)%>
-        <!-- Easy Auto complete search start -->
         <script src="//code.jquery.com/jquery-1.11.2.min.js"></script>
         <%# <script src="https://cdnjs.cloudflare.com/ajax/libs/easy-autocomplete/1.3.5/jquery.easy-autocomplete.min.js"></script> %>
         <script>
@@ -1755,10 +1760,9 @@
             };
 
         })(jQuery);
-
         </script>
-        <!-- Easy Auto complete search end -->
     <%end%>
+    <!-- Easy Auto complete search end -->
 
     <!-- Additional CSS Themes file - not required-->
     <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
