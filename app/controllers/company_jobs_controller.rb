@@ -6,6 +6,8 @@ class CompanyJobsController < ApplicationController
     before_action :require_employer_login, only: [:new, :create, :edit, :update, :destroy]
     before_action :require_admin_login, only: [:approve]
 
+    add_breadcrumb "Trang chủ", :root_path
+
     def index
         @company_jobs = CompanyJob.all.expire
     end
@@ -92,6 +94,9 @@ class CompanyJobsController < ApplicationController
         @company = find_company_of_job(@company_job)
         @company_job.increment!(:view_count)
         
+        add_breadcrumb "Tìm kiếm việc làm", :jobs_search_path
+        add_breadcrumb @company_job.title, company_job_path(@company_job)
+        
         if verified_job(@company_job)
             if find_job_of_company(@company)
                 @company_jobs = find_job_of_company(@company)
@@ -118,6 +123,9 @@ class CompanyJobsController < ApplicationController
     end
 
     def search
+        
+        add_breadcrumb "Tìm kiếm việc làm", :jobs_search_path
+        
         # Auto complete
         if params.has_key?(:search) && !params.has_key?(:filter)
             @suggest_jobs = CompanyJob.search_job_by_query(params[:search])

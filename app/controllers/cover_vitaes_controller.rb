@@ -1,6 +1,7 @@
 class CoverVitaesController < ApplicationController
     include CoverVitaesHelper
     before_action :require_user_login, only: [:new, :create, :edit, :update, :destroy, :render_docx, :primary]
+    add_breadcrumb "Trang chủ", :root_path
 
     def index
         @cover_vitaes = CoverVitae.sample.all.sort_by{|cv| count_copy_cover_vitae(cv)}.reverse
@@ -32,6 +33,8 @@ class CoverVitaesController < ApplicationController
         else
             @tab = "default"
         end
+
+        add_breadcrumb "CV & Resume", :cover_vitaes_path
     end
 
     def new
@@ -63,6 +66,9 @@ class CoverVitaesController < ApplicationController
 
     def show
         @cover_vitae = CoverVitae.find(params[:id])
+
+        add_breadcrumb "CV & Resume", :cover_vitaes_path
+        add_breadcrumb @cover_vitae.title, cover_vitae_path(@cover_vitae)
     end
 
     def edit

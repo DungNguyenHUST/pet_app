@@ -5,7 +5,7 @@
             <div class="company_job_tab_des_left">
                 <%if @company_jobs.total_count > 0%>
                     <div class="company_job_tab_des_label">
-                        <a><%=@company_jobs.total_count%> việc làm đang tuyển dụng</a> 
+                        <a><%=@company_jobs.total_count%> việc làm</a> 
                     </div>
                     
                     <div class="company_job_index_tab">
@@ -111,5 +111,9 @@
                 </div>
             </div>
         </div>
+    </div>
+    
+    <div class="breadcrumbs">
+        <%= render_breadcrumbs :separator => '<i class="material-icons-outlined">keyboard_arrow_right</i>' %>
     </div>
 </div>

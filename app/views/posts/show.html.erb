@@ -3,108 +3,111 @@
 <% content_for :meta_description, @post.content %>
 <div class="container">
     <%- model_class = Post -%>
-        <div class="post_area">
-            <div class="row">
-                <div class="col-sm-8">
-                    <div class="post_area_left">
-                        <div class="post_title">
-                            <strong><%=@post.title%></strong>
+    <div class="post_area">
+        <div class="row">
+            <div class="col-sm-8">
+                <div class="post_area_left">
+                    <div class="post_title">
+                        <strong><%=@post.title%></strong>
+                    </div>
+                    <div class="post_info">
+                        <div class="post_user_avatar">
+                            <%owner_user = find_owner_user(@post)%>
+                            <%if owner_user%>
+                                <%= render owner_user%>  
+                            <%end%> 
                         </div>
-                        <div class="post_info">
-                            <div class="post_user_avatar">
-                                <%owner_user = find_owner_user(@post)%>
-                                <%if owner_user%>
-                                    <%= render owner_user%>  
-                                <%end%> 
-                            </div>
-                            <div class="user_name">
-                                <%if owner_user.present?%>
-                                    <a><%= owner_user.name%></a>
-                                <%else%>
-                                    <a>Firework Team</a>
-                                <%end%>
-                            </div>
-                            <div class="post_category_info">
-                                <%post_category=''%>
-                                <%if(@post.category.to_i == 1) %>
-                                    <% post_category = "Con đường sự nghiệp" %>
-                                <% elsif (@post.category.to_i == 2) %>
-                                    <% post_category = "Khoa học công nghệ" %>
-                                <% elsif (@post.category.to_i == 3) %>
-                                    <% post_category = "Blog" %>
-                                <% else %>
-                                    <% post_category = "Danh mục khác" %>
-                                <%end%>
-                                <div class="post_category">
-                                    <a><i class="material-icons-outlined">article</i><%= post_category %></a>
-                                </div>
-                            </div>
-                            <div class="post_comment">
-                                <i class="material-icons-outlined">chat_bubble_outline</i><span><%=@post.post_comments.count%> bình luận</span> 
-                            </div>
-                            <div class="post_time">
-                                <span><i class="material-icons-outlined">history_toggle_off</i><%=@post.created_at.strftime("%B %d, %Y")%></span>
-                            </div>
-                        </div>
-                        <div class="post_content">
-                            <span><%=@post.content.html_safe%></span>
-                        </div>
-                        
-                        <div class="post_comment_block" id="post_comment_index_<%=@post.id%>">
-                            <div class="post_count">
-                                <span><%= @post.post_comments.count%> Bình luận</span>
-                            </div>
-                            <%= form_for([@post, PostComment.new], remote: true) do |f| %>
-                                <div class="new_post_show_comment_section">
-                                    <div class="new_post_show_comment_input">
-                                        <%= f.text_area :comment_content, :class => "tinymce"%>
-                                        <%= tinymce :mini %>
-                                    </div>
-                                </div>
-
-                                <div class="new_post_show_comment_submit">
-                                    <%= f.submit "Gửi bình luận", class: "new_post_comment_form_submit" %>
-                                </div>
+                        <div class="user_name">
+                            <%if owner_user.present?%>
+                                <a><%= owner_user.name%></a>
+                            <%else%>
+                                <a>Firework Team</a>
                             <%end%>
-                            <div class="post_comment">
-                                <%= render @post_comments %>
+                        </div>
+                        <div class="post_category_info">
+                            <%post_category=''%>
+                            <%if(@post.category.to_i == 1) %>
+                                <% post_category = "Con đường sự nghiệp" %>
+                            <% elsif (@post.category.to_i == 2) %>
+                                <% post_category = "Khoa học công nghệ" %>
+                            <% elsif (@post.category.to_i == 3) %>
+                                <% post_category = "Blog" %>
+                            <% else %>
+                                <% post_category = "Danh mục khác" %>
+                            <%end%>
+                            <div class="post_category">
+                                <a><i class="material-icons-outlined">article</i><%= post_category %></a>
                             </div>
-                            <%= paginate @post_comments, window: 2%>
+                        </div>
+                        <div class="post_comment">
+                            <i class="material-icons-outlined">chat_bubble_outline</i><span><%=@post.post_comments.count%> bình luận</span> 
+                        </div>
+                        <div class="post_time">
+                            <span><i class="material-icons-outlined">history_toggle_off</i><%=@post.created_at.strftime("%B %d, %Y")%></span>
                         </div>
                     </div>
-                </div>
-
-                <div class="col-sm-4">
-                    <div class="post_area_right">
-                        <div class="post_area_right_title">
-                            <span>Xem thêm</span>
+                    <div class="post_content">
+                        <span><%=@post.content.html_safe%></span>
+                    </div>
+                    
+                    <div class="post_comment_block" id="post_comment_index_<%=@post.id%>">
+                        <div class="post_count">
+                            <span><%= @post.post_comments.count%> Bình luận</span>
                         </div>
-                        <% @post_relateds.first(10).each do |post| %>
-                            <div class="post_mini_container">
-                                <div class="post_mini_left">
-                                    <%if post.wall_picture?%>
-                                        <%= link_to (image_tag(post.wall_picture.medium.url)), image_path(url_for(post.wall_picture.medium.url)), rel: "gallery" , :href => post_path(post)%>
-                                    <%else%>
-                                        <img src="<%= "/assets/defaults/post_default.jpg" %>" alt="Snow" style="width:100%;">
-                                    <%end%>
-                                </div>
-
-                                <div class="post_mini_right">
-                                    <div class="post_mini_header">
-                                        <strong><%= link_to (post.title), post_path(post) %></strong>
-                                    </div>
-
-                                    <div class="post_mini_info">
-                                        <div class="post_mini_date">
-                                            <span><%=time_ago_in_words(post.created_at)%></span>
-                                        </div>
-                                    </div>
+                        <%= form_for([@post, PostComment.new], remote: true) do |f| %>
+                            <div class="new_post_show_comment_section">
+                                <div class="new_post_show_comment_input">
+                                    <%= f.text_area :comment_content, :class => "tinymce"%>
+                                    <%= tinymce :mini %>
                                 </div>
                             </div>
+
+                            <div class="new_post_show_comment_submit">
+                                <%= f.submit "Gửi bình luận", class: "new_post_comment_form_submit" %>
+                            </div>
                         <%end%>
+                        <div class="post_comment">
+                            <%= render @post_comments %>
+                        </div>
+                        <%= paginate @post_comments, window: 2%>
                     </div>
                 </div>
             </div>
-        </div>  
+
+            <div class="col-sm-4">
+                <div class="post_area_right">
+                    <div class="post_area_right_title">
+                        <span>Xem thêm</span>
+                    </div>
+                    <% @post_relateds.first(10).each do |post| %>
+                        <div class="post_mini_container">
+                            <div class="post_mini_left">
+                                <%if post.wall_picture?%>
+                                    <%= link_to (image_tag(post.wall_picture.medium.url)), image_path(url_for(post.wall_picture.medium.url)), rel: "gallery" , :href => post_path(post)%>
+                                <%else%>
+                                    <img src="<%= "/assets/defaults/post_default.jpg" %>" alt="Snow" style="width:100%;">
+                                <%end%>
+                            </div>
+
+                            <div class="post_mini_right">
+                                <div class="post_mini_header">
+                                    <strong><%= link_to (post.title), post_path(post) %></strong>
+                                </div>
+
+                                <div class="post_mini_info">
+                                    <div class="post_mini_date">
+                                        <span><%=time_ago_in_words(post.created_at)%></span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    <%end%>
+                </div>
+            </div>
+        </div>
     </div>
+    
+    <div class="breadcrumbs">
+        <%= render_breadcrumbs :separator => '<i class="material-icons-outlined">keyboard_arrow_right</i>' %>
+    </div> 
 </div>

@@ -3,7 +3,11 @@ class CompaniesController < ApplicationController
     include ApplicationHelper
     before_action :require_employer_login, only: [:new, :create, :edit, :update, :destroy]
 
+    add_breadcrumb "Trang chủ", :root_path
+
     def index
+        add_breadcrumb "Danh sách công ty", :companies_path
+        
         # Auto complete
         @suggest_companies = Company.search_company_by_name(params[:search])
         respond_to do |format|
@@ -79,6 +83,26 @@ class CompaniesController < ApplicationController
             @tab = params[:tab]
         else
             @tab = "default"
+        end
+
+        add_breadcrumb "Danh sách công ty", :companies_path
+        add_breadcrumb @company.name, company_path(@company)
+        if @tab == "CompanyProfileID"
+            add_breadcrumb "Tổng quan chung", company_path(@company)                        
+        elsif @tab == "CompanyPolicyID"
+            add_breadcrumb "Chính sách", company_path(@company) 
+        elsif  @tab == "CompanyReviewsID"
+            add_breadcrumb "Review", company_path(@company)
+        elsif  @tab == "CompanyInterviewsID"
+            add_breadcrumb "Phỏng vấn", company_path(@company)
+        elsif @tab == "CompanyJobsID"
+            add_breadcrumb "Việc làm", company_path(@company)
+        elsif @tab == "CompanySalariesID"
+            add_breadcrumb "Lương", company_path(@company)
+        elsif  @tab == "CompanyQuestionsID"
+            add_breadcrumb "Câu hỏi", company_path(@company) 
+        elsif  @tab == "CompanyImagesID"
+            add_breadcrumb "Hình ảnh", company_path(@company)
         end
     end
 

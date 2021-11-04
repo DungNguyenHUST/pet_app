@@ -14,243 +14,246 @@
 <% content_for :meta_title, title + " " + @problem.title %>
 <% content_for :meta_description, @problem.content %>
 <%- model_class = Problem -%>
-	<div class="container-fluid">
-		<div class="problem_area">
-			<div class="row">
-				<div class="col-sm-6">
-					<div class="problem_area_left">
-						<div class="problem_tab_link">
-							<ul class="nav nav-justified">
-								<li class="nav-item">
-									<%if @tab == "default" || @tab == "ProblemDescriptionID"%>
-										<%active = "active"%>
-									<%else%> 
-										<%active = ""%>
-									<%end%>                                 
-									<a class="nav-link <%=active%>" href="<%=problem_path(@problem, tab: 'ProblemDescriptionID')%>"><i class="material-icons-outlined">content_paste</i>Mô tả</a>
-								</li>
-								<li class="nav-item">
-									<%if @tab == "ProblemSolutionID"%>
-										<%active = "active"%>
-									<%else%> 
-										<%active = ""%>
-									<%end%>                                     
-									<a class="nav-link <%=active%>" href="<%=problem_path(@problem, tab: 'ProblemSolutionID')%>"><i class="material-icons-outlined">lightbulb</i>Trả lời<span> <%= convert_number_to_human(@problem.problem_solutions.count)%><span></a>
-								</li>
-								<li class="nav-item">
-									<%if @tab == "ProblemSubmitSolutionID"%>
-										<%active = "active"%>
-									<%else%> 
-										<%active = ""%>
-									<%end%>                                     
-									<a class="nav-link <%=active%>" href="<%=problem_path(@problem, tab: 'ProblemSubmitSolutionID')%>"><i class="material-icons-outlined">bookmark_border</i>Submission<span> <%= convert_number_to_human(@problem_submition.count)%><span></a>
-								</li>
-								<li class="nav-item">
-									<%if @tab == "ProblemRelatedID"%>
-										<%active = "active"%>
-									<%else%> 
-										<%active = ""%>
-									<%end%>                                     
-									<a class="nav-link <%=active%>" href="<%=problem_path(@problem, tab: 'ProblemRelatedID')%>"><i class="material-icons">list</i>Câu hỏi liên quan<span> <%= convert_number_to_human(@problem_relateds.total_count)%><span></a>
-								</li>
-							</ul>
-						</div>
+<div class="container-fluid">
+	<div class="problem_area">
+		<div class="row">
+			<div class="col-sm-6 col_padding_customize">
+				<div class="problem_area_left">
+					<div class="problem_tab_link">
+						<ul class="nav nav-justified">
+							<li class="nav-item">
+								<%if @tab == "default" || @tab == "ProblemDescriptionID"%>
+									<%active = "active"%>
+								<%else%> 
+									<%active = ""%>
+								<%end%>                                 
+								<a class="nav-link <%=active%>" href="<%=problem_path(@problem, tab: 'ProblemDescriptionID')%>"><i class="material-icons-outlined">content_paste</i>Mô tả</a>
+							</li>
+							<li class="nav-item">
+								<%if @tab == "ProblemSolutionID"%>
+									<%active = "active"%>
+								<%else%> 
+									<%active = ""%>
+								<%end%>                                     
+								<a class="nav-link <%=active%>" href="<%=problem_path(@problem, tab: 'ProblemSolutionID')%>"><i class="material-icons-outlined">lightbulb</i>Trả lời<span> <%= convert_number_to_human(@problem.problem_solutions.count)%><span></a>
+							</li>
+							<li class="nav-item">
+								<%if @tab == "ProblemSubmitSolutionID"%>
+									<%active = "active"%>
+								<%else%> 
+									<%active = ""%>
+								<%end%>                                     
+								<a class="nav-link <%=active%>" href="<%=problem_path(@problem, tab: 'ProblemSubmitSolutionID')%>"><i class="material-icons-outlined">bookmark_border</i>Submission<span> <%= convert_number_to_human(@problem_submition.count)%><span></a>
+							</li>
+							<li class="nav-item">
+								<%if @tab == "ProblemRelatedID"%>
+									<%active = "active"%>
+								<%else%> 
+									<%active = ""%>
+								<%end%>                                     
+								<a class="nav-link <%=active%>" href="<%=problem_path(@problem, tab: 'ProblemRelatedID')%>"><i class="material-icons">list</i>Câu hỏi liên quan<span> <%= convert_number_to_human(@problem_relateds.total_count)%><span></a>
+							</li>
+						</ul>
+					</div>
 
-						<div class="problem_tab_content">
-							<%if @tab == "default" || @tab == "ProblemDescriptionID"%>
-								<div class="problem_des_tab">
-									<div class="problem_des_info">
-										<div class="problem_des_title">
-											<a><%=@problem.id%>. <%=@problem.title%></a>
+					<div class="problem_tab_content">
+						<%if @tab == "default" || @tab == "ProblemDescriptionID"%>
+							<div class="problem_des_tab">
+								<div class="problem_des_info">
+									<div class="problem_des_title">
+										<a><%=@problem.id%>. <%=@problem.title%></a>
+									</div>
+									<div class="problem_des">
+										<div class="problem_user">
+											<%owner_user = find_owner_user(@problem)%>
+											<%if owner_user%>
+												<%= render owner_user%>  
+											<%end%>
 										</div>
-										<div class="problem_des">
-											<div class="problem_user">
-												<%owner_user = find_owner_user(@problem)%>
-												<%if owner_user%>
-													<%= render owner_user%>  
-												<%end%>
-											</div>
 
-											<div class="user_name">
-												<%if owner_user.present?%>
-													<a><%= owner_user.name%></a>
-												<%else%>
-													<a>Firework Team</a>
-												<%end%>
+										<div class="user_name">
+											<%if owner_user.present?%>
+												<a><%= owner_user.name%></a>
+											<%else%>
+												<a>Firework Team</a>
+											<%end%>
+										</div>
+										<div class="problem_difficult_show_info">
+											<%problem_difficult = ""%>
+											<%if(@problem.difficult.to_i == 1 || @problem.difficult.to_s == 'Dễ') %>
+												<% problem_difficult = "easy" %>
+											<% elsif (@problem.difficult.to_i == 2 || @problem.difficult.to_s == 'Trung bình') %>
+												<% problem_difficult = "average" %>
+											<% elsif (@problem.difficult.to_i == 3 || @problem.difficult.to_s == 'Khó') %>
+												<% problem_difficult = "hard" %>
+											<%end%>
+											<div class=<%= problem_difficult %>>
+												<a><i class="material-icons-outlined ">emoji_objects</i><%= @problem.difficult %></a>
 											</div>
-											<div class="problem_difficult_show_info">
-												<%problem_difficult = ""%>
-												<%if(@problem.difficult.to_i == 1 || @problem.difficult.to_s == 'Dễ') %>
-													<% problem_difficult = "easy" %>
-												<% elsif (@problem.difficult.to_i == 2 || @problem.difficult.to_s == 'Trung bình') %>
-													<% problem_difficult = "average" %>
-												<% elsif (@problem.difficult.to_i == 3 || @problem.difficult.to_s == 'Khó') %>
-													<% problem_difficult = "hard" %>
-												<%end%>
-												<div class=<%= problem_difficult %>>
-													<a><i class="material-icons-outlined ">emoji_objects</i><%= @problem.difficult %></a>
-												</div>
-											</div>
-											
-											<div class="problem_history_info">
-												<% problem_category = ""%>
-												<%if @problem.category.to_i == 1%>
-													<%problem_category = "Thuật toán"%>
-												<%elsif @problem.category.to_i == 2%>
-													<%problem_category = "Câu hỏi phỏng vấn"%>
-												<%elsif @problem.category.to_i == 3%>
-													<%problem_category = "IQ Test"%>
-												<%elsif @problem.category.to_i == 4%>
-													<%problem_category = "EQ Test"%>
-												<%elsif @problem.category.to_i == 5%>
-													<%problem_category = "Câu hỏi khác"%>
-												<%end%>															
-												<a><i class="material-icons-outlined checked">open_in_new</i><%= problem_category%></a>
-												<a><i class="material-icons-outlined checked">lightbulb</i><%= @problem.problem_solutions.count%> Giải pháp</a>
-												<a><i class="material-icons-outlined checked">history_toggle_off</i><%= time_ago_in_words(@problem.created_at)%></a>
-											</div>
+										</div>
+										
+										<div class="problem_history_info">
+											<% problem_category = ""%>
+											<%if @problem.category.to_i == 1%>
+												<%problem_category = "Thuật toán"%>
+											<%elsif @problem.category.to_i == 2%>
+												<%problem_category = "Câu hỏi phỏng vấn"%>
+											<%elsif @problem.category.to_i == 3%>
+												<%problem_category = "IQ Test"%>
+											<%elsif @problem.category.to_i == 4%>
+												<%problem_category = "EQ Test"%>
+											<%elsif @problem.category.to_i == 5%>
+												<%problem_category = "Câu hỏi khác"%>
+											<%end%>															
+											<a><i class="material-icons-outlined checked">open_in_new</i><%= problem_category%></a>
+											<a><i class="material-icons-outlined checked">lightbulb</i><%= @problem.problem_solutions.count%> Giải pháp</a>
+											<a><i class="material-icons-outlined checked">history_toggle_off</i><%= time_ago_in_words(@problem.created_at)%></a>
 										</div>
 									</div>
-									<div class="problem_des_content">
-										<%= @problem.content.html_safe %>
+								</div>
+								<div class="problem_des_content">
+									<%= @problem.content.html_safe %>
+								</div>
+							</div>
+						<%end%>
+
+						<%if @tab == "ProblemSolutionID"%>
+							<div class="problem_solution_tab" id="ProblemSolutionID">
+								<%if @problem_solutions_best.present?%>
+									<div class="problem_solution_best">
+										<div class="problem_solution_best_title">
+											<i class="material-icons-outlined">done</i>
+											<a> Câu trả lời hay nhất</a>
+										</div>
+										<%=render @problem_solutions_best%>
 									</div>
-								</div>
-							<%end%>
+								<%end%>
+								<%if @problem.problem_solutions.count > 0%>
+									<div class="problem_solution_index">
+										<div class="problem_solution_title">
+											<a><%=@problem.problem_solutions.count%> câu trả lời</a>
+										</div>
+										<div class="problem_solution_render">
+											<%= render @problem_solutions %>
+										</div>
+										<%= paginate @problem_solutions, window: 2%>
+									</div>
+								<%else%>
+									<div class="problem_new_not_found_block">
+										<div class="problem_new_not_found_icon">
+											<i class="material-icons">lightbulb</i>
+										</div>
+										<div class="problem_new_not_found">
+											<span>Rất tiếc, hiện tại chưa có câu trả lời nào, hãy trở thành người đầu tiên đưa ra câu trả lời cho câu hỏi này</span>
+										</div>
+									</div>
+								<%end%>
+							</div>
+						<%end%>
 
-							<%if @tab == "ProblemSolutionID"%>
-								<div class="problem_solution_tab" id="ProblemSolutionID">
-									<%if @problem_solutions_best.present?%>
-										<div class="problem_solution_best">
-											<div class="problem_solution_best_title">
-												<i class="material-icons-outlined">done</i>
-												<a> Câu trả lời hay nhất</a>
-											</div>
-											<%=render @problem_solutions_best%>
+						<%if @tab == "ProblemSubmitSolutionID"%>
+							<div class="problem_submit_tab">  
+								<%if @problem_submition.count > 0%>  
+									<%= render @problem_submition%>
+								<%else%>
+									<div class="problem_new_not_found_block">
+										<div class="problem_new_not_found_icon">
+											<i class="material-icons">bookmark</i>
 										</div>
-									<%end%>
-									<%if @problem.problem_solutions.count > 0%>
-										<div class="problem_solution_index">
-											<div class="problem_solution_title">
-												<a><%=@problem.problem_solutions.count%> câu trả lời</a>
-											</div>
-											<div class="problem_solution_render">
-												<%= render @problem_solutions %>
-											</div>
-											<%= paginate @problem_solutions, window: 2%>
+										<div class="problem_new_not_found">
+											<span>Bạn chưa có câu trả lời nào cho câu hỏi này...</span>
 										</div>
-									<%else%>
-										<div class="problem_new_not_found_block">
-											<div class="problem_new_not_found_icon">
-												<i class="material-icons">lightbulb</i>
-											</div>
-											<div class="problem_new_not_found">
-												<span>Rất tiếc, hiện tại chưa có câu trả lời nào, hãy trở thành người đầu tiên đưa ra câu trả lời cho câu hỏi này</span>
-											</div>
-										</div>
-									<%end%>
-								</div>
-							<%end%>
-
-							<%if @tab == "ProblemSubmitSolutionID"%>
-								<div class="problem_submit_tab">  
-									<%if @problem_submition.count > 0%>  
-										<%= render @problem_submition%>
-									<%else%>
-										<div class="problem_new_not_found_block">
-											<div class="problem_new_not_found_icon">
-												<i class="material-icons">bookmark</i>
-											</div>
-											<div class="problem_new_not_found">
-												<span>Bạn chưa có câu trả lời nào cho câu hỏi này...</span>
-											</div>
-										</div>
-									<%end%>
-								</div>
-							<%end%>
-							
-							<%if @tab == "ProblemRelatedID"%>
-								<div class="problem_related_tab">
-									<table class="table table-hover table-striped table-bordere">
-										<thead>
-											<tr>
-												<th><div class="table_th_no">#</th>
-												<th><div class="table_th_title">Tiêu đề</th>
-												<th><div class="table_th_difficult">Độ khó</th>
-												<th><div class="table_th_user">Trả lời</th>
-											</tr>
-										</thead>
-										<tbody>
-											<% @problem_relateds.each do |problem| %>
-												<%if problem.difficult.to_i == @problem.difficult.to_i%>
-													<tr>
-														<td><div class="table_td_no"><%= problem.id %></td>
-														<td><div class="table_td_title"><a><%= link_to problem.title, problem_path(problem) %></a></td>
-														<td>
-															<%if(problem.difficult.to_i == 1 || problem.difficult.to_s == 'Dễ') %>
-																<% table_td_difficult = "easy" %>
-															<% elsif (problem.difficult.to_i == 2 || problem.difficult.to_s == 'Trung bình') %>
-																<% table_td_difficult = "average" %>
-															<% elsif (problem.difficult.to_i == 3 || problem.difficult.to_s == 'Khó') %>
-																<% table_td_difficult = "hard" %>
-															<%end%>
-															<div class=<%= table_td_difficult %>><a><%= problem.difficult %></a>
-														</td>
-														<td><div class="table_td_user"><%= problem.problem_solutions.count %></td>
-													</tr>
-												<%end%>
-											<% end %>
-										</tbody>
-									</table>
-									<%= paginate @problem_relateds, window: 2%>
-								</div>
-							<%end%>
-						</div>
-
-						<%if @problem_submition.count < 1%>
-							<script type="text/javascript">
-								$(#ProblemSolutionID).click(function (e) {
-									e.preventDefault()
-									var areYouSure = confirm('Bạn chưa có giải pháp nào cho câu hỏi này, bạn có muốn xem đáp án hay không?');
-									if (areYouSure === true) {
-										$(this).tab('show')
-									} else {
-										return false;
-									}
-								})
-							</script>
+									</div>
+								<%end%>
+							</div>
+						<%end%>
+						
+						<%if @tab == "ProblemRelatedID"%>
+							<div class="problem_related_tab">
+								<table class="table table-hover table-striped table-bordere">
+									<thead>
+										<tr>
+											<th><div class="table_th_no">#</th>
+											<th><div class="table_th_title">Tiêu đề</th>
+											<th><div class="table_th_difficult">Độ khó</th>
+											<th><div class="table_th_user">Trả lời</th>
+										</tr>
+									</thead>
+									<tbody>
+										<% @problem_relateds.each do |problem| %>
+											<%if problem.difficult.to_i == @problem.difficult.to_i%>
+												<tr>
+													<td><div class="table_td_no"><%= problem.id %></td>
+													<td><div class="table_td_title"><a><%= link_to problem.title, problem_path(problem) %></a></td>
+													<td>
+														<%if(problem.difficult.to_i == 1 || problem.difficult.to_s == 'Dễ') %>
+															<% table_td_difficult = "easy" %>
+														<% elsif (problem.difficult.to_i == 2 || problem.difficult.to_s == 'Trung bình') %>
+															<% table_td_difficult = "average" %>
+														<% elsif (problem.difficult.to_i == 3 || problem.difficult.to_s == 'Khó') %>
+															<% table_td_difficult = "hard" %>
+														<%end%>
+														<div class=<%= table_td_difficult %>><a><%= problem.difficult %></a>
+													</td>
+													<td><div class="table_td_user"><%= problem.problem_solutions.count %></td>
+												</tr>
+											<%end%>
+										<% end %>
+									</tbody>
+								</table>
+								<%= paginate @problem_relateds, window: 2%>
+							</div>
 						<%end%>
 					</div>
-				</div>
 
-				<div class="col-sm-6">
-					<div class="problem_right">
-						<div class="problem_right_tab_link">
-							<ul class="nav nav-tabs nav-justified" id="problem_right_tabs" role="tablist">
-								<li class="nav-item">
-									<a class="nav-link active" data-toggle="tab" href="#NormalTextID"><i class="material-icons-outlined">create</i>Text Editor</a>
-								</li>
-								<li class="nav-item">
-									<a class="nav-link" data-toggle="tab" href="#CompilerID"><i class="material-icons-outlined">code</i>Compiler</a>
-								</li>
-							</ul>
-						</div>
-						<div class="problem_right_tab_content">
-							<div class="tab-content">
-								<div role="tabpanel" id="NormalTextID" class="tab-pane fade show active">
-									<div class="problem_normal_text">
-										<%= render :partial => 'problem_solutions/form' %>
-									</div>
+					<%if @problem_submition.count < 1%>
+						<script type="text/javascript">
+							$(#ProblemSolutionID).click(function (e) {
+								e.preventDefault()
+								var areYouSure = confirm('Bạn chưa có giải pháp nào cho câu hỏi này, bạn có muốn xem đáp án hay không?');
+								if (areYouSure === true) {
+									$(this).tab('show')
+								} else {
+									return false;
+								}
+							})
+						</script>
+					<%end%>
+				</div>
+			</div>
+
+			<div class="col-sm-6 col_padding_customize">
+				<div class="problem_right">
+					<div class="problem_right_tab_link">
+						<ul class="nav nav-tabs nav-justified" id="problem_right_tabs" role="tablist">
+							<li class="nav-item">
+								<a class="nav-link active" data-toggle="tab" href="#NormalTextID"><i class="material-icons-outlined">create</i>Text Editor</a>
+							</li>
+							<li class="nav-item">
+								<a class="nav-link" data-toggle="tab" href="#CompilerID"><i class="material-icons-outlined">code</i>Compiler</a>
+							</li>
+						</ul>
+					</div>
+					<div class="problem_right_tab_content">
+						<div class="tab-content">
+							<div role="tabpanel" id="NormalTextID" class="tab-pane fade show active">
+								<div class="problem_normal_text">
+									<%= render :partial => 'problem_solutions/form' %>
 								</div>
-								<div role="tabpanel" id="CompilerID" class="tab-pane">
-									<div class="problem_compiler_text">
-										<a>Comming soon...</a>
-									</div>
+							</div>
+							<div role="tabpanel" id="CompilerID" class="tab-pane">
+								<div class="problem_compiler_text">
+									<a>Comming soon...</a>
 								</div>
 							</div>
 						</div>
 					</div>
 				</div>
-			</div>	
-		</div>
-	</div> 
+			</div>
+		</div>	
+	</div>
+    
+    <div class="breadcrumbs">
+        <%= render_breadcrumbs :separator => '<i class="material-icons-outlined">keyboard_arrow_right</i>' %>
+    </div> 
 </div>

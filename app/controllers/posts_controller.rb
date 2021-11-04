@@ -1,8 +1,11 @@
 class PostsController < ApplicationController
     include ApplicationHelper
     before_action :require_user_login, only: [:new, :create, :edit, :update, :destroy]
+    add_breadcrumb "Trang chủ", :root_path
 
     def index
+        add_breadcrumb "Tất cả bài viết", :posts_path
+
         @posts = Post.all.order('created_at DESC').page(params[:page]).per(10)
         @post_comments = PostComment.all
     end
@@ -32,6 +35,9 @@ class PostsController < ApplicationController
         @post_comments = @post.post_comments.order('created_at DESC').page(params[:page]).per(10)
 
         @post_relateds = Post.all.order('created_at DESC').reject{|i| i.id == @post.id}
+        
+        add_breadcrumb "Tất cả bài viết", :posts_path
+        add_breadcrumb @post.title, post_path(@post)
     end
 
     def edit

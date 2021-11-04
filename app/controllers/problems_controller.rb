@@ -3,7 +3,11 @@ class ProblemsController < ApplicationController
     before_action :require_user_login, only: [:new, :create, :edit, :update, :destroy]
     before_action :require_admin_login, only: [:approve]
 
+    add_breadcrumb "Trang chủ", :root_path
+
     def index
+        add_breadcrumb "Tất cả câu hỏi", :problems_path
+
         # Auto complete
         @suggest_problems = Problem.search_problem_by_title(params[:search])
         respond_to do |format|
@@ -96,6 +100,9 @@ class ProblemsController < ApplicationController
 
         @problem_relateds = Problem.all.approved.reject{|i| i.id == @problem.id}
         @problem_relateds = Kaminari.paginate_array(@problem_relateds).page(params[:page]).per(20)
+
+        add_breadcrumb "Tất cả câu hỏi", :problems_path
+        add_breadcrumb @problem.title, problem_path(@problem)
     end
 
     def edit

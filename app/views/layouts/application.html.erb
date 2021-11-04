@@ -131,7 +131,8 @@
 
     <!-- Easy Auto complete search start -->
     <%if current_page?(jobs_search_path) \
-        ||current_page?(root_path) \
+        || current_page?(root_path) \
+        || (@company_job.present? && current_page?(company_job_path(@company_job))) \
         || current_page?(companies_path) \
         || current_page?(problems_path)%>
         <script src="//code.jquery.com/jquery-1.11.2.min.js"></script>

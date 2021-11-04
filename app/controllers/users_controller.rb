@@ -2,6 +2,8 @@ class UsersController < ApplicationController
     # skip_before_action :require_user_login, only: [:new, :create]
     before_action :require_user_login, only: [:index, :show, :edit, :update, :destroy, :profile]
     
+    add_breadcrumb "Trang chủ", :root_path
+    
     def index
         @users = User.all
     end
@@ -87,6 +89,7 @@ class UsersController < ApplicationController
 
     def profile
         @user = current_user
+        add_breadcrumb "Hồ sơ cá nhân", user_profile_path
     end
 
     def preview
