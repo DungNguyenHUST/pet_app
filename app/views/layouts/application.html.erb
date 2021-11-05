@@ -50,6 +50,11 @@
     gtag('config', 'UA-196746836-1');
     </script>
     <!-- End Global site tag (gtag.js) - Google Analytics -->
+
+    <!-- Google Adsense -->
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-2139339969989508" crossorigin="anonymous"></script>
+    <!-- End Google Adsense -->
+
     <!-- Google data end-->
 
     <!-- Facebook Open Graph data -->
@@ -128,6 +133,31 @@
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
     <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+
+    <!-- Additional CSS Themes file - not required-->
+    <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
+</head>
+<!-- header end -->
+
+<!-- body start -->
+<body>
+    <!-- Google Tag Manager (noscript) -->
+    <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-TP9TWNJ"
+    height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+    <!-- End Google Tag Manager (noscript) -->
+
+    <!-- alert key of user -->
+    <%if flash.first%>
+    <div class="container">
+        <%=render "pages/flash_message"%>
+    </div>
+    <%end%>
+    <!-- end -->
+
+    <!-- For login anywhere -->
+    <%if !user_signed_in?%>
+    <%= render 'pages/login'%>
+    <%end%>
 
     <!-- Easy Auto complete search start -->
     <%if current_page?(jobs_search_path) \
@@ -1764,31 +1794,6 @@
         </script>
     <%end%>
     <!-- Easy Auto complete search end -->
-
-    <!-- Additional CSS Themes file - not required-->
-    <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
-</head>
-<!-- header end -->
-
-<!-- body start -->
-<body>
-    <!-- Google Tag Manager (noscript) -->
-    <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-TP9TWNJ"
-    height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
-    <!-- End Google Tag Manager (noscript) -->
-
-    <!-- alert key of user -->
-    <%if flash.first%>
-    <div class="container">
-        <%=render "pages/flash_message"%>
-    </div>
-    <%end%>
-    <!-- end -->
-
-    <!-- For login anywhere -->
-    <%if !user_signed_in?%>
-    <%= render 'pages/login'%>
-    <%end%>
 
     <!-- body render start -->
     <%= yield %>
