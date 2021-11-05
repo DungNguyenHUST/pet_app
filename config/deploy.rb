@@ -56,3 +56,12 @@ end
 # For append secret key file in host
 append :linked_files, "config/secret.yml"
 # after 'deploy:update_code', 'deploy:symlink_uploads'
+
+# Genarate sitemap
+desc 'generate sitemaps'
+task :generatesitemap do
+    on roles: :app do
+        run "cd #{release_path}"
+        run "ruby sitemap.rb"
+    end
+end
