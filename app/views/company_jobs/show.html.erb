@@ -132,6 +132,27 @@
                     </div>
                 </div>
             <%end%>
+
+            <%=form_tag jobs_search_path, :method => "get" do%>
+                <div class="company_job_show_search_input_mobile">
+                    <div class='row'>
+                        <div class='col-10 col_padding_customize_right_small_screen'>
+                            <div class="company_job_show_search_what_mobile">
+                                <%= text_field_tag :search, params[:search], data: { behavior: "autocomplete" }, class: 'form-control', placeholder: "Tìm kiếm công việc, kĩ năng, tên công ty..."%>
+                            </div>
+                        </div>
+                        
+                        <div class='col-2 col_padding_customize_left_small_screen'>
+                            <div class="company_job_show_search_button_mobile">
+                                <%= button_to "", form_class: "searched_button", :name => nil do%>
+                                    <i class="material-icons-outlined">search</i>
+                                <%end%> 
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            <%end%>
+
             <script>
                 document.addEventListener("turbolinks:load", function() {
                     $input = $("[data-behavior='autocomplete']")
