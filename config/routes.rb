@@ -114,5 +114,10 @@ Rails.application.routes.draw do
 
   get 'pages_select_company' => 'pages#select_company'
 
-  root "pages#home"
+  # root "pages#home"
+
+  # I18n
+  scope "(:locale)", locale: /en|vi/ do
+    root to: 'pages#home'
+  end
 end

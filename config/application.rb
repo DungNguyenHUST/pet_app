@@ -31,5 +31,14 @@ module PetApp
 
     # Search optimize
     config.active_record.schema_format = :sql
+
+    # Where the I18n library should search for translation files
+    I18n.load_path += Dir[Rails.root.join('lib', 'locale', '*.{rb,yml}')]
+
+    # Permitted locales available for the application
+    I18n.available_locales = [:en, :vi]
+
+    # Set default locale to something other than :en
+    I18n.default_locale = :vi
   end
 end
