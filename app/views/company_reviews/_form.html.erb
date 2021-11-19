@@ -5,8 +5,8 @@
 				<div class="col-sm-8">
 					<div class="new_review_title_block">
 						<div class="new_review_title">
-							<h3>Review <%=@company.name%></h3>
-							<a>Bạn sẽ chỉ mất ít phút để đánh giá <%=@company.name%>, review của bạn sẽ giúp ích cho rất nhiều người ...</a>
+							<h3><%=t(:review)%> <%=@company.name%></h3>
+							<a><%=t(:form_review_sub_1)%> <%=@company.name%>, <%=t(:form_review_sub_2)%> ...</a>
 						</div>
 						<div class="company_review_image">
 							<%if @company.avatar?%>
@@ -18,7 +18,7 @@
 					</div>
 
 					<div class="new_review_title_sub">
-						<a>Note: Mục có dấu <span>'*'</span> là bắt buộc</a>
+						<a><%=t(:form_require_left)%> <span>'*'</span> <%=t(:form_require_right)%></a>
 					</div>
 
 					<div class="new_review_section">
@@ -26,7 +26,7 @@
 							<div class="row">
 								<div class="col-sm-6">
 									<div class="new_review_score_label">
-										<a><%= f.label :score, "Bạn đánh giá công ty bao nhiêu điểm", class: "new_review_label_name" %><span>*</span></a>
+										<a><%= f.label :score, t(:form_review_1), class: "new_review_label_name" %><span>*</span></a>
 									</div>
 								</div>
 								<div class="col-sm-6">
@@ -91,29 +91,29 @@
 					<div class="new_review_section">
 						<div class="new_review_content">
 							<div class="new_review_label">
-								<a><%= f.label :position, "Vị trí làm việc của bạn", class: "new_review_label_name" %><span>*</span></a>
+								<a><%= f.label :position, t(:form_review_2), class: "new_review_label_name" %><span>*</span></a>
 							</div>
 
 							<div class="new_review_input">
-								<%= f.text_field :position, :required => true, class: "form-control", placeholder: "Nhập vị trí làm việc hiện tại của bạn" %>
+								<%= f.text_field :position, :required => true, class: "form-control", placeholder: t(:form_review_2_sub) %>
 							</div>
 						</div>
 
 						<div class="new_review_content">
 							<div class="new_review_label">
-								<a><%= f.label :working_status, "Bạn có còn làm việc ở đây không?", class: "new_review_label_name" %><span>*</span></a>
+								<a><%= f.label :working_status, t(:form_review_3), class: "new_review_label_name" %><span>*</span></a>
 							</div>
 
 							<div class="new_review_input">
 								<div class="new_review_input_radio">
-									<%=f.collection_radio_buttons :working_status, [[true, "Có"] ,[false, "Không"]], :first, :last, { checked: true }%>
+									<%=f.collection_radio_buttons :working_status, [[true, t(:yes)] ,[false, t(:no)]], :first, :last, { checked: true }%>
 								</div>
 							</div>
 						</div>
 
 						<div class="new_review_content">
 							<div class="new_review_label">
-								<a><%= f.label :working_time, "Bạn đã làm việc ở đây được bao lâu?", class: "new_review_label_name" %><span>*</span></a>
+								<a><%= f.label :working_time, t(:form_review_4), class: "new_review_label_name" %><span>*</span></a>
 							</div>
 
 							<div class="new_review_input">
@@ -125,17 +125,17 @@
 					<div class="new_review_section">
 						<div class="new_review_content">
 							<div class="new_review_label">
-								<a><%= f.label :review_title, "Tiêu đề bài review", class: "new_review_label" %><span>*</span></a>
+								<a><%= f.label :review_title, t(:form_review_5), class: "new_review_label" %><span>*</span></a>
 							</div>
 							
 							<div class="new_review_input">
-								<%= f.text_field :review_title, class: "form-control", placeholder: "Nhập tiêu đề mô tả cho bài đánh giá" %>
+								<%= f.text_field :review_title, class: "form-control", placeholder: t(:form_review_5_sub) %>
 							</div>
 						</div>
 
 						<div class="new_review_content">
 							<div class="new_review_label">
-								<a><%= f.label :review, "Nội dung bài đánh giá của bạn", class: "new_review_label" %><span>*</span></a>
+								<a><%= f.label :review, t(:form_review_6), class: "new_review_label" %><span>*</span></a>
 							</div>
 							
 							<div class="new_review_input">
@@ -145,7 +145,7 @@
 						</div>
 						<div class="new_review_content">
 							<div class="new_review_label">
-								<a><i class="material-icons-outlined checked">check</i><%= f.label :pros, "Ưu điểm của công ty(tùy chọn)", class: "new_review_label_name" %></a>
+								<a><i class="material-icons-outlined checked">check</i><%= f.label :pros, t(:form_review_7), class: "new_review_label_name" %></a>
 							</div>
 
 							<div class="new_review_input">
@@ -156,7 +156,7 @@
 
 						<div class="new_review_content">
 							<div class="new_review_label">
-								<a><i class="material-icons-outlined checked">clear</i><%= f.label :cons, "Nhược điểm của công ty(tùy chọn)", class: "new_review_label_name" %></a>
+								<a><i class="material-icons-outlined checked">clear</i><%= f.label :cons, t(:form_review_8), class: "new_review_label_name" %></a>
 							</div>
 
 							<div class="new_review_input">
@@ -167,12 +167,12 @@
 						
 						<div class="new_review_content">
 							<div class="new_review_label">
-								<a><%= f.label :recommend, "Bạn có khuyến khích bạn bè làm việc tại đây không?", class: "new_review_label_name" %><span>*</span></a>
+								<a><%= f.label :recommend, t(:form_review_9), class: "new_review_label_name" %><span>*</span></a>
 							</div>
 
 							<div class="new_review_input">
 								<div class="new_review_input_radio">
-									<%=f.collection_radio_buttons :recommend, [[true, "Có"] ,[false, "Không"]], :first, :last, { checked: true }%>
+									<%=f.collection_radio_buttons :recommend, [[true, t(:yes)] ,[false, t(:no)]], :first, :last, { checked: true }%>
 								</div>
 							</div>
 						</div>
@@ -180,13 +180,13 @@
 				
 					<div class="new_review_section">
 						<div class="new_review_label_sub">
-							<span>Rating công ty của bạn theo các tiêu chí cụ thể(tùy chọn) </span>
+							<span><%=t(:form_review_10)%> </span>
 						</div>
 						<div class="new_review_content">
 							<div class="row">
 								<div class="col-sm-6">
 									<div class="new_review_score_label">
-										<a><%= f.label :work_env_score, "Môi trường làm việc, văn hóa công ty", class: "new_review_label_name" %></a>
+										<a><%= f.label :work_env_score, t(:env_review), class: "new_review_label_name" %></a>
 									</div>
 								</div>
 
@@ -252,7 +252,7 @@
 							<div class="row">
 								<div class="col-sm-6">	
 									<div class="new_review_score_label">
-										<a><%= f.label :salary_score, "Lương thưởng, chế độ đãi ngộ của công ty", class: "new_review_label_name" %></a>
+										<a><%= f.label :salary_score, t(:salary_review), class: "new_review_label_name" %></a>
 									</div>
 								</div>
 								<div class="col-sm-6">	
@@ -317,7 +317,7 @@
 							<div class="row">
 								<div class="col-sm-6">
 									<div class="new_review_score_label">
-										<a><%= f.label :ot_score, "Chế độ làm thêm giờ, OT", class: "new_review_label_name" %></a>
+										<a><%= f.label :ot_score, t(:ot_review), class: "new_review_label_name" %></a>
 									</div>
 								</div>
 								<div class="col-sm-6">
@@ -382,7 +382,7 @@
 							<div class="row">
 								<div class="col-sm-6">
 									<div class="new_review_score_label">
-										<a><%= f.label :manager_score, "Trình độ quản lý, manager", class: "new_review_label_name" %></a>
+										<a><%= f.label :manager_score, t(:mng_review), class: "new_review_label_name" %></a>
 									</div>
 								</div>
 
@@ -448,7 +448,7 @@
 							<div class="row">
 								<div class="col-sm-6">
 									<div class="new_review_score_label">
-										<a><%= f.label :career_score, "Cơ hội thăng tiến của bạn", class: "new_review_label_name" %></a>
+										<a><%= f.label :career_score, t(:career_review), class: "new_review_label_name" %></a>
 									</div>
 								</div>
 
@@ -511,40 +511,40 @@
 						</div>
 
 						<div class="new_review_score_description">
-							<a>1<i class="material-icons-outlined">circle </i>: Rất không hài lòng</a>
-							<a>2<i class="material-icons-outlined">circle </i>: Không hài lòng</a>
-							<a>3<i class="material-icons-outlined">circle </i>: Hài lòng</a>
-							<a>4<i class="material-icons-outlined">circle </i>: Rất hài lòng</a>
-							<a>5<i class="material-icons-outlined">circle </i>: Tuyệt vời</a>
+							<a>1<i class="material-icons-outlined">circle </i>: <%=t(:point_1)%></a>
+							<a>2<i class="material-icons-outlined">circle </i>: <%=t(:point_2)%></a>
+							<a>3<i class="material-icons-outlined">circle </i>: <%=t(:point_3)%></a>
+							<a>4<i class="material-icons-outlined">circle </i>: <%=t(:point_4)%></a>
+							<a>5<i class="material-icons-outlined">circle </i>: <%=t(:point_5)%></a>
 						</div>
 					</div>
 
 					<div class="new_review_submit">
-						<%= f.submit "Gửi đánh giá", class: "new_review_form_submit" %>
+						<%= f.submit t(:send), class: "new_review_form_submit" %>
 					</div>
 				</div>
 
 				<div class="col-sm-4">
 					<div class="review_policy">
 						<div class="review_policy_title">
-							<a>Lưu ý trước khi viết bài Review</a>
+							<a><%=t(:form_help_cmn)%></a>
 						</div>
 						<div class="review_policy_content">
 							<div class="review_policy_content_index">
-								· Không sử dụng từ ngữ mang ý xúc phạm, miệt thị người khác
+								· <%=t(:form_help_cmn_1)%>
 							</div>
 							<div class="review_policy_content_index">
-								· Không sử dụng từ ngữ mang tính chất kích động, bạo lực
+								· <%=t(:form_help_cmn_2)%>
 							</div>
 							<div class="review_policy_content_index">
-								· Không cung cấp thông tin cá nhân
+								· <%=t(:form_help_cmn_3)%>
 							</div>
 							<div class="review_policy_content_index">
-								· Không cung cấp thông tin bảo mật, bí mật kinh doanh của công ty
+								· <%=t(:form_help_cmn_4)%>
 							</div>
 							<div class="review_policy_content_link">
-								Cảm ơn bạn đã đưa ra những đánh giá chân thực nhất. Xem thêm thông tin chi tiết về 
-								<a href="<%=term_path%>">thỏa thuận sử dụng </a>
+								<%=t(:form_help_cmn_5)%> 
+								<a href="<%=term_path%>"><%=t(:term_and_service)%> </a>
 							</div>
 						</div>
 					</div>

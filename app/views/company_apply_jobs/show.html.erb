@@ -4,28 +4,28 @@
             <div class="col-sm-8">
                 <div class="company_job_apply_show_info">
                     <div class="company_job_apply_show_name">
-                        <a>Họ và tên: <%=@company_apply_job.name%></a>
+                        <a><%=t(:full_name)%>: <%=@company_apply_job.name%></a>
                     </div>
 
                     <div class="company_job_apply_show_email">
-                        <a> Địa chỉ email: <%=@company_apply_job.email%></a>
+                        <a> <%=t(:email)%>: <%=@company_apply_job.email%></a>
                     </div>
 
                     <div class="company_job_apply_show_letter">
-                        <a> Mô tả bản thân: </a>
+                        <a> <%=t(:self_introduce)%>: </a>
                         <div class="company_job_apply_show_sumary">
                             <%=@company_apply_job.cover_letter.html_safe%>
                         </div>
                     </div>
 
                     <div class="company_job_apply_show_time">
-                        </a>Ứng tuyển <%=time_ago_in_words(@company_apply_job.created_at)%></a>
+                        </a><%=t(:applied)%> <%=time_ago_in_words(@company_apply_job.created_at)%></a>
                     </div>
 
                     <div class="company_job_apply_show_download">
                         <i class="material-icons-outlined">download</i>
                         <%if @company_apply_job.cover_vitate?%>
-                            <%=link_to "Download CV", @company_apply_job.cover_vitate.url%>
+                            <%=link_to t(:download_cv), @company_apply_job.cover_vitate.url%>
                         <%end%>
                     </div>
                 </div>

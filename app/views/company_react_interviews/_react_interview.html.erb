@@ -4,16 +4,16 @@
 			<% like_react = company_interview.company_react_interviews.find { |react| (react.user_id == current_user.id) && (react.react_type == 1)} %>
 			<% if like_react %>  
 				<%= button_to company_interview_company_react_interviews_path(company_interview, react_type: -1), method: :post, remote: true, form_class: "like_btn_highlight" do %>
-					<i class="material-icons">thumb_up</i> <span><%= company_interview.company_react_interviews.where(:react_type => 1).count%></span> <a>Thích</a>
+					<i class="material-icons">thumb_up</i> <span><%= company_interview.company_react_interviews.where(:react_type => 1).count%></span> <a><%=t(:like)%></a>
 				<%end%>
 			<%else%>
 				<%= button_to company_interview_company_react_interviews_path(company_interview, react_type: 1), method: :post, remote: true, form_class: "like_btn" do %>
-					<i class="material-icons-outlined">thumb_up</i> <span><%= company_interview.company_react_interviews.where(:react_type => 1).count%></span> <a>Thích</a>
+					<i class="material-icons-outlined">thumb_up</i> <span><%= company_interview.company_react_interviews.where(:react_type => 1).count%></span> <a><%=t(:like)%></a>
 				<%end%>
 			<%end%>
 		<%else%>
 			<button type="button" data-toggle="modal" data-target="#buttonModalLoginCenter" class="like_btn">
-				<i class="material-icons-outlined">thumb_up</i> <span><%= company_interview.company_react_interviews.where(:react_type => 1).count%></span> <a>Thích</a>
+				<i class="material-icons-outlined">thumb_up</i> <span><%= company_interview.company_react_interviews.where(:react_type => 1).count%></span> <a><%=t(:like)%></a>
 			</button>
 		<%end%>
 	</div>
@@ -23,16 +23,16 @@
 			<% dislike_react = company_interview.company_react_interviews.find { |react| (react.user_id == current_user.id) && (react.react_type == 0)} %>
 			<% if dislike_react %>  
 				<%= button_to company_interview_company_react_interviews_path(company_interview, react_type: -1), method: :post, remote: true, form_class: "dislike_btn_highlight" do %>
-					<i class="material-icons">thumb_down</i> <span><%= company_interview.company_react_interviews.where(:react_type => 0).count%></span> <a>Không thích</a>
+					<i class="material-icons">thumb_down</i> <span><%= company_interview.company_react_interviews.where(:react_type => 0).count%></span> <a><%=t(:dislike)%></a>
 				<%end%>
 			<%else%>
 				<%= button_to company_interview_company_react_interviews_path(company_interview, react_type: 0), method: :post, remote: true, form_class: "dislike_btn" do %>
-					<i class="material-icons-outlined">thumb_down</i> <span><%= company_interview.company_react_interviews.where(:react_type => 0).count%></span> <a>Không thích</a>
+					<i class="material-icons-outlined">thumb_down</i> <span><%= company_interview.company_react_interviews.where(:react_type => 0).count%></span> <a><%=t(:dislike)%></a>
 				<%end%>
 			<%end%>
 		<%else%>
 			<button type="button" data-toggle="modal" data-target="#buttonModalLoginCenter" class="dislike_btn">
-				<i class="material-icons-outlined">thumb_down</i> <span><%= company_interview.company_react_interviews.where(:react_type => 0).count%></span> <a>Không thích</a>
+				<i class="material-icons-outlined">thumb_down</i> <span><%= company_interview.company_react_interviews.where(:react_type => 0).count%></span> <a><%=t(:dislike)%></a>
 			</button>
 		<%end%>
 	</div>

@@ -4,16 +4,16 @@
 	    	<% pre_save = @company_job.company_save_jobs.find { |save| save.user_id == current_user.id} %>
 			<% if pre_save %> 
 				<%= button_to company_job_company_save_job_path(@company_job, pre_save), :method => :delete, remote: true, form_class: "save_btn_highlight" do%>
-					<i class="material-icons-outlined">favorite</i> <span>Đã lưu</span>
+					<i class="material-icons-outlined">favorite</i> <span><%=t(:saved_job)%></span>
 				<%end%> 
 			<%else%>
 				<%= button_to company_job_company_save_jobs_path(@company_job), :method => :post, remote: true, form_class: "save_btn" do%>
-					<i class="material-icons-outlined">favorite_border</i> <span>Lưu việc làm</span>
+					<i class="material-icons-outlined">favorite_border</i> <span><%=t(:save_job)%></span>
 				<%end%>
 			<%end%>
 		<%else%>
 			<button type="button" data-toggle="modal" data-target="#buttonModalLoginCenter" class="save_btn">
-				<i class="material-icons-outlined">favorite_border</i> <span>Lưu việc làm</span>
+				<i class="material-icons-outlined">favorite_border</i> <span><%=t(:save_job)%></span>
 			</button>
 		<%end%>
 	</div>

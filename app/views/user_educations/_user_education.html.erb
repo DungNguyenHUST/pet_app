@@ -6,12 +6,12 @@
             </div>
 
             <div class="user_profile_edu_section">
-                <span><%=user_education.school_level%> <%=user_education.school_name%> tại <%=user_education.school_location%></span>
+                <span><%=user_education.school_level%> <%=user_education.school_name%> <%=t(:at)%> <%=user_education.school_location%></span>
             </div>
 
             <div class="user_profile_edu_section">
                 <%if user_education.enrolled == true%>
-                    <span><%=user_education.start_date.strftime("%m/%Y")%> - nay</span>
+                    <span><%=user_education.start_date.strftime("%m/%Y")%> - <%=t(:now)%></span>
                 <%else%>
                     <span><%=user_education.start_date.strftime("%m/%Y")%> - <%=user_education.end_date.strftime("%m/%Y")%></span>
                 <%end%>
@@ -20,7 +20,7 @@
         <div class="col-2">
             <div class='user_profile_edu_edit'>
                 <button class="user_profile_edu_update_btn" onclick="myFunctionUserEdu('profile_edu_form_update_<%=user_education.id%>')"><i class="material-icons-outlined">edit</i></button>
-                <%= link_to '<button type="submit"> <i class="material-icons-outlined">delete_outline</i></button>'.html_safe, user_user_education_path(@user, user_education), method: :delete, remote: :true, data: { confirm: 'Bạn có chắc muốn xóa ?' } %>
+                <%= link_to '<button type="submit"> <i class="material-icons-outlined">delete_outline</i></button>'.html_safe, user_user_education_path(@user, user_education), method: :delete, remote: :true, data: { confirm: t(:are_you_sure_to_delete) } %>
             </div>
         </div>
     </div>

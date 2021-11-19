@@ -97,7 +97,7 @@
                     </div>
                       
                     <div class="review_score_recommand_title">
-                        <a>Khuyến khích làm việc tại đây</a>
+                        <a><%=t(:company_review_recommand)%></a>
                     </div>
                 </div>
             </div>
@@ -107,7 +107,7 @@
                     <ul class="nav nav-tabs flex-column" id="myTab" role="tablist">
                         <li class="nav-item">
                             <a class="nav-link active" id="overall-tab" data-toggle="tab" href="#overall" role="tab" aria-controls="overall" aria-selected="true">
-                                <p>Tổng quan chung</p>
+                                <p><%=t(:total_view).upcase%></p>
                                 <span>
                                     <p><%=cal_rating_review_total_score(@company).round(1)%></p>
                                     <i class="material-icons">circle</i>
@@ -116,7 +116,7 @@
                         </li>
                         <li class="nav-item">
                             <a class="nav-link" id="enviroment-tab" data-toggle="tab" href="#enviroment" role="tab" aria-controls="enviroment" aria-selected="false">
-                                <p>Môi trường làm việc</p>
+                                <p><%=t(:env_review).upcase%></p>
                                 <span>
                                     <p><%=cal_rating_review_work_env_score(@company).round(1)%></p>
                                     <i class="material-icons">circle</i>
@@ -125,7 +125,7 @@
                         </li>
                         <li class="nav-item">
                             <a class="nav-link" id="salary-tab" data-toggle="tab" href="#salary" role="tab" aria-controls="salary" aria-selected="false">
-                                <p>Lương thưởng</p>
+                                <p><%=t(:salary_review).upcase%></p>
                                 <span>
                                     <p><%=cal_rating_review_salary_score(@company).round(1)%></p>
                                     <i class="material-icons">circle</i>
@@ -134,7 +134,7 @@
                         </li>
                         <li class="nav-item">
                             <a class="nav-link" id="overtime-tab" data-toggle="tab" href="#overtime" role="tab" aria-controls="overtime" aria-selected="false">
-                                <p>Làm thêm giờ</p>
+                                <p><%=t(:ot_review).upcase%></p>
                                 <span>
                                     <p><%=cal_rating_review_ot_score(@company).round(1)%></p>
                                     <i class="material-icons">circle</i>
@@ -143,7 +143,7 @@
                         </li>
                         <li class="nav-item">
                             <a class="nav-link" id="manager-tab" data-toggle="tab" href="#manager" role="tab" aria-controls="manager" aria-selected="false">
-                                <p>Quản lý, cấp trên</p>
+                                <p><%=t(:mng_review).upcase%></p>
                                 <span>
                                     <p><%=cal_rating_review_manager_score(@company).round(1)%></p>
                                     <i class="material-icons">circle</i>
@@ -152,7 +152,7 @@
                         </li>
                         <li class="nav-item">
                             <a class="nav-link" id="carrier-tab" data-toggle="tab" href="#carrier" role="tab" aria-controls="carrier" aria-selected="false">
-                                <p>Cơ hội thăng tiến</p>
+                                <p><%=t(:career_review).upcase%></p>
                                 <span>
                                     <p><%=cal_rating_review_career_score(@company).round(1)%></p>
                                     <i class="material-icons">circle</i>
@@ -209,7 +209,7 @@
                                     </div>
                                 </div>
                                 <div class="progress_section_total">
-                                    <a>Tổng số:</a> <span><%=count_rating_category("overall", @company)%> reviews</span>
+                                    <a><%=t(:total)%>:</a> <span><%=count_rating_category("overall", @company)%> <%=t(:review).downcase%></span>
                                 </div>
                             </div>
                         </div>
@@ -256,7 +256,7 @@
                                     </div>
                                 </div>
                                 <div class="progress_section_total">
-                                    <a>Tổng số:</a> <span><%=count_rating_category("work_env_score", @company)%> reviews</span>
+                                    <a><%=t(:total)%>:</a> <span><%=count_rating_category("work_env_score", @company)%> <%=t(:review).downcase%></span>
                                 </div>
                             </div>
                         </div>
@@ -303,7 +303,7 @@
                                     </div>
                                 </div>
                                 <div class="progress_section_total">
-                                    <a>Tổng số:</a> <span><%=count_rating_category("salary_score", @company)%> reviews</span>
+                                    <a><%=t(:total)%>:</a> <span><%=count_rating_category("salary_score", @company)%> <%=t(:review).downcase%></span>
                                 </div>
                             </div>
                         </div>
@@ -350,7 +350,7 @@
                                     </div>
                                 </div>
                                 <div class="progress_section_total">
-                                    <a>Tổng số:</a> <span><%=count_rating_category("ot_score", @company)%> reviews</span>
+                                    <a><%=t(:total)%>:</a> <span><%=count_rating_category("ot_score", @company)%> <%=t(:review).downcase%></span>
                                 </div>
                             </div>
                         </div>
@@ -397,7 +397,7 @@
                                     </div>
                                 </div>
                                 <div class="progress_section_total">
-                                    <a>Tổng số:</a> <span><%=count_rating_category("manager_score", @company)%> reviews</span>
+                                    <a><%=t(:total)%>:</a> <span><%=count_rating_category("manager_score", @company)%> <%=t(:review).downcase%></span>
                                 </div>
                             </div>
                         </div>
@@ -444,7 +444,7 @@
                                     </div>
                                 </div>
                                 <div class="progress_section_total">
-                                    <a>Tổng số:</a> <span><%=count_rating_category("career_score", @company)%> reviews</span>
+                                    <a><%=t(:total)%>:</a> <span><%=count_rating_category("career_score", @company)%> <%=t(:review).downcase%></span>
                                 </div>
                             </div>
                         </div>

@@ -2,7 +2,7 @@
 <% if @company_searchs.total_count > 0 %>
 	<div class="companies_search_block">
 		<div class="section_title_search">
-			<span><%=@company_searchs.total_count%> công ty phù hợp với từ khóa "<%= params[:search]%>"</span>
+			<span><%=@company_searchs.total_count%> <%=t(:company_search_result)%> "<%= params[:search]%>"</span>
 		</div>
 		<div class="company_search_result">
 			<div class="row">
@@ -20,27 +20,27 @@
 <%else%>
 	<div class="company_search_not_found_block">
         <div class="company_search_not_found_label">
-            <span>Rất tiếc, không tìm được công ty phù hợp với từ khóa "<%= params[:search]%>"</span>
+            <span><%=t(:company_search_not_found)%> "<%= params[:search]%>"</span>
         </div>
         <div class="company_search_not_found_image">
             <%=image_tag("others/no_result_found.png")%>
         </div>
         <div class="company_search_not_found_help">
-            <a>Gợi ý từ khóa tìm kiếm:</a>
+            <a><%=t(:company_search_not_found_1)%>:</a>
             <ul>
                 <li>
-                    Tìm kiếm theo tên công ty bằng tiếng việt hoặc tiếng anh không dấu.
+                    <%=t(:company_search_not_found_2)%>.
                 </li>
 
                 <li>
-                    Tìm kiếm theo tên viết tắt của công ty.
+                    <%=t(:company_search_not_found_3)%>.
                 </li>
             </ul>
         </div>
 
         <div class="company_search_not_found_suggest">
             <div class="company_search_not_found_suggest_label">
-                <a>Công ty nổi bật</a>
+                <a><%=t(:company_search_not_found_suggest)%></a>
             </div>
             <div class="row">
                 <%@companies_oder_name.each do |company|%>

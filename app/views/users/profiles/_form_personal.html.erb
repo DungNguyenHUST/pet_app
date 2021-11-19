@@ -1,35 +1,35 @@
 <div class="user_profile_form">
     <%= form_for(@user, remote: true) do |f| %>
         <div class="user_profile_title_sub">
-            <a>Lưu ý: Mục có dấu <span>'*'</span> là bắt buộc</a>
+            <a><%=t(:form_require_left)%> <span>'*'</span> <%=t(:form_require_right)%></a>
         </div>
         <div class="row">
             <div class="col-sm-6">
                 <div class="user_profile_content">
                     <div class="user_profile_label">
-                        <a><%= f.label :phone, "Số điện thoại liên hệ", class: "user_profile_label_name" %><span>*</span></a>
+                        <a><%= f.label :phone, t(:phone), class: "user_profile_label_name" %><span>*</span></a>
                     </div>
 
                     <div class="user_profile_input">
-                        <%= f.text_field :phone, :required => true, class: "form-control", placeholder: "Nhập số điện thoại liên hệ: ex: 0123456789" %>
+                        <%= f.text_field :phone, :required => true, class: "form-control", placeholder: t(:enter_phone) %>
                     </div>
                 </div>
                 <div class="user_profile_content">
                     <div class="user_profile_label">
-                        <a><%= f.label :sex, "Giới tính", class: "user_profile_label_name" %><span>*</span></a>
+                        <a><%= f.label :sex, t(:sex), class: "user_profile_label_name" %><span>*</span></a>
                     </div>
 
                     <div class="user_profile_input">
-                        <%= f.select(:sex, options_for_select(['Nam', 'Nữ', "Không xác định"], 'Không xác định'), {include_blank: false}, { :class => 'form-select' }) %>
+                        <%= f.select(:sex, options_for_select([t(:male), t(:female), t(:unknown)], t(:unknown)), {include_blank: false}, { :class => 'form-select' }) %>
                     </div>
                 </div>
                 <div class="user_profile_content">
                     <div class="user_profile_label">
-                        <a><%= f.label :matrimony, "Tình trạng hôn nhân", class: "user_profile_label_name" %></a>
+                        <a><%= f.label :matrimony, t(:martial_status), class: "user_profile_label_name" %></a>
                     </div>
 
                     <div class="user_profile_input">
-                        <%= f.select(:matrimony, options_for_select(['Đã kết hôn', 'Chưa kết hôn'], 'Chưa kết hôn'), {include_blank: false}, { :class => 'form-select' }) %>
+                        <%= f.select(:matrimony, options_for_select([t(:married), t(:not_married)], t(:not_married)), {include_blank: false}, { :class => 'form-select' }) %>
                     </div>
                 </div>
             </div>
@@ -37,31 +37,31 @@
             <div class="col-sm-6">
                 <div class="user_profile_content">
                     <div class="user_profile_label">
-                        <a><%= f.label :highest_education, "Học vấn cao nhất", class: "user_profile_label_name" %></a>
+                        <a><%= f.label :highest_education, t(:high_edu), class: "user_profile_label_name" %></a>
                     </div>
 
                     <div class="user_profile_input">
-                        <%= f.select(:highest_education, options_for_select(['THCS', 'THPT', 'Trung cấp', 'Cao đẳng', 'Đại học', 'Thạc sĩ', 'Tiến sĩ'], 'Đại học'), {include_blank: false}, { :class => 'form-select' }) %>
+                        <%= f.select(:highest_education, options_for_select([t(:school_level_1), t(:school_level_2), t(:school_level_3), t(:school_level_4), t(:school_level_5), t(:school_level_6), t(:school_level_7), t(:school_level_8), t(:school_level_9)], t(:school_level_5)), {include_blank: false}, { :class => 'form-select' }) %>
                     </div>
                 </div>
 
                 <div class="user_profile_content">
                     <div class="user_profile_label">
-                        <a><%= f.label :highest_career, "Chức vụ cao nhất", class: "user_profile_label_name" %></a>
+                        <a><%= f.label :highest_career, t(:high_position), class: "user_profile_label_name" %></a>
                     </div>
 
                     <div class="user_profile_input">
-                        <%= f.text_field :highest_career, :required => true, class: "form-control", placeholder: "Chức vụ cao nhất bạn từng làm" %>
+                        <%= f.text_field :highest_career, :required => true, class: "form-control", placeholder: t(:enter_high_position) %>
                     </div>
                 </div>
             </div>
             <div class="user_profile_content">
                 <div class="user_profile_label">
-                    <a><%= f.label :summary, "Giới thiệu bản thân(khoảng 300 từ)", class: "user_profile_label_name" %><span>*</span></a>
+                    <a><%= f.label :summary, t(:self_introduce), class: "user_profile_label_name" %><span>*</span></a>
                 </div>
 
                 <div class="user_profile_input">
-                    <%= f.text_area :summary, :required => true, class: "form-control", placeholder: "Giới thiệu bản thân, mục tiêu nghề nghiệp..." %>
+                    <%= f.text_area :summary, :required => true, class: "form-control", placeholder: t(:enter_self_intro) %>
                     <%= tinymce :mini %>
                 </div>
             </div>
@@ -72,13 +72,13 @@
             </div>
             <div class="col-sm-3">
                 <div class="user_profile_cancel">
-                    <button class="user_profile_cancel_btn" onclick="myFunctionUserPersonal('profile_personal_form')"><a>Hủy bỏ</a></button>
+                    <button class="user_profile_cancel_btn" onclick="myFunctionUserPersonal('profile_personal_form')"><a><%=t(:cancel)%></a></button>
                 </div>
             </div>
 
             <div class="col-sm-3">
                 <div class="user_profile_submit">
-                    <%= f.submit "Cập nhật", class: "user_profile_form_submit" %>
+                    <%= f.submit t(:update), class: "user_profile_form_submit" %>
                 </div>
             </div>
         </div>

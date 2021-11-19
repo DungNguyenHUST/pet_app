@@ -45,7 +45,7 @@
                     <%if !company_job.location.to_s.blank?%>
                         <a><i class="material-icons-outlined">location_on</i><%= find_job_location(company_job.location) %></a>
                     <%else%>
-                        <a><i class="material-icons-outlined">location_on</i>Đang cập nhật</a>
+                        <a><i class="material-icons-outlined">location_on</i><%=t(:updating)%></a>
                     <%end%>
                 </div>
 
@@ -55,11 +55,11 @@
                             <a><i class="material-icons-outlined">monetization_on</i><%= company_job.salary.to_s%></a>
                         <%else%>
                             <a type="link" data-toggle="modal" data-target="#buttonModalLoginCenter" class="job_salary_login">
-                                <i class="material-icons-outlined">monetization_on</i> <span>Đăng nhập để xem mức lương</span>
+                                <i class="material-icons-outlined">monetization_on</i> <span><%=t(:login_to_review_salary)%></span>
                             </a>
                         <%end%>
                     <%else%>
-                        <a><i class="material-icons-outlined">monetization_on</i>Đang cập nhật</a>
+                        <a><i class="material-icons-outlined">monetization_on</i><%=t(:updating)%></a>
                     <%end%>
                 </div>
             </div>
@@ -72,9 +72,9 @@
                         <%if company_job.sponsor || verified_job(company_job) || company_job.urgent%>
                             <a><%= time_ago_in_words(company_job.created_at) %>
                                 <%if company_job.urgent > 0%>
-                                    <span class="job_urgent">HOT</span>
+                                    <span class="job_urgent"><%=t(:hot).upcase%></span>
                                 <%elsif verified_job(company_job)%>
-                                    <span class="job_easy_apply">Nộp đơn nhanh</span>
+                                    <span class="job_easy_apply"><%=t(:apply_fast)%></span>
                                 <%end%>
                             </a>
                         <%else%>

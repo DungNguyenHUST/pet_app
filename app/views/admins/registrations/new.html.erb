@@ -3,7 +3,7 @@
         <div class="admin_sign_up_block">
             <div class="admin_sign_up_label">
                 <div class="admin_sign_up_title">
-                    <a>Tạo tài khoản Admin mới</a>
+                    <a><%=t(:signup)%></a>
                 </div>
             </div>
 
@@ -12,49 +12,49 @@
                 <%= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
                     <div class="admin_sign_up_content">
                         <div class="admin_sign_up_label">
-                            <a><%= f.label :name, "Tên đăng nhập", class: "admin_sign_up_label_name" %></a>
+                            <a><%= f.label :name, t(:name), class: "admin_sign_up_label_name" %></a>
                         </div>
 
                         <div class="admin_sign_up_input">
-                            <%= f.text_field :name, autofocus: true, :required => true, class: 'form-control', placeholder: "Nhập họ và tên của bạn" %>
+                            <%= f.text_field :name, autofocus: true, :required => true, class: 'form-control', placeholder: t(:enter_name) %>
                         </div>
                     </div>
                     
                     <div class="admin_sign_up_content">
                         <div class="admin_sign_up_label">
-                            <a><%= f.label :email, "Địa chỉ email", class: "admin_sign_up_label_name" %></a>
+                            <a><%= f.label :email, t(:email), class: "admin_sign_up_label_name" %></a>
                         </div>
 
                         <div class="admin_sign_up_input">
-                            <%= f.email_field :email, autocomplete: "email", :required => true, class: "form-control", placeholder: "Nhập email của bạn" %>
+                            <%= f.email_field :email, autocomplete: "email", :required => true, class: "form-control", placeholder: t(:enter_email) %>
                         </div>
                     </div>
 
                     <div class="admin_sign_up_content">
                         <div class="admin_sign_up_label">
-                            <a><%= f.label :password, "Mật khẩu", class: "admin_sign_up_label" %></a>
+                            <a><%= f.label :password, t(:password), class: "admin_sign_up_label" %></a>
                         </div>
 
                         <div class="admin_sign_up_input">
                             <% if @minimum_password_length %>
-                            <em>(<%= @minimum_password_length %> characters minimum)</em>
+                            <em>(<%= @minimum_password_length %> <%=t(:min_charater)%>)</em>
                             <% end %><br />
-                            <%= f.password_field :password, autocomplete: "new-password", :required => true, class: "form-control", placeholder: "Mật khẩu ít nhất 6 kí tự gồm chữ in hoa, chữ số và biểu tượng" %>
+                            <%= f.password_field :password, autocomplete: "new-password", :required => true, class: "form-control", placeholder: t(:enter_password) %>
                         </div>
                     </div>
 
                     <div class="admin_sign_up_content">
                         <div class="admin_sign_up_label">
-                            <a><%= f.label :password_confirmation, "Xác nhận lại mật khẩu", class: "admin_sign_up_label" %></a>
+                            <a><%= f.label :password_confirmation, t(:confirm_password), class: "admin_sign_up_label" %></a>
                         </div>
 
                         <div class="admin_sign_up_input">
-                            <%= f.password_field :password_confirmation, autocomplete: "new-password", :required => true, class: "form-control", placeholder: "Nhập lại mật khẩu" %>
+                            <%= f.password_field :password_confirmation, autocomplete: "new-password", :required => true, class: "form-control", placeholder: t(:retype_password) %>
                         </div>
                     </div>
 
                     <div class="admin_sign_up_submit">
-                        <%= f.submit "Tạo tài khoản", class: "admin_sign_up_form_submit" %>
+                        <%= f.submit t(:create_account), class: "admin_sign_up_form_submit" %>
                     </div>
                 <%end%>
             </div>

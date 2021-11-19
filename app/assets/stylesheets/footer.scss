@@ -7,24 +7,27 @@
         .footer_container_top{
             border-top: 1px solid #F5F5F5;
             background-color: #fff;
-            padding-top: 30px;
+            padding-top: 40px;
             padding-bottom: 30px;
             @media screen and (max-width: 600px){
-                padding-top: 20px;
+                padding-top: 30px;
                 padding-bottom: 20px;
             }
+            .footer_logo{
+                @media screen and (max-width: 600px){
+                    display: none;
+                }
+                text-align: left;
+                img{
+                    width: 40px;
+                    height: 40px;
+                }
+            }
             .footer_label{
-                margin-top: 20px;
                 margin-bottom: 10px;
                 font-size: 15px;
                 font-weight: 550;
-                @media screen and (max-width: 600px){
-                    // border-bottom: 1px solid #EAEAF9;
-                    border-left: 4px solid #febb02;
-                    a{
-                        padding-left: 5px;
-                    }
-                }
+                color: #333;
             }
             .footer_link{
                 color: #333;
@@ -40,11 +43,6 @@
                             font-size: 15px;
                             text-decoration: none;
                             color: #333;
-                            svg{
-                                position: relative;
-                                top: -1px;
-                                color: #333;
-                            }
                         }
                         a:hover{
                             color: #1473e6;
@@ -82,11 +80,10 @@
                     a{
                         font-size: 14px;
                         color: #333;
+                        position: relative;
+                        top: 3px;
                     }
-                    text-align: center;
-                    @media screen and (max-width: 600px){
-                        text-align: center;
-                    }
+                    text-align: left;
                     font-weight: 500;
                     i{
                         font-size: 20px;
@@ -100,16 +97,59 @@
                     text-align: right;
                     position: relative;
                     @media screen and (max-width: 600px){
-                        display: none;
+                        margin-top: 10px;
+                        text-align: left;
                     }
                     
-                    a{
+                    span{
                         font-size: 14px;
                         text-decoration: none;
-                        color: #333;
+                        color: #444;
+                        margin-right: 5px;
+                        position: relative;
+                        top: -2px;
                     }
-                    a:hover{
-                        color: #1473e6;
+                    i{
+                        font-size: 20px;
+                        position: relative;
+                        top: 3px;
+                        color: #666;
+                    }
+                    
+                    .footer_select_language{
+                        display: inline-block;
+                        .btn_select_language{
+                            background-color: #fff;
+                            border: 1px solid #EAEAF9;
+                            border-radius: 3px;
+                            span{
+                                font-size: 14px;
+                                color: #444;
+                            }
+                            i{
+                                position: relative;
+                                top: 5px;
+                                color: #444;
+                            }
+                        }
+                        .dropdown-menu{
+                            padding: 5px;
+                            a{
+                                text-decoration: none;
+                                font-size: 14px;
+                                color: #333;
+                            }
+                            span{
+                                position: relative;
+                                top: 2px;
+                                margin-left: 3px;
+                            }
+                            img{
+                                width: 30px;
+                                height: 20px;
+                                object-fit: cover;
+                            }
+                        }
                     }
                 }
             }

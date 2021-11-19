@@ -5,26 +5,26 @@
             <div class="employer_add_new_form">
                 <%= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
                     <div class="employer_add_new_title">
-                        <a>Tạo tài khoản nhà tuyển dụng</a>
+                        <a><%=t(:employer_create_account)%></a>
                     </div>
 
                     <div class="employer_add_new_section">
-                        <a><i class="material-icons-outlined">person</i>Tài khoản</a>
+                        <a><i class="material-icons-outlined">person</i><%=t(:account)%></a>
                     </div>
 
                     <div class="employer_add_new_content">
                         <div class="employer_add_new_label">
-                            <a><%= f.label :name, "Họ và tên", class: "employer_add_new_label_name" %><span>*</span></a>
+                            <a><%= f.label :name, t(:full_name), class: "employer_add_new_label_name" %><span>*</span></a>
                         </div>
 
                         <div class="employer_add_new_input">
-                            <%= f.text_field :name, autofocus: true, :required => true, class: 'form-control', placeholder: "Nhập họ và tên của bạn" %>
+                            <%= f.text_field :name, autofocus: true, :required => true, class: 'form-control', placeholder: t(:enter_name) %>
                         </div>
                     </div>
 
                     <div class="employer_add_new_content">
                         <div class="employer_add_new_label">
-                            <a><%= f.label :email, "Địa chỉ email(bạn nên sử dụng email công ty)", class: "employer_add_new_label_name" %><span>*</span></a>
+                            <a><%= f.label :email, t(:form_employer_mail), class: "employer_add_new_label_name" %><span>*</span></a>
                         </div>
 
                         <div class="employer_add_new_input">
@@ -34,76 +34,76 @@
 
                     <div class="employer_add_new_content">
                         <div class="employer_add_new_label">
-                            <a><%= f.label :password, "Mật khẩu", class: "employer_add_new_label" %><span>*</span></a>
+                            <a><%= f.label :password, t(:password), class: "employer_add_new_label" %><span>*</span></a>
                         </div>
                         
                         <div class="employer_add_new_input">
-                            <%= f.password_field :password, :required => true, class: "form-control", placeholder: "Nhập mật khẩu sử dụng từ 6 kí tự và kết hợp chữ cái, chữ số và biểu tượng" %>
+                            <%= f.password_field :password, :required => true, class: "form-control", placeholder: t(:form_password_sub) %>
                         </div>
                     </div>
 
                     <div class="employer_add_new_content">
                         <div class="employer_add_new_label">
-                            <a><%= f.label :password_confirmation, "Xác nhận mật khẩu", class: "employer_add_new_label" %><span>*</span></a>
+                            <a><%= f.label :password_confirmation, t(:password_confirm), class: "employer_add_new_label" %><span>*</span></a>
                         </div>
 
                         <div class="employer_add_new_input">
-                            <%= f.password_field :password_confirmation, :required => true, class: "form-control", placeholder: "Nhập lại mật khẩu" %>
+                            <%= f.password_field :password_confirmation, :required => true, class: "form-control", placeholder: t(:retype_password) %>
                         </div>
                     </div>
 
                     <div class="employer_add_new_section">
-                        <a><i class="material-icons-outlined">business</i>Công ty</a>
+                        <a><i class="material-icons-outlined">business</i><%t(:company)%></a>
                     </div>
 
                     <div class="employer_add_new_content">
                         <div class="employer_add_new_label">
-                            <a><%= f.label :company_name, "Tên công ty", class: "employer_add_new_label_name" %><span>*</span></a>
+                            <a><%= f.label :company_name, t(:company_name), class: "employer_add_new_label_name" %><span>*</span></a>
                         </div>
 
                         <div class="employer_add_new_input">
-                            <%= f.text_field :company_name, :required => true, class: 'form-control', placeholder: "Nhập tên công ty của bạn" %>
-                        </div>
-                    </div>
-
-                    <div class="employer_add_new_content">
-                        <div class="employer_add_new_label">
-                            <a><%= f.label :company_field, "Ngành nghề chính", class: "employer_add_new_label_name" %><span>*</span></a>
-                        </div>
-
-                        <div class="employer_add_new_input">
-                            <%= f.text_field :company_field, :required => true, class: 'form-control', placeholder: "Ex: Tài chính, ngân hàng..." %>
+                            <%= f.text_field :company_name, :required => true, class: 'form-control', placeholder: t(:enter_company_name) %>
                         </div>
                     </div>
 
                     <div class="employer_add_new_content">
                         <div class="employer_add_new_label">
-                            <a><%= f.label :address, "Địa chỉ liên hệ công ty", class: "employer_add_new_label_name" %><span>*</span></a>
+                            <a><%= f.label :company_field, t(:primary_filed_opreation), class: "employer_add_new_label_name" %><span>*</span></a>
                         </div>
 
                         <div class="employer_add_new_input">
-                            <%= f.text_field :address, :required => true,  class: 'form-control', placeholder: "Nhập địa chỉ liên hệ của công ty bạn" %>
+                            <%= f.text_field :company_field, :required => true, class: 'form-control', placeholder: t(:primary_filed_opreation_sub) %>
                         </div>
                     </div>
 
                     <div class="employer_add_new_content">
                         <div class="employer_add_new_label">
-                            <a><%= f.label :phone, "Số điện thoại công ty", class: "employer_add_new_label_name" %><span>*</span></a>
+                            <a><%= f.label :address, t(:company_address), class: "employer_add_new_label_name" %><span>*</span></a>
                         </div>
 
                         <div class="employer_add_new_input">
-                            <%= f.text_field :phone, :required => true,  class: 'form-control', placeholder: "Nhập số điện thoại công ty" %>
+                            <%= f.text_field :address, :required => true,  class: 'form-control', placeholder: t(:enter_company_address) %>
+                        </div>
+                    </div>
+
+                    <div class="employer_add_new_content">
+                        <div class="employer_add_new_label">
+                            <a><%= f.label :phone, t(:company_phone), class: "employer_add_new_label_name" %><span>*</span></a>
+                        </div>
+
+                        <div class="employer_add_new_input">
+                            <%= f.text_field :phone, :required => true,  class: 'form-control', placeholder: t(:enter_company_phone) %>
                         </div>
                     </div>
 
                     <div class="employer_add_new_submit">
-                        <%= f.submit "Tạo tài khoản", class: "employer_add_new_form_submit" %>
+                        <%= f.submit t(:signup), class: "employer_add_new_form_submit" %>
                     </div>
                 <%end%>
             </div>
 
             <p class="employer_add_new_loginhere">
-                Đã có tài khoản nhà tuyển dụng? <%= link_to " Đăng nhập", new_employer_session_path %>
+                <%=t(:have_employer_account)%> <%= link_to t(:signin), new_employer_session_path %>
             </p>
         </div>
     </div>

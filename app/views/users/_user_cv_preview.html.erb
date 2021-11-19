@@ -28,7 +28,7 @@
                 <a><i class="material-icons-outlined">room</i>---</a>
             <%end%>
             <%if user.birthday%>
-                <a><i class="material-icons-outlined">cake</i><%=age_of_human(user.birthday)%> tuổi</a>
+                <a><i class="material-icons-outlined">cake</i><%=age_of_human(user.birthday)%> <%=t(:age)%></a>
             <%else%>
                 <a><i class="material-icons-outlined">cake</i>---</a>
             <%end%>
@@ -37,18 +37,20 @@
 
     <div class="user_preview_cv_personal">
         <div class="user_preview_cv_personal_label">
-            <h3>Thông tin cá nhân</h3>
+            <h3><%=t(:user_personal_info)%></h3>
         </div>
         <div class="row">
             <div class="col-sm-6">
                 <div class="user_preview_cv_personal_section">
-                    <a>Địa chỉ email</a>
+                    <a><%=t(:email)%></a>
                     <br>
                     <%if user.email%>
                         <%if auth_cv_search_plan_of_employer(current_employer) == true%>
                             <span><%=user.email%></span>
                         <%else%>
-                            <%= link_to '<button <a>Nâng cấp gói để xem thông tin</a> </button>'.html_safe, employer_plan_path %>
+                            <%= link_to employer_plan_path do%>
+                                <button><%=t(:upgade_to_view_info)%></button>
+                            <%end%>
                         <%end%>
                     <%else%>
                         <span>---</span>
@@ -56,13 +58,15 @@
                 </div>
 
                 <div class="user_preview_cv_personal_section">
-                    <a>Số điện thoại liên hệ</a>
+                    <a><%=t(:phone)%></a>
                     <br>
                     <%if user.phone%>
                         <%if auth_cv_search_plan_of_employer(current_employer) == true%>
                             <span><%=user.phone%></span>
                         <%else%>
-                            <%= link_to '<button <a>Nâng cấp gói để xem thông tin</a> </button>'.html_safe, employer_plan_path %>
+                            <%= link_to employer_plan_path do%>
+                                <button><%=t(:upgade_to_view_info)%></button>
+                            <%end%>
                         <%end%>
                     <%else%>
                         <span>---</span>
@@ -70,7 +74,7 @@
                 </div>
                 
                 <div class="user_preview_cv_personal_section">
-                    <a>Giới tính</a>
+                    <a><%=t(:sex)%></a>
                     <br>
                     <%if user.sex%>
                         <span><%=user.sex%></span>
@@ -81,7 +85,7 @@
             </div>
             <div class="col-sm-6">
                 <div class="user_preview_cv_personal_section">
-                    <a>Tình trạng hôn nhân</a>
+                    <a><%=t(:martial_status)%></a>
                     <br>
                     <%if user.matrimony%>
                         <span><%=user.matrimony%></span>
@@ -90,7 +94,7 @@
                     <%end%>
                 </div>
                 <div class="user_preview_cv_personal_section">
-                    <a>Học vấn cao nhất </a>
+                    <a><%=t(:high_edu)%> </a>
                     <br>
                     <%if user.highest_education%>
                         <span><%=user.highest_education%></span>
@@ -100,7 +104,7 @@
                 </div>
                 
                 <div class="user_preview_cv_personal_section">
-                    <a>Cấp bậc làm việc cao nhất </a>
+                    <a><%=t(:high_position)%> </a>
                     <br>
                     <%if user.highest_career%>
                         <span><%=user.highest_career%></span>
@@ -112,7 +116,7 @@
 
             <div class="user_preview_cv_personal_section_main">
                 <%if user.summary%>
-                <a>Giới thiệu bản thân</a>
+                <a><%=t(:self_introduce)%></a>
                 <br>
                     <span><%=user.summary.html_safe%></span>
                 <%end%>
@@ -123,7 +127,7 @@
     <%if user.user_educations.count > 0%>
         <div class="user_preview_cv_edu">
             <div class="user_preview_cv_edu_label">
-                <h3>Học vấn và bằng cấp</h3>
+                <h3><%=t(:edu_and_cert)%></h3>
             </div>
             <%user.user_educations.each do |user_education|%>
                 <div class="user_preview_cv_edu_section">
@@ -131,12 +135,12 @@
                 </div>
 
                 <div class="user_preview_cv_edu_section">
-                    <span><%=user_education.school_level%> <%=user_education.school_name%> tại <%=user_education.school_location%></span>
+                    <span><%=user_education.school_level%> <%=user_education.school_name%> <%=t(:at)%> <%=user_education.school_location%></span>
                 </div>
 
                 <div class="user_preview_cv_edu_section">
                     <%if user_education.enrolled == true%>
-                        <span><%=user_education.start_date.strftime("%m/%Y")%> - nay</span>
+                        <span><%=user_education.start_date.strftime("%m/%Y")%> - <%=t(:now)%></span>
                     <%else%>
                         <span><%=user_education.start_date.strftime("%m/%Y")%> - <%=user_education.end_date.strftime("%m/%Y")%></span>
                     <%end%>
@@ -148,7 +152,7 @@
     <%if user.user_experiences.count > 0%>
         <div class="user_preview_cv_exp">
             <div class="user_preview_cv_exp_label">
-                <h3>Kinh nghiệm làm việc</h3>
+                <h3><%=t(:work_exp)%></h3>
             </div>
             <%user.user_experiences.each do |user_experience|%>
                 <div class="user_preview_cv_exp_section">
@@ -161,7 +165,7 @@
 
                 <div class="user_preview_cv_exp_section">
                     <%if user_experience.enrolled == true%>
-                        <span><%=user_experience.start_date.strftime("%m/%Y")%> - nay</span>
+                        <span><%=user_experience.start_date.strftime("%m/%Y")%> - <%=t(:now)%></span>
                     <%else%>
                         <span><%=user_experience.start_date.strftime("%m/%Y")%> - <%=user_experience.end_date.strftime("%m/%Y")%></span>
                     <%end%>
@@ -179,7 +183,7 @@
     <%if user.user_skills.count > 0%>
         <div class="user_preview_cv_skill">
             <div class="user_preview_cv_skill_label">
-                <h3>Kĩ năng nổi bật</h3>
+                <h3><%=t(:skill)%></h3>
             </div>
             <%user.user_skills.each do |user_skill|%>
                 <div class="user_preview_cv_skill_section">
@@ -198,7 +202,7 @@
     <%if user.user_certificates.count > 0%>
         <div class="user_preview_cv_certificate">
             <div class="user_preview_cv_certificate_label">
-                <h3>Chứng chỉ</h3>
+                <h3><%=t(:cert)%></h3>
             </div>
             <%user.user_certificates.each do |user_certificate|%>
                 <div class="user_preview_cv_certificate_section">
@@ -221,7 +225,7 @@
     <%if user.user_adwards.count > 0%>
         <div class="user_preview_cv_adward">
             <div class="user_preview_cv_adward_label">
-                <h3>Giải thưởng</h3>
+                <h3><%=t(:adward)%></h3>
             </div>
             <%user.user_adwards.each do |user_adward|%>
                 <div class="user_preview_cv_adward_section">
@@ -230,7 +234,7 @@
 
                 <%if user_adward.receive_date%>
                     <div class="user_preview_cv_adward_section">
-                        <span>Ngày nhận <%=user_adward.receive_date.strftime("%m/%Y")%></span>
+                        <span><%=t(:date_receive)%> <%=user_adward.receive_date.strftime("%m/%Y")%></span>
                     </div>
                 <%end%>
 

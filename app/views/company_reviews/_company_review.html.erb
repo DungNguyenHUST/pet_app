@@ -27,17 +27,17 @@
                     <a><%= company_review.position %> · </a>
                 <%end%>
                 <%if company_review.working_status%>
-                    <a>Nhân viên đang làm việc · </a>
+                    <a><%=t(:employee_working)%> · </a>
                 <%else%>
-                    <a>Đã nghỉ việc · </a>
+                    <a><%=t(:employee_out)%> · </a>
                 <%end%>
                 <%unless company_review.working_time.blank?%>
-                    <a>Làm việc · <%= company_review.working_time%> · </a>
+                    <a><%=t(:woking)%> · <%= company_review.working_time%> · </a>
                 <%end%>
                 <%if company_review.recommend%>
-                    <a>Khuyến khích làm việc · </a>
+                    <a><%=t(:recommand_work)%> · </a>
                 <%else%>
-                    <a>Không khuyến khích làm việc · </a>
+                    <a><%=t(:not_recommand_work)%> · </a>
                 <%end%>
                 <a><%= company_review.created_at.strftime("%B, %Y")%></a>
         </div>
@@ -51,7 +51,7 @@
             <div class="user_review_pros">
                 <div class="user_review_pros_label">
                     <i class="material-icons-outlined checked">check</i>
-                    <strong>Ưu điểm</strong>
+                    <strong><%=t(:pros)%></strong>
                 </div>
                 <div class="user_review_pros_content">
                     <%if company_review.pros.present?%>
@@ -65,7 +65,7 @@
             <div class="user_review_cons">
                 <div class="user_review_cons_label">
                     <i class="material-icons-outlined checked">clear</i>
-                    <strong>Nhược điểm</strong>
+                    <strong><%=t(:cons)%></strong>
                 </div>
                 <div class="user_review_cons_content">
                     <%if company_review.cons.present?%>
@@ -79,10 +79,10 @@
             <div class="review_toolbar">
                 <div class="review_reply_block">
                     <%if user_signed_in?%>
-                        <button class="reply_btn" onclick="myFunctionReplyReview(<%=company_review.id%>)"><i class="material-icons-outlined">chat_bubble_outline</i> <span><%= company_review.company_reply_reviews.count%></span> <a>Trả lời</a> </button>
+                        <button class="reply_btn" onclick="myFunctionReplyReview(<%=company_review.id%>)"><i class="material-icons-outlined">chat_bubble_outline</i> <span><%= company_review.company_reply_reviews.count%></span> <a><%=t(:reply)%></a> </button>
                     <%else%>
                         <button type="button" data-toggle="modal" data-target="#buttonModalLoginCenter" class="reply_btn">
-                            <i class="material-icons-outlined">chat_bubble_outline</i> <span><%= company_review.company_reply_reviews.count%></span> <a>Trả lời</a>
+                            <i class="material-icons-outlined">chat_bubble_outline</i> <span><%= company_review.company_reply_reviews.count%></span> <a><%=t(:reply)%></a>
                         </button>
                     <%end%>
                 </div>
@@ -93,16 +93,16 @@
                             <% like_react = company_review.company_react_reviews.find { |react| (react.user_id == current_user.id) && (react.react_type == 1)} %>
                             <% if like_react %>  
                                 <%= button_to company_review_company_react_reviews_path(company_review, react_type: -1), method: :post, remote: true, form_class: "like_btn_highlight" do %>
-                                    <i class="material-icons">thumb_up</i> <span><%= company_review.company_react_reviews.where(:react_type => 1).count%></span> <a>Thích</a>
+                                    <i class="material-icons">thumb_up</i> <span><%= company_review.company_react_reviews.where(:react_type => 1).count%></span> <a><%=t(:like)%></a>
                                 <%end%>
                             <%else%>
                                 <%= button_to company_review_company_react_reviews_path(company_review, react_type: 1), method: :post, remote: true, form_class: "like_btn" do %>
-                                    <i class="material-icons-outlined">thumb_up</i> <span><%= company_review.company_react_reviews.where(:react_type => 1).count%></span> <a>Thích</a>
+                                    <i class="material-icons-outlined">thumb_up</i> <span><%= company_review.company_react_reviews.where(:react_type => 1).count%></span> <a><%=t(:like)%></a>
                                 <%end%>
                             <%end%>
                         <%else%>
                             <button type="button" data-toggle="modal" data-target="#buttonModalLoginCenter" class="like_btn">
-                                <i class="material-icons-outlined">thumb_up</i> <span><%= company_review.company_react_reviews.where(:react_type => 1).count%></span> <a>Thích</a>
+                                <i class="material-icons-outlined">thumb_up</i> <span><%= company_review.company_react_reviews.where(:react_type => 1).count%></span> <a><%=t(:like)%></a>
                             </button>
                         <%end%>
                     </div>
@@ -112,16 +112,16 @@
                             <% dislike_react = company_review.company_react_reviews.find { |react| (react.user_id == current_user.id) && (react.react_type == 0)} %>
                             <% if dislike_react %>  
                                 <%= button_to company_review_company_react_reviews_path(company_review, react_type: -1), method: :post, remote: true, form_class: "dislike_btn_highlight" do %>
-                                    <i class="material-icons">thumb_down</i> <span><%= company_review.company_react_reviews.where(:react_type => 0).count%></span> <a>Không thích</a>
+                                    <i class="material-icons">thumb_down</i> <span><%= company_review.company_react_reviews.where(:react_type => 0).count%></span> <a><%=t(:dislike)%></a>
                                 <%end%>
                             <%else%>
                                 <%= button_to company_review_company_react_reviews_path(company_review, react_type: 0), method: :post, remote: true, form_class: "dislike_btn" do %>
-                                    <i class="material-icons-outlined">thumb_down</i> <span><%= company_review.company_react_reviews.where(:react_type => 0).count%></span> <a>Không thích</a>
+                                    <i class="material-icons-outlined">thumb_down</i> <span><%= company_review.company_react_reviews.where(:react_type => 0).count%></span> <a><%=t(:dislike)%></a>
                                 <%end%>
                             <%end%>
                         <%else%>
                             <button type="button" data-toggle="modal" data-target="#buttonModalLoginCenter" class="dislike_btn">
-                                <i class="material-icons-outlined">thumb_down</i> <span><%= company_review.company_react_reviews.where(:react_type => 0).count%></span> <a>Không thích</a>
+                                <i class="material-icons-outlined">thumb_down</i> <span><%= company_review.company_react_reviews.where(:react_type => 0).count%></span> <a><%=t(:dislike)%></a>
                             </button>
                         <%end%>
                     </div>
@@ -130,11 +130,11 @@
                 <div class="review_report_block">
                     <%if user_signed_in?%>
                         <button class="report_btn" type="button" class="btn" data-toggle="modal" data-target="#buttonModalReviewCommentIndexCenter">
-                            <i class="material-icons-outlined">flag</i> <a>Báo xấu</a>
+                            <i class="material-icons-outlined">flag</i> <a><%=t(:report)%></a>
                         </button>
                     <%else%>
                         <button class="report_btn" type="button" class="btn" data-toggle="modal" data-target="#buttonModalLoginCenter">
-                            <i class="material-icons-outlined">flag</i> <a>Báo xấu</a>
+                            <i class="material-icons-outlined">flag</i> <a><%=t(:report)%></a>
                         </button>
                     <%end%>
                     <!-- Modal -->

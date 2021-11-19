@@ -15,20 +15,26 @@
                 <%if user_signed_in?%>
                     <div class="cv_show_action">
                         <div class="cv_show_index">
-                            <%= link_to '<button type="submit"><i class="material-icons">arrow_back</i><span>Xem mẫu khác</span></button>'.html_safe, cover_vitaes_path%>
+                            <%= link_to cover_vitaes_path do%>
+                                <button type="submit"><i class="material-icons">arrow_back</i><span><%=t(:view_other_sample)%></span></button>
+                            <%end%>
                         </div>
                         <div class="cv_show_use">
-                            <%= link_to '<button type="submit"><i class="material-icons">edit</i><span>Dùng mẫu này</span></button>'.html_safe, new_cover_vitae_path(:cv_sample_id => @cover_vitae.id)%>
+                            <%= link_to new_cover_vitae_path(:cv_sample_id => @cover_vitae.id) do%>
+                                <button type="submit"><i class="material-icons">edit</i><span><%=t(:use_sample)%></span></button>
+                            <%end%>
                         </div>
                     </div>
                 <%else%>
                     <div class="cv_show_action">
                         <div class="cv_show_index">
-                            <%= link_to '<button type="submit"><i class="material-icons">arrow_back</i><span>Xem mẫu khác</span></button>'.html_safe, cover_vitaes_path%>
+                            <%= link_to cover_vitaes_path do%>
+                                <button type="submit"><i class="material-icons">arrow_back</i><span><%=t(:view_other_sample)%></span></button>
+                            <%end%>
                         </div>
                         <div  class="cv_show_use">
                             <button type="button" data-toggle="modal" data-target="#buttonModalLoginCenter">
-                                <i class="material-icons">edit</i><span>Dùng mẫu này</span>
+                                <i class="material-icons">edit</i><span><%=t(:use_sample)%></span>
                             </button>
                         </div>
                     </div>

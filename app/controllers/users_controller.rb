@@ -1,9 +1,7 @@
 class UsersController < ApplicationController
     # skip_before_action :require_user_login, only: [:new, :create]
     before_action :require_user_login, only: [:index, :show, :edit, :update, :destroy, :profile]
-    
-    add_breadcrumb "Trang chủ", :root_path
-    
+        
     def index
         @users = User.all
     end
@@ -76,9 +74,9 @@ class UsersController < ApplicationController
 
         if(@user.update(user_params))
             # redirect_to user_path(current_user)
-            # flash[:success] = "Update thông tin thành công"
+            flash[:success] = I18n.t(:update_success)
         else
-            flash[:danger] = "Lỗi, không thể cập nhật thông tin"
+            flash[:danger] = I18n.t(:update_error)
         end
 
         respond_to do |format|
@@ -89,7 +87,9 @@ class UsersController < ApplicationController
 
     def profile
         @user = current_user
-        add_breadcrumb "Hồ sơ cá nhân", user_profile_path
+        
+        add_breadcrumb I18n.t(:home_page), :root_path
+        add_breadcrumb I18n.t(:user_profile), user_profile_path
     end
 
     def preview

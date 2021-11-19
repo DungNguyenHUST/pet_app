@@ -3,14 +3,14 @@
         <div class="col-sm-12">
             <div class="employer_apply_job_index">
                 <div class="employer_apply_job_index_title">
-                    <h3>Quản lý hồ sơ ứng tuyển</h3>
+                    <h3><%=t(:employer_mng_applied_job)%></h3>
                 </div>
 
                 <div class="employer_apply_job_index_btn">
                     <%if auth_post_job_of_employer(current_employer)%>
-                        <%= link_to 'Đăng tin mới', new_company_job_path, method: :get, class: "btn btn-primary" %>
+                        <%= link_to t(:post_job), new_company_job_path, method: :get, class: "btn btn-primary" %>
                     <%else%>
-                        <%= link_to 'Đăng tin mới', new_company_job_path, method: :get, class: "btn btn-primary disabled" %>
+                        <%= link_to t(:post_job), new_company_job_path, method: :get, class: "btn btn-primary disabled" %>
                     <%end%>
                 </div>
                 <%if @company_apply_jobs.total_count > 0%>
@@ -20,11 +20,11 @@
                                 <thead>
                                     <tr>
                                         <th style="width: 2%;">No.</th>
-                                        <th style="width: 12%;">Họ và tên</th>
-                                        <th style="width: 5%;">Email</th>
-                                        <th style="width: 50%;">Việc làm</th>
-                                        <th style="width: 12%;">Ngày ứng tuyển</th>
-                                        <th style="width: 12%;">Hồ sơ</th>
+                                        <th style="width: 12%;"><%=t(:full_name)%></th>
+                                        <th style="width: 5%;"><%=t(:email)%></th>
+                                        <th style="width: 50%;"><%=t(:job)%></th>
+                                        <th style="width: 12%;"><%=t(:date_applied)%></th>
+                                        <th style="width: 12%;"><%=t(:cover_vitae)%></th>
                                     </tr>
                                 </thead>
                                 <tbody>
@@ -51,11 +51,13 @@
                             <i class="material-icons">pending_actions</i>
                         </div>
                         <div class="employer_apply_job_not_found">
-                            <span>Rất tiếc, hiện tại bạn chưa có hồ sơ ứng tuyển nào</span>
+                            <span><%=t(:applied_not_found)%></span>
                         </div>
                         <div class="employer_apply_job_not_found_action">
                             <div class="employer_apply_job_button">
-                                <%= link_to '<button type="submit"> <i class="material-icons-outlined">arrow_back</i> <span> Quay trở lại trang việc làm</span> </button>'.html_safe, employer_path(current_employer, tab: 'EmployerJobID')%>
+                                <%= link_to employer_path(current_employer, tab: 'EmployerJobID') do%>
+                                    <button type="submit"> <i class="material-icons-outlined">arrow_back</i> <span> <%=t(:goback_job_site)%></span> </button>
+                                <%end%>
                             </div>
                         </div>
                     </div>

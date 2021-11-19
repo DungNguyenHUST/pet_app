@@ -5,13 +5,13 @@
                 <div class="company_profile_overview">
                     <div class="company_profile_block">
                         <div class="company_profile_title">
-                            <a>Giới thiệu <%= @company.name %></a>
+                            <a><%=t(:overview)%> <%= @company.name %></a>
                         </div>
                         <div class="row">
                             <div class="col-sm-4">
                                 <div class="company_profile_content_block">
                                     <div class="company_profile_section">
-                                        <a> <i class="material-icons-outlined">business</i> <span>Trụ sở chính</span> </a>
+                                        <a> <i class="material-icons-outlined">business</i> <span><%=t(:company_location)%></span> </a>
                                     </div>
                                     <div class="company_profile_content">
                                         <%if !@company.location.to_s.empty?%>
@@ -24,7 +24,7 @@
 
                                 <div class="company_profile_content_block">
                                     <div class="company_profile_section">
-                                        <a> <i class="material-icons-outlined">open_in_new</i> <span>Website</span> </a>
+                                        <a> <i class="material-icons-outlined">open_in_new</i> <span><%=t(:website)%></span> </a>
                                     </div>
                                     <div class="company_profile_content">
                                         <%if !@company.website.to_s.empty?%>
@@ -37,7 +37,7 @@
 
                                 <div class="company_profile_content_block">
                                     <div class="company_profile_section">
-                                        <a> <i class="material-icons-outlined">phone</i> <span>Số điện thoại</span> </a>
+                                        <a> <i class="material-icons-outlined">phone</i> <span><%=t(:phone)%></span> </a>
                                     </div>
                                     <div class="company_profile_content">
                                         <%if !@company.phone.to_s.empty?%>
@@ -50,7 +50,7 @@
 
                                 <div class="company_profile_content_block">
                                     <div class="company_profile_section">
-                                        <a><i class="material-icons-outlined">people</i> <span>Quy mô công ty</span> </a>
+                                        <a><i class="material-icons-outlined">people</i> <span><%=t(:company_size)%></span> </a>
                                     </div>
                                     <div class="company_profile_content">
                                         <%if !@company.size.to_s.empty?%>
@@ -65,7 +65,7 @@
                             <div class="col-sm-4">
                                 <div class="company_profile_content_block">
                                     <div class="company_profile_section">
-                                        <a> <i class="material-icons-outlined">event_available</i> <span>Năm thành lập</span> </a>
+                                        <a> <i class="material-icons-outlined">event_available</i> <span><%=t(:company_est)%></span> </a>
                                     </div>
                                     <div class="company_profile_content">
                                         <%if !@company.time_establish.to_s.empty?%>
@@ -78,7 +78,7 @@
 
                                 <div class="company_profile_content_block">
                                     <div class="company_profile_section">
-                                        <a> <i class="material-icons-outlined">money</i> <span>Doanh thu</span> </a>
+                                        <a> <i class="material-icons-outlined">money</i> <span><%=t(:company_value)%></span> </a>
                                     </div>
                                     <div class="company_profile_content">
                                         <%if !@company.values.to_s.empty?%>
@@ -91,7 +91,7 @@
 
                                 <div class="company_profile_content_block">
                                     <div class="company_profile_section">
-                                        <a> <i class="material-icons-outlined">flag</i> <span>Quốc gia</span> </a>
+                                        <a> <i class="material-icons-outlined">flag</i> <span><%=t(:country)%></span> </a>
                                     </div>
                                     <div class="company_profile_content">
                                         <%if !@company.country.to_s.empty?%>
@@ -104,7 +104,7 @@
 
                                 <div class="company_profile_content_block">
                                     <div class="company_profile_section">
-                                        <a> <i class="material-icons-outlined">local_police</i> <span>Loại hình hoạt động</span> </a>
+                                        <a> <i class="material-icons-outlined">local_police</i> <span><%=t(:form_company_type)%></span> </a>
                                     </div>
                                     <div class="company_profile_content">
                                         <%if !@company.company_type.to_s.empty?%>
@@ -119,7 +119,7 @@
                             <div class="col-sm-4">
                                 <div class="company_profile_content_block">
                                     <div class="company_profile_section">
-                                        <a> <i class="material-icons-outlined">favorite_border</i> <span>Lĩnh vực hoạt động</span> </a>
+                                        <a> <i class="material-icons-outlined">favorite_border</i> <span><%=t(:company_field)%></span> </a>
                                     </div>
                                     <div class="company_profile_content">
                                         <%if !@company.field_operetion.to_s.empty?%>
@@ -132,7 +132,7 @@
 
                                 <div class="company_profile_content_block">
                                     <div class="company_profile_section">
-                                        <a> <i class="material-icons-outlined">date_range</i> <span>Ngày làm việc trong tuần</span> </a>
+                                        <a> <i class="material-icons-outlined">date_range</i> <span><%=t(:form_company_work_week)%></span> </a>
                                     </div>
                                     <div class="company_profile_content">
                                         <%if !@company.working_date.to_s.empty?%>
@@ -145,7 +145,7 @@
                                 
                                 <div class="company_profile_content_block">
                                     <div class="company_profile_section">
-                                        <a> <i class="material-icons-outlined">history_toggle_off</i> <span>Thời gian làm việc</span> </a>
+                                        <a> <i class="material-icons-outlined">history_toggle_off</i> <span><%=t(:form_company_work_time)%></span> </a>
                                     </div>
                                     <div class="company_profile_content">
                                         <%if !@company.working_time.to_s.empty?%>
@@ -158,7 +158,7 @@
 
                                 <div class="company_profile_content_block">
                                     <div class="company_profile_section">
-                                        <a> <i class="material-icons-outlined">history</i> <span>Cập nhật lần cuối</span> </a>
+                                        <a> <i class="material-icons-outlined">history</i> <span><%=t(:last_update)%></span> </a>
                                     </div>
                                     <div class="company_profile_content">
                                         <%if !@company.updated_at.to_s.empty?%>
@@ -180,7 +180,7 @@
                 <%if(@company.company_reviews.count > 0)%>
                     <div class="company_profile_review">
                         <div class="company_profile_title">
-                            <a>Review <%= @company.name %></a>
+                            <a><%=t(:review)%> <%= @company.name %></a>
                         </div>
                         <div class="review_content">
                             <%if(@company.company_reviews.count > 0)%>
@@ -188,7 +188,7 @@
                             <%end%>
                         </div>
                         <div class="review_suggestion">
-                            <a href="<%=company_path(@company, tab: 'CompanyReviewsID') %>">Xem tất cả <%=@company.company_reviews.count%> review <%=@company.name%></a>
+                            <a href="<%=company_path(@company, tab: 'CompanyReviewsID') %>"><%=t(:see_all)%> <%=@company.company_reviews.count%> <%=t(:review)%> <%=@company.name%></a>
                         </div>
                     </div>
                 <%end%>
@@ -196,7 +196,7 @@
                 <%if(@company.company_interviews.count > 0)%>
                     <div class="company_profile_interview">
                         <div class="company_profile_title">
-                            <a>Kinh nghiệm phỏng vấn tại <%= @company.name %></a>
+                            <a><%=t(:interview)%> <%= @company.name %></a>
                         </div>
                         <div class="interview_content">
                             <%if(@company.company_interviews.count > 0)%>
@@ -205,7 +205,7 @@
                         </div>
                         
                         <div class="interview_suggestion">
-                            <a href="<%=company_path(@company, tab: 'CompanyInterviewsID') %>">Xem tất cả <%=@company.company_interviews.count%> kinh nghiệm phỏng vấn tại <%=@company.name%></a>
+                            <a href="<%=company_path(@company, tab: 'CompanyInterviewsID') %>"><%=t(:see_all)%> <%=@company.company_interviews.count%> <%=t(:interview)%> <%=@company.name%></a>
                         </div>
                     </div>
                 <%end%>
@@ -216,7 +216,7 @@
                 <%if @company_jobs.total_count > 0%>
                     <div class="company_job_refer_block">
                         <div class="company_job_label">
-                            <a>Tin tuyển dụng</a>
+                            <a><%=t(:jobs)%></a>
                         </div>
                         <div class="company_job_des">
                             <%@company_jobs.order('created_at DESC').first(10).each do |company_job|%>

@@ -3,7 +3,7 @@
         <div class="modal-header">
             <div class="new_report_title">
                 <i class="material-icons">flag</i>
-                <a>Thông báo nội dung xấu</a>
+                <a><%=t(:report_spam)%></a>
             </div>
             <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                 <span aria-hidden="true">&times;</span>
@@ -13,21 +13,21 @@
             <%= form_for Report.new, remote: true, :html => { :class => "form-horizontal problem" } do |f| %>
                 <div class="new_report_section">
                     <div class="new_report_label">
-                        <a><%= f.label :report_type, "Lý do vi phạm"%></a>
+                        <a><%= f.label :report_type, t(:report_reason)%></a>
                     </div>
                     <div class="new_report_input">
-                        <%= f.select(:report_type, options_for_select([['Dùng tiếng Việt không dấu', 1], 
-                                                                ['Vi phạm nội quy', 2], 
-                                                                ['Cố tình spam, làm hỏng nội dung bài viết', 3], 
-                                                                ['Sử dụng từ ngữ thô tục, xúc phạm', 4], 
-                                                                ['Nội dung liên quan tới chính trị', 5], 
-                                                                ['Nội dung gây kích động bạo lực', 6]]), 
-                                                                {:include_blank => '--Chọn lý do--'}, { :class => 'form-select'}) %>
+                        <%= f.select(:report_type, options_for_select([[t(:report_1), 1], 
+                                                                [t(:report_2), 2], 
+                                                                [t(:report_3), 3], 
+                                                                [t(:report_4), 4], 
+                                                                [t(:report_5), 5], 
+                                                                [t(:report_6), 6]]), 
+                                                                {:include_blank => t(:select_reason)}, { :class => 'form-select'}) %>
                     </div>
                 </div>
                 <div class="new_report_section">
                     <div class="new_report_label">
-                        <a><%= f.label :report_content, "Lý do khác(nếu có)"%></a>
+                        <a><%= f.label :report_content, t(:report_other_reason)%></a>
                     </div>
                     <div class="new_report_input">
                         <%= f.text_area :report_content, :class => "tinymce"%>
@@ -40,7 +40,7 @@
                 <%=f.hidden_field :target_type, :value => target_type%>
                 
                 <div class="new_report_submit">
-                    <%= f.submit "Gửi", class: "new_report_form_submit" %>
+                    <%= f.submit t(:send), class: "new_report_form_submit" %>
                 </div>
             <%end%>
         </div>

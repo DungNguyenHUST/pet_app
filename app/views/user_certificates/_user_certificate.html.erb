@@ -18,7 +18,7 @@
         <div class="col-2">
             <div class='user_profile_certificate_edit'>
                 <button class="user_profile_certificate_update_btn" onclick="myFunctionUserCertificate('profile_certificate_form_update_<%=user_certificate.id%>')"><i class="material-icons-outlined">edit</i></button>
-                <%= link_to '<button type="submit"> <i class="material-icons-outlined">delete_outline</i></button>'.html_safe, user_user_certificate_path(@user, user_certificate), method: :delete, remote: :true, data: { confirm: 'Bạn có chắc muốn xóa ?' } %>
+                <%= link_to '<button type="submit"> <i class="material-icons-outlined">delete_outline</i></button>'.html_safe, user_user_certificate_path(@user, user_certificate), method: :delete, remote: :true, data: { confirm: t(:are_you_sure_to_delete) } %>
             </div>
         </div>
     </div>

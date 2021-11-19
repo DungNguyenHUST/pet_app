@@ -3,7 +3,7 @@
         <div class="modal-content">
             <div class="modal-header">
                 <div class="user_signin_modal_title">
-                    <a>Đăng nhập để tiếp tục...</a>
+                    <a><%=t(:login_message)%></a>
                 </div> 
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
@@ -17,20 +17,20 @@
                     </div>
                 </div>
                 <div class="user_signin_modal_des">
-                    <span>Nơi mọi người chia sẻ kinh nghiệm, review công ty, việc làm ... Giúp bạn tìm kiếm công việc mơ ước và phát triển sự nghiệp.</span>
+                    <span><%=t(:login_intro)%></span>
                 </div>
                 <div class="user_signin_modal_signin">
                     <%= button_to new_user_session_path, method: :get do%>
-                        <a>Đăng nhập</a>
+                        <a><%=t(:signin)%></a>
                     <%end%>
                 </div>
                 <div class="user_signin_modal_signup">
                     <%= button_to new_user_registration_path, method: :get do%>
-                        <a>Tạo tài khoản mới</a>
+                        <a><%=t(:signup)%></a>
                     <%end%>
                 </div>
                 <div class="user_signin_modal_des_sub">
-                    <span>Việc tạo tài khoản là hoàn toàn miễn phí và thông tin cá nhân của bạn sẽ chỉ được hiển thị khi thực sự cần thiết</span>
+                    <span><%=t(:login_note)%></span>
                 </div>
             </div>
         </div>

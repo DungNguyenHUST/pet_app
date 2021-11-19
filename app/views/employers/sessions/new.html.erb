@@ -5,7 +5,7 @@
         <div class='employer_session_block'>
             <div class="employer_signin_top_label">
                 <div class="employer_signin_title">
-                    <a>Nhà tuyển dụng đăng nhập</a>
+                    <a><%=t(:employer_signin)%></a>
                     <i class="material-icons-outlined">work_outline</i>
                 </div>
             </div>
@@ -13,40 +13,40 @@
             <div class="employer_signin_form_left">
                 <%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
                     <div class="employer_signin_label">
-                        <a><%= f.label :email, "Địa chỉ email", class: "employer_signin_label_name" %></a>
+                        <a><%= f.label :email, t(:email), class: "employer_signin_label_name" %></a>
                     </div>
 
                     <div class="employer_signin_input">
-                        <%= f.email_field :email, autofocus: true, autocomplete: "email", :required => true, class: "form-control", placeholder: "Nhập địa chỉ email của bạn" %>
+                        <%= f.email_field :email, autofocus: true, autocomplete: "email", :required => true, class: "form-control", placeholder: t(:enter_email) %>
                     </div>
                     
                     <div class="employer_signin_label">
-                        <a><%= f.label :password, "Mật khẩu", class: "employer_signin_label_name" %></a>
+                        <a><%= f.label :password, t(:password), class: "employer_signin_label_name" %></a>
                     </div>
 
                     <div class="employer_signin_input">
-                        <%= f.password_field :password, autocomplete: "current-password", :required => true, class: "form-control", placeholder: "Nhập mật khẩu của bạn" %>
+                        <%= f.password_field :password, autocomplete: "current-password", :required => true, class: "form-control", placeholder: t(:enter_password) %>
                     </div>
 
                     <div class="employer_signin_remember">
                         <% if devise_mapping.rememberable? %>
                             <%= f.check_box :remember_me %>
-                            <%= f.label :remember_me, "Nhớ đăng nhập", class: "employer_signin_label_small" %>
+                            <%= f.label :remember_me, t(:remember_signin), class: "employer_signin_label_small" %>
                         <% end %>
                     </div>
                     
                     <div class="employer_signin_forgot_pass">
-                        <a><%= link_to "Quên mật khẩu?", new_password_path(resource_name) %></a>
+                        <a><%= link_to t(:forgot_password), new_password_path(resource_name) %></a>
                     </div>
 
                     <div class="employer_signin_submit">
-                        <%= f.submit "Đăng nhập", class: "employer_signin_form_submit" %>
+                        <%= f.submit t(:signin), class: "employer_signin_form_submit" %>
                     </div>
                 <%end%>
             </div>
 
             <div class="employer_signin_loginhere">
-                Chưa có tài khoản?<a><%= link_to "Tạo tài khoản mới", new_employer_registration_path %></a>
+                <%=t(:have_no_account)%><a><%= link_to t(:signup), new_employer_registration_path %></a>
             </div>
         </div>
     </div>

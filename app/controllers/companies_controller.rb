@@ -3,10 +3,9 @@ class CompaniesController < ApplicationController
     include ApplicationHelper
     before_action :require_employer_login, only: [:new, :create, :edit, :update, :destroy]
 
-    add_breadcrumb "Trang chủ", :root_path
-
     def index
-        add_breadcrumb "Danh sách công ty", :companies_path
+        add_breadcrumb I18n.t(:home_page), :root_path
+        add_breadcrumb I18n.t(:company_list), :companies_path
         
         # Auto complete
         @suggest_companies = Company.search_company_by_name(params[:search])
@@ -66,7 +65,7 @@ class CompaniesController < ApplicationController
                 redirect_to company_path(@company)
             end
         else
-            flash[:danger] = "Lỗi, không thể lưu thông tin công ty"
+            flash[:danger] = I18n.t(:create_error)
             render :new
         end
     end
@@ -85,24 +84,25 @@ class CompaniesController < ApplicationController
             @tab = "default"
         end
 
-        add_breadcrumb "Danh sách công ty", :companies_path
+        add_breadcrumb I18n.t(:home_page), :root_path
+        add_breadcrumb I18n.t(:company_list), :companies_path
         add_breadcrumb @company.name, company_path(@company)
         if @tab == "CompanyProfileID"
-            add_breadcrumb "Tổng quan chung", company_path(@company)                        
+            add_breadcrumb I18n.t(:overview), company_path(@company)                        
         elsif @tab == "CompanyPolicyID"
-            add_breadcrumb "Chính sách", company_path(@company) 
+            add_breadcrumb I18n.t(:policy), company_path(@company) 
         elsif  @tab == "CompanyReviewsID"
-            add_breadcrumb "Review", company_path(@company)
+            add_breadcrumb I18n.t(:review), company_path(@company)
         elsif  @tab == "CompanyInterviewsID"
-            add_breadcrumb "Phỏng vấn", company_path(@company)
+            add_breadcrumb I18n.t(:interview), company_path(@company)
         elsif @tab == "CompanyJobsID"
-            add_breadcrumb "Việc làm", company_path(@company)
+            add_breadcrumb I18n.t(:job), company_path(@company)
         elsif @tab == "CompanySalariesID"
-            add_breadcrumb "Lương", company_path(@company)
+            add_breadcrumb I18n.t(:salary), company_path(@company)
         elsif  @tab == "CompanyQuestionsID"
-            add_breadcrumb "Câu hỏi", company_path(@company) 
+            add_breadcrumb I18n.t(:question), company_path(@company) 
         elsif  @tab == "CompanyImagesID"
-            add_breadcrumb "Hình ảnh", company_path(@company)
+            add_breadcrumb I18n.t(:picture), company_path(@company)
         end
     end
 
@@ -114,10 +114,10 @@ class CompaniesController < ApplicationController
     def update
         @company = Company.friendly.find params[:id]
         if(@company.update(company_param))
-            flash[:danger] = "Cập nhật thông tin thành công"
+            flash[:danger] = I18n.t(:update_success)
             redirect_to company_path(@company)
         else
-            flash[:danger] = "Lỗi, không thể cập nhật thông tin"
+            flash[:danger] = I18n.t(:update_error)
         end
     end
 

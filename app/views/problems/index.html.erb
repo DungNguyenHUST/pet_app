@@ -1,23 +1,23 @@
 <% content_for :meta_robots, "all" %>
 <%case @tab%>
 <%when "default", "ProblemIndexAllID"%>
-    <%title = "Tất cả câu hỏi"%>
-    <%content = "Danh sách các câu hỏi phỏng vấn, thuật toán, IQ-EQ test, bài test tổng hợp... được update liên tục để mọi người cùng nhau tìm kiếm các giải pháp tốt nhất"%>
+    <%title = t(:problem_meta_title_1)%>
+    <%content = t(:problem_meta_content_1)%>
 <%when "ProblemIndexAlgorithmID"%>
-    <%title = "Câu hỏi thuật toán"%>
-    <%content = "Danh sách các câu hỏi thuật toán, công nghệ thông tin ..."%>
+    <%title = t(:problem_meta_title_2)%>
+    <%content = t(:problem_meta_content_2)%>
 <%when "ProblemEQTestID"%>
-    <%title = "Câu hỏi EQ test "%>
-    <%content = "Danh sách các câu hỏi EQ test, cảm xúc, khả năng xử lý của ứng viên..."%>
+    <%title = t(:problem_meta_title_3)%>
+    <%content = t(:problem_meta_content_3)%>
 <%when "ProblemIndexIQTestID"%>
-    <%title = "Câu hỏi IQ test"%>
-    <%content = "Danh sách các câu hỏi IQ, đánh giá tư duy, khả năng xử lý vấn đề của ứng viên"%>
+    <%title = t(:problem_meta_title_4)%>
+    <%content = t(:problem_meta_content_4)%>
 <%when "ProblemIndexCareerID"%>
-    <%title = "Câu hỏi phỏng vấn"%>
-    <%content = "Danh sách các câu hỏi tình huống nhằm đánh giá kĩ năng xử lý tình huống của ứng viên"%>
+    <%title = t(:problem_meta_title_5)%>
+    <%content = t(:problem_meta_content_5)%>
 <%when "ProblemIndexOtherID"%>
-    <%title = "Câu hỏi khác"%>
-    <%content = "Các câu hỏi thuộc các lĩnh vực khác, các bài test được xây dựng bởi các công ty hàng đầu"%>
+    <%title = t(:problem_meta_title_6)%>
+    <%content = t(:problem_meta_content_6)%>
 <%else%>
     <%title = ""%>
     <%content = ""%>
@@ -35,7 +35,7 @@
                             <div class="col-sm-11 col_padding_customize_right">
                                 <div class="problem_search_input">
                                     <i class="material-icons-outlined">search</i>
-                                    <%= text_field_tag :search, params[:search], data: { behavior: "autocomplete" }, required: true, class: 'form-control', placeholder: "Nhập tên câu hỏi cần tìm kiếm..."%>
+                                    <%= text_field_tag :search, params[:search], data: { behavior: "autocomplete" }, required: true, class: 'form-control', placeholder: t(:problem_search_label)%>
                                 </div>
                             </div>
                                 
@@ -43,7 +43,7 @@
                                 <div class="problem_search_button">
                                     <%= button_to "", form_class: "search_button", :name => nil do%>
                                         <i class="material-icons-outlined">search</i>
-                                        <a>Tìm kiếm</a>
+                                        <a><%=t(:search)%></a>
                                     <%end%> 
                                 </div>
                             </div>
@@ -83,7 +83,7 @@
                 <%end%>
 
                 <div class="section_title">
-                    <span>Danh sách câu hỏi</span>
+                    <span><%=t(:problem_list)%></span>
                 </div>
                 
                 <div class="problem_index_tab_link">
@@ -94,7 +94,7 @@
                             <%else%> 
                                 <%active = ""%>
                             <%end%>                                 
-                            <a class="nav-link <%=active%>" href="<%=problems_path(tab: 'ProblemIndexAllID')%>"><i class="material-icons-outlined">view_list</i>Tất cả <span><%=convert_number_to_human(@problems_all.count)%><span></a>
+                            <a class="nav-link <%=active%>" href="<%=problems_path(tab: 'ProblemIndexAllID')%>"><i class="material-icons-outlined">view_list</i><%=t(:all)%> <span><%=convert_number_to_human(@problems_all.count)%><span></a>
                         </li>
                         <li class="nav-item">
                             <%if @tab == "ProblemIndexAlgorithmID"%>
@@ -102,7 +102,7 @@
                             <%else%> 
                                 <%active = ""%>
                             <%end%>                                     
-                            <a class="nav-link <%=active%>" href="<%=problems_path(tab: 'ProblemIndexAlgorithmID')%>"><i class="material-icons-outlined">calculate</i>Thuật toán<span><%=convert_number_to_human(@problem_math.count)%><span></a>
+                            <a class="nav-link <%=active%>" href="<%=problems_path(tab: 'ProblemIndexAlgorithmID')%>"><i class="material-icons-outlined">calculate</i><%=t(:algorithm)%><span><%=convert_number_to_human(@problem_math.count)%><span></a>
                         </li>
                         <li class="nav-item">
                             <%if @tab == "ProblemEQTestID"%>
@@ -110,7 +110,7 @@
                             <%else%> 
                                 <%active = ""%>
                             <%end%>                                     
-                            <a class="nav-link <%=active%>" href="<%=problems_path(tab: 'ProblemEQTestID')%>"><i class="material-icons-outlined">text_snippet</i>EQ Test <span><%=convert_number_to_human(@problem_eq_test.count)%><span></a>
+                            <a class="nav-link <%=active%>" href="<%=problems_path(tab: 'ProblemEQTestID')%>"><i class="material-icons-outlined">text_snippet</i><%=t(:eq_test)%> <span><%=convert_number_to_human(@problem_eq_test.count)%><span></a>
                         </li>
                         <li class="nav-item">
                             <%if @tab == "ProblemIndexIQTestID"%>
@@ -118,7 +118,7 @@
                             <%else%> 
                                 <%active = ""%>
                             <%end%>                                     
-                            <a class="nav-link <%=active%>" href="<%=problems_path(tab: 'ProblemIndexIQTestID')%>"><i class="material-icons-outlined">batch_prediction</i>IQ Test <span><%=convert_number_to_human(@problem_iq_test.count)%><span></a>
+                            <a class="nav-link <%=active%>" href="<%=problems_path(tab: 'ProblemIndexIQTestID')%>"><i class="material-icons-outlined">batch_prediction</i><%=t(:iq_test)%> <span><%=convert_number_to_human(@problem_iq_test.count)%><span></a>
                         </li>
                         <li class="nav-item">
                             <%if @tab == "ProblemIndexCareerID"%>
@@ -126,7 +126,7 @@
                             <%else%> 
                                 <%active = ""%>
                             <%end%>                                     
-                            <a class="nav-link <%=active%>" href="<%=problems_path(tab: 'ProblemIndexCareerID')%>"><i class="material-icons-outlined">card_travel</i>Phỏng vấn <span><%=convert_number_to_human(@problem_interview.count)%><span></a>
+                            <a class="nav-link <%=active%>" href="<%=problems_path(tab: 'ProblemIndexCareerID')%>"><i class="material-icons-outlined">card_travel</i><%=t(:interview_question)%> <span><%=convert_number_to_human(@problem_interview.count)%><span></a>
                         </li>
                         <li class="nav-item">
                             <%if @tab == "ProblemIndexOtherID"%>
@@ -134,7 +134,7 @@
                             <%else%> 
                                 <%active = ""%>
                             <%end%>                                     
-                            <a class="nav-link <%=active%>" href="<%=problems_path(tab: 'ProblemIndexOtherID')%>"><i class="material-icons-outlined">blur_on</i>Khác <span><%=convert_number_to_human(@problem_other.count)%><span></a>
+                            <a class="nav-link <%=active%>" href="<%=problems_path(tab: 'ProblemIndexOtherID')%>"><i class="material-icons-outlined">blur_on</i><%=t(:other_question)%> <span><%=convert_number_to_human(@problem_other.count)%><span></a>
                         </li>
                     </ul>
                 </div>
@@ -146,9 +146,9 @@
                                 <thead>
                                     <tr>
                                         <th><div class="table_th_no">#</th>
-                                        <th><div class="table_th_title">Tiêu đề</th>
-                                        <th><div class="table_th_difficult">Độ khó</th>
-                                        <th><div class="table_th_user">Trả lời</th>
+                                        <th><div class="table_th_title"><%=t(:title)%></th>
+                                        <th><div class="table_th_difficult"><%=t(:difficult)%></th>
+                                        <th><div class="table_th_user"><%=t(:reply)%></th>
                                     </tr>
                                 </thead>
                                 <tbody>
@@ -157,11 +157,11 @@
                                             <td><div class="table_td_no"><%= problem.id %></td>
                                             <td><div class="table_td_title"><a><%= link_to problem.title, problem_path(problem), target: :_blank %></a></td>
                                             <td>
-                                                <%if(problem.difficult.to_i == 1 || problem.difficult.to_s == 'Dễ') %>
+                                                <%if(problem.difficult.to_i == 1 || problem.difficult.to_s == t(:easy)) %>
                                                     <% table_td_difficult = "easy" %>
-                                                <% elsif (problem.difficult.to_i == 2 || problem.difficult.to_s == 'Trung bình') %>
+                                                <% elsif (problem.difficult.to_i == 2 || problem.difficult.to_s == t(:avarage)) %>
                                                     <% table_td_difficult = "average" %>
-                                                <% elsif (problem.difficult.to_i == 3 || problem.difficult.to_s == 'Khó') %>
+                                                <% elsif (problem.difficult.to_i == 3 || problem.difficult.to_s == t(:difficult)) %>
                                                     <% table_td_difficult = "hard" %>
                                                 <%end%>
                                                 <div class=<%= table_td_difficult %>><a><%= problem.difficult %></a>
@@ -181,9 +181,9 @@
                                 <thead>
                                     <tr>
                                         <th><div class="table_th_no">#</th>
-                                        <th><div class="table_th_title">Tiêu đề</th>
-                                        <th><div class="table_th_difficult">Độ khó</th>
-                                        <th><div class="table_th_user">Trả lời</th>
+                                        <th><div class="table_th_title"><%=t(:title)%></th>
+                                        <th><div class="table_th_difficult"><%=t(:difficult)%></th>
+                                        <th><div class="table_th_user"><%=t(:reply)%></th>
                                     </tr>
                                 </thead>
                                 <tbody>
@@ -192,11 +192,11 @@
                                             <td><div class="table_td_no"><%= link_to problem.id, problem_path(problem) %></td>
                                             <td><div class="table_td_title"><a><%= link_to problem.title, problem_path(problem), target: :_blank %></a></td>
                                             <td>
-                                                <%if(problem.difficult.to_i == 1 || problem.difficult.to_s == 'Dễ') %>
+                                                <%if(problem.difficult.to_i == 1 || problem.difficult.to_s == t(:easy)) %>
                                                     <% table_td_difficult = "easy" %>
-                                                <% elsif (problem.difficult.to_i == 2 || problem.difficult.to_s == 'Trung bình') %>
+                                                <% elsif (problem.difficult.to_i == 2 || problem.difficult.to_s == t(:avarage)) %>
                                                     <% table_td_difficult = "average" %>
-                                                <% elsif (problem.difficult.to_i == 3 || problem.difficult.to_s == 'Khó') %>
+                                                <% elsif (problem.difficult.to_i == 3 || problem.difficult.to_s == t(:difficult)) %>
                                                     <% table_td_difficult = "hard" %>
                                                 <%end%>
                                                 <div class=<%= table_td_difficult %>><a><%= problem.difficult %></a>
@@ -216,9 +216,9 @@
                                 <thead>
                                     <tr>
                                         <th><div class="table_th_no">#</th>
-                                        <th><div class="table_th_title">Tiêu đề</th>
-                                        <th><div class="table_th_difficult">Độ khó</th>
-                                        <th><div class="table_th_user">Trả lời</th>
+                                        <th><div class="table_th_title"><%=t(:title)%></th>
+                                        <th><div class="table_th_difficult"><%=t(:difficult)%></th>
+                                        <th><div class="table_th_user"><%=t(:reply)%></th>
                                     </tr>
                                 </thead>
                                 <tbody>
@@ -227,11 +227,11 @@
                                             <td><div class="table_td_no"><%= link_to problem.id, problem_path(problem) %></td>
                                             <td><div class="table_td_title"><a><%= link_to problem.title, problem_path(problem), target: :_blank %></a></td>
                                             <td>
-                                                <%if(problem.difficult.to_i == 1 || problem.difficult.to_s == 'Dễ') %>
+                                                <%if(problem.difficult.to_i == 1 || problem.difficult.to_s == t(:easy)) %>
                                                     <% table_td_difficult = "easy" %>
-                                                <% elsif (problem.difficult.to_i == 2 || problem.difficult.to_s == 'Trung bình') %>
+                                                <% elsif (problem.difficult.to_i == 2 || problem.difficult.to_s == t(:avarage)) %>
                                                     <% table_td_difficult = "average" %>
-                                                <% elsif (problem.difficult.to_i == 3 || problem.difficult.to_s == 'Khó') %>
+                                                <% elsif (problem.difficult.to_i == 3 || problem.difficult.to_s == t(:difficult)) %>
                                                     <% table_td_difficult = "hard" %>
                                                 <%end%>
                                                 <div class=<%= table_td_difficult %>><a><%= problem.difficult %></a>
@@ -251,9 +251,9 @@
                                 <thead>
                                     <tr>
                                         <th><div class="table_th_no">#</th>
-                                        <th><div class="table_th_title">Tiêu đề</th>
-                                        <th><div class="table_th_difficult">Độ khó</th>
-                                        <th><div class="table_th_user">Trả lời</th>
+                                        <th><div class="table_th_title"><%=t(:title)%></th>
+                                        <th><div class="table_th_difficult"><%=t(:difficult)%></th>
+                                        <th><div class="table_th_user"><%=t(:reply)%></th>
                                     </tr>
                                 </thead>
                                 <tbody>
@@ -262,11 +262,11 @@
                                             <td><div class="table_td_no"><%= link_to problem.id, problem_path(problem) %></td>
                                             <td><div class="table_td_title"><a><%= link_to problem.title, problem_path(problem), target: :_blank %></a></td>
                                             <td>
-                                                <%if(problem.difficult.to_i == 1 || problem.difficult.to_s == 'Dễ') %>
+                                                <%if(problem.difficult.to_i == 1 || problem.difficult.to_s == t(:easy)) %>
                                                     <% table_td_difficult = "easy" %>
-                                                <% elsif (problem.difficult.to_i == 2 || problem.difficult.to_s == 'Trung bình') %>
+                                                <% elsif (problem.difficult.to_i == 2 || problem.difficult.to_s == t(:avarage)) %>
                                                     <% table_td_difficult = "average" %>
-                                                <% elsif (problem.difficult.to_i == 3 || problem.difficult.to_s == 'Khó') %>
+                                                <% elsif (problem.difficult.to_i == 3 || problem.difficult.to_s == t(:difficult)) %>
                                                     <% table_td_difficult = "hard" %>
                                                 <%end%>
                                                 <div class=<%= table_td_difficult %>><a><%= problem.difficult %></a>
@@ -286,9 +286,9 @@
                                 <thead>
                                     <tr>
                                         <th><div class="table_th_no">#</th>
-                                        <th><div class="table_th_title">Tiêu đề</th>
-                                        <th><div class="table_th_difficult">Độ khó</th>
-                                        <th><div class="table_th_user">Trả lời</th>
+                                        <th><div class="table_th_title"><%=t(:title)%></th>
+                                        <th><div class="table_th_difficult"><%=t(:difficult)%></th>
+                                        <th><div class="table_th_user"><%=t(:reply)%></th>
                                     </tr>
                                 </thead>
                                 <tbody>
@@ -297,11 +297,11 @@
                                             <td><div class="table_td_no"><%= link_to problem.id, problem_path(problem) %></td>
                                             <td><div class="table_td_title"><a><%= link_to problem.title, problem_path(problem), target: :_blank %></a></td>
                                             <td>
-                                                <%if(problem.difficult.to_i == 1 || problem.difficult.to_s == 'Dễ') %>
+                                                <%if(problem.difficult.to_i == 1 || problem.difficult.to_s == t(:easy)) %>
                                                     <% table_td_difficult = "easy" %>
-                                                <% elsif (problem.difficult.to_i == 2 || problem.difficult.to_s == 'Trung bình') %>
+                                                <% elsif (problem.difficult.to_i == 2 || problem.difficult.to_s == t(:avarage)) %>
                                                     <% table_td_difficult = "average" %>
-                                                <% elsif (problem.difficult.to_i == 3 || problem.difficult.to_s == 'Khó') %>
+                                                <% elsif (problem.difficult.to_i == 3 || problem.difficult.to_s == t(:difficult)) %>
                                                     <% table_td_difficult = "hard" %>
                                                 <%end%>
                                                 <div class=<%= table_td_difficult %>><a><%= problem.difficult %></a>
@@ -321,9 +321,9 @@
                                 <thead>
                                     <tr>
                                         <th><div class="table_th_no">#</th>
-                                        <th><div class="table_th_title">Tiêu đề</th>
-                                        <th><div class="table_th_difficult">Độ khó</th>
-                                        <th><div class="table_th_user">Trả lời</th>
+                                        <th><div class="table_th_title"><%=t(:title)%></th>
+                                        <th><div class="table_th_difficult"><%=t(:difficult)%></th>
+                                        <th><div class="table_th_user"><%=t(:reply)%></th>
                                     </tr>
                                 </thead>
                                 <tbody>
@@ -332,11 +332,11 @@
                                             <td><div class="table_td_no"><%= link_to problem.id, problem_path(problem) %></td>
                                             <td><div class="table_td_title"><a><%= link_to problem.title, problem_path(problem), target: :_blank %></a></td>
                                             <td>
-                                                <%if(problem.difficult.to_i == 1 || problem.difficult.to_s == 'Dễ') %>
+                                                <%if(problem.difficult.to_i == 1 || problem.difficult.to_s == t(:easy)) %>
                                                     <% table_td_difficult = "easy" %>
-                                                <% elsif (problem.difficult.to_i == 2 || problem.difficult.to_s == 'Trung bình') %>
+                                                <% elsif (problem.difficult.to_i == 2 || problem.difficult.to_s == t(:avarage)) %>
                                                     <% table_td_difficult = "average" %>
-                                                <% elsif (problem.difficult.to_i == 3 || problem.difficult.to_s == 'Khó') %>
+                                                <% elsif (problem.difficult.to_i == 3 || problem.difficult.to_s == t(:difficult)) %>
                                                     <% table_td_difficult = "hard" %>
                                                 <%end%>
                                                 <div class=<%= table_td_difficult %>><a><%= problem.difficult %></a>
@@ -353,10 +353,12 @@
 
                 <div class="problem_new_button">
                     <%if user_signed_in?%>
-                        <%= link_to '<button type="submit"><i class="material-icons-outlined">create</i><span>Tạo câu hỏi mới</span></button>'.html_safe, new_problem_path %>
+                        <%= link_to new_problem_path do%>
+                            <button type="submit"><i class="material-icons-outlined">create</i><span><%=t(:ask_question)%></span></button>
+                        <%end%>
                     <%else%>
                         <button type="button" data-toggle="modal" data-target="#buttonModalLoginCenter">
-                            <i class="material-icons-outlined">create</i><span>Tạo câu hỏi mới</span>
+                            <i class="material-icons-outlined">create</i><span><%=t(:ask_question)%></span>
                         </button>
                     <%end%>
                 </div>
@@ -367,7 +369,7 @@
             <div class="problem_block_right">
                 <div class="problem_top">
                     <div class="problem_top_label">
-                        <a><i class="material-icons-outlined">format_list_numbered</i>Top câu hỏi hot</a>
+                        <a><i class="material-icons-outlined">format_list_numbered</i><%=t(:top_question)%></a>
                     </div>
                     <div class="problem_short">
                         <% @problems_newest.first(20).each do |problem| %>
@@ -383,7 +385,7 @@
                     </div>
                 </div>
                 <div class="problem_company">
-                    <a><i class="material-icons-outlined">corporate_fare</i>Câu hỏi theo công ty</a>
+                    <a><i class="material-icons-outlined">corporate_fare</i><%=t(:company_question)%></a>
                     <div class="problem_short">
                         <% @problems_all.first(10).each do |problem| %>
                             <%if problem.approved?%>

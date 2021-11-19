@@ -3,8 +3,8 @@
         <div class="container">
             <div class="employer_search_cv_index_search_bar">
                 <div class="employer_search_cv_index_search_label">
-                    <h3>Tìm kiếm ứng viên tiềm năng.</h3>
-                    <a>Khám phá danh sách hàng ngàn ứng viên đang có nhu cầu tìm việc mỗi ngày.</a>
+                    <h3><%=t(:profile_search_intro)%></h3>
+                    <a><%=t(:profile_search_sub)%></a>
                 </div>
                 
                 <%=form_tag employer_cv_search_path, :method => "get" do%>
@@ -13,7 +13,7 @@
                             <div class='col-sm-7 col_padding_customize_right'>
                                 <div class="employer_search_cv_index_search_what">
                                     <i class="material-icons-outlined">search</i>
-                                    <%= text_field_tag :search, params[:search], required: true, class: 'form-control', placeholder: "Tìm kiếm vị trí, kĩ năng, kinh nghiệm ..."%>
+                                    <%= text_field_tag :search, params[:search], required: true, class: 'form-control', placeholder: t(:profile_search_label)%>
                                 </div>
                             </div>
                                 
@@ -31,7 +31,7 @@
                                                             'Quảng Nam','Quảng Ngãi','Quảng Ninh','Quảng Trị',
                                                             'Sóc Trăng','Sơn La','Tây Ninh','Thái Bình','Thái Nguyên' ,
                                                             'Thanh Hóa','Thừa Thiên Huế','Tiền Giang','Trà Vinh',
-                                                            'Tuyên Quang','Vĩnh Long','Vĩnh Phúc','Yên Bái' ]), {:prompt => "Tất cả địa điểm", class: 'form-control'}%>
+                                                            'Tuyên Quang','Vĩnh Long','Vĩnh Phúc','Yên Bái' ]), {:prompt => t(:all_location), class: 'form-control'}%>
                                 </div>
                             </div>
                             
@@ -39,7 +39,7 @@
                                 <div class="employer_search_cv_index_search_button">
                                     <%= button_to "", form_class: "search_button", :name => nil do%>
                                         <i class="material-icons-outlined">search</i>
-                                        <a>Tìm kiếm</a>
+                                        <a><%=t(:search)%></a>
                                     <%end%> 
                                 </div>
                             </div>
@@ -53,7 +53,7 @@
     <div class="container">
         <div class="employer_search_cv_index_search_user">
             <div class="employer_search_cv_index_search_user_label">
-                <a>Danh sách hồ sơ mới cập nhật</a>
+                <a><%=t(:profile_list)%></a>
             </div>
 
             <%= render :partial => 'employers/cv_search', locals: {cv_searched: @user_cvs, :is_all => true} %>

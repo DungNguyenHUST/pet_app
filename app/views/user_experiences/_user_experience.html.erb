@@ -11,7 +11,7 @@
 
             <div class="user_profile_exp_section">
                 <%if user_experience.enrolled == true%>
-                    <span><%=user_experience.start_date.strftime("%m/%Y")%> - nay</span>
+                    <span><%=user_experience.start_date.strftime("%m/%Y")%> - <%=t(:now)%></span>
                 <%else%>
                     <span><%=user_experience.start_date.strftime("%m/%Y")%> - <%=user_experience.end_date.strftime("%m/%Y")%></span>
                 <%end%>
@@ -26,7 +26,7 @@
         <div class="col-2">
             <div class='user_profile_exp_edit'>
                 <button class="user_profile_exp_update_btn" onclick="myFunctionUserExp('profile_exp_form_update_<%=user_experience.id%>')"><i class="material-icons-outlined">edit</i></button>
-                <%= link_to '<button type="submit"> <i class="material-icons-outlined">delete_outline</i></button>'.html_safe, user_user_experience_path(@user, user_experience), method: :delete, remote: :true, data: { confirm: 'Bạn có chắc muốn xóa ?' } %>
+                <%= link_to '<button type="submit"> <i class="material-icons-outlined">delete_outline</i></button>'.html_safe, user_user_experience_path(@user, user_experience), method: :delete, remote: :true, data: { confirm: t(:are_you_sure_to_delete) } %>
             </div>
         </div>
     </div>

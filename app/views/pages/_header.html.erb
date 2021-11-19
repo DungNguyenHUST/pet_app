@@ -41,54 +41,54 @@
 				<div class="user_action_select_mobile" id ="user_action_menu_moblie">
 					<div class="user_action_mobile">
 						<%= link_to user_profile_path, :method => :get do%>
-							<i class="material-icons-outlined">badge</i><span>Hồ sơ tìm việc</span>
+							<i class="material-icons-outlined">badge</i><span><%=t(:user_profile)%></span>
 						<%end%>
 					</div>
 					<div class="user_action_mobile">
 						<%= link_to user_path(current_user, tab: 'SaveJobID'), :method => :get do%>
-							<i class="material-icons-outlined">bookmark_border</i><span>Việc làm đã lưu</span>
+							<i class="material-icons-outlined">bookmark_border</i><span><%=t(:user_saved_job)%></span>
 						<%end%>
 					</div>
 					
 					<div class="user_action_mobile">
 						<%= link_to user_path(current_user, tab: 'ApplyJobID'), :method => :get do%>
-							<i class="material-icons-outlined">check</i><span>Việc làm đã ứng tuyển</span>
+							<i class="material-icons-outlined">check</i><span><%=t(:user_applied_job)%></span>
 						<%end%>
 					</div>
 					
 					<div class="user_action_mobile">
 						<%= link_to user_path(current_user, tab: 'CompanyFollowID'), :method => :get do%>
-							<i class="material-icons-outlined">favorite_border</i><span>Công ty đang theo dõi</span>
+							<i class="material-icons-outlined">favorite_border</i><span><%=t(:user_followed_company)%></span>
 						<%end%>
 					</div>
 
 					<div class="user_action_mobile">
 						<%= link_to user_path(current_user, tab: 'ProblemID'), :method => :get do%>
-							<i class="material-icons-outlined">lightbulb</i><span>Câu hỏi của tôi</span>
+							<i class="material-icons-outlined">lightbulb</i><span><%=t(:user_interview_question)%></span>
 						<%end%>
 					</div>
 
 					<div class="user_action_mobile">
 						<%= link_to user_path(current_user, tab: 'CoverVitaeID'), :method => :get do%>
-							<i class="material-icons-outlined">content_copy</i><span>CV của tôi</span>
+							<i class="material-icons-outlined">content_copy</i><span><%=t(:user_cv)%></span>
 						<%end%>
 					</div>
 
 					<div class="user_action_mobile">
 						<%= link_to user_path(current_user, tab: 'PersonalID'), :method => :get do%>
-							<i class="material-icons-outlined">account_circle</i><span>Thông tin cá nhân</span>
+							<i class="material-icons-outlined">account_circle</i><span><%=t(:user_personal_info)%></span>
 						<%end%>
 					</div>
 
 					<div class="user_action_mobile">
 						<%= link_to edit_user_path(current_user), :method => :get do%>
-							<i class="material-icons-outlined">settings</i><span>Cài đặt tài khoản</span>
+							<i class="material-icons-outlined">settings</i><span><%=t(:setting)%></span>
 						<%end%>
 					</div>
 
 					<div class="user_action_mobile">
 						<button class="dropdown-item" type="button" class="btn" data-toggle="modal" data-target="#buttonModalHeaderCenterMobile">
-							<i class="material-icons-outlined">logout</i><span>Đăng xuất</span>
+							<i class="material-icons-outlined">logout</i><span><%=t(:logout)%></span>
 						</button>
 					</div>	
 				</div>
@@ -98,7 +98,7 @@
 					<div class="modal-dialog modal-dialog-centered" role="document">
 						<div class="modal-content">
 							<div class="modal-header">
-								<h5 class="modal-title">Bạn có chắc chắn muốn đăng xuất không?</h5>
+								<h5 class="modal-title"><%=t(:confirm_logout)%></h5>
 								<button type="button" class="close" data-dismiss="modal" aria-label="Close">
 								<span aria-hidden="true">&times;</span>
 								</button>
@@ -106,7 +106,7 @@
 							<div class="modal-body">
 								<div class="nav_header_user_action_mobile">
 									<%= button_to destroy_user_session_path, method: :delete do%>
-										<i class="material-icons-outlined">logout</i><span>Có, đăng xuất ngay bây giờ</span>
+										<i class="material-icons-outlined">logout</i><span><%=t(:confirm_logout_btn)%></span>
 									<%end%>
 								</div>
 							</div>
@@ -141,19 +141,19 @@
 				<div class="employer_action_select_mobile" id ="employer_action_menu_moblie">
 					<div class="employer_action_mobile">
 						<%= link_to employer_path(current_employer, tab: 'PersonalID'), :method => :get do%>
-							<i class="material-icons-outlined">space_dashboard</i><span>Bảng điều khiển</span>
+							<i class="material-icons-outlined">space_dashboard</i><span><%=t(:employer_dashboard)%></span>
 						<%end%>
 					</div>
 
 					<div class="employer_action_mobile">
 						<%= link_to edit_employer_path(current_employer), :method => :get do%>
-							<i class="material-icons-outlined">settings</i><span>Cài đặt tài khoản</span>
+							<i class="material-icons-outlined">settings</i><span><%=t(:setting)%></span>
 						<%end%>
 					</div>
 
 					<div class="employer_action_mobile">
 						<a class="dropdown-item" type="button" class="btn" data-toggle="modal" data-target="#buttonModalHeaderCenter">
-							<i class="material-icons-outlined">logout</i><span>Đăng xuất</span>
+							<i class="material-icons-outlined">logout</i><span><%=t(:logout)%></span>
 						</a>
 					</div>	
 				</div>
@@ -163,7 +163,7 @@
 					<div class="modal-dialog modal-dialog-centered" role="document">
 						<div class="modal-content">
 							<div class="modal-header">
-								<h5 class="modal-title">Bạn có chắc chắn muốn đăng xuất không?</h5>
+								<h5 class="modal-title"><%=t(:confirm_logout)%></h5>
 								<button type="button" class="close" data-dismiss="modal" aria-label="Close">
 								<span aria-hidden="true">&times;</span>
 								</button>
@@ -171,7 +171,7 @@
 							<div class="modal-body">
 								<div class="nav_header_employer_action_mobile">
 									<%= button_to destroy_employer_session_path, method: :delete do%>
-										<i class="material-icons-outlined">logout</i><span>Có, đăng xuất ngay bây giờ</span>
+										<i class="material-icons-outlined">logout</i><span><%=t(:confirm_logout_btn)%></span>
 									<%end%>
 								</div>
 							</div>
@@ -183,32 +183,54 @@
 
 		<%if employer_signed_in?%>
 			<div class="nav_main_menu">
-				<a href="<%=employer_index_job_path %>"> Quản lý tin đăng </a>
-				<a href="<%=employer_index_apply_path %>"> Quản lý hồ sơ ứng tuyển </a>
-				<a href="<%=employer_index_cv_path %>"> Tìm kiếm ứng viên </a>
-				<a href="<%=employer_plan_path %>">Đổi gói dịch vụ</a>
-				<a href="<%=contact_us_path%>">Liên hệ </a>
+				<a href="<%=employer_index_job_path %>"> <%=t(:employer_mng_job)%> </a>
+				<a href="<%=employer_index_apply_path %>"> <%=t(:employer_mng_applied_job)%> </a>
+				<a href="<%=employer_index_cv_path %>"> <%=t(:employer_find_cv)%> </a>
+				<a href="<%=employer_plan_path %>"><%=t(:employer_change_service)%></a>
+				<a href="<%=contact_us_path%>"><%=t(:contact)%> </a>
 			</div>
 		<%elsif admin_signed_in?%>
 			<div class="nav_main_menu">
-				<a href="<%=admin_path(current_admin, tab: 'AdminJobApprovingID') %>">Việc làm chờ duyệt</a>
-				<a href="<%=admin_path(current_admin, tab: 'AdminProblemApprovingID') %>">Câu hỏi chờ duyệt</a>
-				<a href="<%=rails_admin_path%>"> Pro Dashboard</a>
+				<a href="<%=admin_path(current_admin, tab: 'AdminJobApprovingID') %>"><%=t(:approving_job)%></a>
+				<a href="<%=admin_path(current_admin, tab: 'AdminProblemApprovingID') %>"><%=t(:approving_question)%></a>
+				<a href="<%=rails_admin_path%>"> <%=t(:admin_pro_dash)%></a>
 			</div>
 		<%else%>
 			<div class="nav_main_menu">
-				<a href="<%=jobs_search_path %>">Việc làm </a>
-				<a href="<%=companies_path %>">Review Công ty </a>
-				<a href="<%=user_profile_path %>">Hồ sơ tìm việc</a>
+				<a href="<%=jobs_search_path %>"><%=t(:job)%> </a>
+				<a href="<%=companies_path %>"><%=t(:company_review)%> </a>
+				<a href="<%=user_profile_path %>"><%=t(:user_profile)%></a>
 				<!--<a href="<%=problems_path %>">Mức lương </a>-->
-				<a href="<%=problems_path %>">Phỏng vấn </a>
+				<a href="<%=problems_path %>"><%=t(:interview_question)%> </a>
 				<!--<a href="<%=cover_vitaes_path %>">CV & Resume </a>-->
 				<!--<a href="<%=problems_path %>">Công cụ </a>-->
-				<a href="<%=posts_path %>">Blog</a>
+				<a href="<%=posts_path %>"><%=t(:blog)%></a>
 			</div>
 		<%end%>
 
 		<div class="nav_right">
+			<div class="nav_select_language">
+				<button class="btn_select_language" type="button" id="dropdownLanguageMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+					<%if params[:locale] == "vi"%>
+						<span id="selected">Tiếng Việt</span><i class="material-icons-outlined">arrow_drop_down</i>
+					<%else%>
+						<span id="selected">English</span><i class="material-icons-outlined">arrow_drop_down</i>
+					<%end%>
+				</button>
+
+				<div class="dropdown-menu dropdown-menu-right" aria-labelledby="dropdownLanguageMenuButton">
+					<%= link_to locale:"en", class: "dropdown-item" do%>
+						<%= image_tag("icons/eng_flag.png")%>
+						<span>English</span>
+					<%end%>
+					<div class="dropdown-divider"></div>
+					<%= link_to locale:"vi", class: "dropdown-item" do%>
+						<%= image_tag("icons/vie_flag.png")%>
+						<span>Tiếng Việt</span>
+					<%end%>
+				</div>
+			</div>
+
 			<%if user_signed_in?%>
 				<div class="nav_user">
 					<div class="user_notification">						
@@ -236,39 +258,39 @@
 
 					<div class="dropdown-menu dropdown-menu-right" aria-labelledby="dropdownUserMenuButton">
 						<a class="dropdown-item" href="<%=user_profile_path%>">
-							<i class="material-icons-outlined">badge</i><span>Hồ sơ tìm việc</span>
+							<i class="material-icons-outlined">badge</i><span><%=t(:user_profile)%></span>
 						</a>
 						<div class="dropdown-divider"></div>
 						<a class="dropdown-item" href="<%=user_path(current_user, tab: 'SaveJobID')%>">
-							<i class="material-icons-outlined">bookmark_border</i><span>Việc làm đã lưu</span>
+							<i class="material-icons-outlined">bookmark_border</i><span><%=t(:user_saved_job)%></span>
 						</a>
 						<div class="dropdown-divider"></div>
 						<a class="dropdown-item" href="<%=user_path(current_user, tab: 'ApplyJobID')%>">
-							<i class="material-icons-outlined">check</i><span>Việc làm đã ứng tuyển</span>
+							<i class="material-icons-outlined">check</i><span><%=t(:user_applied_job)%></span>
 						</a>
 						<div class="dropdown-divider"></div>
 						<a class="dropdown-item" href="<%=user_path(current_user, tab: 'CompanyFollowID')%>">
-							<i class="material-icons-outlined">favorite_border</i><span>Công ty đang theo dõi</span>
+							<i class="material-icons-outlined">favorite_border</i><span><%=t(:user_followed_company)%></span>
 						</a>
 						<div class="dropdown-divider"></div>
 						<a class="dropdown-item" href="<%=user_path(current_user, tab: 'ProblemID')%>">
-							<i class="material-icons-outlined">lightbulb</i><span>Câu hỏi của tôi</span>
+							<i class="material-icons-outlined">lightbulb</i><span><%=t(:user_interview_question)%></span>
 						</a>
 						<div class="dropdown-divider"></div>
 						<a class="dropdown-item" href="<%=user_path(current_user, tab: 'CoverVitaeID')%>">
-							<i class="material-icons-outlined">content_copy</i><span>CV của tôi</span>
+							<i class="material-icons-outlined">content_copy</i><span><%=t(:user_cv)%></span>
 						</a>
 						<div class="dropdown-divider"></div>
 						<a class="dropdown-item" href="<%=user_path(current_user, tab: 'PersonalID')%>">
-							<i class="material-icons-outlined">account_circle</i><span>Thông tin cá nhân</span>
+							<i class="material-icons-outlined">account_circle</i><span><%=t(:user_personal_info)%></span>
 						</a>
 						<div class="dropdown-divider"></div>
 						<a class="dropdown-item" href="<%=edit_user_path(current_user)%>">
-							<i class="material-icons-outlined">settings</i><span>Cài đặt tài khoản</span>
+							<i class="material-icons-outlined">settings</i><span><%=t(:setting)%></span>
 						</a>
 						<div class="dropdown-divider"></div>
 						<a class="dropdown-item" type="button" class="btn" data-toggle="modal" data-target="#buttonModalHeaderCenter">
-							<i class="material-icons-outlined">logout</i><span>Đăng xuất</span>
+							<i class="material-icons-outlined">logout</i><span><%=t(:logout)%></span>
 						</a>
 					</div>
 					<!-- Modal -->
@@ -276,7 +298,7 @@
 						<div class="modal-dialog modal-dialog-centered" role="document">
 							<div class="modal-content">
 								<div class="modal-header">
-									<h5 class="modal-title">Bạn có chắc chắn muốn đăng xuất không?</h5>
+									<h5 class="modal-title"><%=t(:confirm_logout)%></h5>
 									<button type="button" class="close" data-dismiss="modal" aria-label="Close">
 									<span aria-hidden="true">&times;</span>
 									</button>
@@ -284,7 +306,7 @@
 								<div class="modal-body">
 									<div class="nav_header_user_action">
 										<%= button_to destroy_user_session_path, method: :delete do%>
-											<i class="material-icons-outlined">logout</i><span>Có, đăng xuất ngay bây giờ</span>
+											<i class="material-icons-outlined">logout</i><span><%=t(:confirm_logout_btn)%></span>
 										<%end%>
 									</div>
 								</div>
@@ -318,15 +340,15 @@
 
 					<div class="dropdown-menu dropdown-menu-right" aria-labelledby="dropdownemployerMenuButton">
 						<a class="dropdown-item" href="<%=employer_path(current_employer)%>">
-							<i class="material-icons-outlined">space_dashboard</i><span>Bảng điều khiển</span>
+							<i class="material-icons-outlined">space_dashboard</i><span><%=t(:employer_dashboard)%></span>
 						</a>
 						<div class="dropdown-divider"></div>
 						<a class="dropdown-item" href="<%=edit_employer_path(current_employer)%>">
-							<i class="material-icons-outlined">settings</i><span>Cài đặt tài khoản</span>
+							<i class="material-icons-outlined">settings</i><span><%=t(:setting)%></span>
 						</a>
 						<div class="dropdown-divider"></div>
 						<a class="dropdown-item" type="button" class="btn" data-toggle="modal" data-target="#buttonModalHeaderCenter">
-							<i class="material-icons-outlined">logout</i><span>Đăng xuất</span>
+							<i class="material-icons-outlined">logout</i><span><%=t(:logout)%></span>
 						</a>
 					</div>
 					<!-- Modal -->
@@ -334,7 +356,7 @@
 						<div class="modal-dialog modal-dialog-centered" role="document">
 							<div class="modal-content">
 								<div class="modal-header">
-									<h5 class="modal-title">Bạn có chắc chắn muốn đăng xuất không?</h5>
+									<h5 class="modal-title"><%=t(:confirm_logout)%></h5>
 									<button type="button" class="close" data-dismiss="modal" aria-label="Close">
 									<span aria-hidden="true">&times;</span>
 									</button>
@@ -342,7 +364,7 @@
 								<div class="modal-body">
 									<div class="nav_header_employer_action">
 										<%= button_to destroy_employer_session_path, method: :delete do%>
-											<i class="material-icons-outlined">logout</i><span>Có, đăng xuất ngay bây giờ</span>
+											<i class="material-icons-outlined">logout</i><span><%=t(:confirm_logout_btn)%></span>
 										<%end%>
 									</div>
 								</div>
@@ -351,15 +373,17 @@
 					</div>
 				</div>
 			<%elsif admin_signed_in?%>
-				<%= button_to destroy_admin_session_path, method: :delete, class: "nav_admin_logout" do%>
-					<a> Đăng xuất </a>
-				<%end%>
+				<div class="nav_admin">
+					<%= button_to destroy_admin_session_path, method: :delete, class: "nav_admin_logout" do%>
+						<a> <%=t(:logout)%> </a>
+					<%end%>
+				</div>
 			<%else%>
 				<a class="nav_recrui" href="<%=employer_wellcome_path%>">
-					Tuyển dụng
+					<span><%=t(:employer).upcase%></span>
 				</a>
 				<a class="nav_login" href="<%=new_user_session_path%>">
-					Đăng nhập
+					<span><%=t(:signin)%></span>
 				</a>
 			<%end%>
 		</div>

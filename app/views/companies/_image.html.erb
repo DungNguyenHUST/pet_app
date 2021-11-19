@@ -7,12 +7,12 @@
                     <%= form_for [@company, CompanyImage.new] do |f| %>
                         <div class="new_company_image_content">
                             <div class="new_company_image_label">
-                                <a><i class="material-icons-outlined">photo_camera</i> Upload picture</a>
+                                <a><i class="material-icons-outlined">photo_camera</i> <%=t(:share_image)%></a>
                             </div>
 
                             <%if @company.company_images.count == 0%>
                                 <div class="new_company_image_label_sub">
-                                    <a>Trở thành người đầu tiên chia sẻ ảnh về <%=@company.name%></a>
+                                    <a><%=t(:company_image_sub)%> <%=@company.name%></a>
                                 </div>
                             <%end%>
                             
@@ -26,10 +26,10 @@
                         </div>
                         <div class="new_company_image_submit">
                             <%if user_signed_in?%>
-                                <%= f.submit "Đăng ảnh", class: "new_company_image_form_submit" %>
+                                <%= f.submit t(:upload_picture), class: "new_company_image_form_submit" %>
                             <%else%>
                                 <button type="button" data-toggle="modal" data-target="#buttonModalLoginCenter">
-                                    <span> Đăng ảnh </span>
+                                    <span> <%=t(:upload_picture)%> </span>
                                 </button>
                             <%end%>
                         </div>
@@ -55,7 +55,7 @@
                 <%if @company_jobs.total_count >0%>
                     <div class="company_image_mini_block">
                         <div class="company_job_label">
-                            <a>Tin tuyển dụng</a>
+                            <a><%=t(:jobs)%></a>
                         </div>
                         <div class="company_job_des">
                             <%@company_jobs.order('created_at DESC').first(10).each do |company_job|%>

@@ -24,7 +24,7 @@ class CompanyInterviewsController < ApplicationController
         if @company_interview.save
             redirect_to company_path(@company, tab: 'CompanyInterviewsID')
         else
-            flash[:error] = "Lỗi, hãy điền đủ nội dung có dấu '*' "
+            flash[:error] = I18n.t(:create_error)
             render :new
         end
     end

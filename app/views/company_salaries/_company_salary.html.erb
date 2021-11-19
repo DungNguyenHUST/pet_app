@@ -1,42 +1,42 @@
 <%if salary_locate == 1 %>
     <% icon = "paid"%>
-    <% title = "Tài chính kế toán"%>
+    <% title = t(:salary_1)%>
 <%elsif salary_locate == 2%>
     <% icon = "laptop"%>
-    <% title = "Công nghệ thông tin"%>
+    <% title = t(:salary_2)%>
 <%elsif salary_locate == 3%>
     <% icon = "groups"%>
-    <% title = "Tư vấn chiến lược"%>
+    <% title = t(:salary_3)%>
 <%elsif salary_locate == 4%>
     <% icon = "cases"%>
-    <% title = "Kinh doanh"%>
+    <% title = t(:salary_4)%>
 <%elsif salary_locate == 5%>
     <% icon = "science"%>
-    <% title = "Nghiên cứu phát triển"%>
+    <% title = t(:salary_5)%>
 <%elsif salary_locate == 6%>
     <% icon = "engineering"%>
-    <% title = "Kĩ thuật"%>
+    <% title = t(:salary_6)%>
 <%elsif salary_locate == 7%>
     <% icon = "people"%>
-    <% title = "Hành chính, nhân sự"%>
+    <% title = t(:salary_7)%>
 <%elsif salary_locate == 8%>
     <% icon = "cast"%>
-    <% title = "Truyền thông"%>
+    <% title = t(:salary_8)%>
 <%elsif salary_locate == 9%>
     <% icon = "admin_panel_settings"%>
-    <% title = "Quản lý dự án"%>
+    <% title = t(:salary_9)%>
 <%elsif salary_locate == 10%>
     <% icon = "store"%>
-    <% title = "Sale & Marketing"%>
+    <% title = t(:salary_10)%>
 <%elsif salary_locate == 11%>
     <% icon = "precision_manufacturing"%>
-    <% title = "Sản xuất"%>
+    <% title = t(:salary_11)%>
 <%elsif salary_locate == 12%>
     <% icon = "support_agent"%>
-    <% title = "Dịch vụ khách hàng"%>
+    <% title = t(:salary_12)%>
 <%else%>
     <% icon = "edit"%>
-    <% title = "Tài chính kế toán"%>
+    <% title = t(:salary_1)%>
 <%end%>
 <div class="company_salary_block">
     <div class="company_salary_title"> 
@@ -46,64 +46,64 @@
     
     <div class="company_salary_section">
         <div class="company_salary_section_title">
-            <a>Internship(<%=count_salary_category(@company, salary_locate, 1)%>)</a>
+            <a><%=t(:intern)%>(<%=count_salary_category(@company, salary_locate, 1)%>)</a>
         </div>
         <div class="company_salary_section_number">
-            <%= cal_intern_salary_by_type(@company, salary_locate, 1)%> đ
+            <%= cal_intern_salary_by_type(@company, salary_locate, 1)%> <%=t(:vnd_short)%>
         </div>
     </div>
 
     <div class="company_salary_section">
         <div class="company_salary_section_title">
-            <a>Junior(<%=count_salary_category(@company, salary_locate, 2)%>)</a>
+            <a><%=t(:junior)%>(<%=count_salary_category(@company, salary_locate, 2)%>)</a>
         </div>
         <div class="company_salary_section_number">
-            <%= cal_intern_salary_by_type(@company, salary_locate, 2)%> đ
+            <%= cal_intern_salary_by_type(@company, salary_locate, 2)%> <%=t(:vnd_short)%>
         </div>
     </div>
     
     <div class="company_salary_section">
         <div class="company_salary_section_title">
-            <a>Middle(<%=count_salary_category(@company, salary_locate, 3)%>)</a>
+            <a><%=t(:staff)%>(<%=count_salary_category(@company, salary_locate, 3)%>)</a>
         </div>
         <div class="company_salary_section_number">
-            <%= cal_intern_salary_by_type(@company, salary_locate, 3)%> đ
+            <%= cal_intern_salary_by_type(@company, salary_locate, 3)%> <%=t(:vnd_short)%>
         </div>
     </div>
 
     <div class="company_salary_section">
         <div class="company_salary_section_title">
-            <a>Senior(<%=count_salary_category(@company, salary_locate, 4)%>)</a>
+            <a><%=t(:senior)%>(<%=count_salary_category(@company, salary_locate, 4)%>)</a>
         </div>
         <div class="company_salary_section_number">
-            <%= cal_intern_salary_by_type(@company, salary_locate, 4)%> đ
+            <%= cal_intern_salary_by_type(@company, salary_locate, 4)%> <%=t(:vnd_short)%>
         </div>
     </div>
 
     <div class="company_salary_section">
         <div class="company_salary_section_title">
-            <a>Expert(<%=count_salary_category(@company, salary_locate, 5)%>)</a>
+            <a><%=t(:expert)%>(<%=count_salary_category(@company, salary_locate, 5)%>)</a>
         </div>
         <div class="company_salary_section_number">
-            <%= cal_intern_salary_by_type(@company, salary_locate, 5)%> đ
+            <%= cal_intern_salary_by_type(@company, salary_locate, 5)%> <%=t(:vnd_short)%>
         </div>
     </div>
 
     <div class="company_salary_section">
         <div class="company_salary_section_title">
-            <a>Leader(<%=count_salary_category(@company, salary_locate, 6)%>)</a>
+            <a><%=t(:leader)%>(<%=count_salary_category(@company, salary_locate, 6)%>)</a>
         </div>
         <div class="company_salary_section_number">
-            <%= cal_intern_salary_by_type(@company, salary_locate, 6)%> đ
+            <%= cal_intern_salary_by_type(@company, salary_locate, 6)%> <%=t(:vnd_short)%>
         </div>
     </div>
 
     <div class="company_salary_section">
         <div class="company_salary_section_title">
-            <a>Archritec(<%=count_salary_category(@company, salary_locate, 7)%>)</a>
+            <a><%=t(:arch)%>(<%=count_salary_category(@company, salary_locate, 7)%>)</a>
         </div>
         <div class="company_salary_section_number">
-            <%= cal_intern_salary_by_type(@company, salary_locate, 7)%> đ
+            <%= cal_intern_salary_by_type(@company, salary_locate, 7)%> <%=t(:vnd_short)%>
         </div>
     </div>
 </div>

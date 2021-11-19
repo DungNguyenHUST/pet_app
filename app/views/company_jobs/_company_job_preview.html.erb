@@ -23,7 +23,7 @@
                                 <%elsif company_job.address.present?%>
                                     <a><i class="material-icons-outlined">room</i><%= company_job.address %></a>
                                 <%else%>
-                                    <a><i class="material-icons-outlined">room</i>Đang cập nhật</a>
+                                    <a><i class="material-icons-outlined">room</i><%=t(:updating)%></a>
                                 <%end%>
                             </div>
                             <div class="job_preview_shoft_info_salary">
@@ -31,20 +31,20 @@
                                     <a><i class="material-icons-outlined">monetization_on</i><%= company_job.salary.to_s %></a>
                                 <%else%>
                                     <a type="link" data-toggle="modal" data-target="#buttonModalLoginCenter" class="job_salary_login">
-                                        <i class="material-icons-outlined">monetization_on</i> <span>Đăng nhập để xem mức lương</span>
+                                        <i class="material-icons-outlined">monetization_on</i> <span><%=t(:login_to_review_salary)%></span>
                                     </a>
                                 <%end%>
                             </div>
 
                             <div class="job_preview_shoft_info">
-                                <a><i class="material-icons-outlined">hourglass_empty</i>Hạn nộp hồ sơ  · <%= company_job.end_date.strftime("%B %d, %Y") %> </a>
+                                <a><i class="material-icons-outlined">hourglass_empty</i><%=t(:submition_deadline)%>  · <%= company_job.end_date.strftime("%B %d, %Y") %> </a>
                             </div>
 
                             <div class="job_preview_shoft_info">
                                 <%if company_job.apply_another_site_flag%>
-                                    <a><i class="material-icons-outlined">schedule</i> Đã đăng · <%= time_ago_in_words(company_job.created_at) %> từ <%=get_domain_name(company_job.apply_site)%></a>
+                                    <a><i class="material-icons-outlined">schedule</i> <%=t(:posted_date)%> · <%= time_ago_in_words(company_job.created_at) %> <%=t(:from).downcase%> <%=get_domain_name(company_job.apply_site)%></a>
                                 <%else%>
-                                    <a><i class="material-icons-outlined">schedule</i> Đã đăng · <%= time_ago_in_words(company_job.created_at) %> </a>
+                                    <a><i class="material-icons-outlined">schedule</i> <%=t(:posted_date)%> · <%= time_ago_in_words(company_job.created_at) %> </a>
                                 <%end%>
                             </div>
                         </div>
@@ -56,12 +56,16 @@
                     <div class="apply_job_preview_button">
                         <div class="job_preview_apply_button">
                             <%if company_job.apply_another_site_flag?%>
-                                <%= link_to '<button type="submit">Xem thêm và nộp đơn</button>'.html_safe, company_job.apply_site, target: :_blank%>
+                                <%= link_to company_job.apply_site, target: :_blank do%>
+                                    <button><span><%=t(:read_more_and_apply)%></span></button>
+                                <%end%>
                             <%elsif user_signed_in?%>
-                                <%= link_to '<button type="submit"><i class="material-icons">send</i><span>Nộp đơn ngay</span></button>'.html_safe, new_company_job_company_apply_job_path(company_job)%>
+                                <%= link_to new_company_job_company_apply_job_path(company_job) do%>
+                                    <button><i class="material-icons">send</i><span><%=t(:apply_now)%></span></button>
+                                <%end%>
                             <%else%>
                                 <button type="button" data-toggle="modal" data-target="#buttonModalLoginCenter">
-                                    <i class="material-icons-outlined">send</i><span>Nộp đơn ngay</span>
+                                    <i class="material-icons-outlined">send</i><span><%=t(:apply_now)%></span>
                                 </button>
                             <%end%>
                         </div>
@@ -71,16 +75,16 @@
                                 <% pre_save = company_job.company_save_jobs.find { |save| save.user_id == current_user.id} %>
                                 <% if pre_save %> 
                                     <%= button_to company_job_company_save_job_path(company_job, pre_save), :method => :delete, remote: true, form_class: "save_btn_highlight" do%>
-                                        <i class="material-icons-outlined">favorite</i> <span>Đã lưu</span>
+                                        <i class="material-icons-outlined">favorite</i> <span><%=t(:saved_job)%></span>
                                     <%end%> 
                                 <%else%>
                                     <%= button_to company_job_company_save_jobs_path(company_job), :method => :post, remote: true, form_class: "save_btn" do%>
-                                        <i class="material-icons-outlined">favorite_border</i> <span>Lưu việc làm</span>
+                                        <i class="material-icons-outlined">favorite_border</i> <span><%=t(:save_job)%></span>
                                     <%end%>
                                 <%end%>
                             <%else%>
                                 <button type="button" data-toggle="modal" data-target="#buttonModalLoginCenter" class="save_btn">
-                                    <i class="material-icons-outlined">favorite_border</i> <span>Lưu việc làm</span>
+                                    <i class="material-icons-outlined">favorite_border</i> <span><%=t(:save_job)%></span>
                                 </button>
                             <%end%>
                         </div>
@@ -110,7 +114,7 @@
                 <%end%>
                 <div class="job_preview_description">
                     <div class="job_preview_section">
-                        <h3>Mô tả công việc</h3>
+                        <h3><%=t(:job_des)%></h3>
                     </div>
                     <%if company_job.description.present?%>
                         <div class="job_preview_content">
@@ -121,7 +125,7 @@
 
                 <div class="job_preview_requirement">
                     <div class="job_preview_section">
-                        <h3>Yêu cầu công việc</h3>
+                        <h3><%=t(:job_require)%></h3>
                     </div>
                     <%if company_job.requirement.present?%>
                         <div class="job_preview_content">
@@ -132,7 +136,7 @@
                 
                 <div class="job_preview_benefit">
                     <div class="job_preview_section">
-                        <h3>Chế độ đãi ngộ bạn sẽ nhận được</h3>
+                        <h3><%=t(:job_benefit)%></h3>
                     </div>
                     <%if company_job.benefit.present?%>
                         <div class="job_preview_content">

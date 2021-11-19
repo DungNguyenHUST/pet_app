@@ -5,9 +5,9 @@
 				<%= form_for @company_job, :html => { :class => "form-horizontal company" } do |f| %>
 						<div class="new_job_title">
 							<%if !@is_edit%>
-								<h3>Tạo việc làm mới</h3>
+								<h3><%=t(:create_job)%></h3>
 							<%else%>
-								<h3>Update tin tuyển dụng <%=@company_job.title%></h3>
+								<h3><%=t(:update_job)%> <%=@company_job.title%></h3>
 							<%end%>
 						</div>
 
@@ -20,50 +20,50 @@
 						</div>
 
 						<div class="new_job_title_sub">
-							<a>Note: Mục có dấu <span>'*'</span> là bắt buộc</a>
+							<a><%=t(:form_require_left)%> <span>'*'</span> <%=t(:form_require_right)%></a>
 						</div>
 
 						<div class="new_job_section">
 							<div class="new_job_content">
 								<div class="new_job_label">
-									<a><%= f.label :title, "Tên việc làm cần tuyển dụng", class: "new_job_label" %><span>*</span></a>
+									<a><%= f.label :title, t(:form_job_title), class: "new_job_label" %><span>*</span></a>
 								</div>
 								
 								<div class="new_job_input">
-									<%= f.text_field :title,  autofocus: true, :required => true, class: "form-control", placeholder: "Nhập tên việc làm bạn cần tuyển dụng" %>
+									<%= f.text_field :title,  autofocus: true, :required => true, class: "form-control", placeholder: t(:form_job_title_sub) %>
 								</div>
 							</div>
 
 							<%if employer_signed_in? && auth_urgent_plan_of_employer(current_employer)%>
 								<div class="new_job_content">
 									<div class="new_job_label">
-										<a><%= f.label :urgent, "Bạn cần tuyển gấp hay không(áp dụng cho F-Eco và F-Pro)?", class: "new_job_label" %></a>
+										<a><%= f.label :urgent, t(:form_job_urgent), class: "new_job_label" %></a>
 									</div>
 									<div class="new_job_input">
-										<%= f.select(:urgent, options_for_select([['Không, tôi không cần tuyển gấp', 0], ['Có, tôi cần tuyển gấp', 1]]), {include_blank: false}, { :class => 'form-select' }) %>
+										<%= f.select(:urgent, options_for_select([[t(:form_job_urgent_no), 0], [t(:form_job_urgent_yes), 1]]), {include_blank: false}, { :class => 'form-select' }) %>
 									</div>
 								</div>
 							<%end%>
 							
 							<div class="new_job_content">
 								<div class="new_job_label">
-									<a><%= f.label :level, "Vị trí cần tuyển dụng", class: "new_job_label" %><span>*</span></a>
+									<a><%= f.label :level, t(:form_job_level), class: "new_job_label" %><span>*</span></a>
 								</div>
 								
 								<div class="new_job_input">
-									<%= f.select(:level, options_for_select(['Nhân viên', 
-																			'Thực tập sinh', 
-																			'Mới tốt nghiệp', 
-																			'Trưởng nhóm',
-																			'Quản lý', 
-																			'Quản lý cấp cao',
-																			'Giám đốc'], 'Nhân viên'), {include_blank: false}, { :class => 'form-select'}) %>
+									<%= f.select(:level, options_for_select([t(:staff), 
+																			t(:intern), 
+																			t(:junior), 
+																			t(:leader),
+																			t(:manage), 
+																			t(:sen_manager),
+																			t(:manager)], t(:staff)), {include_blank: false}, { :class => 'form-select'}) %>
 								</div>
 							</div>
 
 							<div class="new_job_content">
 								<div class="new_job_label">
-									<a><%= f.label :location, "Thành phố nơi làm việc", class: "new_job_label" %><span>*</span></a>
+									<a><%= f.label :location, t(:form_job_location), class: "new_job_label" %><span>*</span></a>
 								</div>
 								
 								<div class="new_job_input">
@@ -84,21 +84,21 @@
 
 							<div class="new_job_content">
 								<div class="new_job_label">
-									<a><%= f.label :address, "Địa chỉ cụ thể nơi làm việc(tùy chọn)", class: "new_job_label" %></a>
+									<a><%= f.label :address, t(:form_job_address), class: "new_job_label" %></a>
 								</div>
 								
 								<div class="new_job_input">
-									<%= f.text_field :address, class: "form-control", placeholder: "Nhập địa chỉ làm việc bao gồm tên đường, quận, huyện,..." %>
+									<%= f.text_field :address, class: "form-control", placeholder: t(:form_job_address_sub) %>
 								</div>
 							</div>
 
 							<div class="new_job_content">
 								<div class="new_job_label">
-									<a><%= f.label :salary, "Mức lương dự kiến", class: "new_job_label" %><span>*</span></a>
+									<a><%= f.label :salary, t(:form_job_salary), class: "new_job_label" %><span>*</span></a>
 								</div>
 								
 								<div class="new_job_input">
-									<%= f.select(:salary, options_for_select(['Thương lượng', 
+									<%= f.select(:salary, options_for_select([t(:nigotiate), 
 																			'1Tr - 5Tr', 
 																			'5Tr - 10Tr', 
 																			'10Tr - 15Tr', 
@@ -118,8 +118,8 @@
 																			'85Tr - 90Tr', 
 																			'90Tr - 95Tr', 
 																			'95Tr - 100Tr', 
-																			'hơn 100Tr'], 
-																			['Thương lượng']), {include_blank: false}, { :class => 'form-select' }) %>
+																			'> 100Tr'], 
+																			[t(:nigotiate)]), {include_blank: false}, { :class => 'form-select' }) %>
 								</div>
 							</div>
 						</div>
@@ -127,80 +127,80 @@
 						<div class="new_job_section">
 							<div class="new_job_content">
 								<div class="new_job_label">
-									<a><%= f.label :category, "Ngành nghề chính của công việc", class: "new_job_label" %><span>*</span></a>
+									<a><%= f.label :category, t(:form_job_field), class: "new_job_label" %><span>*</span></a>
 								</div>
 								
 								<div class="new_job_input">
-									<%= f.select(:category, options_for_select(["Bác sĩ",
-																				"Bán hàng kỹ thuật",
-																				"Bán hàng",
-																				"Bán lẻ - Bán sỉ",
-																				"Bảo hiểm",
-																				"Bảo trì - Sửa chữa",
-																				"Bất động sản",
-																				"Biên phiên dịch",
-																				"Cấp quản lý điều hành",
-																				"Chứng khoán",
-																				"Cơ khí",
-																				"Công nghệ cao",
-																				"Dầu khí",
-																				"Dệt may - Da giày",
-																				"Dịch vụ khách hàng",
-																				"Dược Phẩm - Công nghệ sinh học",
-																				"Dược sĩ",
-																				"Giáo dục - Đào tạo",
-																				"Hàng cao cấp",
-																				"Hàng gia dụng",
-																				"Hàng hải",
-																				"Hàng không - Du lịch",
-																				"Hàng tiêu dùng",
-																				"Hành chánh - Thư ký",
-																				"Hóa học - Hóa sinh",
-																				"Hoạch định - Dự án",
-																				"In ấn -  Xuất bản",
-																				"Internet - Online Media",
-																				"IT - Phần mềm",
-																				"IT-Phần cứng - Mạng",
-																				"Kế toán",
-																				"Khác",
-																				"Kho vận",
-																				"Kiểm toán",
-																				"Kiến trúc - Thiết kế nội thất ",
-																				"Marketing",
-																				"Mới tốt nghiệp",
-																				"Môi trường - Xử lý chất thải",
-																				"Mỹ Thuật - Nghệ Thuật - Thiết Kế",
-																				"Ngân hàng",
-																				"Người nước ngoài - Việt Kiều",
-																				"Nhà hàng - Khách sạn",
-																				"Nhân sự",
-																				"Nông nghiệp - Lâm nghiệp",
-																				"Overseas Jobs",
-																				"Pháp lý",
-																				"Phi chính phủ - Phi lợi nhuận",
-																				"QA - QC",
-																				"Quảng cáo - Khuyến mãi - Đối ngoại",
-																				"Sản phẩm công nghiệp",
-																				"Sản Xuất",
-																				"Tài chính - Đầu tư",
-																				"Thời trang",
-																				"Thời vụ - Hợp đồng ngắn hạn",
-																				"Thu Mua - Vật Tư - Cung Vận",
-																				"Thực phẩm &amp; Đồ uống",
-																				"Trình dược viên",
-																				"Truyền hình - Truyền thông - Báo chí",
-																				"Tư vấn",
-																				"Tự động hóa - Ô tô",
-																				"Vận chuyển - Giao nhận",
-																				"Viễn Thông",
-																				"Xây dựng",
-																				"Xuất nhập khẩu",
-																				"Y sĩ - Hộ lý",
-																				"Y tế - Chăm sóc sức khỏe",
-																				"Địa chất - Khoáng sản",
-																				"Điện lạnh - Nhiệt lạnh",
-																				"Điện - Điện tử",
-																				"Lĩnh vực khác"], "Lĩnh vực khác"), {include_blank: false}, { :class => 'new_job_category_select form-select'}) %>
+									<%= f.select(:category, options_for_select([t(:job_category_1),
+																				t(:job_category_2),
+																				t(:job_category_3),
+																				t(:job_category_4),
+																				t(:job_category_5),
+																				t(:job_category_6),
+																				t(:job_category_7),
+																				t(:job_category_8),
+																				t(:job_category_9),
+																				t(:job_category_10),
+																				t(:job_category_11),
+																				t(:job_category_12),
+																				t(:job_category_13),
+																				t(:job_category_14),
+																				t(:job_category_15),
+																				t(:job_category_16),
+																				t(:job_category_17),
+																				t(:job_category_18),
+																				t(:job_category_19),
+																				t(:job_category_20),
+																				t(:job_category_21),
+																				t(:job_category_22),
+																				t(:job_category_23),
+																				t(:job_category_24),
+																				t(:job_category_25),
+																				t(:job_category_26),
+																				t(:job_category_27),
+																				t(:job_category_28),
+																				t(:job_category_29),
+																				t(:job_category_30),
+																				t(:job_category_31),
+																				t(:job_category_32),
+																				t(:job_category_33),
+																				t(:job_category_34),
+																				t(:job_category_35),
+																				t(:job_category_36),
+																				t(:job_category_37),
+																				t(:job_category_38),
+																				t(:job_category_39),
+																				t(:job_category_40),
+																				t(:job_category_41),
+																				t(:job_category_42),
+																				t(:job_category_43),
+																				t(:job_category_44),
+																				t(:job_category_45),
+																				t(:job_category_46),
+																				t(:job_category_47),
+																				t(:job_category_48),
+																				t(:job_category_49),
+																				t(:job_category_50),
+																				t(:job_category_51),
+																				t(:job_category_52),
+																				t(:job_category_53),
+																				t(:job_category_54),
+																				t(:job_category_55),
+																				t(:job_category_56),
+																				t(:job_category_57),
+																				t(:job_category_58),
+																				t(:job_category_59),
+																				t(:job_category_60),
+																				t(:job_category_61),
+																				t(:job_category_62),
+																				t(:job_category_63),
+																				t(:job_category_64),
+																				t(:job_category_65),
+																				t(:job_category_66),
+																				t(:job_category_67),
+																				t(:job_category_68),
+																				t(:job_category_69),
+																				t(:job_category_70)], t(:job_category_70)), {include_blank: false}, { :class => 'new_job_category_select form-select'}) %>
 								</div>
 								<script>
 									$(document).ready(function() {
@@ -217,64 +217,64 @@
 
 							<div class="new_job_content">
 								<div class="new_job_label">
-									<a><%= f.label :typical, "Hình thức làm việc", class: "new_job_label" %><span>*</span></a>
+									<a><%= f.label :typical, t(:form_job_type), class: "new_job_label" %><span>*</span></a>
 								</div>
 								
 								<div class="new_job_input">
-									<%= f.select(:typical, options_for_select(['Toàn thời gian', 
-																				'Bán thời gian', 
-																				'Tự do', 
-																				'Tạm thời', 
-																				"Thực tập sinh",
-																				"Remote - Làm việc từ xa", 
-																				"Khác"], 
-																				'Toàn thời gian'), {include_blank: false}, { :class => 'form-select' }) %>
+									<%= f.select(:typical, options_for_select([t(:job_type_1), 
+																				t(:job_type_2), 
+																				t(:job_type_3), 
+																				t(:job_type_4), 
+																				t(:job_type_5),
+																				t(:job_type_6), 
+																				t(:job_type_7)], 
+																				t(:job_type_1)), {include_blank: false}, { :class => 'form-select' }) %>
 								</div>
 							</div>
 
 							<div class="new_job_content">
 								<div class="new_job_label">
-									<a><%= f.label :experience, "Số năm kinh nghiệm", class: "new_job_label" %><span>*</span></a>
+									<a><%= f.label :experience, t(:form_job_exp), class: "new_job_label" %><span>*</span></a>
 								</div>
 								
 								<div class="new_job_input">
-									<%= f.select(:experience, options_for_select(['Không yêu cầu', 
-																				'Từ 1 ~ 2 năm', 
-																				'Từ 2 ~ 5 năm', 
-																				'Từ 5 ~ 10 năm', 
-																				"Từ 10 ~ 20 năm",
-																				"Trên 20 năm"], 
-																				'Không yêu cầu'), {include_blank: false}, { :class => 'form-select' }) %>
+									<%= f.select(:experience, options_for_select([t(:job_exp_1), 
+																				t(:job_exp_2), 
+																				t(:job_exp_3), 
+																				t(:job_exp_4), 
+																				t(:job_exp_5),
+																				t(:job_exp_6)], 
+																				t(:job_exp_1)), {include_blank: false}, { :class => 'form-select' }) %>
 								</div>
 							</div>
 
 							<div class="new_job_content">
 								<div class="new_job_label">
-									<a><%= f.label :quantity, "Số lượng vị trí cần tuyển dụng", class: "new_job_label" %><span>*</span></a>
+									<a><%= f.label :quantity, t(:form_job_quantity), class: "new_job_label" %><span>*</span></a>
 								</div>
 								
 								<div class="new_job_input">
-									<%= f.number_field :quantity, :required => true, :value => 1, class: "form-control", placeholder: "Số lượng vị trí cần tuyển dụng" %>
+									<%= f.number_field :quantity, :required => true, :value => 1, class: "form-control"%>
 								</div>
 							</div>
 
 							<div class="new_job_content">
 								<div class="new_job_label">
-									<a><%= f.label :end_date, "Ngày hết hạn nộp hồ sơ", class: "new_job_label" %><span>*</span></a>
+									<a><%= f.label :end_date, t(:form_job_end_submit), class: "new_job_label" %><span>*</span></a>
 								</div>
 								
 								<div class="new_job_input">
-									<%= f.date_field :end_date, :required => true, value: (Date.current + 1.month), class: "form-control", placeholder: "Nhập ngày hết hạn nộp hồ sơ" %>
+									<%= f.date_field :end_date, :required => true, value: (Date.current + 1.month), class: "form-control"%>
 								</div>
 							</div>
 
 							<div class="new_job_content">
 								<div class="new_job_label">
-									<a><%= f.label :language, "Ngôn ngữ trình bày hồ sơ", class: "new_job_label" %></a>
+									<a><%= f.label :language, t(:form_job_lang), class: "new_job_label" %></a>
 								</div>
 								
 								<div class="new_job_input">
-									<%= f.select(:language, options_for_select(['English', 'Tiếng Việt', 'Tùy chọn'], 'Tùy chọn'), {include_blank: false}, { :class => 'form-select' }) %>
+									<%= f.select(:language, options_for_select([t(:english), t(:vietnamese), t(:optional)], t(:optional)), {include_blank: false}, { :class => 'form-select' }) %>
 								</div>
 							</div>
 
@@ -284,7 +284,7 @@
 										<a><%= f.label :apply_another_site_flag, "Apply on Company site Option - For Admin Only", class: "new_job_label" %><span>*</span></a>
 									</div>
 									<div class="new_job_input">
-										<%= f.select(:apply_another_site_flag, options_for_select([['Không', false], ['Có', true]]), {include_blank: false}, { :class => 'form-select' }) %>
+										<%= f.select(:apply_another_site_flag, options_for_select([[t(:no), false], [t(:yes), true]]), {include_blank: false}, { :class => 'form-select' }) %>
 									</div>
 								</div>
 								<div class="new_job_content">
@@ -293,7 +293,7 @@
 									</div>
 									
 									<div class="new_job_input">
-										<%= f.text_field :apply_site, class: "form-control", placeholder: "Nhâp site tuyển dụng của công ty" %>
+										<%= f.text_field :apply_site, class: "form-control", placeholder: "Enter site" %>
 									</div>
 								</div>
 							<%end%>
@@ -302,7 +302,7 @@
 						<div class="new_job_section">
 							<div class="new_job_content">
 								<div class="new_job_label">
-									<a><%= f.label :description, "Mô tả chung về công việc", class: "new_job_label" %><span>*</span></a>
+									<a><%= f.label :description, t(:form_job_overview), class: "new_job_label" %><span>*</span></a>
 								</div>
 								
 								<div class="new_job_input">
@@ -313,333 +313,333 @@
 
 							<div class="new_job_content">
 								<div class="new_job_label">
-									<a><%= f.label :skill, "Kĩ năng cần có cho công việc này(bạn có thể chọn 1 hoặc nhiều kĩ năng)", class: "new_job_label" %></a>
+									<a><%= f.label :skill, t(:form_job_skill), class: "new_job_label" %></a>
 								</div>
 								
 								<div class="new_job_input">
-									<%= f.select(:skill, options_for_select([".NET ",
-																			"3D ",
-																			"3Ds max ",
-																			"Access Line ",
-																			"Adobe Premiere ",
-																			"Adwords ",
-																			"After Effect ",
-																			"Agile ",
-																			"AI ",
-																			"Android Studio ",
-																			"Angular.js ",
-																			"Apache ",
-																			"Apache Maven ",
-																			"API ",
-																			"ASP NET ",
-																			"Asp.net ",
-																			"AUTO CAD ",
-																			"AWS ",
-																			"Azure ",
-																			"B2 ",
-																			"Back End ",
-																			"Backbone.js ",
-																			"Bán Hàng ",
-																			"Bảng cân đối kế toán ",
-																			"Bằng Lái B2 ",
-																			"Bằng Lái Hạng C ",
-																			"Bằng Lái Hạng D ",
-																			"Báo cáo quản lý ",
-																			"Báo cáo và Phân tích Dữ liệu ",
-																			"Bảo Trì Điện ",
-																			"Bảo Trì Điện Công Nghiệp ",
-																			"Biết nắm bắt xu hướng ",
-																			"Biết Sử Dụng Phần Mềm Misa ",
-																			"Block Chain ",
-																			"BSE ",
-																			"C ",
-																			"C language ",
-																			"C# ",
-																			"C&B ",
-																			"C++ ",
-																			"C/C++ ",
-																			"CAD ",
-																			"Cake Php ",
-																			"Cẩn Thận ",
-																			"Ccna ",
-																			"Ccnp ",
-																			"Cemiconductor ",
-																			"Centos ",
-																			"Chỉnh sửa Clip ",
-																			"Chính xác trong công việc ",
-																			"Chịu Khó Học Hỏi ",
-																			"Chủ động Trong Công Việc ",
-																			"Chưa Có Kinh Nghiệm ",
-																			"Chụp Hình ",
-																			"Cinematic ",
-																			"Cisco ",
-																			"Cloud ",
-																			"Cluster ",
-																			"Có Ngoại Hình ",
-																			"Có sức khoẻ tốt ",
-																			"Có Trách Nhiệm ",
-																			"COBOL ",
-																			"cocoa ",
-																			"Cocos2dx ",
-																			"Codeigniter ",
-																			"Contact Center ",
-																			"Corel Draw ",
-																			"CRM ",
-																			"CSS ",
-																			"CSS3 ",
-																			"Database, Web Technology ",
-																			"Devise_jwt ",
-																			"DevOps ",
-																			"Django ",
-																			"DMS ",
-																			"Docker ",
-																			"Drupal ",
-																			"E-KYC Officer ",
-																			"Eclipse ",
-																			"Embedded ",
-																			"English ",
-																			"ERP ",
-																			"Excel ",
-																			"Facebook Ads ",
-																			"Firewall ",
-																			"Flash ",
-																			"Flutter ",
-																			"Front-End ",
-																			"FuelPHP ",
-																			"Giải quyết vấn đề ",
-																			"Giao Tiếp Tốt ",
-																			"Giọng nói tốt ",
-																			"Golang ",
-																			"Google Ads ",
-																			"Google Adwords ",
-																			"Ham Học Hỏi ",
-																			"hardware ",
-																			"Hardware Support ",
-																			"Hệ thống HA ",
-																			"Hỗ trợ ứng dụng ",
-																			"HTML ",
-																			"HTML/CSS ",
-																			"HTML5 ",
-																			"Hybrid ",
-																			"illustrator ",
-																			"Internet ",
-																			"Internet tool ",
-																			"iOS ",
-																			"IoT ",
-																			"ISO 9001 ",
-																			"IT Help Desk ",
-																			"IT phần mềm ",
-																			"IT phần cứng ",
-																			"IT Presales ",
-																			"J2EE ",
-																			"Japanese ",
-																			"Java ",
-																			"Java android ",
-																			"Javascript ",
-																			"Jquery ",
-																			"JSON ",
-																			"Kế hoạch kinh doanh ",
-																			"Khả Năng Chịu áp Lực ",
-																			"Khả Năng Nắm Bắt Thị Trường ",
-																			"Khả năng tập trung ",
-																			"Khả năng thuyết trình trước đám đông ",
-																			"Không Cần Kinh Nghiệm ",
-																			"Kiểm soát nhân lực ",
-																			"Kiến thức Sản xuất Tinh gọn ",
-																			"Kinh doanh ",
-																			"Kotlin ",
-																			"Kỷ luật ",
-																			"Kỹ Năng Bán Hàng ",
-																			"Kỹ năng giám sát ",
-																			"Kỹ năng ký giải ",
-																			"Kỹ Năng Lãnh Đạo ",
-																			"Kỹ Năng Lên Kế Hoạch ",
-																			"Kỹ Năng Nghiên Cứu ",
-																			"Kỹ Năng Phân Tích ",
-																			"Kỹ Năng Quản Lý Nhóm ",
-																			"Kỹ năng quản lý sản xuất ",
-																			"Kỹ năng quảng cáo ",
-																			"Kỹ năng sử dụng máy tính ",
-																			"Kỹ năng sư phạm ",
-																			"Kỹ Năng Tài Chính ",
-																			"Kỹ Năng Thuyết Phục ",
-																			"Kỹ Năng Thuyết Trình ",
-																			"Kỹ năng thuyết trình kinh doanh ",
-																			"Kỹ Năng Xử Lý Tình Huống ",
-																			"Kỹ Năng Đưa Ra Quyết Định ",
-																			"Làm Proposal ",
-																			"Làm Việc Nhóm ",
-																			"Làm việc với cường độ cao ",
-																			"Làm Việc Độc Lập ",
-																			"LAN ",
-																			"Lập kế hoạch và Phân tích Dữ liệu ",
-																			"Lập Trinh CNC ",
-																			"Lập Trình Ios ",
-																			"Lập Trình SMD ",
-																			"Laravel ",
-																			"Linux ",
-																			"Logistic Solution ",
-																			"M&E ",
-																			"Magento ",
-																			"Mạng IT ",
-																			"Marketing ",
-																			"Maya(3D) ",
-																			"Mes ",
-																			"Microservices ",
-																			"Microsoft Office ",
-																			"Mobile Developer ",
-																			"Mới Tốt Nghiệp ",
-																			"MongoDB ",
-																			"MS Office ",
-																			"MVC ",
-																			"MySQL ",
-																			"N1 ",
-																			"N2 ",
-																			"N3 ",
-																			"Năng Động ",
-																			"Network ",
-																			"Network Engineer ",
-																			"Node.js ",
-																			"NoSQL ",
-																			"Objective C ",
-																			"OOP ",
-																			"Open Source ",
-																			"Oracle ",
-																			"PABX ",
-																			"perl ",
-																			"Phân Tích Báo Cáo ",
-																			"Phân tích rủi ro ",
-																			"Phân tích Sản phẩm ",
-																			"Phát trển khách hàng ",
-																			"Phát triển thị trường ",
-																			"Phiên dịch ",
-																			"Phối hợp tốt ",
-																			"Photoshop ",
-																			"PHP ",
-																			"Php Developer ",
-																			"Phụ Cấp Thâm Niên ",
-																			"Plc ",
-																			"Plc cơ bản ",
-																			"Postgresql ",
-																			"Powershell ",
-																			"Presales Technical ",
-																			"Python ",
-																			"Quan hệ khách hàng ",
-																			"Quản lý bảo lãnh ",
-																			"Quản lý Dịch vụ Vận hành ",
-																			"Quản Lý Dự Án ",
-																			"Quản Lý Ngân Sách ",
-																			"Quản Lý Thiết Bị ",
-																			"Quản Lý Thời Gian Tốt ",
-																			"Quản Lý Tốt ",
-																			"Quy trình kỹ thuật ",
-																			"Quy trình sản xuất ",
-																			"Quy trình tự động hóa ",
-																			"R (ngôn ngữ) ",
-																			"React Native ",
-																			"React.js ",
-																			"Robotics ",
-																			"RoHS ",
-																			"Ruby ",
-																			"Ruby On Rails ",
-																			"Sáng Tạo ",
-																			"SAP ",
-																			"Scala ",
-																			"Scan Tool ",
-																			"Security ",
-																			"SEO ",
-																			"Seowebsite ",
-																			"Server ",
-																			"SharePoint ",
-																			"Sketch Up ",
-																			"Smarty ",
-																			"SOA ",
-																			"Soạn thảo hợp đồng ",
-																			"Soạn Thảo Văn Bản ",
-																			"Software Architect ",
-																			"Solution Design ",
-																			"Spring ",
-																			"Spring Framework ",
-																			"Sql ",
-																			"Sqlite ",
-																			"Sử Dụng Excel Trong Kiểm Toán ",
-																			"Sức Khoẻ Tốt ",
-																			"Swift ",
-																			"Symphony ",
-																			"System ",
-																			"System Admin ",
-																			"Tác phong lịch sự ",
-																			"Tầm nhìn sâu rộng ",
-																			"Telecomunication ",
-																			"Telesales ",
-																			"Test Automation ",
-																			"Testcase ",
-																			"Tester ",
-																			"Thái Độ Làm Việc Tốt ",
-																			"Thanh lý hợp đồng ",
-																			"Thành thạo phần mềm ",
-																			"Thích nghi nhanh ",
-																			"Thích thử thách ",
-																			"Thiết bị điện tử ",
-																			"Thiết Kế ",
-																			"Thiết Kế 3D ",
-																			"Thiết Kế Chế Tạo Mạch Điện ",
-																			"Thiết kế CSDL ",
-																			"Thuyết Trình ",
-																			"Tiếng Anh ",
-																			"Tiếng Anh Lưu Loát ",
-																			"Tiếng Hàn ",
-																			"Tiếng Hoa ",
-																			"Tiếng Nhật ",
-																			"Tiếng Nhật N1 ",
-																			"Tiếng Nhật N2 ",
-																			"Tiếng Trung ",
-																			"Tiếng Đức ",
-																			"Tiếp thu nhanh ",
-																			"Tin Học Văn Phòng ",
-																			"Tính hệ thống, tổ chức ",
-																			"Tinh thần cầu tiến ",
-																			"Tinh thần đồng đội ",
-																			"Trình bày tốt ",
-																			"Trình Độ Chuyên Môn ",
-																			"Trung thực ",
-																			"Tư Duy Logic ",
-																			"Tư Vấn Tốt ",
-																			"TypeScript ",
-																			"Ubuntu ",
-																			"UI-UX ",
-																			"Ứng xử tốt ",
-																			"Unity ",
-																			"UNITY2D ",
-																			"UNITY3D ",
-																			"UNIX ",
-																			"Viết Lách ",
-																			"Virus ",
-																			"Vision Sensor and System ",
-																			"Visual Basic ",
-																			"Visual studio ",
-																			"Vue.js ",
-																			"WAN ",
-																			"Warehouse ",
-																			"Webform ",
-																			"Window ",
-																			"Windows OS ",
-																			"Windows Server ",
-																			"Wireless ",
-																			"Word ",
-																			"Wordpress ",
-																			"Xamarin ",
-																			"Xcode ",
-																			"XD ",
-																			"Xử Lý Kỹ Thuật Điện Tử ",
-																			"Xử lý số liệu ",
-																			"Yii ",
-																			"Zend Framework ",
-																			"Đam Mê Công Việc ",
-																			"Đàm Phán ",
-																			"Điện Tử Viễn Thông ",
-																			"Đồ Họa ",
-																			"Đọc Hiểu Báo Cáo Tài Chính"]), 
+									<%= f.select(:skill, options_for_select([t(:job_skill_1), 
+																			t(:job_skill_2), 
+																			t(:job_skill_3), 
+																			t(:job_skill_4), 
+																			t(:job_skill_5), 
+																			t(:job_skill_6), 
+																			t(:job_skill_7), 
+																			t(:job_skill_8), 
+																			t(:job_skill_9), 
+																			t(:job_skill_10), 
+																			t(:job_skill_11), 
+																			t(:job_skill_12), 
+																			t(:job_skill_13), 
+																			t(:job_skill_14), 
+																			t(:job_skill_15), 
+																			t(:job_skill_16), 
+																			t(:job_skill_17), 
+																			t(:job_skill_18), 
+																			t(:job_skill_19), 
+																			t(:job_skill_20), 
+																			t(:job_skill_21), 
+																			t(:job_skill_22), 
+																			t(:job_skill_23), 
+																			t(:job_skill_24), 
+																			t(:job_skill_25), 
+																			t(:job_skill_26), 
+																			t(:job_skill_27), 
+																			t(:job_skill_28), 
+																			t(:job_skill_29), 
+																			t(:job_skill_30), 
+																			t(:job_skill_31), 
+																			t(:job_skill_32), 
+																			t(:job_skill_33), 
+																			t(:job_skill_34), 
+																			t(:job_skill_35), 
+																			t(:job_skill_36), 
+																			t(:job_skill_37), 
+																			t(:job_skill_38), 
+																			t(:job_skill_39), 
+																			t(:job_skill_40), 
+																			t(:job_skill_41), 
+																			t(:job_skill_42), 
+																			t(:job_skill_43), 
+																			t(:job_skill_44), 
+																			t(:job_skill_45), 
+																			t(:job_skill_46), 
+																			t(:job_skill_47), 
+																			t(:job_skill_48), 
+																			t(:job_skill_49), 
+																			t(:job_skill_50), 
+																			t(:job_skill_51), 
+																			t(:job_skill_52), 
+																			t(:job_skill_53), 
+																			t(:job_skill_54), 
+																			t(:job_skill_55), 
+																			t(:job_skill_56), 
+																			t(:job_skill_57), 
+																			t(:job_skill_58), 
+																			t(:job_skill_59), 
+																			t(:job_skill_60), 
+																			t(:job_skill_61), 
+																			t(:job_skill_62), 
+																			t(:job_skill_63), 
+																			t(:job_skill_64), 
+																			t(:job_skill_65), 
+																			t(:job_skill_66), 
+																			t(:job_skill_67), 
+																			t(:job_skill_68), 
+																			t(:job_skill_69), 
+																			t(:job_skill_70), 
+																			t(:job_skill_71), 
+																			t(:job_skill_72), 
+																			t(:job_skill_73), 
+																			t(:job_skill_74), 
+																			t(:job_skill_75), 
+																			t(:job_skill_76), 
+																			t(:job_skill_77), 
+																			t(:job_skill_78), 
+																			t(:job_skill_79), 
+																			t(:job_skill_80), 
+																			t(:job_skill_81), 
+																			t(:job_skill_82), 
+																			t(:job_skill_83), 
+																			t(:job_skill_84), 
+																			t(:job_skill_85), 
+																			t(:job_skill_86), 
+																			t(:job_skill_87), 
+																			t(:job_skill_88), 
+																			t(:job_skill_89), 
+																			t(:job_skill_90), 
+																			t(:job_skill_91), 
+																			t(:job_skill_92), 
+																			t(:job_skill_93), 
+																			t(:job_skill_94), 
+																			t(:job_skill_95), 
+																			t(:job_skill_96), 
+																			t(:job_skill_97), 
+																			t(:job_skill_98), 
+																			t(:job_skill_99), 
+																			t(:job_skill_100), 
+																			t(:job_skill_101), 
+																			t(:job_skill_102), 
+																			t(:job_skill_103), 
+																			t(:job_skill_104), 
+																			t(:job_skill_105), 
+																			t(:job_skill_106), 
+																			t(:job_skill_107), 
+																			t(:job_skill_108), 
+																			t(:job_skill_109), 
+																			t(:job_skill_110), 
+																			t(:job_skill_111), 
+																			t(:job_skill_112), 
+																			t(:job_skill_113), 
+																			t(:job_skill_114), 
+																			t(:job_skill_115), 
+																			t(:job_skill_116), 
+																			t(:job_skill_117), 
+																			t(:job_skill_118), 
+																			t(:job_skill_119), 
+																			t(:job_skill_120), 
+																			t(:job_skill_121), 
+																			t(:job_skill_122), 
+																			t(:job_skill_123), 
+																			t(:job_skill_124), 
+																			t(:job_skill_125), 
+																			t(:job_skill_126), 
+																			t(:job_skill_127), 
+																			t(:job_skill_128), 
+																			t(:job_skill_129), 
+																			t(:job_skill_130), 
+																			t(:job_skill_131), 
+																			t(:job_skill_132), 
+																			t(:job_skill_133), 
+																			t(:job_skill_134), 
+																			t(:job_skill_135), 
+																			t(:job_skill_136), 
+																			t(:job_skill_137), 
+																			t(:job_skill_138), 
+																			t(:job_skill_139), 
+																			t(:job_skill_140), 
+																			t(:job_skill_141), 
+																			t(:job_skill_142), 
+																			t(:job_skill_143), 
+																			t(:job_skill_144), 
+																			t(:job_skill_145), 
+																			t(:job_skill_146), 
+																			t(:job_skill_147), 
+																			t(:job_skill_148), 
+																			t(:job_skill_149), 
+																			t(:job_skill_150), 
+																			t(:job_skill_151), 
+																			t(:job_skill_152), 
+																			t(:job_skill_153), 
+																			t(:job_skill_154), 
+																			t(:job_skill_155), 
+																			t(:job_skill_156), 
+																			t(:job_skill_157), 
+																			t(:job_skill_158), 
+																			t(:job_skill_159), 
+																			t(:job_skill_160), 
+																			t(:job_skill_161), 
+																			t(:job_skill_162), 
+																			t(:job_skill_163), 
+																			t(:job_skill_164), 
+																			t(:job_skill_165), 
+																			t(:job_skill_166), 
+																			t(:job_skill_167), 
+																			t(:job_skill_168), 
+																			t(:job_skill_169), 
+																			t(:job_skill_170), 
+																			t(:job_skill_171), 
+																			t(:job_skill_172), 
+																			t(:job_skill_173), 
+																			t(:job_skill_174), 
+																			t(:job_skill_175), 
+																			t(:job_skill_176), 
+																			t(:job_skill_177), 
+																			t(:job_skill_178), 
+																			t(:job_skill_179), 
+																			t(:job_skill_180), 
+																			t(:job_skill_181), 
+																			t(:job_skill_182), 
+																			t(:job_skill_183), 
+																			t(:job_skill_184), 
+																			t(:job_skill_185), 
+																			t(:job_skill_186), 
+																			t(:job_skill_187), 
+																			t(:job_skill_188), 
+																			t(:job_skill_189), 
+																			t(:job_skill_190), 
+																			t(:job_skill_191), 
+																			t(:job_skill_192), 
+																			t(:job_skill_193), 
+																			t(:job_skill_194), 
+																			t(:job_skill_195), 
+																			t(:job_skill_196), 
+																			t(:job_skill_197), 
+																			t(:job_skill_198), 
+																			t(:job_skill_199), 
+																			t(:job_skill_200), 
+																			t(:job_skill_201), 
+																			t(:job_skill_202), 
+																			t(:job_skill_203), 
+																			t(:job_skill_204), 
+																			t(:job_skill_205), 
+																			t(:job_skill_206), 
+																			t(:job_skill_207), 
+																			t(:job_skill_208), 
+																			t(:job_skill_209), 
+																			t(:job_skill_210), 
+																			t(:job_skill_211), 
+																			t(:job_skill_212), 
+																			t(:job_skill_213), 
+																			t(:job_skill_214), 
+																			t(:job_skill_215), 
+																			t(:job_skill_216), 
+																			t(:job_skill_217), 
+																			t(:job_skill_218), 
+																			t(:job_skill_219), 
+																			t(:job_skill_220), 
+																			t(:job_skill_221), 
+																			t(:job_skill_222), 
+																			t(:job_skill_223), 
+																			t(:job_skill_224), 
+																			t(:job_skill_225), 
+																			t(:job_skill_226), 
+																			t(:job_skill_227), 
+																			t(:job_skill_228), 
+																			t(:job_skill_229), 
+																			t(:job_skill_230), 
+																			t(:job_skill_231), 
+																			t(:job_skill_232), 
+																			t(:job_skill_233), 
+																			t(:job_skill_234), 
+																			t(:job_skill_235), 
+																			t(:job_skill_236), 
+																			t(:job_skill_237), 
+																			t(:job_skill_238), 
+																			t(:job_skill_239), 
+																			t(:job_skill_240), 
+																			t(:job_skill_241), 
+																			t(:job_skill_242), 
+																			t(:job_skill_243), 
+																			t(:job_skill_244), 
+																			t(:job_skill_245), 
+																			t(:job_skill_246), 
+																			t(:job_skill_247), 
+																			t(:job_skill_248), 
+																			t(:job_skill_249), 
+																			t(:job_skill_250), 
+																			t(:job_skill_251), 
+																			t(:job_skill_252), 
+																			t(:job_skill_253), 
+																			t(:job_skill_254), 
+																			t(:job_skill_255), 
+																			t(:job_skill_256), 
+																			t(:job_skill_257), 
+																			t(:job_skill_258), 
+																			t(:job_skill_259), 
+																			t(:job_skill_260), 
+																			t(:job_skill_261), 
+																			t(:job_skill_262), 
+																			t(:job_skill_263), 
+																			t(:job_skill_264), 
+																			t(:job_skill_265), 
+																			t(:job_skill_266), 
+																			t(:job_skill_267), 
+																			t(:job_skill_268), 
+																			t(:job_skill_269), 
+																			t(:job_skill_270), 
+																			t(:job_skill_271), 
+																			t(:job_skill_272), 
+																			t(:job_skill_273), 
+																			t(:job_skill_274), 
+																			t(:job_skill_275), 
+																			t(:job_skill_276), 
+																			t(:job_skill_277), 
+																			t(:job_skill_278), 
+																			t(:job_skill_279), 
+																			t(:job_skill_280), 
+																			t(:job_skill_281), 
+																			t(:job_skill_282), 
+																			t(:job_skill_283), 
+																			t(:job_skill_284), 
+																			t(:job_skill_285), 
+																			t(:job_skill_286), 
+																			t(:job_skill_287), 
+																			t(:job_skill_288), 
+																			t(:job_skill_289), 
+																			t(:job_skill_290), 
+																			t(:job_skill_291), 
+																			t(:job_skill_292), 
+																			t(:job_skill_293), 
+																			t(:job_skill_294), 
+																			t(:job_skill_295), 
+																			t(:job_skill_296), 
+																			t(:job_skill_297), 
+																			t(:job_skill_298), 
+																			t(:job_skill_299), 
+																			t(:job_skill_300), 
+																			t(:job_skill_301), 
+																			t(:job_skill_302), 
+																			t(:job_skill_303), 
+																			t(:job_skill_304), 
+																			t(:job_skill_305), 
+																			t(:job_skill_306), 
+																			t(:job_skill_307), 
+																			t(:job_skill_308), 
+																			t(:job_skill_309), 
+																			t(:job_skill_310), 
+																			t(:job_skill_311), 
+																			t(:job_skill_312), 
+																			t(:job_skill_313), 
+																			t(:job_skill_314), 
+																			t(:job_skill_315), 
+																			t(:job_skill_316), 
+																			t(:job_skill_317), 
+																			t(:job_skill_318), 
+																			t(:job_skill_319), 
+																			t(:job_skill_320), 
+																			t(:job_skill_321), 
+																			t(:job_skill_322), 
+																			t(:job_skill_323)]), 
 																			{include_blank: true}, { multiple: true, :class => 'form-select new_job_skill_select'}) %>
 								</div>
 
@@ -658,7 +658,7 @@
 
 							<div class="new_job_content">
 								<div class="new_job_label">
-									<a><%= f.label :requirement, "Yêu câu công việc chi tiết", class: "new_job_label" %><span>*</span></a>
+									<a><%= f.label :requirement,  t(:form_job_require), class: "new_job_label" %><span>*</span></a>
 								</div>
 								
 								<div class="new_job_input">
@@ -669,7 +669,7 @@
 
 							<div class="new_job_content">
 								<div class="new_job_label">
-									<a><%= f.label :benefit, "Chế độ đãi ngộ", class: "new_job_label" %><span>*</span></a>
+									<a><%= f.label :benefit, t(:form_job_benefit), class: "new_job_label" %><span>*</span></a>
 								</div>
 								
 								<div class="new_job_input">
@@ -680,7 +680,7 @@
 						</div>
 
 						<div class="new_job_submit">
-							<%= f.submit "Đăng tin", class: "new_job_form_submit" %>
+							<%= f.submit t(:form_job_submit), class: "new_job_form_submit" %>
 						</div>
 					</div>
 				<%end%>
@@ -689,27 +689,27 @@
 		<div class="col-sm-4">
 			<div class="company_job_policy">
 				<div class="company_job_policy_title">
-					<a>Lưu ý trước khi đăng tin tuyển dụng</a>
+					<a><%=t(:form_job_warn)%></a>
 				</div>
 				<div class="company_job_policy_content">
 					<div class="company_job_policy_content_index">
-						· Không sử dụng từ ngữ mang ý xúc phạm, miệt thị người khác
+						· <%=t(:form_job_policy_1)%>
 					</div>
 					<div class="company_job_policy_content_index">
-						· Không sử dụng từ ngữ mang tính chất kích động, bạo lực
+						· <%=t(:form_job_policy_2)%>
 					</div>
 					<div class="company_job_policy_content_index">
-						· Không cung cấp thông tin cá nhân
+						· <%=t(:form_job_policy_3)%>
 					</div>
 					<div class="company_job_policy_content_index">
-						· Không cung cấp thông tin bảo mật, bí mật kinh doanh của công ty
+						· <%=t(:form_job_policy_4)%>
 					</div>
 					<div class="company_job_policy_content_index">
-						· Đặt tiêu đề ngắn gọn xúc tích, giúp tin đăng của bạn dễ tìm kiếm nhất
+						· <%=t(:form_job_policy_5)%>
 					</div>
 					<div class="company_job_policy_content_link">
-						Xem thêm thông tin chi tiết về 
-						<a href="<%=term_path%>">thỏa thuận sử dụng </a>
+						<%=t(:form_read_policy)%>
+						<a href="<%=term_path%>"><%=t(:term_and_service)%> </a>
 					</div>
 				</div>
 			</div>

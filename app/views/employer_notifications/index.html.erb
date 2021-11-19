@@ -2,7 +2,7 @@
     <div class="employer_notification_index">
         <%if current_employer.employer_notifications.count > 0 %>
             <div class="employer_notification_index_label">
-                <h3>Bạn có <%=current_employer.employer_notifications.count%> thông báo mới</h3>
+                <h3><%=t(:you_have)%> <%=current_employer.employer_notifications.count%> <%=t(:new_noti).downcase%></h3>
             </div>
             <%current_employer.employer_notifications.each do |employer_notification|%>
                 <%=render employer_notification%>
@@ -13,7 +13,7 @@
                     <i class="material-icons">notifications_none</i>
                 </div>
                 <div class="employer_notification_not_found">
-                    <span>Bạn chưa có thông báo mới nào</span>
+                    <span><%=t(:you_have_no_noti)%></span>
                 </div>
             </div>
         <%end%>

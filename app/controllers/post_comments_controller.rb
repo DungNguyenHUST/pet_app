@@ -27,7 +27,7 @@ class PostCommentsController < ApplicationController
                 format.js
             end
         else
-            flash[:danger] = "Lỗi, hãy điền đủ nội dung có dấu '*'"
+            flash[:danger] = I18n.t(:create_error)
             render :new
         end
     end

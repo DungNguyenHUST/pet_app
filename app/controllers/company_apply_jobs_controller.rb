@@ -32,10 +32,10 @@ class CompanyApplyJobsController < ApplicationController
                                                                 company_job_company_apply_job_path(@company_job, @company_apply_job), 
                                                                 "ApplyJob")
             end
-            flash[:success] = "Đơn ứng tuyển của bạn đã được tiếp nhận và gửi tới nhà tuyển dụng..."
+            flash[:success] = I18n.t(:apply_job_success)
             redirect_to company_job_path(@company_job)
         else
-            flash[:error] = "Lỗi, Không thể upload thông tin "
+            flash[:error] = I18n.t(:create_error)
             render :new
         end
     end

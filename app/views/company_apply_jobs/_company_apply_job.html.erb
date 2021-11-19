@@ -1,33 +1,35 @@
 <div class="company_job_apply_block">
     <div class="company_job_apply_info">
         <div class="company_job_apply_name">
-            <a>Họ và tên: <%=link_to(company_apply_job.name, company_job_company_apply_job_path(company_apply_job.company_job, company_apply_job))%></a>
+            <a><%=t(:full_name)%> <%=link_to(company_apply_job.name, company_job_company_apply_job_path(company_apply_job.company_job, company_apply_job))%></a>
         </div>
 
         <div class="company_job_apply_email">
-            <a> Địa chỉ email:</a><span><%=company_apply_job.email%><span>
+            <a> <%=t(:email)%></a><span><%=company_apply_job.email%><span>
         </div>
 
         <div class="company_job_apply_letter">
-            <a> Mô tả bản thân: </a>
+            <a> <%=t(:self_introduce)%> </a>
             <div class="company_job_apply_sumary">
                 <%=truncate(strip_tags(company_apply_job.cover_letter), length: 200)%>
             </div>
         </div>
 
         <div class="company_job_apply_time">
-            </a>Ứng tuyển <%=time_ago_in_words(company_apply_job.created_at)%></a>
+            </a><%=t(:applied)%> <%=time_ago_in_words(company_apply_job.created_at)%></a>
         </div>
 
         <div class="company_job_apply_download">
             <i class="material-icons-outlined">download</i>
             <%if company_apply_job.cover_vitate?%>
-                <%=link_to "Download CV tại đây", company_apply_job.cover_vitate.url%>
+                <%=link_to t(:download_cv), company_apply_job.cover_vitate.url%>
             <%end%>
         </div>
 
         <div class="company_job_apply_more">
-            <a><%= link_to '<button type="submit"> Xem thêm <i class="material-icons-outlined">arrow_forward</i></button>'.html_safe, company_job_company_apply_job_path(company_apply_job.company_job, company_apply_job) %></a>
+            <a><%= link_to company_job_company_apply_job_path(company_apply_job.company_job, company_apply_job) do%>
+                <button type="submit"> <%=t(:read_more)%> <i class="material-icons-outlined">arrow_forward</i></button>
+            <%end%></a>
         </div>
     </div>
 </div>

@@ -2,11 +2,11 @@
     <div class='user_dasboard'>
         <div class='user_title'>
             <%if (0..12).cover? Time.now.hour %>
-                <span>Good morning, <%=current_user.name%>!</span>
+                <span><%=t(:good_morning)%>, <%=current_user.name%>!</span>
             <%elsif (12..18).cover? Time.now.hour %>
-                <span>Good afternoon, <%=current_user.name%>!</span>
+                <span><%=t(:good_after)%>, <%=current_user.name%>!</span>
             <%elsif (18..24).cover? Time.now.hour %>
-                <span>Good evening, <%=current_user.name%>!</span>
+                <span><%=t(:good_eve)%>, <%=current_user.name%>!</span>
             <%end%>
         </div>
 
@@ -18,7 +18,7 @@
                     <%else%> 
                         <%active = ""%>
                     <%end%>                                 
-                    <a class="nav-link <%=active%>" href="<%=user_path(current_user, tab: 'PersonalID')%>"><i class="material-icons-outlined">person</i>Thông tin cá nhân</a>
+                    <a class="nav-link <%=active%>" href="<%=user_path(current_user, tab: 'PersonalID')%>"><i class="material-icons-outlined">person</i><%=t(:user_personal_info)%></a>
                 </li>
                 <li class="nav-item">
                     <%if @tab == "SaveJobID"%>
@@ -26,7 +26,7 @@
                     <%else%> 
                         <%active = ""%>
                     <%end%>                                     
-                    <a class="nav-link <%=active%>" href="<%=user_path(current_user, tab: 'SaveJobID')%>"><i class="material-icons-outlined">bookmark_border</i>Việc làm đã lưu <span><%= convert_number_to_human(@company_job_saved.total_count)%><span> </a>
+                    <a class="nav-link <%=active%>" href="<%=user_path(current_user, tab: 'SaveJobID')%>"><i class="material-icons-outlined">bookmark_border</i><%=t(:user_saved_job)%> <span><%= convert_number_to_human(@company_job_saved.total_count)%><span> </a>
                 </li>
                 <li class="nav-item">
                     <%if @tab == "ApplyJobID"%>
@@ -34,7 +34,7 @@
                     <%else%> 
                         <%active = ""%>
                     <%end%>                                     
-                    <a class="nav-link <%=active%>" href="<%=user_path(current_user, tab: 'ApplyJobID')%>"><i class="material-icons-outlined">check</i>Việc làm đã ứng tuyển <span><%= convert_number_to_human(@company_job_applied.total_count)%><span> </a>
+                    <a class="nav-link <%=active%>" href="<%=user_path(current_user, tab: 'ApplyJobID')%>"><i class="material-icons-outlined">check</i><%=t(:user_applied_job)%> <span><%= convert_number_to_human(@company_job_applied.total_count)%><span> </a>
                 </li>
                 <li class="nav-item">
                     <%if @tab == "CompanyFollowID"%>
@@ -42,7 +42,7 @@
                     <%else%> 
                         <%active = ""%>
                     <%end%>                                     
-                    <a class="nav-link <%=active%>" href="<%=user_path(current_user, tab: 'CompanyFollowID')%>"><i class="material-icons-outlined">favorite_border</i>Công ty đang theo dõi <span><%= convert_number_to_human(@company_followed.total_count)%><span> </a>
+                    <a class="nav-link <%=active%>" href="<%=user_path(current_user, tab: 'CompanyFollowID')%>"><i class="material-icons-outlined">favorite_border</i><%=t(:user_followed_company)%> <span><%= convert_number_to_human(@company_followed.total_count)%><span> </a>
                 </li>
                 <li class="nav-item">
                     <%if @tab == "ProblemID"%>
@@ -50,7 +50,7 @@
                     <%else%> 
                         <%active = ""%>
                     <%end%>                                     
-                    <a class="nav-link <%=active%>" href="<%=user_path(current_user, tab: 'ProblemID')%>"><i class="material-icons-outlined">lightbulb</i>Câu hỏi của tôi <span><%= convert_number_to_human(@problem_created.total_count)%><span> </a>
+                    <a class="nav-link <%=active%>" href="<%=user_path(current_user, tab: 'ProblemID')%>"><i class="material-icons-outlined">lightbulb</i><%=t(:user_interview_question)%> <span><%= convert_number_to_human(@problem_created.total_count)%><span> </a>
                 </li>
                 <li class="nav-item">
                     <%if @tab == "NotificationID"%>
@@ -58,7 +58,7 @@
                     <%else%> 
                         <%active = ""%>
                     <%end%>                                     
-                    <a class="nav-link <%=active%>" href="<%=user_path(current_user, tab: 'NotificationID')%>"><i class="material-icons-outlined">notifications</i>Thông báo <span><%= convert_number_to_human(@user_notifications.total_count)%><span> </a>
+                    <a class="nav-link <%=active%>" href="<%=user_path(current_user, tab: 'NotificationID')%>"><i class="material-icons-outlined">notifications</i><%=t(:noti)%> <span><%= convert_number_to_human(@user_notifications.total_count)%><span> </a>
                 </li>
                 <li class="nav-item">
                     <%if @tab == "CoverVitaeID"%>
@@ -66,7 +66,7 @@
                     <%else%> 
                         <%active = ""%>
                     <%end%>                                     
-                    <a class="nav-link <%=active%>" href="<%=user_path(current_user, tab: 'CoverVitaeID')%>"><i class="material-icons-outlined">content_copy</i>CV của tôi <span><%= convert_number_to_human(@cv_created.total_count)%><span> </a>
+                    <a class="nav-link <%=active%>" href="<%=user_path(current_user, tab: 'CoverVitaeID')%>"><i class="material-icons-outlined">content_copy</i><%=t(:user_cv)%> <span><%= convert_number_to_human(@cv_created.total_count)%><span> </a>
                 </li>
             </ul>
         </div>
@@ -76,13 +76,13 @@
                 <div class="user_personal_tab">
                     <div class="user_info">
                         <div class="user_info_des_label">
-                            <strong> Thông tin tài khoản</strong>
+                            <strong> <%=t(:account_info)%></strong>
                         </div>
 
                         <div class="user_info_about">
 
                             <div class="user_info_label">
-                                <strong>Tên tài khoản:</strong>
+                                <strong><%=t(:full_name)%>:</strong>
                             </div>
 
                             <div class="user_info_des">
@@ -90,11 +90,11 @@
                             </div>
 
                             <div class="user_info_edit_button">
-                                <i class="fa fa-edit"></i> <%= link_to " Thay đổi tên đăng nhập", edit_user_path(current_user), class: "user_info_edit_link_to" %>
+                                <i class="fa fa-edit"></i> <%= link_to t(:change_name), edit_user_path(current_user), class: "user_info_edit_link_to" %>
                             </div>
 
                             <div class="user_info_label">
-                                <strong>Địa chỉ email:</strong>
+                                <strong><%=t(:email)%>:</strong>
                             </div>
 
                             <div class="user_info_des">
@@ -102,11 +102,11 @@
                             </div>
 
                             <div class="user_info_edit_button">
-                                <i class="fa fa-edit"></i><%= link_to " Thay đổi địa chỉ email", edit_user_path(current_user), class: "user_info_edit_link_to"  %>
+                                <i class="fa fa-edit"></i><%= link_to t(:change_email), edit_user_path(current_user), class: "user_info_edit_link_to"  %>
                             </div>
 
                             <div class="user_info_label">
-                                <strong>Số điện thoại liên lạc:</strong>
+                                <strong><%=t(:phone)%>:</strong>
                             </div>
 
                             <div class="user_info_des">
@@ -114,11 +114,11 @@
                             </div>
 
                             <div class="user_info_edit_button">
-                                <i class="fa fa-edit"></i><%= link_to " Thay đổi số điện thoại", edit_user_path(current_user), class: "user_info_edit_link_to"  %>
+                                <i class="fa fa-edit"></i><%= link_to t(:change_phone), edit_user_path(current_user), class: "user_info_edit_link_to"  %>
                             </div>
 
                             <div class="user_info_label">
-                                <strong>Địa chỉ liên hệ:</strong>
+                                <strong><%=t(:address)%>:</strong>
                             </div>
 
                             <div class="user_info_des">
@@ -126,13 +126,13 @@
                             </div>
 
                             <div class="user_info_edit_button">
-                                <i class="fa fa-edit"></i><%= link_to " Thay đổi địa chỉ", edit_user_path(current_user), class: "user_info_edit_link_to"  %>
+                                <i class="fa fa-edit"></i><%= link_to t(:change_address), edit_user_path(current_user), class: "user_info_edit_link_to"  %>
                             </div>
                         </div>
 
                         <div class="user_log_out">
                             <%= button_to destroy_user_session_path, method: :delete do%>
-                                <span>Đăng xuất</span>
+                                <span><%=t(:logout)%></span>
                             <%end%>
                         </div>
                     </div>
@@ -160,7 +160,7 @@
                                 <i class="material-icons">work</i>
                             </div>
                             <div class="user_save_job_not_found">
-                                <span>Bạn chưa lưu lại việc làm nào...</span>
+                                <span><%=t(:user_not_save_job)%></span>
                             </div>
                         </div>
                     <%end%>  
@@ -190,7 +190,7 @@
                                 <i class="material-icons">work</i>
                             </div>
                             <div class="user_apply_job_not_found">
-                                <span>Bạn chưa ứng tuyển việc làm nào...</span>
+                                <span><%=t(:user_not_applied_job)%></span>
                             </div>
                         </div>
                     <%end%>  
@@ -217,7 +217,7 @@
                                 <i class="material-icons">business</i>
                             </div>
                             <div class="user_follow_company_not_found">
-                                <span>Bạn chưa theo dõi công ty nào...</span>
+                                <span><%=t(:user_not_follow_company)%></span>
                             </div>
                         </div>
                     <%end%>  
@@ -237,7 +237,7 @@
                                 <i class="material-icons">notifications</i>
                             </div>
                             <div class="user_notification_not_found">
-                                <span>Bạn không có thông báo mới nào...</span>
+                                <span><%=t(:user_have_no_noti)%></span>
                             </div>
                         </div>
                     <%end%>
@@ -257,7 +257,7 @@
                                 <i class="material-icons">lightbulb</i>
                             </div>
                             <div class="user_problem_not_found">
-                                <span>Bạn chưa có câu hỏi nào...</span>
+                                <span><%=t(:user_have_no_question)%></span>
                             </div>
                         </div>
                     <%end%>
@@ -283,7 +283,7 @@
                                 <i class="material-icons">content_copy</i>
                             </div>
                             <div class="user_cv_not_found">
-                                <span>Bạn chưa tạo CV nào...</span>
+                                <span><%=t(:user_have_no_cv)%></span>
                             </div>
                         </div>
                     <%end%>

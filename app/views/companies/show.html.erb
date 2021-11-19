@@ -1,29 +1,29 @@
 <% content_for :meta_robots, "all" %>
 <%case @tab%>
 <%when "default", "CompanyProfileID"%>
-    <%title = "Tổng quan, giới thiệu về công ty"%>
+    <%title = t(:company_show_meta_1)%>
     <%content = @company.overview%>
 <%when "CompanyPolicyID"%>
-    <%title = "Chính sách nổi bật của công ty"%>
+    <%title = t(:company_show_meta_2)%>
     <%content = @company.policy%>
 <%when "CompanyReviewsID"%>
-    <%title = "Review, đánh giá công ty"%>
-    <%content = "Review các chính sách, lương thưởng, môi trường làm việc, kinh ngiệm phỏng vấn, sếp, đồng nghiệp, mức độ hài lòng, văn hóa của công ty"%>
+    <%title = t(:company_show_meta_3)%>
+    <%content = t(:company_show_meta_4)%>
 <%when "CompanyInterviewsID"%>
-    <%title = "Kinh nghiệm phỏng vấn, interview tại công ty"%>
-    <%content = "Chia sẻ các kinh nghiệm, quy trình, mức độ hài lòng, chấp nhận offer, số lượng vòng phỏng vấn"%>
+    <%title = t(:company_show_meta_5)%>
+    <%content = t(:company_show_meta_6)%>
 <%when "CompanyJobsID"%>
-    <%title = "Việc làm, tin tuyển dụng mới nhất tại công ty"%>
-    <%content = "Tin tuyển dụng, việc làm mới nhất, tìm kiếm việc làm"%>
+    <%title = t(:company_show_meta_7)%>
+    <%content = t(:company_show_meta_8)%>
 <%when "CompanyImagesID"%>
-    <%title = "Hình ảnh về công ty"%>
-    <%content = "Chia sẻ hình ảnh đẹp, văn hóa, môi trường làm việc, văn phòng và các hoạt động ngoại khóa của công ty"%>
+    <%title = t(:company_show_meta_9)%>
+    <%content = t(:company_show_meta_10)%>
 <%when "CompanySalariesID"%>
-    <%title = "Lương, chế độ đãi ngộ tại công ty"%>
-    <%content = "Tổng quan về lương, chế độ đãi ngộ dành cho nhân viên của công ty"%>
+    <%title = t(:company_show_meta_11)%>
+    <%content = t(:company_show_meta_12)%>
 <%when "CompanyQuestionsID"%>
-    <%title = "Các câu hỏi liên quan tới công ty"%>
-    <%content = "Nơi giải đáp tất cả các thắc mắc liên quan tới công ty"%>
+    <%title = t(:company_show_meta_13)%>
+    <%content = t(:company_show_meta_14)%>
 <%else%>
     <%title = ""%>
     <%content = ""%>
@@ -100,7 +100,7 @@
                             </div>
 
                             <div class="company_title_short_des">
-                                <a><%= convert_number_to_human(@company.company_reviews.count) %> review | <%= convert_number_to_human(@company.company_interviews.count) %> phỏng vấn | <%=convert_number_to_human(@company.company_follows.count)%> theo dõi</a>
+                                <a><%= convert_number_to_human(@company.company_reviews.count) %> <%=t(:review)%> | <%= convert_number_to_human(@company.company_interviews.count) %> <%=t(:interview)%> | <%=convert_number_to_human(@company.company_follows.count)%> <%=t(:follow)%></a>
                             </div>
                         </div>
                     </div>
@@ -112,41 +112,59 @@
                                     <% pre_follow = @company.company_follows.find { |follow| follow.user_id == current_user.id} %>
                                     <% if pre_follow %> 
                                         <%= button_to company_company_follow_path(@company, pre_follow), :method => :delete, remote: true, form_class: "follow_btn_large_highlight" do%>
-                                            <i class="material-icons">favorite</i> <span>Đang theo dõi</span>
+                                            <i class="material-icons">favorite</i> <span><%=t(:following)%></span>
                                         <%end%> 
                                     <%else%>
                                         <%= button_to company_company_follows_path(@company), :method => :post, remote: true, form_class: "follow_btn_large" do%>
-                                            <i class="material-icons-outlined">favorite_border</i> <span>Theo dõi</span>
+                                            <i class="material-icons-outlined">favorite_border</i> <span><%=t(:follow)%></span>
                                         <%end%>
                                     <%end%>
                                 <%else%>
                                     <button type="button" data-toggle="modal" data-target="#buttonModalLoginCenter" class="follow_btn_large">
-                                        <i class="material-icons-outlined">favorite_border</i> <span>Theo dõi</span>
+                                        <i class="material-icons-outlined">favorite_border</i> <span><%=t(:follow)%></span>
                                     </button>
                                 <%end%>
                             </div>
 
                             <div class="review_new_button">
                                 <%if @tab == "default" || @tab == "CompanyProfileID"%>
-                                    <%= link_to '<button type="submit"> <i class="material-icons-outlined">edit</i> <span> Viết Review</span> </button>'.html_safe, new_company_company_review_path(@company) %>
+                                    <%= link_to new_company_company_review_path(@company) do%>
+                                        <button type="submit"> <i class="material-icons-outlined">edit</i> <span> <%=t(:write_review)%></span> </button>
+                                    <%end%>
                                 <% elsif @tab == "CompanyPolicyID" %>
-                                    <%= link_to '<button type="submit"> <i class="material-icons-outlined">edit</i> <span> Viết Review</span> </button>'.html_safe, new_company_company_review_path(@company) %>
+                                    <%= link_to new_company_company_review_path(@company) do%>
+                                        <button type="submit"> <i class="material-icons-outlined">edit</i> <span> <%=t(:write_review)%></span> </button>
+                                    <%end%>
                                 <% elsif @tab == "CompanyReviewsID" %>
-                                    <%= link_to '<button type="submit"> <i class="material-icons-outlined">edit</i> <span> Viết Review</span> </button>'.html_safe, new_company_company_review_path(@company) %>
+                                    <%= link_to new_company_company_review_path(@company) do%>
+                                        <button type="submit"> <i class="material-icons-outlined">edit</i> <span> <%=t(:write_review)%></span> </button>
+                                    <%end%>
                                 <% elsif @tab == "CompanyInterviewsID" %>
-                                    <%= link_to '<button type="submit"> <i class="material-icons-outlined">edit</i> <span> Viết Interview</span> </button>'.html_safe, new_company_company_interview_path(@company) %>
+                                    <%= link_to new_company_company_interview_path(@company) do%>
+                                        <button type="submit"> <i class="material-icons-outlined">edit</i> <span> <%=t(:write_interview)%></span> </button>
+                                    <%end%>
                                 <% elsif @tab == "CompanyJobsID" %>
                                     <%if employer_signed_in?%>
-                                        <%= link_to '<button type="submit"> <i class="material-icons-outlined">edit</i> <span> Đăng tuyển</span> </button>'.html_safe, new_company_job_path%>
+                                        <%= link_to new_company_job_path do%>
+                                            <button type="submit"> <i class="material-icons-outlined">edit</i> <span> <%=t(:post_job)%></span> </button>
+                                        <%end%>
                                     <%else%>
-                                        <%= link_to '<button type="submit"> <i class="material-icons-outlined">edit</i> <span> Viết Review</span> </button>'.html_safe, new_company_company_review_path(@company) %>
+                                        <%= link_to new_company_company_review_path(@company) do%>
+                                            <button type="submit"> <i class="material-icons-outlined">edit</i> <span> <%=t(:write_review)%></span> </button>
+                                        <%end%>
                                     <%end%>
                                 <% elsif @tab == "CompanyQuestionsID" %>
-                                    <%= link_to '<button type="submit"> <i class="material-icons-outlined">edit</i> <span> Đặt câu hỏi</span> </button>'.html_safe, new_company_company_question_path(@company) %>
+                                    <%= link_to new_company_company_question_path(@company) do%>
+                                        <button type="submit"> <i class="material-icons-outlined">edit</i> <span> <%=t(:ask_question)%></span> </button>
+                                    <%end%>
                                 <% elsif @tab == "CompanySalariesID" %>
-                                    <%= link_to '<button type="submit"> <i class="material-icons-outlined">edit</i> <span> Thêm lương </span> </button>'.html_safe, new_company_company_salary_path(@company) %>
+                                    <%= link_to new_company_company_salary_path(@company) do%>
+                                        <button type="submit"> <i class="material-icons-outlined">edit</i> <span> <%=t(:add_salary)%> </span> </button>
+                                    <%end%>
                                 <% elsif @tab == "CompanyImagesID" %>
-                                    <%= link_to '<button type="submit"> <i class="material-icons-outlined">edit</i> <span> Viết Review</span> </button>'.html_safe, new_company_company_review_path(@company) %>
+                                    <%= link_to new_company_company_review_path(@company) do%>
+                                        <button type="submit"> <i class="material-icons-outlined">edit</i> <span> <%=t(:write_review)%></span> </button>
+                                    <%end%>
                                 <%end%>
                             </div>
                         </div>
@@ -165,7 +183,7 @@
                     <%else%> 
                         <%active = ""%>
                     <%end%>                                 
-                    <a class="nav-link <%=active%>" href="<%=company_path(@company, tab: 'CompanyProfileID')%>"><i class="material-icons-outlined">corporate_fare</i>Giới thiệu</a>
+                    <a class="nav-link <%=active%>" href="<%=company_path(@company, tab: 'CompanyProfileID')%>"><i class="material-icons-outlined">corporate_fare</i><%=t(:overview)%></a>
                 </li>
                 <li class="nav-item">
                     <%if @tab == "CompanyPolicyID"%>
@@ -173,7 +191,7 @@
                     <%else%> 
                         <%active = ""%>
                     <%end%>                                     
-                    <a class="nav-link <%=active%>" href="<%=company_path(@company, tab: 'CompanyPolicyID')%>"><i class="material-icons-outlined">favorite_border</i>Chính sách</a>
+                    <a class="nav-link <%=active%>" href="<%=company_path(@company, tab: 'CompanyPolicyID')%>"><i class="material-icons-outlined">favorite_border</i><%=t(:why_join_us)%></a>
                 </li>
                 <li class="nav-item">
                     <%if @tab == "CompanyReviewsID"%>
@@ -181,7 +199,7 @@
                     <%else%> 
                         <%active = ""%>
                     <%end%>                                     
-                    <a class="nav-link <%=active%>" href="<%=company_path(@company, tab: 'CompanyReviewsID')%>"><i class="material-icons-outlined">insert_emoticon</i>Review <span> <%= convert_number_to_human(@company_reviews.total_count)%><span></a>
+                    <a class="nav-link <%=active%>" href="<%=company_path(@company, tab: 'CompanyReviewsID')%>"><i class="material-icons-outlined">insert_emoticon</i><%=t(:review)%> <span> <%= convert_number_to_human(@company_reviews.total_count)%></span></a>
                 </li>
                 <li class="nav-item">
                     <%if @tab == "CompanyInterviewsID"%>
@@ -189,7 +207,7 @@
                     <%else%> 
                         <%active = ""%>
                     <%end%> 
-                    <a class="nav-link <%=active%>" href="<%=company_path(@company, tab: 'CompanyInterviewsID')%>"><i class="material-icons-outlined">people_outline</i>Phỏng vấn <span> <%= convert_number_to_human(@company_interviews.total_count)%><span></a>
+                    <a class="nav-link <%=active%>" href="<%=company_path(@company, tab: 'CompanyInterviewsID')%>"><i class="material-icons-outlined">people_outline</i><%=t(:interview)%> <span> <%= convert_number_to_human(@company_interviews.total_count)%></span></a>
                 </li>
                 <li class="nav-item">
                     <%if @tab == "CompanyJobsID"%>
@@ -197,7 +215,7 @@
                     <%else%> 
                         <%active = ""%>
                     <%end%> 
-                    <a class="nav-link <%=active%>" href="<%=company_path(@company, tab: 'CompanyJobsID')%>"><i class="material-icons-outlined">work_outline</i>Tuyển dụng <span> <%= convert_number_to_human(@company_jobs.total_count)%><span></a>
+                    <a class="nav-link <%=active%>" href="<%=company_path(@company, tab: 'CompanyJobsID')%>"><i class="material-icons-outlined">work_outline</i><%=t(:jobs)%> <span> <%= convert_number_to_human(@company_jobs.total_count)%></span></a>
                 </li>
                 <li class="nav-item">
                     <%if @tab == "CompanySalariesID"%>
@@ -205,7 +223,7 @@
                     <%else%> 
                         <%active = ""%>
                     <%end%>                                     
-                    <a class="nav-link <%=active%>" href="<%=company_path(@company, tab: 'CompanySalariesID')%>"><i class="material-icons-outlined">paid</i>Lương<span> <%= convert_number_to_human(@company.company_salaries.count)%><span></a>
+                    <a class="nav-link <%=active%>" href="<%=company_path(@company, tab: 'CompanySalariesID')%>"><i class="material-icons-outlined">paid</i><%=t(:salary)%><span> <%= convert_number_to_human(@company.company_salaries.count)%></span></a>
                 </li>
                 <li class="nav-item">
                     <%if @tab == "CompanyImagesID"%>
@@ -213,7 +231,7 @@
                     <%else%> 
                         <%active = ""%>
                     <%end%>                                     
-                    <a class="nav-link <%=active%>" href="<%=company_path(@company, tab: 'CompanyImagesID')%>"><i class="material-icons-outlined">image</i>Hình ảnh<span> <%= convert_number_to_human(@company_images.total_count)%><span></a>
+                    <a class="nav-link <%=active%>" href="<%=company_path(@company, tab: 'CompanyImagesID')%>"><i class="material-icons-outlined">image</i><%=t(:picture)%><span> <%= convert_number_to_human(@company_images.total_count)%><span></a>
                 </li>
                 <li class="nav-item">
                     <%if @tab == "CompanyQuestionsID"%>
@@ -221,7 +239,7 @@
                     <%else%> 
                         <%active = ""%>
                     <%end%>                                     
-                    <a class="nav-link <%=active%>" href="<%=company_path(@company, tab: 'CompanyQuestionsID')%>"><i class="material-icons-outlined">help_outline</i>Q&A<span> <%= convert_number_to_human(@company_questions.total_count)%><span></a>
+                    <a class="nav-link <%=active%>" href="<%=company_path(@company, tab: 'CompanyQuestionsID')%>"><i class="material-icons-outlined">help_outline</i><%=t(:question)%><span> <%= convert_number_to_human(@company_questions.total_count)%></span></a>
                 </li>
             </ul>
         </div>

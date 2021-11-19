@@ -42,9 +42,9 @@ class EmployersController < ApplicationController
         @employer = Employer.friendly.find params[:id]
         if(@employer.update(employer_params))
             redirect_to employer_path(current_employer)
-            flash[:success] = "Update thông tin thành công"
+            flash[:success] = I18n.t(:update_success)
         else
-            flash[:danger] = "Lỗi, không thể cập nhật thông tin"
+            flash[:danger] = I18n.t(:update_error)
         end
     end
 

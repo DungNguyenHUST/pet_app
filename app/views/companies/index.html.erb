@@ -3,21 +3,21 @@
 <%case @tab%>
 <%when "default", "CompanyAllID"%>
     <%if !@is_company_searched%>
-        <% title = "Review, đánh giá các công ty" %>
+        <% title = t(:company_index_meta_1) %>
     <%else%>
-        <% title = "Kết quả tìm kiếm"%>
+        <% title = t(:company_index_meta_2)%>
     <%end%>
 <%when "CompanyNewestID"%>
-    <%title = "Công ty mới nhất được cập nhật hàng ngày"%>
+    <%title = t(:company_index_meta_3)%>
 <%when "CompanyMostRecentID"%>
-    <%title = "Công ty được nhiều người quan tâm, có lượng review đông đảo nhất"%>
+    <%title = t(:company_index_meta_4)%>
 <%when "CompanyBestID"%>
-    <%title = "Công ty tốt nhất dựa trên kết quả review, đánh giá"%>
+    <%title = t(:company_index_meta_5)%>
 <%else%>
     <%title = ""%>
 <%end%>
 <% content_for :meta_title, title %>
-<% content_for :meta_description, "Danh sách các công ty tốt nhất, mới nhất, được quan tâm nhiều nhất review bởi cộng đồng Firework" %>
+<% content_for :meta_description, t(:company_index_meta_6) %>
 <div class="companies_index">
     <div class="companies_search">
         <div class="container">
@@ -25,8 +25,8 @@
                 <div class ="col-sm-6">
                     <div class="company_bar">
                         <div class="company_bar_label">
-                            <h3>Tìm kiếm nơi làm việc tốt nhất.</h3>
-                            <a>Trải nghiệm đến từ chính những người trong cuộc sẽ cho bạn cái nhìn rõ nhất về các công ty.</a>
+                            <h3><%=t(:company_index_label)%>.</h3>
+                            <a><%=t(:company_index_label_sub)%>.</a>
                         </div>
                         
                         <%=form_tag companies_path, :method => "get" do%>
@@ -34,7 +34,7 @@
                                 <div class="col-sm-10 col_padding_customize_right">
                                     <div class="company_search_input">
                                         <i class="material-icons-outlined">search</i>
-                                        <%= text_field_tag :search, params[:search], data: { behavior: "autocomplete" }, required: true, class: 'form-control', placeholder: "Nhập tên công ty cần tìm kiếm..."%>
+                                        <%= text_field_tag :search, params[:search], data: { behavior: "autocomplete" }, required: true, class: 'form-control', placeholder: t(:company_index_search_hint)%>
                                     </div>
                                 </div>
                                 
@@ -42,7 +42,7 @@
                                     <div class="company_search_button">
                                         <%= button_to "", form_class: "search_button", :name => nil do%>
                                             <i class="material-icons-outlined">search</i>
-                                            <a>Tìm kiếm</a>
+                                            <a><%=t(:search)%></a>
                                         <%end%> 
                                     </div>
                                 </div>
@@ -92,7 +92,7 @@
                 <%= render :partial => 'companies/search', :object => @company_searchs %>
             <%else%>
                 <div class="companies_section_title">
-                    <span>Danh sách công ty</span>
+                    <span><%=t(:company_list)%></span>
                 </div>
                 
                 <div class="company_index_tab_link">
@@ -103,7 +103,7 @@
                             <%else%> 
                                 <%active = ""%>
                             <%end%> 
-                            <a class="nav-link <%=active%>" href="<%=companies_path(tab: 'CompanyAllID')%>">Tất cả</a>
+                            <a class="nav-link <%=active%>" href="<%=companies_path(tab: 'CompanyAllID')%>"><%=t(:all)%></a>
                         </li>
                         <li class="nav-item">
                             <%if @tab == "CompanyMostRecentID"%>
@@ -111,7 +111,7 @@
                             <%else%> 
                                 <%active = ""%>
                             <%end%>
-                            <a class="nav-link <%=active%>" href="<%=companies_path(tab: 'CompanyMostRecentID')%>">Đang được quan tâm</a>
+                            <a class="nav-link <%=active%>" href="<%=companies_path(tab: 'CompanyMostRecentID')%>"><%=t(:interesting)%></a>
                         </li>
                         <li class="nav-item">
                             <%if @tab == "CompanyNewestID"%>
@@ -119,7 +119,7 @@
                             <%else%> 
                                 <%active = ""%>
                             <%end%>
-                            <a class="nav-link <%=active%>" href="<%=companies_path(tab: 'CompanyNewestID')%>">Công ty mới nhất </a>
+                            <a class="nav-link <%=active%>" href="<%=companies_path(tab: 'CompanyNewestID')%>"><%=t(:lastest_company)%> </a>
                         </li>
                         <li class="nav-item">
                             <%if @tab == "CompanyBestID"%>
@@ -127,7 +127,7 @@
                             <%else%> 
                                 <%active = ""%>
                             <%end%>
-                            <a class="nav-link <%=active%>" href="<%=companies_path(tab: 'CompanyBestID')%>">Công ty tốt nhất</a>
+                            <a class="nav-link <%=active%>" href="<%=companies_path(tab: 'CompanyBestID')%>"><%=t(:best_company)%></a>
                         </li>
                     </ul>
                 </div>
@@ -192,7 +192,7 @@
                     <div class='row'>
                         <div class="col-sm-4">
                             <div class="company_current_review_title">
-                                <i class="material-icons-outlined checked">create</i><a> Review công ty của bạn </a>
+                                <i class="material-icons-outlined checked">create</i><a> <%=t(:review_your_company)%> </a>
                             </div>
                         </div>
                             
@@ -221,7 +221,7 @@
                         <div class='col-sm-2'>
                             <div class="user_select_start">
                                 <%= button_to "", form_class: "select_button", :name => nil do%>
-                                    <a>Review</a>
+                                    <a><%=t(:write_review)%></a>
                                 <%end%> 
                             </div>
                         </div>

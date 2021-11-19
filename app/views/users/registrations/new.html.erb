@@ -1,150 +1,88 @@
-<%if (@user_type == "admin")%>
-    <div class='user_container'>
-        <div class="container">
-            <div class="user_block">
-                <div class="user_add_new_form_left">
-                    <%= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
-                        <%= render "devise/shared/error_messages", resource: resource %>
-                        <div class="user_add_new_title">
-                            <a>Tạo tài khoản admin - Admin only</a>
-                        </div>
+<% content_for :meta_title, "Tạo tài khoản mới" %>
+<% content_for :meta_description, "Tạo tài khoản mới tại firework.vn giúp bạn truy cập những thông tin mới nhất(review công ty, phỏng vấn, việc làm...) trong tìm kiếm việc làm, hãy tham gia cộng đồng của chúng tôi ..." %>
+<div class='user_container'>
+    <div class="container">
+        <div class="user_block">
+            <div class="user_add_new_top_label">
+                <%= render "devise/shared/error_messages", resource: resource %>
+                <div class="user_add_new_title">
+                    <a><%=t(:signup)%></a>
+                    <i class="material-icons-outlined">person_add</i>
+                </div>
+            </div>
+            <div class="user_add_new_form_right">
+                <div class="login_with_google">
+                    <%= button_to user_google_oauth2_omniauth_authorize_path, method: :post do%>
+                        <%=image_tag("icons/google.svg")%>
+                        <span><%=t(:signup_with_google)%></span>
+                    <%end%>
+                </div>
+                <div class="login_with_facebook">
+                    <%= button_to user_facebook_omniauth_authorize_path, method: :post do%>
+                        <%=image_tag("icons/facebook.svg")%> 
+                        <span><%=t(:signup_with_facebook)%></span>
+                    <%end%>
+                </div>
+            </div>
+            
+            <div class="user_add_new_or">
+                <a><span><%=t(:or)%></span></a>
+            </div>
 
+            <div class="user_add_new_form_left">
+                <%= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
+                    <div class="user_add_new_content">
                         <div class="user_add_new_label">
-                            <a><%= f.label :name, "Tên đăng nhập", class: "user_add_new_label_name" %><span>*</span></a>
+                            <a><%= f.label :name, t(:full_name), class: "user_add_new_label_name" %><span>*</span></a>
                         </div>
 
                         <div class="user_add_new_input">
-                            <%= f.text_field :name, autofocus: true, :required => true, class: 'form-control', placeholder: "Nhập họ và tên của bạn" %>
+                            <%= f.text_field :name, autofocus: true, :required => true, class: 'form-control', placeholder: t(:enter_name) %>
                         </div>
-                        
+                    </div>
+                    
+                    <div class="user_add_new_content">
                         <div class="user_add_new_label">
-                            <a><%= f.label :email, "Địa chỉ email", class: "user_add_new_label_name" %><span>*</span></a>
+                            <a><%= f.label :email, t(:email), class: "user_add_new_label_name" %><span>*</span></a>
                         </div>
 
                         <div class="user_add_new_input">
-                            <%= f.email_field :email, autocomplete: "email", :required => true, class: "form-control", placeholder: "Nhập email của bạn" %>
+                            <%= f.email_field :email, autocomplete: "email", :required => true, class: "form-control", placeholder: t(:enter_email) %>
                         </div>
+                    </div>
 
+                    <div class="user_add_new_content">
                         <div class="user_add_new_label">
-                            <a><%= f.label :password, "Mật khẩu", class: "user_add_new_label_name" %><span>*</span></a>
+                            <a><%= f.label :password, t(:password), class: "user_add_new_label_name" %><span>*</span></a>
                         </div>
 
                         <div class="user_add_new_input">
                             <% if @minimum_password_length %>
-                                <em>(<%= @minimum_password_length %> characters minimum)</em>
-                            <% end %>
-                            <%= f.password_field :password, autocomplete: "new-password", :required => true, class: "form-control", placeholder: "Mật khẩu ít nhất 6 kí tự gồm chữ in hoa, chữ số và biểu tượng" %>
+                            <em>(<%= @minimum_password_length %> <%=t(:min_charater)%>)</em>
+                            <% end %><br />
+                            <%= f.password_field :password, autocomplete: "new-password", :required => true, class: "form-control", placeholder: t(:enter_password) %>
                         </div>
+                    </div>
 
+                    <div class="user_add_new_content">
                         <div class="user_add_new_label">
-                            <a><%= f.label :password_confirmation, "Xác nhận lại mật khẩu", class: "user_add_new_label_name" %><span>*</span></a>
+                            <a><%= f.label :password_confirmation, t(:password_confirm), class: "user_add_new_label_name" %><span>*</span></a>
                         </div>
 
                         <div class="user_add_new_input">
-                            <%= f.password_field :password_confirmation, autocomplete: "new-password", :required => true, class: "form-control", placeholder: "Nhập lại mật khẩu" %>
+                            <%= f.password_field :password_confirmation, autocomplete: "new-password", :required => true, class: "form-control", placeholder: t(:retype_password) %>
                         </div>
+                    </div>
 
-                        <%=f.hidden_field :admin, :value => true, readonly: true%>
-
-                        <div class="user_add_new_submit">
-                            <%= f.submit "Tạo tài khoản", class: "user_add_new_form_submit" %>
-                        </div>
-                    <%end%>
-                </div>
-                
-                <p class="user_add_new_loginhere">
-                    Bạn đã có tài khoản? <%= link_to " Đăng nhập", new_user_session_path %>
-                </p>
+                    <div class="user_add_new_submit">
+                        <%= f.submit t(:create_account), class: "user_add_new_form_submit" %>
+                    </div>
+                <%end%>
             </div>
+            
+            <p class="user_add_new_loginhere">
+                <%=t(:have_an_account)%>? <%= link_to t(:signin), new_user_session_path %>
+            </p>
         </div>
     </div>
-<%else%>
-    <% content_for :meta_title, "Tạo tài khoản mới" %>
-    <% content_for :meta_description, "Tạo tài khoản mới tại firework.vn giúp bạn truy cập những thông tin mới nhất(review công ty, phỏng vấn, việc làm...) trong tìm kiếm việc làm, hãy tham gia cộng đồng của chúng tôi ..." %>
-    <div class='user_container'>
-        <div class="container">
-            <div class="user_block">
-                <div class="user_add_new_top_label">
-                    <%= render "devise/shared/error_messages", resource: resource %>
-                    <div class="user_add_new_title">
-                        <a>Tạo tài khoản mới</a>
-                        <i class="material-icons-outlined">person_add</i>
-                    </div>
-                </div>
-                <div class="user_add_new_form_right">
-                    <div class="login_with_google">
-						<%= button_to user_google_oauth2_omniauth_authorize_path, method: :post do%>
-							<%=image_tag("icons/google.svg")%>
-                            <span>Đăng kí bằng tài khoản Google</span>
-						<%end%>
-                    </div>
-                    <div class="login_with_facebook">
-                        <%= button_to user_facebook_omniauth_authorize_path, method: :post do%>
-							<%=image_tag("icons/facebook.svg")%> 
-                            <span>Đăng kí bằng tài khoản Facebook</span>
-						<%end%>
-                    </div>
-                </div>
-                
-                <div class="user_add_new_or">
-                    <a><span>hoặc</span></a>
-                </div>
-
-                <div class="user_add_new_form_left">
-                    <%= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
-                        <div class="user_add_new_content">
-                            <div class="user_add_new_label">
-                                <a><%= f.label :name, "Tên đăng nhập", class: "user_add_new_label_name" %><span>*</span></a>
-                            </div>
-
-                            <div class="user_add_new_input">
-                                <%= f.text_field :name, autofocus: true, :required => true, class: 'form-control', placeholder: "Nhập họ và tên của bạn" %>
-                            </div>
-                        </div>
-                        
-                        <div class="user_add_new_content">
-                            <div class="user_add_new_label">
-                                <a><%= f.label :email, "Địa chỉ email", class: "user_add_new_label_name" %><span>*</span></a>
-                            </div>
-
-                            <div class="user_add_new_input">
-                                <%= f.email_field :email, autocomplete: "email", :required => true, class: "form-control", placeholder: "Nhập email của bạn" %>
-                            </div>
-                        </div>
-
-                        <div class="user_add_new_content">
-                            <div class="user_add_new_label">
-                                <a><%= f.label :password, "Mật khẩu", class: "user_add_new_label_name" %><span>*</span></a>
-                            </div>
-
-                            <div class="user_add_new_input">
-                                <% if @minimum_password_length %>
-                                <em>(<%= @minimum_password_length %> characters minimum)</em>
-                                <% end %><br />
-                                <%= f.password_field :password, autocomplete: "new-password", :required => true, class: "form-control", placeholder: "Mật khẩu ít nhất 6 kí tự gồm chữ in hoa, chữ số và biểu tượng" %>
-                            </div>
-                        </div>
-
-                        <div class="user_add_new_content">
-                            <div class="user_add_new_label">
-                                <a><%= f.label :password_confirmation, "Xác nhận lại mật khẩu", class: "user_add_new_label_name" %><span>*</span></a>
-                            </div>
-
-                            <div class="user_add_new_input">
-                                <%= f.password_field :password_confirmation, autocomplete: "new-password", :required => true, class: "form-control", placeholder: "Nhập lại mật khẩu" %>
-                            </div>
-                        </div>
-
-                        <div class="user_add_new_submit">
-                            <%= f.submit "Tạo tài khoản", class: "user_add_new_form_submit" %>
-                        </div>
-                    <%end%>
-                </div>
-                
-                <p class="user_add_new_loginhere">
-                    Bạn đã có tài khoản? <%= link_to " Đăng nhập", new_user_session_path %>
-                </p>
-            </div>
-        </div>
-    </div>
-<%end%>
+</div>

@@ -11,7 +11,7 @@
                             <%else%> 
                                 <%active = ""%>
                             <%end%>                                 
-                            <a class="nav-link <%=active%>" href="<%=admin_path(current_admin, tab: 'AdminCompanyID')%>"><i class="material-icons-outlined">business</i>Company <span><%= (@companies.total_count)%><span></a>
+                            <a class="nav-link <%=active%>" href="<%=admin_path(current_admin, tab: 'AdminCompanyID')%>"><i class="material-icons-outlined">business</i><%=t(:company)%> <span><%= (@companies.total_count)%><span></a>
                         </li>
                         <li class="nav-item">
                             <%if @tab == "AdminJobID"%>
@@ -19,7 +19,7 @@
                             <%else%> 
                                 <%active = ""%>
                             <%end%>                                 
-                            <a class="nav-link <%=active%>" href="<%=admin_path(current_admin, tab: 'AdminJobID')%>"><i class="material-icons-outlined">work_outline</i>Job All <span><%= (@company_jobs.total_count)%><span></a>
+                            <a class="nav-link <%=active%>" href="<%=admin_path(current_admin, tab: 'AdminJobID')%>"><i class="material-icons-outlined">work_outline</i><%=t(:all_job)%> <span><%= (@company_jobs.total_count)%><span></a>
                         </li>
                         <li class="nav-item">
                             <%if @tab == "AdminJobApprovingID"%>
@@ -27,7 +27,7 @@
                             <%else%> 
                                 <%active = ""%>
                             <%end%>                                 
-                            <a class="nav-link <%=active%>" href="<%=admin_path(current_admin, tab: 'AdminJobApprovingID')%>"><i class="material-icons-outlined">next_week</i>Job Approving <span><%= (@company_jobs_approving.total_count)%><span></a>
+                            <a class="nav-link <%=active%>" href="<%=admin_path(current_admin, tab: 'AdminJobApprovingID')%>"><i class="material-icons-outlined">next_week</i><%=t(:approving_job)%><span><%= (@company_jobs_approving.total_count)%><span></a>
                         </li>
                         <li class="nav-item">
                             <%if @tab == "AdminUserID"%>
@@ -35,7 +35,7 @@
                             <%else%> 
                                 <%active = ""%>
                             <%end%>                                     
-                            <a class="nav-link <%=active%>" href="<%=admin_path(current_admin, tab: 'AdminUserID')%>"><i class="material-icons-outlined">person</i>User <span><%= (@users.total_count)%><span></a>
+                            <a class="nav-link <%=active%>" href="<%=admin_path(current_admin, tab: 'AdminUserID')%>"><i class="material-icons-outlined">person</i><%=t(:user)%> <span><%= (@users.total_count)%><span></a>
                         </li>
                         <li class="nav-item">
                             <%if @tab == "AdminPostID"%>
@@ -43,7 +43,7 @@
                             <%else%> 
                                 <%active = ""%>
                             <%end%>                                     
-                            <a class="nav-link <%=active%>" href="<%=admin_path(current_admin, tab: 'AdminPostID')%>"><i class="material-icons-outlined">post_add</i>Post <span><%= (@posts.total_count)%><span></a>
+                            <a class="nav-link <%=active%>" href="<%=admin_path(current_admin, tab: 'AdminPostID')%>"><i class="material-icons-outlined">post_add</i><%=t(:post)%> <span><%= (@posts.total_count)%><span></a>
                         </li>
                         <li class="nav-item">
                             <%if @tab == "AdminProblemID"%>
@@ -51,7 +51,7 @@
                             <%else%> 
                                 <%active = ""%>
                             <%end%>                                     
-                            <a class="nav-link <%=active%>" href="<%=admin_path(current_admin, tab: 'AdminProblemID')%>"><i class="material-icons-outlined">lightbulb</i>Problem <span><%= (@problems.total_count)%><span></a>
+                            <a class="nav-link <%=active%>" href="<%=admin_path(current_admin, tab: 'AdminProblemID')%>"><i class="material-icons-outlined">lightbulb</i><%=t(:problem)%> <span><%= (@problems.total_count)%><span></a>
                         </li>
                         <li class="nav-item">
                             <%if @tab == "AdminProblemApprovingID"%>
@@ -59,7 +59,7 @@
                             <%else%> 
                                 <%active = ""%>
                             <%end%>                                     
-                            <a class="nav-link <%=active%>" href="<%=admin_path(current_admin, tab: 'AdminProblemApprovingID')%>"><i class="material-icons-outlined">lightbulb</i>Problem Approving<span><%= (@problems_approving.total_count)%><span></a>
+                            <a class="nav-link <%=active%>" href="<%=admin_path(current_admin, tab: 'AdminProblemApprovingID')%>"><i class="material-icons-outlined">lightbulb</i><%=t(:approving_question)%><span><%= (@problems_approving.total_count)%><span></a>
                         </li>
                         <li class="nav-item">
                             <%if @tab == "AdminEmployerID"%>
@@ -67,7 +67,7 @@
                             <%else%> 
                                 <%active = ""%>
                             <%end%>                                     
-                            <a class="nav-link <%=active%>" href="<%=admin_path(current_admin, tab: 'AdminEmployerID')%>"><i class="material-icons-outlined">people</i>Employer <span><%= (@employers.total_count)%><span></a>
+                            <a class="nav-link <%=active%>" href="<%=admin_path(current_admin, tab: 'AdminEmployerID')%>"><i class="material-icons-outlined">people</i><%=t(:employer)%> <span><%= (@employers.total_count)%><span></a>
                         </li>
                         <li class="nav-item">
                             <%if @tab == "AdminScrapJobID"%>
@@ -75,7 +75,7 @@
                             <%else%> 
                                 <%active = ""%>
                             <%end%>                                     
-                            <a class="nav-link <%=active%>" href="<%=admin_path(current_admin, tab: 'AdminScrapJobID')%>"><i class="material-icons-outlined">smart_toy</i>Job Scraper</a>
+                            <a class="nav-link <%=active%>" href="<%=admin_path(current_admin, tab: 'AdminScrapJobID')%>"><i class="material-icons-outlined">smart_toy</i><%=t(:job_scraper)%></a>
                         </li>
                         <li class="nav-item">
                             <%if @tab == "AdminScrapReviewID"%>
@@ -83,7 +83,7 @@
                             <%else%> 
                                 <%active = ""%>
                             <%end%>                                     
-                            <a class="nav-link <%=active%>" href="<%=admin_path(current_admin, tab: 'AdminScrapReviewID')%>"><i class="material-icons-outlined">star_border</i>Review Scraper</a>
+                            <a class="nav-link <%=active%>" href="<%=admin_path(current_admin, tab: 'AdminScrapReviewID')%>"><i class="material-icons-outlined">star_border</i><%=t(:review_scraper)%></a>
                         </li>
                         <li class="nav-item">
                             <%if @tab == "AdminCoverVitaeID"%>
@@ -91,7 +91,7 @@
                             <%else%> 
                                 <%active = ""%>
                             <%end%>                                     
-                            <a class="nav-link <%=active%>" href="<%=admin_path(current_admin, tab: 'AdminCoverVitaeID')%>"><i class="material-icons-outlined">auto_fix_high</i>CV Creater</a>
+                            <a class="nav-link <%=active%>" href="<%=admin_path(current_admin, tab: 'AdminCoverVitaeID')%>"><i class="material-icons-outlined">auto_fix_high</i><%=t(:cv_creater)%></a>
                         </li>
                     </ul>
                 </div>
@@ -101,7 +101,9 @@
                     <%if @tab == "default" || @tab == "AdminCompanyID"%>
                         <div class="admin_tab">
                             <div class="new_admin_action">
-                                <%= link_to '<button type="submit">Tạo công ty mới</button>'.html_safe, new_company_path%>
+                                <%= link_to new_company_path do%>
+                                    <button type="submit"><%=t(:create_new)%></button>
+                                <%end%>
                             </div>
                             <div class="admin_table">
                                 <div class="table-responsive">
@@ -109,12 +111,12 @@
                                         <thead>
                                             <tr>
                                                 <th style="width: 2%;">No.</th>
-                                                <th style="width: 25%;">Tên công ty</th>
-                                                <th style="width: 8%;">Địa chỉ</th>
-                                                <th style="width: 8%;">Người tạo</th>
-                                                <th style="width: 10%;">Ngày tạo</th>
-                                                <th style="width: 10%;">Cập nhật lần cuối</th>
-                                                <th style="width: 16%;">Action</th>
+                                                <th style="width: 25%;"><%=t(:form_company_name)%></th>
+                                                <th style="width: 8%;"><%=t(:address)%></th>
+                                                <th style="width: 8%;"><%=t(:creater)%></th>
+                                                <th style="width: 10%;"><%=t(:created_date)%></th>
+                                                <th style="width: 10%;"><%=t(:last_updated)%></th>
+                                                <th style="width: 16%;"><%=t(:action)%></th>
                                             </tr>
                                         </thead>
                                         <tbody>
@@ -124,16 +126,16 @@
                                                     <td scope="row" class="text-start"><%=link_to (company.name), company_path(:id => company.id)%></td>
                                                     <td><%=company.location%></td>
                                                     <%if company.employer_id%>
-                                                        <td>Employer</td>
+                                                        <td><%=t(:employer)%></td>
                                                     <%else%>
-                                                        <td>Admin</td>
+                                                        <td><%=t(:admin)%></td>
                                                     <%end%>
                                                     <td><%=company.created_at.strftime("%B %d, %Y")%></td>
                                                     <td><%=company.updated_at.strftime("%B %d, %Y")%></td>
                                                     <td>
-                                                        <%= link_to 'Xem', company_path(company), method: :get, class: "admin_preview" %>
-                                                        <%= link_to 'Chỉnh sửa', edit_company_path(company, :is_edit => true), method: :get, class: "admin_edit" %>
-                                                        <%= link_to 'Xóa', company_path(company), method: :delete, class: "admin_delete", data: { confirm: 'Bạn có chắc muốn xóa công việc này?' } %>
+                                                        <%= link_to t(:view), company_path(company), method: :get, class: "admin_preview" %>
+                                                        <%= link_to t(:edit), edit_company_path(company, :is_edit => true), method: :get, class: "admin_edit" %>
+                                                        <%= link_to t(:delete), company_path(company), method: :delete, class: "admin_delete", data: { confirm: t(:are_you_sure) } %>
                                                     </td>
                                                 </tr>
                                             <%end%>
@@ -148,19 +150,21 @@
                     <%if @tab == "AdminJobID"%>
                         <div class="admin_tab">
                             <div class="new_admin_action">
-                                <%= link_to '<button type="submit">Tạo việc làm mới</button>'.html_safe, new_company_job_path%>
+                                <%= link_to new_company_job_path do%>
+                                    <button type="submit"><%=t(:create_new)%></button>
+                                <%end%>
                             <div>
                             <div class="admin_table">
                                 <table class="table text-center table-hover">
                                     <thead>
                                         <tr>
                                             <th style="width: 2%;">No.</th>
-                                            <th style="width: 25%;">Title</th>
-                                            <th style="width: 8%;">Trạng thái</th>
-                                            <th style="width: 10%;">Người đăng</th>
-                                            <th style="width: 8%;">Ngày đăng</th>
-                                            <th style="width: 10%;">Cập nhật lần cuối</th>
-                                            <th style="width: 16%;">Action</th>
+                                            <th style="width: 25%;"><%=t(:title)%></th>
+                                            <th style="width: 8%;"><%=t(:status)%></th>
+                                            <th style="width: 10%;"><%=t(:creater)%></th>
+                                            <th style="width: 8%;"><%=t(:job_posted_date)%></th>
+                                            <th style="width: 10%;"><%=t(:last_updated)%></th>
+                                            <th style="width: 16%;"><%=t(:action)%></th>
                                         </tr>
                                     </thead>
                                     <tbody>
@@ -169,21 +173,21 @@
                                                 <td><%=index + 1%></td>
                                                 <td scope="row" class="text-start"><%=link_to (truncate(strip_tags(company_job.title), length: 60)), company_job_path(company_job)%></td>
                                                 <%if company_job.approved?%>
-                                                    <td>Đã kích hoạt</td>
+                                                    <td><%=t(:actived)%></td>
                                                 <%else%>
-                                                    <td>Đang chờ duyệt</td>
+                                                    <td><%=t(:approving)%></td>
                                                 <%end%>
                                                 <%if company_job.employer_id%>
-                                                    <td>Employer</td>
+                                                    <td><%=t(:employer)%></td>
                                                 <%else%>
-                                                    <td>Admin</td>
+                                                    <td><%=t(:admin)%></td>
                                                 <%end%>
                                                 <td><%=company_job.created_at.strftime("%B %d, %Y")%></td>
                                                 <td><%=company_job.updated_at.strftime("%B %d, %Y")%></td>
                                                 <td>
-                                                    <%= link_to 'Xem', company_job_path(company_job), method: :get, class: "admin_preview" %>
-                                                    <%= link_to 'Chỉnh sửa', edit_company_job_path(company_job, :is_edit => true), method: :get, class: "admin_edit" %>
-                                                    <%= link_to 'Xóa', company_job_path(company_job), method: :delete, class: "admin_delete", data: { confirm: 'Bạn có chắc muốn xóa công việc này?' } %>
+                                                    <%= link_to t(:view), company_job_path(company_job), method: :get, class: "admin_preview" %>
+                                                    <%= link_to t(:edit), edit_company_job_path(company_job, :is_edit => true), method: :get, class: "admin_edit" %>
+                                                    <%= link_to t(:delete), company_job_path(company_job), method: :delete, class: "admin_delete", data: { confirm: t(:are_you_sure) } %>
                                                 </td>
                                             </tr>
                                         <%end%>
@@ -197,7 +201,9 @@
                     <%if @tab == "AdminJobApprovingID"%>
                         <div class="admin_tab">
                             <div class="new_admin_action">
-                                <%= link_to '<button type="submit">Tạo việc làm mới</button>'.html_safe, new_company_job_path%>
+                                <%= link_to new_company_job_path do%>
+                                    <button type="submit"><%=t(:create_new)%></button>
+                                <%end%>
                             <div>
                             <div class="admin_table">
                                 <div class="table-responsive">
@@ -205,12 +211,12 @@
                                         <thead>
                                             <tr>
                                                 <th style="width: 2%;">No.</th>
-                                                <th style="width: 25%;">Title</th>
-                                                <th style="width: 8%;">Trạng thái</th>
-                                                <th style="width: 10%;">Người đăng</th>
-                                                <th style="width: 8%;">Ngày đăng</th>
-                                                <th style="width: 10%;">Cập nhật lần cuối</th>
-                                                <th style="width: 16%;">Action</th>
+                                                <th style="width: 25%;"><%=t(:title)%></th>
+                                                <th style="width: 8%;"><%=t(:status)%></th>
+                                                <th style="width: 10%;"><%=t(:creater)%></th>
+                                                <th style="width: 8%;"><%=t(:job_posted_date)%></th>
+                                                <th style="width: 10%;"><%=t(:last_updated)%></th>
+                                                <th style="width: 16%;"><%=t(:action)%></th>
                                             </tr>
                                         </thead>
                                         <tbody>
@@ -219,22 +225,22 @@
                                                     <td><%=index + 1%></td>
                                                     <td scope="row" class="text-start"><%=link_to (truncate(strip_tags(company_job.title), length: 60)), company_job_path(company_job)%></td>
                                                     <%if company_job.approved?%>
-                                                        <td>Đã kích hoạt</td>
+                                                        <td><%=t(:actived)%></td>
                                                     <%else%>
-                                                        <td>Đang chờ duyệt</td>
+                                                        <td><%=t(:approving)%></td>
                                                     <%end%>
                                                     <%if company_job.employer_id%>
-                                                        <td>Employer</td>
+                                                        <td><%=t(:employer)%></td>
                                                     <%else%>
-                                                        <td>Admin</td>
+                                                        <td><%=t(:admin)%></td>
                                                     <%end%>
                                                     <td><%=company_job.created_at.strftime("%B %d, %Y")%></td>
                                                     <td><%=company_job.updated_at.strftime("%B %d, %Y")%></td>
                                                     <td>
-                                                        <%= link_to 'Approve', jobs_approve_path(company_job, :id => company_job.id), method: :get, class: "admin_approving"%>
-                                                        <%= link_to 'Xem', company_job_path(company_job), method: :get, class: "admin_preview" %>
-                                                        <%= link_to 'Chỉnh sửa', edit_company_job_path(company_job, :is_edit => true), method: :get, class: "admin_edit" %>
-                                                        <%= link_to 'Xóa', company_job_path(company_job), method: :delete, class: "admin_delete", data: { confirm: 'Bạn có chắc muốn xóa công việc này?' } %>
+                                                        <%= link_to t(:approve), jobs_approve_path(company_job, :id => company_job.id), method: :get, class: "admin_approving"%>
+                                                        <%= link_to t(:view), company_job_path(company_job), method: :get, class: "admin_preview" %>
+                                                        <%= link_to t(:edit), edit_company_job_path(company_job, :is_edit => true), method: :get, class: "admin_edit" %>
+                                                        <%= link_to t(:delete), company_job_path(company_job), method: :delete, class: "admin_delete", data: { confirm: t(:are_you_sure) } %>
                                                     </td>
                                                 </tr>
                                             <%end%>
@@ -249,7 +255,9 @@
                     <%if @tab == "AdminUserID"%>
                         <div class="admin_tab">
                             <div class="new_admin_action">
-                                <%= link_to '<button type="submit">Tạo User mới</button>'.html_safe, new_user_registration_path%>
+                                <%= link_to new_user_registration_path do%>
+                                    <button type="submit"><%=t(:create_new)%></button>
+                                <%end%>
                             </div>
                             <div class="admin_table">
                                 <div class="table-responsive">
@@ -257,12 +265,12 @@
                                         <thead>
                                             <tr>
                                                 <th style="width: 2%;">No.</th>
-                                                <th style="width: 25%;">Tên</th>
-                                                <th style="width: 8%;">Số điện thoại</th>
-                                                <th style="width: 8%;">Email</th>
-                                                <th style="width: 10%;">Ngày tạo</th>
-                                                <th style="width: 10%;">Cập nhật lần cuối</th>
-                                                <th style="width: 16%;">Action</th>
+                                                <th style="width: 25%;"><%=t(:name)%></th>
+                                                <th style="width: 8%;"><%=t(:phone)%></th>
+                                                <th style="width: 8%;"><%=t(:email)%></th>
+                                                <th style="width: 10%;"><%=t(:created_date)%></th>
+                                                <th style="width: 10%;"><%=t(:last_updated)%></th>
+                                                <th style="width: 16%;"><%=t(:action)%></th>
                                             </tr>
                                         </thead>
                                         <tbody>
@@ -275,9 +283,9 @@
                                                     <td><%=user.created_at.strftime("%B %d, %Y")%></td>
                                                     <td><%=user.updated_at.strftime("%B %d, %Y")%></td>
                                                     <td>
-                                                        <%= link_to 'Xem', user_path(user), method: :get, class: "admin_preview" %>
-                                                        <%= link_to 'Chỉnh sửa', edit_user_path(user, :is_edit => true), method: :get, class: "admin_edit" %>
-                                                        <%= link_to 'Xóa', user_path(user), method: :delete, class: "admin_delete", data: { confirm: 'Bạn có chắc muốn xóa công việc này?' } %>
+                                                        <%= link_to t(:view), user_path(user), method: :get, class: "admin_preview" %>
+                                                        <%= link_to t(:edit), edit_user_path(user, :is_edit => true), method: :get, class: "admin_edit" %>
+                                                        <%= link_to t(:delete), user_path(user), method: :delete, class: "admin_delete", data: { confirm: t(:are_you_sure) } %>
                                                     </td>
                                                 </tr>
                                             <%end%>
@@ -292,7 +300,9 @@
                     <%if @tab == "AdminPostID"%>
                         <div class="admin_tab">
                             <div class="new_admin_action">
-                                <%= link_to '<button type="submit">Tạo Post mới</button>'.html_safe, new_post_path%>
+                                <%= link_to new_post_path do%>
+                                    <button type="submit"><%=t(:create_new)%></button>
+                                <%end%>
                             </div>
                             <div class="admin_table">
                                 <div class="table-responsive">
@@ -300,11 +310,11 @@
                                         <thead>
                                             <tr>
                                                 <th style="width: 2%;">No.</th>
-                                                <th style="width: 25%;">Title</th>
-                                                <th style="width: 8%;">Người tạo</th>
-                                                <th style="width: 10%;">Ngày tạo</th>
-                                                <th style="width: 10%;">Cập nhật lần cuối</th>
-                                                <th style="width: 16%;">Action</th>
+                                                <th style="width: 25%;"><%=t(:title)%></th>
+                                                <th style="width: 8%;"><%=t(:creater)%></th>
+                                                <th style="width: 10%;"><%=t(:created_date)%></th>
+                                                <th style="width: 10%;"><%=t(:last_updated)%></th>
+                                                <th style="width: 16%;"><%=t(:action)%></th>
                                             </tr>
                                         </thead>
                                         <tbody>
@@ -320,9 +330,9 @@
                                                     <td><%=post.created_at.strftime("%B %d, %Y")%></td>
                                                     <td><%=post.updated_at.strftime("%B %d, %Y")%></td>
                                                     <td>
-                                                        <%= link_to 'Xem', post_path(post), method: :get, class: "admin_preview" %>
-                                                        <%= link_to 'Chỉnh sửa', edit_post_path(post, :is_edit => true), method: :get, class: "admin_edit" %>
-                                                        <%= link_to 'Xóa', post_path(post), method: :delete, class: "admin_delete", data: { confirm: 'Bạn có chắc muốn xóa công việc này?' } %>
+                                                        <%= link_to t(:view), post_path(post), method: :get, class: "admin_preview" %>
+                                                        <%= link_to t(:edit), edit_post_path(post, :is_edit => true), method: :get, class: "admin_edit" %>
+                                                        <%= link_to t(:delete), post_path(post), method: :delete, class: "admin_delete", data: { confirm: t(:are_you_sure) } %>
                                                     </td>
                                                 </tr>
                                             <%end%>
@@ -337,7 +347,9 @@
                     <%if @tab == "AdminProblemID"%>
                         <div class="admin_tab">
                             <div class="new_admin_action">
-                                <%= link_to '<button type="submit">Tạo câu hỏi mới</button>'.html_safe, new_problem_path%>
+                                <%= link_to new_problem_path do%>
+                                    <button type="submit"><%=t(:create_new)%></button>
+                                <%end%>
                             </div>
                             <div class="admin_table">
                                 <div class="table-responsive">
@@ -345,11 +357,11 @@
                                         <thead>
                                             <tr>
                                                 <th style="width: 2%;">No.</th>
-                                                <th style="width: 25%;">Title</th>
-                                                <th style="width: 8%;">Người tạo</th>
-                                                <th style="width: 10%;">Ngày tạo</th>
-                                                <th style="width: 10%;">Cập nhật lần cuối</th>
-                                                <th style="width: 16%;">Action</th>
+                                                <th style="width: 25%;"><%=t(:title)%></th>
+                                                <th style="width: 8%;"><%=t(:creater)%></th>
+                                                <th style="width: 10%;"><%=t(:created_date)%></th>
+                                                <th style="width: 10%;"><%=t(:last_updated)%></th>
+                                                <th style="width: 16%;"><%=t(:action)%></th>
                                             </tr>
                                         </thead>
                                         <tbody>
@@ -365,9 +377,9 @@
                                                     <td><%=problem.created_at.strftime("%B %d, %Y")%></td>
                                                     <td><%=problem.updated_at.strftime("%B %d, %Y")%></td>
                                                     <td>
-                                                        <%= link_to 'Xem', problem_path(problem), method: :get, class: "admin_preview" %>
-                                                        <%= link_to 'Chỉnh sửa', edit_problem_path(problem, :is_edit => true), method: :get, class: "admin_edit" %>
-                                                        <%= link_to 'Xóa', problem_path(problem), method: :delete, class: "admin_delete", data: { confirm: 'Bạn có chắc muốn xóa công việc này?' } %>
+                                                        <%= link_to t(:view), problem_path(problem), method: :get, class: "admin_preview" %>
+                                                        <%= link_to t(:edit), edit_problem_path(problem, :is_edit => true), method: :get, class: "admin_edit" %>
+                                                        <%= link_to t(:delete), problem_path(problem), method: :delete, class: "admin_delete", data: { confirm: t(:are_you_sure) } %>
                                                     </td>
                                                 </tr>
                                             <%end%>
@@ -382,7 +394,9 @@
                     <%if @tab == "AdminProblemApprovingID"%>
                         <div class="admin_tab">
                             <div class="new_admin_action">
-                                <%= link_to '<button type="submit">Tạo câu hỏi mới</button>'.html_safe, new_problem_path%>
+                                <%= link_to new_problem_path do%>
+                                    <button type="submit"><%=t(:create_new)%></button>
+                                <%end%>
                             </div>
                             <div class="admin_table">
                                 <div class="table-responsive">
@@ -390,11 +404,11 @@
                                         <thead>
                                             <tr>
                                                 <th style="width: 2%;">No.</th>
-                                                <th style="width: 25%;">Title</th>
-                                                <th style="width: 8%;">Người tạo</th>
-                                                <th style="width: 10%;">Ngày tạo</th>
-                                                <th style="width: 10%;">Cập nhật lần cuối</th>
-                                                <th style="width: 16%;">Action</th>
+                                                <th style="width: 25%;"><%=t(:title)%></th>
+                                                <th style="width: 8%;"><%=t(:creater)%></th>
+                                                <th style="width: 10%;"><%=t(:created_date)%></th>
+                                                <th style="width: 10%;"><%=t(:last_updated)%></th>
+                                                <th style="width: 16%;"><%=t(:action)%></th>
                                             </tr>
                                         </thead>
                                         <tbody>
@@ -410,10 +424,10 @@
                                                     <td><%=problem.created_at.strftime("%B %d, %Y")%></td>
                                                     <td><%=problem.updated_at.strftime("%B %d, %Y")%></td>
                                                     <td>
-                                                        <%= link_to 'Approve', problems_approve_path(problem, :id => problem.id), method: :get, class: "admin_approving"%>
-                                                        <%= link_to 'Xem', problem_path(problem), method: :get, class: "admin_preview" %>
-                                                        <%= link_to 'Chỉnh sửa', edit_problem_path(problem, :is_edit => true), method: :get, class: "admin_edit" %>
-                                                        <%= link_to 'Xóa', problem_path(problem), method: :delete, class: "admin_delete", data: { confirm: 'Bạn có chắc muốn xóa công việc này?' } %>
+                                                        <%= link_to t(:approve), problems_approve_path(problem, :id => problem.id), method: :get, class: "admin_approving"%>
+                                                        <%= link_to t(:view), problem_path(problem), method: :get, class: "admin_preview" %>
+                                                        <%= link_to t(:edit), edit_problem_path(problem, :is_edit => true), method: :get, class: "admin_edit" %>
+                                                        <%= link_to t(:delete), problem_path(problem), method: :delete, class: "admin_delete", data: { confirm: t(:are_you_sure) } %>
                                                     </td>
                                                 </tr>
                                             <%end%>
@@ -428,7 +442,9 @@
                     <%if @tab == "AdminEmployerID"%>
                         <div class="admin_tab">
                             <div class="new_admin_action">
-                                <%= link_to '<button type="submit">Tạo NTD mới</button>'.html_safe, new_employer_registration_path%>
+                                <%= link_to new_employer_registration_path do%>
+                                    <button type="submit"><%=t(:create_new)%></button>
+                                <%end%>
                             </div>
                             <div class="admin_table">
                                 <div class="table-responsive">
@@ -436,12 +452,12 @@
                                         <thead>
                                             <tr>
                                                 <th style="width: 2%;">No.</th>
-                                                <th style="width: 25%;">Tên</th>
-                                                <th style="width: 8%;">Email</th>
-                                                <th style="width: 8%;">Số điện thoại</th>
-                                                <th style="width: 10%;">Ngày tạo</th>
-                                                <th style="width: 10%;">Cập nhật lần cuối</th>
-                                                <th style="width: 16%;">Action</th>
+                                                <th style="width: 25%;"><%=t(:name)%></th>
+                                                <th style="width: 8%;"><%=t(:email)%></th>
+                                                <th style="width: 8%;"><%=t(:phone)%></th>
+                                                <th style="width: 10%;"><%=t(:created_date)%></th>
+                                                <th style="width: 10%;"><%=t(:last_updated)%></th>
+                                                <th style="width: 16%;"><%=t(:action)%></th>
                                             </tr>
                                         </thead>
                                         <tbody>
@@ -454,9 +470,9 @@
                                                     <td><%=employer.created_at.strftime("%B %d, %Y")%></td>
                                                     <td><%=employer.updated_at.strftime("%B %d, %Y")%></td>
                                                     <td>
-                                                        <%= link_to 'Xem', employer_path(employer), method: :get, class: "admin_preview" %>
-                                                        <%= link_to 'Chỉnh sửa', edit_employer_path(employer, :is_edit => true), method: :get, class: "admin_edit" %>
-                                                        <%= link_to 'Xóa', employer_path(employer), method: :delete, class: "admin_delete", data: { confirm: 'Bạn có chắc muốn xóa công việc này?' } %>
+                                                        <%= link_to t(:view), employer_path(employer), method: :get, class: "admin_preview" %>
+                                                        <%= link_to t(:edit), edit_employer_path(employer, :is_edit => true), method: :get, class: "admin_edit" %>
+                                                        <%= link_to t(:delete), employer_path(employer), method: :delete, class: "admin_delete", data: { confirm: t(:are_you_sure) } %>
                                                     </td>
                                                 </tr>
                                             <%end%>
@@ -476,7 +492,9 @@
                     <%if @tab == "AdminScrapJobID"%>
                         <div class="admin_tab">
                             <div class="new_admin_action">
-                                <%= link_to '<button type="submit">Tạo Job mới</button>'.html_safe, new_scrap_job_path%>
+                                <%= link_to new_scrap_job_path do%>
+                                    <button type="submit"><%=t(:create_new)%></button> 
+                                <%end%>
                             </div>
                             <div class="admin_table">
                                 <div class="table-responsive">
@@ -486,9 +504,9 @@
                                                 <th style="width: 2%;">No.</th>
                                                 <th style="width: 25%;">Url</th>
                                                 <th style="width: 8%;">Site</th>
-                                                <th style="width: 10%;">Ngày tạo</th>
-                                                <th style="width: 10%;">Cập nhật lần cuối</th>
-                                                <th style="width: 16%;">Action</th>
+                                                <th style="width: 10%;"><%=t(:created_date)%></th>
+                                                <th style="width: 10%;"><%=t(:last_updated)%></th>
+                                                <th style="width: 16%;"><%=t(:action)%></th>
                                             </tr>
                                         </thead>
                                         <tbody>
@@ -505,9 +523,9 @@
                                                     <td><%=scrap_job.updated_at.strftime("%B %d, %Y")%></td>
                                                     <td>
                                                         <%= link_to 'Process', scrap_jobs_processing_path(:id => scrap_job.id), method: :get, class: "admin_approving"%>
-                                                        <%= link_to 'Xem', scrap_job_path(scrap_job), method: :get, class: "admin_preview" %>
-                                                        <%= link_to 'Chỉnh sửa', edit_scrap_job_path(scrap_job, :is_edit => true), method: :get, class: "admin_edit" %>
-                                                        <%= link_to 'Xóa', scrap_job_path(scrap_job), method: :delete, class: "admin_delete", data: { confirm: 'Bạn có chắc muốn xóa công việc này?' } %>
+                                                        <%= link_to t(:view), scrap_job_path(scrap_job), method: :get, class: "admin_preview" %>
+                                                        <%= link_to t(:edit), edit_scrap_job_path(scrap_job, :is_edit => true), method: :get, class: "admin_edit" %>
+                                                        <%= link_to t(:delete), scrap_job_path(scrap_job), method: :delete, class: "admin_delete", data: { confirm: t(:are_you_sure) } %>
                                                     </td>
                                                 </tr>
                                             <%end%>

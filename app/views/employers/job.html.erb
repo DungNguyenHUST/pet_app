@@ -8,26 +8,26 @@
                 <div class="col-sm-6">
                     <div class="employer_job_status_block">
                         <%if @company_job.approved?%>
-                            <a><span>Trạng thái: </span>Đã kích hoạt</a>
+                            <a><span><%=t(:status)%>: </span><%=t(:actived)%></a>
                         <%else%>
-                            <a><span>Trạng thái: </span>Đang chờ duyệt</a>
+                            <a><span><%=t(:status)%>: </span><%=t(:waiting_approve)%></a>
                         <%end%>
                     </div>
 
                     <div class="employer_job_status_block">
-                        <a><span>Cập nhật lần cuối: </span><%=@company_job.created_at.strftime("%B %d, %Y")%></a>
+                        <a><span><%=t(:last_updated)%>: </span><%=@company_job.created_at.strftime("%B %d, %Y")%></a>
                     </div>
 
                     <div class="employer_job_status_block">
-                        <a><span>Ngày hết hạn nhận hồ sơ: </span><%=@company_job.end_date.strftime("%B %d, %Y")%></a>
+                        <a><span><%=t(:form_job_end_submit)%>: </span><%=@company_job.end_date.strftime("%B %d, %Y")%></a>
                     </div>
                 </div>
 
                 <div class="col-sm-6">
                     <div class='employer_job_edit'>
-                        <%= link_to 'Xem chi tiết', company_job_path(@company_job), method: :get, class: "btn btn-primary" %>
-                        <%= link_to 'Chỉnh sửa', edit_company_job_path(@company_job, :is_edit => true), method: :get, class: "btn btn-warning" %>
-                        <%= link_to 'Xóa', company_job_path(@company_job), method: :delete, class: "btn btn-danger", data: { confirm: 'Bạn có chắc muốn xóa công việc này?' } %>
+                        <%= link_to t(:view_detail), company_job_path(@company_job), method: :get, class: "btn btn-primary" %>
+                        <%= link_to t(:edit), edit_company_job_path(@company_job, :is_edit => true), method: :get, class: "btn btn-warning" %>
+                        <%= link_to t(:delete), company_job_path(@company_job), method: :delete, class: "btn btn-danger", data: { confirm: 'Bạn có chắc muốn xóa công việc này?' } %>
                     </div>
                 </div>
             </div>
@@ -37,7 +37,7 @@
     <div class="container">
         <div class="employer_job_apply">
             <div class="employer_job_apply_title">
-                <h3>Danh sách hồ sơ ứng tuyển</h3>
+                <h3><%=t(:list_application)%></h3>
             </div>
             <%if @company_apply_jobs.total_count > 0%>
                 <div class="table-responsive">
@@ -45,11 +45,11 @@
                         <thead>
                             <tr>
                                 <th style="width: 2%;">No.</th>
-                                <th style="width: 12%;">Họ và tên</th>
-                                <th style="width: 5%;">Email</th>
-                                <th style="width: 50%;">Giới thiệu</th>
-                                <th style="width: 12%;">Ngày ứng tuyển</th>
-                                <th style="width: 12%;">Hồ sơ</th>
+                                <th style="width: 12%;"><%=t(:full_name)%></th>
+                                <th style="width: 5%;"><%=t(:email)%></th>
+                                <th style="width: 50%;"><%t(:introduce)%></th>
+                                <th style="width: 12%;"><%=t(:date_applied)%></th>
+                                <th style="width: 12%;"><%=t(:cover_vitae)%></th>
                             </tr>
                         </thead>
                         <tbody>
@@ -61,7 +61,7 @@
                                     <td><%=truncate(strip_tags(company_apply_job.cover_letter), length: 90)%></td>
                                     <td><%=company_apply_job.created_at.strftime("%B %d, %Y")%></td>
                                     <%if company_apply_job.cover_vitate?%>
-                                        <td> <%=link_to "Download", company_apply_job.cover_vitate.url%></td>
+                                        <td> <%=link_to t(:download), company_apply_job.cover_vitate.url%></td>
                                     <%end%>
                                 </tr>
                             <%end%>
@@ -75,11 +75,13 @@
                         <i class="material-icons">pending_actions</i>
                     </div>
                     <div class="employer_job_apply_not_found">
-                        <span>Rất tiếc, hiện tại bạn chưa có đơn ứng tuyển nào cho tin tuyển dụng này</span>
+                        <span><%=t(:applied_not_found)%></span>
                     </div>
                     <div class="employer_job_apply_not_found_action">
                         <div class="employer_job_apply_button">
-                            <%= link_to '<button type="submit"> <i class="material-icons-outlined">arrow_back</i> <span> Quay trở lại trang việc làm</span> </button>'.html_safe, employer_index_job_path%>
+                            <%= link_to employer_index_job_path do%>
+                                <button type="submit"> <i class="material-icons-outlined">arrow_back</i> <span> <%=t(:goback_job_site)%></span> </button>
+                            <%end%>
                         </div>
                     </div>
                 </div>

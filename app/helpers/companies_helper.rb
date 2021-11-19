@@ -310,43 +310,43 @@ module CompaniesHelper
         benefit_string = ""
         case benefit.to_i
         when 0
-            benefit_string = "Lương thưởng hấp dẫn"
+            benefit_string = t(:benefit_1)
         when 1
-            benefit_string = "Bảo hiểm cho nhân viên"
+            benefit_string = t(:benefit_2)
         when 2
-            benefit_string = "Bảo hiểm cho người thân"
+            benefit_string = t(:benefit_3)
         when 3
-            benefit_string = "Team building"
+            benefit_string = t(:benefit_4)
         when 4
-            benefit_string = "Nghỉ phép hơn 12 ngày/năm"
+            benefit_string = t(:benefit_5)
         when 5
-            benefit_string = "Kiểm tra sức khỏe"
+            benefit_string = t(:benefit_6)
         when 6
-            benefit_string = "Review lương hàng năm"
+            benefit_string = t(:benefit_7)
         when 7
-            benefit_string = "Môi trường quốc tế"
+            benefit_string = t(:benefit_8)
         when 8
-            benefit_string = "Flexible time"
+            benefit_string = t(:benefit_9)
         when 9
-            benefit_string = "Nghỉ hè"
+            benefit_string = t(:benefit_10)
         when 10
-            benefit_string = "Onsite nước ngoài"
+            benefit_string = t(:benefit_11)
         when 11
-            benefit_string = "Thử việc 100% lương"
+            benefit_string = t(:benefit_12)
         when 12
-            benefit_string = "Hỗ trợ gửi xe, ăn trưa"
+            benefit_string = t(:benefit_13)
         when 13
-            benefit_string = "CLB thể thao"
+            benefit_string = t(:benefit_14)
         when 14
-            benefit_string = "Câu lạc bộ âm nhạc"
+            benefit_string = t(:benefit_15)
         when 15
-            benefit_string = "Laptop, màn hình, điện thoại"
+            benefit_string = t(:benefit_16)
         when 16
-            benefit_string = "Đào tạo chuyên nghiệp"
+            benefit_string = t(:benefit_17)
         when 17
-            benefit_string = "Trông trẻ"
+            benefit_string = t(:benefit_18)
         else
-            benefit_string = "Đang cập nhật"
+            benefit_string = t(:benefit_19)
         end
     end
 

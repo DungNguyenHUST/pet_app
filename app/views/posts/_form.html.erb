@@ -7,20 +7,20 @@
                 <%= form_for @post, :html => { :class => "form-horizontal post" } do |f| %>
                     <div class="new_post_title">
                         <%if !@is_edit%>
-                            <h3>Tạo một bài viết mới</h3>
+                            <h3><%=t(:post_create)%></h3>
                         <%else%>
-                            <h3>Update bài viết <%=@post.title%></h3>
+                            <h3><%=t(:post_update)%> <%=@post.title%></h3>
                         <%end%>
                     </div>
 
                     <div class="new_post_title_sub">
-                        <a>Note: Mục có dấu <span>'*'</span> là bắt buộc</a>
+                        <a><%=t(:form_require_left)%> <span>'*'</span> <%=t(:form_require_right)%></a>
                     </div>
 
                     <div class="new_post_section">
                         <div class="new_post_content">
                             <div class="new_post_label">
-                                <a><%= f.label :wall_picture, "Ảnh bìa", class: "new_post_label" %><span>*</span></a>
+                                <a><%= f.label :wall_picture, t(:post_wall), class: "new_post_label" %><span>*</span></a>
                             </div>
                             
                             <div class="new_post_input">
@@ -32,11 +32,11 @@
                     <div class="new_post_section">
                         <div class="new_post_content">
                             <div class="new_post_label">
-                                <a><%= f.label :category, "Danh mục bài viết", class: "new_post_label" %><span>*</span></a>
+                                <a><%= f.label :category, t(:post_category), class: "new_post_label" %><span>*</span></a>
                             </div>
 
                             <div class="new_post_input">
-                                <%= f.select(:category, options_for_select([['Con đường sự nghiệp', 1], ['Khoa học công nghệ', 2], ['Blog', 3], ['Danh mục khác', 4]], ['Danh mục khác', 4]), {include_blank: false, :required => true}, { :class => 'form-select' }) %>
+                                <%= f.select(:category, options_for_select([[t(:career_way), 1], [t(:science_and_tech), 2], [t(:blog), 3], [t(:other), 4]], [t(:other), 4]), {include_blank: false, :required => true}, { :class => 'form-select' }) %>
                             </div>
                         </div>
                     </div>
@@ -44,7 +44,7 @@
                     <div class="new_post_section">
                         <div class="new_post_content">
                             <div class="new_post_label">
-                                <a><%= f.label :title, "Tiêu đề bài viết", class: "new_post_label_name" %><span>*</span></a>
+                                <a><%= f.label :title, t(:title), class: "new_post_label_name" %><span>*</span></a>
                             </div>
 
                             <div class="new_post_input">
@@ -56,7 +56,7 @@
                     <div class="new_post_section">
                         <div class="new_post_content">
                             <div class="new_post_label">
-                                <a><%= f.label :content, "Nội dung bài viết", class: "new_post_label_name" %><span>*</span></a>
+                                <a><%= f.label :content, t(:content), class: "new_post_label_name" %><span>*</span></a>
                             </div>
                             
                             <div class="new_post_input">
@@ -67,7 +67,7 @@
                     </div>
 
                     <div class="new_post_submit">
-                        <%= f.submit "Gửi nội dung", class: "new_post_form_submit" %>
+                        <%= f.submit t(:submit), class: "new_post_form_submit" %>
                     </div>
                 <%end%>
             </div>

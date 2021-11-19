@@ -19,11 +19,11 @@
             <div class="company_job_mini_new_hot">
                 <%if company_job.urgent > 0%>
                     <div class="company_job_mini_hot">
-                        <span>GẤP</span>
+                        <span><%=t(:urgent).upcase%></span>
                     </div>
                 <%elsif company_job.created_at > 1.week.ago.utc%>
                     <div class="company_job_mini_new">
-                        <span>MỚI</span>
+                        <span><%=t(:new).upcase%></span>
                     </div>
                 <%end%>
             </div>

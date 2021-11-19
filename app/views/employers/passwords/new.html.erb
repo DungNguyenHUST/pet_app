@@ -2,27 +2,27 @@
   <div class="row">
     <div class="col-sm-8">
       <div class="employer_reset_password">
-        <h3>Quên mật khẩu?</h3>
+        <h3><%=t(:forgot_password)%></h3>
         <%= form_for(resource, as: resource_name, url: password_path(resource_name), html: { method: :post }) do |f| %>
           <%= render "devise/shared/error_messages", resource: resource %>
 
           <div class="employer_reset_pass_content">
             <div class="employer_reset_pass_label">
-              <a><%= f.label :email, "Nhập địa chỉ email của bạn", class: "employer_reset_pass_label_name" %></a>
+              <a><%= f.label :email, t(:email), class: "employer_reset_pass_label_name" %></a>
             </div>
 
             <div class="employer_reset_pass_input">
-              <%= f.email_field :email, autofocus: true, autocomplete: "email", :required => true, class: "form-control", placeholder: "Nhập email của bạn tại đây" %>
+              <%= f.email_field :email, autofocus: true, autocomplete: "email", :required => true, class: "form-control", placeholder: t(:enter_email) %>
             </div>
           </div>
 
           <div class="employer_reset_pass_submit">
-            <%= f.submit "Gửi email đổi mật khẩu", class: "employer_reset_form_submit" %>
+            <%= f.submit t(:send_mail_change_pass), class: "employer_reset_form_submit" %>
           </div>
         <% end %>
 
         <div class="employer_reset_pass_loginhere">
-          <a><%= link_to "Tạo tài khoản mới", new_employer_registration_path %></a>
+          <a><%= link_to t(:signup), new_employer_registration_path %></a>
         </div>
       </div>
     </div>

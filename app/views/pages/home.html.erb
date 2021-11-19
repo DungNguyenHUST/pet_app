@@ -6,7 +6,7 @@
                 <div class='col-sm-10'>
                     <div class="home_search_block">
                         <div class="home_search_bar_label">
-                            <h3>Tìm kiếm cơ hội tiếp theo của bạn. Nhanh hơn.</h3>
+                            <h3><%=t(:home_intro)%></h3>
                         </div>
                         
                         <%=form_tag jobs_search_path, :method => "get" do%>
@@ -15,7 +15,7 @@
                                     <div class='col-sm-6 col_padding_customize_right'>
                                         <div class="home_search_what">
                                             <i class="material-icons-outlined">search</i>
-                                            <%= text_field_tag :search, params[:search], data: { behavior: "autocomplete" }, class: 'form-control', placeholder: "Tìm kiếm công việc, kĩ năng, tên công ty..."%>
+                                            <%= text_field_tag :search, params[:search], data: { behavior: "autocomplete" }, class: 'form-control', placeholder: t(:search_job_title)%>
                                         </div>
                                     </div>
                                     <div class='col-sm-4 col_padding_customize'>
@@ -32,13 +32,13 @@
                                                                         'Quảng Nam','Quảng Ngãi','Quảng Ninh','Quảng Trị',
                                                                         'Sóc Trăng','Sơn La','Tây Ninh','Thái Bình','Thái Nguyên' ,
                                                                         'Thanh Hóa','Thừa Thiên Huế','Tiền Giang','Trà Vinh',
-                                                                        'Tuyên Quang','Vĩnh Long','Vĩnh Phúc','Yên Bái' ]), {:prompt => "Tất cả địa điểm", class: 'form-control'}%>
+                                                                        'Tuyên Quang','Vĩnh Long','Vĩnh Phúc','Yên Bái' ]), {:prompt => t(:search_location), class: 'form-control'}%>
                                         </div>
                                     </div>
                                     <div class='col-sm-2'>
                                         <div class="home_search_button">
                                             <%= button_to "", form_class: "search_button", :name => nil do%>
-                                                <a>Tìm kiếm</a>
+                                                <a><%=t(:search)%></a>
                                             <%end%> 
                                         </div>
                                     </div>
@@ -81,10 +81,13 @@
     <div class="home_job_container">
         <div class="container">
             <div class="home_job_label">
-                <a>Tin tuyển dụng mới nhất</a>
+                <a><%=t(:last_posted_job)%></a>
             </div>
             <div class="home_job_all_btn">
-                <%= link_to '<button type="submit">Xem tất cả việc làm <i class="material-icons-outlined">keyboard_double_arrow_right</i></button>'.html_safe, jobs_search_path%>
+                <%= link_to jobs_search_path do%>
+                    <%=t(:all_job)%>
+                    <i class="material-icons-outlined">keyboard_double_arrow_right</i>
+                <%end%>
             </div>
             <div class="home_job_render">
                 <div class="row">
@@ -115,9 +118,9 @@
                                             <%if company_job.sponsor || verified_job(company_job) || company_job.urgent%>
                                                 <a><%= time_ago_in_words(company_job.created_at) %>
                                                     <%if company_job.urgent > 0%>
-                                                        <span class="home_job_urgent">HOT</span>
+                                                        <span class="home_job_urgent"><%=t(:hot).upcase%></span>
                                                     <%elsif verified_job(company_job)%>
-                                                        <span class="home_job_easy_apply">Nộp đơn nhanh</span>
+                                                        <span class="home_job_easy_apply"><%=t(:apply_fast)%></span>
                                                     <%end%>
                                                 </a>
                                             <%else%>
@@ -140,7 +143,7 @@
                                         <%if !company_job.salary.to_s.blank?%>
                                             <a><i class="material-icons-outlined">monetization_on</i><%= truncate(strip_tags(company_job.salary.to_s), length: 100)%></a>
                                         <%else%>
-                                            <a><i class="material-icons-outlined">monetization_on</i>Đang cập nhật</a>
+                                            <a><i class="material-icons-outlined">monetization_on</i><%=t(:updating)%></a>
                                         <%end%>
                                     </div>
                                 </div>
@@ -155,7 +158,7 @@
     <div class="home_explorer_container">
         <div class="container">
             <div class="home_explorer_label">
-                <a>Khám phá Firework</a>
+                <a><%=t(:firework_explore)%></a>
             </div>
             <div class="home_explorer_block">
                 <div class="row">
@@ -165,13 +168,16 @@
                                 <%= link_to (image_tag("icons/home_find_job.png")), image_path(url_for("icons/home_find_job.png")), rel: "gallery" , :href => jobs_search_path%>
                             </div>
                             <div class="home_explorer_section_label">
-                                <a>Tìm kiếm việc làm</a>
+                                <a><%=t(:find_job)%></a>
                             </div>
                             <div class="home_explorer_detail">
-                                <span>Chúng tôi tìm kiếm nguồn việc làm trực tiếp từ trang web nhà tuyển dụng, để bạn có thể nhận được thông tin một cách đầy đủ, nhanh chóng và chính xác nhất. Giúp bạn không bỏ lỡ bất kì cơ hội việc làm tuyệt vời nào.</span>
+                                <span><%=t(:home_job_detail)%></span>
                             </div>
                             <div class="home_explorer_btn">
-                                <%= link_to '<button type="submit">Xem thêm <i class="material-icons-outlined">arrow_forward</i></button>'.html_safe, jobs_search_path%>
+                                <%= link_to jobs_search_path do%>
+                                    <%=t(:read_more)%>
+                                    <i class="material-icons-outlined">arrow_forward</i>
+                                <%end%>
                             </div>
                         </div>
                     </div>
@@ -181,13 +187,16 @@
                                 <%= link_to (image_tag("icons/home_review_company.png")), image_path(url_for("icons/home_review_company.png")), rel: "gallery" , :href => companies_path%>
                             </div>
                             <div class="home_explorer_section_label">
-                                <a>Review Công ty</a>
+                                <a><%=t(:company_review)%></a>
                             </div>
                             <div class="home_explorer_detail">
-                                <span>Dễ dàng tiếp cận thông tin cũng như biết được cách mà mọi người nói về công ty mà bạn dự định sẽ gắn bó. Các đánh giá tốt và xấu đều hữu ích cho sự phát triển của công ty và chúng tôi luôn cam kết tôn trọng điều đó.</span>
+                                <span><%=t(:home_company_review_detail)%></span>
                             </div>
                             <div class="home_explorer_btn">
-                                <%= link_to '<button type="submit">Xem thêm<i class="material-icons-outlined">arrow_forward</i></button>'.html_safe, companies_path%>
+                                <%= link_to companies_path do%>
+                                    <%=t(:read_more)%>
+                                    <i class="material-icons-outlined">arrow_forward</i>
+                                <%end%>
                             </div>
                         </div>
                     </div>
@@ -197,13 +206,16 @@
                                 <%= link_to (image_tag("icons/home_interview.png")), image_path(url_for("icons/home_interview.png")), rel: "gallery" , :href => problems_path%>
                             </div>
                             <div class="home_explorer_section_label">
-                                <a>Câu hỏi phỏng vấn</a>
+                                <a><%=t(:interview_question)%></a>
                             </div>
                             <div class="home_explorer_detail">
-                                <span>Thư viện hàng ngàn câu hỏi phỏng vấn được giải đáp trực tiếp bởi cộng đồng Firework trong nhiều lĩnh vực giúp bạn chinh phục các nhà tuyển dụng khó tính nhất.</span>
+                                <span><%=t(:home_interview_detail)%></span>
                             </div>
                             <div class="home_explorer_btn">
-                                <%= link_to '<button type="submit">Xem thêm<i class="material-icons-outlined">arrow_forward</i></button>'.html_safe, problems_path%>
+                                <%= link_to problems_path do%>
+                                    <%=t(:read_more)%>
+                                    <i class="material-icons-outlined">arrow_forward</i>
+                                <%end%>
                             </div>
                         </div>
                     </div>
@@ -213,13 +225,16 @@
                                 <%= link_to (image_tag("icons/home_recruiment.png")), image_path(url_for("icons/home_recruiment.png")), rel: "gallery" , :href => employer_wellcome_path%>
                             </div>
                             <div class="home_explorer_section_label">
-                                <a>Đăng tin tuyển dụng</a>
+                                <a><%=t(:post_job)%></a>
                             </div>
                             <div class="home_explorer_detail">
-                                <span>Firework cung cấp nền tảng đăng tin tuyển dụng miễn phí không giới hạn. Giúp nhà tuyển dụng nhanh chóng tiếp cận hàng ngàn ứng viên có nhu cầu tìm việc mỗi ngày.</span>
+                                <span><%=t(:home_post_job_detail)%></span>
                             </div>
                             <div class="home_explorer_btn">
-                                <%= link_to '<button type="submit">Xem thêm<i class="material-icons-outlined">arrow_forward</i></button>'.html_safe, employer_wellcome_path%>
+                                <%= link_to employer_wellcome_path do%>
+                                    <%=t(:read_more)%>
+                                    <i class="material-icons-outlined">arrow_forward</i>
+                                <%end%>
                             </div>
                         </div>
                     </div>
@@ -233,7 +248,7 @@
             <div class="row">
                 <div class="col-sm-8">
                     <div class="home_signup_label">
-                        <h3><i class="material-icons-outlined">notifications_active</i>Tạo tài khoản để không bỏ lỡ hàng ngàn cơ hội việc làm mới mỗi ngày</h3>
+                        <h3><i class="material-icons-outlined">notifications_active</i><%=t(:home_login_intro)%></h3>
                     </div>
                 </div>
 
@@ -241,12 +256,12 @@
                     <div class="row">
                         <div class="col-sm-6">
                             <div class="home_signup_block">
-                                <%= link_to '<button type="submit"> <span> Tạo tài khoản mới</span> </button>'.html_safe, new_user_registration_path %>
+                                <button><%= link_to t(:signup), new_user_registration_path %></button>
                             </div>
                         </div>
                         <div class="col-sm-6">
                             <div class="home_signin_block">
-                                <%= link_to '<button type="submit"> <span> Đăng nhập</span> </button>'.html_safe, new_user_session_path %>
+                                <button><%= link_to t(:signin), new_user_session_path %></button>
                             </div>
                         </div>
                     </div>

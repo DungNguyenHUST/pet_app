@@ -10,19 +10,19 @@
             <%if find_trigger_user(user_notification).present?%>
                 <a> <%= find_trigger_user(user_notification).name%>
                     <%if user_notification.noti_type.to_s == "ReviewComment"%>
-                        <span> đã trả lời review của bạn </span>
+                        <span> <%=t(:noti_review)%> </span>
                     <%elsif user_notification.noti_type.to_s == "InterviewComment"%>
-                        <span> đã trả lời chia sẻ phỏng vấn của bạn </span>
+                        <span> <%=t(:noti_interview)%> </span>
                     <%elsif user_notification.noti_type.to_s == "PostComment"%>
-                        <span> đã trả bình luận bài viết của bạn </span>
+                        <span> <%=t(:noti_comment)%> </span>
                     <%elsif user_notification.noti_type.to_s == "ProblemComment"%>
-                        <span> đã trả lời câu hỏi của bạn</span>
+                        <span> <%=t(:noti_question)%></span>
                     <%elsif user_notification.noti_type.to_s == "ProblemSolutionComment"%>
-                        <span> đã bình luận trong câu trả lời của bạn </span>
+                        <span> <%=t(:noti_reply_solution)%> </span>
                     <%elsif user_notification.noti_type.to_s == "ApplyJob"%>
-                        <span> đã nộp đơn ứng tuyển cho vị trí </span>
+                        <span> <%=t(:noti_apply)%> </span>
                     <%else%>
-                        <span> đã trả lời trong chủ đề </span>
+                        <span> <%=t(:noti_reply)%> </span>
                     <%end%>
                 </a>
             <%end%>

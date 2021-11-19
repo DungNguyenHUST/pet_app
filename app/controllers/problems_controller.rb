@@ -3,10 +3,9 @@ class ProblemsController < ApplicationController
     before_action :require_user_login, only: [:new, :create, :edit, :update, :destroy]
     before_action :require_admin_login, only: [:approve]
 
-    add_breadcrumb "Trang chủ", :root_path
-
     def index
-        add_breadcrumb "Tất cả câu hỏi", :problems_path
+        add_breadcrumb I18n.t(:home_page), :root_path
+        add_breadcrumb I18n.t(:all_question), :problems_path
 
         # Auto complete
         @suggest_problems = Problem.search_problem_by_title(params[:search])
@@ -59,11 +58,11 @@ class ProblemsController < ApplicationController
             if @problem.approved?
 				redirect_to problem_path(@problem)
 			else
-				flash[:success] = "Để đảm bảo chất lượng thông tin, câu hỏi của bạn đang được xếp vào hàng chờ duyệt. Vui lòng kiểm tra lại sau ít phút..."
+				flash[:success] = I18n.t(:question_create_noti)
 				redirect_to problems_path
 			end
         else
-            flash[:danger] = "Lỗi, hãy điền đủ nội dung có dấu '*'"
+            flash[:danger] = I18n.t(:create_error)
             render :new
         end
     end
@@ -101,7 +100,8 @@ class ProblemsController < ApplicationController
         @problem_relateds = Problem.all.approved.reject{|i| i.id == @problem.id}
         @problem_relateds = Kaminari.paginate_array(@problem_relateds).page(params[:page]).per(20)
 
-        add_breadcrumb "Tất cả câu hỏi", :problems_path
+        add_breadcrumb I18n.t(:home_page), :root_path
+        add_breadcrumb I18n.t(:all_question), :problems_path
         add_breadcrumb @problem.title, problem_path(@problem)
     end
 
@@ -115,18 +115,18 @@ class ProblemsController < ApplicationController
 
         if(@problem.update(problem_param))
             redirect_to problem_path(@problem)
-            flash[:success] = "Update thông tin thành công"
+            flash[:success] = I18n.t(:update_success)
         else
-            flash[:danger] = "Lỗi, không thể update thông tin"
+            flash[:danger] = I18n.t(:update_error)
         end
     end
 
     def approve
         @problem = Problem.friendly.find(params[:id])
         if @problem.update(:approved => true)
-            flash[:success] = "Approved"
+            flash[:success] = I18n.t(:approve_success)
         else
-            flash[:danger] = "Error"
+            flash[:danger] = I18n.t(:approve_error)
         end
         redirect_to admin_path(current_admin, tab: 'AdminProblemApprovingID')
     end

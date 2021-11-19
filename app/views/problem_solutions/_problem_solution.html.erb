@@ -66,18 +66,18 @@
         <div class="problem_solution_toolbar">
             <div class="problem_solution_reply_block">
                 <button class="reply_btn" onclick="myFunctionReplyproblem_solution(<%=problem_solution.id%>)">
-                     <i class="material-icons-outlined">chat_bubble_outline</i> <span><%= problem_solution.problem_reply_solutions.count%></span> <a>Trả lời</a>
+                     <i class="material-icons-outlined">chat_bubble_outline</i> <span><%= problem_solution.problem_reply_solutions.count%></span> <a><%=t(:reply)%></a>
                 </button>
             </div>
 
             <div class="problem_solution_report_block">
                 <%if user_signed_in?%>
                     <button class="report_btn" type="button" class="btn" data-toggle="modal" data-target="#buttonModalProblemSolutionIndexCenter">
-                        <i class="material-icons-outlined">flag</i> <a>Báo xấu</a>
+                        <i class="material-icons-outlined">flag</i> <a><%=t(:report)%></a>
                     </button>
                 <%else%>
                     <button class="report_btn" type="button" class="btn" data-toggle="modal" data-target="#buttonModalLoginCenter">
-                        <i class="material-icons-outlined">flag</i> <a>Báo xấu</a>
+                        <i class="material-icons-outlined">flag</i> <a><%=t(:report)%></a>
                     </button>
                 <%end%>
                 <!-- Modal -->

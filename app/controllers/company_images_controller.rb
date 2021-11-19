@@ -29,7 +29,7 @@ class CompanyImagesController < ApplicationController
         if @company_image.save
             redirect_to company_path(@company, tab: 'CompanyImagesID')
         else
-            flash[:danger] = "Lỗi, hãy điền đủ nội dung có dấu '*' "
+            flash[:danger] = I18n.t(:create_error)
         end
     end
 
@@ -37,7 +37,7 @@ class CompanyImagesController < ApplicationController
     def update
         respond_to do |format|
             if @company_image.update(company_image_params)
-                format.html { redirect_to @company_image, notice: "Company image was successfully updated." }
+                format.html { redirect_to @company_image}
                 format.json { render :show, status: :ok, location: @company_image }
             else
                 format.html { render :edit, status: :unprocessable_entity }
@@ -50,7 +50,7 @@ class CompanyImagesController < ApplicationController
     def destroy
         @company_image.destroy
         respond_to do |format|
-            format.html { redirect_to company_images_url, notice: "Company image was successfully destroyed." }
+            format.html { redirect_to company_images_url}
             format.json { head :no_content }
         end
     end

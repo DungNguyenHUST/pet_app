@@ -3,7 +3,7 @@
         <div class="col-sm-8">
             <div class="company_policy_overview_left">
                 <div class="company_policy_title">
-                    <a> Tại sao bạn nên làm việc tại <%= @company.name %>?</a>
+                    <a> <%=t(:why_join)%> <%= @company.name %>?</a>
                 </div>
                 
                 <%if @company.benefit.present?%>
@@ -43,12 +43,12 @@
             <div class='company_policy_overview_block_right'>
                 <div class='company_policy_overview_block_right_overview'>
                     <div class="company_policy_overview_label">
-                        <span> Giới thiệu</span>
+                        <span> <%=t(:overview)%></span>
                     </div>
 
                     <div class="company_policy_overview_right">
                         <div class="company_policy_overview_right_title">
-                            <i class="material-icons-outlined">place</i><a>  Địa chỉ </a>
+                            <i class="material-icons-outlined">place</i><a> <%=t(:address)%> </a>
                         </div>
                         <div class="company_policy_overview_right_des">
                             <%if !@company.location.to_s.empty?%>
@@ -60,7 +60,7 @@
                     </div>
                     <div class="company_policy_overview_right">
                         <div class="company_policy_overview_right_title">
-                            <i class="material-icons-outlined">people</i> <a> Nhân viên </a>
+                            <i class="material-icons-outlined">people</i> <a> <%=t(:employee)%> </a>
                         </div>
                         <div class="company_policy_overview_right_des">
                             <%if !@company.size.to_s.empty?%>
@@ -72,7 +72,7 @@
                     </div>
                     <div class="company_policy_overview_right">
                         <div class="company_policy_overview_right_title">
-                            <i class="material-icons-outlined">bookmark_border</i> <a> Lĩnh vực hoạt động </a>
+                            <i class="material-icons-outlined">bookmark_border</i> <a> <%=t(:field_operation)%> </a>
                         </div>
                         <div class="company_policy_overview_right_des">
                             <%if !@company.field_operetion.to_s.empty?%>
@@ -84,7 +84,7 @@
                     </div>
                     <div class="company_policy_overview_right">
                         <div class="company_policy_overview_right_title">
-                            <i class="material-icons-outlined">open_in_new</i><a> Địa chỉ website </a>
+                            <i class="material-icons-outlined">open_in_new</i><a> <%=t(:web_address)%> </a>
                         </div>
                         <div class="company_policy_overview_right_des">
                             <%if !@company.website.to_s.empty?%>
@@ -98,7 +98,7 @@
                     </div>
                     <div class="company_policy_overview_right">
                         <div class="company_policy_overview_right_title">
-                            <i class="material-icons-outlined">history</i><a> Cập nhật lần cuối </a>
+                            <i class="material-icons-outlined">history</i><a> <%=t(:last_update)%> </a>
                         </div>
                         <div class="company_policy_overview_right_des">
                             <a><%= @company.created_at.strftime("%B %d, %Y") %></a>
@@ -110,7 +110,7 @@
                     <%if @company_jobs.total_count > 0%>
                         <div class="company_job_refer_block">
                             <div class="company_job_label">
-                                <a>Tin tuyển dụng</a>
+                                <a><%=t(:jobs)%></a>
                             </div>
                             <div class="company_job_des">
                                 <%@company_jobs.order('created_at DESC').first(10).each do |company_job|%>

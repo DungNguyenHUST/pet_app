@@ -19,14 +19,16 @@
                             <i class="material-icons">paid</i>
                         </div>
                         <div class="salary_new_not_found">
-                            <span>Rất tiếc, chưa có đủ dữ liệu thống kê. Hãy là người đầu tiên chia sẻ mức lương của bạn tại <%=@company.name%>, thông tin của bạn sẽ rất hữu ích cho những người khác ...</span>
+                            <span><%=t(:salary_not_found_left)%> <%=@company.name%>, <%=t(:salary_not_found_right)%></span>
                         </div>
                         <div class="salary_new_not_found_action">
                             <div class="salary_new_label">
-                                <a>Bạn đã từng làm việc tại công ty?</a>
+                                <a><%=t(:are_you_an_employee_of_company)%></a>
                             </div>
                             <div class="salary_new_button">
-                                <%= link_to '<button type="submit"> <i class="material-icons-outlined">edit</i> <span> Review lương</span> </button>'.html_safe, new_company_company_salary_path(@company) %>
+                                <%= link_to new_company_company_salary_path(@company) do%>
+                                    <button type="submit"> <i class="material-icons-outlined">edit</i> <span> <%=t(:add_salary)%></span> </button>
+                                <%end%>
                             </div>
                         </div>
                     </div>
@@ -38,7 +40,7 @@
                 <%if @company_jobs.total_count >0%>
                     <div class="company_job_refer_block">
                         <div class="company_job_label">
-                            <a>Tin tuyển dụng</a>
+                            <a><%=t(:jobs)%></a>
                         </div>
                         <div class="company_job_des">
                             <%@company_jobs.order('created_at DESC').first(10).each do |company_job|%>

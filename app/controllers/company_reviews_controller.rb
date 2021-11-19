@@ -23,7 +23,7 @@ class CompanyReviewsController < ApplicationController
         if @company_review.save
             redirect_to company_path(@company, tab: 'CompanyReviewsID')
         else
-            flash[:danger] = "Lỗi, hãy điền đủ nội dung có dấu '*' "
+            flash[:danger] = I18n.t(:create_error)
             render :new
         end
     end

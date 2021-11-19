@@ -3,9 +3,9 @@
     <div class="row"> 
         <div class="col-sm-8"> 
             <div class="company_job_tab_des_left">
-                <%if @company_jobs.total_count > 0%>
+                <%if @company_jobs.total_count == 0%>
                     <div class="company_job_tab_des_label">
-                        <a><%=@company_jobs.total_count%> việc làm</a> 
+                        <a><%=@company_jobs.total_count%> <%=t(:jobs).downcase%></a> 
                     </div>
                     
                     <div class="company_job_index_tab">
@@ -24,17 +24,21 @@
                             <i class="material-icons">work</i>
                         </div>
                         <div class="company_job_new_not_found">
-                            <span>Rất tiếc, hiện tại <%=@company.name%> chưa có tin tuyển dụng mới nào</span>
+                            <span><%=t(:job_not_found_left)%> <%=@company.name%> <%=t(:job_not_found_right)%></span>
                         </div>
                         <div class="company_job_new_not_found_action">
                             <div class="company_job_new_label">
-                                <a>Bạn là nhà tuyển dụng?</a>
+                                <a><%=t(:job_not_found_employer)%>?</a>
                             </div>
                             <div class="company_job_new_button">
                                 <%if employer_signed_in?%>
-                                    <%= link_to '<button type="submit"><i class="material-icons-outlined">add</i><span>Đăng tin tuyển dụng<span></button>'.html_safe, new_company_job_path%>
+                                    <%= link_to new_company_job_path do%>
+                                        <button type="submit"><i class="material-icons-outlined">add</i><span><%=t(:post_job)%><span></button>
+                                    <%end%>
                                 <%else%>
-                                    <%= link_to '<button type="submit"><i class="material-icons-outlined">add</i><span>Đăng tin tuyển dụng<span></button>'.html_safe, new_employer_session_path %>
+                                    <%= link_to new_employer_session_path do%>
+                                        <button type="submit"><i class="material-icons-outlined">add</i><span><%=t(:post_job)%><span></button>
+                                    <%end%>
                                 <%end%>
                             </div>
                         </div>
@@ -47,12 +51,12 @@
             <div class='company_job_tab_des_right'>
                 <div class='company_policy_overview_block_right_overview'>
                     <div class="company_policy_overview_label">
-                        <span> Giới thiệu</span>
+                        <span> <%=t(:overview)%></span>
                     </div>
 
                     <div class="company_policy_overview_right">
                         <div class="company_policy_overview_right_title">
-                            <i class="material-icons-outlined">place</i><a>  Địa chỉ </a>
+                            <i class="material-icons-outlined">place</i><a>  <%=t(:address)%> </a>
                         </div>
                         <div class="company_policy_overview_right_des">
                             <%if !@company.location.to_s.empty?%>
@@ -64,7 +68,7 @@
                     </div>
                     <div class="company_policy_overview_right">
                         <div class="company_policy_overview_right_title">
-                            <i class="material-icons-outlined">people</i> <a> Nhân viên </a>
+                            <i class="material-icons-outlined">people</i> <a> <%=t(:employee)%> </a>
                         </div>
                         <div class="company_policy_overview_right_des">
                             <%if !@company.size.to_s.empty?%>
@@ -76,7 +80,7 @@
                     </div>
                     <div class="company_policy_overview_right">
                         <div class="company_policy_overview_right_title">
-                            <i class="material-icons-outlined">bookmark_border</i> <a> Lĩnh vực hoạt động </a>
+                            <i class="material-icons-outlined">bookmark_border</i> <a> <%=t(:field_operation)%> </a>
                         </div>
                         <div class="company_policy_overview_right_des">
                             <%if !@company.field_operetion.to_s.empty?%>
@@ -88,7 +92,7 @@
                     </div>
                     <div class="company_policy_overview_right">
                         <div class="company_policy_overview_right_title">
-                            <i class="material-icons-outlined">open_in_new</i><a> Địa chỉ website </a>
+                            <i class="material-icons-outlined">open_in_new</i><a> <%=t(:web_address)%> </a>
                         </div>
                         <div class="company_policy_overview_right_des">
                             <%if !@company.website.to_s.empty?%>
@@ -102,7 +106,7 @@
                     </div>
                     <div class="company_policy_overview_right">
                         <div class="company_policy_overview_right_title">
-                            <i class="material-icons-outlined">history</i><a> Cập nhật lần cuối </a>
+                            <i class="material-icons-outlined">history</i><a> <%=t(:last_update)%> </a>
                         </div>
                         <div class="company_policy_overview_right_des">
                             <a><%= @company.created_at.strftime("%B %d, %Y") %></a>

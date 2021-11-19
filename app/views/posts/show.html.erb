@@ -27,20 +27,20 @@
                         <div class="post_category_info">
                             <%post_category=''%>
                             <%if(@post.category.to_i == 1) %>
-                                <% post_category = "Con đường sự nghiệp" %>
+                                <% post_category = t(:career_way) %>
                             <% elsif (@post.category.to_i == 2) %>
-                                <% post_category = "Khoa học công nghệ" %>
+                                <% post_category = t(:science_and_tech) %>
                             <% elsif (@post.category.to_i == 3) %>
-                                <% post_category = "Blog" %>
+                                <% post_category = t(:blog) %>
                             <% else %>
-                                <% post_category = "Danh mục khác" %>
+                                <% post_category = t(:other) %>
                             <%end%>
                             <div class="post_category">
                                 <a><i class="material-icons-outlined">article</i><%= post_category %></a>
                             </div>
                         </div>
                         <div class="post_comment">
-                            <i class="material-icons-outlined">chat_bubble_outline</i><span><%=@post.post_comments.count%> bình luận</span> 
+                            <i class="material-icons-outlined">chat_bubble_outline</i><span><%=@post.post_comments.count%> <%=t(:comment).downcase%></span> 
                         </div>
                         <div class="post_time">
                             <span><i class="material-icons-outlined">history_toggle_off</i><%=@post.created_at.strftime("%B %d, %Y")%></span>
@@ -52,7 +52,7 @@
                     
                     <div class="post_comment_block" id="post_comment_index_<%=@post.id%>">
                         <div class="post_count">
-                            <span><%= @post.post_comments.count%> Bình luận</span>
+                            <span><%= @post.post_comments.count%> <%=t(:comment)%></span>
                         </div>
                         <%= form_for([@post, PostComment.new], remote: true) do |f| %>
                             <div class="new_post_show_comment_section">
@@ -63,7 +63,7 @@
                             </div>
 
                             <div class="new_post_show_comment_submit">
-                                <%= f.submit "Gửi bình luận", class: "new_post_comment_form_submit" %>
+                                <%= f.submit t(:send_comment), class: "new_post_comment_form_submit" %>
                             </div>
                         <%end%>
                         <div class="post_comment">
@@ -77,7 +77,7 @@
             <div class="col-sm-4">
                 <div class="post_area_right">
                     <div class="post_area_right_title">
-                        <span>Xem thêm</span>
+                        <span><%=t(:read_more)%></span>
                     </div>
                     <% @post_relateds.first(10).each do |post| %>
                         <div class="post_mini_container">

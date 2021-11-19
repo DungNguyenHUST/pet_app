@@ -5,7 +5,7 @@
                 <%= form_for [@company_job, CompanyApplyJob.new] do |f| %>
                     <div class="new_apply_job_title_block">
                         <div class="new_apply_job_title">
-                            <h3>Ứng tuyển vị trí "<%=@company_job.title.titleize%>" </h3>
+                            <h3><%=t(:apply_postion)%> "<%=@company_job.title.titleize%>" </h3>
                         </div>
 
                         <div class="new_apply_job_image">
@@ -18,62 +18,62 @@
                     </div>
 
                     <div class="new_apply_job_title_sub">
-                        <a>Note: Mục có dấu <span>'*'</span> là bắt buộc</a>
+                        <a><%=t(:form_require_left)%> <span>'*'</span> <%=t(:form_require_right)%></a>
                     </div>
                     
                     <div class="new_apply_job_content">
                         <div class="new_apply_job_label">
-                            <a><%= f.label :name, "Họ và tên", class: "new_apply_job_label_content" %><span>*</span></a>
+                            <a><%= f.label :name, t(:full_name), class: "new_apply_job_label_content" %><span>*</span></a>
                         </div>
                         
                         <div class="new_apply_job_input_job">
-                            <%= f.text_field :name, autofocus: true, :required => true, class: "form-control", value: current_user.name, placeholder: "Nhập họ và tên" %>
+                            <%= f.text_field :name, autofocus: true, :required => true, class: "form-control", value: current_user.name, placeholder: t(:enter_name) %>
                         </div>
                     </div>
 
                     <div class="new_apply_job_content">
                         <div class="new_apply_job_label">
-                            <a><%= f.label :email, "Địa chỉ Email", class: "new_apply_job_label_content" %><span>*</span></a>
+                            <a><%= f.label :email, t(:email), class: "new_apply_job_label_content" %><span>*</span></a>
                         </div>
                         
                         <div class="new_apply_job_input_job">
-                            <%= f.email_field :email, :required => true, class: "form-control", value: current_user.email, placeholder: "Nhập địa chỉ email của bạn"%>
+                            <%= f.email_field :email, :required => true, class: "form-control", value: current_user.email, placeholder: t(:enter_email)%>
                         </div>
                     </div>
 
                     <div class="new_apply_job_content">
                         <div class="new_apply_job_label">
-                            <a><%= f.label :phone, "Số điện thoại liên hệ", class: "new_apply_job_label_content" %><span>*</span></a>
+                            <a><%= f.label :phone, t(:phone), class: "new_apply_job_label_content" %><span>*</span></a>
                         </div>
                         
                         <div class="new_apply_job_input_job">
-                            <%= f.text_field :phone, :required => true, class: "form-control", value: current_user.phone, placeholder: "Nhập số điện thoại liên hệ của bạn"%>
+                            <%= f.text_field :phone, :required => true, class: "form-control", value: current_user.phone, placeholder: t(:enter_phone)%>
                         </div>
                     </div>
 
                     <div class="new_apply_job_content">
                         <div class="new_apply_job_label">
-                            <a><%= f.label :address, "Địa chỉ liên hệ", class: "new_apply_job_label_content" %><span>*</span></a>
+                            <a><%= f.label :address, t(:address), class: "new_apply_job_label_content" %><span>*</span></a>
                         </div>
                         
                         <div class="new_apply_job_input_job">
-                            <%= f.text_field :address, :required => true, class: "form-control", value: current_user.address, placeholder: "Nhập địa chỉ liên hệ của bạn"%>
+                            <%= f.text_field :address, :required => true, class: "form-control", value: current_user.address, placeholder: t(:enter_address)%>
                         </div>
                     </div>
 
                     <div class="new_apply_job_content">
                         <div class="new_apply_job_label">
-                            <a><%= f.label :cover_vitate, "Upload CV", class: "new_apply_job_label_content" %><span>*</span></a>
+                            <a><%= f.label :cover_vitate, t(:cv), class: "new_apply_job_label_content" %><span>*</span></a>
                         </div>
                         
                         <div class="new_apply_job_input_job">
-                            <%= f.file_field :cover_vitate, :required => true, class: "form-control", placeholder: "Tải CV của bạn lên" %>
+                            <%= f.file_field :cover_vitate, :required => true, class: "form-control", placeholder: t(:enter_cv) %>
                         </div>
                     </div>
 
                     <div class="new_apply_job_content">
                         <div class="new_apply_job_label">
-                            <a><%= f.label :cover_letter, "Giới thiệu về bản thân(khoảng 3000 từ)", class: "new_apply_job_label_content" %><span>*</span></a>
+                            <a><%= f.label :cover_letter, t(:self_introduce), class: "new_apply_job_label_content" %><span>*</span></a>
                         </div>
                         
                         <div class="new_apply_job_input_job">
@@ -83,7 +83,7 @@
                     </div>
 
                     <div class="new_apply_job_submit">
-                        <%= f.submit "Nộp đơn", class: "new_apply_job_form_submit" %>
+                        <%= f.submit t(:apply), class: "new_apply_job_form_submit" %>
                     </div>
                 <%end%>
             </div>
@@ -91,27 +91,27 @@
         <div class="col-sm-4">
             <div class="apply_job_policy">
                 <div class="apply_job_policy_title">
-                    <a>Lưu ý trước khi ứng tuyển</a>
+                    <a><%=t(:apply_job_help)%></a>
                 </div>
                 <div class="apply_job_policy_content">
                     <div class="apply_job_policy_content_index">
-                        · Mô tả bản thân một cách ngắn gọn, xúc tích ghi điểm với nhà tuyển dụng
+                        · <%=t(:apply_job_help_1)%>
                     </div>
                     <div class="apply_job_policy_content_index">
-                        · Trình bày CV thông minh làm nổi bật những điểm mạnh của bản thân
+                        · <%=t(:apply_job_help_2)%>
                     </div>
                     <div class="apply_job_policy_content_index">
-                        · Không sử dụng từ ngữ mang ý xúc phạm, miệt thị người khác
+                        · <%=t(:apply_job_help_3)%>
                     </div>
                     <div class="apply_job_policy_content_index">
-                        · Không sử dụng từ ngữ mang tính chất kích động, bạo lực
+                        · <%=t(:apply_job_help_4)%>
                     </div>
                     <div class="apply_job_policy_content_index">
-                        · Quá trình ứng tuyển là hoàn toàn miễn phí, người dùng cần cẩn trọng trong trường hợp công ty yêu cầu nộp phí trước khi ứng tuyển
+                        · <%=t(:apply_job_help_5)%>
                     </div>
                     <div class="apply_job_policy_content_link">
-                        Xem thêm thông tin chi tiết về 
-                        <a href="<%=term_path%>">thỏa thuận sử dụng </a>
+                        <%=t(:form_read_policy)%>
+                        <a href="<%=term_path%>"><%=t(:term_and_service)%> </a>
                     </div>
                 </div>
             </div>

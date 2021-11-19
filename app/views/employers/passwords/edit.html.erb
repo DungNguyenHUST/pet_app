@@ -2,16 +2,16 @@
   <div class="row">
     <div class="col-sm-8">
       <div class="employer_change_pass_password">
-        <h3>Đổi mật khẩu mới</h3>
+        <h3><%=t(:change_pass)%></h3>
         <%= form_for(resource, as: resource_name, url: password_path(resource_name), html: { method: :put }) do |f| %>
           <%= render "devise/shared/error_messages", resource: resource %>
           <%= f.hidden_field :reset_password_token %>
 
           <div class="employer_reset_pass_content">
             <div class="employer_reset_pass_label">
-              <%= f.label :password, "Mật khẩu mới" %><br />
+              <%= f.label :password, t(:new_pass) %><br />
               <% if @minimum_password_length %>
-                <em>(<%= @minimum_password_length %> characters minimum)</em><br />
+                <em>(<%= @minimum_password_length %> <%=t(:min_charater)%>)</em><br />
               <% end %>
             </div>
             <div class="employer_reset_pass_input">
@@ -21,7 +21,7 @@
 
           <div class="employer_reset_pass_content">
             <div class="employer_reset_pass_label">
-              <%= f.label :password_confirmation, "Nhập lại mật khẩu mới" %><br />
+              <%= f.label :password_confirmation, t(:verify_new_pass) %><br />
             </div>
             <div class="employer_reset_pass_input">
               <%= f.password_field :password_confirmation, autocomplete: "new-password", class: "form-control" %>
@@ -29,7 +29,7 @@
           </div>
 
           <div class="employer_reset_pass_submit">
-            <%= f.submit "Đổi mật khẩu",  class: "employer_reset_form_submit"%>
+            <%= f.submit t(:change_pass),  class: "employer_reset_form_submit"%>
           </div>
         <% end %>
       </div>

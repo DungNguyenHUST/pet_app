@@ -1,33 +1,33 @@
 <div class="user_profile_form">
     <%= form_for(@user, remote: true) do |f| %>
         <div class="user_profile_title_sub">
-            <a>Lưu ý: Mục có dấu <span>'*'</span> là bắt buộc</a>
+            <a><%=t(:form_require_left)%> <span>'*'</span> <%=t(:form_require_right)%></a>
         </div>
         <div class="row">
             <div class="col-sm-6">
                 <div class="user_profile_content">
                     <div class="user_profile_label">
-                        <a><%= f.label :name, "Họ và tên", class: "user_profile_label_name" %><span>*</span></a>
+                        <a><%= f.label :name, t(:full_name), class: "user_profile_label_name" %><span>*</span></a>
                     </div>
 
                     <div class="user_profile_input">
-                        <%= f.text_field :name, :required => true, class: "form-control", placeholder: "Nhập họ tên của bạn ex: Nguyễn Văn A..." %>
+                        <%= f.text_field :name, :required => true, class: "form-control", placeholder: t(:enter_name) %>
                     </div>
                 </div>
                 
                 <div class="user_profile_content">
                     <div class="user_profile_label">
-                        <a><%= f.label :address, "Địa chỉ", class: "user_profile_label_name" %><span>*</span></a>
+                        <a><%= f.label :address, t(:address), class: "user_profile_label_name" %><span>*</span></a>
                     </div>
 
                     <div class="user_profile_input">
-                        <%= f.text_field :address, :required => true, class: "form-control", placeholder: "Nhập địa chỉ liên hệ của bạn ex: Hà Nội..." %>
+                        <%= f.text_field :address, :required => true, class: "form-control", placeholder: t(:enter_address) %>
                     </div>
                 </div>
 
                 <div class="user_profile_content">
                     <div class="user_profile_label">
-                        <a><%= f.label :birthday, "Ngày sinh nhật", class: "user_profile_label_name" %><span>*</span></a>
+                        <a><%= f.label :birthday, t(:birth_day), class: "user_profile_label_name" %><span>*</span></a>
                     </div>
 
                     <div class="user_profile_input">
@@ -39,7 +39,7 @@
             <div class="col-sm-6">
                 <div class="user_profile_content">
                     <div class="user_profile_label">
-                        <a><%= f.label :avatar, "Ảnh đại diện(ảnh kích thước nhỏ)", class: "user_profile_label_name" %><span>*</span></a>
+                        <a><%= f.label :avatar, t(:avatar), class: "user_profile_label_name" %><span>*</span></a>
                     </div>
 
                     <div class="user_profile_input">
@@ -49,7 +49,7 @@
 
                 <div class="user_profile_content">
                     <div class="user_profile_label">
-                        <a><%= f.label :wall_picture, "Ảnh bìa(ảnh kích thước lớn)", class: "user_profile_label_name" %><span>*</span></a>
+                        <a><%= f.label :wall_picture, t(:wall_picture), class: "user_profile_label_name" %><span>*</span></a>
                     </div>
 
                     <div class="user_profile_input">
@@ -64,13 +64,13 @@
             </div>
             <div class="col-sm-3">
                 <div class="user_profile_cancel">
-                    <button class="user_profile_cancel_btn" onclick="myFunctionUserInfo('profile_info_form')"><a>Hủy bỏ</a></button>
+                    <button class="user_profile_cancel_btn" onclick="myFunctionUserInfo('profile_info_form')"><a><%=t(:cancel)%></a></button>
                 </div>
             </div>
 
             <div class="col-sm-3">
                 <div class="user_profile_submit">
-                    <%= f.submit "Cập nhật", class: "user_profile_form_submit" %>
+                    <%= f.submit t(:update), class: "user_profile_form_submit" %>
                 </div>
             </div>
         </div>

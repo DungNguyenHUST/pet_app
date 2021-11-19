@@ -23,7 +23,7 @@ class CompanyQuestionsController < ApplicationController
         if @company_question.save
             redirect_to company_path(@company, tab: 'CompanyQuestionsID')
         else
-            flash[:danger] = "Lỗi, hãy điền đủ nội dung có dấu '*' "
+            flash[:danger] = I18n.t(:create_error)
             render :new
         end
     end

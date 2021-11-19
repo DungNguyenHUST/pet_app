@@ -33,7 +33,7 @@ class ProblemSolutionsController < ApplicationController
             
             redirect_to problem_path(@problem, tab: 'ProblemSolutionID')
         else
-            flash[:danger] = "Lỗi, hãy điền nội dung câu trả lời của bạn ..."
+            flash[:danger] = I18n.t(:create_error)
             redirect_to problem_path(@problem, tab: 'ProblemSolutionID')
         end
     end
@@ -49,7 +49,7 @@ class ProblemSolutionsController < ApplicationController
         if(@problem_solution.update(problem_solution_param))
             redirect_to problem_path(@problem)
         else
-            flash[:danger] = "Lỗi, hãy điền đủ nội dung có dấu '*'"
+            flash[:danger] = I18n.t(:update_error)
         end
     end
     

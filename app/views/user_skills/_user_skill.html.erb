@@ -14,7 +14,7 @@
         <div class="col-2">
             <div class='user_profile_skill_edit'>
                 <button class="user_profile_skill_update_btn" onclick="myFunctionUserSkill('profile_skill_form_update_<%=user_skill.id%>')"><i class="material-icons-outlined">edit</i></button>
-                <%= link_to '<button type="submit"> <i class="material-icons-outlined">delete_outline</i></button>'.html_safe, user_user_skill_path(@user, user_skill), method: :delete, remote: :true, data: { confirm: 'Bạn có chắc muốn xóa ?' } %>
+                <%= link_to '<button type="submit"> <i class="material-icons-outlined">delete_outline</i></button>'.html_safe, user_user_skill_path(@user, user_skill), method: :delete, remote: :true, data: { confirm: t(:are_you_sure_to_delete) } %>
             </div>
         </div>
     </div>

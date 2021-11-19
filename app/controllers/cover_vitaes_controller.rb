@@ -1,31 +1,30 @@
 class CoverVitaesController < ApplicationController
     include CoverVitaesHelper
     before_action :require_user_login, only: [:new, :create, :edit, :update, :destroy, :render_docx, :primary]
-    add_breadcrumb "Trang chủ", :root_path
 
     def index
         @cover_vitaes = CoverVitae.sample.all.sort_by{|cv| count_copy_cover_vitae(cv)}.reverse
         @cover_vitaes = Kaminari.paginate_array(@cover_vitaes).page(params[:page]).per(12)
         
-        @cover_vitaes_moderm = CoverVitae.sample.all.where(style: "Chuyên Nghiệp")
+        @cover_vitaes_moderm = CoverVitae.sample.all.where(style: I18n.t(:pro))
         @cover_vitaes_moderm = @cover_vitaes_moderm.page(params[:page]).per(12)
 
-        @cover_vitaes_creative = CoverVitae.sample.all.where(style: "Sáng tạo")
+        @cover_vitaes_creative = CoverVitae.sample.all.where(style: I18n.t(:creative))
         @cover_vitaes_creative = @cover_vitaes_creative.page(params[:page]).per(12)
 
-        @cover_vitaes_simple = CoverVitae.sample.all.where(style: "Đơn giản")
+        @cover_vitaes_simple = CoverVitae.sample.all.where(style: I18n.t(:simple))
         @cover_vitaes_simple = @cover_vitaes_simple.page(params[:page]).per(12)
 
-        @cover_vitaes_pro = CoverVitae.sample.all.where(style: "Chuyên nghiệp")
+        @cover_vitaes_pro = CoverVitae.sample.all.where(style: I18n.t(:pro))
         @cover_vitaes_pro = @cover_vitaes_pro.page(params[:page]).per(12)
 
-        @cover_vitaes_vie = CoverVitae.sample.all.where(language: "Tiếng Việt")
+        @cover_vitaes_vie = CoverVitae.sample.all.where(language: I18n.t(:vietnamese))
         @cover_vitaes_vie = @cover_vitaes_vie.page(params[:page]).per(12)
 
-        @cover_vitaes_eng = CoverVitae.sample.all.where(language: "Tiếng Anh")
+        @cover_vitaes_eng = CoverVitae.sample.all.where(language: I18n.t(:english))
         @cover_vitaes_eng =  @cover_vitaes_eng.page(params[:page]).per(12)
 
-        @cover_vitaes_jap = CoverVitae.sample.all.where(language: "Tiếng Nhật")
+        @cover_vitaes_jap = CoverVitae.sample.all.where(language: I18n.t(:japanese))
         @cover_vitaes_jap = @cover_vitaes_jap.page(params[:page]).per(12)
 
         if(params.has_key?(:tab))
@@ -34,7 +33,8 @@ class CoverVitaesController < ApplicationController
             @tab = "default"
         end
 
-        add_breadcrumb "CV & Resume", :cover_vitaes_path
+        add_breadcrumb I18n.t(:home_page), :root_path
+        add_breadcrumb I18n.t(:cv_resume), :cover_vitaes_path
     end
 
     def new
@@ -67,7 +67,8 @@ class CoverVitaesController < ApplicationController
     def show
         @cover_vitae = CoverVitae.find(params[:id])
 
-        add_breadcrumb "CV & Resume", :cover_vitaes_path
+        add_breadcrumb I18n.t(:home_page), :root_path
+        add_breadcrumb I18n.t(:cv_resume), :cover_vitaes_path
         add_breadcrumb @cover_vitae.title, cover_vitae_path(@cover_vitae)
     end
 
@@ -79,10 +80,10 @@ class CoverVitaesController < ApplicationController
     def update
         @cover_vitae = CoverVitae.find params[:id]
         if(@cover_vitae.update(cover_vitae_param))
-            flash[:success] = "Cập nhật thông tin thành công"
+            flash[:success] = I18n.t(:update_success)
             redirect_to cover_vitae_path(@cover_vitae)
         else
-            flash[:danger] = "Lỗi, không thể cập nhật thông tin"
+            flash[:danger] = I18n.t(:update_error)
         end
     end
 

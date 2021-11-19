@@ -5,8 +5,8 @@
 				<div class="col-sm-8">
 					<div class="new_interview_title_block">
 						<div class="new_interview_title">
-							<h3>Interview <%=@company.name%></h3>
-							<a>Bạn sẽ chỉ mất ít phút để chia sẻ kinh nghiệm phỏng vấn tại <%=@company.name%>, chia sẻ của bạn sẽ giúp ích cho rất nhiều người ...</a>
+							<h3><%=t(:interview)%> <%=@company.name%></h3>
+							<a><%=t(:form_interview_intro_left)%> <%=@company.name%>, <%=t(:form_interview_intro_left)%></a>
 						</div>
 						<div class="company_interview_image">
 							<%if @company.avatar?%>
@@ -18,7 +18,7 @@
 					</div>
 
 					<div class="new_interview_title_sub">
-						<a>Note: Mục có dấu <span>'*'</span> là bắt buộc</a>
+						<a><%=t(:form_require_left)%> <span>'*'</span> <%=t(:form_require_right)%></a>
 					</div>
 
 					<div class="new_interview_section">
@@ -26,7 +26,7 @@
 							<div class="row">
 								<div class="col-sm-6">
 									<div class="new_interview_label_score">
-										<a><%= f.label :satisfied, "Mức độ hài lòng của bạn với buổi phỏng vấn", class: "new_interview_label_name" %><span>*</span></a>
+										<a><%= f.label :satisfied, t(:form_interview_1), class: "new_interview_label_name" %><span>*</span></a>
 									</div>
 								</div>
 
@@ -92,7 +92,7 @@
 							<div class="row">
 								<div class="col-sm-6">
 									<div class="new_interview_label_score">
-										<a><%= f.label :difficultly, "Bạn cảm nhận thế nào về độ khó của bài phỏng vấn?", class: "new_interview_label_name" %><span>*</span></a>
+										<a><%= f.label :difficultly, t(:form_interview_2), class: "new_interview_label_name" %><span>*</span></a>
 									</div>
 								</div>
 
@@ -158,14 +158,14 @@
 							<div class="row">
 								<div class="col-sm-6">
 									<div class="new_interview_label_score">
-										<a><%= f.label :offer, "Bạn có chấp nhận offer từ công ty không?", class: "new_interview_label_name" %><span>*</span></a>
+										<a><%= f.label :offer, t(:form_interview_3), class: "new_interview_label_name" %><span>*</span></a>
 									</div>
 								</div>
 
 								<div class="col-sm-6">
 									<div class="new_interview_input">
 										<div class="new_interview_input_radio">
-											<%=f.collection_radio_buttons :offer, [[true, "Có"] ,[false, "Không"]], :first, :last, { checked: true }%>
+											<%=f.collection_radio_buttons :offer, [[true, t(:yes)] ,[false, t(:no)]], :first, :last, { checked: true }%>
 										</div>
 									</div>
 								</div>
@@ -176,42 +176,42 @@
 					<div class="new_interview_section">
 						<div class="new_interview_content">
 							<div class="new_interview_label">
-								<a><%= f.label :position, "Vị trí, công việc bạn mà tham gia phỏng vấn", class: "new_interview_label_name" %><span>*</span></a>
+								<a><%= f.label :position, t(:form_interview_4), class: "new_interview_label_name" %><span>*</span></a>
 							</div>
 
 							<div class="new_interview_input">
-								<%= f.text_field :position, :required => true, class: "form-control", placeholder: "Nhập vị trí mà bạn phỏng vấn" %>
+								<%= f.text_field :position, :required => true, class: "form-control", placeholder: t(:form_interview_4_sub) %>
 							</div>
 						</div>
 
 						<div class="new_interview_content">
 							<div class="new_interview_label">
-								<a><%= f.label :get_interview, "Bạn tìm đến công ty từ kênh thông tin nào?", class: "new_interview_label_name" %><span>*</span></a>
+								<a><%= f.label :get_interview, t(:form_interview_5), class: "new_interview_label_name" %><span>*</span></a>
 							</div>
 
 							<div class="new_interview_input">
-								<%= f.select(:get_interview, options_for_select(['Kênh tuyển dụng','Bạn bè người thân', 'Mạng xã hội', 'Quảng cáo', 'Kênh khác'], 'Kênh tuyển dụng'), {include_blank: false}, { :class => 'form-select' }) %>
+								<%= f.select(:get_interview, options_for_select([t(:form_interview_get_1),t(:form_interview_get_2), t(:form_interview_get_3), t(:form_interview_get_4), t(:form_interview_get_5)], t(:form_interview_get_1)), {include_blank: false}, { :class => 'form-select' }) %>
 							</div>
 						</div>
 						
 						<div class="new_interview_content">
 							<div class="new_interview_label">
-								<a><%= f.label :process, "Số vòng phỏng vấn bạn đã tham gia", class: "new_interview_label_name" %><span>*</span></a>
+								<a><%= f.label :process, t(:form_interview_6), class: "new_interview_label_name" %><span>*</span></a>
 							</div>
 
 							<div class="new_interview_input">
-								<%= f.select(:process, options_for_select([["1 vòng", 1], ["2 vòng", 2], ["3 vòng", 3], ["4 vòng", 4], ["5 vòng", 5]], ["1 vòng", 1]), {include_blank: false}, { :class => 'form-select' }) %>
+								<%= f.select(:process, options_for_select([["1", 1], ["2", 2], ["3", 3], ["4", 4], ["5", 5]], ["1", 1]), {include_blank: false}, { :class => 'form-select' }) %>
 							</div>
 						</div>
 					</div>
 					
 					<div class="new_interview_section">
 						<div class="new_interview_label_sub">
-							<span>Chia sẻ thêm của bạn về quá trình phỏng vấn tại <%=@company.name%>(tùy chọn) </span>
+							<span><%=t(:form_interview_7)%> <%=@company.name%>(tùy chọn) </span>
 						</div>
 						<div class="new_interview_content">
 							<div class="new_interview_label">
-								<a><%= f.label :content, "Chia sẻ về quá trình phỏng vấn, buổi phỏng vấn, người tham gia phỏng vấn ...", class: "new_interview_label_name" %></a>
+								<a><%= f.label :content, t(:form_interview_7_sub), class: "new_interview_label_name" %></a>
 							</div>
 
 							<div class="new_interview_input">
@@ -222,30 +222,30 @@
 					</div>
 
 					<div class="new_interview_submit">
-						<%= f.submit "Gửi chia sẻ", class: "new_interview_form_submit" %>
+						<%= f.submit t(:send), class: "new_interview_form_submit" %>
 					</div>
 				</div>
 				<div class="col-sm-4">
 					<div class="interview_policy">
 						<div class="interview_policy_title">
-							<a>Lưu ý trước khi viết bài Interview</a>
+							<a><%=t(:form_help_cmn)%></a>
 						</div>
 						<div class="interview_policy_content">
 							<div class="interview_policy_content_index">
-								· Không sử dụng từ ngữ mang ý xúc phạm, miệt thị người khác
+								· <%=t(:form_help_cmn_1)%>
 							</div>
 							<div class="interview_policy_content_index">
-								· Không sử dụng từ ngữ mang tính chất kích động, bạo lực
+								· <%=t(:form_help_cmn_2)%>
 							</div>
 							<div class="interview_policy_content_index">
-								· Không cung cấp thông tin cá nhân
+								· <%=t(:form_help_cmn_3)%>
 							</div>
 							<div class="interview_policy_content_index">
-								· Không cung cấp thông tin bảo mật, bí mật kinh doanh của công ty
+								· <%=t(:form_help_cmn_4)%>
 							</div>
 							<div class="interview_policy_content_link">
-								Cảm ơn bạn đã đưa ra những đánh giá chân thực nhất. Xem thêm thông tin chi tiết về 
-								<a href="<%=term_path%>">thỏa thuận sử dụng </a>
+								<%=t(:form_help_cmn_5)%>
+								<a href="<%=term_path%>"><%=t(:term_and_service)%> </a>
 							</div>
 						</div>
 					</div>

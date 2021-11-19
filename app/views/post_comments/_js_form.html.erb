@@ -1,6 +1,6 @@
 <div id="post_comment_index_<%=@post.id%>">
     <div class="post_count">
-        <span><%= @post.post_comments.count%> Bình luận</span>
+        <span><%= @post.post_comments.count%> <%=t(:comment)%></span>
     </div>
     <%= form_for([@post, PostComment.new], remote: true) do |f| %>
         <div class="new_post_show_comment_section">
@@ -11,11 +11,11 @@
         </div>
 
         <div class="new_post_show_comment_submit">
-            <%= f.submit "Gửi bình luận", class: "new_post_comment_form_submit" %>
+            <%= f.submit t(:send), class: "new_post_comment_form_submit" %>
         </div>
 
         <div class="post_comment_sent">
-            <span>Bình luận của bạn đã được gửi, hãy cuộn xuống dưới trang để xem tiếp ...</span>
+            <span><%=t(:comment_noti)%></span>
         </div>
     <%end%>
     <div class="post_comment">

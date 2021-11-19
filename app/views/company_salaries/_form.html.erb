@@ -5,8 +5,8 @@
 				<div class="col-sm-8">
 					<div class="new_salary_title_block">
 						<div class="new_salary_title">
-							<h3>Chia sẻ lương, đãi ngộ tại <%=@company.name%></h3>
-							<a>Bạn sẽ chỉ mất ít phút để chia sẻ lương của bạn tại <%=@company.name%>, những thông tin của bạn sẽ giúp ích cho rất nhiều người khác ...</a>
+							<h3><%=t(:share_salary_at)%> <%=@company.name%></h3>
+							<a><%=t(:form_salary_intro_left)%> <%=@company.name%>, <%=t(:form_salary_intro_right)%></a>
 						</div>
 						<div class="company_salary_image">
 							<%if @company.avatar?%>
@@ -18,54 +18,54 @@
 					</div>
 
 					<div class="new_salary_title_sub">
-						<a>Note: Mục có dấu <span>'*'</span> là bắt buộc</a>
+						<a><%=t(:form_require_left)%> <span>'*'</span> <%=t(:form_require_right)%></a>
 					</div>
 
 					<div class="new_salary_section">
 						<div class="new_salary_content">
 							<div class="new_salary_label">
-								<a><%= f.label :salary_job, "Tên công việc của bạn", class: "new_salary_label_name" %><span>*</span></a>
+								<a><%= f.label :salary_job, t(:form_salary_job), class: "new_salary_label_name" %><span>*</span></a>
 							</div>
 
 							<div class="new_salary_input">
-								<%= f.text_field :salary_job, :required => true, class: "form-control", placeholder: "Nhập vị trí mà bạn đang làm việc tại công ty" %>
+								<%= f.text_field :salary_job, :required => true, class: "form-control", placeholder: t(:form_salary_enter_job) %>
 							</div>
 						</div>
 
 						<div class="new_salary_content">
 							<div class="new_salary_label">
-								<a><%= f.label :level, "Vị trí làm việc của bạn", class: "new_salary_label_name" %><span>*</span></a>
+								<a><%= f.label :level, t(:form_salary_position), class: "new_salary_label_name" %><span>*</span></a>
 							</div>
 
 							<div class="new_salary_input">
-								<%= f.select(:level, options_for_select([['Intern', 1], ['Junior', 2], ['Middle', 3], ['Senior', 4], ['Expert', 5], ['Leader', 6], ['Architect', 7]]), {include_blank: false, :required => true}, { :class => 'form-select' }) %>
+								<%= f.select(:level, options_for_select([[t(:intern), 1], [t(:junior), 2], [t(:staff), 3], [t(:senior), 4], [t(:expert), 5], [t(:leader), 6], [t(:arch), 7]]), {include_blank: false, :required => true}, { :class => 'form-select' }) %>
 							</div>
 						</div>
 
 						<div class="new_salary_content">
 							<div class="new_salary_label">
-								<a><%= f.label :locate, "Bạn làm việc trong phòng ban nào?", class: "new_salary_label_name" %><span>*</span></a>
+								<a><%= f.label :locate, t(:form_salary_room), class: "new_salary_label_name" %><span>*</span></a>
 							</div>
 
 							<div class="new_salary_input">
-								<%= f.select(:locate, options_for_select([['Tài chính kế toán', 1], 
-																		['Công nghệ thông tin', 2], 
-																		['Tư vấn, chiến lược', 3], 
-																		['Kinh doanh', 4], 
-																		['Nghiên cứu phát triển', 5], 
-																		['Kĩ thuật', 6], 
-																		['Hành chính, Nhân sự', 7], 
-																		['Truyền thông', 8], 
-																		['Quản lý dự án', 9], 
-																		['Sale & Marketing', 10],
-																		['Sản xuất', 11],
-																		['Dịch vụ khách hàng', 12]]), {include_blank: false, :required => true}, { :class => 'form-select' }) %>
+								<%= f.select(:locate, options_for_select([[t(:salary_1), 1], 
+																		[t(:salary_2), 2], 
+																		[t(:salary_3), 3], 
+																		[t(:salary_4), 4], 
+																		[t(:salary_5), 5], 
+																		[t(:salary_6), 6], 
+																		[t(:salary_7), 7], 
+																		[t(:salary_8), 8], 
+																		[t(:salary_9), 9], 
+																		[t(:salary_10), 10],
+																		[t(:salary_11), 11],
+																		[t(:salary_12), 12]]), {include_blank: false, :required => true}, { :class => 'form-select' }) %>
 							</div>
 						</div>
 
 						<div class="new_salary_content">
 							<div class="new_salary_label">
-								<a><%= f.label :salary, "Mức lương mà bạn đã nhận được", class: "new_salary_label_name" %><span>*</span></a>
+								<a><%= f.label :salary, t(:form_salary_salary), class: "new_salary_label_name" %><span>*</span></a>
 							</div>
 
 							<div class="new_salary_input">
@@ -75,7 +75,7 @@
 
 						<div class="new_salary_content">
 							<div class="new_salary_label">
-								<a><%= f.label :salary_bonus, "Bạn có nhận được phần thưởng, bonus, hay thưởng doanh số không?(tùy chọn)", class: "new_salary_label_name" %></a>
+								<a><%= f.label :salary_bonus, t(:form_salary_bonus), class: "new_salary_label_name" %></a>
 							</div>
 
 							<div class="new_salary_input">
@@ -85,7 +85,7 @@
 
 						<div class="new_salary_content">
 							<div class="new_salary_label">
-								<a><%= f.label :salary_currency, "Đơn vị tiền tệ", class: "new_salary_label_name" %><span>*</span></a>
+								<a><%= f.label :salary_currency, t(:form_salary_currency), class: "new_salary_label_name" %><span>*</span></a>
 							</div>
 
 							<div class="new_salary_input">
@@ -97,19 +97,19 @@
 					<div class="new_salary_section">
 						<div class="new_salary_content">
 							<div class="new_salary_label">
-								<a><%= f.label :salary_working_status, "Bạn có còn làm việc ở đây không?", class: "new_salary_label_name" %></a>
+								<a><%= f.label :salary_working_status, t(:form_salary_status), class: "new_salary_label_name" %></a>
 							</div>
 
 							<div class="new_salary_input">
 								<div class="new_salary_input_radio">
-									<%=f.collection_radio_buttons :salary_working_status, [[true, "Có"] ,[false, "Không"]], :first, :last, { checked: true }%>
+									<%=f.collection_radio_buttons :salary_working_status, [[true, t(:yes)] ,[false, t(:no)]], :first, :last, { checked: true }%>
 								</div>
 							</div>
 						</div>
 
 						<div class="new_salary_content">
 							<div class="new_salary_label">
-								<a><%= f.label :salary_experience, "Bạn đã làm việc ở đây được bao lâu?", class: "new_salary_label_name" %></a>
+								<a><%= f.label :salary_experience, t(:form_salary_working_time), class: "new_salary_label_name" %></a>
 							</div>
 
 							<div class="new_salary_input">
@@ -119,31 +119,31 @@
 					</div>
 
 					<div class="new_salary_submit">
-						<%= f.submit "Gửi", class: "new_salary_form_submit" %>
+						<%= f.submit t(:send), class: "new_salary_form_submit" %>
 					</div>
 				</div>
 
 				<div class="col-sm-4">
 					<div class="salary_policy">
 						<div class="salary_policy_title">
-							<a>Lưu ý trước khi chia sẻ lương</a>
+							<a><%=t(:form_help_cmn)%></a>
 						</div>
 						<div class="salary_policy_content">
 							<div class="salary_policy_content_index">
-								· Không sử dụng từ ngữ mang ý xúc phạm, miệt thị người khác
+								· <%=t(:form_help_cmn_1)%>
 							</div>
 							<div class="salary_policy_content_index">
-								· Không sử dụng từ ngữ mang tính chất kích động, bạo lực
+								· <%=t(:form_help_cmn_2)%>
 							</div>
 							<div class="salary_policy_content_index">
-								· Không cung cấp thông tin cá nhân
+								· <%=t(:form_help_cmn_3)%>
 							</div>
 							<div class="salary_policy_content_index">
-								· Không cung cấp thông tin bảo mật, bí mật kinh doanh của công ty
+								· <%=t(:form_help_cmn_4)%>
 							</div>
 							<div class="salary_policy_content_link">
-								Cảm ơn bạn đã đưa ra những đánh giá chân thực nhất. Xem thêm thông tin chi tiết về 
-								<a href="<%=term_path%>">thỏa thuận sử dụng </a>
+								<%=t(:form_help_cmn_5)%>
+								<a href="<%=term_path%>"><%=t(:term_and_service)%> </a>
 							</div>
 						</div>
 					</div>

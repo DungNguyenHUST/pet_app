@@ -31,21 +31,21 @@
                 <div class="question_toolbar">
                     <div class="question_reply_block">
                         <%if user_signed_in?%>
-                            <button class="reply_btn" onclick="myFunctionReplyquestion(<%=company_question.id%>)"><i class="material-icons-outlined">chat_bubble_outline</i> <span><%= company_question.company_reply_questions.count%></span> <a>Trả lời</a> </button>
+                            <button class="reply_btn" onclick="myFunctionReplyquestion(<%=company_question.id%>)"><i class="material-icons-outlined">chat_bubble_outline</i> <span><%= company_question.company_reply_questions.count%></span> <a><%=t(:reply)%></a> </button>
                         <%else%>
                             <button type="button" data-toggle="modal" data-target="#buttonModalLoginCenter" class="reply_btn">
-                                <i class="material-icons-outlined">chat_bubble_outline</i> <span><%= company_question.company_reply_questions.count%></span> <a>Trả lời</a>
+                                <i class="material-icons-outlined">chat_bubble_outline</i> <span><%= company_question.company_reply_questions.count%></span> <a><%=t(:reply)%></a>
                             </button>
                         <%end%>
                     </div>
                     <div class="question_report_block">
                         <%if user_signed_in?%>
                             <button class="report_btn" type="button" class="btn" data-toggle="modal" data-target="#buttonModalquestionCommentIndexCenter">
-                                <i class="material-icons-outlined">flag</i> <a>Báo xấu</a>
+                                <i class="material-icons-outlined">flag</i> <a><%=t(:report)%></a>
                             </button>
                         <%else%>
                             <button class="report_btn" type="button" class="btn" data-toggle="modal" data-target="#buttonModalLoginCenter">
-                                <i class="material-icons-outlined">flag</i> <a>Báo xấu</a>
+                                <i class="material-icons-outlined">flag</i> <a><%=t(:report)%></a>
                             </button>
                         <%end%>
                         <!-- Modal -->

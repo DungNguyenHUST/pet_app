@@ -6,8 +6,6 @@ class CompanyJobsController < ApplicationController
     before_action :require_employer_login, only: [:new, :create, :edit, :update, :destroy]
     before_action :require_admin_login, only: [:approve]
 
-    add_breadcrumb "Trang chủ", :root_path
-
     def index
         @company_jobs = CompanyJob.all.expire
     end
@@ -33,9 +31,9 @@ class CompanyJobsController < ApplicationController
 
             if @company_job.save
                 redirect_to employer_index_job_path
-                flash[:success] = "Để đảm bảo chất lượng thông tin, tin đăng của bạn đang được xếp vào hàng chờ để duyệt thông tin. Xin vui lòng kiểm tra kết quả sau ít phút..."
+                flash[:success] = I18n.t(:job_create_noti)
             else
-                flash[:danger] = "Lỗi, hãy điền đủ nội dung có dấu *"
+                flash[:danger] = I18n.t(:create_error)
                 render :new
             end
         elsif admin_signed_in?
@@ -44,11 +42,11 @@ class CompanyJobsController < ApplicationController
             if @company_job.save
                 redirect_to company_job_path(@company_job)
             else
-                flash[:danger] = "Lỗi, hãy điền đủ nội dung có dấu *"
+                flash[:danger] = I18n.t(:create_error)
                 render :new
             end
         else
-            flash[:danger] = "Error, no permission for this action"
+            flash[:danger] = I18n.t(:error_no_permit)
         end
     end
 
@@ -62,19 +60,19 @@ class CompanyJobsController < ApplicationController
         @company_job = CompanyJob.friendly.find(params[:id])
 
         if(@company_job.update(company_job_param))
-            flash[:success] = "Update thông tin thành công"
+            flash[:success] = I18n.t(:update_success)
             redirect_to company_job_path(@company_job)
         else
-            flash[:danger] = "Lỗi, không thể cập nhật thông tin"
+            flash[:danger] = I18n.t(:update_error)
         end
     end
 
     def approve
         @company_job = CompanyJob.friendly.find(params[:id])
         if @company_job.update(:approved => true)
-            flash[:success] = "Approved"
+            flash[:success] = I18n.t(:approve_success)
         else
-            flash[:danger] = "Error"
+            flash[:danger] = I18n.t(:approve_error)
         end
         redirect_to admin_path(current_admin, tab: 'AdminJobApprovingID')
     end
@@ -94,7 +92,8 @@ class CompanyJobsController < ApplicationController
         @company = find_company_of_job(@company_job)
         @company_job.increment!(:view_count)
         
-        add_breadcrumb "Tìm kiếm việc làm", :jobs_search_path
+        add_breadcrumb I18n.t(:home_page), :root_path
+        add_breadcrumb I18n.t(:job_search), :jobs_search_path
         add_breadcrumb @company_job.title, company_job_path(@company_job)
         
         if verified_job(@company_job)
@@ -124,7 +123,8 @@ class CompanyJobsController < ApplicationController
 
     def search
         
-        add_breadcrumb "Tìm kiếm việc làm", :jobs_search_path
+        add_breadcrumb I18n.t(:home_page), :root_path
+        add_breadcrumb I18n.t(:job_search), :jobs_search_path
         
         # Auto complete
         if params.has_key?(:search) && !params.has_key?(:filter)

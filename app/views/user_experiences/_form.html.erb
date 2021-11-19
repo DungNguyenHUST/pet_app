@@ -1,33 +1,33 @@
 <div class="user_profile_form">
     <%= form_for([@user, user_experience], remote: true) do |f| %> 
         <div class="user_profile_title_sub">
-            <a>Lưu ý: Mục có dấu <span>'*'</span> là bắt buộc</a>
+            <a><%=t(:form_require_left)%> <span>'*'</span> <%=t(:form_require_right)%></a>
         </div>
         <div class="row">
             <div class="col-sm-6">
                 <div class="user_profile_content">
                     <div class="user_profile_label">
-                        <a><%= f.label :job_level, "Chức danh hiện tại của bạn", class: "user_profile_label_name" %><span>*</span></a>
+                        <a><%= f.label :job_level, t(:user_exp_form_level), class: "user_profile_label_name" %><span>*</span></a>
                     </div>
 
                     <div class="user_profile_input">
-                        <%= f.text_field :job_level, :required => true, class: "form-control", placeholder: "Ex: Nhân viên, Giám đốc..."%>
+                        <%= f.text_field :job_level, :required => true, class: "form-control", placeholder: t(:user_exp_form_level_sub)%>
                     </div>
                 </div>
 
                 <div class="user_profile_content">
                     <div class="user_profile_label">
-                        <a><%= f.label :company_name, "Tên công ty", class: "user_profile_label_name" %><span>*</span></a>
+                        <a><%= f.label :company_name, t(:user_exp_form_company), class: "user_profile_label_name" %><span>*</span></a>
                     </div>
 
                     <div class="user_profile_input">
-                        <%= f.text_field :company_name, :required => true, class: "form-control", placeholder: "Ex: Vingroup, Viettel..."%>
+                        <%= f.text_field :company_name, :required => true, class: "form-control", placeholder: t(:user_exp_form_company_sub)%>
                     </div>
                 </div>
 
                 <div class="user_profile_content">
                     <div class="user_profile_label">
-                        <a><%= f.label :company_location, "Địa điểm công ty", class: "user_profile_label_name" %><span>*</span></a>
+                        <a><%= f.label :company_location, t(:user_exp_form_location), class: "user_profile_label_name" %><span>*</span></a>
                     </div>
 
                     <div class="user_profile_input">
@@ -50,7 +50,7 @@
             <div class="col-sm-6">
                 <div class="user_profile_content">
                     <div class="user_profile_label">
-                        <a><%= f.label :start_date, "Thời gian bắt đầu", class: "user_profile_label_name" %><span>*</span></a>
+                        <a><%= f.label :start_date, t(:start_date), class: "user_profile_label_name" %><span>*</span></a>
                     </div>
 
                     <div class="user_profile_input">
@@ -60,7 +60,7 @@
 
                 <div class="user_profile_content">
                     <div class="user_profile_label">
-                        <a><%= f.label :end_date, "Thời gian kết thúc", class: "user_profile_label_name" %><span>*</span></a>
+                        <a><%= f.label :end_date, t(:end_date), class: "user_profile_label_name" %><span>*</span></a>
                     </div>
 
                     <div class="user_profile_input">
@@ -72,11 +72,11 @@
 
         <div class="user_profile_content">
             <div class="user_profile_label">
-                <a><%= f.label :job_summary, "Mô tả quá trình làm việc(khoảng 300 từ)", class: "user_profile_label_name" %><span>*</span></a>
+                <a><%= f.label :job_summary, t(:user_exp_form_des), class: "user_profile_label_name" %><span>*</span></a>
             </div>
 
             <div class="user_profile_input">
-                <%= f.text_area :job_summary, class: "form-control", placeholder: "Giới thiệu quá trình làm việc, thành tựu..." %>
+                <%= f.text_area :job_summary, class: "form-control", placeholder: t(:user_exp_form_des_sub) %>
                 <%= tinymce :mini %>
             </div>
         </div>
@@ -84,7 +84,7 @@
         <div class="user_profile_content">
             <div class="user_profile_input_radio">
                 <%= f.check_box :enrolled, type: "checkbox"%>
-                <a><%= f.label :enrolled, "Tôi đang làm việc tại đây"%></a>
+                <a><%= f.label :enrolled, t(:user_exp_form_working_here)%></a>
             </div>
         </div>
 
@@ -93,13 +93,13 @@
             </div>
             <div class="col-sm-3">
                 <div class="user_profile_cancel">
-                    <button class="user_profile_cancel_btn" onclick="myFunctionUserExp('profile_exp_form')"><a>Hủy bỏ</a></button>
+                    <button class="user_profile_cancel_btn" onclick="myFunctionUserExp('profile_exp_form')"><a><%=t(:cancel)%></a></button>
                 </div>
             </div>
 
             <div class="col-sm-3">
                 <div class="user_profile_submit">
-                    <%= f.submit "Cập nhật", class: "user_profile_form_submit"%>
+                    <%= f.submit t(:update), class: "user_profile_form_submit"%>
                 </div>
             </div>
         </div>

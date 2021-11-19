@@ -14,14 +14,16 @@
                             <i class="material-icons">help</i>
                         </div>
                         <div class="question_new_not_found">
-                            <span>Hãy là người đầu tiên đặt câu hỏi về <%=@company.name%></span>
+                            <span><%=t(:company_help)%> <%=@company.name%></span>
                         </div>
                         <div class="question_new_not_found_action">
                             <div class="question_new_label">
-                                <a>Đặt câu hỏi tới nhà tuyển dụng</a>
+                                <a><%=t(:company_help_1)%></a>
                             </div>
                             <div class="question_new_button">
-                                <%= link_to '<button type="submit"> <i class="material-icons-outlined">edit</i> <span> Thêm câu hỏi mới</span> </button>'.html_safe, new_company_company_question_path(@company) %>
+                                <%= link_to new_company_company_question_path(@company) do%>
+                                    <button type="submit"> <i class="material-icons-outlined">edit</i> <span> <%=t(:add_question)%></span> </button>
+                                <%end%>
                             </div>
                         </div>
                     </div>
@@ -34,7 +36,7 @@
                 <%if @company_jobs.total_count >0%>
                     <div class="company_job_refer_block">
                         <div class="company_job_label">
-                            <a>Tin tuyển dụng</a>
+                            <a><%=t(:jobs)%></a>
                         </div>
                         <div class="company_job_des">
                             <%@company_jobs.order('created_at DESC').first(10).each do |company_job|%>

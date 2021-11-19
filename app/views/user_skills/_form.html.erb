@@ -1,31 +1,31 @@
 <div class="user_profile_form">
     <%= form_for([@user, user_skill], remote: true) do |f| %> 
         <div class="user_profile_title_sub">
-            <a>Lưu ý: Mục có dấu <span>'*'</span> là bắt buộc</a>
+            <a><%=t(:form_require_left)%> <span>'*'</span> <%=t(:form_require_right)%></a>
         </div>
         <div class="user_profile_content">
             <div class="user_profile_label">
-                <a><%= f.label :skill_name, "Tên kĩ năng", class: "user_profile_label_name" %><span>*</span></a>
+                <a><%= f.label :skill_name, t(:user_skill_form_name), class: "user_profile_label_name" %><span>*</span></a>
             </div>
 
             <div class="user_profile_input">
-                <%= f.text_field :skill_name, :required => true, class: "form-control", placeholder: "Ex: word, excel..."%>
+                <%= f.text_field :skill_name, :required => true, class: "form-control", placeholder: t(:user_skill_form_name_sub)%>
             </div>
         </div>
 
         <div class="user_profile_content">
             <div class="user_profile_label">
-                <a><%= f.label :skill_level, "Mức độ thành thạo", class: "user_profile_label_name" %><span>*</span></a>
+                <a><%= f.label :skill_level, t(:user_skill_form_level), class: "user_profile_label_name" %><span>*</span></a>
             </div>
 
             <div class="user_profile_input">
-                <%= f.select(:skill_level, options_for_select(['Đang tìm hiểu', 'Mới bắt đầu', 'Có kinh nghiệm', 'Tốt', 'Xuất sắc'], 'Tốt'), {include_blank: false}, { :class => 'form-select' }) %>
+                <%= f.select(:skill_level, options_for_select([t(:user_skill_form_level_sub_1), t(:user_skill_form_level_sub_2), t(:user_skill_form_level_sub_3), t(:user_skill_form_level_sub_4), t(:user_skill_form_level_sub_5)], t(:user_skill_form_level_sub_4)), {include_blank: false}, { :class => 'form-select' }) %>
             </div>
         </div>
 
         <div class="user_profile_content">
             <div class="user_profile_label">
-                <a><%= f.label :skill_summary, "Mô tả kĩ năng", class: "user_profile_label_name" %><span>*</span></a>
+                <a><%= f.label :skill_summary, t(:user_skill_form_des), class: "user_profile_label_name" %><span>*</span></a>
             </div>
 
             <div class="user_profile_input">
@@ -39,13 +39,13 @@
             </div>
             <div class="col-sm-3">
                 <div class="user_profile_cancel">
-                    <button class="user_profile_cancel_btn" onclick="myFunctionUserSkill('profile_skill_form')"><a>Hủy bỏ</a></button>
+                    <button class="user_profile_cancel_btn" onclick="myFunctionUserSkill('profile_skill_form')"><a><%=t(:cancel)%></a></button>
                 </div>
             </div>
 
             <div class="col-sm-3">
                 <div class="user_profile_submit">
-                    <%= f.submit "Cập nhật", class: "user_profile_form_submit"%>
+                    <%= f.submit t(:update), class: "user_profile_form_submit"%>
                 </div>
             </div>
         </div>

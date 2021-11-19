@@ -18,13 +18,13 @@
             <div class="post_category_info">
                 <%post_category=''%>
                 <%if(post.category.to_i == 1) %>
-                    <% post_category = "Con đường sự nghiệp" %>
+                    <% post_category = t(:career_way) %>
                 <% elsif (post.category.to_i == 2) %>
-                    <% post_category = "Khoa học công nghệ" %>
+                    <% post_category = t(:science_and_tech) %>
                 <% elsif (post.category.to_i == 3) %>
-                    <% post_category = "Blog" %>
+                    <% post_category = t(:blog) %>
                 <% else %>
-                    <% post_category = "Danh mục khác" %>
+                    <% post_category = t(:other) %>
                 <%end%>
                 <div class="post_category">
                     <a><%= post_category %></a>
@@ -43,7 +43,9 @@
         </div>
 
         <div class="post_view">
-            <%= link_to '<button type="submit"> Đọc tiếp <i class="material-icons-outlined">chevron_right</i></button>'.html_safe, post_path(post) %>
+            <%= link_to post_path(post) do%>
+                <button type="submit"> <%t(:read_more)%> <i class="material-icons-outlined">chevron_right</i></button>
+            <%end%>
         </div>
     </div>
 </div>

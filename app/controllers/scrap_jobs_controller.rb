@@ -95,9 +95,9 @@ class ScrapJobsController < ApplicationController
         @scrap_job = ScrapJob.find(params[:id])
 
         if(@scrap_job.update(scrap_job_param))
-            flash[:success] = "Update thông tin thành công"
+            flash[:success] = I18n.t(:update_success)
         else
-            flash[:danger] = "Lỗi, không thể cập nhật thông tin"
+            flash[:danger] = I18n.t(:update_error)
         end
         redirect_to admin_path(current_admin, tab: 'AdminScrapJobID')
     end

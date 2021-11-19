@@ -5,7 +5,7 @@
                 <%if @company.company_interviews.count > 0%>
                     <div class="company_interview_score_block">
                         <div class="company_interview_title">
-                            <a>Interview <%= @company.name %></a>
+                            <a><%=t(:interviews)%> <%= @company.name %></a>
                         </div>
                         <div class="company_interview_score">
                             <%= render :partial => 'company_interviews/interview_score' %>
@@ -21,28 +21,32 @@
                             <i class="material-icons">people</i>
                         </div>
                         <div class="interview_new_not_found">
-                            <span>Rất tiếc, chưa có đủ dữ liệu thống kê. Bạn sẽ chỉ mất 1 phút để hoàn thành bài chia sẻ phỏng vấn tại <%=@company.name%>, kinh nghiệm của bạn của bạn sẽ rất hữu ích cho mọi người</span>
+                            <span><%=t(:interview_not_found_left)%> <%=@company.name%>, <%=t(:interview_not_found_right)%></span>
                         </div>
                         <div class="interview_new_not_found_action">
                             <div class="interview_new_label">
-                                <a>Bạn đã từng tham gia phỏng vấn?</a>
+                                <a><%=t(:interview_not_found_1)%></a>
                             </div>
                             <div class="interview_new_button">
-                                <%= link_to '<button type="submit"> <i class="material-icons-outlined">edit</i> <span> Review phỏng vấn</span> </button>'.html_safe, new_company_company_interview_path(@company) %>
+                                <%= link_to new_company_company_interview_path(@company) do %>
+                                    <button type="submit"> <i class="material-icons-outlined">edit</i> <span> <%=t(:write_interview)%></span> </button>
+                                <%end%>
                             </div>
                         </div>
                     </div>
                 <%end%>
                 <div class="new_interview_question">
                     <div class="new_interview_question_title">
-                        <i class="material-icons-outlined checked">record_voice_over</i><strong> Chia sẻ câu hỏi phỏng vấn </strong>
+                        <i class="material-icons-outlined checked">record_voice_over</i><strong> <%=t(:share_interview_question)%> </strong>
                     </div>
                     <div class="new_interview_question_button">
                         <%if user_signed_in?%>
-                            <%= link_to '<button type="submit"> <i class="material-icons-outlined">add</i> <span> Thêm câu hỏi mới </span> </button>'.html_safe, new_problem_path %>
+                            <%= link_to new_problem_path do%>
+                                <button type="submit"> <i class="material-icons-outlined">add</i> <span> <%=t(:add_interview_question)%> </span> </button>
+                            <%end%>
                         <%else%>
                             <button type="button" data-toggle="modal" data-target="#buttonModalLoginCenter">
-                                <i class="material-icons-outlined">add</i> <span> Thêm câu hỏi mới </span>
+                                <i class="material-icons-outlined">add</i> <span> <%=t(:add_interview_question)%> </span>
                             </button>
                         <%end%>
                     </div>
@@ -55,7 +59,7 @@
                 <%if @company_jobs.total_count >0%>
                     <div class="company_job_refer_block">
                         <div class="company_job_label">
-                            <a>Tin tuyển dụng</a>
+                            <a><%=t(:jobs)%></a>
                         </div>
                         <div class="company_job_des">
                             <%@company_jobs.order('created_at DESC').first(10).each do |company_job|%>

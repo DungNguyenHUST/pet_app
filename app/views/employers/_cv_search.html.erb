@@ -3,7 +3,7 @@
         <div class="employer_cv_search_index">
             <%unless is_all == true%>
                 <div class="employer_cv_search_label">
-                    <span><%=cv_searched.total_count%> hồ sơ phù hợp</span>						
+                    <span><%=cv_searched.total_count%> <%=t(:suitable_profile)%></span>						
                 </div>
             <%end%>
             <div class="row">
@@ -37,31 +37,31 @@
     <%else%>
         <div class="employer_cv_search_not_found_block">
             <div class="employer_cv_search_not_found_label">
-                <span>Rất tiếc, không tìm được hồ sơ phù hợp</span>
+                <span><%=t(:profile_search_not_found)%></span>
             </div>
             <div class="employer_cv_search_not_found_image">
                 <%=image_tag("others/no_result_found.png")%>
             </div>
             <div class="employer_cv_search_not_found_help">
-                <a>Gợi ý từ khóa tìm kiếm:</a>
+                <a><%=t(:profile_search_not_found_1)%>:</a>
                 <ul>
                     <li>
-                        Tìm kiếm với từ khoá cụ thể như vị trí công việc, kĩ năng. Ví dụ: Nhân viên kinh doanh, sales ...
+                        <%=t(:profile_search_not_found_2)%>
                     </li>
 
                     <li>
-                        Tìm kiếm theo tên công ty bằng tiếng việt hoặc tiếng anh.
+                        <%=t(:profile_search_not_found_3)%>.
                     </li>
 
                     <li>
-                        Sử dụng bộ lọc để có kết quả tìm kiếm chính xác hơn
+                        <%=t(:profile_search_not_found_4)%>
                     </li>
                 </ul>
             </div>
 
             <div class="employer_cv_search_not_found_suggest">
                 <div class="employer_cv_search_not_found_suggest_label">
-                    <a>Hồ sơ mới cập nhật</a>
+                    <a><%=t(:new_updated_profile)%></a>
                 </div>
                 <div class="row">
                     <%@user_cvs.each do |user_cv|%>

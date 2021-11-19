@@ -5,16 +5,16 @@
                 <div class='col-sm-5'>
                     <div class="employer_wellcome_left_block">
                         <div class="employer_wellcome_bar_label">
-                            <h3>Đăng tin tuyển dụng hoàn toàn miễn phí.</h3>
+                            <h3><%=t(:wellcome_employer_label)%>.</h3>
                         </div>
                         <div class="employer_wellcome_button">
                             <%= button_to new_employer_registration_path, :method => :get do%>
-                                <a>Trở thành nhà tuyển dụng</a>
+                                <a><%=t(:wellcome_employer_sub_1)%></a>
                                 <i class="material-icons-outlined">arrow_forward</i>
                             <%end%>
                         </div>
                         <div class="employer_wellcome_login">
-                            Bạn đã có tài khoản nhà tuyển dụng? <a><%= link_to " Đăng nhập", new_employer_session_path %></a>
+                            <%=t(:wellcome_employer_sub_2)%> <a><%= link_to t(:signin), new_employer_session_path %></a>
                         </div>
                     </div>
                 </div>
@@ -30,7 +30,7 @@
     <div class="container">
         <div class="employer_wellcome_price_block">
             <div class="employer_wellcome_price_label">
-                <h3>Bảng chi phí quảng cáo tin tuyển dụng</h3>
+                <h3><%=t(:list_of_service)%></h3>
             </div>
             <div class="employer_wellcome_price_detail">
                 <div class="row">
@@ -38,17 +38,19 @@
                         <div class="card card1 h-100">
                             <div class="card-body">
                                 <h5 class="card-title">F-Basic</h5>
-                                    <small class='text-muted'>Tiết kiệm chi phí</small>
+                                    <small class='text-muted'><%=t(:cost_save)%></small>
                                 <br><br>
-                                    <span class="h2">0đ</span>/tháng
+                                    <span class="h2">0<%=t(:vnd_short)%></span>/<%=t(:month)%>
                                 <br><br>
                                 <div class="d-grid my-3">
-                                    <%= link_to '<button class="btn btn-outline-dark btn-block">Miễn phí</button>'.html_safe, employer_plan_path %>
+                                    <%= link_to employer_plan_path do %>
+                                        <button class="btn btn-outline-dark btn-block"><%=t(:free)%></button>
+                                    <%end%>
                                 </div>
                                 <ul>
-                                    <li>Miễn phí đăng tin không giới hạn</li>
-                                    <li>Quản lý tin đăng chuyên nghiệp</li>
-                                    <li>Hỗ trợ khách hàng 24/7</li>
+                                    <li><%=t(:free_post_job)%></li>
+                                    <li><%=t(:pro_mana_job)%></li>
+                                    <li><%=t(:support_247)%></li>
                                 </ul>
                             </div>
                         </div>
@@ -58,17 +60,19 @@
                         <div class="card card2 h-100">
                             <div class="card-body">
                                 <h5 class="card-title">F-Eco</h5>
-                                <small class='text-muted'>Được sử dụng nhiều nhất</small>
+                                <small class='text-muted'><%=t(:mosted_use)%></small>
                                 <br><br>
-                                <span class="h2">499.000đ</span>/tháng <mark>-20%</mark>
+                                <span class="h2">499.000<%=t(:vnd_short)%></span>/<%=t(:month)%> <mark>-20%</mark>
                                 <br><br>
                                 <div class="d-grid my-3">
-                                    <%= link_to '<button class="btn btn-outline-dark btn-block">Mua ngay</button>'.html_safe, employer_plan_path %>
+                                    <%= link_to employer_plan_path do %>
+                                        <button class="btn btn-outline-dark btn-block"><%=t(:buy_now)%></button>
+                                    <%end%>
                                 </div>
                                 <ul>
-                                    <li>Miễn phí đăng tin không giới hạn</li>
-                                    <li>Hiển thị nổi bật trong kết quả tìm kiếm</li>
-                                    <li>Hỗ trợ khách hàng 24/7</li>
+                                    <li><%=t(:free_post_job)%></li>
+                                    <li><%=t(:highlight_search)%></li>
+                                    <li><%=t(:support_247)%></li>
                                 </ul>
                             </div>
                         </div>
@@ -78,17 +82,19 @@
                         <div class="card card3 h-100">
                             <div class="card-body">
                                 <h5 class="card-title">F-Pro</h5>
-                                <small class='text-muted'>Hiệu quả cao nhất</small>
+                                <small class='text-muted'><%=t(:high_efficiency)%></small>
                                 <br><br>
-                                    <span class="h2">999.000đ</span>/tháng <mark>-25%</mark>
+                                    <span class="h2">999.000<%=t(:vnd_short)%></span>/<%=t(:month)%> <mark>-25%</mark>
                                 <br><br>
                                 <div class="d-grid my-3">
-                                    <%= link_to '<button class="btn btn-outline-dark btn-block">Mua ngay</button>'.html_safe, employer_plan_path %>
+                                    <%= link_to employer_plan_path do %>
+                                        <button class="btn btn-outline-dark btn-block"><%=t(:buy_now)%></button>
+                                    <%end%>
                                 </div>
                                 <ul>
-                                    <li>Tiếp cận hồ sơ ứng viên</li>
-                                    <li>Hiển thị nổi bật trong kết quả tìm kiếm</li>
-                                    <li>Hỗ trợ khách hàng 24/7</li>
+                                    <li><%=t(:find_candidate)%></li>
+                                    <li><%=t(:highlight_search)%></li>
+                                    <li><%=t(:support_247)%></li>
                                 </ul>
                             </div>
                         </div>
@@ -97,7 +103,7 @@
             </div>
 
             <div class="employer_wellcome_price_compare_label">
-                <h3>Bảng so sánh chi tiết</h3>
+                <h3><%=t(:view_compare_service)%></h3>
             </div>
 
             <div class="employer_wellcome_price_compare_detail">
@@ -113,37 +119,37 @@
                         </thead>
                         <tbody>
                             <tr>
-                                <th scope="row" class="text-start">Miễn phí tin đăng</th>
-                                <td>Không giới hạn</td>
-                                <td>Không giới hạn</td>
-                                <td>Không giới hạn</td>
+                                <th scope="row" class="text-start"><%=t(:free_post_job)%></th>
+                                <td><%=t(:unlimit)%></td>
+                                <td><%=t(:unlimit)%></td>
+                                <td><%=t(:unlimit)%></td>
                             </tr>
                             <tr>
-                                <th scope="row" class="text-start">Hiển thị nổi bật trong top kết qủa tìm kiếm</th>
-                                <td></td>
-                                <td><i class="material-icons-outlined">check</i></td>
-                                <td><i class="material-icons-outlined">check</i></td>
-                            </tr>
-                            <tr>
-                                <th scope="row" class="text-start">Tiêu đề tin được tô đậm, làm nổi bật</th>
+                                <th scope="row" class="text-start"><%=t(:highlight_search)%></th>
                                 <td></td>
                                 <td><i class="material-icons-outlined">check</i></td>
                                 <td><i class="material-icons-outlined">check</i></td>
                             </tr>
                             <tr>
-                                <th scope="row" class="text-start">Tiếp cận hồ sơ ứng viên</th>
+                                <th scope="row" class="text-start"><%=t(:highlight_title_job)%></th>
+                                <td></td>
+                                <td><i class="material-icons-outlined">check</i></td>
+                                <td><i class="material-icons-outlined">check</i></td>
+                            </tr>
+                            <tr>
+                                <th scope="row" class="text-start"><%=t(:find_candidate)%></th>
                                 <td></td>
                                 <td></td>
                                 <td><i class="material-icons-outlined">check</i></td>
                             </tr>
                             <tr>
-                                <th scope="row" class="text-start">Quảng bá thương hiệu</th>
+                                <th scope="row" class="text-start"><%=t(:brand_ad)%></th>
                                 <td></td>
                                 <td></td>
                                 <td><i class="material-icons-outlined">check</i></td>
                             </tr>
                             <tr>
-                                <th scope="row" class="text-start">Hỗ trợ 24/7</th>
+                                <th scope="row" class="text-start"><%=t(:support_247)%></th>
                                 <td><i class="material-icons-outlined">check</i></td>
                                 <td><i class="material-icons-outlined">check</i></td>
                                 <td><i class="material-icons-outlined">check</i></td>
@@ -155,7 +161,7 @@
 
             <div class="employer_wellcome_support_block">
                 <div class="employer_wellcome_support_label">
-                    <h3>Liên hệ tư vấn hỗ trợ</h3>
+                    <h3><%=t(:contact_us)%></h3>
                 </div>
                 <div class="row">
                     <div class="col-sm-6">
@@ -171,7 +177,7 @@
                         <div class="employer_wellcome_support_signup">
                             <%= button_to new_employer_session_path, :method => :post do%>
                                 <i class="material-icons-outlined">work_outline</i>
-                                <a>Đăng kí nhà tuyển dụng</a>
+                                <a><%=t(:employer_register)%></a>
                             <%end%>
                         </div>
                     </div>

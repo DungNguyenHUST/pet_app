@@ -5,78 +5,10 @@
                 <%if(@company.company_reviews.count > 0)%>
                     <div class="company_review_score_block">
                         <div class="company_review_title">
-                            <a>Review <%= @company.name %></a>
+                            <a><%=t(:review)%> <%= @company.name %></a>
                         </div>
                         <div class="company_review_score">
                             <%= render :partial => 'company_reviews/review_score' %>
-                        </div>
-                    </div>
-
-                    <div class="company_review_score_detail">
-                        <div class="review_score_detail_label">
-                            <a>Đánh giá theo các tiêu chí cụ thể</a>
-                        </div>
-                        <div class="row">
-                            <div class="col-sm-6 padding-custom-right">
-                                <div class="review_detail_section">
-                                    <div class="review_detail_label">
-                                        <a>Môi trường làm việc(<%=count_rating_category("work_env_score", @company)%>)</a>
-                                    </div>
-                                    <div class="review_detail_score">
-                                        <a><%=cal_rating_review_work_env_score(@company).round(1)%></a>
-                                        <i class="material-icons">circle</i>
-                                    </div>
-                                </div>
-                            </div>
-                            
-                            <div class="col-sm-6 padding-custom-left">
-                                <div class="review_detail_section">
-                                    <div class="review_detail_label">
-                                        <a>Lương thưởng(<%=count_rating_category("salary_score", @company)%>)</a>
-                                    </div>
-                                    <div class="review_detail_score">
-                                        <a><%=cal_rating_review_salary_score(@company).round(1)%></a>
-                                        <i class="material-icons">circle</i>
-                                    </div>
-                                </div>
-                            </div>
-
-                            
-                            <div class="col-sm-6 padding-custom-right">
-                                <div class="review_detail_section">
-                                    <div class="review_detail_label">
-                                        <a>Làm thêm giờ, OT(<%=count_rating_category("ot_score", @company)%>)</a>
-                                    </div>
-                                    <div class="review_detail_score">
-                                        <a><%=cal_rating_review_ot_score(@company).round(1)%></a>
-                                        <i class="material-icons">circle</i>
-                                    </div>
-                                </div>
-                            </div>
-                            
-                            <div class="col-sm-6 padding-custom-left">
-                                <div class="review_detail_section">
-                                    <div class="review_detail_label">
-                                        <a>Quản lý cấp trên(<%=count_rating_category("manager_score", @company)%>)</a>
-                                    </div>
-                                    <div class="review_detail_score">
-                                        <a><%=cal_rating_review_manager_score(@company).round(1)%></a>
-                                        <i class="material-icons">circle</i>
-                                    </div>
-                                </div>
-                            </div>
-
-                            <div class="col-sm-6 padding-custom-right">
-                                <div class="review_detail_section">
-                                    <div class="review_detail_label">
-                                        <a>Cơ hội thăng tiến(<%=count_rating_category("career_score", @company)%>)</a>
-                                    </div>
-                                    <div class="review_detail_score">
-                                        <a><%=cal_rating_review_career_score(@company).round(1)%></a>
-                                        <i class="material-icons">circle</i>
-                                    </div>
-                                </div>
-                            </div>
                         </div>
                     </div>
 
@@ -90,14 +22,16 @@
                             <i class="material-icons">insert_emoticon</i>
                         </div>
                         <div class="review_new_not_found">
-                            <span>Rất tiếc, chưa có đủ dữ liệu thống kê. Bạn sẽ chỉ mất 1 phút để hoàn thành bài review <%=@company.name%>, chia sẻ của bạn sẽ rất hữu ích cho mọi người</span>
+                            <span><%=t(:review_not_found_left)%> <%=@company.name%>, <%=t(:review_not_found_right)%></span>
                         </div>
                         <div class="review_new_not_found_action">
                             <div class="review_new_label">
-                                <a>Bạn là nhân viên của công ty?</a>
+                                <a><%=t(:are_you_an_employee_of_company)%>?</a>
                             </div>
                             <div class="review_new_button">
-                                <%= link_to '<button type="submit"> <i class="material-icons-outlined">edit</i> <span> Viết Review</span> </button>'.html_safe, new_company_company_review_path(@company) %>
+                                <%= link_to new_company_company_review_path(@company) do%>
+                                    <button type="submit"> <i class="material-icons-outlined">edit</i> <span> <%=t(:write_review)%></span> </button>
+                                <%end%>
                             </div>
                         </div>
                     </div>
@@ -110,7 +44,7 @@
                 <%if @company_jobs.total_count >0%>
                     <div class="company_job_refer_block">
                         <div class="company_job_label">
-                            <a>Tin tuyển dụng</a>
+                            <a><%=t(:jobs)%></a>
                         </div>
                         <div class="company_job_des">
                             <%@company_jobs.order('created_at DESC').first(10).each do |company_job|%>

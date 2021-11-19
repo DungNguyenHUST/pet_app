@@ -1,21 +1,21 @@
 <div class="user_profile_form">
     <%= form_for([@user, user_adward], remote: true) do |f| %> 
         <div class="user_profile_title_sub">
-            <a>Lưu ý: Mục có dấu <span>'*'</span> là bắt buộc</a>
+            <a><%=t(:form_require_left)%> <span>'*'</span> <%=t(:form_require_right)%></a>
         </div>
         <div class="user_profile_content">
             <div class="user_profile_label">
-                <a><%= f.label :adward_name, "Tên giải thưởng", class: "user_profile_label_name" %><span>*</span></a>
+                <a><%= f.label :adward_name, t(:user_adward_form_title_1), class: "user_profile_label_name" %><span>*</span></a>
             </div>
 
             <div class="user_profile_input">
-                <%= f.text_field :adward_name, :required => true, class: "form-control", placeholder: "Ex: Giải nhất Toán toàn quốc,..."%>
+                <%= f.text_field :adward_name, :required => true, class: "form-control", placeholder: t(:user_adward_form_sub_1)%>
             </div>
         </div>
 
         <div class="user_profile_content">
             <div class="user_profile_label">
-                <a><%= f.label :receive_date, "Ngày nhận giải thưởng", class: "user_profile_label_name" %><span>*</span></a>
+                <a><%= f.label :receive_date, t(:user_adward_form_title_2), class: "user_profile_label_name" %><span>*</span></a>
             </div>
 
             <div class="user_profile_input">
@@ -25,11 +25,11 @@
 
         <div class="user_profile_content">
             <div class="user_profile_label">
-                <a><%= f.label :adward_summary, "Mô tả về giải thưởng(khoảng 300 từ)", class: "user_profile_label_name" %><span>*</span></a>
+                <a><%= f.label :adward_summary, t(:user_adward_form_title_3), class: "user_profile_label_name" %><span>*</span></a>
             </div>
 
             <div class="user_profile_input">
-                <%= f.text_area :adward_summary, class: "form-control", placeholder: "..." %>
+                <%= f.text_area :adward_summary, class: "form-control", placeholder: t(:user_adward_form_sub_3) %>
                 <%= tinymce :mini %>
             </div>
         </div>
@@ -39,13 +39,13 @@
             </div>
             <div class="col-sm-3">
                 <div class="user_profile_cancel">
-                    <button class="user_profile_cancel_btn" onclick="myFunctionUserAdward('profile_adward_form')"><a>Hủy bỏ</a></button>
+                    <button class="user_profile_cancel_btn" onclick="myFunctionUserAdward('profile_adward_form')"><a><%=t(:cancel)%></a></button>
                 </div>
             </div>
 
             <div class="col-sm-3">
                 <div class="user_profile_submit">
-                    <%= f.submit "Cập nhật", class: "user_profile_form_submit"%>
+                    <%= f.submit t(:update), class: "user_profile_form_submit"%>
                 </div>
             </div>
         </div>

@@ -42,13 +42,17 @@
             <%if user_signed_in?%>
                 <% pre_follow = company.company_follows.find { |follow| follow.user_id == current_user.id} %>
                 <% if pre_follow %> 
-                    <%= link_to '<button class="follow_btn_highlight">Đang theo dõi</button>'.html_safe, company_company_follow_path(company, pre_follow, type_param: 'mini'), remote: true, method: :delete%>
+                    <%= link_to company_company_follow_path(company, pre_follow, type_param: 'mini'), remote: true, method: :delete do%>
+                        <button class="follow_btn_highlight"><%=t(:following)%></button>
+                    <%end%>
                 <%else%>
-                    <%= link_to '<button class="follow_btn">Theo dõi</button>'.html_safe, company_company_follows_path(company, type_param: 'mini'), remote: true, method: :post%>
+                    <%= link_to company_company_follows_path(company, type_param: 'mini'), remote: true, method: :post do%>
+                        <button class="follow_btn"><%=t(:follow)%></button>
+                    <%end%>
                 <%end%>
             <%else%>
                 <button type="button" data-toggle="modal" data-target="#buttonModalLoginCenter" class="follow_btn">
-                    Theo dõi
+                    <%=t(:follow)%>
                 </button>
             <%end%>
         </div>
@@ -65,7 +69,7 @@
                     <a><%= company.company_reviews.count%></a>
                 </div>
                 <div class="company_point_label">
-                    <a><%= link_to "Đánh giá", company_path(company, tab: 'CompanyReviewsID'), target: :_blank %></a>
+                    <a><%= link_to t(:reviews), company_path(company, tab: 'CompanyReviewsID'), target: :_blank %></a>
                 </div>
             </div>
             
@@ -74,7 +78,7 @@
                     <a><%= company.company_interviews.count %></a>
                 </div>
                 <div class="company_point_label">
-                    <a><%= link_to "Phỏng vấn", company_path(company, tab: 'CompanyInterviewsID'), target: :_blank %></a>
+                    <a><%= link_to t(:interviews), company_path(company, tab: 'CompanyInterviewsID'), target: :_blank %></a>
                 </div>
             </div>
             
@@ -83,7 +87,7 @@
                     <a><%= find_job_of_company(company).count %></a>
                 </div>
                 <div class="company_point_label">
-                    <a><%= link_to "Việc làm", company_path(company, tab: 'CompanyJobsID'), target: :_blank %></a>
+                    <a><%= link_to t(:jobs), company_path(company, tab: 'CompanyJobsID'), target: :_blank %></a>
                 </div>
             </div>
         </div>

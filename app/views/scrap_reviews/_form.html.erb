@@ -9,7 +9,7 @@
                         </div>
 
                         <div class="new_scrap_review_input">
-                            <%= f.text_field :url, :required => true, class: "form-control", placeholder: " Nhập link" %>
+                            <%= f.text_field :url, :required => true, class: "form-control", placeholder: "Link" %>
                         </div>
                     </div>
 
@@ -19,7 +19,7 @@
                         </div>
 
                         <div class="new_scrap_review_input">
-                            <%= f.text_area :raw_data, :class => "form-control", placeholder: " Nhập raw data"%>
+                            <%= f.text_area :raw_data, :class => "form-control", placeholder: "Enter raw data"%>
                         </div>
                     </div>
 
@@ -29,13 +29,13 @@
                         </div>
 
                         <div class="new_scrap_review_input">
-                            <%= f.select :company_id, Company.all.collect {|m| [m.name, m.id]}, {:prompt => '-- Chọn công ty --', :required => true}, {:class => 'form-select new_post_topic_select'}%>
+                            <%= f.select :company_id, Company.all.collect {|m| [m.name, m.id]}, {:prompt => '-- Select company --', :required => true}, {:class => 'form-select new_post_topic_select'}%>
                         </div>
                         
                         <script>
                             $(document).ready(function() {
                                 $('.new_post_topic_select').select2({
-                                    placeholder: "-- Chọn công ty --",
+                                    placeholder: "-- Select company --",
                                     allowClear: true,
                                     width: 'resolve',
                                     theme: "bootstrap-5",

@@ -5,22 +5,22 @@
     <%company_name_meta = @company_job.company_name%>
 <%end%>
 <%if company_name_meta%>
-    <% content_for :meta_title, company_name_meta + " tuyển dụng " + @company_job.title %>
+    <% content_for :meta_title, company_name_meta + " " + t(:hiring).downcase + " " + @company_job.title %>
 <%else%>
     <% content_for :meta_title, @company_job.title %>
 <%end%>
 <% content_for :meta_description, @company_job.description %>
 
 <%# Google job structure data start %>
-<%if @company_job.typical == "Full Time" || @company_job.typical == "Toàn thời gian"%>
+<%if @company_job.typical == "Full Time" || @company_job.typical == t(:job_type_1)%>
     <%employmentType = "FULL_TIME"%>
-<%elsif @company_job.typical == "Part Time" || @company_job.typical == "Bán thời gian"%>
+<%elsif @company_job.typical == "Part Time" || @company_job.typical == t(:job_type_2)%>
     <%employmentType = "PART_TIME"%>
-<%elsif @company_job.typical == "Remote" || @company_job.typical == "Làm việc từ xa"%>
+<%elsif @company_job.typical == "Remote" || @company_job.typical == t(:job_type_6)%>
     <%employmentType = "FULL_TIME"%>
-<%elsif @company_job.typical == "Tạm thời"%>
+<%elsif @company_job.typical == t(:job_type_4)%>
     <%employmentType = "TEMPORARY"%>
-<%elsif @company_job.typical == "Thực tập sinh"%>
+<%elsif @company_job.typical == t(:job_type_5)%>
     <%employmentType = "INTERN"%>
 <%else%>
     <%employmentType = "OTHER"%>
@@ -99,7 +99,7 @@
                         <div class='col-sm-6 col_padding_customize_right'>
                             <div class="company_job_show_search_what">
                                 <i class="material-icons-outlined">search</i>
-                                <%= text_field_tag :search, params[:search], data: { behavior: "autocomplete" }, class: 'form-control', placeholder: "Tìm kiếm công việc, kĩ năng, tên công ty..."%>
+                                <%= text_field_tag :search, params[:search], data: { behavior: "autocomplete" }, class: 'form-control', placeholder: t(:search_job_title)%>
                             </div>
                         </div>
                             
@@ -117,7 +117,7 @@
                                                                 'Quảng Nam','Quảng Ngãi','Quảng Ninh','Quảng Trị',
                                                                 'Sóc Trăng','Sơn La','Tây Ninh','Thái Bình','Thái Nguyên' ,
                                                                 'Thanh Hóa','Thừa Thiên Huế','Tiền Giang','Trà Vinh',
-                                                                'Tuyên Quang','Vĩnh Long','Vĩnh Phúc','Yên Bái' ]), {:prompt => "Tất cả địa điểm", class: 'form-control'}%> 
+                                                                'Tuyên Quang','Vĩnh Long','Vĩnh Phúc','Yên Bái' ]), {:prompt => t(:search_location), class: 'form-control'}%> 
                             </div>
                         </div>
                         
@@ -125,7 +125,7 @@
                             <div class="company_job_show_search_button">
                                 <%= button_to "", form_class: "searched_button", :name => nil do%>
                                     <i class="material-icons-outlined">search</i>
-                                    <a>Tìm kiếm</a>
+                                    <a><%=t(:search)%></a>
                                 <%end%> 
                             </div>
                         </div>
@@ -222,7 +222,7 @@
                                     <%elsif @company_job.address.present?%>
                                         <a><i class="material-icons-outlined">room</i><%= @company_job.address %></a>
                                     <%else%>
-                                        <a><i class="material-icons-outlined">room</i>Đang cập nhật</a>
+                                        <a><i class="material-icons-outlined">room</i><%=t(:updating)%></a>
                                     <%end%>
                                 </div>
                                 <div class="job_shoft_info_salary">
@@ -230,15 +230,15 @@
                                         <a><i class="material-icons-outlined">monetization_on</i><%= @company_job.salary.to_s %></a>
                                     <%else%>
                                         <a type="link" data-toggle="modal" data-target="#buttonModalLoginCenter" class="job_salary_login">
-                                            <i class="material-icons-outlined">monetization_on</i> <span>Đăng nhập để xem mức lương</span>
+                                            <i class="material-icons-outlined">monetization_on</i> <span><%=t(:login_to_review_salary)%></span>
                                         </a>
                                     <%end%>
                                 </div>
                                 <div class="job_shoft_info">
                                     <%if @company_job.apply_another_site_flag%>
-                                        <a><i class="material-icons-outlined">schedule</i> Đã đăng <%= time_ago_in_words(@company_job.created_at) %> · từ <%=get_domain_name(@company_job.apply_site)%></a>
+                                        <a><i class="material-icons-outlined">schedule</i> <%=t(:posted_date)%> <%= time_ago_in_words(@company_job.created_at) %> · <%=t(:from).downcase%> <%=get_domain_name(@company_job.apply_site)%></a>
                                     <%else%>
-                                        <a><i class="material-icons-outlined">schedule</i> Đã đăng <%= time_ago_in_words(@company_job.created_at) %> </a>
+                                        <a><i class="material-icons-outlined">schedule</i> <%=t(:posted_date)%> <%= time_ago_in_words(@company_job.created_at) %> </a>
                                     <%end%>
                                 </div>
                             </div>
@@ -251,12 +251,16 @@
                         <div class="apply_job_button">
                             <div class="apply_button">
                                 <%if @company_job.apply_another_site_flag?%>
-                                    <%= link_to '<button type="submit">Xem thêm và nộp đơn</button>'.html_safe, @company_job.apply_site, target: :_blank%>
+                                    <%= link_to @company_job.apply_site, target: :_blank do%>
+                                        <button><span><%=t(:read_more_and_apply)%></span></button>
+                                    <%end%>
                                 <%elsif user_signed_in?%>
-                                    <%= link_to '<button type="submit"><i class="material-icons">send</i><span>Nộp đơn ngay</span></button>'.html_safe, new_company_job_company_apply_job_path(@company_job)%>
+                                    <%= link_to new_company_job_company_apply_job_path(@company_job) do%>
+                                        <button><i class="material-icons">send</i><span><%=t(:apply_now)%></span></button>
+                                    <%end%>
                                 <%else%>
                                     <button type="button" data-toggle="modal" data-target="#buttonModalLoginCenter">
-                                        <i class="material-icons-outlined">send</i><span>Nộp đơn ngay</span>
+                                        <i class="material-icons-outlined">send</i><span><%=t(:apply_now)%></span>
                                     </button>
                                 <%end%>
                             </div>
@@ -266,16 +270,16 @@
                                     <% pre_save = @company_job.company_save_jobs.find { |save| save.user_id == current_user.id} %>
                                     <% if pre_save %> 
                                         <%= button_to company_job_company_save_job_path(@company_job, pre_save), :method => :delete, remote: true, form_class: "save_btn_highlight" do%>
-                                            <i class="material-icons-outlined">favorite</i> <span>Đã lưu</span>
+                                            <i class="material-icons-outlined">favorite</i> <span><%=t(:saved_job)%></span>
                                         <%end%> 
                                     <%else%>
                                         <%= button_to company_job_company_save_jobs_path(@company_job), :method => :post, remote: true, form_class: "save_btn" do%>
-                                            <i class="material-icons-outlined">favorite_border</i> <span>Lưu việc làm</span>
+                                            <i class="material-icons-outlined">favorite_border</i> <span><%=t(:save_job)%></span>
                                         <%end%>
                                     <%end%>
                                 <%else%>
                                     <button type="button" data-toggle="modal" data-target="#buttonModalLoginCenter" class="save_btn">
-                                        <i class="material-icons-outlined">favorite_border</i> <span>Lưu việc làm</span>
+                                        <i class="material-icons-outlined">favorite_border</i> <span><%=t(:save_job)%></span>
                                     </button>
                                 <%end%>
                             </div>
@@ -309,7 +313,7 @@
                             <%end%>
                             <div class="job_description">
                                 <div class="job_section">
-                                    <h3>Mô tả công việc</h3>
+                                    <h3><%=t(:job_description)%></h3>
                                 </div>
                                 <%if @company_job.description.present?%>
                                     <div class="job_content">
@@ -320,7 +324,7 @@
 
                             <div class="job_requirement">
                                 <div class="job_section">
-                                    <h3>Yêu cầu công việc</h3>
+                                    <h3><%=t(:job_require)%></h3>
                                 </div>
                                 <%if @company_job.requirement.present?%>
                                     <div class="job_content">
@@ -331,7 +335,7 @@
                             
                             <div class="job_benefit">
                                 <div class="job_section">
-                                    <h3>Chế độ đãi ngộ bạn sẽ nhận được</h3>
+                                    <h3><%=t(:job_benefit)%></h3>
                                 </div>
                                 <%if @company_job.benefit.present?%>
                                     <div class="job_content">
@@ -347,7 +351,7 @@
                     <%if @company_related_jobs.present? && @company_related_jobs.total_count > 0%>
                         <div class="company_job_index">
                             <div class="more_job_section">
-                                <strong>Việc làm khác cùng công ty <%=@company_job.company_name%></strong>
+                                <strong><%=t(:job_same_company)%> <%=@company_job.company_name%></strong>
                             </div>
                             <div class="more_job_content">
                                 <div class="row"> 
@@ -363,7 +367,7 @@
                     <%elsif @company_job_recommands.present?%>
                         <div class="company_job_index">
                             <div class="more_job_section">
-                                <strong>Việc làm đề xuất dành cho bạn</strong>
+                                <strong><%=t(:job_search_suggestion)%></strong>
                             </div>
                             <div class="more_job_content">
                                 <div class="row"> 
@@ -373,7 +377,9 @@
                                 </div>
                             </div>
                             <div class="more_job_btn">
-                                <%= link_to '<button type="submit">Xem tất cả việc làm <i class="material-icons-outlined">arrow_forward</i></button>'.html_safe, jobs_search_path, method: :get%>
+                                <%= link_to jobs_search_path, method: :get do%>
+                                    <button type="submit"><%=t(:all_job)%> <i class="material-icons-outlined">arrow_forward</i></button>
+                                <%end%>
                             </div>
                         </div>
                     <%end%>
@@ -383,13 +389,13 @@
                         <div class='job_block_right_des'>
                             <div class="job_right">
                                 <div class="job_right_title">
-                                    <a> <i class="material-icons-outlined">calendar_today</i> NGÀY ĐĂNG TUYỂN</a>
+                                    <a> <i class="material-icons-outlined">calendar_today</i> <%=t(:job_update_date).upcase%></a>
                                 </div>
-                                <span><%= time_ago_in_words(@company_job.created_at) %></span>
+                                <span><%= time_ago_in_words(@company_job.updated_at) %></span>
                             </div>
                             <div class="job_right">
                                 <div class="job_right_title">
-                                    <a> <i class="material-icons-outlined">check_circle_outline</i> HÌNH THỨC LÀM VIỆC</a>
+                                    <a> <i class="material-icons-outlined">check_circle_outline</i> <%=t(:form_job_type).upcase%></a>
                                 </div>
                                 <%if !@company_job.typical.to_s.empty?%>
                                     <span> <%= @company_job.typical %></span>
@@ -399,7 +405,7 @@
                             </div>
                             <div class="job_right">
                                 <div class="job_right_title">
-                                    <a> <i class="material-icons-outlined">work_outline</i> CẤP BẬC</a>
+                                    <a> <i class="material-icons-outlined">work_outline</i> <%=t(:form_job_level).upcase%></a>
                                 </div>
                                 <%if !@company_job.level.to_s.empty?%>
                                     <span> <%= @company_job.level %></span>
@@ -409,7 +415,7 @@
                             </div>
                             <div class="job_right">
                                 <div class="job_right_title">
-                                    <a> <i class="material-icons-outlined">supervised_user_circle</i> KINH NGHIỆM</a>
+                                    <a> <i class="material-icons-outlined">supervised_user_circle</i> <%=t(:form_job_exp).upcase%></a>
                                 </div>
                                 <%if !@company_job.experience.to_s.empty?%>
                                     <span> <%= @company_job.experience %></span>
@@ -419,7 +425,7 @@
                             </div>
                             <div class="job_right">
                                 <div class="job_right_title">
-                                    <a> <i class="material-icons-outlined">category</i> NGÀNH NGHỀ</a>
+                                    <a> <i class="material-icons-outlined">category</i> <%=t(:form_job_field).upcase%></a>
                                 </div>
                                 <%if !@company_job.category.to_s.empty?%>
                                     <span> <%= truncate(strip_tags(@company_job.category), length: 50) %></span>
@@ -429,7 +435,7 @@
                             </div>
                             <div class="job_right">
                                 <div class="job_right_title">
-                                    <a><i class="material-icons-outlined">translate</i> NGÔN NGỮ HỒ SƠ</a>
+                                    <a><i class="material-icons-outlined">translate</i> <%=t(:form_job_lang).upcase%></a>
                                 </div>
                                 <%if !@company_job.language.to_s.empty?%>
                                     <span> <%= @company_job.language %></span>
@@ -439,7 +445,7 @@
                             </div>
                             <div class="job_right_end">
                                 <div class="job_right_title">
-                                    <a> <i class="material-icons-outlined">hourglass_empty</i> NGÀY HẾT HẠN NỘP HỒ SƠ</a>
+                                    <a> <i class="material-icons-outlined">hourglass_empty</i> <%=t(:form_job_end_submit).upcase%></a>
                                 </div>
                                 <%if !@company_job.end_date.to_s.empty?%>
                                     <span> <%= @company_job.end_date.strftime("%B %d, %Y") %></span>
@@ -452,13 +458,13 @@
                         <%if verified_job(@company_job) && @company.present? && @company.company_reviews.count > 0%>
                             <div class='job_block_right_company'>
                                 <div class='job_block_right_label'>
-                                    <a>Mọi người nói gì về <%=@company.name%></a>
+                                    <a><%=t(:job_company)%> <%=@company.name%></a>
                                 </div>
                                 <div class="job_review_score_content">
                                     <div class="job_review_score">
                                             <div class="job_review_score_total">
                                                 <div class="job_review_score_label">
-                                                    <a>Đánh giá tổng quát</a>
+                                                    <a><%=t(:company_review_total)%></a>
                                                 </div>
 
                                                 <div class="job_review_score_star">
@@ -482,13 +488,13 @@
                                                 </div>
 
                                                 <div class="job_review_total_des">
-                                                    <a>Dựa trên <%= convert_number_to_human(@company.company_reviews.count)%> đánh giá từ nhân viên</a>
+                                                    <a><%=t(:base_on)%> <%= convert_number_to_human(@company.company_reviews.count)%> <%=t(:employee_review)%></a>
                                                 </div>
                                             </div>
 
                                             <div class="job_review_score_recommand">  
                                                 <div class="job_review_score_recommand_title">
-                                                    <a>Khuyến khích làm việc tại đây</a>
+                                                    <a><%=t(:company_review_recommand)%></a>
                                                 </div>
 
                                                 <div class="job_review_score_recommand_block">
@@ -563,7 +569,9 @@
                                         </div>
                                     </div>
                                     <div class="review_job_more">
-                                        <%= link_to '<button type="submit"> <a>Xem thêm review</a> <i class="material-icons-outlined">chevron_right</i></button>'.html_safe, company_path(@company, tab: "CompanyReviewsID") %>
+                                        <%= link_to company_path(@company, tab: "CompanyReviewsID") do%>
+                                            <button type="submit"> <a><%=t(:read_more)%></a> <i class="material-icons-outlined">chevron_right</i></button>
+                                        <%end%>
                                     </div>
                                 </div>
                             </div>

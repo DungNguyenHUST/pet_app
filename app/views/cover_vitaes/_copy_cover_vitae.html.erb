@@ -19,29 +19,35 @@
         <div class="row">
             <div class="col-6">
                 <div class="copy_cover_vitae_use">
-                    <%= link_to '<button type="submit"><i class="material-icons">edit</i><span>Chỉnh sửa</span></button>'.html_safe, edit_cover_vitae_path(cover_vitae)%>
+                    <%= link_to edit_cover_vitae_path(cover_vitae) do%>
+                        <button type="submit"><i class="material-icons">edit</i><span><%=t(:edit)%></span></button>
+                    <%end%>
                 </div>
 
                 <div class="copy_cover_vitae_preview">
-                    <%= link_to '<button type="submit"><i class="material-icons">remove_red_eye</i><span>Xem chi tiết</span></button>'.html_safe, cover_vitae_path(cover_vitae)%>
+                    <%= link_to cover_vitae_path(cover_vitae) do%>
+                        <button type="submit"><i class="material-icons">remove_red_eye</i><span><%=t(:view)%></span></button>
+                    <%end%>
                 </div>
             </div>
 
             <div class="col-6">
                 <div class="copy_cover_vitae_primary" id="primary_cover_vitae_<%=cover_vitae.id%>">
                     <%if cover_vitae.primary%>
-                        <%= link_to '<button class="highlight_btn" type="submit"><i class="material-icons">done</i><span>CV mặc định</span></button>'.html_safe, 
-                            set_primary_cover_viate_path(:id => cover_vitae.id),
-                            remote: :true%>
+                        <%= link_to set_primary_cover_viate_path(:id => cover_vitae.id), remote: :true do%>
+                            <button class="highlight_btn" type="submit"><i class="material-icons">done</i><span><%=t(:default_cv)%></span></button>
+                        <%end%>
                     <%else%>                                    
-                        <%= link_to '<button type="submit"><i class="material-icons">done</i><span>Đặt làm CV mặc định</span></button>'.html_safe, 
-                            set_primary_cover_viate_path(:id => cover_vitae.id),
-                            remote: :true%>
+                        <%= link_to set_primary_cover_viate_path(:id => cover_vitae.id), remote: :true do%>
+                            <button type="submit"><i class="material-icons">done</i><span><%=t(:set_default_cv)%></span></button> 
+                        <%end%>
                     <%end%>
                 </div>
 
                 <div class="copy_cover_vitae_download">
-                    <%= link_to '<button type="submit"><i class="material-icons">file_download</i><span>Tải xuống</span></button>'.html_safe, cv_render_docx_path(id: cover_vitae.id)%>
+                    <%= link_to cv_render_docx_path(id: cover_vitae.id) do%>
+                        <button type="submit"><i class="material-icons">file_download</i><span><%=t(:download)%></span></button> 
+                    <%end%>
                 </div>
             </div>
         </div>

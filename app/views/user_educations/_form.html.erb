@@ -1,96 +1,104 @@
 <div class="user_profile_form">
     <%= form_for([@user, user_education], remote: true) do |f| %> 
         <div class="user_profile_title_sub">
-            <a>Lưu ý: Mục có dấu <span>'*'</span> là bắt buộc</a>
+            <a><%=t(:form_require_left)%> <span>'*'</span> <%=t(:form_require_right)%></a>
         </div>
         <div class="row">
             <div class="col-sm-6">
                 <div class="user_profile_content">
                     <div class="user_profile_label">
-                        <a><%= f.label :cert_level, "Trình độ học vấn của bạn", class: "user_profile_label_name" %><span>*</span></a>
+                        <a><%= f.label :cert_level, t(:user_edu_form_level), class: "user_profile_label_name" %><span>*</span></a>
                     </div>
 
                     <div class="user_profile_input">
-                        <%= f.select(:cert_level, options_for_select(['THCS', 'THPT', 'Trung cấp', 'Cao đẳng', 'Cử nhân', 'Kĩ sư', 'Thạc sĩ', 'Tiến sĩ', 'Giáo sư', 'Khác'], 'Cử nhân'), {include_blank: false}, { :class => 'form-select' }) %>
+                        <%= f.select(:cert_level, options_for_select([t(:school_level_1),
+                                                                    t(:school_level_2), 
+                                                                    t(:school_level_3), 
+                                                                    t(:school_level_4), 
+                                                                    t(:school_level_5), 
+                                                                    t(:school_level_6), 
+                                                                    t(:school_level_7), 
+                                                                    t(:school_level_8), 
+                                                                    t(:school_level_9)], t(:school_level_5)), {include_blank: false}, { :class => 'form-select' }) %>
                     </div>
                 </div>
 
                 <div class="user_profile_content">
                     <div class="user_profile_label">
-                        <a><%= f.label :cert_type, "Lĩnh vực mà bạn học tập", class: "user_profile_label_name" %></a>
+                        <a><%= f.label :cert_type, t(:user_edu_form_filed), class: "user_profile_label_name" %></a>
                     </div>
 
                     <div class="user_profile_input">
-                        <%= f.select(:cert_type, options_for_select(["Bác sĩ",
-                                                                    "Bán hàng kỹ thuật",
-                                                                    "Bán hàng",
-                                                                    "Bán lẻ - Bán sỉ",
-                                                                    "Bảo hiểm",
-                                                                    "Bảo trì - Sửa chữa",
-                                                                    "Bất động sản",
-                                                                    "Biên phiên dịch",
-                                                                    "Cấp quản lý điều hành",
-                                                                    "Chứng khoán",
-                                                                    "Cơ khí",
-                                                                    "Công nghệ cao",
-                                                                    "Dầu khí",
-                                                                    "Dệt may - Da giày",
-                                                                    "Dịch vụ khách hàng",
-                                                                    "Dược Phẩm - Công nghệ sinh học",
-                                                                    "Dược sĩ",
-                                                                    "Giáo dục - Đào tạo",
-                                                                    "Hàng cao cấp",
-                                                                    "Hàng gia dụng",
-                                                                    "Hàng hải",
-                                                                    "Hàng không - Du lịch",
-                                                                    "Hàng tiêu dùng",
-                                                                    "Hành chánh - Thư ký",
-                                                                    "Hóa học - Hóa sinh",
-                                                                    "Hoạch định - Dự án",
-                                                                    "In ấn -  Xuất bản",
-                                                                    "Internet - Online Media",
-                                                                    "IT - Phần mềm",
-                                                                    "IT-Phần cứng - Mạng",
-                                                                    "Kế toán",
-                                                                    "Khác",
-                                                                    "Kho vận",
-                                                                    "Kiểm toán",
-                                                                    "Kiến trúc - Thiết kế nội thất ",
-                                                                    "Marketing",
-                                                                    "Mới tốt nghiệp",
-                                                                    "Môi trường - Xử lý chất thải",
-                                                                    "Mỹ Thuật - Nghệ Thuật - Thiết Kế",
-                                                                    "Ngân hàng",
-                                                                    "Người nước ngoài - Việt Kiều",
-                                                                    "Nhà hàng - Khách sạn",
-                                                                    "Nhân sự",
-                                                                    "Nông nghiệp - Lâm nghiệp",
-                                                                    "Overseas Jobs",
-                                                                    "Pháp lý",
-                                                                    "Phi chính phủ - Phi lợi nhuận",
-                                                                    "QA - QC",
-                                                                    "Quảng cáo - Khuyến mãi - Đối ngoại",
-                                                                    "Sản phẩm công nghiệp",
-                                                                    "Sản Xuất",
-                                                                    "Tài chính - Đầu tư",
-                                                                    "Thời trang",
-                                                                    "Thời vụ - Hợp đồng ngắn hạn",
-                                                                    "Thu Mua - Vật Tư - Cung Vận",
-                                                                    "Thực phẩm &amp; Đồ uống",
-                                                                    "Trình dược viên",
-                                                                    "Truyền hình - Truyền thông - Báo chí",
-                                                                    "Tư vấn",
-                                                                    "Tự động hóa - Ô tô",
-                                                                    "Vận chuyển - Giao nhận",
-                                                                    "Viễn Thông",
-                                                                    "Xây dựng",
-                                                                    "Xuất nhập khẩu",
-                                                                    "Y sĩ - Hộ lý",
-                                                                    "Y tế - Chăm sóc sức khỏe",
-                                                                    "Địa chất - Khoáng sản",
-                                                                    "Điện lạnh - Nhiệt lạnh",
-                                                                    "Điện - Điện tử",
-                                                                    "Lĩnh vực khác"], "Lĩnh vực khác"), {include_blank: false}, { :class => 'new_profile_edu_type_select form-select'}) %>
+                        <%= f.select(:cert_type, options_for_select([t(:job_category_1),
+                                                                    t(:job_category_2),
+                                                                    t(:job_category_3),
+                                                                    t(:job_category_4),
+                                                                    t(:job_category_5),
+                                                                    t(:job_category_6),
+                                                                    t(:job_category_7),
+                                                                    t(:job_category_8),
+                                                                    t(:job_category_9),
+                                                                    t(:job_category_10),
+                                                                    t(:job_category_11),
+                                                                    t(:job_category_12),
+                                                                    t(:job_category_13),
+                                                                    t(:job_category_14),
+                                                                    t(:job_category_15),
+                                                                    t(:job_category_16),
+                                                                    t(:job_category_17),
+                                                                    t(:job_category_18),
+                                                                    t(:job_category_19),
+                                                                    t(:job_category_20),
+                                                                    t(:job_category_21),
+                                                                    t(:job_category_22),
+                                                                    t(:job_category_23),
+                                                                    t(:job_category_24),
+                                                                    t(:job_category_25),
+                                                                    t(:job_category_26),
+                                                                    t(:job_category_27),
+                                                                    t(:job_category_28),
+                                                                    t(:job_category_29),
+                                                                    t(:job_category_30),
+                                                                    t(:job_category_31),
+                                                                    t(:job_category_32),
+                                                                    t(:job_category_33),
+                                                                    t(:job_category_34),
+                                                                    t(:job_category_35),
+                                                                    t(:job_category_36),
+                                                                    t(:job_category_37),
+                                                                    t(:job_category_38),
+                                                                    t(:job_category_39),
+                                                                    t(:job_category_40),
+                                                                    t(:job_category_41),
+                                                                    t(:job_category_42),
+                                                                    t(:job_category_43),
+                                                                    t(:job_category_44),
+                                                                    t(:job_category_45),
+                                                                    t(:job_category_46),
+                                                                    t(:job_category_47),
+                                                                    t(:job_category_48),
+                                                                    t(:job_category_49),
+                                                                    t(:job_category_50),
+                                                                    t(:job_category_51),
+                                                                    t(:job_category_52),
+                                                                    t(:job_category_53),
+                                                                    t(:job_category_54),
+                                                                    t(:job_category_55),
+                                                                    t(:job_category_56),
+                                                                    t(:job_category_57),
+                                                                    t(:job_category_58),
+                                                                    t(:job_category_59),
+                                                                    t(:job_category_60),
+                                                                    t(:job_category_61),
+                                                                    t(:job_category_62),
+                                                                    t(:job_category_63),
+                                                                    t(:job_category_64),
+                                                                    t(:job_category_65),
+                                                                    t(:job_category_66),
+                                                                    t(:job_category_67),
+                                                                    t(:job_category_68),
+                                                                    t(:job_category_69),
+                                                                    t(:job_category_70)], t(:job_category_70)), {include_blank: false}, { :class => 'new_profile_edu_type_select form-select'}) %>
                     </div>
                     <script>
                         $(document).ready(function() {
@@ -107,21 +115,25 @@
 
                 <div class="user_profile_content">
                     <div class="user_profile_label">
-                        <a><%= f.label :school_name, "Tên trường mà bạn học tập", class: "user_profile_label_name" %><span>*</span></a>
+                        <a><%= f.label :school_name, t(:user_edu_form_school_name), class: "user_profile_label_name" %><span>*</span></a>
                     </div>
 
                     <div class="user_profile_input">
-                        <%= f.text_field :school_name, :required => true, class: "form-control", placeholder: "Ex: Đại học Bách Khoa, Kinh tế quốc dân..."%>
+                        <%= f.text_field :school_name, :required => true, class: "form-control", placeholder: t(:user_edu_form_school_name_sub)%>
                     </div>
                 </div>
 
                 <div class="user_profile_content">
                     <div class="user_profile_label">
-                        <a><%= f.label :school_level, "Cấp học", class: "user_profile_label_name" %><span>*</span></a>
+                        <a><%= f.label :school_level, t(:user_edu_form_school_level), class: "user_profile_label_name" %><span>*</span></a>
                     </div>
 
                     <div class="user_profile_input">
-                        <%= f.select(:school_level, options_for_select(['THCS', 'THPT', 'Trung cấp', 'Cao đẳng', 'Đại học'], 'Đại học'), {include_blank: false}, { :class => 'form-select' }) %>
+                        <%= f.select(:school_level, options_for_select([t(:school_type_1), 
+                                                                        t(:school_type_2), 
+                                                                        t(:school_type_3),
+                                                                        t(:school_type_4),
+                                                                        t(:school_type_5)], t(:school_type_1)), {include_blank: false}, { :class => 'form-select' }) %>
                     </div>
                 </div>
             </div>
@@ -129,7 +141,7 @@
             <div class="col-sm-6">
                 <div class="user_profile_content">
                     <div class="user_profile_label">
-                        <a><%= f.label :school_location, "Địa điểm học tập", class: "user_profile_label_name" %><span>*</span></a>
+                        <a><%= f.label :school_location, t(:user_edu_form_school_location), class: "user_profile_label_name" %><span>*</span></a>
                     </div>
 
                     <div class="user_profile_input">
@@ -150,7 +162,7 @@
 
                 <div class="user_profile_content">
                     <div class="user_profile_label">
-                        <a><%= f.label :start_date, "Thời gian bắt đầu", class: "user_profile_label_name" %><span>*</span></a>
+                        <a><%= f.label :start_date, t(:start_date), class: "user_profile_label_name" %><span>*</span></a>
                     </div>
 
                     <div class="user_profile_input">
@@ -160,7 +172,7 @@
 
                 <div class="user_profile_content">
                     <div class="user_profile_label">
-                        <a><%= f.label :end_date, "Thời gian kết thúc", class: "user_profile_label_name" %><span>*</span></a>
+                        <a><%= f.label :end_date, t(:end_date), class: "user_profile_label_name" %><span>*</span></a>
                     </div>
 
                     <div class="user_profile_input">
@@ -171,7 +183,7 @@
                 <div class="user_profile_content">
                     <div class="user_profile_input_radio">
                         <%= f.check_box :enrolled, type: "checkbox"%>
-                        <a><%= f.label :enrolled, "Tôi đang học tập tại đây"%></a>
+                        <a><%= f.label :enrolled, t(:study_here)%></a>
                     </div>
                 </div>
             </div>
@@ -182,13 +194,13 @@
             </div>
             <div class="col-sm-3">
                 <div class="user_profile_cancel">
-                    <button class="user_profile_cancel_btn" onclick="myFunctionUserEdu('profile_edu_form')"><a>Hủy bỏ</a></button>
+                    <button class="user_profile_cancel_btn" onclick="myFunctionUserEdu('profile_edu_form')"><a><%=t(:cancel)%></a></button>
                 </div>
             </div>
 
             <div class="col-sm-3">
                 <div class="user_profile_submit">
-                    <%= f.submit "Cập nhật", class: "user_profile_form_submit" %>
+                    <%= f.submit t(:update), class: "user_profile_form_submit" %>
                 </div>
             </div>
         </div>

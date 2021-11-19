@@ -12,27 +12,33 @@
     </div>
 
     <div class="cover_vitae_title_sub">
-        <a><%=convert_number_to_human(count_copy_cover_vitae(cover_vitae))%> người đã sử dụng</a>
+        <a><%=convert_number_to_human(count_copy_cover_vitae(cover_vitae))%> <%=t(:people_use).downcase%></a>
     </div>
 
     <%if user_signed_in?%>
         <div class="cover_vitae_action">
             <div class="cover_vitae_use">
-                <%= link_to '<button type="submit"><i class="material-icons">edit</i><span>Dùng mẫu này</span></button>'.html_safe, new_cover_vitae_path(:cv_sample_id => cover_vitae.id)%>
+                <%= link_to new_cover_vitae_path(:cv_sample_id => cover_vitae.id) do%>
+                    <button type="submit"><i class="material-icons">edit</i><span><%=t(:use_sample)%></span></button>
+                <%end%>
             </div>
             <div  class="cover_vitae_preview">
-                <%= link_to '<button type="submit"><i class="material-icons">remove_red_eye</i><span>Xem trước</span></button>'.html_safe, cover_vitae_path(cover_vitae)%>
+                <%= link_to cover_vitae_path(cover_vitae) do%>
+                    <button type="submit"><i class="material-icons">remove_red_eye</i><span><%=t(:view)%></span></button>
+                <%end%>
             </div>
         </div>
     <%else%>
         <div class="cover_vitae_action">
             <div class="cover_vitae_use">
                 <button type="button" data-toggle="modal" data-target="#buttonModalLoginCenter">
-                    <i class="material-icons">edit</i><span>Dùng mẫu này</span>
+                    <i class="material-icons">edit</i><span><%=t(:use_sample)%></span>
                 </button>
             </div>
             <div class="cover_vitae_preview">
-                <%= link_to '<button type="submit"><i class="material-icons">remove_red_eye</i><span>Xem trước</span></button>'.html_safe, cover_vitae_path(cover_vitae)%>
+                <%= link_to cover_vitae_path(cover_vitae) do%>
+                    <button type="submit"><i class="material-icons">remove_red_eye</i><span><%=t(:view)%></span></button>
+                <%end%>
             </div>
         </div>
     <%end%>

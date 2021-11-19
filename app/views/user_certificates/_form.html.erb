@@ -1,21 +1,21 @@
 <div class="user_profile_form">
     <%= form_for([@user, user_certificate], remote: true) do |f| %> 
         <div class="user_profile_title_sub">
-            <a>Lưu ý: Mục có dấu <span>'*'</span> là bắt buộc</a>
+            <a><%=t(:form_require_left)%> <span>'*'</span> <%=t(:form_require_right)%></a>
         </div>
         <div class="user_profile_content">
             <div class="user_profile_label">
-                <a><%= f.label :cert_name, "Tên chứng chỉ", class: "user_profile_label_name" %><span>*</span></a>
+                <a><%= f.label :cert_name, t(:user_cert_form_name), class: "user_profile_label_name" %><span>*</span></a>
             </div>
 
             <div class="user_profile_input">
-                <%= f.text_field :cert_name, :required => true, class: "form-control", placeholder: "Ex: Toeic 990..."%>
+                <%= f.text_field :cert_name, :required => true, class: "form-control", placeholder: t(:user_cert_form_name_sub)%>
             </div>
         </div>
 
         <div class="user_profile_content">
             <div class="user_profile_label">
-                <a><%= f.label :start_date, "Ngày nhận chứng chỉ", class: "user_profile_label_name" %><span>*</span></a>
+                <a><%= f.label :start_date, t(:user_cert_form_name_date), class: "user_profile_label_name" %><span>*</span></a>
             </div>
 
             <div class="user_profile_input">
@@ -25,7 +25,7 @@
 
         <div class="user_profile_content">
             <div class="user_profile_label">
-                <a><%= f.label :end_date, "Ngày hết hạn chứng chỉ", class: "user_profile_label_name" %></a>
+                <a><%= f.label :end_date, t(:user_cert_form_name_end), class: "user_profile_label_name" %></a>
             </div>
 
             <div class="user_profile_input">
@@ -35,7 +35,7 @@
 
         <div class="user_profile_content">
             <div class="user_profile_label">
-                <a><%= f.label :cert_summary, "Mô tả về chứng chỉ(khoảng 300 từ)", class: "user_profile_label_name" %><span>*</span></a>
+                <a><%= f.label :cert_summary, t(:user_cert_form_name_des), class: "user_profile_label_name" %><span>*</span></a>
             </div>
 
             <div class="user_profile_input">
@@ -49,13 +49,13 @@
             </div>
             <div class="col-sm-3">
                 <div class="user_profile_cancel">
-                    <button class="user_profile_cancel_btn" onclick="myFunctionUserCertificate('profile_certificate_form')"><a>Hủy bỏ</a></button>
+                    <button class="user_profile_cancel_btn" onclick="myFunctionUserCertificate('profile_certificate_form')"><a><%=t(:cancel)%></a></button>
                 </div>
             </div>
 
             <div class="col-sm-3">
                 <div class="user_profile_submit">
-                    <%= f.submit "Cập nhật", class: "user_profile_form_submit"%>
+                    <%= f.submit t(:update), class: "user_profile_form_submit"%>
                 </div>
             </div>
         </div>

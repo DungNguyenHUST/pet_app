@@ -1,10 +1,10 @@
 class PostsController < ApplicationController
     include ApplicationHelper
     before_action :require_user_login, only: [:new, :create, :edit, :update, :destroy]
-    add_breadcrumb "Trang chủ", :root_path
 
     def index
-        add_breadcrumb "Tất cả bài viết", :posts_path
+        add_breadcrumb I18n.t(:home_page), :root_path
+        add_breadcrumb I18n.t(:all_post), :posts_path
 
         @posts = Post.all.order('created_at DESC').page(params[:page]).per(10)
         @post_comments = PostComment.all
@@ -25,7 +25,7 @@ class PostsController < ApplicationController
         if @post.save
             redirect_to post_path(@post)
         else
-            flash[:danger] = "Lỗi, hãy điền đủ nội dung có dấu '*'"
+            flash[:danger] = I18n.t(:create_error)
             render :new
         end
     end
@@ -36,7 +36,8 @@ class PostsController < ApplicationController
 
         @post_relateds = Post.all.order('created_at DESC').reject{|i| i.id == @post.id}
         
-        add_breadcrumb "Tất cả bài viết", :posts_path
+        add_breadcrumb I18n.t(:home_page), :root_path
+        add_breadcrumb I18n.t(:all_post), :posts_path
         add_breadcrumb @post.title, post_path(@post)
     end
 
@@ -49,10 +50,10 @@ class PostsController < ApplicationController
         @post = Post.friendly.find params[:id]
 
         if(@post.update(post_param))
-            flash[:success] = "Update thông tin thành công"
+            flash[:success] = I18n.t(:update_success)
             redirect_to post_path(@post)
         else
-            flash[:danger] = "Lỗi, không thể cập nhật thông tin"
+            flash[:danger] = I18n.t(:update_error)
         end
     end
 

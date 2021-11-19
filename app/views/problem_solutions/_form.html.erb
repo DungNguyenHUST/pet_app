@@ -1,23 +1,23 @@
 <div class="new_problem_solution_form">
     <%= form_for [@problem, ProblemSolution.new] do |f| %>
         <div class="new_problem_solution_title_sub">
-            <a>Note: Mục có dấu <span>'*'</span> là bắt buộc</a>
+            <a><%=t(:form_require_left)%> <span>'*'</span> <%=t(:form_require_right)%></a>
         </div>
 
         <div class="new_problem_solution_section">
             <div class="new_problem_solution_content">
                 <div class="new_problem_solution_label">
-                    <a><%= f.label :title, "Tiêu đề cho câu trả lời của bạn(tùy chọn)", class: "new_problem_solution_label_name" %></a>
+                    <a><%= f.label :title, t(:form_problem_solution_title), class: "new_problem_solution_label_name" %></a>
                 </div>
 
                 <div class="new_problem_solution_input">
-                    <%= f.text_field :title, class: "form-control", placeholder: "Nhập mô tả ngắn gọn về giải pháp của bạn" %>
+                    <%= f.text_field :title, class: "form-control", placeholder: t(:form_problem_solution_enter_title) %>
                 </div>
             </div>
 
             <div class="new_problem_solution_content">
                 <div class="new_problem_solution_label">
-                    <a><%= f.label :content, "Giải pháp của bạn", class: "new_problem_solution_label_name" %><span>*</span></a>
+                    <a><%= f.label :content, t(:form_problem_solution_content), class: "new_problem_solution_label_name" %><span>*</span></a>
                 </div>
 
                 <div class="new_problem_solution_input">
@@ -28,7 +28,7 @@
         </div>
 
         <div class="new_problem_solution_submit">
-            <%= f.submit "Gửi câu trả lời", class: "new_problem_solution_form_submit" %>
+            <%= f.submit t(:send), class: "new_problem_solution_form_submit" %>
         </div>
     <%end%>
 </div>

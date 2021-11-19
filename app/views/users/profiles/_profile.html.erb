@@ -28,7 +28,7 @@
 
                 <div class="user_profile_personal">
                     <div class="user_profile_personal_label">
-                        <h3>Thông tin cá nhân</h3>
+                        <h3><%t(:user_personal_info)%></h3>
                     </div>
 
                     <div class="user_profile_personal_form_block" id="profile_personal_form">
@@ -58,16 +58,16 @@
 
                 <div class="user_profile_exp">
                     <div class="user_profile_exp_label">
-                        <h3>Kinh nghiệm làm việc</h3>
+                        <h3><%=t(:work_exp)%></h3>
                     </div>
                     <%if @user.user_experiences.count == 0%>
                         <div class="user_profile_exp_guide">
                             <div class="row">
                                 <div class="col-9">
                                     <div class="user_profile_exp_guide_label">
-                                        <a>Kinh nghiệm làm việc là một trong những yếu tố quan trọng nhất đối với nhà tuyển dụng trong quá trình tìm kiếm ứng viên</a>
+                                        <a><%=t(:help_work_exp)%></a>
                                     </div>
-                                    <button class="user_profile_exp_update_btn" onclick="myFunctionUserExp('profile_exp_form')"><i class="material-icons-outlined">edit</i> <a>Cập nhật thông tin</a> </button>
+                                    <button class="user_profile_exp_update_btn" onclick="myFunctionUserExp('profile_exp_form')"><i class="material-icons-outlined">edit</i> <a><%=t(:update)%></a> </button>
                                 </div>
                                 <div class="col-3">
                                     <div class="user_profile_exp_image">
@@ -105,16 +105,16 @@
 
                 <div class="user_profile_edu">
                     <div class="user_profile_edu_label">
-                        <h3>Học vấn và bằng cấp</h3>
+                        <h3><%=t(:edu_and_cert)%></h3>
                     </div>
                     <%if @user.user_educations.count == 0%>
                         <div class="user_profile_edu_guide">
                             <div class="row">
                                 <div class="col-9">
                                     <div class="user_profile_edu_guide_label">
-                                        <a>Học vấn và bằng cấp giúp nhà tuyển dụng dễ dàng phân loại ứng viên, từ đó đưa ra gợi ý việc làm phù hợp</a>
+                                        <a><%=t(:edu_and_cert_help)%></a>
                                     </div>
-                                    <button class="user_profile_edu_update_btn" onclick="myFunctionUserEdu('profile_edu_form')"><i class="material-icons-outlined">edit</i> <a>Cập nhật thông tin</a> </button>
+                                    <button class="user_profile_edu_update_btn" onclick="myFunctionUserEdu('profile_edu_form')"><i class="material-icons-outlined">edit</i> <a><%=t(:update)%></a> </button>
                                 </div>
                                 <div class="col-3">
                                     <div class="user_profile_edu_image">
@@ -152,16 +152,16 @@
 
                 <div class="user_profile_skill">
                     <div class="user_profile_skill_label">
-                        <h3>Kĩ năng làm việc</h3>
+                        <h3><%=t(:skill)%></h3>
                     </div>
                     <%if @user.user_skills.count == 0%>
                         <div class="user_profile_skill_guide">
                             <div class="row">
                                 <div class="col-9">
                                     <div class="user_profile_skill_guide_label">
-                                        <a>Kĩ năng làm việc giúp nhà tuyển dụng đánh giá khả năng xử lí công việc của bạn, những kĩ năng tốt luôn được đánh giá cao</a>
+                                        <a><%=t(:skill_help)%></a>
                                     </div>
-                                    <button class="user_profile_skill_update_btn" onclick="myFunctionUserSkill('profile_skill_form')"><i class="material-icons-outlined">edit</i> <a>Cập nhật thông tin</a> </button>
+                                    <button class="user_profile_skill_update_btn" onclick="myFunctionUserSkill('profile_skill_form')"><i class="material-icons-outlined">edit</i> <a><%=t(:update)%></a> </button>
                                 </div>
                                 <div class="col-3">
                                     <div class="user_profile_skill_image">
@@ -199,16 +199,16 @@
 
                 <div class="user_profile_certificate">
                     <div class="user_profile_certificate_label">
-                        <h3>Chứng chỉ/Bằng cấp</h3>
+                        <h3><%=t(:cert)%></h3>
                     </div>
                     <%if @user.user_certificates.count == 0%>
                         <div class="user_profile_certificate_guide">
                             <div class="row">
                                 <div class="col-9">
                                     <div class="user_profile_certificate_guide_label">
-                                        <a>Các chứng chỉ chuyên ngành có giá trị sẽ làm hồ sơ của bạn nổi bật giữa hàng ngàn hồ sơ được gửi đến nhà tuyển dụng</a>
+                                        <a><%=t(:cert_help)%></a>
                                     </div>
-                                    <button class="user_profile_certificate_update_btn" onclick="myFunctionUserCertificate('profile_certificate_form')"><i class="material-icons-outlined">edit</i> <a>Cập nhật thông tin</a> </button>
+                                    <button class="user_profile_certificate_update_btn" onclick="myFunctionUserCertificate('profile_certificate_form')"><i class="material-icons-outlined">edit</i> <a><%=t(:update)%></a> </button>
                                 </div>
                                 <div class="col-3">
                                     <div class="user_profile_certificate_image">
@@ -246,16 +246,16 @@
 
                 <div class="user_profile_adward">
                     <div class="user_profile_adward_label">
-                        <h3>Giải thưởng đạt được</h3>
+                        <h3><%=t(:adward)%></h3>
                     </div>
                     <%if @user.user_adwards.count == 0%>
                         <div class="user_profile_adward_guide">
                             <div class="row">
                                 <div class="col-9">
                                     <div class="user_profile_adward_guide_label">
-                                        <a>Các giải thưởng đạt được là sự ghi nhận những nỗ lực của bạn suốt thời gian qua, nhà tuyển dụng luôn đánh giá cao các giải thưởng có giá trị</a>
+                                        <a><%=t(:adward_help)%></a>
                                     </div>
-                                    <button class="user_profile_adward_update_btn" onclick="myFunctionUserAdward('profile_adward_form')"><i class="material-icons-outlined">edit</i> <a>Cập nhật thông tin</a> </button>
+                                    <button class="user_profile_adward_update_btn" onclick="myFunctionUserAdward('profile_adward_form')"><i class="material-icons-outlined">edit</i> <a><%=t(:update)%></a> </button>
                                 </div>
                                 <div class="col-3">
                                     <div class="user_profile_adward_image">
@@ -294,21 +294,21 @@
             <div class="col-sm-4">
                 <div class="user_profile_action">
                     <div class="user_profile_action_label">
-                        <h3>Cài đặt hồ sơ</h3>
+                        <h3><%=t(:profile_setting)%></h3>
                     </div>
                     <div class="user_profile_action_public">
                         <%= form_for(@user, remote: true) do |f| %>
                             <div class="user_profile_action_input">
                                 <%= f.radio_button :public, true, :checked => true, onchange: "javascript:this.form.commit.click();" %>
-                                <a><%= f.label :public, "Chế độ công khai", :value => "true" %></a>
+                                <a><%= f.label :public, t(:public_mode), :value => "true" %></a>
                                 <br>
-                                <span>Thông tin hồ sơ của bạn có thể được tìm thấy bởi những nhà tuyển dụng (đã được Firework xác thực) đang tìm kiếm ứng viên có các tiêu chí phù hợp với thông tin trong hồ sơ của bạn.</span>
+                                <span><%=t(:public_mode_sub)%></span>
                             </div>
                             <div class="user_profile_action_input">
                                 <%= f.radio_button :public, false, onchange: "javascript:this.form.commit.click();" %>
-                                <a><%= f.label :public, "Chế độ riêng tư", :value => "false" %></a>
+                                <a><%= f.label :public, t(:private_mode), :value => "false" %></a>
                                 <br>
-                                <span>Thông tin hồ sơ của bạn được giữ kín, nhà tuyển dụng sẽ không thể nhìn thấy hồ sơ của bạn. Tuy nhiên, bạn vẫn có thể sử dụng hồ sơ này để ứng tuyển bất cứ khi nào.</span>
+                                <span><%=t(:private_mode_sub)%></span>
                             </div>
                             <%= f.submit 'Lưu', class: "user_profile_action_submit" %>
                         <%end%>

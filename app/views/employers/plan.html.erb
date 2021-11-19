@@ -1,7 +1,7 @@
 <div class="container">
     <div class="employer_plan_block">
         <div class="employer_plan_title">
-            <h3>Gói dịch vụ đang sử dụng</h3>
+            <h3><%=t(:current_service)%></h3>
         </div>
         <div class="row">
             <%if current_employer.plan == "F-Eco"%>
@@ -9,17 +9,19 @@
                     <div class="card card2 h-100">
                         <div class="card-body">
                             <h5 class="card-title">F-Eco</h5>
-                            <small class='text-muted'>Được sử dụng nhiều nhất</small>
+                            <small class='text-muted'><%=t(:mosted_use)%></small>
                             <br><br>
-                            <span class="h2">499.000đ</span>/tháng <mark>-20%</mark>
+                            <span class="h2">499.000<%=t(:vnd_short)%></span>/<%=t(:month)%> <mark>-20%</mark>
                             <br><br>
                             <div class="d-grid my-3">
-                                <%= link_to '<button class="btn btn-outline-dark btn-block">Đổi gói khác</button>'.html_safe, employer_plan_path %>
+                                <%= link_to employer_plan_path do %>
+                                    <button class="btn btn-outline-dark btn-block"><%=t(:change_service)%></button>
+                                <%end%>
                             </div>
                             <ul>
-                                <li>Miễn phí đăng tin không giới hạn</li>
-                                <li>Hiển thị nổi bật trong kết quả tìm kiếm</li>
-                                <li>Hỗ trợ khách hàng 24/7</li>
+                                <li><%=t(:free_post_job)%></li>
+                                <li><%=t(:highlight_search)%></li>
+                                <li><%=t(:support_247)%></li>
                             </ul>
                         </div>
                     </div>
@@ -29,17 +31,19 @@
                     <div class="card card3 h-100">
                         <div class="card-body">
                             <h5 class="card-title">F-Pro</h5>
-                            <small class='text-muted'>Hiệu quả cao nhất</small>
+                            <small class='text-muted'><%=t(:high_efficiency)%></small>
                             <br><br>
-                                <span class="h2">999.000đ</span>/tháng <mark>-25%</mark>
+                                <span class="h2">999.000<%=t(:vnd_short)%></span>/<%=t(:month)%> <mark>-25%</mark>
                             <br><br>
                             <div class="d-grid my-3">
-                                <%= link_to '<button class="btn btn-outline-dark btn-block">Đổi gói khác</button>'.html_safe, employer_plan_path %>
+                                <%= link_to employer_plan_path do %>
+                                    <button class="btn btn-outline-dark btn-block"><%=t(:change_service)%></button>
+                                <%end%>
                             </div>
                             <ul>
-                                <li>Tiếp cận hồ sơ ứng viên</li>
-                                <li>Hiển thị nổi bật trong kết quả tìm kiếm</li>
-                                <li>Hỗ trợ khách hàng 24/7</li>
+                                <li><%=t(:find_candidate)%></li>
+                                <li><%=t(:highlight_search)%></li>
+                                <li><%=t(:support_247)%></li>
                             </ul>
                         </div>
                     </div>
@@ -49,17 +53,19 @@
                     <div class="card card1 h-100">
                         <div class="card-body">
                             <h5 class="card-title">F-Basic</h5>
-                                <small class='text-muted'>Tiết kiệm chi phí</small>
+                                <small class='text-muted'><%=t(:cost_save)%></small>
                             <br><br>
-                                <span class="h2">0đ</span>/tháng
+                                <span class="h2">0<%=t(:vnd_short)%></span>/<%=t(:month)%>
                             <br><br>
                             <div class="d-grid my-3">
-                                <%= link_to '<button class="btn btn-outline-dark btn-block">Đổi gói khác</button>'.html_safe, employer_plan_path %>
+                                <%= link_to employer_plan_path do %>
+                                    <button class="btn btn-outline-dark btn-block"><%=t(:change_service)%></button>
+                                <%end%>
                             </div>
                             <ul>
-                                <li>Miễn phí đăng tin không giới hạn</li>
-                                <li>Quản lý tin đăng chuyên nghiệp</li>
-                                <li>Hỗ trợ khách hàng 24/7</li>
+                                <li><%=t(:free_post_job)%></li>
+                                <li><%=t(:pro_mana_job)%></li>
+                                <li><%=t(:support_247)%></li>
                             </ul>
                         </div>
                     </div>
@@ -68,23 +74,23 @@
             <div class="col-lg-8">
                 <div class="employer_plan_detail_block">
                     <div class="employer_plan_detail_title">
-                        <h3>Chi tiết</h3>
+                        <h3><%=t(:detail)%></h3>
                     </div>
                     <div class="employer_plan_detail">
                         <div class="employer_plan_detail_section_title">
-                            <a>Tên gói sử dụng<a>
+                            <a><%=t(:service_name)%><a>
                             <br>
-                            <a>Ngày đăng kí<a>
+                            <a><%=t(:registration_date)%><a>
                             <br>
-                            <a>Ngày hết hạn<a>
+                            <a><%=t(:end_date)%><a>
                             <br>
-                            <a>Số lượt đăng tin còn lại<a>
+                            <a><%=t(:remain_post_job)%><a>
                             <br>
-                            <a>Số lượt hiển thị tin nổi bật còn lại<a>
+                            <a><%=t(:remain_highlight_job)%><a>
                             <br>
-                            <a>Số lượt hiển thị tin tìm kiếm nổi bật còn lại<a>
+                            <a><%=t(:remain_search_highlight_job)%><a>
                             <br>
-                            <a>Số lượt xem hồ sơ còn lại<a>
+                            <a><%=t(:remain_view_profile)%><a>
                         </div>
                         <div class="employer_plan_detail_section">
                             <%if current_employer.plan%>
@@ -107,22 +113,22 @@
                                 <span><%=(current_employer.created_at + 30.days).strftime("%B %d, %Y")%><span>
                             <%end%>
                             <br>
-                            <span>Không giới hạn<span>
+                            <span><%=t(:unlimit)%><span>
                             <br>
                             <%if auth_urgent_plan_of_employer(current_employer)%>
-                                <span>Không giới hạn<span>
+                                <span><%=t(:unlimit)%><span>
                             <%else%>
                                 <span>0<span>
                             <%end%>
                             <br>
                             <%if auth_urgent_plan_of_employer(current_employer)%>
-                                <span>Không giới hạn<span>
+                                <span><%=t(:unlimit)%><span>
                             <%else%>
                                 <span>0<span>
                             <%end%>
                             <br>
                             <%if auth_cv_search_plan_of_employer(current_employer)%>
-                                <span>Không giới hạn<span>
+                                <span><%=t(:unlimit)%><span>
                             <%else%>
                                 <span>0<span>
                             <%end%>
@@ -133,7 +139,7 @@
         </div> 
         <div class="employer_plan_price_block">
             <div class="employer_plan_price_title">
-                <h3>Danh sách gói tin đăng khác dành cho nhà tuyển dụng</h3>
+                <h3><%=t(:list_of_service)%></h3>
             </div>
 
             <div class="employer_plan_price_detail">
@@ -142,23 +148,25 @@
                         <div class="card card1 h-100">
                             <div class="card-body">
                                 <h5 class="card-title">F-Basic</h5>
-                                    <small class='text-muted'>Được sử dụng nhiều nhất</small>
+                                    <small class='text-muted'><%=t(:cost_save)%></small>
                                 <br><br>
-                                    <span class="h2">0đ</span>/tháng
+                                    <span class="h2">0<%=t(:vnd_short)%></span>/<%=t(:month)%>
                                 <br><br>
                                 <div class="d-grid my-3">
                                     <%if current_employer.plan != "F-Eco" || current_employer.plan != "F-Pro"%>
-                                        <%= link_to '<button class="btn btn-outline-dark btn-block disabled">Miễn phí</button>'.html_safe, employer_plan_path %>
+                                        <%= link_to employer_plan_path do%>
+                                            <button class="btn btn-outline-dark btn-block disabled"><%=t(:free)%></button>
+                                        <%end%>
                                     <%else%>
                                         <%= link_to employer_plan_path(:price => 0), :method => :get, remote: true  do%>
-                                            <button class="btn btn-outline-dark btn-block">Miễn phí</button>
+                                            <button class="btn btn-outline-dark btn-block"><%=t(:free)%></button>
                                         <%end%>
                                     <%end%>
                                 </div>
                                 <ul>
-                                    <li>Miễn phí đăng tin không giới hạn</li>
-                                    <li>Quản lý tin đăng chuyên nghiệp</li>
-                                    <li>Hỗ trợ khách hàng 24/7</li>
+                                    <li><%=t(:free_post_job)%></li>
+                                    <li><%=t(:pro_mana_job)%></li>
+                                    <li><%=t(:support_247)%></li>
                                 </ul>
                             </div>
                         </div>
@@ -168,23 +176,25 @@
                         <div class="card card2 h-100">
                             <div class="card-body">
                                 <h5 class="card-title">F-Eco</h5>
-                                <small class='text-muted'>Tiết kiệm chi phí</small>
+                                <small class='text-muted'><%=t(:mosted_use)%></small>
                                 <br><br>
-                                <span class="h2">499.000đ</span>/tháng <mark>-20%</mark>
+                                <span class="h2">499.000<%=t(:vnd_short)%></span>/<%=t(:month)%> <mark>-20%</mark>
                                 <br><br>
                                 <div class="d-grid my-3">
                                     <%if current_employer.plan == "F-Eco"%>
-                                        <%= link_to '<button class="btn btn-outline-dark btn-block disabled">Đang sử dụng</button>'.html_safe, employer_plan_path %>
+                                        <%= link_to employer_plan_path do%>
+                                            <button class="btn btn-outline-dark btn-block disabled"><%=t(:in_use)%></button>
+                                        <%end%>
                                     <%else%>
                                         <%= link_to employer_plan_path(:price => 499), :method => :get, remote: true  do%>
-                                            <button class="btn btn-outline-dark btn-block">Mua ngay</button>
+                                            <button class="btn btn-outline-dark btn-block"><%=t(:buy_now)%></button>
                                         <%end%>
                                     <%end%>
                                 </div>
                                 <ul>
-                                    <li>Miễn phí đăng tin không giới hạn</li>
-                                    <li>Hiển thị nổi bật trong kết quả tìm kiếm</li>
-                                    <li>Hỗ trợ khách hàng 24/7</li>
+                                    <li><%=t(:free_post_job)%></li>
+                                    <li><%=t(:highlight_search)%></li>
+                                    <li><%=t(:support_247)%></li>
                                 </ul>
                             </div>
                         </div>
@@ -194,64 +204,66 @@
                         <div class="card card3 h-100">
                             <div class="card-body">
                                 <h5 class="card-title">F-Pro</h5>
-                                <small class='text-muted'>Hiệu quả cao nhất</small>
+                                <small class='text-muted'><%=t(:high_efficiency)%></small>
                                 <br><br>
-                                    <span class="h2">999.000đ</span>/tháng <mark>-25%</mark>
+                                    <span class="h2">999.000<%=t(:vnd_short)%></span>/<%=t(:month)%> <mark>-25%</mark>
                                 <br><br>
                                 <div class="d-grid my-3">
                                     <%if current_employer.plan == "F-Pro"%>
-                                        <%= link_to '<button class="btn btn-outline-dark btn-block disabled">Đang sử dụng</button>'.html_safe, employer_plan_path %>
+                                        <%= link_to employer_plan_path do%>
+                                            <button class="btn btn-outline-dark btn-block disabled"><%=t(:in_use)%></button>
+                                        <%end%>
                                     <%else%>
                                         <%= link_to employer_plan_path(:price => 999), :method => :get, remote: true  do%>
-                                            <button class="btn btn-outline-dark btn-block">Mua ngay</button>
+                                            <button class="btn btn-outline-dark btn-block"><%=t(:buy_now)%></button>
                                         <%end%>
                                     <%end%>
                                 </div>
                                 <ul>
-                                    <li>Tiếp cận hồ sơ ứng viên</li>
-                                    <li>Hiển thị nổi bật trong kết quả tìm kiếm</li>
-                                    <li>Hỗ trợ khách hàng 24/7</li>
+                                    <li><%=t(:find_candidate)%></li>
+                                    <li><%=t(:highlight_search)%></li>
+                                    <li><%=t(:support_247)%></li>
                                 </ul>
                             </div>
                         </div>
                     </div>
                 </div> 
                 <div class="employer_plan_price_detail_more">
-                    <%=link_to "Xem bảng so sánh chi tiết tại đây", employer_wellcome_path%>
+                    <%=link_to t(:view_compare_service), employer_wellcome_path%>
                 </div>
             </div>
 
             <div class="employer_plan_price_cart">
                 <div class="row">
                     <div class="col-sm-6">
-                        <h3>Thông tin đơn hàng</h3>
+                        <h3><%=t(:order_info)%></h3>
                         <div class="employer_plan_price_cart_cal" id="employer_price_cal">
                             <div class="employer_plan_price_cart_cal_detail">
                                 <div class="employer_plan_price_cart_cal_temp">
-                                    <a><span>Tạm tính:</span> <%=number_with_delimiter(@price)%>đ</a>
+                                    <a><span><%=t(:provisional)%>:</span> <%=number_with_delimiter(@price)%><%=t(:vnd_short)%></a>
                                 </div>
                                 <div class="employer_plan_price_cart_cal_total">
-                                    <a><span>Tổng cộng:</span> <%=number_with_delimiter(@price)%>đ</a>
+                                    <a><span><%=t(:total)%>:</span> <%=number_with_delimiter(@price)%><%=t(:vnd_short)%></a>
                                 </div>
                             </div>
                         </div>
                     </div>
                     <div class="col-sm-6">
-                        <h3>Lựa chọn hình thức thanh toán</h3>
+                        <h3><%=t(:select_payment)%></h3>
                         <div class="employer_plan_price_cart_atm_tranfer">
                             <div class="employer_plan_price_cart_atm_tranfer_icon">
                                 <%=image_tag("icons/mobile-payment.png")%>
                             </div>
                             <div class="employer_plan_price_cart_atm_tranfer_text">
-                                <a>Thanh toán bằng hình thức chuyển khoản</a>
+                                <a><%=t(:select_payment_1)%></a>
                                 <br>
-                                <span>Chuyển khoản tới số TK: 0451000405963</span>
+                                <span><%=t(:select_payment_2)%></span>
                                 <br>
-                                <span>Ngân hàng thương mại cổ phần Ngoại thương Việt Nam Vietcombank</span>
+                                <span><%=t(:select_payment_3)%></span>
                                 <br>
-                                <span>Chủ tài khoản: NGUYEN VAN DUNG</span>
+                                <span><%=t(:select_payment_4)%></span>
                                 <br>
-                                <span>Nội dung: NTD_"số điện thoại"_"gói đăng kí"(ex:NTD_0123456789_F-Eco)</span>
+                                <span><%=t(:select_payment_5)%></span>
                                 <br>
                             </div>
                         </div>
@@ -260,9 +272,9 @@
                                 <%=image_tag("icons/atm_transfer.png")%>
                             </div>
                             <div class="employer_plan_price_cart_text">
-                                <a>Thanh toán thông qua thẻ ngân hàng nội địa</a>
+                                <a><%=t(:select_payment_6)%></a>
                                 <br>
-                                <span>Hiện tại không khả dụng</span>
+                                <span><%=t(:select_payment_7)%></span>
                             </div>
                         </div>
                     </div>
@@ -275,23 +287,23 @@
             </div>
 
             <div class="employer_plan_price_support">
-                <h3>Hướng dẫn thanh toán và bảo hành thông tin</h3>
-                <h4>I. Đối với trường hợp thanh toán thông qua chuyển khoản ngân hàng</h4>
+                <h3><%=t(:payment_help)%></h3>
+                <h4>I. <%=t(:payment_help_1)%></h4>
                 <ul>
-                    <li>Nhà tuyển dụng vui lòng điền đầy đủ thông tin nội dung chuyển khoản theo mẫu NTD_"số điện thoại"_"gói đăng kí"</li>
-                    <li>Nhà tuyển dụng vui lòng chụp ảnh kết quả thanh toán để làm thông tin đối chiếu</li>
-                    <li>Nhà tuyển dụng có nhu cầu mở rộng gói đăng kí hoặc thông tin cần giải đáp vui lòng liên hệ với chúng tôi qua số điện thoại 0338275427 hoặc email hotro.firework@gmail.com</li>
+                    <li><%=t(:payment_help_2)%></li>
+                    <li><%=t(:payment_help_3)%></li>
+                    <li><%=t(:payment_help_4)%></li>
                 </ul>
 
-                <h4>II. Đối với trường hợp thanh toán thông qua chuyển khoản ngân hàng</h4>
+                <h4>II. <%=t(:payment_help_5)%></h4>
                 <ul>
-                    <li>Chúng tôi sẽ sớm triển khai hình thức thanh toán này trong thời gian sớm nhất</li>
+                    <li><%=t(:payment_help_6)%></li>
                 </ul>
 
-                <h4>III. Bảo hành thông tin</h4>
+                <h4>III. <%=t(:payment_help_7)%></h4>
                 <ul>
-                    <li>Gói đăng kí sẽ được cập nhật sau khi chúng tôi xác nhận thanh toán từ nhà tuyển dụng</li>
-                    <li>Chúng tôi cam kết hoàn tiền cho khách hàng nếu không hoàn thành đúng thông tin trong gói đăng kí</li>
+                    <li><%=t(:payment_help_8)%></li>
+                    <li><%=t(:payment_help_9)%></li>
                 </ul>
             </div>
         </div>

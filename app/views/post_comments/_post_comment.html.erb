@@ -15,10 +15,10 @@
             <div class="post_reply_button">
                 <a><%= post_comment.post_reply_comments.count%></a>
                 <%if user_signed_in?%>
-                    <button class="reply_btn" onclick="myFunctionReplypost_comment(<%=post_comment.id%>)"><i class="material-icons-outlined">chat_bubble_outline</i> <span>Trả lời</span> </button>
+                    <button class="reply_btn" onclick="myFunctionReplypost_comment(<%=post_comment.id%>)"><i class="material-icons-outlined">chat_bubble_outline</i> <span><%=t(:reply)%></span> </button>
                 <%else%>
                     <button type="button" data-toggle="modal" data-target="#buttonModalLoginCenter" class="reply_btn">
-                        <i class="material-icons-outlined">chat_bubble_outline</i> <span>Trả lời
+                        <i class="material-icons-outlined">chat_bubble_outline</i> <span><%=t(:reply)%>
                     </button>
                 <%end%>
             </div>

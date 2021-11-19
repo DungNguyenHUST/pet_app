@@ -6,11 +6,11 @@
                     <div class='company_job_result_index'>
                         <%if @is_search || @is_filter%>
                             <div class="company_job_search_label">
-                                <a><strong><%=job_results.total_count%></strong> việc làm phù hợp</a>
+                                <a><strong><%=job_results.total_count%></strong> <%=t(:job_search_match)%></a>
                             </div>
                         <%else%>
                             <div class="company_job_search_label_all">
-                                <a><strong><%=job_results.total_count%></strong> việc làm đang tuyển dụng tháng <%=Date.today.strftime("%m")%>/<%=Date.today.strftime("%Y")%></a>
+                                <a><strong><%=job_results.total_count%></strong> <%=t(:job_search_all)%> <%=Date.today.strftime("%m")%>/<%=Date.today.strftime("%Y")%></a>
                             </div>
                         <%end%>
                         <div class='company_job_result_render'>
@@ -42,24 +42,24 @@
         <%else%>
             <div class="company_job_search_not_found_block">
                 <div class="company_job_search_not_found_label">
-                    <span>Rất tiếc, không tìm được việc làm phù hợp</span>
+                    <span><%=t(:job_search_no_result)%></span>
                 </div>
                 <div class="company_job_search_not_found_image">
                     <%=image_tag("others/no_result_found.png")%>
                 </div>
                 <div class="company_job_search_not_found_help">
-                    <a>Gợi ý từ khóa tìm kiếm:</a>
+                    <a><%=t(:job_search_no_result_sub_1)%>:</a>
                     <ul>
                         <li>
-                            Tìm kiếm với từ khoá cụ thể như vị trí công việc. Ví dụ: Nhân viên kinh doanh, sales ...
+                            <%=t(:job_search_no_result_sub_2)%>
                         </li>
 
                         <li>
-                            Tìm kiếm theo tên công ty bằng tiếng việt hoặc tiếng anh.
+                            <%=t(:job_search_no_result_sub_3)%>
                         </li>
 
                         <li>
-                            Tìm kiếm theo danh sách việc làm mới cập nhật và lọc theo tỉnh/thành phố
+                            <%=t(:job_search_no_result_sub_4)%>
                         </li>
                     </ul>
                 </div>
@@ -69,7 +69,7 @@
                 <div class="col-sm-5 col_padding_customize_right col_no_padding_small_screen">
                     <div class='company_job_result_index'>
                         <div class="company_job_search_label_recomand">
-                            <a>Việc làm gợi ý dành cho bạn</a>
+                            <a><%=t(:job_search_suggestion)%></a>
                         </div>
                         <div class='company_job_result_render'>
                             <%@job_recommands.each do |company_job|%>

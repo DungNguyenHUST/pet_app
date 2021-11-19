@@ -6,27 +6,27 @@
 				<div class="new_cover_vitae_section">
 					<div class="new_cover_vitae_content">
 						<div class="new_cover_vitae_label">
-							<a><%= f.label :title, "Title", class: "new_cover_vitae_label_name" %></a>
+							<a><%= f.label :title, t(:title), class: "new_cover_vitae_label_name" %></a>
 						</div>
 
 						<div class="new_cover_vitae_input">
-							<%= f.text_field :title, :required => true, class: "form-control", placeholder: " Nhập title" %>
+							<%= f.text_field :title, :required => true, class: "form-control", placeholder: t(:enter_title) %>
 						</div>
 					</div>
 
 					<div class="new_cover_vitae_content">
 						<div class="new_cover_vitae_label">
-							<a><%= f.label :description, "Mô tả", class: "new_cover_vitae_label_name" %></a>
+							<a><%= f.label :description, t(:description), class: "new_cover_vitae_label_name" %></a>
 						</div>
 
 						<div class="new_cover_vitae_input">
-							<%= f.text_field :description, :required => true, class: "form-control", placeholder: " Nhập mô tả" %>
+							<%= f.text_field :description, :required => true, class: "form-control", placeholder: t(:enter_description) %>
 						</div>
 					</div>
 
 					<div class="new_cover_vitae_content">
 						<div class="new_cover_vitae_label">
-							<a><%= f.label :avatar, "Ảnh bìa", class: "new_cover_vitae_label_name" %></a>
+							<a><%= f.label :avatar, t(:wall_picture), class: "new_cover_vitae_label_name" %></a>
 						</div>
 
 						<div class="new_cover_vitae_input">
@@ -36,101 +36,101 @@
 
 					<div class="new_cover_vitae_content">
 						<div class="new_cover_vitae_label">
-							<a><%= f.label :language, "Ngôn ngữ", class: "new_cover_vitae_label_name" %></a>
+							<a><%= f.label :language, t(:languge), class: "new_cover_vitae_label_name" %></a>
 						</div>
 
 						<div class="new_cover_vitae_input">
-							<%= f.select(:language, options_for_select(['Tiếng Việt', 'Tiếng Anh', 'Tiếng Nhật'], "Tiếng Việt"), 
+							<%= f.select(:language, options_for_select([t(:vietnamese), t(:english), t(:japanese)], t(:vietnamese)), 
 																	{include_blank: false}, { :class => 'form-select' }) %>
 						</div>
 					</div>
 
 					<div class="new_cover_vitae_content">
 						<div class="new_cover_vitae_label">
-							<a><%= f.label :style, "Style", class: "new_cover_vitae_label_name" %></a>
+							<a><%= f.label :style, t(:style), class: "new_cover_vitae_label_name" %></a>
 						</div>
 
 						<div class="new_cover_vitae_input">
-							<%= f.select :style, options_for_select(['Hiện đại', 'Sáng tạo', 'Đơn giản', 'Chuyên nghiệp'], "Chuyên nghiệp"), 
+							<%= f.select :style, options_for_select([t(:moderm), t(:creative), t(:simple), t(:pro)], t(:pro)), 
 																	{include_blank: false}, { :class => 'form-select' } %>
 						</div>
 					</div>
 
 					<div class="new_cover_vitae_content">
 						<div class="new_cover_vitae_label">
-							<a><%= f.label :category, "Ngành nghề", class: "new_cover_vitae_label_name" %></a>
+							<a><%= f.label :category, t(:career), class: "new_cover_vitae_label_name" %></a>
 						</div>
 
 						<div class="new_cover_vitae_input">
-							<%= f.select(:category, options_for_select(["An Ninh - Bảo Vệ",
-																				"An toàn lao động",
-																				"Bán hàng - Kinh doanh",
-																				"Bán lẻ - Bán sỉ",
-																				"Bảo hiểm",
-																				"Bất động sản",
-																				"Biên phiên dịch",
-																				"Bưu chính viễn thông",
-																				"Chăn nuôi - Thú y",
-																				"Chứng khoán",
-																				"CNTT - Phần cứng - Mạng",
-																				"CNTT - Phần mềm",
-																				"Công nghệ sinh học",
-																				"Công nghệ thực phẩm - Dinh dưỡng",
-																				"Cơ khí - Ô tô - Tự động hóa",
-																				"Dầu khí",
-																				"Dệt may - Da giày - Thời trang",
-																				"Dịch vụ khách hàng",
-																				"Du lịch",
-																				"Dược phẩm",
-																				"Điện - Điện tử - Điện lạnh",
-																				"Đồ gỗ",
-																				"Giải trí",
-																				"Giáo dục - Đào tạo",
-																				"Hàng gia dụng - Chăm sóc cá nhân",
-																				"Hàng hải",
-																				"Hàng không",
-																				"Hành chính - Thư ký",
-																				"Hóa học",
-																				"In ấn - Xuất bản",
-																				"Kế toán - Kiểm toán",
-																				"Khoáng sản",
-																				"Kiến trúc",
-																				"Lao động phổ thông",
-																				"Lâm Nghiệp",
-																				"Luật - Pháp lý",
-																				"Môi trường",
-																				"Mới tốt nghiệp - Thực tập",
-																				"Mỹ thuật - Nghệ thuật - Thiết kế",
-																				"Ngân hàng",
-																				"Nhà hàng - Khách sạn",
-																				"Nhân sự",
-																				"Nội ngoại thất",
-																				"Nông nghiệp",
-																				"Phi chính phủ - Phi lợi nhuận",
-																				"Quản lý chất lượng (QA - QC)",
-																				"Quản lý điều hành",
-																				"Quảng cáo - Đối ngoại - Truyền Thông",
-																				"Sản xuất - Vận hành sản xuất",
-																				"Tài chính - Đầu tư",
-																				"Thống kê",
-																				"Thu mua - Vật tư",
-																				"Thủy lợi",
-																				"Thủy sản - Hải sản",
-																				"Thư viện",
-																				"Thực phẩm & Đồ uống",
-																				"Tiếp thị - Marketing",
-																				"Tiếp thị trực tuyến",
-																				"Tổ chức sự kiện",
-																				"Trắc địa - Địa Chất",
-																				"Truyền hình - Báo chí - Biên tập",
-																				"Tư vấn",
-																				"Vận chuyển - Giao nhận - Kho vận",
-																				"Xây dựng",
-																				"Xuất nhập khẩu",
-																				"Y tế - Chăm sóc sức khỏe",
-																				"Bảo trì - Sửa chữa",
-																				"Ngành khác",
-																				'Không xác định'], 'Không xác định'), {include_blank: false}, 
+							<%= f.select(:category, options_for_select([t(:form_company_filed_operation_1), 
+																					t(:form_company_filed_operation_2), 
+																					t(:form_company_filed_operation_3), 
+																					t(:form_company_filed_operation_4), 
+																					t(:form_company_filed_operation_5), 
+																					t(:form_company_filed_operation_6), 
+																					t(:form_company_filed_operation_7), 
+																					t(:form_company_filed_operation_8), 
+																					t(:form_company_filed_operation_9), 
+																					t(:form_company_filed_operation_10),
+																					t(:form_company_filed_operation_11),
+																					t(:form_company_filed_operation_12),
+																					t(:form_company_filed_operation_13),
+																					t(:form_company_filed_operation_14),
+																					t(:form_company_filed_operation_15),
+																					t(:form_company_filed_operation_16),
+																					t(:form_company_filed_operation_17),
+																					t(:form_company_filed_operation_18),
+																					t(:form_company_filed_operation_19),
+																					t(:form_company_filed_operation_20),
+																					t(:form_company_filed_operation_21),
+																					t(:form_company_filed_operation_22),
+																					t(:form_company_filed_operation_23),
+																					t(:form_company_filed_operation_24),
+																					t(:form_company_filed_operation_25),
+																					t(:form_company_filed_operation_26),
+																					t(:form_company_filed_operation_27),
+																					t(:form_company_filed_operation_28),
+																					t(:form_company_filed_operation_29),
+																					t(:form_company_filed_operation_30),
+																					t(:form_company_filed_operation_31),
+																					t(:form_company_filed_operation_32),
+																					t(:form_company_filed_operation_33),
+																					t(:form_company_filed_operation_34),
+																					t(:form_company_filed_operation_35),
+																					t(:form_company_filed_operation_36),
+																					t(:form_company_filed_operation_37),
+																					t(:form_company_filed_operation_38),
+																					t(:form_company_filed_operation_39),
+																					t(:form_company_filed_operation_40),
+																					t(:form_company_filed_operation_41),
+																					t(:form_company_filed_operation_42),
+																					t(:form_company_filed_operation_43),
+																					t(:form_company_filed_operation_44),
+																					t(:form_company_filed_operation_45),
+																					t(:form_company_filed_operation_46),
+																					t(:form_company_filed_operation_47),
+																					t(:form_company_filed_operation_48),
+																					t(:form_company_filed_operation_49),
+																					t(:form_company_filed_operation_50),
+																					t(:form_company_filed_operation_51),
+																					t(:form_company_filed_operation_52),
+																					t(:form_company_filed_operation_53),
+																					t(:form_company_filed_operation_54),
+																					t(:form_company_filed_operation_55),
+																					t(:form_company_filed_operation_56),
+																					t(:form_company_filed_operation_57),
+																					t(:form_company_filed_operation_58),
+																					t(:form_company_filed_operation_59),
+																					t(:form_company_filed_operation_60),
+																					t(:form_company_filed_operation_61),
+																					t(:form_company_filed_operation_62),
+																					t(:form_company_filed_operation_63),
+																					t(:form_company_filed_operation_64),
+																					t(:form_company_filed_operation_65),
+																					t(:form_company_filed_operation_66),
+																					t(:form_company_filed_operation_67),
+																					t(:form_company_filed_operation_68),
+																					t(:unknown)], t(:unknown)), {include_blank: false}, 
 																				{ :class => 'form-select cv_field_operetion_select' }) %>
 						</div>
 						<script>
@@ -148,7 +148,7 @@
 
 					<div class="new_cover_vitae_content">
 						<div class="new_cover_vitae_label">
-							<a><%= f.label :detail, "CV", class: "new_cover_vitae_label_name" %></a>
+							<a><%= f.label :detail, t(:content), class: "new_cover_vitae_label_name" %></a>
 						</div>
 
 						<div class="new_cover_vitae_input">
@@ -163,7 +163,7 @@
 				</div>
 
 				<div class="new_cover_vitae_submit">
-					<%= f.submit "Create CV", class: "new_cover_vitae_form_submit" %>
+					<%= f.submit t(:send), class: "new_cover_vitae_form_submit" %>
 				</div>
 			<%end%>
 		</div>
