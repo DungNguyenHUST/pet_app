@@ -1,0 +1,87 @@
+vi:
+    # Used in distance_of_time_in_words(), distance_of_time_in_words_to_now(), time_ago_in_words()
+    datetime:
+        distance_in_words:
+            half_a_minute: "1 phút trước"
+            less_than_x_seconds:
+                one:   "1 giây trước"
+                other: "%{count} giây trước"
+            x_seconds:
+                one:   "1 giây trước"
+                other: "%{count} giây trước"
+            less_than_x_minutes:
+                one:   "1 phút trước"
+                other: "%{count} phút trước"
+            x_minutes:
+                one:   "1 phút trước"
+                other: "%{count} phút trước"
+            about_x_hours:
+                one:   "1 giờ trước"
+                other: "%{count} giờ trước"
+            x_days:
+                one:   "1 ngày trước"
+                other: "%{count} ngày trước"
+            about_x_months:
+                one:   "1 tháng trước"
+                other: "%{count} tháng trước"
+            x_months:
+                one:   "1 tháng trước"
+                other: "%{count} tháng trước"
+            about_x_years:
+                one:   "1 năm trước"
+                other: "%{count} năm trước"
+            over_x_years:
+                one:   "1 năm trước"
+                other: "%{count} năm trước"
+            almost_x_years:
+                one:   "1 năm trước"
+                other: "%{count} năm trước"
+            prompts:
+                year:   "Năm"
+                month:  "Tháng"
+                day:    "Ngày"
+                hour:   "Giờ"
+                minute: "Phút"
+                second: "Giây"
+
+    helpers:
+        select:
+            # Default value for :prompt => true in FormOptionsHelper
+            prompt: "Vui lòng chọn"
+
+            # Default translation keys for submit and button FormHelper
+            submit:
+                create: "Tạo %{model}"
+                update: "Chỉnh sửa %{model}"
+                submit: "Lưu %{model}"
+
+    date:
+        formats:
+            # Use the strftime parameters for formats.
+            # When no format has been given, it uses default.
+            # You can provide other formats here if you like!
+            default: "%Y-%m-%d"
+            short: "%b %d"
+            long: "%B %d, %Y"
+
+            day_names: [Chủ Nhật, Thứ Hai, Thứ Ba, Thứ Tư, Thứ Năm, Thứ Sáu, Thứ Bảy]
+            abbr_day_names: [CN, T2, T3, T4, T5, T6, T7]
+
+            # Don"t forget the nil at the beginning; there"s no such thing as a 0th month
+            month_names: [~, Tháng Một, Tháng Hai, Tháng Ba, Tháng Tư, Tháng Năm, Tháng Sáu, Tháng Bảy, Tháng Tám, Tháng Chín, Tháng Mười, Tháng Mười Một, Tháng Mười Hai]
+            abbr_month_names: [~, Jan, Feb, Mar, Apr, May, Jun, Jul, Aug, Sep, Oct, Nov, Dec]
+            # Used in date_select and datetime_select.
+            order:
+                - year
+                - month
+                - day
+                
+        order: ["day", "month", "year"]
+
+    time:
+        formats:
+            default: "%a, %d %b %Y %H:%M:%S %z"
+            short: "%d %b %H:%M"
+            long: "%B %d, %Y %H:%M"
+            am: "am"
+            pm: "pm"
