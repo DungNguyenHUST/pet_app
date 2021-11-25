@@ -117,7 +117,13 @@
 							</div>
 
 							<div class="new_review_input">
-								<%= f.select(:working_time, options_for_select(["6 tháng", "1 năm", "2 năm", "3 năm", "5 năm", "Nhiều hơn 5 năm"]), {include_blank: false}, { :class => 'form-select' }) %>
+								<%= f.select(:working_time, options_for_select([t(:x_month, num: 6), 
+																				t(:x_year, num: 1), 
+																				t(:x_year, num: 2), 
+																				t(:x_year, num: 3), 
+																				t(:x_year, num: 4), 
+																				t(:x_year, num: 5),
+																				t(:more_than_x_year, num: 5)]), {include_blank: false}, { :class => 'form-select' }) %>
 							</div>
 						</div>
 					</div>

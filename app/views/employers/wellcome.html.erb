@@ -8,9 +8,8 @@
                             <h3><%=t(:wellcome_employer_label)%>.</h3>
                         </div>
                         <div class="employer_wellcome_button">
-                            <%= button_to new_employer_registration_path, :method => :get do%>
-                                <a><%=t(:wellcome_employer_sub_1)%></a>
-                                <i class="material-icons-outlined">arrow_forward</i>
+                            <%= link_to new_employer_registration_path do%>
+                                <button type="submit"><span><%=t(:wellcome_employer_sub_1)%></span> <i class="material-icons-outlined">arrow_forward</i></button>
                             <%end%>
                         </div>
                         <div class="employer_wellcome_login">
@@ -175,9 +174,11 @@
 
                     <div class="col-sm-6">
                         <div class="employer_wellcome_support_signup">
-                            <%= button_to new_employer_session_path, :method => :post do%>
-                                <i class="material-icons-outlined">work_outline</i>
-                                <a><%=t(:employer_register)%></a>
+                            <%= link_to new_employer_session_path do%>
+                                <button>
+                                    <i class="material-icons-outlined">work_outline</i>
+                                    <span><%=t(:employer_register)%></span>
+                                </button>
                             <%end%>
                         </div>
                     </div>

@@ -82,12 +82,13 @@
 
                         <div class="col-sm-2">
                             <div class="employer_cv_filter_input">
-                                <%= f.select(:job_exp, options_for_select(['Dưới 1 năm', 
-                                                                            '1 năm', 
-                                                                            '2 năm', 
-                                                                            '3 năm', 
-                                                                            "5 năm",
-                                                                            "Trên 5 năm"]),
+                                <%= f.select(:job_exp, options_for_select([t(:x_month, num: 6), 
+                                                                            t(:x_year, num: 1), 
+                                                                            t(:x_year, num: 2), 
+                                                                            t(:x_year, num: 3), 
+                                                                            t(:x_year, num: 4), 
+                                                                            t(:x_year, num: 5),
+                                                                            t(:more_than_x_year, num: 5)]),
                                                                             {include_blank: false, :prompt => t(:all_exp)},
                                                                             { :class => 'form-select'})  %>
                             </div>
@@ -95,7 +96,11 @@
 
                         <div class="col-sm-2">
                             <div class="employer_cv_filter_input">
-                                <%= f.select(:updated_date, options_for_select(['1 ngày qua', '3 ngày qua', '7 ngày qua', '14 ngày qua', '30 ngày qua']), 
+                                <%= f.select(:updated_date, options_for_select([t(:x_day_pass, num: 1),
+                                                                                t(:x_day_pass, num: 3),
+                                                                                t(:x_day_pass, num: 7), 
+                                                                                t(:x_day_pass, num: 15), 
+                                                                                t(:x_day_pass, num: 30)]), 
                                                                                 {include_blank: false, :prompt => t(:last_updated)}, 
                                                                                 { :class => 'form-select'})  %>
                             </div>

@@ -73,6 +73,8 @@
                             <a><%= time_ago_in_words(company_job.created_at) %>
                                 <%if company_job.urgent > 0%>
                                     <span class="job_urgent"><%=t(:hot).upcase%></span>
+                                <%elsif company_job.sponsor > 0%>
+                                    <span class="job_sponsor"><%=t(:ad).upcase%></span>
                                 <%elsif verified_job(company_job)%>
                                     <span class="job_easy_apply"><%=t(:apply_fast)%></span>
                                 <%end%>

@@ -1,5 +1,5 @@
-<% content_for :meta_title, "Tạo tài khoản mới" %>
-<% content_for :meta_description, "Tạo tài khoản mới tại firework.vn giúp bạn truy cập những thông tin mới nhất(review công ty, phỏng vấn, việc làm...) trong tìm kiếm việc làm, hãy tham gia cộng đồng của chúng tôi ..." %>
+<% content_for :meta_title, t(:signup) %>
+<% content_for :meta_description, t(:meta_user_new)%>
 <div class='user_container'>
     <div class="container">
         <div class="user_block">
@@ -53,13 +53,17 @@
 
                     <div class="user_add_new_content">
                         <div class="user_add_new_label">
-                            <a><%= f.label :password, t(:password), class: "user_add_new_label_name" %><span>*</span></a>
+                            <a>
+                                <%= f.label :password, t(:password), class: "user_add_new_label_name" %>
+                                <span>*</span>
+                                <br>
+                                <% if @minimum_password_length %>
+                                    <em>(<%= @minimum_password_length %> <%=t(:min_charater)%>)</em>
+                                <% end %><br />
+                            </a>
                         </div>
 
                         <div class="user_add_new_input">
-                            <% if @minimum_password_length %>
-                            <em>(<%= @minimum_password_length %> <%=t(:min_charater)%>)</em>
-                            <% end %><br />
                             <%= f.password_field :password, autocomplete: "new-password", :required => true, class: "form-control", placeholder: t(:enter_password) %>
                         </div>
                     </div>
