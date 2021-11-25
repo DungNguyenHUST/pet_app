@@ -10,17 +10,21 @@
 	float: left;
 	display: block;
 	position: relative;
-	margin-right: 40px;
+	margin-right: 15px;
 	left: -15px;
-	.rounded
+	.rounded_logo_small{
+		display: none;
+	}
+
+	.rounded_logo_large
 	{
 		position: relative;
-		top: 10px;
-		left: 15px;
+		top: 15px;
+		left: 16px;
 		img{
 			@media screen and (min-width: 600px){
-				width: 38px;
-				height: 38px;
+				width: 150px;
+				height: 25px;
 			}
 			object-fit: cover;
 		}
@@ -73,28 +77,37 @@
 			border: none;
 			background-color: #fff;
 			margin-right: 10px;
-			padding-right: 15px;
-			border-right: 1px solid #EAEAF9;
 			position: relative;
-			top: 10px;
+			top: 11px;
 			@media screen and (max-width: 600px){
 				border-right: none;
 				top: 0px;
 				padding-top: 10px;
 				padding-bottom: 5px;
-			}
-			span{
-				font-size: 15px;
-				color: #222;
-				@media screen and (max-width: 600px){
-					position: relative;
-					left: -5px;
-				}
+				left: -5px;
 			}
 			i{
+				font-size: 22px;
+				color: #555;
 				position: relative;
-				top: 7px;
+				top: 5px;
+				margin-right: 1px;
+				display: inline-block;
+			}
+			a{
+				display: inline-block;
+				font-size: 15px;
+				color: #222;
+			}
+			span{
+				display: inline-block;
+				position: relative;
+				top: 5px;
 				color: #333;
+				font-size: 20px;
+			}
+			&:hover{
+				color: #1473e6;
 			}
 		}
 		.dropdown-menu{
@@ -121,7 +134,7 @@
 		display: inline-block;
 		text-decoration: none;
 		position: relative;
-		top: 10px;
+		top: 11px;
 		margin-right: 5px;
 		border: 2px solid #FFF;
 		border-radius: 3px;
@@ -131,10 +144,9 @@
 		color: #333;
 		min-width: 100px;
 		text-align: center;
+		margin-right: 15px;
 		&:hover{
-			background-color: #fff;
-			border: 2px solid #1473e6;
-			color: #222;
+			color: #1473e6;
 		}
 		@media screen and (max-width: 600px){
 			margin-bottom: 15px;
@@ -158,14 +170,15 @@
 		display: inline-block;
 		text-decoration: none;
 		position: relative;
-		top: 9px;
+		top: 10px;
 		border: none;
 		border-radius: 3px;
-		padding: 6px;
+		padding: 5px;
 		padding-left: 10px;
 		padding-right: 10px;
-		background-color: #1473e6;
-		color: #fff;
+		background-color: #fff;
+		border: 2px solid #0071e3;
+		color: #222;
 		font-size: 15px;
 		text-decoration: none;
 		min-width: 100px;
@@ -694,10 +707,11 @@
 
 	.topnav .nav_logo{
 		float: left;
-		.rounded
-		{
+		.rounded_logo_small{
+			display: block;
 			position: relative;
 			top: 7px;
+			left: 15px;
 			img{
 				object-fit: cover;
 				@media screen and (max-width: 600px) {
@@ -708,6 +722,11 @@
 			}
 			display: block;
 			float: left;
+		}
+
+		.rounded_logo_large
+		{
+			display: none;
 		}
 	}
 

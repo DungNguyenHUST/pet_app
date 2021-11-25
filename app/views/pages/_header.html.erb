@@ -9,8 +9,11 @@
 		</a>
 
 		<div class="nav_logo">
-			<div class="rounded">
+			<div class="rounded_logo_small">
 				<%= link_to (image_tag(("favicon.ico"))), image_path(url_for(("favicon.ico"))), rel: "gallery" , :href => root_path%>
+			</div>
+			<div class="rounded_logo_large">
+				<%= link_to (image_tag(("large_logo.png"))), image_path(url_for(("large_logo.png"))), rel: "gallery" , :href => root_path%>
 			</div>
 		</div>
 
@@ -201,7 +204,7 @@
 				<a href="<%=companies_path %>"><%=t(:company_review)%> </a>
 				<a href="<%=user_profile_path %>"><%=t(:user_profile)%></a>
 				<!--<a href="<%=problems_path %>">Mức lương </a>-->
-				<a href="<%=problems_path %>"><%=t(:interview_question)%> </a>
+				<a href="<%=problems_path %>"><%=t(:interview)%> </a>
 				<!--<a href="<%=cover_vitaes_path %>">CV & Resume </a>-->
 				<!--<a href="<%=problems_path %>">Công cụ </a>-->
 				<a href="<%=posts_path %>"><%=t(:blog)%></a>
@@ -212,9 +215,13 @@
 			<div class="nav_select_language">
 				<button class="btn_select_language" type="button" id="dropdownLanguageMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
 					<%if params[:locale] == "vi"%>
-						<span id="selected">Tiếng Việt</span><i class="material-icons-outlined">arrow_drop_down</i>
+						<i class="material-icons-outlined">language</i>
+						<a id="selected">Tiếng Việt</a>
+						<span class="material-icons-outlined">expand_more</span>
 					<%else%>
-						<span id="selected">English</span><i class="material-icons-outlined">arrow_drop_down</i>
+						<i class="material-icons-outlined">language</i>
+						<a id="selected">English</a>
+						<span class="material-icons-outlined">expand_more</span>
 					<%end%>
 				</button>
 

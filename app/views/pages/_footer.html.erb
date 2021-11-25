@@ -14,19 +14,19 @@
                                         <div class="footer_link">
                                             <ul>
                                                 <li>
-                                                    <a href="<%=about_us_path%>"><%=t(:about_us).titleize%></a>
+                                                    <a href="<%=about_us_path%>"><%=t(:about_us)%></a>
                                                 </li>
 
                                                 <li>
-                                                    <a href="<%=our_product_path%>"><%=t(:all_product).titleize%></a>
+                                                    <a href="<%=our_product_path%>"><%=t(:all_product)%></a>
                                                 </li>
 
                                                 <li>
-                                                    <a href="<%=term_path%>"><%=t(:term_and_service).titleize%></a>
+                                                    <a href="<%=term_path%>"><%=t(:term_and_service)%></a>
                                                 </li>
 
                                                 <li>
-                                                    <a href="<%=policy_path%>"><%=t(:secu_policy).titleize%></a>
+                                                    <a href="<%=policy_path%>"><%=t(:secu_policy)%></a>
                                                 </li>
                                             </ul>
                                         </div>
@@ -38,19 +38,19 @@
                                         <div class="footer_link">
                                             <ul>
                                                 <li>
-                                                    <a href="<%=employer_wellcome_path%>"><%=t(:post_job).titleize%></a>
+                                                    <a href="<%=employer_wellcome_path%>"><%=t(:post_job)%></a>
                                                 </li>
 
                                                 <li>
-                                                    <a href="<%=employer_index_cv_path%>"><%=t(:find_cv).titleize%></a>
+                                                    <a href="<%=employer_index_cv_path%>"><%=t(:find_cv)%></a>
                                                 </li>
 
                                                 <li>
-                                                    <a href="<%=contact_us_path%>"><%=t(:contact_us).titleize%></a>
+                                                    <a href="<%=contact_us_path%>"><%=t(:contact_us)%></a>
                                                 </li>
 
                                                 <li>
-                                                    <a href="<%=employer_index_job_path%>"><%=t(:manage_posted_job).titleize%></a>
+                                                    <a href="<%=employer_index_job_path%>"><%=t(:manage_posted_job)%></a>
                                                 </li>
                                             </ul>
                                         </div>
@@ -66,7 +66,7 @@
                                         <div class="footer_link">
                                             <ul>
                                                 <li>
-                                                    <a href="<%=jobs_search_path%>"><%=t(:job_search).titleize%></a>
+                                                    <a href="<%=jobs_search_path%>"><%=t(:job_search)%></a>
                                                 </li>
 
                                                 <li>
@@ -74,11 +74,11 @@
                                                 </li>
 
                                                 <li>
-                                                    <a href="<%=problems_path%>"><%=t(:interview_question).titleize%></a>
+                                                    <a href="<%=problems_path%>"><%=t(:interview_question)%></a>
                                                 </li>
 
                                                 <li>
-                                                    <a href="<%=user_profile_path%>"><%=t(:user_profile).titleize%></a>
+                                                    <a href="<%=user_profile_path%>"><%=t(:user_profile)%></a>
                                                 </li>
                                             </ul>
                                         </div>
@@ -120,25 +120,19 @@
             </div>
         </div>
         <div class="footer_container_bottom">
-            <div class="container">
-                <div class="footer_container_bottom_block">
+            <div class="footer_container_bottom_block">
+                <div class="container">
                     <div class="row">
-                        <div class="col-sm-6">
-                            <div class="footer_copyright">
-                                <a>Copyright Ⓒ <%=DateTime.now.strftime("%Y")%> Firework.</a>
-                            </div>
-                        </div>
-
                         <div class="col-sm-6">
                             <div class="footer_bottom_links">
                                 <div class="footer_select_language">
-                                    <i class="material-icons-outlined">public</i>
+                                    <i class="material-icons-outlined">language</i>
                                     <span><%=t(:language)%></span>
                                     <button class="btn_select_language" type="button" id="dropdownLanguageMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                         <%if params[:locale] == "vi"%>
-                                            <span id="selected">Tiếng Việt</span><i class="material-icons-outlined">arrow_drop_up</i>
+                                            <span id="selected">Tiếng Việt</span><i class="material-icons-outlined">arrow_drop_down</i>
                                         <%else%>
-                                            <span id="selected">English</span><i class="material-icons-outlined">arrow_drop_up</i>
+                                            <span id="selected">English</span><i class="material-icons-outlined">arrow_drop_down</i>
                                         <%end%>
                                     </button>
 
@@ -154,6 +148,14 @@
                                         <%end%>
                                     </div>
                                 </div>
+                            </div>
+                        </div>
+                        <div class="col-sm-6">
+                            <div class="footer_copyright">
+                                <a href="<%=contact_us_path%>"><%=t(:contact_us)%></a>
+                                <a href="<%=term_path%>"><%=t(:term_and_service)%></a>
+                                <a href="<%=policy_path%>"><%=t(:secu_policy)%></a>
+                                <a>Ⓒ Firework <%=DateTime.now.strftime("%Y")%></a>
                             </div>
                         </div>
                     </div>
