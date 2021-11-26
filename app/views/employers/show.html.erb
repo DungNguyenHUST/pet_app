@@ -3,15 +3,7 @@
     <div class='employer_status_block'>
         <div class="container">
             <div class='employer_title'>
-                <%if current_employer.sign_in_count <= 1%>
-                    <a><%=t(:wellcome_employer)%> <%=current_employer.name.upcase%> to Firework!</a>
-                <%elsif (0..12).cover? Time.now.hour %>
-                    <a>Good morning, <%=t(:employer)%> <%=current_employer.name.upcase%>!</a>
-                <%elsif (12..18).cover? Time.now.hour %>
-                    <a>Good afternoon, <%=t(:employer)%> <%=current_employer.name.upcase%>!</a>
-                <%elsif (18..24).cover? Time.now.hour %>
-                    <a>Good evening, <%=t(:employer)%> <%=current_employer.name.upcase%>!</a>
-                <%end%>
+                <a><%=t(:hello)%>, <%=t(:employer)%> <%=current_employer.name.upcase%>!</a>
             </div>
 
             <div class='row'>

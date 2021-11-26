@@ -1,13 +1,7 @@
 <div class="container">
     <div class='user_dasboard'>
         <div class='user_title'>
-            <%if (0..12).cover? Time.now.hour %>
-                <span><%=t(:good_morning)%>, <%=current_user.name%>!</span>
-            <%elsif (12..18).cover? Time.now.hour %>
-                <span><%=t(:good_after)%>, <%=current_user.name%>!</span>
-            <%elsif (18..24).cover? Time.now.hour %>
-                <span><%=t(:good_eve)%>, <%=current_user.name%>!</span>
-            <%end%>
+            <span><%=t(:hello)%>, <%=current_user.name%>!</span>
         </div>
 
         <div class="user_tab_link">
