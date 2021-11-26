@@ -34,13 +34,44 @@ class ApplicationController < ActionController::Base
         end
     end
 
-    # I18n switch
-    around_action :switch_locale
+    # I18n config
+    # around_action :switch_locale
 
-    def switch_locale(&action)
-        locale = params[:locale] || I18n.default_locale
-        I18n.with_locale(locale, &action)
+    # def switch_locale(&action)
+    #     locale = params[:locale] || I18n.default_locale
+    #     I18n.with_locale(locale, &action)
+    # end
+
+    before_action :set_locale
+    def set_locale
+        # explicit param can always override existing setting
+        # otherwise, make sure to allow a user preference to override any automatic detection
+        # then detect by location, and header
+        # if all else fails, fall back to default
+        # I18n.locale = params[:locale] || user_pref_locale || session[:locale] || location_detected_locale || header_detected_locale || I18n.default_locale
+        I18n.locale = params[:locale] || session[:locale] || I18n.default_locale
+        # save to session
+        session[:locale] = I18n.locale
     end
+
+    # these could potentially do with a bit of tidying up
+    # remember to return `nil` to indicate no match
+
+    # def user_pref_locale
+    #     return nil unless current_user && current_user.locale.present?
+    #     current_user.locale
+    # end
+
+    # def location_detected_locale
+    #     location = request.location
+    #     return nil unless location.present? && location.country_code.present? && I18n.available_locales.include?(location.country_code)
+    #     location.country_code.include?("-") ? location.country_code : location.country_code.downcase
+    # end
+
+    # def header_detected_locale
+    #     return nil unless (request.env["HTTP_ACCEPT_LANGUAGE"] || "en").scan(/^[a-z]{2}/).first.present? && I18n.available_locales.include?((request.env["HTTP_ACCEPT_LANGUAGE"] || "en").scan(/^[a-z]{2}/).first)
+    #     (request.env["HTTP_ACCEPT_LANGUAGE"] || "en").scan(/^[a-z]{2}/).first
+    # end
 
     def default_url_options
         { locale: I18n.locale }

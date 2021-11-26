@@ -25,17 +25,17 @@
 
                     <div class="new_scrap_review_content">
                         <div class="new_scrap_review_label">
-                            <a><%= f.label :company_id, "ID Công ty(optional)", class: "new_scrap_review_label_name" %></a>
+                            <a><%= f.label :company_id, "Company ID", class: "new_scrap_review_label_name" %></a>
                         </div>
 
                         <div class="new_scrap_review_input">
-                            <%= f.select :company_id, Company.all.collect {|m| [m.name, m.id]}, {:prompt => '-- Select company --', :required => true}, {:class => 'form-select new_post_topic_select'}%>
+                            <%= f.select :company_id, Company.all.collect {|m| [m.name, m.id]}, {:prompt => t(:select_company), :required => true}, {:class => 'form-select new_post_topic_select'}%>
                         </div>
                         
                         <script>
                             $(document).ready(function() {
                                 $('.new_post_topic_select').select2({
-                                    placeholder: "-- Select company --",
+                                    placeholder: "<%=t(:select_company)%>",
                                     allowClear: true,
                                     width: 'resolve',
                                     theme: "bootstrap-5",

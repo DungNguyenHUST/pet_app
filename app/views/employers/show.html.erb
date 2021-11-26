@@ -4,7 +4,7 @@
         <div class="container">
             <div class='employer_title'>
                 <%if current_employer.sign_in_count <= 1%>
-                    <a><%=t(:wellcome_employer)%> <%=current_employer.name.upcase%> đến với Firework!</a>
+                    <a><%=t(:wellcome_employer)%> <%=current_employer.name.upcase%> to Firework!</a>
                 <%elsif (0..12).cover? Time.now.hour %>
                     <a>Good morning, <%=t(:employer)%> <%=current_employer.name.upcase%>!</a>
                 <%elsif (12..18).cover? Time.now.hour %>

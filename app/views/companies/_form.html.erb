@@ -270,7 +270,7 @@
 							<script>
 								$(document).ready(function() {
 									$('.company_country_select').select2({
-										placeholder: "-- Chọn một quốc gia --",
+										placeholder: "<%=t(:select_country)%>",
 										allowClear: true,
 										width: 'resolve',
 										theme: "bootstrap-5",
@@ -370,7 +370,7 @@
 							<script>
 								$(document).ready(function() {
 									$('.company_field_operetion_select').select2({
-										placeholder: "-- Chọn một ngành nghề công ty --",
+										placeholder: "<%=t(:select_company_filed)%>",
 										allowClear: true,
 										width: 'resolve',
 										theme: "bootstrap-5",
@@ -456,7 +456,17 @@
 							</div>
 
 							<div class="new_company_input">
-								<%= f.select(:values, options_for_select(['1-10 million USD', '10-50 million USD', '50-100 million USD', '100-500 million USD', '500-1000 million USD', '1-10 billion USD', '10-50 billion USD', '50-100 billion USD', '100-500 billion USD', '500-1000 billion USD', '1000+ billion USD'], t(:unknown)), {include_blank: false}, { :class => 'form-select' }) %>
+								<%= f.select(:values, options_for_select([t(:x_million_usd, x: "1-5"), 
+																		t(:x_million_usd, x: "5-10"), 
+																		t(:x_million_usd, x: "10-50"), 
+																		t(:x_million_usd, x: "50-100"), 
+																		t(:x_million_usd, x: "100-500"), 
+																		t(:x_million_usd, x: "500-900"), 
+																		t(:x_billion_usd, x: "1-10"), 
+																		t(:x_billion_usd, x: "10-50"), 
+																		t(:x_billion_usd, x: "50-100"),  
+																		t(:x_billion_usd, x: "100-500"), 
+																		t(:x_billion_usd, x: "500-900")], t(:unknown)), {include_blank: false}, { :class => 'form-select' }) %>
 							</div>
 						</div>
 

@@ -201,14 +201,15 @@
                                 <%= select_tag :company_id, 
                                     options_from_collection_for_select(Company.all, "id", "name"), 
                                     required: true,
-                                    include_blank: true,
+                                    include_blank: false,
+                                    :prompt => t(:select_company),
                                     class: "form-select company_review_select"%>
                             </div>
 
                             <script>
 								$(document).ready(function() {
 									$('.company_review_select').select2({
-										placeholder: "-- Chọn công ty --",
+										placeholder: "<%=t(:select_company)%>",
 										allowClear: true,
 										width: 'resolve',
 										theme: "bootstrap-5",

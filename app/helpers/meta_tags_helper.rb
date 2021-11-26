@@ -1,6 +1,6 @@
 module MetaTagsHelper
     def meta_title
-      content_for?(:meta_title) ? content_for(:meta_title) : DEFAULT_META["meta_title"]
+      content_for?(:meta_title) ? content_for(:meta_title) : I18n.t(:meta_title_default)
     end
 
     def meta_separator
@@ -12,11 +12,11 @@ module MetaTagsHelper
     end
   
     def meta_description
-      content_for?(:meta_description) ? content_for(:meta_description) : DEFAULT_META["meta_description"]
+      content_for?(:meta_description) ? content_for(:meta_description) : I18n.t(:meta_description_default)
     end
 
     def meta_key_word
-      content_for?(:meta_key_word) ? content_for(:meta_key_word) : DEFAULT_META["meta_key_word"]
+      content_for?(:meta_key_word) ? content_for(:meta_key_word) : I18n.t(:meta_key_word_default)
     end
   
     def meta_image
