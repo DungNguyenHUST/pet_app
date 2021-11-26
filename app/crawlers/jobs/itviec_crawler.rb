@@ -17,8 +17,8 @@ module ItviecCrawler
 
                 job_salary = ""
 
-                if job_item.css("h2.title a").present?
-                    job_link = job_item.css("h2.title a").map { |link| link['href'].prepend("https://itviec.com")}.first
+                if job_item.css("h3.title a").present?
+                    job_link = job_item.css("h3.title a").map { |link| link['href'].prepend("https://itviec.com")}.first
                 else
                     job_link = ""
                 end
