@@ -54,7 +54,7 @@ module Timviec365Crawler
             if doc.css("div.img_detail img").present?
                 company_avatar = doc.css("div.img_detail img").map { |img| img['data-src']}.first
             else
-                company_avatar = image_url("defaults/company_avatar_default.png")
+                company_avatar = image_url("defaults/company_avatar_default.svg")
             end
                     
             if doc.css("div.right_tit h1").present?

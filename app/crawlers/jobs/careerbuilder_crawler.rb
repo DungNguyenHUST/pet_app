@@ -14,7 +14,7 @@ module CareerbuilderCrawler
                 if job_item.css("div.image img").present?
                     company_avatar = job_item.css("div.image img").map { |img| img['data-src']}.first
                 else
-                    company_avatar = image_url("defaults/company_avatar_default.png")
+                    company_avatar = image_url("defaults/company_avatar_default.svg")
                 end
 
                 job_location = ""
@@ -58,7 +58,7 @@ module CareerbuilderCrawler
             if pre_data && pre_data.company_avatar
                 company_avatar = pre_data.company_avatar
             else
-                company_avatar = image_url("defaults/company_avatar_default.png")
+                company_avatar = image_url("defaults/company_avatar_default.svg")
             end
 
             if doc.css("h1.title").first.present?

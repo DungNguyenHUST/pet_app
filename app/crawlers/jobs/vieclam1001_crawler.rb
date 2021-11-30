@@ -54,7 +54,7 @@ module Vieclam1001Crawler
             if doc.css("div.comp-profile-content img").present?
                 company_avatar = doc.css("div.comp-profile-content img").map { |img| img['src']}.first
             else
-                company_avatar = image_url("defaults/company_avatar_default.png")
+                company_avatar = image_url("defaults/company_avatar_default.svg")
             end
                     
             if doc.css("div.listingInfo h1").present?

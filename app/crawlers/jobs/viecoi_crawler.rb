@@ -54,7 +54,7 @@ module ViecoiCrawler
             if doc.css("div.div-in-logo a img").present?
                 company_avatar = doc.css("div.div-in-logo a img").map { |img| img['src'].prepend("https://viecoi.vn/")}.first
             else
-                company_avatar = image_url("defaults/company_avatar_default.png")
+                company_avatar = image_url("defaults/company_avatar_default.svg")
             end
                     
             if doc.css("div.position_title_job h1.title-jobs-home").present?

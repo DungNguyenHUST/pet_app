@@ -54,7 +54,7 @@ module TopcvCrawler
             if doc.css("div.box-company-logo img").present?
                 company_avatar = doc.css("div.box-company-logo img").map { |img| img['src']}.first
             else
-                company_avatar = image_url("defaults/company_avatar_default.png")
+                company_avatar = image_url("defaults/company_avatar_default.svg")
             end
                     
             if doc.css("div.box-info-job h1.job-title").present?

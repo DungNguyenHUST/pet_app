@@ -54,7 +54,7 @@ module Job123Crawler
             if doc.css("div.company-info__avatar img").present?
                 company_avatar = doc.css("div.company-info__avatar img").map { |img| img['src']}.first
             else
-                company_avatar = image_url("defaults/company_avatar_default.png")
+                company_avatar = image_url("defaults/company_avatar_default.svg")
             end
 
             if doc.css("h2.job-title strong").first.present?

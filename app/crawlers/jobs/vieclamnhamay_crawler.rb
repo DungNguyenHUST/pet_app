@@ -62,7 +62,7 @@ module VieclamnhamayCrawler
             if pre_data.company_avatar
                 company_avatar = pre_data.company_avatar
             else
-                company_avatar = image_url("defaults/company_avatar_default.png")
+                company_avatar = image_url("defaults/company_avatar_default.svg")
             end
                     
             if doc.css("div.main-heading h1").present?

@@ -50,7 +50,7 @@
     <%if @company.present? && @company.avatar?%>
         "logo" : "<%= image_url(@company.avatar.thumb.url) %>"
     <%else%>
-        "logo" : "<%= image_url("defaults/company_avatar_default.png") %>"
+        "logo" : "<%= image_url("defaults/company_avatar_default.svg") %>"
     <%end%>
     },
     "jobLocation": {
@@ -193,7 +193,7 @@
                                 <%elsif @company_job.company_avatar && check_exist_url(@company_job.company_avatar)%>
                                     <%= image_tag(@company_job.company_avatar)%>
                                 <%else%>
-                                    <%= image_tag("defaults/company_avatar_default.png")%>
+                                    <%= image_tag("defaults/company_avatar_default.svg")%>
                                 <%end%>
                             </div>
                             <%if @company.present? && cal_rating_review_total_score(@company).to_i > 0%>

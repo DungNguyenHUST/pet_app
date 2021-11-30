@@ -54,7 +54,7 @@ module TuoitreCrawler
             if doc.css("div.logocompany a img").present?
                 company_avatar = doc.css("div.logocompany a img").map { |img| img['src']}.first
             else
-                company_avatar = image_url("defaults/company_avatar_default.png")
+                company_avatar = image_url("defaults/company_avatar_default.svg")
             end
                     
             if doc.css("div.top-job-info h1").present?

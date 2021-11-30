@@ -54,7 +54,7 @@ module MyworkCrawler
             if doc.css("div.detail-01-right-com img").present?
                 company_avatar = doc.css("div.detail-01-right-com img").map { |img| img['src']}.first
             else
-                company_avatar = image_url("defaults/company_avatar_default.png")
+                company_avatar = image_url("defaults/company_avatar_default.svg")
             end
                     
             if doc.css("h1.detail-01-ttl").first.present?

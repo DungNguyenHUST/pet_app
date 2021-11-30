@@ -54,7 +54,7 @@ module TimviecCrawler
             if doc.css("div.images a img").present?
                 company_avatar = doc.css("div.images a img").map { |img| img['src']}.first
             else
-                company_avatar = image_url("defaults/company_avatar_default.png")
+                company_avatar = image_url("defaults/company_avatar_default.svg")
             end
                     
             if doc.css("div.about ul li")[0].present?

@@ -54,7 +54,7 @@ module Vieclam24hCrawler
             if doc.css("div.logo-company img").present?
                 company_avatar = doc.css("div.logo-company img").map { |img| img['src']}.first
             else
-                company_avatar = image_url("defaults/company_avatar_default.png")
+                company_avatar = image_url("defaults/company_avatar_default.svg")
             end
                     
             if doc.css("div.box_chi_tiet_cong_viec h1.title-job").present?

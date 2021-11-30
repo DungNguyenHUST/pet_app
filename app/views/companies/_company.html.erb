@@ -3,7 +3,7 @@
         <%if company.wall_picture?%>
             <%= link_to (image_tag(company.wall_picture.large.url)), image_path(url_for(company.wall_picture.large.url)), rel: "gallery" , :href => company_path(company), target: :_blank%>
         <%else%>
-            <%= link_to (image_tag("defaults/company_wall_default.jpeg")), image_path(url_for("defaults/company_wall_default.jpeg")), rel: "gallery" , :href => company_path(company), target: :_blank%>
+            <%= link_to (image_tag("defaults/company_wall_default.svg")), image_path(url_for("defaults/company_wall_default.svg")), rel: "gallery" , :href => company_path(company), target: :_blank%>
         <%end%>
     </div>
 
@@ -11,7 +11,7 @@
         <%if company.avatar?%>
             <%= link_to (image_tag(company.avatar.thumb.url)), image_path(url_for(company.avatar.thumb.url)), rel: "gallery" , :href => company_path(company), target: :_blank%>
         <%else%>
-            <%= link_to (image_tag("defaults/company_avatar_default.png")), image_path(url_for("defaults/company_avatar_default.png")), rel: "gallery" , :href => company_path(company), target: :_blank%>
+            <%= link_to (image_tag("defaults/company_avatar_default.svg")), image_path(url_for("defaults/company_avatar_default.svg")), rel: "gallery" , :href => company_path(company), target: :_blank%>
         <%end%>
     </div>
 

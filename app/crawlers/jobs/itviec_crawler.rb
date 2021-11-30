@@ -54,7 +54,7 @@ module ItviecCrawler
             if doc.css("div.employer-long-overview__logo picture").present?
                 company_avatar = doc.css("div.employer-long-overview__logo picture img").map { |img| img['data-src']}.first
             else
-                company_avatar = image_url("defaults/company_avatar_default.png")
+                company_avatar = image_url("defaults/company_avatar_default.svg")
             end
                     
             if doc.css("h1.job-details__title").first.present?

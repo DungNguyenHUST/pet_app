@@ -56,7 +56,7 @@ module ViectotnhatCrawler
             if doc.css("div.job-ads div.img-ads img").present?
                 company_avatar = doc.css("div.job-ads div.img-ads img").map { |img| img['src']}.first
             else
-                company_avatar = image_url("defaults/company_avatar_default.png")
+                company_avatar = image_url("defaults/company_avatar_default.svg")
             end
                     
             if info_block_0.present? && info_block_0.css("h1.title-job").present?
