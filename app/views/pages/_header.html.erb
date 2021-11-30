@@ -209,32 +209,6 @@
 		<%end%>
 
 		<div class="nav_right">
-			<div class="nav_select_language">
-				<button class="btn_select_language" type="button" id="dropdownLanguageMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-					<%if I18n.locale == :vi%>
-						<i class="material-icons-outlined">language</i>
-						<a id="selected">Tiếng Việt</a>
-						<span class="material-icons-outlined">expand_more</span>
-					<%else%>
-						<i class="material-icons-outlined">language</i>
-						<a id="selected">English</a>
-						<span class="material-icons-outlined">expand_more</span>
-					<%end%>
-				</button>
-
-				<div class="dropdown-menu dropdown-menu-right" aria-labelledby="dropdownLanguageMenuButton">
-					<%= link_to locale:"en", class: "dropdown-item" do%>
-						<%= image_tag("icons/eng_flag.png")%>
-						<span>English</span>
-					<%end%>
-					<div class="dropdown-divider"></div>
-					<%= link_to locale:"vi", class: "dropdown-item" do%>
-						<%= image_tag("icons/vie_flag.png")%>
-						<span>Tiếng Việt</span>
-					<%end%>
-				</div>
-			</div>
-
 			<%if user_signed_in?%>
 				<div class="nav_user">
 					<div class="user_notification">						
