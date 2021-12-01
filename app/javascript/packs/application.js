@@ -19,8 +19,6 @@ require("channels")
 require("trix")
 require("@rails/actiontext")
 
-import "bootstrap"
-
 //= require jquery
 //= require jquery_ujs
 //= require jquery.easy-autocomplete
@@ -28,3 +26,5 @@ import "bootstrap"
 //= require_tree .
 
 //= require tinymce
+
+import "bootstrap"
