@@ -28,7 +28,7 @@ SitemapGenerator::Sitemap.create do
   #     add article_path(article), :lastmod => article.updated_at
   #   end
   {en: :english, vi: :vietnamese}.each_pair do |locale, name|
-    group(sitemaps_path: "sitemaps/#{locale}/", filename: name) do
+    group(filename: name) do
       add root_path(:locale => locale), :priority => 0.7, :changefreq => 'daily'
 
       Company.find_each do |company|
