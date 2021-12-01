@@ -50,10 +50,6 @@ set :keep_releases, 5
 task :symlink_uploads do 
     on roles: :app do
         run "ln -nfs #{shared_path}/uploads #{release_path}/public/uploads"
-        run "mkdir #{release_path}/public/sitemaps"
-        run "ln -nfs #{shared_path}/sitemaps #{release_path}/public/sitemaps"
-        run "mkdir #{release_path}/tmp/jobs"
-        run "ln -nfs #{shared_path}/tmp/jobs #{release_path}/tmp/jobs"
     end
 end
 
