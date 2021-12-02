@@ -43,7 +43,8 @@ class JobCrawler < Kimurai::Base
     # @engine = :selenium_firefox
     @start_urls = ["https://github.com"]
     @config = {
-        skip_request_errors: [{ error: RuntimeError, message: "404 => Net::HTTPNotFound" }]
+        skip_request_errors: [{ error: RuntimeError, message: "404 => Net::HTTPNotFound" }],
+        user_agent: "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/68.0.3440.84 Safari/537.36"
     }
     @@PAGE_COUNT = 0
     @@PAGE_MAX = 0
@@ -260,7 +261,9 @@ class JobCrawler < Kimurai::Base
         end
 
         if split_domain_name(url) == "vn.joboko.com"
-            next_page_link = url.to_s + "?p=#{@@PAGE_COUNT+1}"
+            if next_page = response.css("div.pagination a").last
+                next_page_link = next_page[:href].prepend("https://vn.joboko.com")
+            end
         end
 
         if split_domain_name(url) == "timviec.com.vn"

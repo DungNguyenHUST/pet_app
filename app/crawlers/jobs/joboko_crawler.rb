@@ -109,7 +109,7 @@ module JobokoCrawler
 
             if doc.css("section.job-info ul.job-info-list li")[2].present?
                 date_str = doc.css("section.job-info ul.job-info-list li")[2].text.strip
-                salary.gsub!(/Hạn nộp: /, "")
+                date_str.gsub!(/Hết hạn: /, "")
                 end_date = Date.parse(date_str)
             else
                 end_date = Time.now + 30.days
@@ -147,7 +147,7 @@ module JobokoCrawler
                 processing_detail_datas.push(detail_data_temp)
             end
 
-            return nil
+            return processing_detail_datas
         end
     end
 end
