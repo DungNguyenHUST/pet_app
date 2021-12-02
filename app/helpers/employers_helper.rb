@@ -21,7 +21,7 @@ module EmployersHelper
                 job_remain = -1
             else
                 company_job = CompanyJob.where(:created_at => Time.zone.now.beginning_of_day..Time.zone.now.end_of_day)
-                company_job = CompanyJob.where(:employer_id => employer.id)
+                company_job = company_job.where(:employer_id => employer.id)
                 if company_job && company_job.count > 0
                     job_remain = 0
                 else

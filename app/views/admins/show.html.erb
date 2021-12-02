@@ -536,6 +536,10 @@
                             </div>
                         </div>  
 
+                        <div class="scrap_jobs_total_day">
+                            <a><%=t(:total)%> <%=t(:today).downcase%> </span><%=CompanyJob.where(:created_at => Time.zone.now.beginning_of_day..Time.zone.now.end_of_day).count%></span></a>
+                        </div>
+
                         <div class="row">
                             <div class="col-sm-6">
                                 <div class="scrap_jobs_all_btn">
