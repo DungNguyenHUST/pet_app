@@ -1,0 +1,140 @@
+<div class="employer_help_container">
+    <div class="container-fluid">
+        <div class="employer_help_block">
+            <div class="row">
+                <div class="col-sm-2">
+                    <div class="employer_help_tab_link">
+                        <ul class="nav flex-column">
+                            <li class="nav-item">
+                                <%if @tab == "default" || @tab == "PostJobID"%>
+                                    <%active = "active"%>
+                                <%else%> 
+                                    <%active = ""%>
+                                <%end%>                                     
+                                <a class="nav-link <%=active%>" href="<%=employer_help_path(tab: 'PostJobID')%>"><%=t(:post_job)%></a>
+                            </li>
+                            <li class="nav-item">
+                                <%if @tab == "AddCompanyID"%>
+                                    <%active = "active"%>
+                                <%else%> 
+                                    <%active = ""%>
+                                <%end%>                                     
+                                <a class="nav-link <%=active%>" href="<%=employer_help_path(tab: 'AddCompanyID')%>"><%=t(:company_page)%></a>
+                            </li>
+                            <li class="nav-item">
+                                <%if @tab == "AdHelpID"%>
+                                    <%active = "active"%>
+                                <%else%> 
+                                    <%active = ""%>
+                                <%end%>                                     
+                                <a class="nav-link <%=active%>" href="<%=employer_help_path(tab: 'AdHelpID')%>"><%=t(:job_ads)%></a>
+                            </li>
+                            <li class="nav-item">
+                                <%if @tab == "BuyAdLimitID"%>
+                                    <%active = "active"%>
+                                <%else%> 
+                                    <%active = ""%>
+                                <%end%>                                     
+                                <a class="nav-link <%=active%>" href="<%=employer_help_path(tab: 'BuyAdLimitID')%>"><%=t(:manage_payment)%></a>
+                            </li>
+                            <li class="nav-item">
+                                <%if @tab == "BillingHelpID"%>
+                                    <%active = "active"%>
+                                <%else%> 
+                                    <%active = ""%>
+                                <%end%>                                 
+                                <a class="nav-link <%=active%>" href="<%=employer_help_path(tab: 'BillingHelpID')%>"><%=t(:add_money)%></a>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="col-sm-10">
+                    <div class="employer_help_tab_content">
+                        <%if @tab == "default" || @tab == "PostJobID"%>
+                            <%=t("help_post_job_html", 
+                                href_1: link_to(t(:job_ads), employer_help_path(tab: 'AdHelpID')), 
+                                href_2: link_to(t(:signin), new_employer_session_path),
+                                href_3: link_to(t(:signup), new_employer_registration_path))%>
+                        <%end%>
+                        <%if @tab == "AddCompanyID"%>
+                            <%=t("help_add_company_html",  
+                                href_1: link_to((:signin), new_employer_session_path))%>
+                        <%end%>
+                        <%if @tab == "BillingHelpID"%>
+                            <div class="employer_help_billing_tab">
+                                <div class="employer_help_payment_cart">
+                                    <h3>1. <%=t(:select_payment)%></h3>
+                                    <div class="row">
+                                        <div class="col-sm-6">
+                                            <div class="employer_help_payment_cart_atm_tranfer">
+                                                <div class="employer_help_payment_cart_atm_tranfer_icon">
+                                                    <%=image_tag("icons/mobile-payment.png")%>
+                                                </div>
+                                                <div class="employer_help_payment_cart_atm_tranfer_text">
+                                                    <a><%=t(:select_payment_1)%></a>
+                                                    <br>
+                                                    <span><%=t(:select_payment_2)%></span>
+                                                    <br>
+                                                    <span><%=t(:select_payment_3)%></span>
+                                                    <br>
+                                                    <span><%=t(:select_payment_4)%></span>
+                                                    <br>
+                                                    <span><%=t(:select_payment_5)%></span>
+                                                    <br>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-sm-6">
+                                            <div class="employer_help_payment_cart">
+                                                <div class="employer_help_payment_cart_icon">
+                                                    <%=image_tag("icons/atm_transfer.png")%>
+                                                </div>
+                                                <div class="employer_help_payment_cart_text">
+                                                    <a><%=t(:select_payment_6)%></a>
+                                                    <br>
+                                                    <span><%=t(:select_payment_7)%></span>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="employer_help_confirm_bill">
+                                    <h3>2. <%=t(:select_payment_8)%></h3>
+                                    <%= form_for [current_employer, EmployerBill.new] do |f| %>
+                                        <div class="new_employer_bill_content">
+                                            <div class="new_employer_bill_label">
+                                                <a><%= f.label :bill_image, t(:select_payment_9), class: "new_employer_bill_label" %></a>
+                                            </div>
+                                            
+                                            <div class="new_employer_bill_input">
+                                                <%= f.file_field :bill_image, class: "form-control"%>
+                                            </div>
+                                        </div>
+                                        <div class="new_employer_bill_submit">
+                                            <%= f.submit t(:send), class: "new_employer_bill_form_submit" %>
+                                        </div>
+                                    <%end%>
+                                    <h4><%=t(:select_payment_10)%> <%= link_to t(:contact_us), contact_us_path%></h4>
+                                </div>
+                            </div>
+                        <%end%>
+                        <%if @tab == "AdHelpID"%>
+                            <div class="employer_help_ads_tab">
+                                <%=t("help_ads_html", 
+                                    href_1: link_to(t(:manage_payment), employer_buy_path), 
+                                    href_2: link_to(t(:manage_job), employer_mng_job_path))%>
+                            </div>
+                        <%end%>
+                        <%if @tab == "BuyAdLimitID"%>
+                            <div class="employer_help_ads_limit_tab">
+                                <%=t("help_ads_limit_html", 
+                                    href_1: link_to(t(:manage_payment), employer_buy_path))%>
+                            </div>
+                        <%end%>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

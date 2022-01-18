@@ -2,7 +2,7 @@ class EmployersController < ApplicationController
     include EmployersHelper
     include CompaniesHelper
     include ApplicationHelper
-    before_action :require_employer_login, only: [:index, :show, :edit, :update, :destroy, :job, :plan, :index_job, :index_apply, :index_cv, :cv_search]
+    before_action :require_employer_login, only: [:index, :show, :edit, :update, :destroy, :job, :plan, :mng_job, :mng_apply, :find_cv, :cv_search]
     
     def index
         @employers = Employer.all
@@ -40,6 +40,12 @@ class EmployersController < ApplicationController
 
     def update
         @employer = Employer.friendly.find params[:id]
+
+        if(employer_params.has_key?(:limit_cost))
+            remain_cost = @employer.remain_cost + @employer.limit_cost
+            @employer.update(:remain_cost => remain_cost)
+        end
+
         if(@employer.update(employer_params))
             redirect_to employer_path(current_employer)
             flash[:success] = I18n.t(:update_success)
@@ -56,7 +62,7 @@ class EmployersController < ApplicationController
         @company_apply_jobs = @company_job.company_apply_jobs.page(params[:page]).per(20)
     end
 
-    def plan
+    def ad
         @price = 0
         if(params.has_key?(:price))
             @price = params[:price].to_i * 1000
@@ -69,7 +75,31 @@ class EmployersController < ApplicationController
         end
     end
 
-    def index_job
+    def buy
+        @employer = current_employer
+        
+        if(params.has_key?(:id))
+            @company_job = CompanyJob.friendly.find(params[:id])
+            if @company_job.sponsor == true
+                @company_job.update(:sponsor => false)
+            else
+                @company_job.update(:sponsor => true)
+            end
+            @company_job.save!
+            respond_to do |format|
+                format.html {}
+                format.js
+            end
+        end
+
+        if(params.has_key?(:tab))
+            @tab = params[:tab]
+        else
+            @tab = "default"
+        end
+    end
+
+    def mng_job
         if(params.has_key?(:tab))
             @tab = params[:tab]
         else
@@ -101,18 +131,54 @@ class EmployersController < ApplicationController
         @company_job_of_employer = Kaminari.paginate_array(@company_job_of_employer).page(params[:page]).per(20)
     end
 
-    def index_apply
+    def mng_apply
         @employer = current_employer
         @company_of_employer = find_company_of_employer(@employer)
         @company_job_of_employer = find_job_of_employer(@employer).order('created_at DESC')
-        @company_apply_jobs = []
+        @company_apply_jobs_all_of_employer = []
         @company_job_of_employer.each do |company_job|
-            @company_apply_jobs += company_job.company_apply_jobs.page(params[:page]).per(20)
+            @company_apply_jobs_all_of_employer += company_job.company_apply_jobs.order('created_at DESC')
         end
-        @company_apply_jobs = Kaminari.paginate_array(@company_apply_jobs).page(params[:page]).per(20)
+
+        @company_apply_jobs_of_employer_new = @company_apply_jobs_all_of_employer.find_all { |apply| apply.process == 0 }
+        @company_apply_jobs_of_employer_contacting = @company_apply_jobs_all_of_employer.find_all { |apply| apply.process == 1 }
+        @company_apply_jobs_of_employer_interview = @company_apply_jobs_all_of_employer.find_all { |apply| apply.process == 2 }
+        @company_apply_jobs_of_employer_success = @company_apply_jobs_all_of_employer.find_all { |apply| apply.process == 3 }
+        @company_apply_jobs_of_employer_fail = @company_apply_jobs_all_of_employer.find_all { |apply| apply.process == 4 }
+
+        if(params.has_key?(:tab))
+            @tab = params[:tab]
+        else
+            @tab = "default"
+        end
+        
+        if @tab == 'AllID'
+            @company_apply_jobs_of_employer = @company_apply_jobs_all_of_employer
+        elsif @tab == 'NewID'
+            @company_apply_jobs_of_employer = @company_apply_jobs_of_employer_new
+        elsif @tab == 'ContactingID'
+            @company_apply_jobs_of_employer = @company_apply_jobs_of_employer_contacting
+        elsif @tab == 'InterviewID'
+            @company_apply_jobs_of_employer = @company_apply_jobs_of_employer_interview
+        elsif @tab == 'SuccessID'
+            @company_apply_jobs_of_employer = @company_apply_jobs_of_employer_success
+        elsif @tab == 'FailID'
+            @company_apply_jobs_of_employer = @company_apply_jobs_of_employer_fail
+        else
+            @company_apply_jobs_of_employer = @company_apply_jobs_all_of_employer
+        end
+        @company_apply_jobs_of_employer = Kaminari.paginate_array(@company_apply_jobs_of_employer).page(params[:page]).per(20)
     end
 
-    def index_cv
+    def help
+        if(params.has_key?(:tab))
+            @tab = params[:tab]
+        else
+            @tab = "default"
+        end
+    end
+
+    def find_cv
         @employer = current_employer
         @user_cvs = User.all.public.order('updated_at DESC').page(params[:page]).per(12)
     end
@@ -207,6 +273,8 @@ class EmployersController < ApplicationController
     end
 
     def employer_params
-        params.require(:employer).permit :name, :email, :password, :password_confirmation, :phone, :address, :avatar, :company_name, :company_id, :company_field, :approved
+        params.require(:employer).permit( :name, :email, :password, :password_confirmation, :phone, :address, 
+                                        :avatar, :company_name, :company_id, :company_field, :approved,
+                                        :limit_cost, :remain_cost, :promotion_cost, :use_cost_seq, :stop_cost)
     end
 end

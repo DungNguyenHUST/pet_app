@@ -1,0 +1,169 @@
+<div class="employer_mng_apply_job_container">
+    <%if @company_apply_jobs_all_of_employer.count > 0%>
+        <div class="employer_mng_apply_job_block">
+            <div class="container-fluid">
+                <div class="row">
+                    <div class="col-sm-2">
+                        <div class="employer_mng_apply_job_tab_link">
+                            <ul class="nav flex-column">
+                                <li class="nav-item">
+                                    <%if @tab == "default" || @tab == "AllID"%>
+                                        <%active = "active"%>
+                                    <%else%> 
+                                        <%active = ""%>
+                                    <%end%>                                 
+                                    <a class="nav-link <%=active%>" href="<%=employer_mng_apply_path(tab: 'AllID')%>"><i class="material-icons-outlined">reorder</i><%=t(:all)%><span> <%=@company_apply_jobs_all_of_employer.count%></span></a>
+                                </li>
+                                <li class="nav-item">
+                                    <%if @tab == "NewID"%>
+                                        <%active = "active"%>
+                                    <%else%> 
+                                        <%active = ""%>
+                                    <%end%>                                     
+                                    <a class="nav-link <%=active%>" href="<%=employer_mng_apply_path(tab: 'NewID')%>"><i class="material-icons-outlined">more_time</i><%=t(:new)%> <span><%=@company_apply_jobs_of_employer_new.count%></span></a>
+                                </li>
+                                <li class="nav-item">
+                                    <%if @tab == "ContactingID"%>
+                                        <%active = "active"%>
+                                    <%else%> 
+                                        <%active = ""%>
+                                    <%end%>                                     
+                                    <a class="nav-link <%=active%>" href="<%=employer_mng_apply_path(tab: 'ContactingID')%>"><i class="material-icons-outlined">phone_forwarded</i><%=t(:contacting)%> <span><%=@company_apply_jobs_of_employer_contacting.count%></span></a>
+                                </li>
+                                <li class="nav-item">
+                                    <%if @tab == "InterviewID"%>
+                                        <%active = "active"%>
+                                    <%else%> 
+                                        <%active = ""%>
+                                    <%end%>                                     
+                                    <a class="nav-link <%=active%>" href="<%=employer_mng_apply_path(tab: 'InterviewID')%>"><i class="material-icons-outlined">group</i><%=t(:interviewed)%> <span><%=@company_apply_jobs_of_employer_interview.count%></span></a>
+                                </li>
+                                <li class="nav-item">
+                                    <%if @tab == "SuccessID"%>
+                                        <%active = "active"%>
+                                    <%else%> 
+                                        <%active = ""%>
+                                    <%end%>                                     
+                                    <a class="nav-link <%=active%>" href="<%=employer_mng_apply_path(tab: 'SuccessID')%>"><i class="material-icons-outlined">check_circle</i><%=t(:success)%> <span><%=@company_apply_jobs_of_employer_success.count%></span></a>
+                                </li>
+                                <li class="nav-item">
+                                    <%if @tab == "FailID"%>
+                                        <%active = "active"%>
+                                    <%else%> 
+                                        <%active = ""%>
+                                    <%end%>                                     
+                                    <a class="nav-link <%=active%>" href="<%=employer_mng_apply_path(tab: 'FailID')%>"><i class="material-icons-outlined">person_remove</i><%=t(:igorned)%> <span><%=@company_apply_jobs_of_employer_fail.count%></span></a>
+                                </li>
+                            </ul>
+                        </div>
+
+                        <div class="employer_mng_apply_job_post_btn">
+                            <%if auth_post_job_of_employer(current_employer)%>
+                                <%= link_to t(:post_job), new_company_job_path, method: :get, class: "btn btn-primary" %>
+                            <%else%>
+                                <%= link_to t(:post_job), new_company_job_path, method: :get, class: "btn btn-primary disabled" %>
+                            <%end%>
+                        </div>
+                    </div>
+                    <div class="col-sm-10">
+                        <div class="employer_mng_apply_job_content">
+                            <%if @company_apply_jobs_of_employer.total_count > 0%>
+                                <div class="table-responsive">
+                                    <table class="table text-center table-hover">
+                                        <thead>
+                                            <tr>
+                                                <th style="width: 2%;">No.</th>
+                                                <th style="width: 12%;"><%=t(:full_name)%></th>
+                                                <th style="width: 5%;"><%=t(:email)%></th>
+                                                <th style="width: 35%;"><%=t(:job)%></th>
+                                                <th style="width: 12%;"><%=t(:date_applied)%></th>
+                                                <th style="width: 12%;"><%=t(:status)%></th>
+                                                <th style="width: 12%;"><%=t(:cover_vitae)%></th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <%@company_apply_jobs_of_employer.each_with_index do |company_apply_job, index|%>
+                                                <tr>
+                                                    <td><%=index + 1%></td>
+                                                    <td scope="row" class="text-start"><%=link_to (company_apply_job.name), company_job_company_apply_job_path(company_apply_job.company_job, company_apply_job)%></td>
+                                                    <td><%=company_apply_job.email%></td>
+                                                    <td scope="row" class="text-start"><%=link_to (company_apply_job.company_job.title), employer_job_path(:id => company_apply_job.company_job.id)%></td>
+                                                    <td><%=company_apply_job.created_at.strftime("%B %d, %Y")%></td>
+                                                    <td><%=convert_process_to_str(company_apply_job.process)%>
+                                                        <button type="button" data-toggle="modal" data-target="#buttonEditApplyProcess_<%=company_apply_job.id%>" class="follow_btn">
+                                                            <i class="material-icons-outlined">edit</i>
+                                                        </button>
+                                                    </td>
+                                                    <%if company_apply_job.cover_vitate?%>
+                                                        <td> <%=link_to t(:download), company_apply_job.cover_vitate.url%></td>
+                                                    <%end%>
+                                                </tr>
+                                                
+                                                <div class="employer_mng_apply_job_update_process_modal">
+                                                    <div class="modal fade" id="buttonEditApplyProcess_<%=company_apply_job.id%>" tabindex="-1" role="dialog" aria-hidden="true">
+                                                        <div class="modal-dialog modal-dialog-centered" role="document">
+                                                            <div class="modal-content">
+                                                                <div class="modal-header">
+                                                                    <div class="employer_mng_apply_job_update_process_title">
+                                                                        <a><%=t(:update_apply_process)%></a>
+                                                                    </div> 
+                                                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                                        <span aria-hidden="true">&times;</span>
+                                                                    </button>
+                                                                </div>
+
+                                                                <div class="modal-body">
+                                                                    <%= form_for [company_apply_job.company_job, company_apply_job] do |f| %>
+                                                                        <div class="employer_mng_apply_job_update_process_input">
+                                                                            <%= f.select(:process, options_for_select([[t(:contacting), 1], 
+                                                                                                                        [t(:interviewed), 2], 
+                                                                                                                        [t(:success), 3], 
+                                                                                                                        [t(:igorned), 4]]), 
+                                                                                                                        {include_blank: false, :required => true}, 
+                                                                                                                        { :class => 'form-select' }) %>
+                                                                        </div>
+
+                                                                        <div class="employer_mng_apply_job_update_process_submit">
+                                                                            <%= f.submit t(:update), class: "new_apply_job_form_submit" %>
+                                                                        </div>
+                                                                    <%end%>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            <%end%>
+                                        </tbody>
+                                    </table>
+                                </div>
+                                <%= paginate @company_apply_jobs_of_employer, window: 2%>
+                            <%else%>
+                                <div class="employer_mng_apply_job_content_not_found">
+                                    <a><%=t(:no_apply_found)%></a>
+                                </div>
+                            <%end%>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    <%else%>
+        <div class="container">
+            <div class="employer_mng_apply_job_not_found_block">
+                <div class="employer_mng_apply_job_not_found_icon">
+                    <i class="material-icons">pending_actions</i>
+                </div>
+                <div class="employer_mng_apply_job_not_found">
+                    <span><%=t(:applied_not_found)%></span>
+                </div>
+                <div class="employer_mng_apply_job_not_found_action">
+                    <div class="employer_mng_apply_job_button">
+                        <%= link_to employer_path(current_employer, tab: 'EmployerJobID') do%>
+                            <button type="submit"> <i class="material-icons-outlined">arrow_back</i> <span> <%=t(:goback_job_site)%></span> </button>
+                        <%end%>
+                    </div>
+                </div>
+            </div>
+        </div>
+    <%end%>
+</div>

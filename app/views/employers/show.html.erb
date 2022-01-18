@@ -16,11 +16,8 @@
                             <a><span><%=t(:registration_date)%>: </span><%=current_employer.created_at.strftime("%B %d, %Y")%></a>
                         </div>
                         <div class='employer_plan'>
-                            <%if current_employer.plan.present?%>
-                                <a><span><%=t(:current_service)%>: </span><%=current_employer.plan%></a>
-                            <%else%>
-                                <a><span><%=t(:current_service)%>: </span>F-Basic</a>
-                            <%end%>
+                            <a><span><%=t(:remain_cost)%>: </span><%=current_employer.remain_cost.to_i + current_employer.promotion_cost.to_i%>đ</a>
+                            <%= link_to t(:mng_cost), employer_buy_path %>
                         </div>
                     </div>
                 </div>
@@ -36,25 +33,23 @@
             </div>
         </div>
     </div>
-
-    <div class="container">
-        <div class='employer_company_index'>
+        
+    <div class='employer_company_index'>
+        <div class="container">
             <div class="employer_company">
                 <%if @company_of_employer.present?%>
                     <div class="row">
                         <div class="col-sm-3">
-                            <div class="employer_company_title">
-                                <h3><%=t(:company)%></h3>
+                            <div class="employer_company_block">
+                                <%= render @company_of_employer%>
                             </div>
-
-                            <%= render @company_of_employer%>
                         </div>
 
                         <div class="col-sm-9">
-                            <div class="employer_company_info_label">
-                                <h3><%=t(:company_info)%></h3>
-                            </div>
                             <div class="employer_company_info">
+                                <div class="employer_company_info_label">
+                                    <h3><%=t(:company_info)%></h3>
+                                </div>
                                 <div class="row">
                                     <div class="col-sm-4">
                                         <div class="employer_company_info_content_block">
@@ -240,22 +235,22 @@
                                         <a><%=t(:no_info)%></a>
                                     <%end%>
                                 </div>
-                            </div>
 
-                            <div class="employer_company_action">
-                                <div class="row justify-content-md-end">
-                                    <div class="col-sm-3">
-                                        <div class="employer_company_view">
-                                            <a><%= link_to company_path(@company_of_employer) do%>
-                                                <button type="submit"><i class="material-icons-outlined">visibility</i> <%=t(:view)%> </button>
-                                            <%end%></a>
+                                <div class="employer_company_action">
+                                    <div class="row justify-content-md-end">
+                                        <div class="col-sm-3">
+                                            <div class="employer_company_view">
+                                                <a><%= link_to company_path(@company_of_employer), target: :_blank do%>
+                                                    <button type="submit"><i class="material-icons-outlined">visibility</i> <%=t(:view)%> </button>
+                                                <%end%></a>
+                                            </div>
                                         </div>
-                                    </div>
-                                    <div class="col-sm-3">
-                                        <div class="employer_company_edit">
-                                            <a><%= link_to edit_company_path(@company_of_employer, :is_edit => true) do%>
-                                                <button type="submit"><i class="material-icons-outlined">border_color</i> <%=t(:edit)%> </button>
-                                            <%end%></a>
+                                        <div class="col-sm-3">
+                                            <div class="employer_company_edit">
+                                                <a><%= link_to edit_company_path(@company_of_employer, :is_edit => true) do%>
+                                                    <button type="submit"><i class="material-icons-outlined">border_color</i> <%=t(:edit)%> </button>
+                                                <%end%></a>
+                                            </div>
                                         </div>
                                     </div>
                                 </div>

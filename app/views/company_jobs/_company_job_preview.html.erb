@@ -57,7 +57,7 @@
                         <div class="job_preview_apply_button">
                             <%if company_job.apply_another_site_flag?%>
                                 <%= link_to company_job.apply_site, target: :_blank do%>
-                                    <button><span><%=t(:read_more_and_apply)%></span></button>
+                                    <button><i class="material-icons">launch</i><span><%=t(:read_more_and_apply)%></span></button>
                                 <%end%>
                             <%elsif user_signed_in?%>
                                 <%= link_to new_company_job_company_apply_job_path(company_job) do%>

@@ -70,6 +70,14 @@
                             <a class="nav-link <%=active%>" href="<%=admin_path(current_admin, tab: 'AdminEmployerID')%>"><i class="material-icons-outlined">people</i><%=t(:employer)%> <span><%= (@employers.total_count)%><span></a>
                         </li>
                         <li class="nav-item">
+                            <%if @tab == "AdminEmployerBillID"%>
+                                <%active = "active"%>
+                            <%else%> 
+                                <%active = ""%>
+                            <%end%>                                     
+                            <a class="nav-link <%=active%>" href="<%=admin_path(current_admin, tab: 'AdminEmployerBillID')%>"><i class="material-icons-outlined">payment</i><%=t(:employer_bill)%> <span><%= (@employer_bills_confirming.total_count)%><span></a>
+                        </li>
+                        <li class="nav-item">
                             <%if @tab == "AdminScrapJobID"%>
                                 <%active = "active"%>
                             <%else%> 
@@ -482,6 +490,59 @@
                                 <%= paginate @employers, window: 2%>
                             </div>
                         </div>                          
+                    <%end%>
+
+                    <%if @tab == "AdminEmployerBillID"%>
+                        <div class="admin_employer_bill_tab">
+                            <%@employer_bills.each do |employer_bill|%>
+                                <div class="admin_employer_section">
+                                    <%if employer_bill.confirmed == true%>
+                                        <div class="admin_employer_bill_confirm">
+                                            <span><%=t(:confirmed)%></span><i class="material-icons-outlined">check_circle</i>
+                                        </div>
+                                    <%end%>
+                                    <div class="row">
+                                        <div class="col-sm-6">
+                                            <div class="admin_employer_bill_detail">
+                                                <%if employer_bill.bill_image%>
+                                                    <%=image_tag(employer_bill.bill_image.url)%>
+                                                <%end%>
+                                                <a><%=t(:send_date)%>: </a>
+                                                <br>
+                                                <a><%=t(:sender)%>: <%=employer_bill.employer.name%></a>
+                                                <br>
+                                                <a><%=t(:employer_id)%>: <%=employer_bill.employer.id%> - <%=employer_bill.employer.email%></a>
+                                            </div>
+                                        </div>
+                                        <div class="col-sm-6">
+                                            <%= form_for([employer_bill.employer, employer_bill]) do |f| %>
+                                                <div class="new_employer_bill_content">
+                                                    <div class="new_employer_bill_label">
+                                                        <a><%= f.label :total_cash, t(:total_cash), class: "new_employer_bill_label" %></a>
+                                                    </div>
+                                                    
+                                                    <div class="new_employer_bill_input">
+                                                        <%= f.number_field :total_cash, class: "form-control"%>
+                                                    </div>
+                                                </div>
+                                                <div class="new_employer_bill_content">
+                                                    <div class="new_employer_bill_label">
+                                                        <a><%= f.label :confirmed, t(:confirm), class: "new_employer_bill_label" %></a>
+                                                    </div>
+                                                    
+                                                    <div class="new_employer_bill_input">
+                                                        <%= f.select(:confirmed, options_for_select([[t(:no), false], [t(:yes), true]]), {include_blank: false}, { :class => 'form-select' }) %>
+                                                    </div>
+                                                </div>
+                                                <div class="new_employer_bill_submit">
+                                                    <%= f.submit t(:send), class: "new_employer_bill_form_submit" %>
+                                                </div>
+                                            <%end%>
+                                        </div>
+                                    </div>
+                                </div>
+                            <%end%>
+                        </div>
                     <%end%>
 
                     <%if @tab == "NotificationID"%>

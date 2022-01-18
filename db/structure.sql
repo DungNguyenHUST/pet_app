@@ -246,7 +246,8 @@ CREATE TABLE public.company_apply_jobs (
     slug character varying,
     cover_vitate character varying,
     phone character varying,
-    address character varying
+    address character varying,
+    process integer DEFAULT '-1'::integer
 );
 
 
@@ -819,6 +820,40 @@ ALTER SEQUENCE public.cover_vitaes_id_seq OWNED BY public.cover_vitaes.id;
 
 
 --
+-- Name: employer_bills; Type: TABLE; Schema: public; Owner: -
+--
+
+CREATE TABLE public.employer_bills (
+    id bigint NOT NULL,
+    employer_id bigint NOT NULL,
+    bill_image character varying,
+    confirmed boolean DEFAULT false,
+    total_cash bigint DEFAULT 0,
+    created_at timestamp(6) without time zone NOT NULL,
+    updated_at timestamp(6) without time zone NOT NULL
+);
+
+
+--
+-- Name: employer_bills_id_seq; Type: SEQUENCE; Schema: public; Owner: -
+--
+
+CREATE SEQUENCE public.employer_bills_id_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+--
+-- Name: employer_bills_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: -
+--
+
+ALTER SEQUENCE public.employer_bills_id_seq OWNED BY public.employer_bills.id;
+
+
+--
 -- Name: employer_notifications; Type: TABLE; Schema: public; Owner: -
 --
 
@@ -891,7 +926,12 @@ CREATE TABLE public.employers (
     updated_at timestamp(6) without time zone NOT NULL,
     plan character varying,
     start_plan timestamp without time zone,
-    end_plan timestamp without time zone
+    end_plan timestamp without time zone,
+    limit_cost bigint DEFAULT 0,
+    remain_cost bigint DEFAULT 0,
+    promotion_cost bigint DEFAULT 0,
+    use_cost_seq integer DEFAULT 0,
+    stop_cost boolean DEFAULT false
 );
 
 
@@ -1753,6 +1793,13 @@ ALTER TABLE ONLY public.cover_vitaes ALTER COLUMN id SET DEFAULT nextval('public
 
 
 --
+-- Name: employer_bills id; Type: DEFAULT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.employer_bills ALTER COLUMN id SET DEFAULT nextval('public.employer_bills_id_seq'::regclass);
+
+
+--
 -- Name: employer_notifications id; Type: DEFAULT; Schema: public; Owner: -
 --
 
@@ -2058,6 +2105,14 @@ ALTER TABLE ONLY public.company_save_jobs
 
 ALTER TABLE ONLY public.cover_vitaes
     ADD CONSTRAINT cover_vitaes_pkey PRIMARY KEY (id);
+
+
+--
+-- Name: employer_bills employer_bills_pkey; Type: CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.employer_bills
+    ADD CONSTRAINT employer_bills_pkey PRIMARY KEY (id);
 
 
 --
@@ -2390,6 +2445,13 @@ CREATE UNIQUE INDEX index_cover_vitaes_on_slug ON public.cover_vitaes USING btre
 
 
 --
+-- Name: index_employer_bills_on_employer_id; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE INDEX index_employer_bills_on_employer_id ON public.employer_bills USING btree (employer_id);
+
+
+--
 -- Name: index_employer_notifications_on_employer_id; Type: INDEX; Schema: public; Owner: -
 --
 
@@ -2707,6 +2769,14 @@ ALTER TABLE ONLY public.company_react_interviews
 
 
 --
+-- Name: employer_bills fk_rails_337f65756f; Type: FK CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.employer_bills
+    ADD CONSTRAINT fk_rails_337f65756f FOREIGN KEY (employer_id) REFERENCES public.employers(id);
+
+
+--
 -- Name: user_experiences fk_rails_3d2d7033d6; Type: FK CONSTRAINT; Schema: public; Owner: -
 --
 
@@ -2987,6 +3057,9 @@ INSERT INTO "schema_migrations" (version) VALUES
 ('20211016044216'),
 ('20211016044229'),
 ('20211016044240'),
-('20211022042854');
+('20211022042854'),
+('20211213032650'),
+('20211213071116'),
+('20211216042147');
 
 

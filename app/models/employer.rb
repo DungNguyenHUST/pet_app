@@ -21,6 +21,7 @@ class Employer < ApplicationRecord
   mount_uploader :avatar, ImageUploader
 
   has_many :employer_notifications, dependent: :destroy
+  has_many :employer_bills, dependent: :destroy
 
   def self.approved
     where(approved: :true)

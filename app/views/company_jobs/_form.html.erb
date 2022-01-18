@@ -33,17 +33,6 @@
 									<%= f.text_field :title,  autofocus: true, :required => true, class: "form-control", placeholder: t(:form_job_title_sub) %>
 								</div>
 							</div>
-
-							<%if employer_signed_in? && auth_urgent_plan_of_employer(current_employer)%>
-								<div class="new_job_content">
-									<div class="new_job_label">
-										<a><%= f.label :urgent, t(:form_job_urgent), class: "new_job_label" %></a>
-									</div>
-									<div class="new_job_input">
-										<%= f.select(:urgent, options_for_select([[t(:form_job_urgent_no), 0], [t(:form_job_urgent_yes), 1]]), {include_blank: false}, { :class => 'form-select' }) %>
-									</div>
-								</div>
-							<%end%>
 							
 							<div class="new_job_content">
 								<div class="new_job_label">

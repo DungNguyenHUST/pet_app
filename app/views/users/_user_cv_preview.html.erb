@@ -45,13 +45,7 @@
                     <a><%=t(:email)%></a>
                     <br>
                     <%if user.email%>
-                        <%if auth_cv_search_plan_of_employer(current_employer) == true%>
-                            <span><%=user.email%></span>
-                        <%else%>
-                            <%= link_to employer_plan_path do%>
-                                <button><%=t(:upgade_to_view_info)%></button>
-                            <%end%>
-                        <%end%>
+                        <span><%=user.email%></span>
                     <%else%>
                         <span>---</span>
                     <%end%>
@@ -61,13 +55,7 @@
                     <a><%=t(:phone)%></a>
                     <br>
                     <%if user.phone%>
-                        <%if auth_cv_search_plan_of_employer(current_employer) == true%>
-                            <span><%=user.phone%></span>
-                        <%else%>
-                            <%= link_to employer_plan_path do%>
-                                <button><%=t(:upgade_to_view_info)%></button>
-                            <%end%>
-                        <%end%>
+                        <span><%=user.phone%></span>
                     <%else%>
                         <span>---</span>
                     <%end%>

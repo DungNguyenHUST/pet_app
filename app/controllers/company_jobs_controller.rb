@@ -25,12 +25,9 @@ class CompanyJobsController < ApplicationController
             @employer_company = find_company_of_employer(current_employer)
             @company_job.company_id = @employer_company.id
             @company_job.company_name = @employer_company.name
-            if auth_sponsor_plan_of_employer(current_employer)
-                @company_job.sponsor = true
-            end
 
             if @company_job.save
-                redirect_to employer_index_job_path
+                redirect_to employer_mng_job_path
                 flash[:success] = I18n.t(:job_create_noti)
             else
                 flash[:danger] = I18n.t(:create_error)
@@ -81,7 +78,7 @@ class CompanyJobsController < ApplicationController
         @company_job = CompanyJob.friendly.find(params[:id])
         @company_job.destroy
         if employer_signed_in?
-            redirect_to employer_index_job_path
+            redirect_to employer_mng_job_path
         else
             redirect_to admin_path(current_admin, tab: 'AdminJobID')
         end
@@ -91,6 +88,14 @@ class CompanyJobsController < ApplicationController
         @company_job = CompanyJob.friendly.find(params[:id])
         @company = find_company_of_job(@company_job)
         @company_job.increment!(:view_count)
+
+        # update employer cost in each view
+        if is_ads_job(@company_job)
+            if @employer = find_employer_of_job(@company_job)
+                remain_cost = @employer.remain_cost - 2000
+                @employer.update(:remain_cost => remain_cost)
+            end
+        end
         
         add_breadcrumb I18n.t(:home_page), :root_path
         add_breadcrumb I18n.t(:job_search), :jobs_search_path
@@ -222,7 +227,7 @@ class CompanyJobsController < ApplicationController
         params.require(:company_job).permit(:id, :title, :location, :description, :benefit, 
                                             :requirement, :salary, :quantity, :category, 
                                             :search, :end_date, :language, :level, :typical, 
-                                            :urgent, :apply_another_site_flag, :apply_site, 
+                                            :urgent, :sponsor, :apply_another_site_flag, :apply_site, 
                                             :address, :experience, :policy, {:skill => []})
     end
 

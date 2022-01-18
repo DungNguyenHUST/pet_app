@@ -1,7 +1,7 @@
 class CompanyApplyJobsController < ApplicationController
     include ApplicationHelper
     include CompanyJobsHelper
-    before_action :require_user_login, only: [:new, :create, :edit, :update, :destroy]
+    before_action :require_user_login, only: [:new, :create, :edit, :destroy]
     
     def index 
         @company_job = CompanyJob.friendly.find(params[:company_job_id])
@@ -44,6 +44,23 @@ class CompanyApplyJobsController < ApplicationController
     end
 
     def update
+        if employer_signed_in? || user_signed_in?
+            @company_job = CompanyJob.friendly.find(params[:company_job_id])
+            @company_apply_job = @company_job.company_apply_jobs.find(params[:id])
+
+            if(@company_apply_job.update(company_apply_job_param))
+                if employer_signed_in?
+                    redirect_to employer_mng_apply_path
+                elsif user_signed_in?
+                    redirect_to user_path(current_user, tab: 'ApplyJobID')
+                end
+                flash[:success] = I18n.t(:update_success)
+            else
+                flash[:danger] = I18n.t(:update_error)
+            end
+        else
+            redirect_to new_user_session_path
+        end
     end
     
     def destroy
@@ -64,6 +81,6 @@ class CompanyApplyJobsController < ApplicationController
     private
 
     def company_apply_job_param
-        params.require(:company_apply_job).permit(:name, :email, :cover_letter, :cover_vitate, :phone, :address)
+        params.require(:company_apply_job).permit(:name, :email, :cover_letter, :cover_vitate, :phone, :address, :process)
     end
 end

@@ -32,13 +32,16 @@ Rails.application.routes.draw do
 
   resources :employers do
     resources :employer_notifications
+    resources :employer_bills
   end
   get 'employer_wellcome' => 'employers#wellcome'
   get 'employer_job' => 'employers#job'
-  get 'employer_plan' => 'employers#plan'
-  get 'employer_index_job' => 'employers#index_job'
-  get 'employer_index_apply' => 'employers#index_apply'
-  get 'employer_index_cv' => 'employers#index_cv'
+  get 'employer_ad' => 'employers#ad'
+  get 'employer_buy' => 'employers#buy'
+  get 'employer_help' => 'employers#help'
+  get 'employer_mng_job' => 'employers#mng_job'
+  get 'employer_mng_apply' => 'employers#mng_apply'
+  get 'employer_find_cv' => 'employers#find_cv'
   get 'employer_cv_search' => 'employers#cv_search'
 
   resources :admins

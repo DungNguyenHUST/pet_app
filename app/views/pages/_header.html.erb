@@ -116,6 +116,12 @@
 			</div>
 		<%elsif employer_signed_in?%>
 			<div class="nav_employer_login_moblie" >
+				<div class="employer_cart_mobile">						
+					<%= link_to employer_buy_path do %>
+						<i class="material-icons-outlined">shopping_cart</i>
+					<%end%>
+				</div>
+
 				<div class="employer_notification_mobile">
 					<%= link_to employer_path(current_employer, :tab => "NotificationID") do %>
 						<%if current_employer.employer_notifications.count < 10%>
@@ -183,10 +189,11 @@
 
 		<%if employer_signed_in?%>
 			<div class="nav_main_menu">
-				<a href="<%=employer_index_job_path %>"> <%=t(:employer_mng_job)%> </a>
-				<a href="<%=employer_index_apply_path %>"> <%=t(:employer_mng_applied_job)%> </a>
-				<a href="<%=employer_index_cv_path %>"> <%=t(:employer_find_cv)%> </a>
-				<a href="<%=employer_plan_path %>"><%=t(:employer_change_service)%></a>
+				<a href="<%=employer_mng_job_path %>"> <%=t(:employer_mng_job)%> </a>
+				<a href="<%=employer_mng_apply_path %>"> <%=t(:employer_mng_applied_job)%> </a>
+				<a href="<%=employer_find_cv_path %>"> <%=t(:employer_find_cv)%> </a>
+				<a href="<%=employer_ad_path %>"><%=t(:ads)%></a>
+				<a href="<%=employer_help_path%>"> <%=t(:help)%> </a>
 				<a href="<%=contact_us_path%>"><%=t(:contact_us)%> </a>
 			</div>
 		<%elsif admin_signed_in?%>
@@ -294,6 +301,12 @@
 				</div>
 			<%elsif employer_signed_in?%>
 				<div class="nav_employer">
+					<div class="employer_cart">						
+						<%= link_to employer_buy_path do %>
+							<i class="material-icons-outlined">shopping_cart</i>
+						<%end%>
+					</div>
+
 					<div class="employer_notification">						
 						<%= link_to employer_employer_notifications_path(current_employer) do %>
 							<%if current_employer.employer_notifications.count < 10%>

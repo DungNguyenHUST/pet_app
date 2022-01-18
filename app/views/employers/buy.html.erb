@@ -1,0 +1,142 @@
+<div class="employer_buy_block">
+    <div class="container">
+        <div class="employer_buy_status">
+            <div class="employer_buy_status_title">
+                <h3><%=t(:my_wallet)%></h3>
+            </div>
+            <div class="row">
+                <div class="col-sm-6">
+                    <div class="employer_buy_status_block">
+                        <a><span><%=t(:employer_id)%>: </span><%=current_employer.id%></a>
+                    </div>
+
+                    <div class="employer_buy_status_block">
+                        <a><span><%=t(:remain_cost)%>: </span><%=current_employer.remain_cost.to_i%>đ</a>
+                    </div>
+
+                    <div class="employer_buy_status_block">
+                        <a><span><%=t(:promotion_cost)%>: </span><%=current_employer.promotion_cost.to_i%>đ</a>
+                    </div>
+
+                    <div class="employer_buy_status_block">
+                        <%if current_employer.use_cost_seq.to_i == 0%>
+                            <a><span><%=t(:limit_cost)%>: </span><%=current_employer.limit_cost.to_i%>đ - <%=t(:daily)%></a>
+                        <%else%>
+                            <a><span><%=t(:limit_cost)%>: </span><%=current_employer.limit_cost.to_i%>đ - <%=t(:monthly)%></a>
+                        <%end%>
+                    </div>
+                </div>
+
+                <div class="col-sm-6">
+                    <div class='employer_buy_status_edit'>
+                        <%= link_to t(:recharge), employer_help_path, class: "btn btn-primary" %>                    
+                    </div>
+                    <div class='employer_buy_status_edit'>
+                        <%= link_to t(:temp_stop_ads), employer_help_path, class: "btn btn-danger" %>                    
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="container">
+        <div class="employer_buy_setting">
+            <div class="employer_buy_setting_title">
+                <h3><%=t(:mng_cost)%></h3>
+            </div>
+            <div class="row">
+                <div class="col-sm-6">
+                    <div class="employer_buy_setting_block">
+                        <%= form_for @employer, html: {class: "form-horizontal"} do |f| %>
+                            <div class="employer_buy_setting_section">
+                                <div class="employer_buy_setting_content">
+                                    <div class="employer_buy_setting_label">
+                                        <a><%= f.label :limit_cost, t(:employer_buy_1), class: "employer_buy_setting_label_name" %></a>
+                                    </div>
+
+                                    <div class="employer_buy_setting_input">
+                                        <%= f.number_field :limit_cost, class: "form-control", placeholder: t(:employer_buy_2) %>
+                                    </div>
+                                </div>
+                                
+                                <div class="employer_buy_setting_content">
+                                    <div class="employer_buy_setting_label">
+                                        <a><%= f.label :use_cost_seq, t(:employer_buy_3), class: "employer_buy_setting_label_name" %></a>
+                                    </div>
+
+                                    <div class="employer_buy_setting_input">
+                                        <%= f.select(:use_cost_seq, options_for_select([[t(:daily), 0], [t(:monthly), 1]]), {include_blank: false}, { :class => 'form-select' }) %>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="employer_buy_setting_submit">
+                                <%= f.submit t(:change), class: "employer_buy_setting_form_submit" %>
+                            </div>
+                        <%end%>
+                    </div>
+                </div>
+
+                <div class="col-sm-6">
+                    <div class="employer_buy_setting_help">
+                        <span><%=t(:employer_buy_4)%></span>
+                        <br>
+                        <a><%=t(:read_more)%> <%= link_to t(:employer_buy_5), employer_help_path%></a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="container">
+        <div class="employer_buy_statistic">
+            <div class="employer_buy_statistic_title">
+                <h3><%=t(:employer_buy_6)%></h3>
+            </div>
+            <div class="employer_buy_statistic_tab_link">
+                <ul class="nav">
+                    <li class="nav-item">
+                        <%if @tab == "default" || @tab == "AdsID"%>
+                            <%active = "active"%>
+                        <%else%> 
+                            <%active = ""%>
+                        <%end%>                                 
+                        <a class="nav-link <%=active%>" href="<%=employer_buy_path(current_employer, tab: 'AdsID')%>"><%=t(:advertising)%><span></span></a>
+                    </li>
+                    <li class="nav-item">
+                        <%if @tab == "AdsStopID"%>
+                            <%active = "active"%>
+                        <%else%> 
+                            <%active = ""%>
+                        <%end%>                                     
+                        <a class="nav-link <%=active%>" href="<%=employer_buy_path(current_employer, tab: 'AdsStopID')%>"><%=t(:stop_advertising)%> <span></span></a>
+                    </li>
+                    <li class="nav-item">
+                        <%if @tab == "PaymentHistoryID"%>
+                            <%active = "active"%>
+                        <%else%> 
+                            <%active = ""%>
+                        <%end%>                                     
+                        <a class="nav-link <%=active%>" href="<%=employer_buy_path(current_employer, tab: 'PaymentHistoryID')%>"><%=t(:pay_history)%> <span></span></a>
+                    </li>
+                </ul>
+            </div>
+            <div class="employer_buy_statistic_tab_content">
+                <%if @tab == "AdsID"%>
+                    <div class="employer_buy_statistic_tab_ads">
+                    </div>
+                <%end%>
+                <%if @tab == "AdsStopID"%>
+                    <div class="employer_buy_statistic_tab_ads_stop">
+                    </div>
+                <%end%>
+                <%if @tab == "PaymentHistoryID"%>
+                    <div class="employer_buy_statistic_tab_payment_history">
+                    </div>
+                <%end%>
+                <div class="employer_buy_statistic_no_result">
+                    <a><%=t(:no_info)%></a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

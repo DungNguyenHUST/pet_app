@@ -5,11 +5,11 @@
                 <div class='col-sm-5'>
                     <div class="employer_wellcome_left_block">
                         <div class="employer_wellcome_bar_label">
-                            <h3><%=t(:wellcome_employer_label)%>.</h3>
+                            <h3><%=t(:employer_wellcome_1)%>.</h3>
                         </div>
                         <div class="employer_wellcome_button">
                             <%= link_to new_employer_registration_path do%>
-                                <button type="submit"><span><%=t(:wellcome_employer_sub_1)%></span> <i class="material-icons-outlined">arrow_forward</i></button>
+                                <button type="submit"><span><%=t(:employer_wellcome_2)%></span></button>
                             <%end%>
                         </div>
                         <div class="employer_wellcome_login">
@@ -19,7 +19,7 @@
                 </div>
                 <div class='col-sm-7'>
                     <div class="employer_wellcome_right_block">
-                        <%=image_tag("others/employer_background.svg")%>
+                        <%=image_tag("others/employer.jpg")%>
                     </div>
                 </div>
             </div>
@@ -27,163 +27,210 @@
     </div>
     
     <div class="container">
-        <div class="employer_wellcome_price_block">
-            <div class="employer_wellcome_price_label">
-                <h3><%=t(:list_of_service)%></h3>
+        <div class="employer_wellcome_why_block">
+            <div class="employer_wellcome_why_label">
+                <h3><%=t(:employer_wellcome_3)%></h3>
             </div>
-            <div class="employer_wellcome_price_detail">
-                <div class="row">
-                    <div class="col-lg-4 col-md-12 mb-4">
-                        <div class="card card1 h-100">
-                            <div class="card-body">
-                                <h5 class="card-title">F-Basic</h5>
-                                    <small class='text-muted'><%=t(:cost_save)%></small>
-                                <br><br>
-                                    <span class="h2">0<%=t(:vnd_short)%></span>/<%=t(:month)%>
-                                <br><br>
-                                <div class="d-grid my-3">
-                                    <%= link_to employer_plan_path do %>
-                                        <button class="btn btn-outline-dark btn-block"><%=t(:free)%></button>
-                                    <%end%>
-                                </div>
-                                <ul>
-                                    <li><%=t(:free_post_job)%></li>
-                                    <li><%=t(:pro_mana_job)%></li>
-                                    <li><%=t(:support_247)%></li>
-                                </ul>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="col-lg-4 col-md-12 mb-4">
-                        <div class="card card2 h-100">
-                            <div class="card-body">
-                                <h5 class="card-title">F-Eco</h5>
-                                <small class='text-muted'><%=t(:mosted_use)%></small>
-                                <br><br>
-                                <span class="h2">499.000<%=t(:vnd_short)%></span>/<%=t(:month)%> <mark>-20%</mark>
-                                <br><br>
-                                <div class="d-grid my-3">
-                                    <%= link_to employer_plan_path do %>
-                                        <button class="btn btn-outline-dark btn-block"><%=t(:buy_now)%></button>
-                                    <%end%>
-                                </div>
-                                <ul>
-                                    <li><%=t(:free_post_job)%></li>
-                                    <li><%=t(:highlight_search)%></li>
-                                    <li><%=t(:support_247)%></li>
-                                </ul>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="col-lg-4 col-md-12 mb-4">
-                        <div class="card card3 h-100">
-                            <div class="card-body">
-                                <h5 class="card-title">F-Pro</h5>
-                                <small class='text-muted'><%=t(:high_efficiency)%></small>
-                                <br><br>
-                                    <span class="h2">999.000<%=t(:vnd_short)%></span>/<%=t(:month)%> <mark>-25%</mark>
-                                <br><br>
-                                <div class="d-grid my-3">
-                                    <%= link_to employer_plan_path do %>
-                                        <button class="btn btn-outline-dark btn-block"><%=t(:buy_now)%></button>
-                                    <%end%>
-                                </div>
-                                <ul>
-                                    <li><%=t(:find_candidate)%></li>
-                                    <li><%=t(:highlight_search)%></li>
-                                    <li><%=t(:support_247)%></li>
-                                </ul>
-                            </div>
-                        </div>
-                    </div>
-                </div> 
-            </div>
-
-            <div class="employer_wellcome_price_compare_label">
-                <h3><%=t(:view_compare_service)%></h3>
-            </div>
-
-            <div class="employer_wellcome_price_compare_detail">
-                <div class="table-responsive">
-                    <table class="table text-center table-hover">
-                        <thead>
-                            <tr>
-                                <th style="width: 34%;"></th>
-                                <th style="width: 22%;">F-Basic</th>
-                                <th style="width: 22%;">F-Eco</th>
-                                <th style="width: 22%;">F-Pro</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <tr>
-                                <th scope="row" class="text-start"><%=t(:free_post_job)%></th>
-                                <td><%=t(:unlimit)%></td>
-                                <td><%=t(:unlimit)%></td>
-                                <td><%=t(:unlimit)%></td>
-                            </tr>
-                            <tr>
-                                <th scope="row" class="text-start"><%=t(:highlight_search)%></th>
-                                <td></td>
-                                <td><i class="material-icons-outlined">check</i></td>
-                                <td><i class="material-icons-outlined">check</i></td>
-                            </tr>
-                            <tr>
-                                <th scope="row" class="text-start"><%=t(:highlight_title_job)%></th>
-                                <td></td>
-                                <td><i class="material-icons-outlined">check</i></td>
-                                <td><i class="material-icons-outlined">check</i></td>
-                            </tr>
-                            <tr>
-                                <th scope="row" class="text-start"><%=t(:find_candidate)%></th>
-                                <td></td>
-                                <td></td>
-                                <td><i class="material-icons-outlined">check</i></td>
-                            </tr>
-                            <tr>
-                                <th scope="row" class="text-start"><%=t(:brand_ad)%></th>
-                                <td></td>
-                                <td></td>
-                                <td><i class="material-icons-outlined">check</i></td>
-                            </tr>
-                            <tr>
-                                <th scope="row" class="text-start"><%=t(:support_247)%></th>
-                                <td><i class="material-icons-outlined">check</i></td>
-                                <td><i class="material-icons-outlined">check</i></td>
-                                <td><i class="material-icons-outlined">check</i></td>
-                            </tr>
-                        </tbody>
-                    </table>
-                </div> 
-            </div>
-
-            <div class="employer_wellcome_support_block">
-                <div class="employer_wellcome_support_label">
-                    <h3><%=t(:contact_us)%></h3>
-                </div>
-                <div class="row">
+            <div class="employer_wellcome_why_section_text_first">
+                <div class="row flex-column-reverse flex-md-row">
                     <div class="col-sm-6">
-                        <div class="employer_wellcome_support_contact">
-                            <ul>
-                                <li><a>Email: <span>hotro.firework@gmail.com</span></a></li>
-                                <li><a>Hotline: <span>0338275427</span></a></li>
-                            </ul>
+                        <div class="employer_wellcome_why_left_block">
+                            <h4><%=t(:employer_wellcome_4)%></h4>
+                            <a><%=t(:employer_wellcome_5)%>.</a>
+                            <br>
+                            <div class="row">
+                                <div class="col-sm-6">
+                                    <div class="employer_wellcome_why_left_section">
+                                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke=#1473e6 stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-briefcase"><rect x="2" y="7" width="20" height="14" rx="2" ry="2"></rect><path d="M16 21V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16"></path></svg>
+                                        <span><%=t(:employer_wellcome_6)%></span>
+                                    </div>
+                                </div>
+                                <div class="col-sm-6">
+                                    <div class="employer_wellcome_why_left_section">
+                                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke=#1473e6 stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-crosshair"><circle cx="12" cy="12" r="10"></circle><line x1="22" y1="12" x2="18" y2="12"></line><line x1="6" y1="12" x2="2" y2="12"></line><line x1="12" y1="6" x2="12" y2="2"></line><line x1="12" y1="22" x2="12" y2="18"></line></svg>
+                                        <span><%=t(:employer_wellcome_7)%></span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-sm-6">
+                                    <div class="employer_wellcome_why_left_section">
+                                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke=#1473e6 stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-clock"><circle cx="12" cy="12" r="10"></circle><polyline points="12 6 12 12 16 14"></polyline></svg>
+                                        <span><%=t(:employer_wellcome_8)%></span>
+                                    </div>
+                                </div>
+                                <div class="col-sm-6">
+                                    <div class="employer_wellcome_why_left_section">
+                                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke=#1473e6 stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-users"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path><circle cx="9" cy="7" r="4"></circle><path d="M23 21v-2a4 4 0 0 0-3-3.87"></path><path d="M16 3.13a4 4 0 0 1 0 7.75"></path></svg>                                        
+                                        <span><%=t(:employer_wellcome_9)%></span>
+                                    </div>
+                                </div>
+                            </div>
                         </div>
                     </div>
-
                     <div class="col-sm-6">
-                        <div class="employer_wellcome_support_signup">
-                            <%= link_to new_employer_session_path do%>
-                                <button>
-                                    <i class="material-icons-outlined">work_outline</i>
-                                    <span><%=t(:employer_register)%></span>
-                                </button>
-                            <%end%>
+                        <div class="employer_wellcome_why_right_block">
+                            <%=image_tag("others/employer_post.jpg")%>
                         </div>
                     </div>
                 </div>
             </div>
+            <div class="employer_wellcome_why_section_image_first">
+                <div class="row">
+                    <div class="col-sm-6">
+                        <div class="employer_wellcome_why_left_block">
+                            <%=image_tag("others/employer_company.jpg")%>
+                        </div>
+                    </div>
+                    <div class="col-sm-6">
+                        <div class="employer_wellcome_why_right_block">
+                            <h4><%=t(:employer_wellcome_10)%></h4>
+                            <a><%=t(:employer_wellcome_11)%>.</a>
+                            <div class="row">
+                                <div class="col-sm-6">
+                                    <div class="employer_wellcome_why_left_section">
+                                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke=#1473e6 stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-zap"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"></polygon></svg>                                        
+                                        <span><%=t(:employer_wellcome_12)%></span>
+                                    </div>
+                                </div>
+                                <div class="col-sm-6">
+                                    <div class="employer_wellcome_why_left_section">
+                                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke=#1473e6 stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-triangle"><path d="M10.29 3.86L1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"></path></svg>                                        
+                                        <span><%=t(:employer_wellcome_13)%> </span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-sm-6">
+                                    <div class="employer_wellcome_why_left_section">
+                                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke=#1473e6 stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-check-circle"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path><polyline points="22 4 12 14.01 9 11.01"></polyline></svg>                                        
+                                        <span><%=t(:employer_wellcome_14)%></span>
+                                    </div>
+                                </div>
+                                <div class="col-sm-6">
+                                    <div class="employer_wellcome_why_left_section">
+                                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke=#1473e6 stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-refresh-cw"><polyline points="23 4 23 10 17 10"></polyline><polyline points="1 20 1 14 7 14"></polyline><path d="M3.51 9a9 9 0 0 1 14.85-3.36L23 10M1 14l4.64 4.36A9 9 0 0 0 20.49 15"></path></svg>                                        
+                                        <span><%=t(:employer_wellcome_15)%></span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="employer_wellcome_why_section_text_first">
+                <div class="row flex-column-reverse flex-md-row">
+                    <div class="col-sm-6">
+                        <div class="employer_wellcome_why_left_block">
+                            <h4><%=t(:employer_wellcome_16)%></h4>
+                            <a><%=t(:employer_wellcome_17)%>.</a>
+                            <div class="row">
+                                <div class="col-sm-6">
+                                    <div class="employer_wellcome_why_left_section">
+                                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke=#1473e6 stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-user-check"><path d="M16 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path><circle cx="8.5" cy="7" r="4"></circle><polyline points="17 11 19 13 23 9"></polyline></svg>
+                                        <span><%=t(:employer_wellcome_18)%></span>
+                                    </div>
+                                </div>
+                                <div class="col-sm-6">
+                                    <div class="employer_wellcome_why_left_section">
+                                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke=#1473e6 stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-layout"><rect x="3" y="3" width="18" height="18" rx="2" ry="2"></rect><line x1="3" y1="9" x2="21" y2="9"></line><line x1="9" y1="21" x2="9" y2="9"></line></svg>
+                                        <span><%=t(:employer_wellcome_19)%></span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-sm-6">
+                                    <div class="employer_wellcome_why_left_section">                                        
+                                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke=#1473e6 stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-calendar"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect><line x1="16" y1="2" x2="16" y2="6"></line><line x1="8" y1="2" x2="8" y2="6"></line><line x1="3" y1="10" x2="21" y2="10"></line></svg>
+                                        <span><%=t(:employer_wellcome_20)%></span>
+                                    </div>
+                                </div>
+                                <div class="col-sm-6">
+                                    <div class="employer_wellcome_why_left_section">                                        
+                                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke=#1473e6 stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-phone"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"></path></svg>
+                                        <span><%=t(:employer_wellcome_21)%></span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-sm-6">
+                        <div class="employer_wellcome_why_right_block">
+                            <%=image_tag("others/employer_dash.jpg")%>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="employer_wellcome_step_block">
+        <div class="container">
+            <div class="employer_wellcome_step_label">
+                <h3><%=t(:employer_wellcome_22)%></h3>
+            </div>
+            <div class="row">
+                <div class="col-sm-3">
+                    <div class="employer_wellcome_step_section">
+                        <div class="employer_wellcome_step_img">
+                            <a>1.<a>
+                        </div>
+                        <div class="employer_wellcome_step_detail">
+                            <a><%=t(:employer_wellcome_23)%></a>
+                            <br>
+                            <span><%=t(:employer_wellcome_24)%> </span>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-sm-3">
+                    <div class="employer_wellcome_step_section">
+                        <div class="employer_wellcome_step_img">
+                            <a>2.<a>
+                        </div>
+                        <div class="employer_wellcome_step_detail">
+                            <a><%=t(:employer_wellcome_25)%></a>
+                            <br>
+                            <span><%=t(:employer_wellcome_26)%>.</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-sm-3">
+                    <div class="employer_wellcome_step_section">
+                        <div class="employer_wellcome_step_img">
+                            <a>3.<a>
+                        </div>
+                        <div class="employer_wellcome_step_detail">
+                            <a><%=t(:employer_wellcome_27)%></a>
+                            <br>
+                            <span><%=t(:employer_wellcome_28)%>.</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-sm-3">
+                    <div class="employer_wellcome_step_section">
+                        <div class="employer_wellcome_step_img">
+                            <a>4.<a>
+                        </div>
+                        <div class="employer_wellcome_step_detail">
+                            <a><%=t(:employer_wellcome_29)%></a>
+                            <br>
+                            <span><%=t(:employer_wellcome_30)%>.</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="employer_wellcome_register_block">
+        <div class="container">
+            <div class="employer_wellcome_register_label">
+                <h3><%=t(:employer_wellcome_31)%></h3>
+                <a><%=t(:employer_wellcome_32)%>.</a>
+            </div>
+            <%= link_to new_employer_registration_path do%>
+                <button type="submit"><span><%=t(:signup)%></span></button>
+            <%end%>
         </div>
     </div>
 </div>

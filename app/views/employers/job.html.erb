@@ -35,11 +35,19 @@
     </div>
 
     <div class="container">
-        <div class="employer_job_apply">
-            <div class="employer_job_apply_title">
-                <h3><%=t(:list_application)%></h3>
+        <div class="employer_job_statistic_block">
+            <div class="employer_job_statistic_title">
+                <h3><%=t(:statistic_detail)%></h3>
             </div>
-            <%if @company_apply_jobs.total_count > 0%>
+            <div class="employer_job_statistic_content">
+            </div>
+        </div>
+
+        <%if @company_apply_jobs.total_count > 0%>
+            <div class="employer_job_apply_block">
+                <div class="employer_job_apply_title">
+                    <h3><%=t(:list_application)%></h3>
+                </div>
                 <div class="table-responsive">
                     <table class="table text-center table-hover">
                         <thead>
@@ -47,9 +55,10 @@
                                 <th style="width: 2%;">No.</th>
                                 <th style="width: 12%;"><%=t(:full_name)%></th>
                                 <th style="width: 5%;"><%=t(:email)%></th>
-                                <th style="width: 50%;"><%t(:introduce)%></th>
+                                <th style="width: 40%;"><%=t(:introduce)%></th>
                                 <th style="width: 12%;"><%=t(:date_applied)%></th>
                                 <th style="width: 12%;"><%=t(:cover_vitae)%></th>
+                                <th style="width: 10%;"><%=t(:status)%></th>
                             </tr>
                         </thead>
                         <tbody>
@@ -58,34 +67,35 @@
                                     <td><%=index + 1%></td>
                                     <td scope="row" class="text-start"><%=link_to (company_apply_job.name), company_job_company_apply_job_path(@company_job, company_apply_job)%></td>
                                     <td><%=company_apply_job.email%></td>
-                                    <td><%=truncate(strip_tags(company_apply_job.cover_letter), length: 90)%></td>
+                                    <td><%=truncate(strip_tags(company_apply_job.cover_letter), length: 60)%></td>
                                     <td><%=company_apply_job.created_at.strftime("%B %d, %Y")%></td>
                                     <%if company_apply_job.cover_vitate?%>
                                         <td> <%=link_to t(:download), company_apply_job.cover_vitate.url%></td>
                                     <%end%>
+                                    <td><%=t(:interviewing)%></td>
                                 </tr>
                             <%end%>
                         </tbody>
                     </table>
                 </div>
                 <%= paginate @company_apply_jobs, window: 2%>
-            <%else%>
-                <div class="employer_job_apply_not_found_block">
-                    <div class="employer_job_apply_not_found_icon">
-                        <i class="material-icons">pending_actions</i>
-                    </div>
-                    <div class="employer_job_apply_not_found">
-                        <span><%=t(:applied_not_found)%></span>
-                    </div>
-                    <div class="employer_job_apply_not_found_action">
-                        <div class="employer_job_apply_button">
-                            <%= link_to employer_index_job_path do%>
-                                <button type="submit"> <i class="material-icons-outlined">arrow_back</i> <span> <%=t(:goback_job_site)%></span> </button>
-                            <%end%>
-                        </div>
+            </div>
+        <%else%>
+            <div class="employer_job_apply_not_found_block">
+                <div class="employer_job_apply_not_found_icon">
+                    <i class="material-icons">pending_actions</i>
+                </div>
+                <div class="employer_job_apply_not_found">
+                    <span><%=t(:applied_not_found)%></span>
+                </div>
+                <div class="employer_job_apply_not_found_action">
+                    <div class="employer_job_apply_button">
+                        <%= link_to employer_mng_job_path do%>
+                            <button type="submit"> <i class="material-icons-outlined">arrow_back</i> <span> <%=t(:goback_job_site)%></span> </button>
+                        <%end%>
                     </div>
                 </div>
-            <%end%>
-        </div>
+            </div>
+        <%end%>
     </div>
 </div>

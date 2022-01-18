@@ -14,64 +14,17 @@ module EmployersHelper
         end
     end
 
-    def find_job_remain_of_employer(employer)
-        job_remain = -1
-        if employer
-            if employer.plan == "F-Basic" || employer.plan == "F-Eco" || employer.plan == "F-Pro"
-                job_remain = -1
-            else
-                company_job = CompanyJob.where(:created_at => Time.zone.now.beginning_of_day..Time.zone.now.end_of_day)
-                company_job = company_job.where(:employer_id => employer.id)
-                if company_job && company_job.count > 0
-                    job_remain = 0
-                else
-                    job_remain = 1
-                end
-            end
-        end
-        return job_remain
-    end
-
-    def auth_cv_search_plan_of_employer(employer)
-        auth = false
-        if employer
-            if employer.plan == "F-Pro"
-                if Time.now - employer.start_plan <= 30
-                    auth = true
-                end
-            else
-            end
-        end
-        return auth
-    end
-
-    def auth_urgent_plan_of_employer(employer)
-        auth = false
-        if employer
-            if employer.plan == "F-Pro" || employer.plan == "F-Eco"
-                if Time.now - employer.start_plan <= 30
-                    auth = true
-                end
-            else
-            end
-        end
-        return auth
-    end
-
-    def auth_sponsor_plan_of_employer(employer)
-        auth = false
-        if employer
-            if employer.plan == "F-Pro" || employer.plan == "F-Eco"
-                if Time.now - employer.start_plan <= 30
-                    auth = true
-                end
-            else
-            end
-        end
-        return auth
-    end
-
     def auth_post_job_of_employer(employer)
+        auth = false
+        if employer
+            if find_company_of_employer(employer) != nil
+                auth = true
+            end
+        end
+        return auth
+    end
+
+    def auth_view_cv_of_employer(employer)
         auth = false
         if employer
             if find_company_of_employer(employer) != nil
