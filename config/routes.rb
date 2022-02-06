@@ -41,7 +41,6 @@ Rails.application.routes.draw do
   get 'employer_help' => 'employers#help'
   get 'employer_mng_job' => 'employers#mng_job'
   get 'employer_mng_apply' => 'employers#mng_apply'
-  get 'employer_find_cv' => 'employers#find_cv'
   get 'employer_cv_search' => 'employers#cv_search'
 
   resources :admins

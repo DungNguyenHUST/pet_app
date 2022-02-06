@@ -1,7 +1,11 @@
 <div class="employer_cv_search_block_result" id="employer_cv_search_block_result">
     <%if cv_searched && cv_searched.total_count > 0%>
         <div class="employer_cv_search_index">
-            <%unless is_all == true%>
+            <%if is_all == true%>
+                <div class="employer_cv_search_label">
+                    <span><%=t(:employee_list)%></span>						
+                </div>
+            <%else%>
                 <div class="employer_cv_search_label">
                     <span><%=cv_searched.total_count%> <%=t(:suitable_profile)%></span>						
                 </div>

@@ -2,7 +2,7 @@ class EmployersController < ApplicationController
     include EmployersHelper
     include CompaniesHelper
     include ApplicationHelper
-    before_action :require_employer_login, only: [:index, :show, :edit, :update, :destroy, :job, :plan, :mng_job, :mng_apply, :find_cv, :cv_search]
+    before_action :require_employer_login, only: [:index, :show, :edit, :update, :destroy, :job, :plan, :mng_job, :mng_apply, :cv_search]
     
     def index
         @employers = Employer.all
@@ -178,12 +178,8 @@ class EmployersController < ApplicationController
         end
     end
 
-    def find_cv
-        @employer = current_employer
-        @user_cvs = User.all.public.order('updated_at DESC').page(params[:page]).per(12)
-    end
-
     def cv_search
+        @employer = current_employer
         @user_cvs = User.all.public.order('created_at DESC').page(params[:page]).per(12)
 
         # Search

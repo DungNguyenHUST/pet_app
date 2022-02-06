@@ -178,5 +178,9 @@
 </div>
     
 <div class="container">
-    <%= render :partial => 'employers/cv_search', locals: {cv_searched: @cv_searchs, :is_all => false} %>
+    <%if @is_cv_searched%>
+        <%= render :partial => 'employers/cv_search', locals: {cv_searched: @cv_searchs, :is_all => false} %>
+    <%else%>
+        <%= render :partial => 'employers/cv_search', locals: {cv_searched: @user_cvs, :is_all => true} %>
+    <%end%>
 </div>
