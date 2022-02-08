@@ -180,7 +180,7 @@ class EmployersController < ApplicationController
 
     def cv_search
         @employer = current_employer
-        @user_cvs = User.all.public.order('created_at DESC').page(params[:page]).per(12)
+        @user_cvs = User.all.public.order('updated_at DESC').page(params[:page]).per(12)
 
         # Search
         @is_cv_searched = false
@@ -196,7 +196,7 @@ class EmployersController < ApplicationController
                 @cv_searchs = @cv_searchs.search_user_by_address(params[:location])
             end
 
-            @cv_searchs = @cv_searchs.public.order('created_at DESC').page(params[:page]).per(12)
+            @cv_searchs = @cv_searchs.public.order('updated_at DESC').page(params[:page]).per(12)
         end
 
         # Filter
