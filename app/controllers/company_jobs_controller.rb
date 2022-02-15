@@ -3,6 +3,7 @@ class CompanyJobsController < ApplicationController
     include CompanyJobsHelper
     include CompaniesHelper
     include EmployersHelper
+    include Constants
     before_action :require_employer_login, only: [:new, :create, :edit, :update, :destroy]
     before_action :require_admin_login, only: [:approve]
 
@@ -89,11 +90,29 @@ class CompanyJobsController < ApplicationController
         @company = find_company_of_job(@company_job)
         @company_job.increment!(:view_count)
 
-        # update employer cost in each view
-        if is_ads_job(@company_job)
+        # Update employer cost in each view
+        if @company_job.sponsor == 1
             if @employer = find_employer_of_job(@company_job)
-                remain_cost = @employer.remain_cost - 2000
-                @employer.update(:remain_cost => remain_cost)
+                if auth_used_cost_of_employer(@employer) == false
+                    @employer.update(:cost_status => 2) # Temprory stop cost in daily
+                    @company_job.update(:sponsor => 0)
+                else
+                    @employer.employer_costs.create(:cost => COST_PEER_VIEW, :url => company_job_path(@company_job))
+                    remain_cost = @employer.remain_cost - COST_PEER_VIEW
+                    if remain_cost < 0
+                        remain_cost = 0
+                        @employer.update(:cost_status => 0) # Stop cost when no cost remain
+                        @company_job.update(:sponsor => 0)
+                    end
+                    @employer.update(:remain_cost => remain_cost)
+                end
+            end
+        elsif @company_job.sponsor == 0
+            if @employer = find_employer_of_job(@company_job)
+                if @employer.cost_status == 2 && auth_used_cost_of_employer(@employer) == true # In case temprory stop cost, resume in next day
+                    @company_job.update(:sponsor => 1)
+                    @employer.update(:cost_status => 1)
+                end
             end
         end
         

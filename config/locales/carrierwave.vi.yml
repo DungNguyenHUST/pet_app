@@ -1,0 +1,21 @@
+vi:
+  activerecord:
+    errors:
+      messages:
+        record_invalid: 'Có các lỗi sau: %{errors}'
+        restrict_dependent_destroy:
+          has_one: Không thể xóa do tồn tại đối tượng phụ thuộc %{record}
+          has_many: Không thể xóa do tồn tại một số đối tượng phụ thuộc %{record}
+  errors:
+    messages:
+      carrierwave_processing_error: không thể xử lý
+      carrierwave_integrity_error: không phải là loại tệp hợp lệ
+      carrierwave_download_error: không thể tải xuống
+      extension_whitelist_error: "Bạn không thể tải xuống các tệp có định dạng% {extension}, chỉ các tệp có định dạng:% {allow_types}"
+      extension_blacklist_error: "Bạn không thể tải xuống tệp có định dạng% {extension}, không cho phép tải xuống tệp có định dạng:% {allow_types}"
+      content_type_whitelist_error: "Bạn không thể gửi tệp với định dạng% {content_type}"
+      content_type_blacklist_error: "Bạn không thể gửi tệp với định dạng% {content_type}"
+      rmagick_processing_error: "Không thể xử lý bằng rmagick, có thể tệp của bạn không phải là hình ảnh?"
+      mini_magick_processing_error: "Không thể xử lý bằng MiniMagick, có thể tệp của bạn không phải là hình ảnh? Lỗi ban đầu:% {e}"
+      min_size_error: "Kích thước tệp phải lớn hơn% {min_size}"
+      max_size_error: "Kích thước tệp phải nhỏ hơn% {max_size}"

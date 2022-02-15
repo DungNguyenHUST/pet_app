@@ -83,17 +83,4 @@ module CompanyJobsHelper
             return employer
         end
     end
-
-    def is_ads_job(company_job)
-        is_ads = false
-        if company_job.present?
-            employer = find_employer_of_job(company_job)
-            if employer
-                if employer.limit_cost > 0 && employer.stop_cost == false && company_job.sponsor == true
-                    is_ads = true
-                end
-            end
-        end
-        return is_ads
-    end
 end

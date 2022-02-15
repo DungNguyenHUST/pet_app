@@ -2,7 +2,7 @@ class EmployersController < ApplicationController
     include EmployersHelper
     include CompaniesHelper
     include ApplicationHelper
-    before_action :require_employer_login, only: [:index, :show, :edit, :update, :destroy, :job, :plan, :mng_job, :mng_apply, :cv_search]
+    before_action :require_employer_login, only: [:index, :show, :edit, :update, :destroy, :job, :plan, :buy, :mng_job, :mng_apply, :cv_search]
     
     def index
         @employers = Employer.all
@@ -18,14 +18,13 @@ class EmployersController < ApplicationController
 
     def show
         @employer = current_employer
+        @company_of_employer = find_company_of_employer(@employer)
 
         if(params.has_key?(:tab))
             @tab = params[:tab]
         else
             @tab = "default"
         end
-        
-        @company_of_employer = find_company_of_employer(@employer)
     end
 
     def edit
@@ -41,16 +40,26 @@ class EmployersController < ApplicationController
     def update
         @employer = Employer.friendly.find params[:id]
 
-        if(employer_params.has_key?(:limit_cost))
-            remain_cost = @employer.remain_cost + @employer.limit_cost
-            @employer.update(:remain_cost => remain_cost)
-        end
-
-        if(@employer.update(employer_params))
-            redirect_to employer_path(current_employer)
-            flash[:success] = I18n.t(:update_success)
-        else
-            flash[:danger] = I18n.t(:update_error)
+        if(employer_params.has_key?(:limit_cost)) # Update limit cost setting
+            if @employer.remain_cost
+                if employer_params[:limit_cost].to_i <= @employer.remain_cost.to_i
+                    if @employer.update(employer_params)
+                        flash[:success] = I18n.t(:update_success)
+                    end
+                else
+                    flash[:danger] = I18n.t(:not_enough_cost_warning)
+                end
+            else
+                flash[:danger] = I18n.t(:not_enough_cost_warning)
+            end
+            redirect_to employer_buy_path
+        else # Normal update
+            if(@employer.update(employer_params))
+                redirect_to employer_path(current_employer)
+                flash[:success] = I18n.t(:update_success)
+            else
+                flash[:danger] = I18n.t(:update_error)
+            end
         end
     end
 
@@ -77,19 +86,29 @@ class EmployersController < ApplicationController
 
     def buy
         @employer = current_employer
+        @employer_costs = @employer.employer_costs.order('created_at DESC').page(params[:page]).per(10)
+        @employer_bills = @employer.employer_bills.order('created_at DESC').page(params[:page]).per(10)
         
-        if(params.has_key?(:id))
-            @company_job = CompanyJob.friendly.find(params[:id])
-            if @company_job.sponsor == true
-                @company_job.update(:sponsor => false)
+        if(params.has_key?(:company_job_id))
+            @company_job = CompanyJob.friendly.find(params[:company_job_id])
+            if @company_job.approved?
+                if @employer.cost_status == 1
+                    if @company_job.sponsor == 1
+                        @company_job.update(:sponsor => 0)
+                    else
+                        @company_job.update(:sponsor => 1)
+                    end
+                    @company_job.save!
+                elsif @employer.cost_status == 0
+                    flash[:danger] = I18n.t(:not_enough_cost_warning)
+                else
+                    flash[:danger] = I18n.t(:not_enough_cost_daily_warning)
+                end
             else
-                @company_job.update(:sponsor => true)
+                flash[:danger] = I18n.t(:approving_job_warning)
             end
-            @company_job.save!
-            respond_to do |format|
-                format.html {}
-                format.js
-            end
+            redirect_to employer_mng_job_path
+            return
         end
 
         if(params.has_key?(:tab))
@@ -271,6 +290,6 @@ class EmployersController < ApplicationController
     def employer_params
         params.require(:employer).permit( :name, :email, :password, :password_confirmation, :phone, :address, 
                                         :avatar, :company_name, :company_id, :company_field, :approved,
-                                        :limit_cost, :remain_cost, :promotion_cost, :use_cost_seq, :stop_cost)
+                                        :limit_cost, :remain_cost, :promotion_cost, :use_cost_seq, :cost_status)
     end
 end

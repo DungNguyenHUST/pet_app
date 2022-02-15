@@ -40,5 +40,8 @@ module PetApp
 
     # Set default locale to something other than :en
     I18n.default_locale = :vi
+
+    # Load constants in lib
+    config.autoload_paths << "#{Rails.root}/lib"
   end
 end

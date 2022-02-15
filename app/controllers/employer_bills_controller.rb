@@ -17,7 +17,7 @@ class EmployerBillsController < ApplicationController
 		if @employer_bill.save
             flash[:success] = I18n.t(:send_success)
         end
-        redirect_to employer_help_path
+        redirect_to employer_help_path(tab: 'BillingHelpID')
 	end
 
 	def edit
@@ -32,7 +32,16 @@ class EmployerBillsController < ApplicationController
             if admin_signed_in? # confirm employer payment
                 if(@employer_bill.confirmed == true)
                     remain_cost = @employer_bill.total_cash.to_i + @employer_bill.employer.remain_cost.to_i
-                    @employer_bill.employer.update(:remain_cost => remain_cost)
+					# Set defaut cost setting
+					if @employer.limit_cost == 0
+						@employer_bill.employer.update(:remain_cost => remain_cost, 
+														:limit_cost => remain_cost,
+														:use_cost_seq => 0,
+														:cost_status => 1)
+					else
+						@employer_bill.employer.update(:remain_cost => remain_cost,
+														:cost_status => 1)
+					end
                     flash[:success] = I18n.t(:confirm_success)
                 end
                 redirect_to admin_path(current_admin, tab: "AdminEmployerBillID")

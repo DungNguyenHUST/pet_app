@@ -104,11 +104,20 @@
                                     <%= form_for [current_employer, EmployerBill.new] do |f| %>
                                         <div class="new_employer_bill_content">
                                             <div class="new_employer_bill_label">
+                                                <a><%= f.label :total_cash, t(:total_money_vnd), class: "new_employer_bill_label" %></a>
+                                            </div>
+                                            
+                                            <div class="new_employer_bill_input">
+                                                <%= f.number_field :total_cash, :required => true, class: "form-control"%>
+                                            </div>
+                                        </div>
+                                        <div class="new_employer_bill_content">
+                                            <div class="new_employer_bill_label">
                                                 <a><%= f.label :bill_image, t(:select_payment_9), class: "new_employer_bill_label" %></a>
                                             </div>
                                             
                                             <div class="new_employer_bill_input">
-                                                <%= f.file_field :bill_image, class: "form-control"%>
+                                                <%= f.file_field :bill_image, :required => true, class: "form-control"%>
                                             </div>
                                         </div>
                                         <div class="new_employer_bill_submit">

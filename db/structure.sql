@@ -854,6 +854,41 @@ ALTER SEQUENCE public.employer_bills_id_seq OWNED BY public.employer_bills.id;
 
 
 --
+-- Name: employer_costs; Type: TABLE; Schema: public; Owner: -
+--
+
+CREATE TABLE public.employer_costs (
+    id bigint NOT NULL,
+    employer_id bigint NOT NULL,
+    location character varying,
+    ip character varying,
+    url character varying,
+    cost bigint,
+    created_at timestamp(6) without time zone NOT NULL,
+    updated_at timestamp(6) without time zone NOT NULL
+);
+
+
+--
+-- Name: employer_costs_id_seq; Type: SEQUENCE; Schema: public; Owner: -
+--
+
+CREATE SEQUENCE public.employer_costs_id_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+--
+-- Name: employer_costs_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: -
+--
+
+ALTER SEQUENCE public.employer_costs_id_seq OWNED BY public.employer_costs.id;
+
+
+--
 -- Name: employer_notifications; Type: TABLE; Schema: public; Owner: -
 --
 
@@ -931,7 +966,7 @@ CREATE TABLE public.employers (
     remain_cost bigint DEFAULT 0,
     promotion_cost bigint DEFAULT 0,
     use_cost_seq integer DEFAULT 0,
-    stop_cost boolean DEFAULT false
+    cost_status integer DEFAULT 0
 );
 
 
@@ -1800,6 +1835,13 @@ ALTER TABLE ONLY public.employer_bills ALTER COLUMN id SET DEFAULT nextval('publ
 
 
 --
+-- Name: employer_costs id; Type: DEFAULT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.employer_costs ALTER COLUMN id SET DEFAULT nextval('public.employer_costs_id_seq'::regclass);
+
+
+--
 -- Name: employer_notifications id; Type: DEFAULT; Schema: public; Owner: -
 --
 
@@ -2113,6 +2155,14 @@ ALTER TABLE ONLY public.cover_vitaes
 
 ALTER TABLE ONLY public.employer_bills
     ADD CONSTRAINT employer_bills_pkey PRIMARY KEY (id);
+
+
+--
+-- Name: employer_costs employer_costs_pkey; Type: CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.employer_costs
+    ADD CONSTRAINT employer_costs_pkey PRIMARY KEY (id);
 
 
 --
@@ -2449,6 +2499,13 @@ CREATE UNIQUE INDEX index_cover_vitaes_on_slug ON public.cover_vitaes USING btre
 --
 
 CREATE INDEX index_employer_bills_on_employer_id ON public.employer_bills USING btree (employer_id);
+
+
+--
+-- Name: index_employer_costs_on_employer_id; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE INDEX index_employer_costs_on_employer_id ON public.employer_costs USING btree (employer_id);
 
 
 --
@@ -2841,6 +2898,14 @@ ALTER TABLE ONLY public.user_notifications
 
 
 --
+-- Name: employer_costs fk_rails_e0b842c4e5; Type: FK CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.employer_costs
+    ADD CONSTRAINT fk_rails_e0b842c4e5 FOREIGN KEY (employer_id) REFERENCES public.employers(id);
+
+
+--
 -- Name: user_skills fk_rails_fe61b6a893; Type: FK CONSTRAINT; Schema: public; Owner: -
 --
 
@@ -3060,6 +3125,8 @@ INSERT INTO "schema_migrations" (version) VALUES
 ('20211022042854'),
 ('20211213032650'),
 ('20211213071116'),
-('20211216042147');
+('20211216042147'),
+('20220214080327'),
+('20220214104000');
 
 

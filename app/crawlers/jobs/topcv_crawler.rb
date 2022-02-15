@@ -64,7 +64,7 @@ module TopcvCrawler
             #######################job detail start##########################
             detail_block = doc.css("div.job-data").first
             if detail_block.present?
-                start_detail = detail_block.at_css("h2")
+                start_detail = detail_block.at_css("h3")
                 detail = ''
                 next_step = 0
                 loop do

@@ -22,6 +22,7 @@ class Employer < ApplicationRecord
 
   has_many :employer_notifications, dependent: :destroy
   has_many :employer_bills, dependent: :destroy
+  has_many :employer_costs, dependent: :destroy
 
   def self.approved
     where(approved: :true)

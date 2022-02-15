@@ -92,10 +92,12 @@
                                                     <td><%=company_job.company_apply_jobs.count%></td>
                                                     <td>
                                                         <div class="ad_em" id="mng_job_buy_<%=company_job.id%>">
-                                                            <%if company_job.sponsor == true%>
-                                                                <%=link_to t(:stop_ads), employer_buy_path(:id => company_job.id), :method => :get, remote: true, class: "employer_end_plan"%>
+                                                            <%if current_employer.cost_status == 2%>
+                                                                <%=link_to t(:auto_stop_ad), employer_buy_path(:company_job_id => company_job.id), :method => :get, class: "employer_end_plan"%>
+                                                            <%elsif company_job.sponsor == 1%>
+                                                                <%=link_to t(:stop_ads), employer_buy_path(:company_job_id => company_job.id), :method => :get, class: "employer_end_plan"%>
                                                             <%else%>
-                                                                <%=link_to t(:start_ads), employer_buy_path(:id => company_job.id), :method => :get, remote: true, class: "employer_start_plan"%>
+                                                                <%=link_to t(:start_ads), employer_buy_path(:company_job_id => company_job.id), :method => :get, class: "employer_start_plan"%>
                                                             <%end%>
                                                         <div>
                                                     </td>

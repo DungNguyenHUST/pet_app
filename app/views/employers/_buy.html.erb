@@ -1,7 +1,0 @@
-<div id="mng_job_buy_<%=company_job.id%>">
-    <%if company_job.sponsor == true%>
-        <%=link_to t(:stop_ads), employer_buy_path(:id => company_job.id), :method => :get, remote: true, class: "employer_end_plan"%>
-    <%else%>
-        <%=link_to t(:start_ads), employer_buy_path(:id => company_job.id), :method => :get, remote: true, class: "employer_start_plan"%>
-    <%end%>
-<div>

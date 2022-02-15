@@ -11,7 +11,7 @@
                             <%else%> 
                                 <%active = ""%>
                             <%end%>                                 
-                            <a class="nav-link <%=active%>" href="<%=admin_path(current_admin, tab: 'AdminCompanyID')%>"><i class="material-icons-outlined">business</i><%=t(:company)%> <span><%= (@companies.total_count)%><span></a>
+                            <a class="nav-link <%=active%>" href="<%=admin_path(current_admin, tab: 'AdminCompanyID')%>"><i class="material-icons-outlined">corporate_fare</i><%=t(:company)%> <span><%= (@companies.total_count)%><span></a>
                         </li>
                         <li class="nav-item">
                             <%if @tab == "AdminJobID"%>
@@ -504,10 +504,10 @@
                                     <div class="row">
                                         <div class="col-sm-6">
                                             <div class="admin_employer_bill_detail">
-                                                <%if employer_bill.bill_image%>
+                                                <%if employer_bill.bill_image?%>
                                                     <%=image_tag(employer_bill.bill_image.url)%>
                                                 <%end%>
-                                                <a><%=t(:send_date)%>: </a>
+                                                <a><%=t(:send_date)%>: <%=employer_bill.employer.created_at%></a>
                                                 <br>
                                                 <a><%=t(:sender)%>: <%=employer_bill.employer.name%></a>
                                                 <br>
@@ -565,6 +565,7 @@
                                                 <th style="width: 2%;">No.</th>
                                                 <th style="width: 25%;">Url</th>
                                                 <th style="width: 8%;">Site</th>
+                                                <th style="width: 8%;">Total Page</th>
                                                 <th style="width: 10%;"><%=t(:created_date)%></th>
                                                 <th style="width: 10%;"><%=t(:last_updated)%></th>
                                                 <th style="width: 16%;"><%=t(:action)%></th>
@@ -580,6 +581,7 @@
                                                     <%else%>
                                                         <td>---</td>
                                                     <%end%>
+                                                    <td><%=scrap_job.page_num%></td>
                                                     <td><%=scrap_job.created_at.strftime("%B %d, %Y")%></td>
                                                     <td><%=scrap_job.updated_at.strftime("%B %d, %Y")%></td>
                                                     <td>
