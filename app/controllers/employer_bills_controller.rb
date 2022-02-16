@@ -1,4 +1,5 @@
 class EmployerBillsController < ApplicationController
+	include EmployersHelper 
     before_action :require_employer_login, only: [:index, :show, :edit, :update, :destroy]
 
 	def index 
@@ -32,13 +33,14 @@ class EmployerBillsController < ApplicationController
             if admin_signed_in? # confirm employer payment
                 if(@employer_bill.confirmed == true)
                     remain_cost = @employer_bill.total_cash.to_i + @employer_bill.employer.remain_cost.to_i
-					# Set defaut cost setting
-					if @employer.limit_cost == 0
+					if @employer.limit_cost == 0 # Set defaut cost setting
 						@employer_bill.employer.update(:remain_cost => remain_cost, 
 														:limit_cost => remain_cost,
 														:use_cost_seq => 0,
 														:cost_status => 1)
-					else
+					elsif auth_used_cost_of_employer(@employer) == false # Only set cost
+						@employer_bill.employer.update(:remain_cost => remain_cost)
+					else # Auto start ads
 						@employer_bill.employer.update(:remain_cost => remain_cost,
 														:cost_status => 1)
 					end
