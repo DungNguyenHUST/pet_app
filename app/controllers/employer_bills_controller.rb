@@ -1,6 +1,6 @@
 class EmployerBillsController < ApplicationController
 	include EmployersHelper 
-    before_action :require_employer_login, only: [:index, :show, :edit, :update, :destroy]
+    before_action :require_employer_login, only: [:index, :new, :create, :show, :edit, :update, :destroy]
 
 	def index 
 		@employer = current_employer

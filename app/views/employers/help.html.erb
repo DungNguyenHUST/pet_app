@@ -99,33 +99,35 @@
                                         </div>
                                     </div>
                                 </div>
-                                <div class="employer_help_confirm_bill">
-                                    <h3>2. <%=t(:select_payment_8)%></h3>
-                                    <%= form_for [current_employer, EmployerBill.new] do |f| %>
-                                        <div class="new_employer_bill_content">
-                                            <div class="new_employer_bill_label">
-                                                <a><%= f.label :total_cash, t(:total_money_vnd), class: "new_employer_bill_label" %></a>
+                                <%if employer_signed_in?%>
+                                    <div class="employer_help_confirm_bill">
+                                        <h3>2. <%=t(:select_payment_8)%></h3>
+                                        <%= form_for [current_employer, EmployerBill.new] do |f| %>
+                                            <div class="new_employer_bill_content">
+                                                <div class="new_employer_bill_label">
+                                                    <a><%= f.label :total_cash, t(:total_money_vnd), class: "new_employer_bill_label" %></a>
+                                                </div>
+                                                
+                                                <div class="new_employer_bill_input">
+                                                    <%= f.number_field :total_cash, :required => true, class: "form-control"%>
+                                                </div>
                                             </div>
-                                            
-                                            <div class="new_employer_bill_input">
-                                                <%= f.number_field :total_cash, :required => true, class: "form-control"%>
+                                            <div class="new_employer_bill_content">
+                                                <div class="new_employer_bill_label">
+                                                    <a><%= f.label :bill_image, t(:select_payment_9), class: "new_employer_bill_label" %></a>
+                                                </div>
+                                                
+                                                <div class="new_employer_bill_input">
+                                                    <%= f.file_field :bill_image, :required => true, class: "form-control"%>
+                                                </div>
                                             </div>
-                                        </div>
-                                        <div class="new_employer_bill_content">
-                                            <div class="new_employer_bill_label">
-                                                <a><%= f.label :bill_image, t(:select_payment_9), class: "new_employer_bill_label" %></a>
+                                            <div class="new_employer_bill_submit">
+                                                <%= f.submit t(:send), class: "new_employer_bill_form_submit" %>
                                             </div>
-                                            
-                                            <div class="new_employer_bill_input">
-                                                <%= f.file_field :bill_image, :required => true, class: "form-control"%>
-                                            </div>
-                                        </div>
-                                        <div class="new_employer_bill_submit">
-                                            <%= f.submit t(:send), class: "new_employer_bill_form_submit" %>
-                                        </div>
-                                    <%end%>
-                                    <h4><%=t(:select_payment_10)%> <%= link_to t(:contact_us), contact_us_path%></h4>
-                                </div>
+                                        <%end%>
+                                        <h4><%=t(:select_payment_10)%> <%= link_to t(:contact_us), contact_us_path%></h4>
+                                    </div>
+                                <%end%>
                             </div>
                         <%end%>
                         <%if @tab == "AdHelpID"%>
