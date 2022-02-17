@@ -75,7 +75,7 @@
         </script>
 
         <div class="company_job_filter_container" id="company_job_filter">
-            <%= form_for :filter, url: jobs_search_path, method: :get, remote: true do |f| %>
+            <%= form_for :filter, url: jobs_search_path, method: :get do |f| %>
                 <div class="company_job_filter_block">
                     <div class="row">
                         <div class="col-sm-2">
@@ -294,6 +294,8 @@
         <div class="company_job_search_result">
             <%if @is_search%>
                 <%= render :partial => 'company_jobs/search', locals: {job_results: @job_searchs} %>
+            <%elsif @is_filter%>
+                <%= render :partial => 'company_jobs/search', locals: {job_results: @job_filtereds} %>
             <%else%>
                 <%= render :partial => 'company_jobs/search', locals: {job_results: @job_recommands} %>
             <%end%>

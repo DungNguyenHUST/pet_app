@@ -20,7 +20,7 @@ class ProblemsController < ApplicationController
         @is_problem_searched = false
 		if(params.has_key?(:search))
             @is_problem_searched = true
-			@problem_searchs = Problem.search_problem_by_title(params[:search]).order("created_at DESC").approved.page(params[:page]).per(12)
+			@problem_searchs = Problem.search_problem_by_title(params[:search]).reorder("created_at DESC").approved.page(params[:page]).per(12)
         end
 
 		@problems_all = Problem.all.order("id ASC").approved.page(params[:page]).per(20)

@@ -83,4 +83,18 @@ module CompanyJobsHelper
             return employer
         end
     end
+
+    def promote_ads_job(search_results)
+        if search_results
+            # Show 3 ads job first and order search result by created date
+            search_results = search_results.reorder('created_at DESC').expire
+            @sponsor_jobs = search_results.where(:sponsor => 1).first(3) # get 3 job with ads
+            if @sponsor_jobs
+                @sponsor_jobs.each do |sponsor_job| # remove ads job in current list
+                    search_results = search_results.where.not(:id => sponsor_job.id)
+                end
+                search_results = @sponsor_jobs + search_results # put 3 ads job in begin of array
+            end
+        end
+    end
 end

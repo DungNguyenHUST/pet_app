@@ -43,7 +43,7 @@
 
     <div class="container">
         <div class="employer_cv_filter_container" id="employer_cv_filter">
-            <%= form_for :filter, url: employer_cv_search_path, method: :get, remote: true do |f| %>
+            <%= form_for :filter, url: employer_cv_search_path, method: :get do |f| %>
                 <div class="employer_cv_filter_block">
                     <div class="row">
                         <div class="col-sm-2">
@@ -180,6 +180,8 @@
 <div class="container">
     <%if @is_cv_searched%>
         <%= render :partial => 'employers/cv_search', locals: {cv_searched: @cv_searchs, :is_all => false} %>
+    <%elsif @is_cv_filtered%>
+        <%= render :partial => 'employers/cv_search', locals: {cv_searched: @cv_filtereds, :is_all => false} %>
     <%else%>
         <%= render :partial => 'employers/cv_search', locals: {cv_searched: @user_cvs, :is_all => true} %>
     <%end%>

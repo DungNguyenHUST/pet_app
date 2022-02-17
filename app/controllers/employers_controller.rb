@@ -201,25 +201,10 @@ class EmployersController < ApplicationController
         @employer = current_employer
         @user_cvs = User.all.public.order('updated_at DESC').page(params[:page]).per(12)
 
-        # Search
         @is_cv_searched = false
-        if(params.has_key?(:search) && params.has_key?(:location))
-            @is_cv_searched = true
-            @cv_searchs = User.all
-
-            unless params[:search].empty?
-                @cv_searchs = @cv_searchs.search_user_associate_by_query(params[:search])
-            end
-
-            unless params[:location].empty?
-                @cv_searchs = @cv_searchs.search_user_by_address(params[:location])
-            end
-
-            @cv_searchs = @cv_searchs.public.order('updated_at DESC').page(params[:page]).per(12)
-        end
-
-        # Filter
-        if params.has_key?(:filter)
+        @is_cv_filtered = false
+        if params.has_key?(:filter) # For Filter
+            @is_cv_filtered = true
             @cv_filtereds = User.all
 
             @search = nil
@@ -262,12 +247,20 @@ class EmployersController < ApplicationController
                                                                     @updated_date, @search, @location)
 
             @cv_filtereds = @cv_filtereds.filtered(@filter_params_input)
-            @cv_filtereds = @cv_filtereds.public.order('created_at DESC').page(params[:page]).per(12)
+            @cv_filtereds = @cv_filtereds.public.reorder('updated_at DESC').page(params[:page]).per(12)
+        elsif(params.has_key?(:search) && params.has_key?(:location)) # For Search
+            @is_cv_searched = true
+            @cv_searchs = User.all
 
-            respond_to do |format|
-                format.html {}
-                format.js
+            unless params[:search].empty?
+                @cv_searchs = @cv_searchs.search_user_associate_by_query(params[:search])
             end
+
+            unless params[:location].empty?
+                @cv_searchs = @cv_searchs.search_user_by_address(params[:location])
+            end
+
+            @cv_searchs = @cv_searchs.public.reorder('updated_at DESC').page(params[:page]).per(12)
         end
     end
     

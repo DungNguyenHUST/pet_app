@@ -140,31 +140,11 @@ class CompanyJobsController < ApplicationController
 
         # Search
         @job_recommands = CompanyJob.all.order('created_at DESC').expire.page(params[:page]).per(20)
+
         @is_search = false
-		if(params.has_key?(:search) || params.has_key?(:location))
-            @is_search = true
-            @job_searchs = CompanyJob.all
-
-            if params.has_key?(:search)
-                unless params[:search].empty?
-                    @job_searchs = @job_searchs.search_job_by_query(params[:search])
-                end
-            end
-            
-            if params.has_key?(:location)
-                unless params[:location].empty?
-                    @job_searchs = @job_searchs.search_job_by_location(params[:location])
-                end
-            end
-            
-            @job_searchs = @job_searchs.order('created_at DESC').expire.page(params[:page]).per(20)
-        end
-
-        # Filter
         @is_filter = false
-        if params.has_key?(:filter)
+        if params.has_key?(:filter) # For Filter
             @is_filter = true
-            @is_search = true
             @job_filtereds = CompanyJob.all
 
             @search = nil
@@ -208,12 +188,34 @@ class CompanyJobsController < ApplicationController
             @filter_params_input = filter_params_input.new(@category, @salary_min, @salary_max, @level, 
                                                                     @post_date, @typical, @search, @location)
 
-            @job_filtereds = CompanyJob.friendly.filtered(@filter_params_input ).order('created_at DESC').expire.page(params[:page]).per(20)
+            @job_filtereds = CompanyJob.friendly.filtered(@filter_params_input)
+            # Promote ads job
+            @job_filtereds = promote_ads_job(@job_filtereds)
+            @job_filtereds = Kaminari.paginate_array(@job_filtereds).page(params[:page]).per(20)
 
             respond_to do |format|
                 format.html {}
                 format.js
             end
+        elsif(params.has_key?(:search) || params.has_key?(:location)) # For Search
+            @is_search = true
+            @job_searchs = CompanyJob.all
+
+            if params.has_key?(:search)
+                unless params[:search].empty?
+                    @job_searchs = @job_searchs.search_job_by_query(params[:search])
+                end
+            end
+            
+            if params.has_key?(:location)
+                unless params[:location].empty?
+                    @job_searchs = @job_searchs.search_job_by_location(params[:location])
+                end
+            end
+            
+            # Promote ads job
+            @job_searchs = promote_ads_job(@job_searchs)
+            @job_searchs = Kaminari.paginate_array(@job_searchs).page(params[:page]).per(20)
         end
     end
 
