@@ -1,7 +1,7 @@
 <% content_for :meta_robots, "all" %>
 <%- model_class = Company -%>
 <%case @tab%>
-<%when "default", "CompanyAllID"%>
+<%when "CompanyAllID"%>
     <%if !@is_company_searched%>
         <% title = t(:company_index_meta_1) %>
     <%else%>
@@ -9,7 +9,7 @@
     <%end%>
 <%when "CompanyNewestID"%>
     <%title = t(:company_index_meta_3)%>
-<%when "CompanyMostRecentID"%>
+<%when "default", "CompanyMostRecentID"%>
     <%title = t(:company_index_meta_4)%>
 <%when "CompanyBestID"%>
     <%title = t(:company_index_meta_5)%>
@@ -21,8 +21,8 @@
 <div class="companies_index">
     <div class="companies_search">
         <div class="container">
-            <div class='row'>
-                <div class ="col-sm-6">
+            <div class='row justify-content-md-center'>
+                <div class ="col-sm-8">
                     <div class="company_bar">
                         <div class="company_bar_label">
                             <h3><%=t(:company_index_label)%>.</h3>
@@ -77,11 +77,6 @@
                         </script>
                     </div>
                 </div>
-                <div class="col-sm-6">
-                    <div class="company_bar_background">
-                        <%=image_tag("others/company_background.svg")%>
-                    </div>
-                </div>
             </div>
         </div>
     </div>
@@ -94,46 +89,24 @@
                 <div class="companies_section_title">
                     <span><%=t(:company_list)%></span>
                 </div>
-                
+
                 <div class="company_index_tab_link">
-                    <ul class="nav">
-                        <li class="nav-item">
-                            <%if @tab == "default" || @tab == "CompanyAllID"%>
-                                <%active = "active"%>
-                            <%else%> 
-                                <%active = ""%>
-                            <%end%> 
-                            <a class="nav-link <%=active%>" href="<%=companies_path(tab: 'CompanyAllID')%>"><%=t(:all)%></a>
-                        </li>
-                        <li class="nav-item">
-                            <%if @tab == "CompanyMostRecentID"%>
-                                <%active = "active"%>
-                            <%else%> 
-                                <%active = ""%>
-                            <%end%>
-                            <a class="nav-link <%=active%>" href="<%=companies_path(tab: 'CompanyMostRecentID')%>"><%=t(:interesting)%></a>
-                        </li>
-                        <li class="nav-item">
-                            <%if @tab == "CompanyNewestID"%>
-                                <%active = "active"%>
-                            <%else%> 
-                                <%active = ""%>
-                            <%end%>
-                            <a class="nav-link <%=active%>" href="<%=companies_path(tab: 'CompanyNewestID')%>"><%=t(:lastest_company)%> </a>
-                        </li>
-                        <li class="nav-item">
-                            <%if @tab == "CompanyBestID"%>
-                                <%active = "active"%>
-                            <%else%> 
-                                <%active = ""%>
-                            <%end%>
-                            <a class="nav-link <%=active%>" href="<%=companies_path(tab: 'CompanyBestID')%>"><%=t(:best_company)%></a>
-                        </li>
-                    </ul>
+                    <div class="dropdown show">
+                        <a class="btn btn-secondary dropdown-toggle" href="<%=companies_path(tab: 'CompanyMostRecentID')%>" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            <%=t(:interesting)%>
+                        </a>
+
+                        <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
+                            <a class="dropdown-item" href="<%=companies_path(tab: 'CompanyAllID')%>"><%=t(:all)%></a>
+                            <a class="dropdown-item" href="<%=companies_path(tab: 'CompanyMostRecentID')%>"><%=t(:interesting)%></a>
+                            <a class="dropdown-item" href="<%=companies_path(tab: 'CompanyNewestID')%>"><%=t(:lastest_company)%></a>
+                            <a class="dropdown-item" href="<%=companies_path(tab: 'CompanyBestID')%>"><%=t(:best_company)%></a>
+                        </div>
+                    </div>
                 </div>
 
                 <div class="company_index_tab_content">
-                    <%if @tab == "default" || @tab == "CompanyAllID"%>
+                    <%if @tab == "CompanyAllID"%>
                         <div class="company_all_tab">
                             <div class="row">
                                 <% @companies_oder_name.each do |company| %>
@@ -159,7 +132,7 @@
                         </div>
                     <%end%>
 
-                    <%if @tab == "CompanyMostRecentID"%>
+                    <%if @tab == "default" || @tab == "CompanyMostRecentID"%>
                         <div class="company_most_recent_tab">
                             <div class="row">
                                 <% @companies_most_recent.each do |company| %>
@@ -184,49 +157,6 @@
                             <%= paginate @companies_best, window: 2%>
                         </div>
                     <%end%>
-                </div>
-            <%end%>
-
-            <%=form_tag pages_select_company_path, :method => "get" do%>
-                <div class="company_current_review">
-                    <div class='row'>
-                        <div class="col-sm-4">
-                            <div class="company_current_review_title">
-                                <i class="material-icons-outlined checked">create</i><a> <%=t(:review_your_company)%> </a>
-                            </div>
-                        </div>
-                            
-                        <div class="col-sm-6">
-                            <div class="user_select_company">
-                                <%= select_tag :company_id, 
-                                    options_from_collection_for_select(Company.all, "id", "name"), 
-                                    required: true,
-                                    include_blank: false,
-                                    :prompt => t(:select_company),
-                                    class: "form-select company_review_select"%>
-                            </div>
-
-                            <script>
-								$(document).ready(function() {
-									$('.company_review_select').select2({
-										placeholder: "<%=t(:select_company)%>",
-										allowClear: true,
-										width: 'resolve',
-										theme: "bootstrap-5",
-										selectOnClose: true
-									});
-								});
-							</script>
-                        </div>
-                        
-                        <div class='col-sm-2'>
-                            <div class="user_select_start">
-                                <%= button_to "", form_class: "select_button", :name => nil do%>
-                                    <a><%=t(:write_review)%></a>
-                                <%end%> 
-                            </div>
-                        </div>
-                    </div>
                 </div>
             <%end%>
             

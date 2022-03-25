@@ -37,7 +37,7 @@ class CompaniesController < ApplicationController
             @companies_oder_newest = Company.all.order('created_at DESC').page(params[:page]).per(18)
         end
 
-        if @tab == "CompanyMostRecentID"
+        if @tab == "default" || @tab == "CompanyMostRecentID"
             @companies_most_recent = Company.all.sort_by{|company| company.company_reviews.count}.reverse
             @companies_most_recent = Kaminari.paginate_array(@companies_most_recent).page(params[:page]).per(18)
         end
@@ -129,6 +129,6 @@ class CompaniesController < ApplicationController
 
     private
     def company_param
-        params.require(:company).permit(:name, :location, :address, :country, :website, :phone, :time_establish, :working_time, :working_date, :size, :field_operetion, :avatar, :wall_picture, :search, :overview, :policy, :values, :company_type, :employer_id, {:benefit => []})
+        params.require(:company).permit(:name, :location, :address, :country, :website, :phone, :time_establish, :working_time, :working_date, :size, :field_operetion, :avatar, :search, :overview, :policy, :values, :company_type, :employer_id, {:benefit => []})
     end
 end
