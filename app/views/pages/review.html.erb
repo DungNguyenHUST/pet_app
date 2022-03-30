@@ -1,0 +1,106 @@
+<% content_for :meta_robots, "all" %>
+<div class="review_index">
+    <div class="review_search">
+        <div class="container">
+            <div class='row justify-content-md-center'>
+                <div class ="col-sm-8">
+                    <div class="review_bar">
+                        <div class="review_bar_label">
+                            <h3><%=t(:review_search_title)%></h3>
+                        </div>
+                        
+                        <%=form_tag review_path, :method => "get" do%>
+                            <div class='row'>
+                                <div class="col-sm-10 col_padding_customize_right">
+                                    <div class="review_search_input">
+                                        <i class="material-icons-outlined">search</i>
+                                        <%= text_field_tag :search, params[:search], data: { behavior: "autocomplete" }, required: true, class: 'form-control', placeholder: t(:review_search_label)%>
+                                    </div>
+                                </div>
+                                
+                                <div class="col-sm-2 col_padding_customize_left">
+                                    <div class="review_search_button">
+                                        <%= button_to "", form_class: "search_button", :name => nil do%>
+                                            <i class="material-icons-outlined">search</i>
+                                            <a><%=t(:search)%></a>
+                                        <%end%> 
+                                    </div>
+                                </div>
+                            </div>
+                        <%end%>
+
+                        <script>
+                            document.addEventListener("turbolinks:load", function() {
+                                $input = $("[data-behavior='autocomplete']")
+
+                                var options = {
+                                    getValue: "name",
+                                    url: function(phrase) {
+                                        return "/companies.json?search=" + phrase;
+                                    },
+                                    categories: [
+                                        {
+                                            listLocation: "suggest_companies"
+                                        },
+                                    ],
+                                    list: {
+                                    onChooseEvent: function() {
+                                            var url = $input.getSelectedItemData().url
+                                            $input.val("")
+                                            Turbolinks.visit(url)
+                                        }
+                                    }
+                                }
+
+                                $input.easyAutocomplete(options)
+                            });
+                        </script>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="container">
+        <%if @is_company_searched == true%>
+            <%if @company_searchs.total_count == 0%>
+                <div class="company_search_not_found_block">
+                    <div class="company_search_not_found_label">
+                        <span><%=t(:company_search_not_found)%> "<%= params[:search]%>"</span>
+                    </div>
+                    <div class="company_search_not_found_image">
+                        <%=image_tag("others/no_result_found.png")%>
+                    </div>
+                    <div class="company_search_not_found_help">
+                        <a><%=t(:company_search_not_found_1)%>:</a>
+                        <ul>
+                            <li>
+                                <%=t(:company_search_not_found_2)%>.
+                            </li>
+
+                            <li>
+                                <%=t(:company_search_not_found_3)%>.
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            <%end%>
+        <%end%>
+
+        <div class="review_highlight_container">
+            <div class="review_highlight_title">
+                <a><%=t(:latest_review)%></a>
+            </div>
+            <div class="review_highlight_render">
+                <div class="row">
+                    <%@company_reviews.each do |company_review|%>
+                        <div class="col-sm-4">
+                            <%= render :partial => 'company_reviews/company_review_highlight', locals: {company_review: company_review} %>
+                        </div>
+                    <%end%>
+                </div>
+            </div>
+            <%= paginate @company_reviews, window: 2%>
+        </div>
+    </div>
+</div>

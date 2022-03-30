@@ -51,6 +51,9 @@ Rails.application.routes.draw do
   get 'our_product' => 'pages#our_product'
   get 'policy' => 'pages#policy'
   get 'term' => 'pages#term'
+  get 'review' => 'pages#review'
+  get 'interview' => 'pages#interview'
+  get 'salary' => 'pages#salary'
 
   resources :companies do
     resources :company_reviews

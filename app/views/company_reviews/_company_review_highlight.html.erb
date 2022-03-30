@@ -1,0 +1,66 @@
+<%company = company_review.company%>
+<div class="user_review_highlight_block">
+    <div class="user_review_preview_btn">
+        <%= link_to content_tag(:span, ""), company_path(company, tab: "CompanyReviewsID")%>
+    </div>
+    <div class="company_thumbnail">
+        <%if company.avatar?%>
+            <%= link_to (image_tag(company.avatar.thumb.url)), image_path(url_for(company.avatar.thumb.url)), rel: "gallery" , :href => company_path(company, tab: "CompanyReviewsID"), target: :_blank%>
+        <%else%>
+            <%= link_to (image_tag("defaults/company_avatar_default.svg")), image_path(url_for("defaults/company_avatar_default.svg")), rel: "gallery" , :href => company_path(company, tab: "CompanyReviewsID"), target: :_blank%>
+        <%end%>
+    </div>
+
+    <div class="company_title">
+        <div class="company_name">
+            <a> <%= link_to truncate(strip_tags(company.name), length: 50), company_path(company, tab: "CompanyReviewsID"), target: :_blank, class: "company_name_label" %></a>
+        </div>
+
+        <div class="company_rating">
+            <%total_rate = cal_rating_review_total_score(company)%>
+            <div class="review_score_star">
+                <a><span><%=total_rate.to_f%></span><i class="material-icons checked">circle</i></a>
+            </div>
+        </div>
+    </div>
+
+    <div class="user_review_highlight_title">
+        <%if company_review.review_title.present?%>
+            <a><%= truncate(strip_tags(company_review.review_title), length: 60)%></a>
+        <%else%>
+            <a><%= truncate(strip_tags(company_review.position), length: 60)%></a>
+        <%end%>
+    </div>
+
+    <div class="user_review_highlight_pros">
+        <div class="user_review_highlight_pros_label">
+            <i class="material-icons-outlined checked">check</i>
+            <strong><%=t(:pros)%></strong>
+        </div>
+        <div class="user_review_highlight_pros_content">
+            <%if company_review.pros.present?%>
+                <a><%=truncate(strip_tags(company_review.pros.html_safe), length: 90)%></a>
+            <%else%>
+                <a>---</a>
+            <%end%>
+        </div>
+    </div>
+
+    <div class="user_review_highlight_cons">
+        <div class="user_review_highlight_cons_label">
+            <i class="material-icons-outlined checked">clear</i>
+            <strong><%=t(:cons)%></strong>
+        </div>
+        <div class="user_review_highlight_cons_content">
+            <%if company_review.cons.present?%>
+                <a><%=truncate(strip_tags(company_review.cons.html_safe), length: 90)%></a>
+            <%else%>
+                <a>---</a>
+            <%end%>
+        </div>
+    </div>
+
+    <div class="user_review_highlight_date">
+        <a><%= company_review.created_at.strftime("%B, %Y")%></a>
+    </div>
+</div>
