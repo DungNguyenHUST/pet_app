@@ -136,3 +136,6 @@ gem 'pg_search'
 
 # breadcrumbs
 gem "breadcrumbs_on_rails"
+
+# auto task
+gem 'whenever', require: false

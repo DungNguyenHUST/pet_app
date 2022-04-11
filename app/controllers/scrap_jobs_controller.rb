@@ -18,24 +18,28 @@ class ScrapJobsController < ApplicationController
         end
     end
 
+    def pull_all
+        ScrapJob.all.approved.each do |scrap_job|
+            CrawlerJob.perform_later(scrap_job.id)
+        end
+    end
+
     def processing
-        if params.has_key?(:all)
-            ScrapJob.all.approved.each do |scrap_job|
-                CrawlerJob.perform_later(scrap_job.id)
-            end
-            flash[:success] = "Scrap all site ..............."
-        else
+        if params.has_key?(:id)
             @scrap_job = ScrapJob.find params[:id]
             if @scrap_job
                 CrawlerJob.perform_later(@scrap_job.id)
                 flash[:success] = "Add Scrap successed ..............."
             end
+        else
+            self.pull_all
+            flash[:success] = "Scrap all site ..............."
         end
 
         redirect_to admin_path(current_admin, tab: 'AdminScrapJobID')
     end
 
-    def push
+    def push_all
         Dir.glob("tmp/jobs/*").each do |file|
             print "%%%%%%%%%%%%%%%%%%%%%%%Start push #{file}%%%%%%%%%%%%%%%%%%%%%"
 
@@ -75,8 +79,12 @@ class ScrapJobsController < ApplicationController
                 end
                 
             end
-            flash[:success] = "Job push successed on ...............#{filename}"
         end
+    end
+
+    def push
+        self.push_all
+        flash[:success] = "Job push successed all"
         redirect_to admin_path(current_admin, tab: 'AdminScrapJobID')
     end
 

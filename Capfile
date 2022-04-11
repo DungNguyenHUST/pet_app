@@ -41,6 +41,7 @@ require 'capistrano/rails'
 require 'capistrano/passenger'
 require 'capistrano/rbenv'
 require 'capistrano/sitemap_generator'
+require "whenever/capistrano"
 
 set :rbenv_type, :user
 set :rbenv_ruby, '2.7.2'
