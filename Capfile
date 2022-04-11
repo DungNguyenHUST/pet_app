@@ -46,3 +46,4 @@ require "whenever/capistrano"
 set :rbenv_type, :user
 set :rbenv_ruby, '2.7.2'
 set :sitemap_roles, :web # default
+set :whenever_identifier, ->{ "#{fetch(:application)}_#{fetch(:stage)}" }
