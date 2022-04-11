@@ -362,6 +362,181 @@
     }
 }
 
+
+///////////////////highlight block/////////////
+.user_review_highlight_block {
+    clear: left;
+    height: 380px;
+    margin-top: 20px;
+    border: 1px solid #EAEAF0;
+    box-shadow: 0 1px 1px -1px rgba(132, 189, 236, 0.3);
+    background-color: #fff;
+    border-radius: 4px;
+    padding: 20px;
+    position: relative;
+    
+    &:hover{
+        box-shadow: 0 4px 6px 4px rgba(121, 119, 119, 0.2);
+        background-color: #fff;
+        @media screen and (max-width: 600px){
+            box-shadow: none;
+        }
+    }
+
+    .user_review_preview_btn span {
+        width: 100%;
+        height: 100%;
+        position: absolute;
+        z-index: 2;
+        top: 40px;
+        left: 0px;
+        background-color:none;
+    }
+
+    .company_thumbnail
+    {
+        float: left;
+        padding-right: 15px;
+        img{ 
+            border: 1px solid #EFEFEF;
+            display: block;
+            width: 63px;
+            height: 63px;
+            object-fit: cover;
+            border-radius: 4px;
+            background-color: #fff;
+        }
+    }
+    
+    .company_title{
+        .company_name
+        {
+            padding-left: 3px;
+            text-align: left;
+            a:link{
+                text-decoration: none;
+            }
+            .company_name_label{
+                font-size: 17px;
+                color: #333;
+                text-shadow: -0.3px 0px #333;
+                text-decoration: none !important;
+                overflow: hidden;
+                text-overflow: ellipsis;
+                display: -webkit-box;
+                -webkit-line-clamp: 1; /* number of lines to show */
+                -webkit-box-orient: vertical;
+            }
+            
+            a:hover{
+                color: #1473e6;
+            }
+        }
+
+        .company_rating
+        {
+            margin-top: 10px;
+            float: left;
+            .review_score_star
+            {
+                a{
+                    background-color: #febb02;
+                    color: #EFEFEF;
+                    padding: 3px 8px 3px 8px ;
+                    border-radius: 4px;
+                    span{
+                        font-size: 14px;
+                        font-weight: 600;
+                        padding-right: 3px;
+                    }
+                    i{
+                        font-size: 18px;
+                        position: relative;
+                        top: 4px;
+                    }
+                }
+            }
+        }
+    }
+
+    .user_review_highlight_title{
+        clear: both;
+        font-weight: 550;
+        font-size: 16px;
+        padding-top: 15px;
+        min-height: 60px;
+    }
+
+    .user_review_highlight_pros
+    {
+        padding-top: 10px;
+        .user_review_highlight_pros_label{
+            color: #555;
+            i {
+                position: relative;
+                margin-right: 3px;
+                float: left;
+                font-size: 17px;
+                top: 3px;
+                left: -4px;
+            }
+
+            .checked {
+                color: green;
+            }
+            font-size: 15px;;
+            font-weight: 400;
+        }
+
+        .user_review_highlight_pros_content{
+            font-size: 15px;
+            margin-top: 10px;
+            color: #3c3d3d;
+        }
+    }
+
+    .user_review_highlight_cons{
+        padding-top: 10px;
+        .user_review_highlight_cons_label{
+            font-size: 15px;;
+            font-weight: 400;
+            color: #555;
+            i {
+                position: relative;
+                margin-right: 3px;
+                padding-top: 0px;
+                float: left;
+                font-size: 17px;
+                top: 4px;
+                left: -4px;
+            }
+
+            .checked {
+                color: red;
+            }
+        }
+
+        .user_review_highlight_cons_content{
+            font-size: 15px;
+            margin-top: 10px;
+            color: #3c3d3d;
+        }
+    }
+
+    .user_review_highlight_date{
+        position: absolute;
+        right: 15px;
+        bottom: 15px;
+        color: #777;
+        a{
+            font-size: 13px;
+            font-weight: 600;
+            color: #999;
+        }
+    }
+}
+
+
 ////////////////////new///////////////////
 .new_review_form
 {

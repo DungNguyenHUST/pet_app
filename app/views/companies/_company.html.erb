@@ -1,12 +1,4 @@
 <div class="company_block">
-    <div class="company_wall">
-        <%if company.wall_picture?%>
-            <%= link_to (image_tag(company.wall_picture.large.url)), image_path(url_for(company.wall_picture.large.url)), rel: "gallery" , :href => company_path(company), target: :_blank%>
-        <%else%>
-            <%= link_to (image_tag("defaults/company_wall_default.svg")), image_path(url_for("defaults/company_wall_default.svg")), rel: "gallery" , :href => company_path(company), target: :_blank%>
-        <%end%>
-    </div>
-
     <div class="company_thumbnail">
         <%if company.avatar?%>
             <%= link_to (image_tag(company.avatar.thumb.url)), image_path(url_for(company.avatar.thumb.url)), rel: "gallery" , :href => company_path(company), target: :_blank%>
@@ -65,29 +57,20 @@
     <div class="company_summary">
         <div class="company_point">
             <div class="review_point">
-                <div class="company_point_content">
-                    <a><%= company.company_reviews.count%></a>
-                </div>
                 <div class="company_point_label">
-                    <a><%= link_to t(:reviews), company_path(company, tab: 'CompanyReviewsID'), target: :_blank %></a>
+                    <a><%= link_to t(:reviews), company_path(company, tab: 'CompanyReviewsID'), target: :_blank %> <span><%= company.company_reviews.count%></span></a>
                 </div>
             </div>
             
             <div class="interview_point">
-                <div class="company_point_content">
-                    <a><%= company.company_interviews.count %></a>
-                </div>
                 <div class="company_point_label">
-                    <a><%= link_to t(:interviews), company_path(company, tab: 'CompanyInterviewsID'), target: :_blank %></a>
+                    <a><%= link_to t(:interviews), company_path(company, tab: 'CompanyInterviewsID'), target: :_blank %> <span><%= company.company_interviews.count %></span></a>
                 </div>
             </div>
             
             <div class="job_point">
-                <div class="company_point_content">
-                    <a><%= find_job_of_company(company).count %></a>
-                </div>
                 <div class="company_point_label">
-                    <a><%= link_to t(:jobs), company_path(company, tab: 'CompanyJobsID'), target: :_blank %></a>
+                    <a><%= link_to t(:jobs), company_path(company, tab: 'CompanyJobsID'), target: :_blank %> <span><%= find_job_of_company(company).count %></span></a>
                 </div>
             </div>
         </div>

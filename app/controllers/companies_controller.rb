@@ -6,20 +6,22 @@ class CompaniesController < ApplicationController
     def index
         add_breadcrumb I18n.t(:home_page), :root_path
         add_breadcrumb I18n.t(:company_list), :companies_path
-        
-        # Auto complete
-        @suggest_companies = Company.search_company_by_name(params[:search])
-        respond_to do |format|
-            format.html {}
-            format.json {
-                @suggest_companies = @suggest_companies.limit(10)
-            }
-        end
 
         # Search
         @is_company_searched = false
 		if(params.has_key?(:search))
             @is_company_searched = true
+
+            # Auto complete
+            @suggest_companies = Company.search_company_by_name(params[:search])
+            respond_to do |format|
+                format.html {}
+                format.json {
+                    @suggest_companies = @suggest_companies.limit(10)
+                }
+            end
+
+            # Search result
 			@company_searchs = Company.search_company_by_name(params[:search]).reorder('name ASC').page(params[:page]).per(12)
 		end
         
@@ -29,17 +31,19 @@ class CompaniesController < ApplicationController
             @tab = "default"
         end
 
-        @companies_all = Company.all
+        @companies = Company.all.page(params[:page]).per(18)
+
+        if @tab == "default" || @tab == "CompanyMostRecentID"
+            @companies_most_recent = Company.all.sort_by{|company| company.company_reviews.count}.reverse
+            @companies_most_recent = Kaminari.paginate_array(@companies_most_recent).page(params[:page]).per(18)
+        end
         
-        @companies_oder_name = Company.all.order('name ASC').page(params[:page]).per(18)
+        if @tab == "CompanyAllID"
+            @companies_oder_name = Company.all.order('name ASC').page(params[:page]).per(18)
+        end
 
         if @tab == "CompanyNewestID"
             @companies_oder_newest = Company.all.order('created_at DESC').page(params[:page]).per(18)
-        end
-
-        if @tab == "CompanyMostRecentID"
-            @companies_most_recent = Company.all.sort_by{|company| company.company_reviews.count}.reverse
-            @companies_most_recent = Kaminari.paginate_array(@companies_most_recent).page(params[:page]).per(18)
         end
 
         if @tab == "CompanyBestID"
@@ -129,6 +133,6 @@ class CompaniesController < ApplicationController
 
     private
     def company_param
-        params.require(:company).permit(:name, :location, :address, :country, :website, :phone, :time_establish, :working_time, :working_date, :size, :field_operetion, :avatar, :wall_picture, :search, :overview, :policy, :values, :company_type, :employer_id, {:benefit => []})
+        params.require(:company).permit(:name, :location, :address, :country, :website, :phone, :time_establish, :working_time, :working_date, :size, :field_operetion, :avatar, :search, :overview, :policy, :values, :company_type, :employer_id, {:benefit => []})
     end
 end

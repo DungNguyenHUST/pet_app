@@ -43,13 +43,13 @@
                 <a><%=t(:company_search_not_found_suggest)%></a>
             </div>
             <div class="row">
-                <%@companies_oder_name.each do |company|%>
+                <%@companies.each do |company|%>
                     <div class="col-sm-4">
                         <%=render company%>
                     </div>
                 <%end%>
             </div>
-            <%= paginate @companies_oder_name, window: 2%>
+            <%= paginate @companies, window: 2%>
         </div>
     </div>
 <%end%>

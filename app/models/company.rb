@@ -22,13 +22,9 @@ class Company < ApplicationRecord
     has_many :company_questions, dependent: :destroy
     has_many :company_salaries, dependent: :destroy
     accepts_nested_attributes_for :company_images
-    
-    # has_one_attached :avatar
-    # has_one_attached :wall_picture
 
     # validate :image_type
     mount_uploader :avatar, ImageUploader
-    mount_uploader :wall_picture, ImageUploader
 
     # validates :overview, presence: true
     # validates :policy, presence: true
