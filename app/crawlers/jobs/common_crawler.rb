@@ -195,14 +195,17 @@ module CommonCrawler
 
     def save_job_to_csv(job_data)
         domain = split_domain_name(job_data.apply_site)
-        filepath = "tmp/jobs/jobs_#{domain}.csv"
 
-        # Delete old data
-        if File.exist?(filepath) 
-            if File.mtime(filepath) < 2.day.ago.utc
-                File.open(filepath, 'w') {|file| file.truncate(0) }
-            end
-        end
+        datetime = Time.now.strftime("%d%m%Y")
+        filedir = "tmp/jobs/#{datetime}"
+
+        old_datetime = (Time.now - 7.days).strftime("%d%m%Y")
+        old_filedir = "tmp/jobs/#{old_datetime}"
+
+        FileUtils.remove_dir(old_filedir, true) if File.directory?(old_filedir) # Delete old dir 7 days ago
+        FileUtils.mkdir_p(filedir) unless File.directory?(filedir) # Create new dir today
+
+        filepath = "#{filedir}/jobs_#{domain}.csv"
         
         CSV.open(filepath, "a", :headers => true) do |csv|
             # Write header if file empty
