@@ -46,42 +46,46 @@ class ScrapJobsController < ApplicationController
 
         if File.directory?(filedir)
             Dir.glob("#{filedir}/*").each do |file|
-                print "%%%%%%%%%%%%%%%%%%%%%%%Start push #{file}%%%%%%%%%%%%%%%%%%%%%"
-
-                filename = "#{file}"
-                csv_text = File.read(filename.to_s)
-                csv = CSV.parse(csv_text, :headers => true)
-                csv.each do |row|
-                    job_data = row.to_hash
-                    if job_data["apply_site"].present?
-                        unless job_exsit = CompanyJob.find_by(apply_site: job_data["apply_site"])
-                            print "*********Create new job*********\n"
-                            CompanyJob.create!(job_data)
-                        else
-                            print "*********Duplicate data -> Update*********\n"
-                            job_exsit.update!(:company_id => job_data["company_id"],
-                                                :title => job_data["title"],
-                                                :detail => job_data["detail"],
-                                                :location => job_data["location"],
-                                                :salary => job_data["salary"],
-                                                :quantity => job_data["quantity"],
-                                                :category => job_data["category"],
-                                                :language => job_data["language"],
-                                                :level => job_data["level"],
-                                                :dudate => job_data["dudate"],
-                                                :end_date => job_data["end_date"],
-                                                :typical => job_data["typical"],
-                                                :urgent => job_data["urgent"],
-                                                :apply_another_site_flag => job_data["apply_another_site_flag"],
-                                                :apply_site => job_data["apply_site"],
-                                                :address => job_data["address"],
-                                                :admin_id => job_data["admin_id"],
-                                                :approved => job_data["approved"],
-                                                :company_name => job_data["company_name"],
-                                                :company_avatar => job_data["company_avatar"],
-                                                :experience => job_data["experience"])
-                        end
-                    end   
+                begin
+                    print "%%%%%%%%%%%%%%%%%%%%%%%Start push #{file}%%%%%%%%%%%%%%%%%%%%%"
+                    filename = "#{file}"
+                    csv_text = File.read(filename.to_s)
+                    csv = CSV.parse(csv_text, :headers => true)
+                    csv.each do |row|
+                        job_data = row.to_hash
+                        if job_data["apply_site"].present?
+                            unless job_exsit = CompanyJob.find_by(apply_site: job_data["apply_site"])
+                                print "*********Create new job*********\n"
+                                CompanyJob.create!(job_data)
+                            else
+                                print "*********Duplicate data -> Update*********\n"
+                                job_exsit.update!(:company_id => job_data["company_id"],
+                                                    :title => job_data["title"],
+                                                    :detail => job_data["detail"],
+                                                    :location => job_data["location"],
+                                                    :salary => job_data["salary"],
+                                                    :quantity => job_data["quantity"],
+                                                    :category => job_data["category"],
+                                                    :language => job_data["language"],
+                                                    :level => job_data["level"],
+                                                    :dudate => job_data["dudate"],
+                                                    :end_date => job_data["end_date"],
+                                                    :typical => job_data["typical"],
+                                                    :urgent => job_data["urgent"],
+                                                    :apply_another_site_flag => job_data["apply_another_site_flag"],
+                                                    :apply_site => job_data["apply_site"],
+                                                    :address => job_data["address"],
+                                                    :admin_id => job_data["admin_id"],
+                                                    :approved => job_data["approved"],
+                                                    :company_name => job_data["company_name"],
+                                                    :company_avatar => job_data["company_avatar"],
+                                                    :experience => job_data["experience"])
+                            end
+                        end   
+                    end
+                    print "%%%%%%%%%%%%%%%%%%%%%%%End push #{file}%%%%%%%%%%%%%%%%%%%%%"
+                rescue
+                    print "*****************Handle file error #{file}*******************\n"
                 end
             end
         end
