@@ -239,7 +239,7 @@ class JobCrawler < Kimurai::Base
         end
 
         if split_domain_name(url) == "vieclam24h.vn"
-            next_page_link = "https://vieclam24h.vn/tim-kiem-viec-lam-nhanh?q=&province_ids&field_ids&action=search&page=#{@@PAGE_COUNT}"
+            next_page_link = "https://vieclam24h.vn/tim-kiem-viec-lam-nhanh?page=#{@@PAGE_COUNT}"
         end
 
         if split_domain_name(url) == "viecoi.vn"

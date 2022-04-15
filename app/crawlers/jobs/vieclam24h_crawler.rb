@@ -4,7 +4,7 @@ module Vieclam24hCrawler
     include ActionView::Helpers::AssetUrlHelper
 
     def get_job_pre_data_vieclam24h(url, doc)
-        job_items = doc.css("div.job-box")
+        job_items = doc.css("div.rounded-sm")
         job_pre_datas = []
 
         if job_items
@@ -17,8 +17,8 @@ module Vieclam24hCrawler
 
                 job_salary = ""
 
-                if job_item.css("div.job-ttl a").present?
-                    job_link = job_item.css("div.job-ttl a").map { |link| link['href'].prepend("https://vieclam24h.vn")}.first
+                if job_item.css("a.rounded-sm").present?
+                    job_link = job_item.css("a.rounded-sm").map { |link| link['href'].prepend("https://vieclam24h.vn")}.first
                 else
                     job_link = ""
                 end
@@ -35,8 +35,8 @@ module Vieclam24hCrawler
         if doc.present?
             processing_detail_datas = []
 
-            if doc.css("div.box_chi_tiet_cong_viec div.title-company a").present?
-                company_search_name = doc.css("div.box_chi_tiet_cong_viec div.title-company a").first.text.strip
+            if doc.css("div.ml-5 a").present?
+                company_search_name = doc.css("div.ml-5 a").first.text.strip
                 company = get_company_id_by_name(company_search_name)
             end
 
@@ -51,77 +51,80 @@ module Vieclam24hCrawler
                 company_id = -1
             end
 
-            if doc.css("div.logo-company img").present?
-                company_avatar = doc.css("div.logo-company img").map { |img| img['src']}.first
+            if doc.css("div.items-center div.box-border img").present?
+                company_avatar = doc.css("div.items-center div.box-border img").map { |img| img['src']}.first
             else
                 company_avatar = image_url("defaults/company_avatar_default.svg")
             end
                     
-            if doc.css("div.box_chi_tiet_cong_viec h1.title-job").present?
-                title = doc.css("div.box_chi_tiet_cong_viec h1.title-job").text.strip
+            if doc.css("div.items-center div.w-full h3").present?
+                title = doc.css("div.items-center div.w-full h3").text.strip
             end
 
             #######################job detail start##########################
-            detail_block = doc.css("div.job_description").first
-            if detail_block.present?
-                start_detail = detail_block.at_css("div.item")
-                detail = ''
-                next_step = 0
-                loop do
-                    break if next_step == 3 # stop before end_detail
-                    if start_detail.present? && !start_detail.next_element.nil?
-                        detail << start_detail.to_s
-                        start_detail = start_detail.next_element
-                    end
-                    next_step += 1
-                end
+            if detail_block = doc.css("div.JobInfo_jobInfoContainer__3WzDU").first
+                detail = detail_block
             end
+
+            # if detail_block.present?
+            #     start_detail = detail_block.at_css("h4.text-18")
+            #     detail = ''
+            #     next_step = 0
+            #     loop do
+            #         break if next_step == 3 # stop before end_detail
+            #         if start_detail.present? && !start_detail.next_element.nil?
+            #             detail << start_detail.to_s
+            #             start_detail = start_detail.next_element
+            #         end
+            #         next_step += 1
+            #     end
+            # end
             #######################job detail end##########################
 
-            job_info_box_1 = doc.css("div.job_detail div.list-info").first
-            job_info_box_2 = doc.css("div.job_detail div.list-info").last
+            job_info_box_1 = doc.css("div.grid-cols-2").first
+            job_info_box_2 = doc.css("div.grid-cols-1").first
 
             if job_info_box_1 && job_info_box_2
-                if location_box = job_info_box_2.css("div.line-icon")[0]
-                    location = location_box.css("a").text.strip
+                if location_box = job_info_box_2.css("div.flex")[2]
+                    location = location_box.css("div.font-semibold").text.strip
                 else
                     location = "Hà Nội"
                 end
 
                 address = location
 
-                if salary_box = job_info_box_1.css("div.line-icon")[0]
-                    salary = salary_box.css("span.job_value").text.strip
+                if salary_box = job_info_box_1.css("div.border-se-blue-10")[1]
+                    salary = salary_box.css("div.font-semibold").text.strip
                 else
                     salary = "Thương lượng"
                 end
 
-                if quantity_box = job_info_box_1.css("div.line-icon")[3]
-                    quantity = quantity_box.css("span.job_value").text.strip
+                if quantity_box = job_info_box_1.css("div.flex")[3]
+                    quantity = quantity_box.css("div.font-semibold").text.strip
                 else
                     quantity = 1
                 end
 
-                if category_box = job_info_box_2.css("div.line-icon")[6]
-                    category = category_box.css("a").text.strip
+                if category_box = job_info_box_2.css("div.flex")[0]
+                    category = category_box.css("div.font-semibold").text.strip
                 else
                     category = ""
                 end
 
-                if level_box = job_info_box_2.css("div.line-icon")[1]
-                    level = level_box.css("span.job_value").text.strip
+                if level_box = job_info_box_1.css("div.border-se-blue-10")[2]
+                    level = level_box.css("div.font-semibold").text.strip
                 else
                     level = "Nhân viên"
                 end
 
-                if experience_box = job_info_box_1.css("div.line-icon")[1]
-                    experience = experience_box.css("span.job_value").text.strip
+                if experience_box = job_info_box_1.css("div.border-se-blue-10")[0]
+                    experience = experience_box.css("div.font-semibold").text.strip
                 else
                     experience = "Không yêu cầu"
                 end
 
-                if typical_box = job_info_box_2.css("div.line-icon")[2]
-                    typical = typical_box.css("span.job_value").text.strip
+                if typical_box = job_info_box_1.css("div.border-se-blue-10")[3]
+                    typical = typical_box.css("div.font-semibold").text.strip
                 else
                     typical = "Toàn thời gian"
                 end
@@ -129,8 +132,8 @@ module Vieclam24hCrawler
                 language = "Tùy chọn"
                 dudate = Time.now
 
-                if doc.css("div.box_chi_tiet_cong_viec span.text-color-effect-second").present?
-                    date_str = doc.css("div.box_chi_tiet_cong_viec span.text-color-effect-second").text.strip
+                if date_box = job_info_box_2.css("div.flex").last
+                    date_str = date_box.css("div.font-semibold").text.strip
                     end_date = Date.parse(date_str)
                 else
                     end_date = Time.now + 30.days

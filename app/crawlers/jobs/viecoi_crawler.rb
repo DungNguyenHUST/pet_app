@@ -62,7 +62,7 @@ module ViecoiCrawler
             end
 
             #######################job detail start##########################
-            detail_block = doc.css("div.row-mobile-job-detail")
+            detail_block = doc.css("div.order02")
             if detail_block.present?
                 start_detail = detail_block.css("div.property-margin-detail")[2]
                 detail = ''
