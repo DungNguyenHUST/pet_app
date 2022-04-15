@@ -21,12 +21,12 @@
 env :PATH, ENV['PATH']
 set :path, "#{path}"
 set :output, "#{path}/log/cronjob.log"
+set :bundle_command, "$HOME/.rbenv/shims/bundle exec"
 
 #Sets the environment to run during development mode (Set to production by default)
-# set :environment, 'development'
 
+# set :environment, 'development'
 # if @environment == 'development'
-#     set :bundle_command, "/home/dungnguyen/.rbenv/shims/bundle exec"
 
 #     every :day, at: '0:01' do
 #         rake "pull_job_tasks:job_puller"
@@ -37,15 +37,13 @@ set :output, "#{path}/log/cronjob.log"
 #     end
     
 #     every :day, at: '6:06' do
-#         command "sh /home/dungnguyen/pet_app/auto_upload.sh"
+#         command "sh $HOME/pet_app/auto_upload.sh"
 #     end
 
 #     every :day, at: '18:06' do
-#         command "sh /home/dungnguyen/pet_app/auto_upload.sh"
+#         command "sh $HOME/pet_app/auto_upload.sh"
 #     end
 # else
-    set :bundle_command, "/home/deploy/.rbenv/shims/bundle exec"
-
     every :day, at: '7:07' do
         rake "push_job_tasks:job_pusher"
     end
