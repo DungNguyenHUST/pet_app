@@ -259,7 +259,7 @@
 
 .highlight_job_item{
     // border: 1px solid #1473e6;
-    border-left: 5px solid#1473e6;
+    border-left: 5px solid #1473e6;
     background-color: #f1f8fe;
     border-top-left-radius: 4px;
     border-bottom-left-radius: 4px;
@@ -389,174 +389,38 @@
 //////////////////////show/////////////////////
 .job_show_container{
     background-color: #f8f9fa;
-    .job_show_search{
-        padding-top: 20px;
-        .company_job_show_search_input{
-            display: block;
-            @media screen and (max-width: 600px){
-                display: none;
-            }
-            .company_job_show_search_what{
-                background-color: #fff;
-                width: 100%;
-                position: relative;
-                i{
-                    font-size: 22px;
-                    color: #1473e6;
-                    position: absolute;
-                    left: 10px;
-                    top: 12px;
-                    z-index: 1;
-                }
-                .form-control{
-                    border: 1px solid #E5E5E5;
-                    border-top-left-radius: 4px;
-                    border-bottom-left-radius: 4px;
-                    border-top-right-radius: 0px;
-                    border-bottom-right-radius: 0px;
-                    padding-left: 40px;
-                    padding-right: 10px;
-                    width: 100%;
-                    height: 48px;
-                    color: #333;
-                    font-size: 15px;
-                    background-color: #fff;
-                    @media screen and (max-width: 600px){
-                        border-radius: 4px;
-                        border: 1px solid #E5E5E5;
-                        height: 48px;
-                    }
-                    &:focus{
-                        box-shadow: none;
-                    }
-                }
-            }
-            .company_job_show_search_where{
-                background-color: #fff;
-                width: 100%;
-                position: relative;
-                i{
-                    font-size: 22px;
-                    color: #1473e6;
-                    position: absolute;
-                    left: 10px;
-                    top: 12px;
-                    z-index: 1;
-                }
-                .form-control{
-                    border: 1px solid #E5E5E5;
-                    border-radius: 0px;
-                    padding-left: 40px;
-                    width: 100%;
-                    height: 48px;
-                    color: #333;
-                    font-size: 15px;
-                    background-color: #fff;
-                    @media screen and (max-width: 600px){
-                        margin-top: 10px;
-                        margin-bottom: 15px;
-                        border-radius: 4px;
-                        border: 1px solid #E5E5E5;
-                        height: 48px;
-                    }
-                    &:focus{
-                        box-shadow: none;
-                    }
-                }
-            }
-            
-            .company_job_show_search_button{
-                border: none;
-                width: 100%;
-                button{
-                    border: none;
-                    border-top-right-radius: 4px;
-                    border-bottom-right-radius: 4px;
-                    background-color: #1473e6;
-                    height: 48px;
-                    color: #fff;
-                    width: 100%;
-                    font-size: 15px;
-                    font-weight: 600;
-                    @media screen and (max-width: 600px){
-                        border-radius: 4px;
-                        width: 100%;
-                        float: none;
-                        height: 48px;
-                        i{
-                            display: none;
-                        }
-                        a{
-                            display: block;
-                        }
-                    }
-                    @media screen and (min-width: 600px){
-                        a{
-                            display: none;
-                        }
-                        i{
-                            position: relative;
-                            top: 3px;
-                            font-size: 26px;
-                        }
-                    }
-                    &:focus {outline:none;}
-                    box-shadow: 0 2px 4px 0 #8fb5f14d;
-                    &:hover {background-color: #116dff;}
-                }
-            }
-        }
-        
-        .company_job_show_search_input_mobile{
+    padding-top: 20px;
+    .job_show_back{
+        @media screen and (max-width: 600px){
             display: none;
-            @media screen and (max-width: 600px){
-                display: block;
+        }
+        padding-bottom: 20px;
+        button {
+            width: 130px;
+            height: 30px;
+            background: #fff;
+            font-size: 14px;
+            border: 1px solid #EAEAEA;
+            cursor: pointer;
+            text-align: center;
+            color: #333;
+            border-radius: 4px;
+            font-weight: 500;
+                        
+            &:hover{
+                background-color: #116dff;
+                color: #fff;
             }
-            .company_job_show_search_what_mobile{
-                background-color: #fff;
-                width: 100%;
-                position: relative;
-                .form-control{
-                    border: 1px solid #E5E5E5;
-                    border-top-left-radius: 4px;
-                    border-bottom-left-radius: 4px;
-                    border-top-right-radius: 0px;
-                    border-bottom-right-radius: 0px;
-                    padding-left: 10px;
-                    padding-right: 10px;
-                    width: 100%;
-                    height: 48px;
-                    color: #333;
-                    font-size: 15px;
-                    background-color: #fff;
-                    &:focus{
-                        box-shadow: none;
-                    }
-                }
-            }
-            
-            .company_job_show_search_button_mobile{
-                border: none;
-                width: 100%;
-                button{
-                    border: none;
-                    border-top-right-radius: 4px;
-                    border-bottom-right-radius: 4px;
-                    background-color: #1473e6;
-                    height: 48px;
-                    color: #fff;
-                    width: 100%;
-                    font-size: 15px;
-                    i{
-                        display: block;
-                        position: relative;
-                        font-size: 24px;
-                    }
-                    &:focus {outline:none;}
-                    box-shadow: 0 2px 4px 0 #8fb5f14d;
-                    &:hover {background-color: #116dff;}
-                }
-            }
+            &:focus {outline:none;}
+        }
+        i{
+            font-size: 18px;
+            position: relative;
+            top: 2px;
+        }
+        span{
+            position: relative;
+            top: -1px;
         }
     }
     .job_overview{
@@ -567,7 +431,6 @@
         display: block;
         background-color: #fff;
         padding: 15px;
-        margin-top: 20px;
 
         .job_overview_left{
             @media screen and (max-width: 600px){
@@ -1430,7 +1293,10 @@
             }
             .form-control{
                 border: 1px solid #E5E5E5;
-                border-radius: 0px;
+                border-top-left-radius: 0px;
+                border-bottom-left-radius: 0px;
+                border-top-right-radius: 4px;
+                border-bottom-right-radius: 4px;
                 padding-left: 40px;
                 width: 100%;
                 height: 48px;
@@ -1455,8 +1321,7 @@
             width: 100%;
             button{
                 border: none;
-                border-top-right-radius: 4px;
-                border-bottom-right-radius: 4px;
+                border-radius: 4px;
                 background-color: #1473e6;
                 height: 48px;
                 color: #fff;
@@ -1477,7 +1342,7 @@
                 }
                 @media screen and (min-width: 600px){
                     a{
-                        display: none;
+                        // display: none;
                     }
                     i{
                         position: relative;

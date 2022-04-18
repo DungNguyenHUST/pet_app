@@ -3,14 +3,14 @@
         <%=form_tag employer_cv_search_path, :method => "get" do%>
             <div class="employer_cv_searched_input">
                 <div class='row'>
-                    <div class='col-sm-7 col_padding_customize_right'>
+                    <div class='col-sm-6 col_padding_customize_right'>
                         <div class="employer_cv_searched_what">
                             <i class="material-icons-outlined">search</i>
                             <%= text_field_tag :search, params[:search], required: true, class: 'form-control', placeholder: t(:profile_search_label)%>
                         </div>
                     </div>
                         
-                    <div class='col-sm-4 col_padding_customize'>
+                    <div class='col-sm-4 col_padding_customize_left'>
                         <div class="employer_cv_searched_where">
                             <i class="material-icons-outlined">place</i></button>
                             <%= select_tag :location, options_for_select(['Hà Nội','Hồ Chí Minh','Đà Nẵng','An Giang','Bà Rịa Vũng Tàu','Bạc Liêu','Bắc Kạn','Bắc Giang',
@@ -28,10 +28,10 @@
                         </div>
                     </div>
                     
-                    <div class="col-sm-1 col_padding_customize_left">
+                    <div class="col-sm-2 col_padding_customize_left">
                         <div class="employer_cv_searched_button">
                             <%= button_to "", form_class: "search_button", :name => nil do%>
-                                <i class="material-icons-outlined">search</i>
+                                <%# <i class="material-icons-outlined">search</i> %>
                                 <a><%=t(:search)%></a>
                             <%end%> 
                         </div>
@@ -46,7 +46,7 @@
             <%= form_for :filter, url: employer_cv_search_path, method: :get do |f| %>
                 <div class="employer_cv_filter_block">
                     <div class="row">
-                        <div class="col-sm-2">
+                        <div class="col-sm-2 col_padding_customize_right">
                             <div class="employer_cv_filter_input">
                                 <%= f.select(:school_level, options_for_select([t(:school_level_1), 
                                 t(:school_level_2), 
@@ -60,13 +60,13 @@
                             </div>
                         </div>
 
-                        <div class="col-sm-2">
+                        <div class="col-sm-2 col_padding_customize_right">
                             <div class="employer_cv_filter_input">
                                 <%= f.select(:sex, options_for_select([t(:male), t(:female)]), {include_blank: false, :prompt => t(:all_sex)}, { :class => 'form-select'})  %>
                             </div>
                         </div>
 
-                        <div class="col-sm-2">
+                        <div class="col-sm-2 col_padding_customize_right">
                             <div class="employer_cv_filter_input">
                                 <%= f.select(:job_level, options_for_select([t(:staff), 
                                                                         t(:intern), 
@@ -80,7 +80,7 @@
                             </div>
                         </div>
 
-                        <div class="col-sm-2">
+                        <div class="col-sm-2 col_padding_customize_right">
                             <div class="employer_cv_filter_input">
                                 <%= f.select(:job_exp, options_for_select([t(:x_month, num: 6), 
                                                                             t(:x_year, num: 1), 
@@ -94,7 +94,7 @@
                             </div>
                         </div>
 
-                        <div class="col-sm-2">
+                        <div class="col-sm-2 col_padding_customize_right">
                             <div class="employer_cv_filter_input">
                                 <%= f.select(:updated_date, options_for_select([t(:x_day_pass, num: 1),
                                                                                 t(:x_day_pass, num: 3),
