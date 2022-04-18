@@ -1,14 +1,6 @@
 <% content_for :meta_robots, "all" %>
 <%- model_class = Company -%>
 <%case @tab%>
-<%when "CompanyAllID"%>
-    <%if !@is_company_searched%>
-        <% title = t(:company_index_meta_1) %>
-    <%else%>
-        <% title = t(:company_index_meta_2)%>
-    <%end%>
-<%when "CompanyNewestID"%>
-    <%title = t(:company_index_meta_3)%>
 <%when "default", "CompanyMostRecentID"%>
     <%title = t(:company_index_meta_4)%>
 <%when "CompanyBestID"%>
@@ -92,13 +84,10 @@
                 <div class="company_index_tab_link">
                     <div class="dropdown show">
                         <a class="btn btn-secondary dropdown-toggle" href="<%=companies_path(tab: 'CompanyMostRecentID')%>" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                            <%=t(:interesting)%>
+                            <%=t(:popular_company)%>
                         </a>
 
                         <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
-                            <a class="dropdown-item" href="<%=companies_path(tab: 'CompanyAllID')%>"><%=t(:all)%></a>
-                            <a class="dropdown-item" href="<%=companies_path(tab: 'CompanyMostRecentID')%>"><%=t(:interesting)%></a>
-                            <a class="dropdown-item" href="<%=companies_path(tab: 'CompanyNewestID')%>"><%=t(:lastest_company)%></a>
                             <a class="dropdown-item" href="<%=companies_path(tab: 'CompanyBestID')%>"><%=t(:best_company)%></a>
                         </div>
                     </div>
@@ -115,32 +104,6 @@
                                 <%end%>
                             </div>
                             <%= paginate @companies_most_recent, window: 2%>
-                        </div>
-                    <%end%>
-
-                    <%if @tab == "CompanyAllID"%>
-                        <div class="company_all_tab">
-                            <div class="row">
-                                <% @companies_oder_name.each do |company| %>
-                                    <div class="col-sm-4">
-                                        <%=render company%>
-                                    </div>
-                                <%end%>
-                            </div>
-                            <%= paginate @companies_oder_name, window: 2%>
-                        </div>
-                    <%end%>
-                    
-                    <%if @tab == "CompanyNewestID"%>
-                        <div class="company_newest_tab">
-                            <div class="row">
-                                <% @companies_oder_newest.each do |company| %>
-                                    <div class="col-sm-4">
-                                        <%=render company%>
-                                    </div>
-                                <%end%>
-                            </div>
-                            <%= paginate @companies_oder_newest, window: 2%>
                         </div>
                     <%end%>
 

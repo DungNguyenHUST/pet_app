@@ -37,14 +37,6 @@ class CompaniesController < ApplicationController
             @companies_most_recent = Company.all.sort_by{|company| company.company_reviews.count}.reverse
             @companies_most_recent = Kaminari.paginate_array(@companies_most_recent).page(params[:page]).per(18)
         end
-        
-        if @tab == "CompanyAllID"
-            @companies_oder_name = Company.all.order('name ASC').page(params[:page]).per(18)
-        end
-
-        if @tab == "CompanyNewestID"
-            @companies_oder_newest = Company.all.order('created_at DESC').page(params[:page]).per(18)
-        end
 
         if @tab == "CompanyBestID"
             @companies_best = Company.all.sort_by{|company| cal_rating_review_total_score(company).to_f}.reverse

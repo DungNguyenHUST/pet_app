@@ -2411,6 +2411,13 @@ CREATE UNIQUE INDEX index_company_apply_jobs_on_slug ON public.company_apply_job
 
 
 --
+-- Name: index_company_interviews_on_company_id; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE INDEX index_company_interviews_on_company_id ON public.company_interviews USING btree (company_id);
+
+
+--
 -- Name: index_company_interviews_on_slug; Type: INDEX; Schema: public; Owner: -
 --
 
@@ -2474,10 +2481,24 @@ CREATE UNIQUE INDEX index_company_reply_reviews_on_slug ON public.company_reply_
 
 
 --
+-- Name: index_company_reviews_on_company_id; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE INDEX index_company_reviews_on_company_id ON public.company_reviews USING btree (company_id);
+
+
+--
 -- Name: index_company_reviews_on_slug; Type: INDEX; Schema: public; Owner: -
 --
 
 CREATE UNIQUE INDEX index_company_reviews_on_slug ON public.company_reviews USING btree (slug);
+
+
+--
+-- Name: index_company_salaries_on_company_id; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE INDEX index_company_salaries_on_company_id ON public.company_salaries USING btree (company_id);
 
 
 --
@@ -3127,6 +3148,7 @@ INSERT INTO "schema_migrations" (version) VALUES
 ('20211213071116'),
 ('20211216042147'),
 ('20220214080327'),
-('20220214104000');
+('20220214104000'),
+('20220418084819');
 
 
