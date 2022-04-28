@@ -53,4 +53,19 @@ set :bundle_command, "$HOME/.rbenv/shims/bundle exec"
     end
 # end
 
+# Delete expire job 
+every :day, at: '2:02' do
+    rake "delete_job_tasks:job_delete"
+end
+
+# Reindex all job - not need at update
+# every :day, at: '3:03' do
+#     rake "index_job_tasks:job_indexing"
+# end
+
+# Genarate new sitemap
+every 1.day, :at => '3:03' do
+    rake "-s sitemap:refresh"
+end
+
 # Learn more: http://github.com/javan/whenever
