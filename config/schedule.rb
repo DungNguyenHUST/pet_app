@@ -54,7 +54,7 @@ set :bundle_command, "$HOME/.rbenv/shims/bundle exec"
 # end
 
 # Delete expire job 
-every :day, at: '2:02' do
+every :day, at: '2:02 am' do
     rake "delete_job_tasks:job_delete"
 end
 
@@ -64,7 +64,7 @@ end
 # end
 
 # Genarate new sitemap
-every 1.day, :at => '3:03' do
+every 1.day, :at => '3:03 am' do
     rake "-s sitemap:refresh"
 end
 
