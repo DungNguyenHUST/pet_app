@@ -6,21 +6,23 @@ class ProblemsController < ApplicationController
     def index
         add_breadcrumb I18n.t(:home_page), :root_path
         add_breadcrumb I18n.t(:all_question), :problems_path
-
-        # Auto complete
-        @suggest_problems = Problem.search_problem_by_title(params[:search])
-        respond_to do |format|
-            format.html {}
-            format.json {
-                @suggest_problems = @suggest_problems.limit(10)
-            }
-        end
-
+        
         # Search
         @is_problem_searched = false
 		if(params.has_key?(:search))
             @is_problem_searched = true
-			@problem_searchs = Problem.search_problem_by_title(params[:search]).reorder("created_at DESC").approved.page(params[:page]).per(12)
+
+            @problem_searchs = Problem.search(params[:search], 
+                                            fields: ["title"], 
+                                            page: params[:page], per_page: 12)
+
+            # Auto complete
+            respond_to do |format|
+                format.html {}
+                format.json {
+                    @suggest_problems = @problem_searchs.limit(10)
+                }
+            end
         end
 
 		@problems_all = Problem.all.order("id ASC").approved.page(params[:page]).per(20)

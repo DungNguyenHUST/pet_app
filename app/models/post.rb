@@ -1,6 +1,4 @@
 class Post < ApplicationRecord
-    include PgSearch::Model
-    
     extend FriendlyId
 	def convert_slug
         slug = title.downcase.to_s
@@ -25,12 +23,6 @@ class Post < ApplicationRecord
     def self.approved
         where(approved: :true)
     end
-
-    pg_search_scope :search_post_by_title, 
-                    against: :title,
-                    using: {
-                        tsearch: { prefix: true, dictionary: "english", tsvector_column: "tsv" }
-                    }
 
     mount_uploader :wall_picture, ImageUploader
 end

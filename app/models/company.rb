@@ -1,6 +1,4 @@
 class Company < ApplicationRecord
-    include PgSearch::Model
-
 	extend FriendlyId
 	def convert_slug
         slug = name.downcase.to_s
@@ -14,6 +12,14 @@ class Company < ApplicationRecord
         return slug
     end
     friendly_id :convert_slug, use: :slugged
+    
+    # For Search
+    searchkick
+    def search_data
+    {
+        name: name
+    }
+    end
 	
     has_many :company_reviews, dependent: :destroy
     has_many :company_interviews, dependent: :destroy
@@ -23,19 +29,8 @@ class Company < ApplicationRecord
     has_many :company_salaries, dependent: :destroy
     accepts_nested_attributes_for :company_images
 
-    # validate :image_type
     mount_uploader :avatar, ImageUploader
 
-    # validates :overview, presence: true
-    # validates :policy, presence: true
-
-    pg_search_scope :search_company_by_name, 
-                    against: :name,
-                    using: {
-                        tsearch: { prefix: true, dictionary: "english", tsvector_column: "tsv" }
-                    }
-
-	
 	def self.approved
 		where(approved: :true)
 	end

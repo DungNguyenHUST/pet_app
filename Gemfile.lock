@@ -137,6 +137,14 @@ GEM
       unf (>= 0.0.5, < 1.0.0)
     ed25519 (1.2.4)
     ed25519 (1.2.4-java)
+    elasticsearch (7.13.3)
+      elasticsearch-api (= 7.13.3)
+      elasticsearch-transport (= 7.13.3)
+    elasticsearch-api (7.13.3)
+      multi_json
+    elasticsearch-transport (7.13.3)
+      faraday (~> 1)
+      multi_json
     erubi (1.10.0)
     execjs (2.8.1)
     faraday (1.7.1)
@@ -309,9 +317,6 @@ GEM
     pg (1.2.3)
     pg (1.2.3-x64-mingw32)
     pg (1.2.3-x86-mingw32)
-    pg_search (2.3.5)
-      activerecord (>= 5.2)
-      activesupport (>= 5.2)
     pmap (1.1.1)
     poltergeist (1.18.1)
       capybara (>= 2.1, < 4)
@@ -418,6 +423,9 @@ GEM
       sprockets (> 3.0)
       sprockets-rails
       tilt
+    searchkick (5.0.3)
+      activemodel (>= 5.2)
+      hashie
     selenium-webdriver (3.142.7)
       childprocess (>= 0.5, < 4.0)
       rubyzip (>= 1.2.2)
@@ -515,6 +523,7 @@ DEPENDENCIES
   csv
   devise
   ed25519 (>= 1.2, < 2.0)
+  elasticsearch (< 7.14)
   friendly_id (~> 5.4.0)
   htmltoword
   httparty
@@ -531,7 +540,6 @@ DEPENDENCIES
   omniauth-google-oauth2
   omniauth-rails_csrf_protection
   pg (~> 1.2)
-  pg_search
   puma (~> 4.1)
   rails (= 6.1.1)
   rails_admin
@@ -539,6 +547,7 @@ DEPENDENCIES
   redis
   resque
   sass-rails (>= 6)
+  searchkick
   selenium-webdriver
   sitemap_generator
   spring

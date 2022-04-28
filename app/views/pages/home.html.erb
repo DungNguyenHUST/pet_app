@@ -15,7 +15,7 @@
                                     <div class='col-sm-6 col_padding_customize_right'>
                                         <div class="home_search_what">
                                             <i class="material-icons-outlined">search</i>
-                                            <%= text_field_tag :search, params[:search], data: { behavior: "autocomplete" }, class: 'form-control', placeholder: t(:search_job_title)%>
+                                            <%= text_field_tag :search, params[:search], data: { behavior: "autocomplete" }, class: 'form-control', value: params[:search], placeholder: t(:search_job_title)%>
                                         </div>
                                     </div>
                                     <div class='col-sm-4 col_padding_customize'>
@@ -32,7 +32,7 @@
                                                                         'Quảng Nam','Quảng Ngãi','Quảng Ninh','Quảng Trị',
                                                                         'Sóc Trăng','Sơn La','Tây Ninh','Thái Bình','Thái Nguyên' ,
                                                                         'Thanh Hóa','Thừa Thiên Huế','Tiền Giang','Trà Vinh',
-                                                                        'Tuyên Quang','Vĩnh Long','Vĩnh Phúc','Yên Bái' ]), {:prompt => t(:all_location), class: 'form-control'}%>
+                                                                        'Tuyên Quang','Vĩnh Long','Vĩnh Phúc','Yên Bái' ], :selected => params[:location]), {:prompt => t(:all_location), class: 'form-control'}%>
                                         </div>
                                     </div>
                                     <div class='col-sm-2'>

@@ -129,7 +129,13 @@ class CompanyJobsController < ApplicationController
         
         # Auto complete
         if params.has_key?(:search) && !params.has_key?(:filter)
-            @suggest_jobs = CompanyJob.search_job_by_query(params[:search])
+            @suggest_jobs = CompanyJob.search(params[:search], 
+                                                fields: ["title", "company_name", "category", "skill"], 
+                                                where: {
+                                                    end_date: {gt: Time.now}
+                                                },
+                                                order: {updated_at: :desc},
+                                                page: params[:page], per_page: 20)
             respond_to do |format|
                 format.html {}
                 format.json {
@@ -143,79 +149,47 @@ class CompanyJobsController < ApplicationController
 
         @is_search = false
         @is_filter = false
+
+        st_selected = Struct.new(:category, :salary, :level, :post_date, :typical, :search, :location) 
+        @selected_param = st_selected.new()                       
+
         if params.has_key?(:filter) # For Filter
             @is_filter = true
-            @job_filtereds = CompanyJob.all
 
-            @search = nil
-            @location = nil
-            @category = nil
-            @salary_min = nil
-            @salary_max = nil
-            @level = nil
-            @post_date = nil
-            @typical = nil
-            
-            if filter_params[:search].present?
-                @search = filter_params[:search]
-            end
+            @selected_param = st_selected.new(filter_params[:category], filter_params[:salary], filter_params[:level], filter_params[:post_date], 
+                                            filter_params[:typical], filter_params[:search], filter_params[:location])
 
-            if filter_params[:location].present?
-                @location = filter_params[:location]
-            end
+            query                   = filter_params[:search].presence || "*"
+            args                    = {}
+            args                    = args.merge(end_date: {gte: Time.now})
+            args[:location]         = Array(filter_params[:location]) if filter_params[:location].present?
+            args[:category]         = Array(filter_params[:category]) if filter_params[:category].present?
+            args[:level]            = Array(filter_params[:level]) if filter_params[:level].present?
+            args[:typical]          = Array(filter_params[:typical]) if filter_params[:typical].present?
+            args                    = args.merge(salary_min: {gte: convert_salary_to_min(filter_params[:salary]).to_i}, salary_max: {lte: convert_salary_to_max(filter_params[:salary]).to_i}) if filter_params[:salary].present?
+            args                    = args.merge(created_at: {gte: (Time.now - filter_params[:post_date].scan(/\d+/).map(&:to_i).first.days)}) if filter_params[:post_date].present?
 
-            if filter_params[:category].present?
-                @category = filter_params[:category]
-            end
-
-            if filter_params[:salary].present?
-                @salary_min = convert_salary_to_min(filter_params[:salary])
-                @salary_max = convert_salary_to_max(filter_params[:salary])
-            end
-
-            if filter_params[:level].present?
-                @level = filter_params[:level]
-            end
-
-            if filter_params[:post_date].present?
-                @post_date = filter_params[:post_date].scan(/\d+/).map(&:to_i).first
-            end
-
-            if filter_params[:typical].present?
-                @typical = filter_params[:typical]
-            end
-
-            @filter_params_input = filter_params_input.new(@category, @salary_min, @salary_max, @level, 
-                                                                    @post_date, @typical, @search, @location)
-
-            @job_filtereds = CompanyJob.friendly.filtered(@filter_params_input)
-            # Promote ads job
-            @job_filtereds = promote_ads_job(@job_filtereds)
-            @job_filtereds = Kaminari.paginate_array(@job_filtereds).page(params[:page]).per(20)
-
-            respond_to do |format|
-                format.html {}
-                format.js
-            end
+            @job_filtereds = CompanyJob.search(query, 
+                                            fields: ["title", "company_name", "category", "skill"], 
+                                            where: args,
+                                            order: {created_at: :desc},
+                                            page: params[:page], per_page: 20)
+                                            
         elsif(params.has_key?(:search) || params.has_key?(:location)) # For Search
             @is_search = true
-            @job_searchs = CompanyJob.all
+            @selected_param.search = params[:search]
+            @selected_param.location = params[:location]
 
-            if params.has_key?(:search)
-                unless params[:search].empty?
-                    @job_searchs = @job_searchs.search_job_by_query(params[:search])
-                end
-            end
-            
-            if params.has_key?(:location)
-                unless params[:location].empty?
-                    @job_searchs = @job_searchs.search_job_by_location(params[:location])
-                end
-            end
-            
-            # Promote ads job
-            @job_searchs = promote_ads_job(@job_searchs)
-            @job_searchs = Kaminari.paginate_array(@job_searchs).page(params[:page]).per(20)
+            query                   = params[:search].presence || "*"
+            args                    = {}
+            args                    = args.merge(end_date: {gte: Time.now})
+            args[:location]         = Array(params[:location]) if params[:location].present?
+
+            @job_searchs = CompanyJob.search(query, 
+                                            fields: ["title", "company_name", "category", "skill"], 
+                                            where: args,
+                                            order: {created_at: :desc},
+                                            page: params[:page], per_page: 20)
         end
     end
 
@@ -231,16 +205,5 @@ class CompanyJobsController < ApplicationController
 
     def filter_params
         filter_params = params.require(:filter).permit(:category, :salary, :level, :post_date, :typical, :search, :location)
-    end
-
-    def filter_params_input
-        filter_params_input = Struct.new(:category,
-                                            :salary_min,
-                                            :salary_max,
-                                            :level, 
-                                            :post_date,
-                                            :typical,
-                                            :search,
-                                            :location)
     end
 end

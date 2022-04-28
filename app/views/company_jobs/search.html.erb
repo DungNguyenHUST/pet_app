@@ -13,7 +13,7 @@
                     <div class='col-sm-6 col_padding_customize_right'>
                         <div class="company_job_search_what">
                             <i class="material-icons-outlined">search</i>
-                            <%= text_field_tag :search, params[:search], data: { behavior: "autocomplete" }, class: 'form-control', placeholder: t(:search_job_title)%>
+                            <%= text_field_tag :search, params[:search], data: { behavior: "autocomplete" }, class: 'form-control', value: @selected_param.search, placeholder: t(:search_job_title)%>
                         </div>
                     </div>
                         
@@ -31,7 +31,8 @@
                                                             'Quảng Nam','Quảng Ngãi','Quảng Ninh','Quảng Trị',
                                                             'Sóc Trăng','Sơn La','Tây Ninh','Thái Bình','Thái Nguyên' ,
                                                             'Thanh Hóa','Thừa Thiên Huế','Tiền Giang','Trà Vinh',
-                                                            'Tuyên Quang','Vĩnh Long','Vĩnh Phúc','Yên Bái' ]), {:prompt => t(:all_location), class: 'form-control'}%> 
+                                                            'Tuyên Quang','Vĩnh Long','Vĩnh Phúc','Yên Bái' ], :selected => @selected_param.location), 
+                                                            {:prompt => t(:all_location), class: 'form-control'}%> 
                         </div>
                     </div>
                     
@@ -149,7 +150,9 @@
 																				t(:job_category_67),
 																				t(:job_category_68),
 																				t(:job_category_69),
-																				t(:job_category_70)]), {include_blank: false, :prompt => t(:job_all_category)}, { :class => 'form-select'})  %>
+																				t(:job_category_70)], :selected => @selected_param.category),
+                                                                                {include_blank: false, :prompt => t(:job_all_category)}, 
+                                                                                { :class => 'form-select'})  %>
                             </div>
                         </div>
 
@@ -174,7 +177,9 @@
                                                                         t(:from_x_to_y_salary, x: 85, y: 90),
                                                                         t(:from_x_to_y_salary, x: 90, y: 95),
                                                                         t(:from_x_to_y_salary, x: 95, y: 100),
-                                                                        t(:more_than_x_salary, x: 100)]), {include_blank: false, :prompt => t(:job_all_salary)}, { :class => 'form-select'})  %>
+                                                                        t(:more_than_x_salary, x: 100)], :selected => @selected_param.salary), 
+                                                                        {include_blank: false, :prompt => t(:job_all_salary)}, 
+                                                                        { :class => 'form-select'})  %>
                             </div>
                         </div>
 
@@ -186,7 +191,7 @@
                                                                         t(:leader),
                                                                         t(:manage), 
                                                                         t(:sen_manager),
-                                                                        t(:manager)]), 
+                                                                        t(:manager)], :selected => @selected_param.level), 
                                                                         {include_blank: false, :prompt => t(:job_all_level)}, 
                                                                         { :class => 'form-select'})  %>
                             </div>
@@ -198,7 +203,7 @@
                                                                             t(:x_day_pass, num: 3),
                                                                             t(:x_day_pass, num: 7), 
                                                                             t(:x_day_pass, num: 15), 
-                                                                            t(:x_day_pass, num: 30)]), 
+                                                                            t(:x_day_pass, num: 30)], :selected => @selected_param.post_date), 
                                                                             {include_blank: false, :prompt => t(:job_all_date)}, 
                                                                             { :class => 'form-select'})  %>
                             </div>
@@ -212,14 +217,14 @@
                                                                             t(:job_type_4), 
                                                                             t(:job_type_5),
                                                                             t(:job_type_6), 
-                                                                            t(:job_type_7)]),
+                                                                            t(:job_type_7)], :selected => @selected_param.typical),
                                                                             {include_blank: false, :prompt => t(:job_all_type)},
                                                                             { :class => 'form-select'})  %>
                             </div>
                         </div>
 
-                        <%= f.hidden_field:search, :value => params[:search]%>
-                        <%= f.hidden_field:location, :value => params[:location]%>
+                        <%= f.hidden_field:search, :value => @selected_param.search || params[:search]%>
+                        <%= f.hidden_field:location, :value => @selected_param.location || params[:location]%>
                         
                         <div class="col-sm-2">
                             <div class="company_job_filter_submit">

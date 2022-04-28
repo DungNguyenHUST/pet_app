@@ -64,6 +64,8 @@ class ScrapJobsController < ApplicationController
                                                     :detail => job_data["detail"],
                                                     :location => job_data["location"],
                                                     :salary => job_data["salary"],
+                                                    :salary_max => job_data["salary_max"],
+                                                    :salary_min => job_data["salary_min"],
                                                     :quantity => job_data["quantity"],
                                                     :category => job_data["category"],
                                                     :language => job_data["language"],

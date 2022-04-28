@@ -6,7 +6,7 @@
                     <div class='col-sm-6 col_padding_customize_right'>
                         <div class="employer_cv_searched_what">
                             <i class="material-icons-outlined">search</i>
-                            <%= text_field_tag :search, params[:search], required: true, class: 'form-control', placeholder: t(:profile_search_label)%>
+                            <%= text_field_tag :search, params[:search], class: 'form-control', value: @selected_param.search, placeholder: t(:profile_search_label)%>
                         </div>
                     </div>
                         
@@ -24,7 +24,7 @@
                                                     'Quảng Nam','Quảng Ngãi','Quảng Ninh','Quảng Trị',
                                                     'Sóc Trăng','Sơn La','Tây Ninh','Thái Bình','Thái Nguyên' ,
                                                     'Thanh Hóa','Thừa Thiên Huế','Tiền Giang','Trà Vinh',
-                                                    'Tuyên Quang','Vĩnh Long','Vĩnh Phúc','Yên Bái' ]), {:prompt => t(:all_location), class: 'form-control'}%>
+                                                    'Tuyên Quang','Vĩnh Long','Vĩnh Phúc','Yên Bái' ], :selected => @selected_param.location), {:prompt => t(:all_location), class: 'form-control'}%>
                         </div>
                     </div>
                     
@@ -56,13 +56,14 @@
                                 t(:school_level_6), 
                                 t(:school_level_7), 
                                 t(:school_level_8), 
-                                t(:school_level_9)]), {include_blank: false, :prompt => t(:all_education)}, { :class => 'form-select'})  %>
+                                t(:school_level_9)], :selected => @selected_param.school_level), 
+                                {include_blank: false, :prompt => t(:all_education)}, { :class => 'form-select'})  %>
                             </div>
                         </div>
 
                         <div class="col-sm-2 col_padding_customize_right">
                             <div class="employer_cv_filter_input">
-                                <%= f.select(:sex, options_for_select([t(:male), t(:female)]), {include_blank: false, :prompt => t(:all_sex)}, { :class => 'form-select'})  %>
+                                <%= f.select(:sex, options_for_select([t(:male), t(:female)], :selected => @selected_param.sex), {include_blank: false, :prompt => t(:all_sex)}, { :class => 'form-select'})  %>
                             </div>
                         </div>
 
@@ -74,7 +75,7 @@
                                                                         t(:leader),
                                                                         t(:manage), 
                                                                         t(:sen_manager),
-                                                                        t(:manager)]), 
+                                                                        t(:manager)], :selected => @selected_param.job_level), 
                                                                         {include_blank: false, :prompt => t(:all_level)}, 
                                                                         { :class => 'form-select'})  %>
                             </div>
@@ -82,13 +83,14 @@
 
                         <div class="col-sm-2 col_padding_customize_right">
                             <div class="employer_cv_filter_input">
-                                <%= f.select(:job_exp, options_for_select([t(:x_month, num: 6), 
-                                                                            t(:x_year, num: 1), 
+                                <%= f.select(:job_exp, options_for_select([t(:x_year, num: 1), 
                                                                             t(:x_year, num: 2), 
                                                                             t(:x_year, num: 3), 
                                                                             t(:x_year, num: 4), 
                                                                             t(:x_year, num: 5),
-                                                                            t(:more_than_x_year, num: 5)]),
+                                                                            t(:x_year, num: 10),
+                                                                            t(:x_year, num: 20),
+                                                                            t(:x_year, num: 40)], :selected => @selected_param.job_exp),
                                                                             {include_blank: false, :prompt => t(:all_exp)},
                                                                             { :class => 'form-select'})  %>
                             </div>
@@ -100,14 +102,14 @@
                                                                                 t(:x_day_pass, num: 3),
                                                                                 t(:x_day_pass, num: 7), 
                                                                                 t(:x_day_pass, num: 15), 
-                                                                                t(:x_day_pass, num: 30)]), 
+                                                                                t(:x_day_pass, num: 30)], :selected => @selected_param.updated_date), 
                                                                                 {include_blank: false, :prompt => t(:last_updated)}, 
                                                                                 { :class => 'form-select'})  %>
                             </div>
                         </div>
 
-                        <%= f.hidden_field:search, :value => params[:search]%>
-                        <%= f.hidden_field:location, :value => params[:location]%>
+                        <%= f.hidden_field:search, :value => @selected_param.search || params[:search]%>
+                        <%= f.hidden_field:location, :value => @selected_param.location || params[:location]%>
                         
                         <div class="col-sm-2">
                             <div class="employer_cv_filter_submit">

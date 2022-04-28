@@ -131,11 +131,12 @@ gem 'htmltoword'
 gem "redis"
 gem 'resque'
 
-# search
-gem 'pg_search'
-
 # breadcrumbs
 gem "breadcrumbs_on_rails"
 
 # auto task
 gem 'whenever', require: false
+
+# search
+gem "searchkick"
+gem  "elasticsearch", "< 7.14"

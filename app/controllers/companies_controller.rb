@@ -12,17 +12,17 @@ class CompaniesController < ApplicationController
 		if(params.has_key?(:search))
             @is_company_searched = true
 
+            @company_searchs = Company.search(params[:search], 
+                                            fields: ["name"], 
+                                            page: params[:page], per_page: 12)
+
             # Auto complete
-            @suggest_companies = Company.search_company_by_name(params[:search])
             respond_to do |format|
                 format.html {}
                 format.json {
-                    @suggest_companies = @suggest_companies.limit(10)
+                    @suggest_companies = @company_searchs.limit(10)
                 }
             end
-
-            # Search result
-			@company_searchs = Company.search_company_by_name(params[:search]).reorder('name ASC').page(params[:page]).per(12)
 		end
         
         if(params.has_key?(:tab))

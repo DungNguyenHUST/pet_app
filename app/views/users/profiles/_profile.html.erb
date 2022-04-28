@@ -427,14 +427,14 @@
                     <div class="user_profile_action_public">
                         <%= form_for(@user, remote: true) do |f| %>
                             <div class="user_profile_action_input">
-                                <%= f.radio_button :public, true, :checked => true, onchange: "javascript:this.form.commit.click();" %>
-                                <a><%= f.label :public, t(:public_mode), :value => "true" %></a>
+                                <%= f.radio_button :public, false, :checked => true, onchange: "javascript:this.form.commit.click();" %>
+                                <a><%= f.label :public, t(:public_mode), :value => "false" %></a>
                                 <br>
                                 <span><%=t(:public_mode_sub)%></span>
                             </div>
                             <div class="user_profile_action_input">
-                                <%= f.radio_button :public, false, onchange: "javascript:this.form.commit.click();" %>
-                                <a><%= f.label :public, t(:private_mode), :value => "false" %></a>
+                                <%= f.radio_button :public, true, onchange: "javascript:this.form.commit.click();" %>
+                                <a><%= f.label :public, t(:private_mode), :value => "true" %></a>
                                 <br>
                                 <span><%=t(:private_mode_sub)%></span>
                             </div>

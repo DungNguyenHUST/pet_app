@@ -5,8 +5,6 @@ class User < ApplicationRecord
             :recoverable, :rememberable, :validatable, :trackable,
             :omniauthable, omniauth_providers: [:facebook, :google_oauth2]
 
-    include PgSearch::Model
-
     extend FriendlyId
     def convert_slug
         slug = name.downcase.to_s
@@ -36,51 +34,31 @@ class User < ApplicationRecord
 
     # after_create :send_welcome_email
 
-    pg_search_scope :search_user_by_query, 
-                    against: [[:name, 'A'], [:email, 'B']], 
-                    using: {
-                        tsearch: { prefix: true, dictionary: "english", tsvector_column: "tsv" }
-                    }
+    # For Search
+    searchkick inheritance: true
 
-    pg_search_scope :search_user_by_address, 
-                    against: :address, 
-                    using: {
-                        tsearch: { prefix: true, dictionary: "english", tsvector_column: "tsv" }
-                    }
-
-    pg_search_scope :search_user_by_sex, 
-                    against: :sex, 
-                    using: {
-                        tsearch: { prefix: true, dictionary: "english", tsvector_column: "tsv" }
-                    }
-
-    pg_search_scope :search_user_associate_by_query, 
-                    associated_against: {
-                        user_educations: [:school_name, :cert_type, :school_field, :cert_level],
-                        user_experiences: [:job_level, :company_name],
-                        user_skills: :skill_name,
-                        user_adwards: :adward_name,
-                        user_certificates: :cert_name
-                    },
-                    using: {
-                        tsearch: { prefix: true, dictionary: "english", tsvector_column: "tsv" }
-                    }
-
-    pg_search_scope :search_user_associate_by_edu, 
-                    associated_against: {
-                        user_educations: :school_level
-                    },
-                    using: {
-                        tsearch: { prefix: true, dictionary: "english", tsvector_column: "tsv" }
-                    }
-
-    pg_search_scope :search_user_associate_by_exp, 
-                    associated_against: {
-                        user_experiences: :job_level
-                    },
-                    using: {
-                        tsearch: { prefix: true, dictionary: "english", tsvector_column: "tsv" }
-                    }
+    def search_data
+        {
+            name: name,
+            sex: sex,
+            address: address,
+            email: email,
+            updated_at: updated_at,
+            created_at: created_at,
+            public: public,
+            user_educations_school_name: user_educations.map(&:school_name).join(' '),
+            user_educations_school_field: user_educations.map(&:school_field).join(' '),
+            user_educations_school_level: user_educations.map(&:school_level).join(' '),
+            user_educations_cert_type: user_educations.map(&:cert_type).join(' '),
+            user_educations_cert_level: user_educations.map(&:cert_level).join(' '),
+            user_experiences_job_level: user_experiences.map(&:job_level).join(' '),
+            user_experiences_company_name: user_experiences.map(&:company_name).join(' '),
+            user_experiences_time: cal_user_experience.to_i,
+            user_adwards: user_adwards.map(&:adward_name).join(' '),
+            user_certificates: user_certificates.map(&:cert_name).join(' '),
+            user_skills: user_skills.map(&:skill_name).join(' ')
+        }
+    end
 
     def cal_user_experience
         exp = 0
@@ -90,49 +68,13 @@ class User < ApplicationRecord
         end
         return exp
     end
-
-    def self.filtered(filter_params)
-        user_filter = User.all
-        
-        unless filter_params.search.nil?
-            user_filter = user_filter.search_user_associate_by_query(filter_params.search)
-        end
-
-        unless filter_params.location.nil?
-            user_filter = user_filter.search_user_by_address(filter_params.location)
-        end
-
-        unless filter_params.sex.nil?
-            user_filter = user_filter.search_user_by_sex(filter_params.sex)
-        end
-
-        unless filter_params.school_level.nil?
-            user_filter = user_filter.search_user_associate_by_edu(filter_params.school_level)
-        end
-
-        unless filter_params.job_level.nil?
-            user_filter = user_filter.search_user_associate_by_exp(filter_params.job_level)
-        end
-
-        unless filter_params.job_exp.nil?
-            user_filter = user_filter.map{|m| m.cal_user_experience >= filter_params.job_exp.to_i}
-        end
-
-        unless filter_params.updated_date.nil?
-            user_filter = user_filter.where("updated_at >= ?", filter_params.updated_date.day.ago.utc)
-        end
-
-        if(user_filter)
-            self.where(id: user_filter)
-        end
-    end
         
     def self.approved
         where(approved: :true)
     end
 
     def self.public
-        where(public: :true)
+        where(public: :false)
     end
 
     def self.from_omniauth(auth)

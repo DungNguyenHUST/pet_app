@@ -1,6 +1,4 @@
 class Problem < ApplicationRecord
-    include PgSearch::Model
-
 	extend FriendlyId
 	def convert_slug
         slug = title.downcase.to_s
@@ -14,14 +12,16 @@ class Problem < ApplicationRecord
         return slug
     end
     friendly_id :convert_slug, use: :slugged
+    
+    # For Search
+    searchkick
+    def search_data
+    {
+        title: title
+    }
+    end
 	
     has_many :problem_solutions, dependent: :destroy
-
-    pg_search_scope :search_problem_by_title, 
-                    against: :title,
-                    using: {
-                        tsearch: { prefix: true, dictionary: "english", tsvector_column: "tsv" }
-                    }
 	
 	def self.approved
 	    where(approved: :true)
@@ -30,19 +30,4 @@ class Problem < ApplicationRecord
     def self.approving
         where(approved: :false)
     end
-
-    # def self.sort(soft_type)
-    #     if soft_type
-    #         problem_search = Problem.all(:order => 'DATE(updated_at), difficult')
-    #         if (problem_search)
-    #             self.where(id: problem_search)
-    #         else
-    #             @problems = Problem.all
-    #         end
-    #     else
-    #         @problems = Problem.all
-    #     end
-    # end
-
-    # validates :content, presence: true
 end

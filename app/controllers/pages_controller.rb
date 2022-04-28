@@ -1,7 +1,7 @@
 class PagesController < ApplicationController
     def home
 		@company_jobs = CompanyJob.all.order('created_at DESC').expire
-		
+
         if admin_signed_in?
 			redirect_to admin_path(current_admin)
 		elsif employer_signed_in?
@@ -27,17 +27,14 @@ class PagesController < ApplicationController
             @is_company_searched = true
 
             # Auto complete
-            @suggest_companies = Company.search_company_by_name(params[:search])
+            @company_searchs = Company.search(params[:search], fields: ["name"])
             respond_to do |format|
                 format.html {}
                 format.json {
-                    @suggest_companies = @suggest_companies.limit(10)
+                    @suggest_companies = @company_searchs.limit(10)
                 }
             end
-
-            # Search result
-			@company_searchs = Company.search_company_by_name(params[:search]).reorder('name ASC').page(params[:page]).per(12)
-
+			
 			# Redirect to first company result
 			if @company_searchs.total_count > 0
 				redirect_to company_path(@company_searchs.first, tab: "CompanyReviewsID")
@@ -56,16 +53,13 @@ class PagesController < ApplicationController
             @is_company_searched = true
 
             # Auto complete
-            @suggest_companies = Company.search_company_by_name(params[:search])
+			@company_searchs = Company.search(params[:search], fields: ["name"])
             respond_to do |format|
                 format.html {}
                 format.json {
-                    @suggest_companies = @suggest_companies.limit(10)
+                    @suggest_companies = @company_searchs.limit(10)
                 }
             end
-
-            # Search result
-			@company_searchs = Company.search_company_by_name(params[:search]).reorder('name ASC').page(params[:page]).per(12)
 
 			# Redirect to first company result
 			if @company_searchs.total_count > 0

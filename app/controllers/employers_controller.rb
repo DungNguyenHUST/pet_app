@@ -203,64 +203,68 @@ class EmployersController < ApplicationController
 
         @is_cv_searched = false
         @is_cv_filtered = false
+
+        st_selected = Struct.new(:school_level, :sex, :job_level, :job_exp, :updated_date, :search, :location) 
+        @selected_param = st_selected.new()
+
         if params.has_key?(:filter) # For Filter
             @is_cv_filtered = true
-            @cv_filtereds = User.all
 
-            @search = nil
-            @location = nil
-            @school_level = nil
-            @sex = nil
-            @job_level = nil
-            @job_exp = nil
-            @updated_date = nil
-            
-            if filter_params[:search].present?
-                @search = filter_params[:search]
-            end
+            @selected_param = st_selected.new(filter_params[:school_level], filter_params[:sex], filter_params[:job_level], filter_params[:job_exp], 
+                                            filter_params[:updated_date], filter_params[:search], filter_params[:location])
 
-            if filter_params[:location].present?
-                @location = filter_params[:location]
-            end
+            query                                   = filter_params[:search].presence || "*"
+            args                                    = {}
+            args                                    = args.merge(public: false)
+            args[:address]                          = Array(params[:location]) if params[:location].present?
+            args[:user_educations_school_level]     = Array(filter_params[:school_level]) if filter_params[:school_level].present?
+            args[:sex]                              = Array(filter_params[:sex]) if filter_params[:sex].present?
+            args[:user_experiences_job_level]       = Array(filter_params[:job_level]) if filter_params[:job_level].present?            
+            args                                    = args.merge(user_experiences_time: {gte: filter_params[:job_exp].scan(/\d+/).map(&:to_i).first}) if filter_params[:job_exp].present?
+            args                                    = args.merge(updated_at: {gte: (Time.now - filter_params[:updated_date].scan(/\d+/).map(&:to_i).first.days)}) if filter_params[:updated_date].present?
 
-            if filter_params[:school_level].present?
-                @category = filter_params[:school_level]
-            end
+            @cv_filtereds = User.search(query, 
+                                        fields: ["name", \
+                                                "user_educations_school_name", \
+                                                "user_educations_school_field", \
+                                                "user_educations_school_level", \
+                                                "user_educations_cert_type", \
+                                                "user_educations_cert_level", \
+                                                "user_experiences_job_level", \
+                                                "user_experiences_company_name", \
+                                                "user_adwards", \
+                                                "user_certificates", \
+                                                "user_skills"], \
+                                        where: args,
+                                        # order: {updated_at: :desc},
+                                        page: params[:page], per_page: 12)
 
-            if filter_params[:sex].present?
-                @sex = filter_params[:sex]
-            end
-
-            if filter_params[:job_exp].present?
-                @job_exp = filter_params[:job_exp]
-            end
-
-            if filter_params[:job_level].present?
-                @job_level = filter_params[:job_level]
-            end
-
-            if filter_params[:updated_date].present?
-                @post_date = filter_params[:updated_date].scan(/\d+/).map(&:to_i).first
-            end
-
-            @filter_params_input = filter_params_input.new(@school_level, @sex, @job_level, @job_exp, 
-                                                                    @updated_date, @search, @location)
-
-            @cv_filtereds = @cv_filtereds.filtered(@filter_params_input)
-            @cv_filtereds = @cv_filtereds.public.reorder('updated_at DESC').page(params[:page]).per(12)
         elsif(params.has_key?(:search) && params.has_key?(:location)) # For Search
             @is_cv_searched = true
-            @cv_searchs = User.all
 
-            unless params[:search].empty?
-                @cv_searchs = @cv_searchs.search_user_associate_by_query(params[:search])
-            end
+            @selected_param.search = params[:search]
+            @selected_param.location = params[:location]
 
-            unless params[:location].empty?
-                @cv_searchs = @cv_searchs.search_user_by_address(params[:location])
-            end
+            query                   = params[:search].presence || "*"
+            args                    = {}
+            args                    = args.merge(public: false)
+            args[:address]          = Array(params[:location]) if params[:location].present?
 
-            @cv_searchs = @cv_searchs.public.reorder('updated_at DESC').page(params[:page]).per(12)
+            @cv_searchs = User.search(query, 
+                                    fields: ["name", \
+                                            "user_educations_school_name", \
+                                            "user_educations_school_field", \
+                                            "user_educations_school_level", \
+                                            "user_educations_cert_type", \
+                                            "user_educations_cert_level", \
+                                            "user_experiences_job_level", \
+                                            "user_experiences_company_name", \
+                                            "user_adwards", \
+                                            "user_certificates", \
+                                            "user_skills"], \
+                                    where: args,
+                                    # order: {updated_at: :desc},
+                                    page: params[:page], per_page: 12)
         end
     end
     
@@ -268,16 +272,6 @@ class EmployersController < ApplicationController
 
     def filter_params
         filter_params = params.require(:filter).permit(:school_level, :sex, :job_level, :job_exp, :updated_date, :search, :location)
-    end
-
-    def filter_params_input
-        filter_params_input = Struct.new(:school_level,
-                                        :sex,
-                                        :job_level,
-                                        :job_exp, 
-                                        :updated_date,
-                                        :search,
-                                        :location)
     end
 
     def employer_params
