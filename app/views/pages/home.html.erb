@@ -81,17 +81,15 @@
     <div class="home_job_container">
         <div class="container">
             <div class="home_job_label">
-                <a><%=t(:last_posted_job)%></a>
-            </div>
-            <div class="home_job_all_btn">
-                <%= link_to jobs_search_path do%>
-                    <%=t(:all_job)%>
-                    <i class="material-icons-outlined">keyboard_double_arrow_right</i>
+                <%if @is_last_visit%>
+                    <a><%=t(:job_search_suggestion)%></a>
+                <%else%>
+                    <a><%=t(:last_posted_job)%></a>
                 <%end%>
             </div>
             <div class="home_job_render">
                 <div class="row">
-                    <%@company_jobs.first(9).each do |company_job|%>
+                    <%@company_jobs.each do |company_job|%>
                         <div class="col-sm-4">
                             <%company = find_company_of_job(company_job)%>
                             <div class="home_job_block border_home">
@@ -156,20 +154,21 @@
                     <%end%>
                 </div>
             </div>
+            <div class="home_job_all_btn">
+                <%= link_to jobs_search_path do%>
+                    <%=t(:all_job)%>
+                    <i class="material-icons-outlined">keyboard_double_arrow_right</i>
+                <%end%>
+            </div>
         </div>
     </div>
 
     <div class="home_explorer_container">
         <div class="container">
             <div class="home_explorer_label">
-                <a><%=t(:firework_explore)%></a>
+                <a><%=t(:how_firework_help)%></a>
             </div>
-            <div class="home_explorer_all_btn">
-                <%= link_to our_product_path do%>
-                    <%=t(:all_product)%>
-                    <i class="material-icons-outlined">keyboard_double_arrow_right</i>
-                <%end%>
-            </div>
+
             <div class="home_explorer_block">
                 <div class="row">
                     <div class="col-sm-3">

@@ -1,6 +1,25 @@
+include ApplicationHelper
 class PagesController < ApplicationController
     def home
-		@company_jobs = CompanyJob.all.order('created_at DESC').expire
+		if search_track = find_last_search_of_visitor
+			@company_jobs = CompanyJob.search(search_track.query[:search], 
+															fields: ["title^10", "company_name^5", "category", "skill"], 
+															order: {created_at: :desc},
+															page: params[:page], per_page: 10)
+		end
+
+		@is_last_visit = false
+		if @company_jobs
+			if @company_jobs.total_count < 9
+				@company_jobs = CompanyJob.all.order('created_at DESC').expire
+			else
+				@is_last_visit = true
+			end
+		else
+			@company_jobs = CompanyJob.all.order('created_at DESC').expire
+		end
+
+		@company_jobs = @company_jobs.first(9)
 
         if admin_signed_in?
 			redirect_to admin_path(current_admin)

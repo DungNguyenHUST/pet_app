@@ -1393,6 +1393,41 @@ ALTER SEQUENCE public.scrap_reviews_id_seq OWNED BY public.scrap_reviews.id;
 
 
 --
+-- Name: search_tracks; Type: TABLE; Schema: public; Owner: -
+--
+
+CREATE TABLE public.search_tracks (
+    id bigint NOT NULL,
+    visitor_id character varying,
+    user_id integer,
+    search_type character varying,
+    query character varying,
+    results_count integer,
+    created_at timestamp(6) without time zone NOT NULL,
+    updated_at timestamp(6) without time zone NOT NULL
+);
+
+
+--
+-- Name: search_tracks_id_seq; Type: SEQUENCE; Schema: public; Owner: -
+--
+
+CREATE SEQUENCE public.search_tracks_id_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+--
+-- Name: search_tracks_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: -
+--
+
+ALTER SEQUENCE public.search_tracks_id_seq OWNED BY public.search_tracks.id;
+
+
+--
 -- Name: user_adwards; Type: TABLE; Schema: public; Owner: -
 --
 
@@ -1933,6 +1968,13 @@ ALTER TABLE ONLY public.scrap_reviews ALTER COLUMN id SET DEFAULT nextval('publi
 
 
 --
+-- Name: search_tracks id; Type: DEFAULT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.search_tracks ALTER COLUMN id SET DEFAULT nextval('public.search_tracks_id_seq'::regclass);
+
+
+--
 -- Name: user_adwards id; Type: DEFAULT; Schema: public; Owner: -
 --
 
@@ -2275,6 +2317,14 @@ ALTER TABLE ONLY public.scrap_jobs
 
 ALTER TABLE ONLY public.scrap_reviews
     ADD CONSTRAINT scrap_reviews_pkey PRIMARY KEY (id);
+
+
+--
+-- Name: search_tracks search_tracks_pkey; Type: CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.search_tracks
+    ADD CONSTRAINT search_tracks_pkey PRIMARY KEY (id);
 
 
 --
@@ -2660,6 +2710,13 @@ CREATE UNIQUE INDEX index_problems_on_slug ON public.problems USING btree (slug)
 --
 
 CREATE INDEX index_problems_on_tsv ON public.problems USING gin (tsv);
+
+
+--
+-- Name: index_search_tracks_on_created_at_and_user_id_and_visitor_id; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE INDEX index_search_tracks_on_created_at_and_user_id_and_visitor_id ON public.search_tracks USING btree (created_at, user_id, visitor_id);
 
 
 --
@@ -3164,6 +3221,7 @@ INSERT INTO "schema_migrations" (version) VALUES
 ('20220214080327'),
 ('20220214104000'),
 ('20220418084819'),
-('20220425101253');
+('20220425101253'),
+('20220501102552');
 
 

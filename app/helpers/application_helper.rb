@@ -128,4 +128,14 @@ module ApplicationHelper
         now = Time.now.utc.to_date
         now.year - dob.year - ((now.month > dob.month || (now.month == dob.month && now.day >= dob.day)) ? 0 : 1)
     end
+
+    def find_last_search_of_visitor
+        search_track = nil
+        if user_signed_in?
+            search_track = SearchTrack.where(:user_id => current_user.id).order('created_at DESC').first
+        else
+            search_track = SearchTrack.where(:visitor_id => request.remote_ip).order('created_at DESC').first
+        end
+        return search_track
+    end
 end

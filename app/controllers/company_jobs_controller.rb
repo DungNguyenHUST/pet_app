@@ -170,7 +170,7 @@ class CompanyJobsController < ApplicationController
             args                    = args.merge(created_at: {gte: (Time.now - filter_params[:post_date].scan(/\d+/).map(&:to_i).first.days)}) if filter_params[:post_date].present?
 
             @job_filtereds = CompanyJob.search(query, 
-                                            fields: ["title", "company_name", "category", "skill"], 
+                                            fields: ["title^10", "company_name^5", "category", "skill"], 
                                             where: args,
                                             order: {created_at: :desc},
                                             page: params[:page], per_page: 20)
@@ -186,10 +186,23 @@ class CompanyJobsController < ApplicationController
             args[:location]         = Array(params[:location]) if params[:location].present?
 
             @job_searchs = CompanyJob.search(query, 
-                                            fields: ["title", "company_name", "category", "skill"], 
+                                            fields: ["title^10", "company_name^5", "category", "skill"], 
                                             where: args,
                                             order: {created_at: :desc},
                                             page: params[:page], per_page: 20)
+
+            # Tracking user search
+            user_id                         = -1
+            search_track_query              = {}    
+            search_track_query[:search]     = Array(params[:search])
+            search_track_query[:location]   = Array(params[:location])  
+            user_id                         = current_user.id if user_signed_in?                          
+
+            @search_track = SearchTrack.new(:visitor_id => request.remote_ip,
+                                            :user_id => user_id,
+                                            :search_type => "CompanyJob",
+                                            :query => search_track_query)
+            @search_track.save!
         end
     end
 
