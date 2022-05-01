@@ -96,13 +96,12 @@
     <!-- Tiny MCE config end -->
 
     <!-- Easy Auto complete search start -->
-    <%if current_page?(jobs_search_path) \
-        || current_page?(root_path) \
-        || @company_job.present? \
-        || current_page?(companies_path) \
-        || current_page?(review_path) \
-        || current_page?(interview_path) \
-        || current_page?(problems_path)%>
+    <%if request.original_url.include?("/jobs_search") \
+        || request.original_url.include?(root_path) \
+        || request.original_url.include?("/companies") \
+        || request.original_url.include?(review_path) \
+        || request.original_url.include?(interview_path) \
+        || request.original_url.include?("/problems")%>
         <script src="//code.jquery.com/jquery-1.11.2.min.js"></script>
         <%# <script src="https://cdnjs.cloudflare.com/ajax/libs/easy-autocomplete/1.3.5/jquery.easy-autocomplete.min.js"></script> %>
         <script>

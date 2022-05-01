@@ -28,24 +28,24 @@ class Users::SessionsController < Devise::SessionsController
 
     # The path used after sign in.
     def after_sign_in_path_for(resource_or_scope)
-        if (session[:my_previous_url].to_s == new_user_session_path || 
-            session[:my_previous_url].to_s == user_session_path || 
-            session[:my_previous_url].to_s == destroy_user_session_path || 
-            session[:my_previous_url].to_s == user_facebook_omniauth_authorize_path || 
-            session[:my_previous_url].to_s == user_facebook_omniauth_callback_path || 
-            session[:my_previous_url].to_s == user_google_oauth2_omniauth_authorize_path || 
-            session[:my_previous_url].to_s == user_google_oauth2_omniauth_callback_path || 
-            session[:my_previous_url].to_s == new_user_password_path || 
-            session[:my_previous_url].to_s == edit_user_password_path || 
-            session[:my_previous_url].to_s == user_password_path || 
-            session[:my_previous_url].to_s == cancel_user_registration_path || 
-            session[:my_previous_url].to_s == new_user_registration_path || 
-            session[:my_previous_url].to_s == edit_user_registration_path || 
-            session[:my_previous_url].to_s == user_registration_path || 
-            session[:my_previous_url].to_s == users_path || 
-            session[:my_previous_url].to_s == new_user_path || 
-            session[:my_previous_url].to_s == edit_user_path(current_user) || 
-            session[:my_previous_url].to_s == user_path(current_user))
+        if (session[:my_previous_url].include?(new_user_session_path)|| 
+            session[:my_previous_url].include?(user_session_path) || 
+            session[:my_previous_url].include?(destroy_user_session_path) || 
+            session[:my_previous_url].include?(user_facebook_omniauth_authorize_path) || 
+            session[:my_previous_url].include?(user_facebook_omniauth_callback_path) || 
+            session[:my_previous_url].include?(user_google_oauth2_omniauth_authorize_path) || 
+            session[:my_previous_url].include?(user_google_oauth2_omniauth_callback_path) || 
+            session[:my_previous_url].include?(new_user_password_path) || 
+            session[:my_previous_url].include?(edit_user_password_path) || 
+            session[:my_previous_url].include?(user_password_path) || 
+            session[:my_previous_url].include?(cancel_user_registration_path) || 
+            session[:my_previous_url].include?(new_user_registration_path) || 
+            session[:my_previous_url].include?(edit_user_registration_path) || 
+            session[:my_previous_url].include?(user_registration_path) || 
+            session[:my_previous_url].include?(users_path) || 
+            session[:my_previous_url].include?(new_user_path) || 
+            session[:my_previous_url].include?(edit_user_path(current_user)) || 
+            session[:my_previous_url].include?(user_path(current_user)))
             
             session[:my_previous_url] = root_path
         end
@@ -54,6 +54,6 @@ class Users::SessionsController < Devise::SessionsController
     end
 
     def save_my_previous_url
-        session[:my_previous_url] = URI(request.referer || '').path
+        session[:my_previous_url] = URI(request.referer || '')
     end
 end

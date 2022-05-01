@@ -4,7 +4,8 @@
         <div class="employer_block">
             <div class="employer_add_new_form">
                 <%= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
-                    <div class="employer_add_new_title">
+                    <div class="employer_add_new_title">                    
+                        <%= render "devise/shared/error_messages", resource: resource %>
                         <a><%=t(:employer_create_account)%></a>
                     </div>
 

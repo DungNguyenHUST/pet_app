@@ -136,7 +136,11 @@
                                     </div>
 
                                     <div class="home_job_location">
-                                        <a><i class="material-icons-outlined">location_on</i><%= truncate(strip_tags(find_job_location(company_job.location)), length: 100)%></a>
+                                        <%if !company_job.location.to_s.blank?%>
+                                            <a><i class="material-icons-outlined">location_on</i><%= truncate(strip_tags(find_job_location(company_job.location)), length: 100)%></a>
+                                        <%else%>
+                                            <a><i class="material-icons-outlined">location_on</i><%=t(:updating)%></a>
+                                        <%end%>
                                     </div>
 
                                     <div class="home_job_salary">
@@ -159,6 +163,12 @@
         <div class="container">
             <div class="home_explorer_label">
                 <a><%=t(:firework_explore)%></a>
+            </div>
+            <div class="home_explorer_all_btn">
+                <%= link_to our_product_path do%>
+                    <%=t(:all_product)%>
+                    <i class="material-icons-outlined">keyboard_double_arrow_right</i>
+                <%end%>
             </div>
             <div class="home_explorer_block">
                 <div class="row">
@@ -353,33 +363,6 @@
                                     <%=t(:read_more)%>
                                     <i class="material-icons-outlined">arrow_forward</i>
                                 <%end%>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-
-    <div class="home_signup_container">
-        <div class="container">
-            <div class="row">
-                <div class="col-sm-8">
-                    <div class="home_signup_label">
-                        <h3><i class="material-icons-outlined">notifications_active</i><%=t(:home_login_intro)%></h3>
-                    </div>
-                </div>
-
-                <div class="col-sm-4">
-                    <div class="row">
-                        <div class="col-sm-6">
-                            <div class="home_signup_block">
-                                <button><%= link_to t(:signup), new_user_registration_path %></button>
-                            </div>
-                        </div>
-                        <div class="col-sm-6">
-                            <div class="home_signin_block">
-                                <button><%= link_to t(:signin), new_user_session_path %></button>
                             </div>
                         </div>
                     </div>
