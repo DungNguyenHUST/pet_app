@@ -56,7 +56,8 @@ class ScrapJobsController < ApplicationController
                         if job_data["apply_site"].present?
                             unless job_exsit = CompanyJob.find_by(apply_site: job_data["apply_site"])
                                 print "*********Create new job*********\n"
-                                CompanyJob.create!(job_data)
+                                @company_job = CompanyJob.new(job_data)
+                                @company_job.save!
                             else
                                 print "*********Duplicate data -> Update*********\n"
                                 job_exsit.update!(:company_id => job_data["company_id"],
