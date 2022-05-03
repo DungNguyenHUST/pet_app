@@ -172,7 +172,11 @@
                         </div>
 
                         <div class="company_profile_summary">
-                            <a><%= @company.overview.html_safe %></a>
+                            <%if @company.overview%>
+                                <a><%= @company.overview.html_safe %></a>
+                            <%else%>
+                                <a><%= t(:updating) %></a>
+                            <%end%>
                         </div>
                     </div>
                 </div>

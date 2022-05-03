@@ -1,0 +1,2 @@
+module ScrapCompaniesHelper
+end

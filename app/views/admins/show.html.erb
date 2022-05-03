@@ -94,6 +94,14 @@
                             <a class="nav-link <%=active%>" href="<%=admin_path(current_admin, tab: 'AdminScrapReviewID')%>"><i class="material-icons-outlined">star_border</i><%=t(:review_scraper)%></a>
                         </li>
                         <li class="nav-item">
+                            <%if @tab == "AdminScrapCompanyID"%>
+                                <%active = "active"%>
+                            <%else%> 
+                                <%active = ""%>
+                            <%end%>                                     
+                            <a class="nav-link <%=active%>" href="<%=admin_path(current_admin, tab: 'AdminScrapCompanyID')%>"><i class="material-icons-outlined">smart_toy</i><%=t(:company_scraper)%></a>
+                        </li>
+                        <li class="nav-item">
                             <%if @tab == "AdminCoverVitaeID"%>
                                 <%active = "active"%>
                             <%else%> 
@@ -620,6 +628,70 @@
                     <%if @tab == "AdminScrapReviewID"%>
                         <%@scrap_review = ScrapReview.new%>
                         <%= render :partial => 'scrap_reviews/form', :local => @scrap_review %>
+                    <%end%>
+
+                    <%if @tab == "AdminScrapCompanyID"%>
+                        <div class="admin_tab">
+                            <div class="new_admin_action">
+                                <%= link_to new_scrap_company_path do%>
+                                    <button type="submit"><%=t(:create_new)%></button> 
+                                <%end%>
+                            </div>
+
+                            <div class="admin_table">
+                                <div class="table-responsive">
+                                    <table class="table text-center table-hover">
+                                        <thead>
+                                            <tr>
+                                                <th style="width: 2%;">No.</th>
+                                                <th style="width: 25%;">Url</th>
+                                                <th style="width: 8%;">Site</th>
+                                                <th style="width: 8%;">Total Page</th>
+                                                <th style="width: 10%;"><%=t(:created_date)%></th>
+                                                <th style="width: 10%;"><%=t(:last_updated)%></th>
+                                                <th style="width: 16%;"><%=t(:action)%></th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <%@scrap_companies.each_with_index do |scrap_company, index|%>
+                                                <tr>
+                                                    <td><%=index + 1%></td>
+                                                    <td scope="row" class="text-start"><%=link_to truncate(strip_tags(scrap_company.url), length: 60), scrap_company_path(:id => scrap_company.id)%></td>
+                                                    <%if JobCrawler::split_domain_name(scrap_company.url).present?%>
+                                                        <td><%=JobCrawler::split_domain_name(scrap_company.url).upcase%></td>
+                                                    <%else%>
+                                                        <td>---</td>
+                                                    <%end%>
+                                                    <td><%=scrap_company.page_num%></td>
+                                                    <td><%=scrap_company.created_at.strftime("%B %d, %Y")%></td>
+                                                    <td><%=scrap_company.updated_at.strftime("%B %d, %Y")%></td>
+                                                    <td>
+                                                        <%= link_to 'Process', scrap_companies_processing_path(:id => scrap_company.id), method: :get, class: "admin_approving"%>
+                                                        <%= link_to t(:view), scrap_company_path(scrap_company), method: :get, class: "admin_preview" %>
+                                                        <%= link_to t(:edit), edit_scrap_company_path(scrap_company, :is_edit => true), method: :get, class: "admin_edit" %>
+                                                        <%= link_to t(:delete), scrap_company_path(scrap_company), method: :delete, class: "admin_delete", data: { confirm: t(:are_you_sure) } %>
+                                                    </td>
+                                                </tr>
+                                            <%end%>
+                                        </tbody>
+                                    </table>
+                                </div>
+                                <%= paginate @scrap_companies, window: 2%>
+                            </div>
+
+                            <div class="row">
+                                <div class="col-sm-6">
+                                    <div class="scrap_companies_all_btn">
+                                        <%= link_to '<button type="submit">Process All</button>'.html_safe, scrap_companies_processing_path, method: :get%>
+                                    </div>
+                                </div>
+                                <div class="col-sm-6">
+                                    <div class="scrap_companies_tab_bottom">
+                                        <%= link_to '<button type="submit">Push All</button>'.html_safe, scrap_companies_push_path%>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
                     <%end%>
 
                     <%if @tab == "AdminCoverVitaeID"%>

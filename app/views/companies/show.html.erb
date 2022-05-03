@@ -2,10 +2,18 @@
 <%case @tab%>
 <%when "default", "CompanyProfileID"%>
     <%title = t(:company_show_meta_1)%>
-    <%content = @company.overview%>
+    <%if @company.overview%>
+        <%content = @company.overview%>
+    <%else%>
+        <%content = t(:updating)%>
+    <%end%>
 <%when "CompanyPolicyID"%>
     <%title = t(:company_show_meta_2)%>
-    <%content = @company.policy%>
+    <%if @company.policy%>
+        <%content = @company.policy%>
+    <%else%>
+        <%content = t(:updating)%>
+    <%end%>
 <%when "CompanyReviewsID"%>
     <%title = t(:company_show_meta_3)%>
     <%content = t(:company_show_meta_4)%>

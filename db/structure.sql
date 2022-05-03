@@ -1321,6 +1321,38 @@ CREATE TABLE public.schema_migrations (
 
 
 --
+-- Name: scrap_companies; Type: TABLE; Schema: public; Owner: -
+--
+
+CREATE TABLE public.scrap_companies (
+    id bigint NOT NULL,
+    page_num integer,
+    url character varying,
+    created_at timestamp(6) without time zone NOT NULL,
+    updated_at timestamp(6) without time zone NOT NULL
+);
+
+
+--
+-- Name: scrap_companies_id_seq; Type: SEQUENCE; Schema: public; Owner: -
+--
+
+CREATE SEQUENCE public.scrap_companies_id_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+--
+-- Name: scrap_companies_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: -
+--
+
+ALTER SEQUENCE public.scrap_companies_id_seq OWNED BY public.scrap_companies.id;
+
+
+--
 -- Name: scrap_jobs; Type: TABLE; Schema: public; Owner: -
 --
 
@@ -1954,6 +1986,13 @@ ALTER TABLE ONLY public.reports ALTER COLUMN id SET DEFAULT nextval('public.repo
 
 
 --
+-- Name: scrap_companies id; Type: DEFAULT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.scrap_companies ALTER COLUMN id SET DEFAULT nextval('public.scrap_companies_id_seq'::regclass);
+
+
+--
 -- Name: scrap_jobs id; Type: DEFAULT; Schema: public; Owner: -
 --
 
@@ -2301,6 +2340,14 @@ ALTER TABLE ONLY public.reports
 
 ALTER TABLE ONLY public.schema_migrations
     ADD CONSTRAINT schema_migrations_pkey PRIMARY KEY (version);
+
+
+--
+-- Name: scrap_companies scrap_companies_pkey; Type: CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.scrap_companies
+    ADD CONSTRAINT scrap_companies_pkey PRIMARY KEY (id);
 
 
 --
@@ -3222,6 +3269,7 @@ INSERT INTO "schema_migrations" (version) VALUES
 ('20220214104000'),
 ('20220418084819'),
 ('20220425101253'),
-('20220501102552');
+('20220501102552'),
+('20220503040137');
 
 

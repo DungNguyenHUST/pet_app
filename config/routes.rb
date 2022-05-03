@@ -107,6 +107,10 @@ Rails.application.routes.draw do
   get 'scrap_jobs_push' => 'scrap_jobs#push'
   get 'scrap_jobs_processing' => 'scrap_jobs#processing'
 
+  resources :scrap_companies
+  get 'scrap_companies_push' => 'scrap_companies#push'
+  get 'scrap_companies_processing' => 'scrap_companies#processing'
+
   resources :scrap_reviews
 
   resources :reports

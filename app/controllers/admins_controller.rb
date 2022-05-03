@@ -38,6 +38,7 @@ class AdminsController < ApplicationController
         @employer_bills_confirming = EmployerBill.all.confirming.order('created_at DESC').page(params[:page]).per(25)
         @scrap_jobs = ScrapJob.all.approved.order('created_at DESC').page(params[:page]).per(25)
         @scrap_reviews = ScrapReview.all.approved.order('created_at DESC').page(params[:page]).per(25)
+        @scrap_companies = ScrapCompany.all.order('created_at DESC').page(params[:page]).per(25)
     end
 
     def edit

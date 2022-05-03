@@ -51,7 +51,11 @@
     </div>
 
     <div class="company_overview">
-        <%=truncate(strip_tags(company.overview), length: 90)%>
+        <%if company.overview%>
+            <%=truncate(strip_tags(company.overview), length: 90)%>
+        <%else%>
+            <%= t(:updating) %>
+        <%end%>
     </div>
     
     <div class="company_summary">

@@ -1,0 +1,32 @@
+<div class ="row">
+    <div class="col-sm-8">
+        <div class="new_scrap_company_form">
+            <%= form_for @scrap_company, :html => { :class => "form-horizontal post" } do |f| %>
+                <div class="new_scrap_company_section">
+                    <div class="new_scrap_company_content">
+                        <div class="new_scrap_company_label">
+                            <a><%= f.label :url, "Link", class: "new_scrap_company_label_name" %></a>
+                        </div>
+
+                        <div class="new_scrap_company_input">
+                            <%= f.text_field :url, :required => true, class: "form-control", placeholder: "Link" %>
+                        </div>
+                    </div>
+                    <div class="new_scrap_company_content">
+                        <div class="new_scrap_company_label">
+                            <a><%= f.label :page_num, "Link", class: "new_scrap_company_label_name" %></a>
+                        </div>
+
+                        <div class="new_scrap_company_input">
+                            <%= f.number_field :page_num, :required => true, class: "form-control", placeholder: "Link" %>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="new_scrap_company_submit">
+                    <%= f.submit "Let's go", class: "new_scrap_company_form_submit" %>
+                </div>
+            <%end%>
+        </div>
+    </div>
+</div>

@@ -23,6 +23,8 @@ module PetApp
     config.eager_load_paths += %W(#{config.root}/app/crawlers/jobs)
     config.autoload_paths += %W(#{config.root}/app/crawlers/reviews)
     config.eager_load_paths += %W(#{config.root}/app/crawlers/reviews)
+    config.autoload_paths += %W(#{config.root}/app/crawlers/companies)
+    config.eager_load_paths += %W(#{config.root}/app/crawlers/companies)
 
     # Job worker
     config.active_job.queue_adapter = :resque
