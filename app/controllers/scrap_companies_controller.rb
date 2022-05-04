@@ -33,16 +33,20 @@ class ScrapCompaniesController < ApplicationController
     end
 
     def processing
-        if params.has_key?(:id)
-            @scrap_company = ScrapCompany.find params[:id]
-            if @scrap_company
-                CrawlerCompanyJob.perform_later(@scrap_company.id)
-                # CompanyCrawler.process(@scrap_company)
-                flash[:success] = "Add Scrap successed ..............."
+        if Rails.env.development?
+            if params.has_key?(:id)
+                @scrap_company = ScrapCompany.find params[:id]
+                if @scrap_company
+                    CrawlerCompanyJob.perform_later(@scrap_company.id)
+                    # CompanyCrawler.process(@scrap_company)
+                    flash[:success] = "Add Scrap successed ..............."
+                end
+            else
+                self.pull_all
+                flash[:success] = "Scrap all site ..............."
             end
         else
-            self.pull_all
-            flash[:success] = "Scrap all site ..............."
+            flash[:error] = "In Production mode ..............."
         end
 
         redirect_to admin_path(current_admin, tab: 'AdminScrapCompanyID')
@@ -72,9 +76,8 @@ class ScrapCompaniesController < ApplicationController
 
                             # Store image from remote
                             if company_data["image"]
-                                tempfile = MiniMagick::Image.open(company_data["image"])
-        
-                                @company.avatar = tempfile
+                                image = MiniMagick::Image.open(company_data["image"])
+                                @company.avatar = image
                             end
 
                             @company.save!

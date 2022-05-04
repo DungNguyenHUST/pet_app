@@ -25,16 +25,20 @@ class ScrapJobsController < ApplicationController
     end
 
     def processing
-        if params.has_key?(:id)
-            @scrap_job = ScrapJob.find params[:id]
-            if @scrap_job
-                # JobCrawler.process(@scrap_job)
-                CrawlerJob.perform_later(@scrap_job.id)
-                flash[:success] = "Add Scrap successed ..............."
+        if Rails.env.development?
+            if params.has_key?(:id)
+                @scrap_job = ScrapJob.find params[:id]
+                if @scrap_job
+                    # JobCrawler.process(@scrap_job)
+                    CrawlerJob.perform_later(@scrap_job.id)
+                    flash[:success] = "Add Scrap successed ..............."
+                end
+            else
+                self.pull_all
+                flash[:success] = "Scrap all site ..............."
             end
         else
-            self.pull_all
-            flash[:success] = "Scrap all site ..............."
+            flash[:error] = "In Production mode ..............."
         end
 
         redirect_to admin_path(current_admin, tab: 'AdminScrapJobID')

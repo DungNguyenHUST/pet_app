@@ -1,3 +1,4 @@
+include ApplicationHelper
 class ImageUploader < CarrierWave::Uploader::Base
   # Include RMagick or MiniMagick support:
   # include CarrierWave::RMagick
@@ -49,7 +50,11 @@ class ImageUploader < CarrierWave::Uploader::Base
 
   # Override the filename of the uploaded files:
   # Avoid using model.id or version_name here, see uploader/store.rb for details.
-  # def filename
-  #   "something.jpg" if original_filename
-  # end
+  def filename
+    if model.has_attribute?("name")
+      "#{convert_vie_to_eng(model.name).gsub!(/ /, "-")}.#{file.extension}" if original_filename.present?
+    else
+      return original_filename
+    end
+  end
 end
