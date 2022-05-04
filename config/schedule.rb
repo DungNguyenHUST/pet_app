@@ -59,7 +59,7 @@ set :bundle_command, "$HOME/.rbenv/shims/bundle exec"
     
     # Reindex all job - not need at update
     every :day, at: '4:04 am' do
-        rake "searchkick:reindex CLASS=CompanyJob"
+        rake "index_job_tasks:job_indexing"
     end
 # end
 

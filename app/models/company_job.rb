@@ -15,6 +15,29 @@ class CompanyJob < ApplicationRecord
     
     # For Search
     searchkick
+    def search_data
+        {
+            title: title,
+            company_name: company_name,
+            category: category,
+            skill: skill,
+            location: location,
+            address: address,
+            level: level,
+            typical: typical,
+            salary_min: salary_min,
+            salary_max: salary_max,
+            salary: salary,
+            company_id: company_id,
+            end_date: end_date,
+            dudate: dudate,
+            approved: approved,
+            sponsor: sponsor,
+            urgent: urgent,
+            created_at: created_at,
+            updated_at: updated_at
+        }
+    end
     
     has_many :company_apply_jobs, dependent: :destroy
     has_many :company_save_jobs, dependent: :destroy

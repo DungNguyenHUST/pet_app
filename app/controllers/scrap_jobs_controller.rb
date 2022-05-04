@@ -99,7 +99,8 @@ class ScrapJobsController < ApplicationController
     end
 
     def push
-        self.push_all
+        # self.push_all
+        PushingJob.perform_later
         flash[:success] = "Job push successed all"
         redirect_to admin_path(current_admin, tab: 'AdminScrapJobID')
     end
