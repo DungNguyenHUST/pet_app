@@ -96,6 +96,8 @@ class ScrapJobsController < ApplicationController
                 end
             end
         end
+
+        CompanyJob.reindex # reindex after push
     end
 
     def push

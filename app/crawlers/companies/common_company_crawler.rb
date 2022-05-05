@@ -194,8 +194,15 @@ module CommonCompanyCrawler
         return company_list
     end
 
+    @@FILE_COUNT = 0
     def save_company_to_csv(company_data)
-        filepath = "tmp/companies/companies.csv"
+        filepath = "tmp/companies/companies_#{@@FILE_COUNT}.csv"
+
+        if File.exist?(filepath)
+            if CSV.read(filepath).length > 500
+                @@FILE_COUNT += 1
+            end
+        end
         
         CSV.open(filepath, "a", :headers => true) do |csv|
             # Write header if file empty
@@ -235,7 +242,7 @@ module CommonCompanyCrawler
                                         :benefit => company_data.benefit,
                                         :employer_id => company_data.employer_id)
 
-                company_exsit = Company.find_by(name: company_data.name) # remove duplicate name
+                company_exsit = Company.find_by(name: company_data.name, address: company_data.address) # remove duplicate name
 
                 unless company_exsit
                     # if company_data.image

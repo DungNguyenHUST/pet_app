@@ -53,7 +53,7 @@ class ScrapCompaniesController < ApplicationController
     end
 
     def pull_all
-        ScrapCompany.all.approved.each do |scrap_job|
+        ScrapCompany.all.each do |scrap_job|
             CrawlerCompanyJob.perform_later(scrap_job.id)
         end
     end
@@ -70,14 +70,17 @@ class ScrapCompaniesController < ApplicationController
                 csv.each do |row|
                     company_data = row.to_hash
                     if company_data["name"].present?
-                        unless company_exsit = Company.find_by(name: company_data["name"])
+                        unless company_exsit = Company.find_by(name: company_data["name"], address: company_data["address"])
                             print "*********Create new company*********\n"
                             @company = Company.new(company_data)
 
                             # Store image from remote
                             if company_data["image"]
-                                image = MiniMagick::Image.open(company_data["image"])
-                                @company.avatar = image
+                                begin
+                                    image = MiniMagick::Image.open(company_data["image"])
+                                    @company.avatar = image
+                                rescue
+                                end
                             end
 
                             @company.save!

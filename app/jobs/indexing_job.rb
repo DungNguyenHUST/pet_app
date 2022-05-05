@@ -3,7 +3,7 @@ class IndexingJob < ApplicationJob
 
     def perform(*args)
         CompanyJob.reindex
-        Company.reindex
+        # Company.reindex
         # Problem.reindex
         # User.reindex
         # UserAdward.reindex
