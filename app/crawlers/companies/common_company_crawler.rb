@@ -199,7 +199,7 @@ module CommonCompanyCrawler
         filepath = "tmp/companies/companies_#{@@FILE_COUNT}.csv"
 
         if File.exist?(filepath)
-            if CSV.read(filepath).length > 500
+            if CSV.read(filepath).length > 1000 # split each 1000 record
                 @@FILE_COUNT += 1
             end
         end

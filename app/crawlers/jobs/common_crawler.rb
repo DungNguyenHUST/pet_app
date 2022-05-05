@@ -193,6 +193,7 @@ module CommonCrawler
         return company_list
     end
 
+    @@FILE_COUNT = 0
     def save_job_to_csv(job_data)
         domain = split_domain_name(job_data.apply_site)
 
@@ -205,7 +206,13 @@ module CommonCrawler
         FileUtils.remove_dir(old_filedir, true) if File.directory?(old_filedir) # Delete old dir 7 days ago
         FileUtils.mkdir_p(filedir) unless File.directory?(filedir) # Create new dir today
 
-        filepath = "#{filedir}/jobs_#{domain}.csv"
+        filepath = "#{filedir}/jobs_#{domain}_#{@@FILE_COUNT}.csv"
+
+        if File.exist?(filepath)
+            if CSV.read(filepath).length > 1000 # split each 1000 record
+                @@FILE_COUNT += 1
+            end
+        end
         
         CSV.open(filepath, "a", :headers => true) do |csv|
             # Write header if file empty
