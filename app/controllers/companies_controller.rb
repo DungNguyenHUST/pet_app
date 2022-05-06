@@ -44,6 +44,9 @@ class CompaniesController < ApplicationController
         end
     end
 
+    def list
+    end
+
     def new
         @company = Company.new
     end

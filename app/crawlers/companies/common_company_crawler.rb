@@ -165,7 +165,7 @@ module CommonCompanyCrawler
         
         # Push data in csv file
         unless File.exist?(filepath)
-            doc = Nokogiri::HTML(URI.open('https://www.firework.vn/companies'))
+            doc = Nokogiri::HTML(URI.open('https://www.firework.vn/company_list'))
 
             company_id = doc.css("div.user_select_company option").map { |company| company['value']}
             company_name = doc.css("div.user_select_company option").map { |company| convert_vie_to_eng(company.text.strip)}

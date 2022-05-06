@@ -63,6 +63,7 @@ Rails.application.routes.draw do
     resources :company_follows
 	  resources :company_images
   end
+  get 'company_list' => 'companies#list'
   
   resources :company_reviews do
     resources :company_reply_reviews

@@ -121,49 +121,6 @@
                     <%end%>
                 </div>
             <%end%>
-
-            <%=form_tag pages_select_company_path, :method => "get" do%>
-                <div class="company_current_review">
-                    <div class='row'>
-                        <div class="col-sm-4">
-                            <div class="company_current_review_title">
-                                <i class="material-icons-outlined checked">create</i><a> <%=t(:review_your_company)%> </a>
-                            </div>
-                        </div>
-
-                        <div class="col-sm-6">
-                            <div class="user_select_company">
-                                <%= select_tag :company_id, 
-                                    options_from_collection_for_select(Company.all, "id", "name"), 
-                                    required: true,
-                                    include_blank: false,
-                                    :prompt => t(:select_company),
-                                    class: "form-select company_review_select"%>
-                            </div>
-
-                            <script>
-								$(document).ready(function() {
-									$('.company_review_select').select2({
-										placeholder: "<%=t(:select_company)%>",
-										allowClear: true,
-										width: 'resolve',
-										theme: "bootstrap-5",
-										selectOnClose: true
-									});
-								});
-							</script>
-                        </div>
-
-                        <div class='col-sm-2'>
-                            <div class="user_select_start">
-                                <%= button_to "", form_class: "select_button", :name => nil do%>
-                                    <a><%=t(:write_review)%></a>
-                                <%end%> 
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            <%end%>
             
             <div class="breadcrumbs">
                 <%= render_breadcrumbs :separator => '<i class="material-icons-outlined">keyboard_arrow_right</i>' %>
