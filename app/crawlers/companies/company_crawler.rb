@@ -86,6 +86,7 @@ class CompanyCrawler < Kimurai::Base
             if next_page = response.css("ul.pagination li a").last
                 next_page_link = next_page[:href]
             end
+            # next_page_link = "https://www.topcv.vn/cong-ty/tim-kiem?keyword=ty&page=#{@@PAGE_COUNT}"
         end
 
         return next_page_link

@@ -78,8 +78,8 @@ module TopcvCompanyCrawler
                 size = doc.css("div.company-info p.company-size").text.strip
             end
 
-            if doc.css("div.detail div.box-address div.box-body p").present?
-                address = doc.css("div.detail div.box-address div.box-body p").text.strip
+            if doc.css("div.detail div.box-address div.box-body p.text-dark-gray").present?
+                address = doc.css("div.detail div.box-address div.box-body p.text-dark-gray").text.strip
                 location = find_job_location(address)
             end
 
