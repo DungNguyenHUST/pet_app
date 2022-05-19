@@ -12,6 +12,13 @@
                         </div>
                     </div>
 
+                    <div class="company_review_score_chart">
+                        <div class="company_review_title">
+                            <a><%=t(:trending)%></a>
+                        </div>
+                        <%= line_chart(@chart_review, label: "Star") %>
+                    </div
+
                     <div class="company_review">
                         <%= render @company_reviews %>
                     </div>

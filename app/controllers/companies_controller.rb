@@ -91,6 +91,17 @@ class CompaniesController < ApplicationController
         elsif @tab == "CompanyPolicyID"
             add_breadcrumb I18n.t(:policy), company_path(@company) 
         elsif  @tab == "CompanyReviewsID"
+            # For review chart graph
+            @chart_review = {}
+            @chart_review_group = @company.company_reviews.group_by_month { |u| u.created_at }.to_hash
+            @company_review_list = []
+            @chart_review_group.each_key do |key|
+                @chart_review_group[key].each do |value|
+                    @company_review_list.push(CompanyReview.find_by_id(value.id))
+                end
+                @chart_review[key] = cal_rating_review_score_list(@company_review_list).to_f
+            end
+            
             add_breadcrumb I18n.t(:review), company_path(@company)
         elsif  @tab == "CompanyInterviewsID"
             add_breadcrumb I18n.t(:interview), company_path(@company)

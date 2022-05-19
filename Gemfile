@@ -141,3 +141,7 @@ gem 'whenever', require: false
 # search
 gem "searchkick"
 gem  "elasticsearch", "< 7.14"
+
+# chart
+gem "chartkick"
+gem "groupdate"

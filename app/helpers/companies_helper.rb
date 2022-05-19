@@ -84,6 +84,20 @@ module CompaniesHelper
         return average_score
     end
 
+    def cal_rating_review_score_list(company_reviews)
+        average_score = 0
+
+        unless company_reviews.nil?
+            company_reviews.each do |company_review|
+                average_score += cal_rating_review_score(company_review)
+            end
+
+            average_score = (average_score/company_reviews.size()).to_f
+        end
+
+        return average_score
+    end
+
     def cal_rating_review_work_env_score(company)
         rate_work_env = 0
         count = 0
