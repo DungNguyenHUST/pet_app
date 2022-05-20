@@ -1,454 +1,125 @@
-<div class="review_score_content">
+<div class="review_score_block">
     <div class="review_score">
         <div class='row'>
-            <div class="col-sm-6 custom-padding-right">
+            <div class="col-sm-3">
                 <div class="review_score_total">
                     <div class="review_score_star">
-                        <div class="review_point">
-                            <strong><%=cal_rating_review_total_score(@company).to_f.round(1)%> </strong>
+                        <div class="review_label">
+                            <a><%=t(:overall_review)%></a>
                         </div>
-                        <div class="review_score_star_des">
-                            <%if cal_rating_review_total_score(@company) > 0%>
-                                <%cal_rating_review_total_score(@company).to_i.times do%>
-                                    <i class="material-icons checked">circle</i>
-                                <%end%>
-                                <%(5 - cal_rating_review_total_score(@company).to_i).to_i.times do%>
-                                    <i class="material-icons checked_out">radio_button_unchecked</i>
-                                <%end%>
-                            <%else%>
-                                <%5.times do%>
-                                    <i class="material-icons checked_out">radio_button_unchecked</i>
-                                <%end%>
-                            <%end%>
+                        <div class="review_total_block">
+                            <a>
+                                <span><%=cal_rating_review_total_score(@company).to_f.round(1)%></span>
+                                <span class="material-icons checked">circle</span>
+                            </a>
+                        </div>
+                    </div>
+
+                    <div class="review_score_recommand">
+                        <div class="review_score_recommand_title">
+                            <a><%=t(:company_review_recommand)%></a>
+                        </div>
+                        <div class="review_score_recommand_block">
+                            <div class="flex-wrapper-review">
+                                <div class="single-chart-review">
+                                    <svg viewBox="0 0 36 36" class="circular-chart orange">
+                                        <path class="circle-bg"
+                                            d="M18 2.0845
+                                                a 15.9155 15.9155 0 0 1 0 31.831
+                                                a 15.9155 15.9155 0 0 1 0 -31.831"
+                                        />
+                                        <path class="circle"
+                                            stroke-dasharray="<%=cal_rating_review_recommend(@company)%>, 100"
+                                            d="M18 2.0845
+                                                a 15.9155 15.9155 0 0 1 0 31.831
+                                                a 15.9155 15.9155 0 0 1 0 -31.831"
+                                        />
+                                        <text x="18" y="20.35" class="percentage-review"><%=cal_rating_review_recommend(@company)%>%</text>
+                                    </svg>
+                                </div>
+                            </div>
                         </div>
                     </div>
                 </div>
             </div>
 
-            <div class="col-sm-6 custom-padding-left">
-                <div class="review_score_recommand">
-                    <div class="review_score_recommand_block">
-                        <div class="flex-wrapper-review">
-                            <div class="single-chart-review">
-                                <svg viewBox="0 0 36 36" class="circular-chart orange">
-                                    <path class="circle-bg"
-                                        d="M18 2.0845
-                                            a 15.9155 15.9155 0 0 1 0 31.831
-                                            a 15.9155 15.9155 0 0 1 0 -31.831"
-                                    />
-                                    <path class="circle"
-                                        stroke-dasharray="<%=cal_rating_review_recommend(@company)%>, 100"
-                                        d="M18 2.0845
-                                            a 15.9155 15.9155 0 0 1 0 31.831
-                                            a 15.9155 15.9155 0 0 1 0 -31.831"
-                                    />
-                                    <text x="18" y="20.35" class="percentage-review"><%=cal_rating_review_recommend(@company)%>%</text>
-                                </svg>
+            <div class="col-sm-5">
+                <div class="review_score_content">
+                    <div class="review_score_progress">
+                        <div class="progress_section">
+                            <div class="progress_label">
+                                <a>1 stars</a>
+                            </div>
+                            <div class="progress">
+                                <div class="progress-bar" role="progressbar" style="width: <%=cal_rating_category_percent(@company, "overall", 1)%>%" aria-valuenow="<%=cal_rating_category_percent(@company, "overall", 1)%>" aria-valuemin="0" aria-valuemax="100"><%=cal_rating_category_percent(@company, "overall", 1)%>%</div>
                             </div>
                         </div>
-                        <style>
-                            .flex-wrapper-review {
-                                display: flex;
-                                flex-flow: row nowrap;
-                            }
-
-                            .single-chart-review {
-                                width: 30%;
-                                justify-content: space-around ;
-                            }
-
-                            .circular-chart {
-                                display: block;
-                                margin: 10px auto;
-                                max-width: 80%;
-                                max-height: 250px;
-                            }
-
-                            .circle-bg {
-                                fill: none;
-                                stroke: #eee;
-                                stroke-width: 3.8;
-                            }
-
-                            .circle {
-                                fill: none;
-                                stroke-width: 2.8;
-                                stroke-linecap: round;
-                                animation: progress 1s ease-out forwards;
-                            }
-
-                            @keyframes progress {
-                                0% {
-                                    stroke-dasharray: 0 100;
-                                }
-                            }
-
-                            .circular-chart.orange .circle {
-                                stroke: #ff9f00;
-                            }
-
-                            .percentage-review {
-                                fill: #1473e6;
-                                font-size: 0.44em;
-                                text-anchor: middle;
-                                font-weight: 550;
-                            }
-                        </style>
-                    </div>
-                      
-                    <div class="review_score_recommand_title">
-                        <a><%=t(:company_review_recommand)%></a>
+                        <div class="progress_section">
+                            <div class="progress_label">
+                                <a>2 stars</a>
+                            </div>
+                            <div class="progress">
+                                <div class="progress-bar" role="progressbar" style="width: <%=cal_rating_category_percent(@company, "overall", 2)%>%" aria-valuenow="<%=cal_rating_category_percent(@company, "overall", 2)%>" aria-valuemin="0" aria-valuemax="100"><%=cal_rating_category_percent(@company, "overall", 2)%>%</div>
+                            </div>
+                        </div>
+                        <div class="progress_section">
+                            <div class="progress_label">
+                                <a>3 stars</a>
+                            </div>
+                            <div class="progress">
+                                <div class="progress-bar" role="progressbar" style="width: <%=cal_rating_category_percent(@company, "overall", 3)%>%" aria-valuenow="<%=cal_rating_category_percent(@company, "overall", 3)%>" aria-valuemin="0" aria-valuemax="100"><%=cal_rating_category_percent(@company, "overall", 3)%>%</div>
+                            </div>
+                        </div>
+                        <div class="progress_section">
+                            <div class="progress_label">
+                                <a>4 stars</a>
+                            </div>
+                            <div class="progress">
+                                <div class="progress-bar" role="progressbar" style="width: <%=cal_rating_category_percent(@company, "overall", 4)%>%" aria-valuenow="<%=cal_rating_category_percent(@company, "overall", 4)%>" aria-valuemin="0" aria-valuemax="100"><%=cal_rating_category_percent(@company, "overall", 4)%>%</div>
+                            </div>
+                        </div>
+                        <div class="progress_section">
+                            <div class="progress_label">
+                                <a>5 stars</a>
+                            </div>
+                            <div class="progress">
+                                <div class="progress-bar" role="progressbar" style="width: <%=cal_rating_category_percent(@company, "overall", 5)%>%" aria-valuenow="<%=cal_rating_category_percent(@company, "overall", 5)%>" aria-valuemin="0" aria-valuemax="100"><%=cal_rating_category_percent(@company, "overall", 5)%>%</div>
+                            </div>
+                        </div>
+                        <div class="progress_section_total">
+                            <span><%=t(:base_on)%> <%=count_rating_category("overall", @company)%> <%=t(:review).downcase%></span>
+                        </div>
                     </div>
                 </div>
             </div>
             
-            <div class="col-sm-6">
-                <div class="review_score_tab">
-                    <ul class="nav nav-tabs flex-column" id="myTab" role="tablist">
-                        <li class="nav-item">
-                            <a class="nav-link active" id="overall-tab" data-toggle="tab" href="#overall" role="tab" aria-controls="overall" aria-selected="true">
-                                <p><%=t(:total_view).upcase%></p>
-                                <span>
-                                    <p><%=cal_rating_review_total_score(@company).round(1)%></p>
-                                    <i class="material-icons">circle</i>
-                                </span>
-                            </a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" id="enviroment-tab" data-toggle="tab" href="#enviroment" role="tab" aria-controls="enviroment" aria-selected="false">
-                                <p><%=t(:env_review).upcase%></p>
-                                <span>
-                                    <p><%=cal_rating_review_work_env_score(@company).round(1)%></p>
-                                    <i class="material-icons">circle</i>
-                                </span>
-                            </a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" id="salary-tab" data-toggle="tab" href="#salary" role="tab" aria-controls="salary" aria-selected="false">
-                                <p><%=t(:salary_review).upcase%></p>
-                                <span>
-                                    <p><%=cal_rating_review_salary_score(@company).round(1)%></p>
-                                    <i class="material-icons">circle</i>
-                                </span>
-                            </a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" id="overtime-tab" data-toggle="tab" href="#overtime" role="tab" aria-controls="overtime" aria-selected="false">
-                                <p><%=t(:ot_review).upcase%></p>
-                                <span>
-                                    <p><%=cal_rating_review_ot_score(@company).round(1)%></p>
-                                    <i class="material-icons">circle</i>
-                                </span>
-                            </a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" id="manager-tab" data-toggle="tab" href="#manager" role="tab" aria-controls="manager" aria-selected="false">
-                                <p><%=t(:mng_review).upcase%></p>
-                                <span>
-                                    <p><%=cal_rating_review_manager_score(@company).round(1)%></p>
-                                    <i class="material-icons">circle</i>
-                                </span>
-                            </a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" id="carrier-tab" data-toggle="tab" href="#carrier" role="tab" aria-controls="carrier" aria-selected="false">
-                                <p><%=t(:career_review).upcase%></p>
-                                <span>
-                                    <p><%=cal_rating_review_career_score(@company).round(1)%></p>
-                                    <i class="material-icons">circle</i>
-                                </span>
-                            </a>
-                        </li>
-                    </ul>
-                </div>
-            </div>
-
-            <div class="col-sm-6">
-                <div class="review_score_content">
-                    <div class="tab-content">
-                        <div class="tab-pane active" id="overall" role="tabpanel" aria-labelledby="overall-tab">
-                            <div class="review_score_progress">
-                                <div class="progress_section">
-                                    <div class="progress_label">
-                                        <a>1 star</a>
-                                    </div>
-                                    <div class="progress">
-                                        <div class="progress-bar" role="progressbar" style="width: <%=cal_rating_category_percent(@company, "overall", 1)%>%" aria-valuenow="<%=cal_rating_category_percent(@company, "overall", 1)%>" aria-valuemin="0" aria-valuemax="100"><%=cal_rating_category_percent(@company, "overall", 1)%>%</div>
-                                    </div>
-                                </div>
-                                <div class="progress_section">
-                                    <div class="progress_label">
-                                        <a>2 star</a>
-                                    </div>
-                                    <div class="progress">
-                                        <div class="progress-bar" role="progressbar" style="width: <%=cal_rating_category_percent(@company, "overall", 2)%>%" aria-valuenow="<%=cal_rating_category_percent(@company, "overall", 2)%>" aria-valuemin="0" aria-valuemax="100"><%=cal_rating_category_percent(@company, "overall", 2)%>%</div>
-                                    </div>
-                                </div>
-                                <div class="progress_section">
-                                    <div class="progress_label">
-                                        <a>3 star</a>
-                                    </div>
-                                    <div class="progress">
-                                        <div class="progress-bar" role="progressbar" style="width: <%=cal_rating_category_percent(@company, "overall", 3)%>%" aria-valuenow="<%=cal_rating_category_percent(@company, "overall", 3)%>" aria-valuemin="0" aria-valuemax="100"><%=cal_rating_category_percent(@company, "overall", 3)%>%</div>
-                                    </div>
-                                </div>
-                                <div class="progress_section">
-                                    <div class="progress_label">
-                                        <a>4 star</a>
-                                    </div>
-                                    <div class="progress">
-                                        <div class="progress-bar" role="progressbar" style="width: <%=cal_rating_category_percent(@company, "overall", 4)%>%" aria-valuenow="<%=cal_rating_category_percent(@company, "overall", 4)%>" aria-valuemin="0" aria-valuemax="100"><%=cal_rating_category_percent(@company, "overall", 4)%>%</div>
-                                    </div>
-                                </div>
-                                <div class="progress_section">
-                                    <div class="progress_label">
-                                        <a>5 star</a>
-                                    </div>
-                                    <div class="progress">
-                                        <div class="progress-bar" role="progressbar" style="width: <%=cal_rating_category_percent(@company, "overall", 5)%>%" aria-valuenow="<%=cal_rating_category_percent(@company, "overall", 5)%>" aria-valuemin="0" aria-valuemax="100"><%=cal_rating_category_percent(@company, "overall", 5)%>%</div>
-                                    </div>
-                                </div>
-                                <div class="progress_section_total">
-                                    <a><%=t(:total)%>:</a> <span><%=count_rating_category("overall", @company)%> <%=t(:review).downcase%></span>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="tab-pane" id="enviroment" role="tabpanel" aria-labelledby="enviroment-tab">
-                            <div class="review_score_progress">
-                                <div class="progress_section">
-                                    <div class="progress_label">
-                                        <a>1 star</a>
-                                    </div>
-                                    <div class="progress">
-                                        <div class="progress-bar" role="progressbar" style="width: <%=cal_rating_category_percent(@company, "work_env_score", 1)%>%" aria-valuenow="<%=cal_rating_category_percent(@company, "work_env_score", 1)%>" aria-valuemin="0" aria-valuemax="100"><%=cal_rating_category_percent(@company, "work_env_score", 1)%>%</div>
-                                    </div>
-                                </div>
-                                <div class="progress_section">
-                                    <div class="progress_label">
-                                        <a>2 star</a>
-                                    </div>
-                                    <div class="progress">
-                                        <div class="progress-bar" role="progressbar" style="width: <%=cal_rating_category_percent(@company, "work_env_score", 2)%>%" aria-valuenow="<%=cal_rating_category_percent(@company, "work_env_score", 2)%>" aria-valuemin="0" aria-valuemax="100"><%=cal_rating_category_percent(@company, "work_env_score", 2)%>%</div>
-                                    </div>
-                                </div>
-                                <div class="progress_section">
-                                    <div class="progress_label">
-                                        <a>3 star</a>
-                                    </div>
-                                    <div class="progress">
-                                        <div class="progress-bar" role="progressbar" style="width: <%=cal_rating_category_percent(@company, "work_env_score", 3)%>%" aria-valuenow="<%=cal_rating_category_percent(@company, "work_env_score", 3)%>" aria-valuemin="0" aria-valuemax="100"><%=cal_rating_category_percent(@company, "work_env_score", 3)%>%</div>
-                                    </div>
-                                </div>
-                                <div class="progress_section">
-                                    <div class="progress_label">
-                                        <a>4 star</a>
-                                    </div>
-                                    <div class="progress">
-                                        <div class="progress-bar" role="progressbar" style="width: <%=cal_rating_category_percent(@company, "work_env_score", 4)%>%" aria-valuenow="<%=cal_rating_category_percent(@company, "work_env_score", 4)%>" aria-valuemin="0" aria-valuemax="100"><%=cal_rating_category_percent(@company, "work_env_score", 4)%>%</div>
-                                    </div>
-                                </div>
-                                <div class="progress_section">
-                                    <div class="progress_label">
-                                        <a>5 star</a>
-                                    </div>
-                                    <div class="progress">
-                                        <div class="progress-bar" role="progressbar" style="width: <%=cal_rating_category_percent(@company, "work_env_score", 5)%>%" aria-valuenow="<%=cal_rating_category_percent(@company, "work_env_score", 5)%>" aria-valuemin="0" aria-valuemax="100"><%=cal_rating_category_percent(@company, "work_env_score", 5)%>%</div>
-                                    </div>
-                                </div>
-                                <div class="progress_section_total">
-                                    <a><%=t(:total)%>:</a> <span><%=count_rating_category("work_env_score", @company)%> <%=t(:review).downcase%></span>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="tab-pane" id="salary" role="tabpanel" aria-labelledby="salary-tab">
-                            <div class="review_score_progress">
-                                <div class="progress_section">
-                                    <div class="progress_label">
-                                        <a>1 star</a>
-                                    </div>
-                                    <div class="progress">
-                                        <div class="progress-bar" role="progressbar" style="width: <%=cal_rating_category_percent(@company, "salary_score", 1)%>%" aria-valuenow="<%=cal_rating_category_percent(@company, "salary_score", 1)%>" aria-valuemin="0" aria-valuemax="100"><%=cal_rating_category_percent(@company, "salary_score", 1)%>%</div>
-                                    </div>
-                                </div>
-                                <div class="progress_section">
-                                    <div class="progress_label">
-                                        <a>2 star</a>
-                                    </div>
-                                    <div class="progress">
-                                        <div class="progress-bar" role="progressbar" style="width: <%=cal_rating_category_percent(@company, "salary_score", 2)%>%" aria-valuenow="<%=cal_rating_category_percent(@company, "salary_score", 2)%>" aria-valuemin="0" aria-valuemax="100"><%=cal_rating_category_percent(@company, "salary_score", 2)%>%</div>
-                                    </div>
-                                </div>
-                                <div class="progress_section">
-                                    <div class="progress_label">
-                                        <a>3 star</a>
-                                    </div>
-                                    <div class="progress">
-                                        <div class="progress-bar" role="progressbar" style="width: <%=cal_rating_category_percent(@company, "salary_score", 3)%>%" aria-valuenow="<%=cal_rating_category_percent(@company, "salary_score", 3)%>" aria-valuemin="0" aria-valuemax="100"><%=cal_rating_category_percent(@company, "salary_score", 3)%>%</div>
-                                    </div>
-                                </div>
-                                <div class="progress_section">
-                                    <div class="progress_label">
-                                        <a>4 star</a>
-                                    </div>
-                                    <div class="progress">
-                                        <div class="progress-bar" role="progressbar" style="width: <%=cal_rating_category_percent(@company, "salary_score", 4)%>%" aria-valuenow="<%=cal_rating_category_percent(@company, "salary_score", 4)%>" aria-valuemin="0" aria-valuemax="100"><%=cal_rating_category_percent(@company, "salary_score", 4)%>%</div>
-                                    </div>
-                                </div>
-                                <div class="progress_section">
-                                    <div class="progress_label">
-                                        <a>5 star</a>
-                                    </div>
-                                    <div class="progress">
-                                        <div class="progress-bar" role="progressbar" style="width: <%=cal_rating_category_percent(@company, "salary_score", 5)%>%" aria-valuenow="<%=cal_rating_category_percent(@company, "salary_score", 5)%>" aria-valuemin="0" aria-valuemax="100"><%=cal_rating_category_percent(@company, "salary_score", 5)%>%</div>
-                                    </div>
-                                </div>
-                                <div class="progress_section_total">
-                                    <a><%=t(:total)%>:</a> <span><%=count_rating_category("salary_score", @company)%> <%=t(:review).downcase%></span>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="tab-pane" id="overtime" role="tabpanel" aria-labelledby="overtime-tab">
-                            <div class="review_score_progress">
-                                <div class="progress_section">
-                                    <div class="progress_label">
-                                        <a>1 star</a>
-                                    </div>
-                                    <div class="progress">
-                                        <div class="progress-bar" role="progressbar" style="width: <%=cal_rating_category_percent(@company, "ot_score", 1)%>%" aria-valuenow="<%=cal_rating_category_percent(@company, "ot_score", 1)%>" aria-valuemin="0" aria-valuemax="100"><%=cal_rating_category_percent(@company, "ot_score", 1)%>%</div>
-                                    </div>
-                                </div>
-                                <div class="progress_section">
-                                    <div class="progress_label">
-                                        <a>2 star</a>
-                                    </div>
-                                    <div class="progress">
-                                        <div class="progress-bar" role="progressbar" style="width: <%=cal_rating_category_percent(@company, "ot_score", 2)%>%" aria-valuenow="<%=cal_rating_category_percent(@company, "ot_score", 2)%>" aria-valuemin="0" aria-valuemax="100"><%=cal_rating_category_percent(@company, "ot_score", 2)%>%</div>
-                                    </div>
-                                </div>
-                                <div class="progress_section">
-                                    <div class="progress_label">
-                                        <a>3 star</a>
-                                    </div>
-                                    <div class="progress">
-                                        <div class="progress-bar" role="progressbar" style="width: <%=cal_rating_category_percent(@company, "ot_score", 3)%>%" aria-valuenow="<%=cal_rating_category_percent(@company, "ot_score", 3)%>" aria-valuemin="0" aria-valuemax="100"><%=cal_rating_category_percent(@company, "ot_score", 3)%>%</div>
-                                    </div>
-                                </div>
-                                <div class="progress_section">
-                                    <div class="progress_label">
-                                        <a>4 star</a>
-                                    </div>
-                                    <div class="progress">
-                                        <div class="progress-bar" role="progressbar" style="width: <%=cal_rating_category_percent(@company, "ot_score", 4)%>%" aria-valuenow="<%=cal_rating_category_percent(@company, "ot_score", 4)%>" aria-valuemin="0" aria-valuemax="100"><%=cal_rating_category_percent(@company, "ot_score", 4)%>%</div>
-                                    </div>
-                                </div>
-                                <div class="progress_section">
-                                    <div class="progress_label">
-                                        <a>5 star</a>
-                                    </div>
-                                    <div class="progress">
-                                        <div class="progress-bar" role="progressbar" style="width: <%=cal_rating_category_percent(@company, "ot_score", 5)%>%" aria-valuenow="<%=cal_rating_category_percent(@company, "ot_score", 5)%>" aria-valuemin="0" aria-valuemax="100"><%=cal_rating_category_percent(@company, "ot_score", 5)%>%</div>
-                                    </div>
-                                </div>
-                                <div class="progress_section_total">
-                                    <a><%=t(:total)%>:</a> <span><%=count_rating_category("ot_score", @company)%> <%=t(:review).downcase%></span>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="tab-pane" id="manager" role="tabpanel" aria-labelledby="manager-tab">
-                            <div class="review_score_progress">
-                                <div class="progress_section">
-                                    <div class="progress_label">
-                                        <a>1 star</a>
-                                    </div>
-                                    <div class="progress">
-                                        <div class="progress-bar" role="progressbar" style="width: <%=cal_rating_category_percent(@company, "manager_score", 1)%>%" aria-valuenow="<%=cal_rating_category_percent(@company, "manager_score", 1)%>" aria-valuemin="0" aria-valuemax="100"><%=cal_rating_category_percent(@company, "manager_score", 1)%>%</div>
-                                    </div>
-                                </div>
-                                <div class="progress_section">
-                                    <div class="progress_label">
-                                        <a>2 star</a>
-                                    </div>
-                                    <div class="progress">
-                                        <div class="progress-bar" role="progressbar" style="width: <%=cal_rating_category_percent(@company, "manager_score", 2)%>%" aria-valuenow="<%=cal_rating_category_percent(@company, "manager_score", 2)%>" aria-valuemin="0" aria-valuemax="100"><%=cal_rating_category_percent(@company, "manager_score", 2)%>%</div>
-                                    </div>
-                                </div>
-                                <div class="progress_section">
-                                    <div class="progress_label">
-                                        <a>3 star</a>
-                                    </div>
-                                    <div class="progress">
-                                        <div class="progress-bar" role="progressbar" style="width: <%=cal_rating_category_percent(@company, "manager_score", 3)%>%" aria-valuenow="<%=cal_rating_category_percent(@company, "manager_score", 3)%>" aria-valuemin="0" aria-valuemax="100"><%=cal_rating_category_percent(@company, "manager_score", 3)%>%</div>
-                                    </div>
-                                </div>
-                                <div class="progress_section">
-                                    <div class="progress_label">
-                                        <a>4 star</a>
-                                    </div>
-                                    <div class="progress">
-                                        <div class="progress-bar" role="progressbar" style="width: <%=cal_rating_category_percent(@company, "manager_score", 4)%>%" aria-valuenow="<%=cal_rating_category_percent(@company, "manager_score", 4)%>" aria-valuemin="0" aria-valuemax="100"><%=cal_rating_category_percent(@company, "manager_score", 4)%>%</div>
-                                    </div>
-                                </div>
-                                <div class="progress_section">
-                                    <div class="progress_label">
-                                        <a>5 star</a>
-                                    </div>
-                                    <div class="progress">
-                                        <div class="progress-bar" role="progressbar" style="width: <%=cal_rating_category_percent(@company, "manager_score", 5)%>%" aria-valuenow="<%=cal_rating_category_percent(@company, "manager_score", 5)%>" aria-valuemin="0" aria-valuemax="100"><%=cal_rating_category_percent(@company, "manager_score", 5)%>%</div>
-                                    </div>
-                                </div>
-                                <div class="progress_section_total">
-                                    <a><%=t(:total)%>:</a> <span><%=count_rating_category("manager_score", @company)%> <%=t(:review).downcase%></span>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="tab-pane" id="carrier" role="tabpanel" aria-labelledby="carrier-tab">
-                            <div class="review_score_progress">
-                                <div class="progress_section">
-                                    <div class="progress_label">
-                                        <a>1 star</a>
-                                    </div>
-                                    <div class="progress">
-                                        <div class="progress-bar" role="progressbar" style="width: <%=cal_rating_category_percent(@company, "career_score", 1)%>%" aria-valuenow="<%=cal_rating_category_percent(@company, "career_score", 1)%>" aria-valuemin="0" aria-valuemax="100"><%=cal_rating_category_percent(@company, "career_score", 1)%>%</div>
-                                    </div>
-                                </div>
-                                <div class="progress_section">
-                                    <div class="progress_label">
-                                        <a>2 star</a>
-                                    </div>
-                                    <div class="progress">
-                                        <div class="progress-bar" role="progressbar" style="width: <%=cal_rating_category_percent(@company, "career_score", 2)%>%" aria-valuenow="<%=cal_rating_category_percent(@company, "career_score", 2)%>" aria-valuemin="0" aria-valuemax="100"><%=cal_rating_category_percent(@company, "career_score", 2)%>%</div>
-                                    </div>
-                                </div>
-                                <div class="progress_section">
-                                    <div class="progress_label">
-                                        <a>3 star</a>
-                                    </div>
-                                    <div class="progress">
-                                        <div class="progress-bar" role="progressbar" style="width: <%=cal_rating_category_percent(@company, "career_score", 3)%>%" aria-valuenow="<%=cal_rating_category_percent(@company, "career_score", 3)%>" aria-valuemin="0" aria-valuemax="100"><%=cal_rating_category_percent(@company, "career_score", 3)%>%</div>
-                                    </div>
-                                </div>
-                                <div class="progress_section">
-                                    <div class="progress_label">
-                                        <a>4 star</a>
-                                    </div>
-                                    <div class="progress">
-                                        <div class="progress-bar" role="progressbar" style="width: <%=cal_rating_category_percent(@company, "career_score", 4)%>%" aria-valuenow="<%=cal_rating_category_percent(@company, "career_score", 4)%>" aria-valuemin="0" aria-valuemax="100"><%=cal_rating_category_percent(@company, "career_score", 4)%>%</div>
-                                    </div>
-                                </div>
-                                <div class="progress_section">
-                                    <div class="progress_label">
-                                        <a>5 star</a>
-                                    </div>
-                                    <div class="progress">
-                                        <div class="progress-bar" role="progressbar" style="width: <%=cal_rating_category_percent(@company, "career_score", 5)%>%" aria-valuenow="<%=cal_rating_category_percent(@company, "career_score", 5)%>" aria-valuemin="0" aria-valuemax="100"><%=cal_rating_category_percent(@company, "career_score", 5)%>%</div>
-                                    </div>
-                                </div>
-                                <div class="progress_section_total">
-                                    <a><%=t(:total)%>:</a> <span><%=count_rating_category("career_score", @company)%> <%=t(:review).downcase%></span>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
+            <div class="col-sm-4">
+                <div class="review_score_detail">
+                    <p class="review_score_detail_title"><%=t(:env_review)%></p>
+                    <span>
+                        <p><%=cal_rating_review_work_env_score(@company).round(1)%></p>
+                        <i class="material-icons">circle</i>
+                    </span>
+                    <p class="review_score_detail_title"><%=t(:salary_review)%></p>
+                    <span>
+                        <p><%=cal_rating_review_salary_score(@company).round(1)%></p>
+                        <i class="material-icons">circle</i>
+                    </span>
+                    <p class="review_score_detail_title"><%=t(:ot_review)%></p>
+                    <span>
+                        <p><%=cal_rating_review_ot_score(@company).round(1)%></p>
+                        <i class="material-icons">circle</i>
+                    </span>
+                    <p class="review_score_detail_title"><%=t(:mng_review)%></p>
+                    <span>
+                        <p><%=cal_rating_review_manager_score(@company).round(1)%></p>
+                        <i class="material-icons">circle</i>
+                    </span>
+                    <p class="review_score_detail_title"><%=t(:career_review)%></p>
+                    <span>
+                        <p><%=cal_rating_review_career_score(@company).round(1)%></p>
+                        <i class="material-icons">circle</i>
+                    </span>
                 </div>
             </div>
         </div>

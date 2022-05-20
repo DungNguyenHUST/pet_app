@@ -3,7 +3,7 @@
 // You can use Sass (SCSS) here: https://sass-lang.com/
 
 //////////////////review//////////////////
-.review_score_content{
+.review_score_block{
     background-color: #fff;
     @media screen and (min-width: 600px){
         .custom-padding-left{
@@ -18,167 +18,195 @@
 
     .review_score{
         clear: both;
-        padding: 15px;
+        padding: 10px 15px 10px 15px;
         background-color: #fff;
         min-height: 100px;
         .review_score_total{
             .review_score_star{
-                padding-top: 10%;
-                padding-left: 25%;
-                @media screen and (max-width: 600px){
-                    padding-top: 0px;
-                    padding-left: 28%;
+                padding-top: 15px;
+                .review_label{
+                    @media screen and (max-width: 600px){
+                        text-align: center;
+                    }
+                    font-size: 15px;
+                    padding-bottom: 10px;
+                    font-weight: 600;
+                    padding-right: 10px;
                 }
-                .review_point
+
+                .review_total_block
                 {
-                    font-size: 23px;
-                    color: #ff424e;
-                    float: left;
-                    margin-right: 3px;
-                }   
-
-                .review_score_star_des
-                {
-                    font-size: 23px;
-                    text-align: left;
-                    position: relative;
-                    top: 5px;
-                    i {
-                        float: left;
-                        font-size: 23px;
-                        display: block;
-                        color: #fff;
-                        position: relative;
+                    display: block;
+                    @media screen and (max-width: 600px){
+                        text-align: center;
                     }
-
-                    .checked {
-                        color: #febb02;
-                    }
-
-                    .checked_out {
-                        color: #999;
+                    a{
+                        background-color: #9acd32;
+                        padding: 6px 10px 6px 10px;
+                        border-radius: 4px;
+                        span{
+                            font-size: 19px;
+                            font-weight: 600;
+                            color: #fff;
+                        }
+                        .checked{
+                            position: relative;
+                            top: 2px;
+                            font-size: 18px;
+                        }
+                        i{
+                            font-size: 22px;
+                            display: block;
+                            color: #fff;
+                            position: relative;
+                        }
                     }
                 }
             }
         }
 
         .review_score_recommand{
-            .review_score_recommand_block{
-                text-align: center;
-            }
+            padding-top: 20px;
             .review_score_recommand_title{
-                font-size: 17px;
+                font-size: 15px;
                 color: #444;
-                position: absolute;
-                top: 36%;
-                left: 30%;
+                font-weight: 600;
                 @media screen and (max-width: 600px){
-                    top: 36%;
-                    left: 36%;
-                    padding-right: 20px;
+                    text-align: center;
                 }
             }
-        }
 
-        .review_score_tab{
-            padding-top: 30px; 
-            @media screen and (max-width: 600px){
-                padding-top: 20px; 
-            }
-            .nav-tabs {
-                overflow-x: auto;
-                overflow-y: hidden;
-                flex-wrap: nowrap;
-                border: none;
-            }
-            .nav-tabs .nav-link {
-                white-space: nowrap;
-                font-size: 14px;
-                color: #333;
-                min-height: 44px; 
-                padding: 10px;
-                border: none;
-                p{
-                    float: left;
-                    position: relative;
-                    top: 5px;
+            .review_score_recommand_block{
+                text-align: left;
+                position: relative;
+                top: -2px;
+                @media screen and (max-width: 600px){
+                    left: 40%;
                 }
-                span{
-                    float: right;
-                    p{
-                        position: relative;
-                        font-size: 15px;
-                        top: 4px;
+                .single-chart-review {
+                    @media screen and (max-width: 600px){
+                        width: 22%;
                     }
-                    i{
-                        position: relative;
-                        top: 5px;
-                        font-size: 20px;
-                        color: #febb02;
+                    width: 45%;
+                    justify-content: space-around ;
+                }
+
+                .circular-chart {
+                    display: block;
+                    margin: 10px auto;
+                    max-width: 100%;
+                    max-height: 250px;
+                }
+                
+                .flex-wrapper-review {
+                    display: flex;
+                    flex-flow: row nowrap;
+                }
+
+                .circle-bg {
+                    fill: none;
+                    stroke: #eee;
+                    stroke-width: 3.8;
+                }
+
+                .circle {
+                    fill: none;
+                    stroke-width: 2.8;
+                    stroke-linecap: round;
+                    animation: progress 1s ease-out forwards;
+                }
+
+                @keyframes progress {
+                    0% {
+                        stroke-dasharray: 0 100;
                     }
                 }
-            }
-            .nav-tabs .nav-link, .nav-tabs .nav-link.active, .nav-tabs .nav-link:hover {
-                padding: 10px;
-                border: none;
-                color: #333;
-                font-size: 14px;
-            }
-            .nav-tabs .nav-link.active {
-                border-radius: 0;
-                font-weight: 500;
-                color: #1473e6;
-                background-color: #EAEAF0;
-                border-radius: 4px;
-                border: none;
+
+                .circular-chart.orange .circle {
+                    stroke: #ff9f00;
+                }
+
+                .percentage-review {
+                    fill: #1473e6;
+                    font-size: 0.44em;
+                    text-anchor: middle;
+                    font-weight: 550;
+                }
             }
         }
 
         .review_score_content{
-            .tab-content{
-                border: none;
-                .review_score_progress{
-                    padding-top: 30px;
-                    @media screen and (max-width: 600px){
-                        padding-top: 20px; 
+            .review_score_progress{
+                padding-top: 20px;
+                .progress_section{
+                    .progress_label{
+                        float: left;
+                        width: 20%;
+                        font-size: 14px;
+                        position: relative;
+                        top: -2px;
                     }
-                    .progress_section{
-                        .progress_label{
-                            // float: left;
-                            width: 100%;
-                            font-size: 14px;
-                            position: relative;
-                            // top: -3px;
-                        }
-                        .progress{
-                            width: 100%;
-                            height: 15px;
+                    .progress{
+                        // float: right;
+                        width: 80%;
+                        height: 15px;
+                        border-radius: 10px;
+                        .progress-bar{
+                            background-color: #1473e6;
                             border-radius: 10px;
-                            .progress-bar{
-                                background-color: #1473e6;
-                                border-radius: 10px;
-                            }
-                        }
-                        padding-bottom: 15px;
-                    }
-                    .progress_section_label{
-                        a{
-                            font-size: 14px;
-                            padding-top: 20px;
-                            font-weight: 600;
                         }
                     }
+                    padding-bottom: 15px;
+                }
+                .progress_section_label{
+                    a{
+                        font-size: 14px;
+                        padding-top: 20px;
+                        font-weight: 600;
+                    }
+                }
 
-                    .progress_section_total{
-                        margin-top: 5px;
-                        a{
-                            font-size: 15px;
-                            font-weight: 600;
-                        }
-                        span{
-                            font-size: 14px;
-                        }
+                .progress_section_total{
+                    margin-top: 5px;
+                    color: #666;
+                    a{
+                        font-size: 13px;
+                        font-weight: 600;
                     }
+                    span{
+                        font-size: 13px;
+                    }
+                }
+            }   
+        }
+
+        .review_score_detail{
+            padding-top: 20px;
+            p{
+                float: left;
+                position: relative;
+                padding-bottom: 2px;
+                font-size: 14px;
+                @media screen and (max-width: 600px){
+                    width: 70%;
+                }
+            }
+            span{
+                float: right;
+                text-align: right;
+                @media screen and (max-width: 600px){
+                    width: 30%;
+                }
+                p{
+                    position: relative;
+                    font-size: 14px;
+                    font-weight: 600;
+                }
+                i{
+                    position: relative;
+                    top: 1px;
+                    font-size: 18px;
+                    color: #febb02;
                 }
             }
         }

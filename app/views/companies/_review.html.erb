@@ -16,8 +16,27 @@
                         <div class="company_review_title">
                             <a><%=t(:trending)%></a>
                         </div>
-                        <%= line_chart(@chart_review, label: "Star") %>
-                    </div
+                        <%= line_chart(@chart_review, label: "Star", height: "220px") %>
+                    </div>
+
+                    <div class="company_review_index_toolbar">
+                        <div class="company_review_index_title">
+                            <a><%=t(:found)%> <%=convert_number_to_human(@company_reviews.total_count)%> <%=t(:review).downcase%></a>
+                        </div>
+                        <div class="company_review_index_tab_link">
+                            <div class="dropdown show">
+                                <a class="btn btn-secondary dropdown-toggle" href="<%=company_path(@company, tab: "CompanyReviewsID", sort_tab: 'ReviewNewID')%>" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                    <%=t(:newest)%>
+                                </a>
+
+                                <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
+                                    <a class="dropdown-item" href="<%=company_path(@company, tab: "CompanyReviewsID", sort_tab: 'ReviewPopularID')%>"><%=t(:popular)%></a>
+                                    <a class="dropdown-item" href="<%=company_path(@company, tab: "CompanyReviewsID", sort_tab: 'ReviewLowtoHighID')%>"><%=t(:low_to_high)%></a>
+                                    <a class="dropdown-item" href="<%=company_path(@company, tab: "CompanyReviewsID", sort_tab: 'ReviewHightoLowID')%>"><%=t(:high_to_low)%></a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
 
                     <div class="company_review">
                         <%= render @company_reviews %>

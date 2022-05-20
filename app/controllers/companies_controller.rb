@@ -102,6 +102,34 @@ class CompaniesController < ApplicationController
                 @chart_review[key] = cal_rating_review_score_list(@company_review_list).to_f
             end
             
+            # For sort
+            if(params.has_key?(:sort_tab))
+                @sort_tab = params[:sort_tab]
+            else
+                @sort_tab = "default"
+            end
+    
+            @companies = Company.all.page(params[:page]).per(18)
+    
+            if @sort_tab == "default" || @sort_tab == "ReviewNewID"
+                @company_reviews = @company.company_reviews.order('created_at DESC').page(params[:page]).per(10)
+            end
+    
+            if @sort_tab == "ReviewPopularID"
+                @company_reviews = @company.company_reviews.sort_by{|company_review| company_review.company_react_reviews.count}.reverse
+                @company_reviews = Kaminari.paginate_array(@company_reviews).page(params[:page]).per(10)
+            end
+
+            if @sort_tab == "ReviewLowtoHighID"
+                @company_reviews = @company.company_reviews.sort_by{|company_review| cal_rating_review_score(company_review).to_f}
+                @company_reviews = Kaminari.paginate_array(@company_reviews).page(params[:page]).per(10)
+            end
+
+            if @sort_tab == "ReviewHightoLowID"
+                @company_reviews = @company.company_reviews.sort_by.sort_by{|company_review| cal_rating_review_score(company_review).to_f}.reverse
+                @company_reviews = Kaminari.paginate_array(@company_reviews).page(params[:page]).per(10)
+            end
+            
             add_breadcrumb I18n.t(:review), company_path(@company)
         elsif  @tab == "CompanyInterviewsID"
             add_breadcrumb I18n.t(:interview), company_path(@company)
