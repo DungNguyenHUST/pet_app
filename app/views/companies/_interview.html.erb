@@ -11,6 +11,24 @@
                             <%= render :partial => 'company_interviews/interview_score' %>
                         </div>
                     </div>
+
+                    <div class="company_interview_index_toolbar">
+                        <div class="company_interview_index_title">
+                            <a><%=t(:found)%> <%=convert_number_to_human(@company_interviews.total_count)%> <%=t(:interview).downcase%></a>
+                        </div>
+                        <div class="company_interview_index_tab_link">
+                            <div class="dropdown show">
+                                <a class="btn btn-secondary dropdown-toggle" href="<%=company_path(@company, tab: "CompanyInterviewsID", sort_tab: 'InterviewNewID')%>" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                    <%=t(:newest)%>
+                                </a>
+
+                                <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
+                                    <a class="dropdown-item" href="<%=company_path(@company, tab: "CompanyInterviewsID", sort_tab: 'InterviewPopularID')%>"><%=t(:popular)%></a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
                     <div class="company_interview">
                         <%= render @company_interviews %>
                     </div>

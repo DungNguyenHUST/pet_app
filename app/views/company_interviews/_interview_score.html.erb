@@ -4,7 +4,7 @@
             <div class="col-sm-4 padding-custom">
                 <div class="interview_score_difficult">
                     <div class="interview_score_label">
-                        <a><%=t(:difficult_level).upcase%></a>
+                        <a><%=t(:difficult_level)%></a>
                     </div>
                     <div class="interview_point">
                         <strong><%=cal_rating_interview_difficultly_score(@company).round(1)%></strong>
@@ -29,7 +29,7 @@
             <div class="col-sm-4 padding-custom-middle">
                 <div class="interview_score_satisfied">
                     <div class="interview_score_label">
-                        <a><%=t(:satic_level).upcase%></a>
+                        <a><%=t(:satic_level)%></a>
                     </div>
                     <div class="interview_point">
                         <strong><%=cal_rating_interview_satisfied_score(@company).round(1)%></strong>
@@ -54,7 +54,7 @@
             <div class="col-sm-4 padding-custom">
                 <div class="interview_score_offer">
                     <div class="interview_score_label">
-                        <a><%=t(:accept_offer).upcase%></a>
+                        <a><%=t(:accept_offer)%></a>
                     </div>
                     <div class="interview_score_offer_block">
                         <div class="flex-wrapper-interview">
@@ -76,54 +76,6 @@
                             </div>
                         </div>
                     </div>
-                    <style>
-                        .flex-wrapper-interview {
-                            display: flex;
-                            flex-flow: row nowrap;
-                        }
-
-                        .single-chart-interview {
-                            width: 50%;
-                            justify-content: space-around ;
-                        }
-
-                        .circular-chart {
-                            display: block;
-                            margin: 10px auto;
-                            max-width: 80%;
-                            max-height: 250px;
-                        }
-
-                        .circle-bg {
-                            fill: none;
-                            stroke: #eee;
-                            stroke-width: 3.8;
-                        }
-
-                        .circle {
-                            fill: none;
-                            stroke-width: 2.8;
-                            stroke-linecap: round;
-                            animation: progress 1s ease-out forwards;
-                        }
-
-                        @keyframes progress {
-                            0% {
-                                stroke-dasharray: 0 100;
-                            }
-                        }
-
-                        .circular-chart.orange .circle {
-                            stroke: #ff9f00;
-                        }
-
-                        .percentage-interview {
-                            fill: #1473e6;
-                            font-size: 0.45em;
-                            text-anchor: middle;
-                            font-weight: 550;
-                        }
-                    </style>
                 </div>
             </div>
         </div>

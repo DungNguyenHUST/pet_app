@@ -109,8 +109,6 @@ class CompaniesController < ApplicationController
                 @sort_tab = "default"
             end
     
-            @companies = Company.all.page(params[:page]).per(18)
-    
             if @sort_tab == "default" || @sort_tab == "ReviewNewID"
                 @company_reviews = @company.company_reviews.order('created_at DESC').page(params[:page]).per(10)
             end
@@ -132,12 +130,44 @@ class CompaniesController < ApplicationController
             
             add_breadcrumb I18n.t(:review), company_path(@company)
         elsif  @tab == "CompanyInterviewsID"
+            # For sort
+            if(params.has_key?(:sort_tab))
+                @sort_tab = params[:sort_tab]
+            else
+                @sort_tab = "default"
+            end
+    
+            if @sort_tab == "default" || @sort_tab == "InterviewNewID"
+                @company_interviews = @company.company_interviews.order('created_at DESC').page(params[:page]).per(10)
+            end
+    
+            if @sort_tab == "InterviewPopularID"
+                @company_interviews = @company.company_interviews.sort_by{|company_interview| company_interview.company_react_interviews.count}.reverse
+                @company_interviews = Kaminari.paginate_array(@company_interviews).page(params[:page]).per(10)
+            end
+
             add_breadcrumb I18n.t(:interview), company_path(@company)
         elsif @tab == "CompanyJobsID"
             add_breadcrumb I18n.t(:job), company_path(@company)
         elsif @tab == "CompanySalariesID"
             add_breadcrumb I18n.t(:salary), company_path(@company)
         elsif  @tab == "CompanyQuestionsID"
+            # For sort
+            if(params.has_key?(:sort_tab))
+                @sort_tab = params[:sort_tab]
+            else
+                @sort_tab = "default"
+            end
+    
+            if @sort_tab == "default" || @sort_tab == "QuestionNewID"
+                @company_questions = @company.company_questions.order('created_at DESC').page(params[:page]).per(10)
+            end
+    
+            if @sort_tab == "QuestionPopularID"
+                @company_questions = @company.company_questions.sort_by{|company_question| company_question.company_reply_questions.count}.reverse
+                @company_questions = Kaminari.paginate_array(@company_questions).page(params[:page]).per(10)
+            end
+
             add_breadcrumb I18n.t(:question), company_path(@company) 
         elsif  @tab == "CompanyImagesID"
             add_breadcrumb I18n.t(:picture), company_path(@company)

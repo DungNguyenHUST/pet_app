@@ -4,6 +4,23 @@
         <div class="col-sm-8">
             <div class="company_question_left"> 
                 <%if @company.company_questions.count > 0%>  
+                    <div class="company_question_index_toolbar">
+                        <div class="company_question_index_title">
+                            <a><%=t(:found)%> <%=convert_number_to_human(@company_questions.total_count)%> <%=t(:interview_question).downcase%></a>
+                        </div>
+                        <div class="company_question_index_tab_link">
+                            <div class="dropdown show">
+                                <a class="btn btn-secondary dropdown-toggle" href="<%=company_path(@company, tab: "CompanyQuestionsID", sort_tab: 'QuestionNewID')%>" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                    <%=t(:newest)%>
+                                </a>
+
+                                <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
+                                    <a class="dropdown-item" href="<%=company_path(@company, tab: "CompanyQuestionsID", sort_tab: 'QuestionPopularID')%>"><%=t(:popular)%></a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
                     <div class="company_question_index">
                         <%= render @company_questions%>
                         <%= paginate @company_questions, window: 2%>

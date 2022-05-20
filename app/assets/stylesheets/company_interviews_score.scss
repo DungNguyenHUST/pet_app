@@ -109,6 +109,56 @@
                     padding-left: 10%;
                 }
                 margin-left: 32%;
+                
+                .flex-wrapper-interview {
+                    display: flex;
+                    flex-flow: row nowrap;
+                }
+
+                .single-chart-interview {
+                    width: 58%;
+                    justify-content: space-around ;
+                    @media screen and (max-width: 600px){
+                        width: 48%;
+                    }
+                }
+
+                .circular-chart {
+                    display: block;
+                    margin: 10px auto;
+                    max-width: 80%;
+                    max-height: 250px;
+                }
+
+                .circle-bg {
+                    fill: none;
+                    stroke: #eee;
+                    stroke-width: 3.8;
+                }
+
+                .circle {
+                    fill: none;
+                    stroke-width: 2.8;
+                    stroke-linecap: round;
+                    animation: progress 1s ease-out forwards;
+                }
+
+                @keyframes progress {
+                    0% {
+                        stroke-dasharray: 0 100;
+                    }
+                }
+
+                .circular-chart.orange .circle {
+                    stroke: #ff9f00;
+                }
+
+                .percentage-interview {
+                    fill: #1473e6;
+                    font-size: 0.45em;
+                    text-anchor: middle;
+                    font-weight: 550;
+                }
             }
         }
     }
