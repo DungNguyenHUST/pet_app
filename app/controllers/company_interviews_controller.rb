@@ -9,6 +9,7 @@ class CompanyInterviewsController < ApplicationController
     def new
         @company = Company.friendly.find(params[:company_id])
         @company_interview = CompanyInterview.new
+        @company_interview_questions = CompanyInterviewQuestion.new
     end
 
     def create
@@ -22,6 +23,7 @@ class CompanyInterviewsController < ApplicationController
         end
 
         if @company_interview.save
+            @company_interview.company_interview_questions.build
             redirect_to company_path(@company, tab: 'CompanyInterviewsID')
         else
             flash[:error] = I18n.t(:create_error)
@@ -50,6 +52,7 @@ class CompanyInterviewsController < ApplicationController
     private
 
     def company_interview_param
-        params.require(:company_interview).permit(:position, :get_interview, :process , :difficultly, :satisfied , :offer, :content, :privacy)
+        params.require(:company_interview).permit(:position, :get_interview, :process , :difficultly, :satisfied , :offer, :content, :privacy, 
+                                                    company_interview_questions_attributes: [:id, :question, :user_id, :company_interview_id])
     end
 end

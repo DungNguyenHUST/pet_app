@@ -1,0 +1,14 @@
+<div class="new_reply_interview_form_internal">
+    <%= form_for([CompanyInterviewQuestion.new], remote: true) do |ff| %>
+        <div class="new_reply_interview_content">
+            <div class="new_reply_interview_input_interview">
+                <%= ff.text_area :question, :class => "tinymce"%>
+                <%= tinymce :mini %>
+            </div>
+        </div>
+
+        <div class="new_reply_interview_submit">
+            <%= ff.submit t(:send), class: "new_reply_interview_form_submit" %>
+        </div>
+    <%end%>
+</div>

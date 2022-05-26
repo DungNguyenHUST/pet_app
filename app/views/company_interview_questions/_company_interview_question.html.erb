@@ -1,0 +1,17 @@
+<div class="company_interview_question">
+    <%if company_interview_question.question%>
+        <span>Q<%=company_interview_question.id%></span>: <a><%=company_interview_question.question.html_safe%></a>
+    <%end%>
+    <br>
+    <div class="company_interview_question_action">
+        <%if company_interview_question.company_reply_interview_questions.count == 0%>
+            <%= link_to company_interview_question_path(company_interview_question) do %> 
+                <%=t(:reply)%><i class="material-icons-outlined">open_in_new</i>
+            <%end%>
+        <%else%>
+            <%= link_to company_interview_question_path(company_interview_question) do %> 
+                <%=t(:view)%> <%=company_interview_question.company_reply_interview_questions.count%> <%=t(:reply).downcase%><i class="material-icons-outlined">open_in_new</i>
+            <%end%>
+        <%end%>
+    </div>
+</div>

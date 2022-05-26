@@ -335,6 +335,40 @@ ALTER SEQUENCE public.company_images_id_seq OWNED BY public.company_images.id;
 
 
 --
+-- Name: company_interview_questions; Type: TABLE; Schema: public; Owner: -
+--
+
+CREATE TABLE public.company_interview_questions (
+    id bigint NOT NULL,
+    question text,
+    user_id integer,
+    company_interview_id bigint NOT NULL,
+    created_at timestamp(6) without time zone NOT NULL,
+    updated_at timestamp(6) without time zone NOT NULL,
+    slug character varying
+);
+
+
+--
+-- Name: company_interview_questions_id_seq; Type: SEQUENCE; Schema: public; Owner: -
+--
+
+CREATE SEQUENCE public.company_interview_questions_id_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+--
+-- Name: company_interview_questions_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: -
+--
+
+ALTER SEQUENCE public.company_interview_questions_id_seq OWNED BY public.company_interview_questions.id;
+
+
+--
 -- Name: company_interviews; Type: TABLE; Schema: public; Owner: -
 --
 
@@ -541,6 +575,39 @@ CREATE SEQUENCE public.company_react_reviews_id_seq
 --
 
 ALTER SEQUENCE public.company_react_reviews_id_seq OWNED BY public.company_react_reviews.id;
+
+
+--
+-- Name: company_reply_interview_questions; Type: TABLE; Schema: public; Owner: -
+--
+
+CREATE TABLE public.company_reply_interview_questions (
+    id bigint NOT NULL,
+    answer text,
+    user_id integer,
+    company_interview_question_id integer,
+    created_at timestamp(6) without time zone NOT NULL,
+    updated_at timestamp(6) without time zone NOT NULL
+);
+
+
+--
+-- Name: company_reply_interview_questions_id_seq; Type: SEQUENCE; Schema: public; Owner: -
+--
+
+CREATE SEQUENCE public.company_reply_interview_questions_id_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+--
+-- Name: company_reply_interview_questions_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: -
+--
+
+ALTER SEQUENCE public.company_reply_interview_questions_id_seq OWNED BY public.company_reply_interview_questions.id;
 
 
 --
@@ -1811,6 +1878,13 @@ ALTER TABLE ONLY public.company_images ALTER COLUMN id SET DEFAULT nextval('publ
 
 
 --
+-- Name: company_interview_questions id; Type: DEFAULT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.company_interview_questions ALTER COLUMN id SET DEFAULT nextval('public.company_interview_questions_id_seq'::regclass);
+
+
+--
 -- Name: company_interviews id; Type: DEFAULT; Schema: public; Owner: -
 --
 
@@ -1843,6 +1917,13 @@ ALTER TABLE ONLY public.company_react_interviews ALTER COLUMN id SET DEFAULT nex
 --
 
 ALTER TABLE ONLY public.company_react_reviews ALTER COLUMN id SET DEFAULT nextval('public.company_react_reviews_id_seq'::regclass);
+
+
+--
+-- Name: company_reply_interview_questions id; Type: DEFAULT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.company_reply_interview_questions ALTER COLUMN id SET DEFAULT nextval('public.company_reply_interview_questions_id_seq'::regclass);
 
 
 --
@@ -2135,6 +2216,14 @@ ALTER TABLE ONLY public.company_images
 
 
 --
+-- Name: company_interview_questions company_interview_questions_pkey; Type: CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.company_interview_questions
+    ADD CONSTRAINT company_interview_questions_pkey PRIMARY KEY (id);
+
+
+--
 -- Name: company_interviews company_interviews_pkey; Type: CONSTRAINT; Schema: public; Owner: -
 --
 
@@ -2172,6 +2261,14 @@ ALTER TABLE ONLY public.company_react_interviews
 
 ALTER TABLE ONLY public.company_react_reviews
     ADD CONSTRAINT company_react_reviews_pkey PRIMARY KEY (id);
+
+
+--
+-- Name: company_reply_interview_questions company_reply_interview_questions_pkey; Type: CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.company_reply_interview_questions
+    ADD CONSTRAINT company_reply_interview_questions_pkey PRIMARY KEY (id);
 
 
 --
@@ -2505,6 +2602,20 @@ CREATE INDEX index_companies_on_tsv ON public.companies USING gin (tsv);
 --
 
 CREATE UNIQUE INDEX index_company_apply_jobs_on_slug ON public.company_apply_jobs USING btree (slug);
+
+
+--
+-- Name: index_company_interview_questions_on_company_interview_id; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE INDEX index_company_interview_questions_on_company_interview_id ON public.company_interview_questions USING btree (company_interview_id);
+
+
+--
+-- Name: index_company_interview_questions_on_slug; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE UNIQUE INDEX index_company_interview_questions_on_slug ON public.company_interview_questions USING btree (slug);
 
 
 --
@@ -3045,6 +3156,14 @@ ALTER TABLE ONLY public.employer_costs
 
 
 --
+-- Name: company_interview_questions fk_rails_f739e9e302; Type: FK CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.company_interview_questions
+    ADD CONSTRAINT fk_rails_f739e9e302 FOREIGN KEY (company_interview_id) REFERENCES public.company_interviews(id);
+
+
+--
 -- Name: user_skills fk_rails_fe61b6a893; Type: FK CONSTRAINT; Schema: public; Owner: -
 --
 
@@ -3270,6 +3389,9 @@ INSERT INTO "schema_migrations" (version) VALUES
 ('20220418084819'),
 ('20220425101253'),
 ('20220501102552'),
-('20220503040137');
+('20220503040137'),
+('20220520075023'),
+('20220520075037'),
+('20220526041506');
 
 

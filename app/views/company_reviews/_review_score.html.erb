@@ -95,31 +95,30 @@
             
             <div class="col-sm-4">
                 <div class="review_score_detail">
-                    <p class="review_score_detail_title"><%=t(:env_review)%></p>
-                    <span>
-                        <p><%=cal_rating_review_work_env_score(@company).round(1)%></p>
-                        <i class="material-icons">circle</i>
-                    </span>
-                    <p class="review_score_detail_title"><%=t(:salary_review)%></p>
-                    <span>
-                        <p><%=cal_rating_review_salary_score(@company).round(1)%></p>
-                        <i class="material-icons">circle</i>
-                    </span>
-                    <p class="review_score_detail_title"><%=t(:ot_review)%></p>
-                    <span>
-                        <p><%=cal_rating_review_ot_score(@company).round(1)%></p>
-                        <i class="material-icons">circle</i>
-                    </span>
-                    <p class="review_score_detail_title"><%=t(:mng_review)%></p>
-                    <span>
-                        <p><%=cal_rating_review_manager_score(@company).round(1)%></p>
-                        <i class="material-icons">circle</i>
-                    </span>
-                    <p class="review_score_detail_title"><%=t(:career_review)%></p>
-                    <span>
-                        <p><%=cal_rating_review_career_score(@company).round(1)%></p>
-                        <i class="material-icons">circle</i>
-                    </span>
+                    <div class="review_score_detail_section">
+                        <a><%=t(:env_review)%></a>
+                        <span><%=cal_rating_review_work_env_score(@company).round(1)%><i class="material-icons">circle</i></span>
+                    </div>
+
+                    <div class="review_score_detail_section">
+                        <a><%=t(:salary_review)%></a>
+                        <span><%=cal_rating_review_salary_score(@company).round(1)%><i class="material-icons">circle</i></span>
+                    </div>
+
+                    <div class="review_score_detail_section">
+                        <a><%=t(:ot_review)%></a>
+                        <span><%=cal_rating_review_ot_score(@company).round(1)%><i class="material-icons">circle</i></span>
+                    </div>
+
+                    <div class="review_score_detail_section">
+                        <a><%=t(:mng_review)%></a>
+                        <span><%=cal_rating_review_manager_score(@company).round(1)%><i class="material-icons">circle</i></span>
+                    </div>
+
+                    <div class="review_score_detail_section">
+                        <a><%=t(:career_review)%></a>
+                        <span><%=cal_rating_review_career_score(@company).round(1)%><i class="material-icons">circle</i></span>
+                    </div>
                 </div>
             </div>
         </div>

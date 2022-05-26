@@ -197,7 +197,7 @@
                     <%else%> 
                         <%active = ""%>
                     <%end%>                                     
-                    <a class="nav-link <%=active%>" href="<%=company_path(@company, tab: 'CompanyReviewsID')%>"><i class="material-icons-outlined">insert_emoticon</i><%=t(:review)%> <span> <%= convert_number_to_human(@company_reviews.total_count)%></span></a>
+                    <a class="nav-link <%=active%>" href="<%=company_path(@company, tab: 'CompanyReviewsID')%>"><i class="material-icons-outlined">reviews</i><%=t(:review)%> <span> <%= convert_number_to_human(@company_reviews.total_count)%></span></a>
                 </li>
                 <li class="nav-item">
                     <%if @tab == "CompanyInterviewsID"%>
@@ -205,7 +205,7 @@
                     <%else%> 
                         <%active = ""%>
                     <%end%> 
-                    <a class="nav-link <%=active%>" href="<%=company_path(@company, tab: 'CompanyInterviewsID')%>"><i class="material-icons-outlined">people_outline</i><%=t(:interview)%> <span> <%= convert_number_to_human(@company_interviews.total_count)%></span></a>
+                    <a class="nav-link <%=active%>" href="<%=company_path(@company, tab: 'CompanyInterviewsID')%>"><i class="material-icons-outlined">sensor_occupied</i><%=t(:interview)%> <span> <%= convert_number_to_human(@company_interviews.total_count)%></span></a>
                 </li>
                 <li class="nav-item">
                     <%if @tab == "CompanyJobsID"%>

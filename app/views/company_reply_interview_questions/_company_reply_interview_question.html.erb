@@ -1,0 +1,28 @@
+<div class="company_reply_interview_question_block">
+    <div class="company_reply_interview_question_left">
+        <div class="company_reply_interview_question_comment_left">
+            <%owner_user = find_owner_user(company_reply_interview_question)%>
+            <%if owner_user%>
+                <%= render owner_user%>  
+            <%else%>
+                <%= render :partial => 'users/user', :locals => {:user => nil} %>
+            <%end%>
+        </div>
+    </div>
+
+    <div class="company_reply_interview_question_cotent">
+        <%if company_reply_interview_question.answer%>
+            <div class="company_reply_interview_question_body">
+                <a><%= company_reply_interview_question.answer.html_safe %></a>
+            </div>
+        <%end%>
+
+        <div class="company_reply_interview_question_time">
+            <%if owner_user%>
+                <a><%=owner_user.name%> · <%= time_ago_in_words(company_reply_interview_question.created_at) %></a>
+            <%else%>
+                <a><%=t(:anonymous)%> · <%= time_ago_in_words(company_reply_interview_question.created_at) %></a>
+            <%end%>
+        </div>
+    </div>
+</div>

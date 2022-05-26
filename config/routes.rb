@@ -73,6 +73,11 @@ Rails.application.routes.draw do
   resources :company_interviews do
     resources :company_reply_interviews
     resources :company_react_interviews
+    resources :company_interview_questions
+  end
+
+  resources :company_interview_questions do
+    resources :company_reply_interview_questions
   end
 
   resources :company_jobs do

@@ -1,0 +1,15 @@
+<div id="reply_interview_question_render_block_id">
+    <%if company_interview_question.company_reply_interview_questions.count > 0%>
+        <div class="company_interview_question_reply_count">
+            <%= company_interview_question.company_reply_interview_questions.count%> <%=t(:reply).downcase%>
+        </div>
+
+        <div class="reply_interview_question_render">
+            <%= render company_interview_question.company_reply_interview_questions%>
+        </div>
+    <%else%>
+        <div class="company_interview_question_reply_not_found">
+            <a><%=t(:no_reply_found)%></a>
+        </div>
+    <%end%>
+</div>

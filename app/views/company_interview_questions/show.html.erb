@@ -1,0 +1,57 @@
+<% content_for :meta_robots, "all" %>
+<%if @company_interview_question.question%>
+    <% content_for :meta_title, @company_interview_question.question.html_safe %>
+<%end%>
+<div class="container">
+    <div class="row">
+        <div class="col-sm-8">
+            <div class="company_interview_question_show_block">
+                <div class="company_interview_question_show">
+                    <div class="company_interview_question_content">
+                        <a><%=t(:question_content)%></a>
+                        <br>
+                        <%if @company_interview_question.question%>
+                            <span><%=@company_interview_question.question.html_safe%></span>
+                        <%end%>
+                    </div>
+                    
+                    <div class="new_reply_interview_question_form">
+                        <div class="new_reply_interview_question_title">
+                            <a><%=t(:problem_solution_meta_3)%></a>
+                        </div>
+                        <%= form_for([@company_interview_question, CompanyReplyInterviewQuestion.new], remote: true) do |f| %>
+                            <div class="new_reply_interview_content">
+                                <div class="new_reply_interview_input_interview">
+                                    <%= f.text_area :answer, :class => "tinymce"%>
+                                    <%= tinymce :mini %>
+                                </div>
+                            </div>
+
+                            <div class="new_reply_interview_submit">
+                                <button type="submit" class="new_reply_interview_form_submit">
+                                    <i class="material-icons">send</i>
+                                </button>
+                            </div>
+                        <%end%>
+                    </div>
+                    <div class="reply_interview_question_render_block" id="reply_interview_question_render_block_id">
+                        <%if @company_reply_interview_questions.total_count > 0%>
+                            <div class="company_interview_question_reply_count">
+                                <%= @company_reply_interview_questions.total_count%> <%=t(:reply).downcase%>
+                            </div>
+
+                            <div class="reply_interview_question_render">
+                                <%= render @company_reply_interview_questions%>
+                            </div>
+                            <%= paginate @company_reply_interview_questions, window: 2%>
+                        <%else%>
+                            <div class="company_interview_question_reply_not_found">
+                                <a><%=t(:no_reply_found)%></a>
+                            </div>
+                        <%end%>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

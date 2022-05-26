@@ -17,7 +17,7 @@
         <div class="interview_satisfied_overview">
             <div class="interview_content">
                 <div class="interview_satisfied_label">
-                    <a><%=t(:interview_happy)%>: </a>
+                    <a><%=t(:interview_happy)%> </a>
                 </div>
                 <div class="interview_score_star">
                     <%if !company_interview.satisfied.to_s.empty?%>
@@ -42,7 +42,7 @@
 
         <div class="user_interview_offer">
             <div class="user_interview_offer_label">
-                <a><%=t(:accept_offer)%>: </a>
+                <a><%=t(:accept_offer)%> </a>
             </div>
             <div class="user_interview_offer_content">
                 <%if !company_interview.offer.to_s.empty?%>
@@ -57,9 +57,27 @@
             </div>
         </div>
 
-        <div class="company_interview_body">
-            <a><%= company_interview.content.html_safe %></a>
-        </div>
+        <%if company_interview.company_interview_questions.count > 0%>
+            <div class="user_interview_question_block">
+                <div class="company_interview_question_title">
+                    <a><%=t(:interview_question)%></a>
+                </div>
+                <div class="company_interview_question_block">
+                    <%=render company_interview.company_interview_questions%>
+                </div>
+            </div>
+        <%end%>
+
+        <%unless company_interview.content.blank?%>
+            <div class="company_interview_body">
+                <div class="company_interview_body_title">
+                    <a><%=t(:interview_detail)%></a>
+                </div>
+                <%if company_interview.content%>
+                    <a><%= company_interview.content.html_safe %></a>
+                <%end%>
+            </div>
+        <%end%>
     
         <div class="interview_toolbar">
             <div class="interview_reply_block">
