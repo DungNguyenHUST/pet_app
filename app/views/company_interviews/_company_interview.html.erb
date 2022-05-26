@@ -63,7 +63,9 @@
                     <a><%=t(:interview_question)%></a>
                 </div>
                 <div class="company_interview_question_block">
-                    <%=render company_interview.company_interview_questions%>
+                    <%company_interview.company_interview_questions.each_with_index do |company_interview_question, count|%>
+                        <%= render :partial => 'company_interview_questions/company_interview_question', :locals => {:company_interview_question => company_interview_question, :count => count + 1} %>
+                    <%end%>
                 </div>
             </div>
         <%end%>

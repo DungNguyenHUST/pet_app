@@ -79,6 +79,7 @@ Rails.application.routes.draw do
   resources :company_interview_questions do
     resources :company_reply_interview_questions
   end
+  get 'add_interview_question' => 'company_interview_questions#add'
 
   resources :company_jobs do
     resources :company_apply_jobs

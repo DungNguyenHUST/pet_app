@@ -205,35 +205,12 @@
 						</div>
 					</div>
 
-					<%= f.fields_for :company_interview_questions, CompanyInterviewQuestion.new do |ff| %>
-						<div class="new_interview_fields_section" id="new_interview_fields_section_id">
-							<div class="new_interview_fields_content">
-								<div class="new_interview_fields_label">
-									<a><%= ff.label :process, t(:question_content), class: "new_interview_fields_label_name" %></a>
-								</div>
-								<div class="new_interview_fields_input">
-									<%= ff.text_area :question, :class => "tinymce"%>
-									<%= tinymce :mini %>
-								</div>
-							</div>
-						</div>
+					<div id="add_interview_question_id"></div>
+					<%CompanyInterviewQuestionsController.set_interview_question_count%>
+					<%CompanyInterviewQuestionsController.set_current_interview_form_object(f)%>
+					<%= link_to add_interview_question_path, :remote => true, method: :get do%>
+						<button type="button" class="add_interview_question_btn"> <i class="material-icons-outlined">add</i> <span> <%=t(:add_interview_question)%></span> </button>
 					<%end%>
-
-					<button type="button" class="add_interview_question_btn" onclick="myFunctionReplyInterview()"><i class="material-icons-outlined">add</i> <span><%=t(:add_interview_question)%></span> </button>
-
-					<script>
-						function myFunctionReplyInterview(id) {
-							var x = document.getElementById("new_interview_fields_section_id");
-							if (x.style.display == "block") 
-							{
-								x.style.display = "none";
-							} 
-							else 
-							{
-								x.style.display = "block";
-							}
-						}
-					</script>
 					
 					<div class="new_interview_section">
 						<div class="new_interview_label_sub">

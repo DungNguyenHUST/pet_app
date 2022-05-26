@@ -1,6 +1,6 @@
 <% content_for :meta_robots, "all" %>
-<%if @company_interview_question.question%>
-    <% content_for :meta_title, @company_interview_question.question.html_safe %>
+<%if @company_interview_question.has_attribute?(:question)%>
+    <% content_for :meta_title, @company_interview_question.question %>
 <%end%>
 <div class="container">
     <div class="row">

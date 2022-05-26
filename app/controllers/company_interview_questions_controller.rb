@@ -45,6 +45,35 @@ class CompanyInterviewQuestionsController < ApplicationController
         @company_reply_interview_questions = @company_interview_question.company_reply_interview_questions.order('created_at DESC').page(params[:page]).per(2)
     end
 
+    @@current_interview_form_object = nil
+    @@interview_question_count = 0
+
+    def self.set_current_interview_form_object(object)
+        @@current_interview_form_object = object
+    end
+
+    def self.get_current_interview_form_object
+        return @@current_interview_form_object
+    end
+
+    def self.get_interview_question_count
+        return @@interview_question_count
+    end
+
+    def self.set_interview_question_count
+        @@interview_question_count = 0
+    end
+
+    def add
+        @@interview_question_count += 1
+        @count = CompanyInterviewQuestionsController.get_interview_question_count
+        @f = CompanyInterviewQuestionsController.get_current_interview_form_object
+        respond_to do |format|
+            format.html {}
+            format.js
+        end
+    end
+
     private
 
     def company_interview_question_param

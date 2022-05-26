@@ -1,14 +1,12 @@
-<div class="new_reply_interview_form_internal">
-    <%= form_for([CompanyInterviewQuestion.new], remote: true) do |ff| %>
-        <div class="new_reply_interview_content">
-            <div class="new_reply_interview_input_interview">
-                <%= ff.text_area :question, :class => "tinymce"%>
-                <%= tinymce :mini %>
+<%= f.fields_for :company_interview_questions, CompanyInterviewQuestion.new do |ff| %>
+    <div class="new_interview_fields_section" id="new_interview_fields_section_id">
+        <div class="new_interview_fields_content">
+            <div class="new_interview_fields_label">
+                <a><%= ff.label :process, "#{t(:user_interview_question)} #{count}", class: "new_interview_fields_label_name" %></a>
+            </div>
+            <div class="new_interview_fields_input">
+                <%= ff.text_area :question, required: true%>
             </div>
         </div>
-
-        <div class="new_reply_interview_submit">
-            <%= ff.submit t(:send), class: "new_reply_interview_form_submit" %>
-        </div>
-    <%end%>
-</div>
+    </div>
+<%end%>
