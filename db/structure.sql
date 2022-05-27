@@ -545,6 +545,39 @@ ALTER SEQUENCE public.company_react_interviews_id_seq OWNED BY public.company_re
 
 
 --
+-- Name: company_react_reply_interview_questions; Type: TABLE; Schema: public; Owner: -
+--
+
+CREATE TABLE public.company_react_reply_interview_questions (
+    id bigint NOT NULL,
+    user_id integer,
+    react_type integer DEFAULT '-1'::integer,
+    company_reply_interview_question_id integer,
+    created_at timestamp(6) without time zone NOT NULL,
+    updated_at timestamp(6) without time zone NOT NULL
+);
+
+
+--
+-- Name: company_react_reply_interview_questions_id_seq; Type: SEQUENCE; Schema: public; Owner: -
+--
+
+CREATE SEQUENCE public.company_react_reply_interview_questions_id_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+--
+-- Name: company_react_reply_interview_questions_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: -
+--
+
+ALTER SEQUENCE public.company_react_reply_interview_questions_id_seq OWNED BY public.company_react_reply_interview_questions.id;
+
+
+--
 -- Name: company_react_reviews; Type: TABLE; Schema: public; Owner: -
 --
 
@@ -1913,6 +1946,13 @@ ALTER TABLE ONLY public.company_react_interviews ALTER COLUMN id SET DEFAULT nex
 
 
 --
+-- Name: company_react_reply_interview_questions id; Type: DEFAULT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.company_react_reply_interview_questions ALTER COLUMN id SET DEFAULT nextval('public.company_react_reply_interview_questions_id_seq'::regclass);
+
+
+--
 -- Name: company_react_reviews id; Type: DEFAULT; Schema: public; Owner: -
 --
 
@@ -2253,6 +2293,14 @@ ALTER TABLE ONLY public.company_questions
 
 ALTER TABLE ONLY public.company_react_interviews
     ADD CONSTRAINT company_react_interviews_pkey PRIMARY KEY (id);
+
+
+--
+-- Name: company_react_reply_interview_questions company_react_reply_interview_questions_pkey; Type: CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.company_react_reply_interview_questions
+    ADD CONSTRAINT company_react_reply_interview_questions_pkey PRIMARY KEY (id);
 
 
 --
@@ -3392,6 +3440,7 @@ INSERT INTO "schema_migrations" (version) VALUES
 ('20220503040137'),
 ('20220520075023'),
 ('20220520075037'),
-('20220526041506');
+('20220526041506'),
+('20220527064153');
 
 

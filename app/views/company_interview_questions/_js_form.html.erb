@@ -4,6 +4,19 @@
             <%= company_interview_question.company_reply_interview_questions.count%> <%=t(:reply).downcase%>
         </div>
 
+        <div class="company_interview_question_reply_sort">
+            <div class="dropdown show">
+                <a class="btn btn-secondary dropdown-toggle" href="<%=company_interview_question_path(@company_interview_question, sort_tab: 'ReplyInterviewNewID')%>" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    <%=t(:newest)%>
+                </a>
+
+                <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
+                    <a class="dropdown-item" href="<%=company_interview_question_path(@company_interview_question, sort_tab: 'ReplyInterviewLowtoHighID')%>"><%=t(:low_to_high)%></a>
+                    <a class="dropdown-item" href="<%=company_interview_question_path(@company_interview_question, sort_tab: 'ReplyInterviewHightoLowID')%>"><%=t(:high_to_low)%></a>
+                </div>
+            </div>
+        </div>
+
         <div class="reply_interview_question_render">
             <%= render company_interview_question.company_reply_interview_questions%>
         </div>

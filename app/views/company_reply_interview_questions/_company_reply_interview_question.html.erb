@@ -11,18 +11,79 @@
     </div>
 
     <div class="company_reply_interview_question_cotent">
-        <%if company_reply_interview_question.answer%>
-            <div class="company_reply_interview_question_body">
-                <a><%= company_reply_interview_question.answer.html_safe %></a>
-            </div>
-        <%end%>
-
         <div class="company_reply_interview_question_time">
             <%if owner_user%>
                 <a><%=owner_user.name%> · <%= time_ago_in_words(company_reply_interview_question.created_at) %></a>
             <%else%>
                 <a><%=t(:anonymous)%> · <%= time_ago_in_words(company_reply_interview_question.created_at) %></a>
             <%end%>
+        </div>
+        <%if company_reply_interview_question.answer%>
+            <div class="company_reply_interview_question_body">
+                <a><%= company_reply_interview_question.answer.html_safe %></a>
+            </div>
+        <%end%>
+
+        <div class="reply_interview_question_react_container">
+            <div class="reply_interview_question_react_block" id="reply_interview_question_react_interview_<%=company_reply_interview_question.id%>">
+                <div class="reply_interview_question_like_block">
+                    <%if user_signed_in?%>
+                        <% like_react = company_reply_interview_question.company_react_reply_interview_questions.find { |react| (react.user_id == current_user.id) && (react.react_type == 1)} %>
+                        <% if like_react %>  
+                            <%= button_to company_reply_interview_question_company_react_reply_interview_questions_path(company_reply_interview_question, react_type: -1), method: :post, remote: true, form_class: "like_btn_highlight" do %>
+                                <i class="material-icons">thumb_up</i> <span><%= company_reply_interview_question.company_react_reply_interview_questions.where(:react_type => 1).count%></span> <a><%=t(:like)%></a>
+                            <%end%>
+                        <%else%>
+                            <%= button_to company_reply_interview_question_company_react_reply_interview_questions_path(company_reply_interview_question, react_type: 1), method: :post, remote: true, form_class: "like_btn" do %>
+                                <i class="material-icons-outlined">thumb_up</i> <span><%= company_reply_interview_question.company_react_reply_interview_questions.where(:react_type => 1).count%></span> <a><%=t(:like)%></a>
+                            <%end%>
+                        <%end%>
+                    <%else%>
+                        <button type="button" data-toggle="modal" data-target="#buttonModalLoginCenter" class="like_btn">
+                            <i class="material-icons-outlined">thumb_up</i> <span><%= company_reply_interview_question.company_react_reply_interview_questions.where(:react_type => 1).count%></span> <a><%=t(:like)%></a>
+                        </button>
+                    <%end%>
+                </div>
+
+                <div class="reply_interview_question_dislike_block">
+                    <%if user_signed_in?%>
+                        <% dislike_react = company_reply_interview_question.company_react_reply_interview_questions.find { |react| (react.user_id == current_user.id) && (react.react_type == 0)} %>
+                        <% if dislike_react %>  
+                            <%= button_to company_reply_interview_question_company_react_reply_interview_questions_path(company_reply_interview_question, react_type: -1), method: :post, remote: true, form_class: "dislike_btn_highlight" do %>
+                                <i class="material-icons">thumb_down</i> <span><%= company_reply_interview_question.company_react_reply_interview_questions.where(:react_type => 0).count%></span> <a><%=t(:dislike)%></a>
+                            <%end%>
+                        <%else%>
+                            <%= button_to company_reply_interview_question_company_react_reply_interview_questions_path(company_reply_interview_question, react_type: 0), method: :post, remote: true, form_class: "dislike_btn" do %>
+                                <i class="material-icons-outlined">thumb_down</i> <span><%= company_reply_interview_question.company_react_reply_interview_questions.where(:react_type => 0).count%></span> <a><%=t(:dislike)%></a>
+                            <%end%>
+                        <%end%>
+                    <%else%>
+                        <button type="button" data-toggle="modal" data-target="#buttonModalLoginCenter" class="dislike_btn">
+                            <i class="material-icons-outlined">thumb_down</i> <span><%= company_reply_interview_question.company_react_reply_interview_questions.where(:react_type => 0).count%></span> <a><%=t(:dislike)%></a>
+                        </button>
+                    <%end%>
+                </div>
+            </div>
+
+            <div class="reply_interview_question_report_block">
+                <%if user_signed_in?%>
+                    <button class="report_btn" type="button" class="btn" data-toggle="modal" data-target="#buttonModalReplyInterviewBlock">
+                        <i class="material-icons-outlined">flag</i> <a><%=t(:report)%></a>
+                    </button>
+                <%else%>
+                    <button class="report_btn" type="button" class="btn" data-toggle="modal" data-target="#buttonModalLoginCenter">
+                        <i class="material-icons-outlined">flag</i> <a><%=t(:report)%></a>
+                    </button>
+                <%end%>
+                <!-- Modal -->
+                <div class="modal fade" id="buttonModalReplyInterviewBlock" tabindex="-1" role="dialog" aria-hidden="true">
+                    <div class="modal-dialog modal-dialog-centered" role="document">
+                        <div class="modal-content">
+                            <%= render :partial => 'reports/form', locals: {target_id: company_reply_interview_question.id, target_type: "CompanyInterview"} %>
+                        </div>
+                    </div>
+                </div>
+            </div>
         </div>
     </div>
 </div>
