@@ -1,5 +1,6 @@
 class CompanyInterviewQuestionsController < ApplicationController
     include ApplicationHelper
+    include ActionView::Helpers::TextHelper
     before_action :require_user_login, only: [:edit, :update, :destroy]
 
     def index 
@@ -42,7 +43,13 @@ class CompanyInterviewQuestionsController < ApplicationController
     def show
         @company_interview_question = CompanyInterviewQuestion.friendly.find(params[:id])
         @company_interview = @company_interview_question.company_interview
+        @company = @company_interview.company
         @company_reply_interview_questions = @company_interview_question.company_reply_interview_questions.order('created_at DESC').page(params[:page]).per(10)
+
+        add_breadcrumb I18n.t(:home_page), :root_path
+        add_breadcrumb I18n.t(:company_list), company_path(@company)
+        add_breadcrumb I18n.t(:problem), company_path(@company, tab: 'CompanyInterviewsID')
+        add_breadcrumb truncate(strip_tags(@company_interview_question.question), length: 100), company_interview_question_path(@company_interview_question)
 
         # For sort
         if(params.has_key?(:sort_tab))
