@@ -2,10 +2,34 @@ class CompaniesController < ApplicationController
     include CompaniesHelper
     include ApplicationHelper
     before_action :require_employer_login, only: [:new, :create, :edit, :update, :destroy]
+    
+    # Index list
+    @@popular_companies = nil
+    @@best_companies = nil
+    @@set_time = nil
+
+    def set_popular_company
+        if @@set_time
+            if @@set_time <= (Time.now - 1.days) # set new list on each days
+                @@popular_companies = Company.all.sort_by{|company| company.company_reviews.count}.reverse
+                @@best_companies = Company.all.sort_by{|company| cal_rating_review_total_score(company).to_f}.reverse
+                @@set_time = Time.now
+            else
+                return
+            end
+        else
+            @@popular_companies = Company.all.sort_by{|company| company.company_reviews.count}.reverse
+            @@best_companies = Company.all.sort_by{|company| cal_rating_review_total_score(company).to_f}.reverse
+            @@set_time = Time.now
+        end
+    end
 
     def index
         add_breadcrumb I18n.t(:home_page), :root_path
         add_breadcrumb I18n.t(:company_list), :companies_path
+
+        # Set popular list
+        self.set_popular_company
 
         # Search
         @is_company_searched = false
@@ -34,13 +58,11 @@ class CompaniesController < ApplicationController
         @companies = Company.all.page(params[:page]).per(18)
 
         if @tab == "default" || @tab == "CompanyMostRecentID"
-            @companies_most_recent = Company.all.sort_by{|company| company.company_reviews.count}.reverse
-            @companies_most_recent = Kaminari.paginate_array(@companies_most_recent).page(params[:page]).per(18)
+            @companies_most_recent = Kaminari.paginate_array(@@popular_companies).page(params[:page]).per(18)
         end
 
         if @tab == "CompanyBestID"
-            @companies_best = Company.all.sort_by{|company| cal_rating_review_total_score(company).to_f}.reverse
-            @companies_best = Kaminari.paginate_array(@companies_best).page(params[:page]).per(18)
+            @companies_best = Kaminari.paginate_array(@@best_companies).page(params[:page]).per(18)
         end
     end
 
