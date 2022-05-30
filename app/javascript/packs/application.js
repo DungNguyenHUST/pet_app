@@ -15,7 +15,6 @@ require("channels")
 // const images = require.context('../images', true)
 // const imagePath = (name) => images(name, true)
 
-import "bootstrap"
 import "chartkick/chart.js"
 
 // application.js
@@ -29,3 +28,5 @@ require("@rails/actiontext")
 //= require_tree .
 
 //= require tinymce
+
+import "bootstrap"
