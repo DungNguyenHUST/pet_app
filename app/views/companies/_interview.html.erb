@@ -30,7 +30,9 @@
                     </div>
 
                     <div class="company_interview">
-                        <%= render @company_interviews %>
+                        <%@company_interviews.each_with_index do |company_interview, index|%>
+                            <%= render :partial => 'company_interviews/company_interview', :locals => {:company_interview => company_interview, :index => index} %>
+                        <%end%>
                     </div>
                     <%= paginate @company_interviews, window: 2%>
                 <%else%>

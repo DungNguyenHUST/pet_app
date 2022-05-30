@@ -1,187 +1,194 @@
-<div class="user_review_block" id="company_review_block_<%=company_review.id%>">
-    <div class="user_review_container">
-        <div class="user_review_score_star">
-            <div class="review_point">
-                <a><%=cal_rating_review_score(company_review).to_f.round(1)%> </a>
-            </div>
-            <div class="review_score_star">
-                <%cal_rating_review_score(company_review).to_i.times do%>
-                    <i class="material-icons checked">circle</i>
-                <%end%>
-                <%(5 - cal_rating_review_score(company_review).to_i).to_i.times do%>
-                    <i class="material-icons checked_out">radio_button_unchecked</i>
-                <%end%>
-            </div>
+<%if is_user_unlock_content(company_review.company) == false && index > 0%>
+    <div class="user_review_unlock_block">
+        <div class="user_review_unlock">
+            <%= render :partial => 'companies/unlock_content', :locals => {:company => company_review.company}%>
         </div>
+<%else%>
+    <div class="user_review_block" id="company_review_block_<%=company_review.id%>">
+<%end%>
+        <div class="user_review_container">
+            <div class="user_review_score_star">
+                <div class="review_point">
+                    <a><%=cal_rating_review_score(company_review).to_f.round(1)%> </a>
+                </div>
+                <div class="review_score_star">
+                    <%cal_rating_review_score(company_review).to_i.times do%>
+                        <i class="material-icons checked">circle</i>
+                    <%end%>
+                    <%(5 - cal_rating_review_score(company_review).to_i).to_i.times do%>
+                        <i class="material-icons checked_out">radio_button_unchecked</i>
+                    <%end%>
+                </div>
+            </div>
 
-        <div class="user_review_title">
-            <%if company_review.review_title.present?%>
-                <a><%= company_review.review_title%></a>
-            <%else%>
-                <a><%= company_review.position%></a>
-            <%end%>
-        </div>
-
-        <div class="user_review_status">
-                <%unless company_review.position.blank?%>
-                    <a><%= company_review.position %> · </a>
-                <%end%>
-                <%if company_review.working_status%>
-                    <a><%=t(:employee_working)%> · </a>
+            <div class="user_review_title">
+                <%if company_review.review_title.present?%>
+                    <a><%= company_review.review_title%></a>
                 <%else%>
-                    <a><%=t(:employee_out)%> · </a>
+                    <a><%= company_review.position%></a>
                 <%end%>
-                <%unless company_review.working_time.blank?%>
-                    <a><%=t(:working_in)%> <%= company_review.working_time%> · </a>
-                <%end%>
-                <%if company_review.recommend%>
-                    <a><%=t(:recommand_work)%> · </a>
-                <%else%>
-                    <a><%=t(:not_recommand_work)%> · </a>
-                <%end%>
-                <a><%= company_review.created_at.strftime("%B, %Y")%></a>
-        </div>
-
-        <div class="user_review_cotent">
-            <%if company_review.review.present?%>
-                <div class="user_review_body">
-                    <a><%= company_review.review.html_safe %></a>
-                </div>
-            <%end%>
-            <div class="user_review_pros">
-                <div class="user_review_pros_label">
-                    <i class="material-icons-outlined checked">check</i>
-                    <strong><%=t(:pros)%></strong>
-                </div>
-                <div class="user_review_pros_content">
-                    <%if company_review.pros.present?%>
-                        <a><%= company_review.pros.html_safe %></a>
-                    <%else%>
-                        <a>---</a>
-                    <%end%>
-                </div>
             </div>
 
-            <div class="user_review_cons">
-                <div class="user_review_cons_label">
-                    <i class="material-icons-outlined checked">clear</i>
-                    <strong><%=t(:cons)%></strong>
-                </div>
-                <div class="user_review_cons_content">
-                    <%if company_review.cons.present?%>
-                        <a><%= company_review.cons.html_safe %></a>
-                    <%else%>
-                        <a>---</a>
+            <div class="user_review_status">
+                    <%unless company_review.position.blank?%>
+                        <a><%= company_review.position %> · </a>
                     <%end%>
-                </div>
+                    <%if company_review.working_status%>
+                        <a><%=t(:employee_working)%> · </a>
+                    <%else%>
+                        <a><%=t(:employee_out)%> · </a>
+                    <%end%>
+                    <%unless company_review.working_time.blank?%>
+                        <a><%=t(:working_in)%> <%= company_review.working_time%> · </a>
+                    <%end%>
+                    <%if company_review.recommend%>
+                        <a><%=t(:recommand_work)%> · </a>
+                    <%else%>
+                        <a><%=t(:not_recommand_work)%> · </a>
+                    <%end%>
+                    <a><%= company_review.created_at.strftime("%B, %Y")%></a>
             </div>
 
-            <div class="review_toolbar">
-                <div class="review_reply_block">
-                    <%if user_signed_in?%>
-                        <button class="reply_btn" onclick="myFunctionReplyReview(<%=company_review.id%>)"><i class="material-icons-outlined">chat_bubble_outline</i> <span><%= company_review.company_reply_reviews.count%></span> <a><%=t(:reply)%></a> </button>
-                    <%else%>
-                        <button type="button" data-toggle="modal" data-target="#buttonModalLoginCenter" class="reply_btn">
-                            <i class="material-icons-outlined">chat_bubble_outline</i> <span><%= company_review.company_reply_reviews.count%></span> <a><%=t(:reply)%></a>
-                        </button>
-                    <%end%>
+            <div class="user_review_cotent">
+                <%if company_review.review.present?%>
+                    <div class="user_review_body">
+                        <a><%= company_review.review.html_safe %></a>
+                    </div>
+                <%end%>
+                <div class="user_review_pros">
+                    <div class="user_review_pros_label">
+                        <i class="material-icons-outlined checked">check</i>
+                        <strong><%=t(:pros)%></strong>
+                    </div>
+                    <div class="user_review_pros_content">
+                        <%if company_review.pros.present?%>
+                            <a><%= company_review.pros.html_safe %></a>
+                        <%else%>
+                            <a>---</a>
+                        <%end%>
+                    </div>
                 </div>
 
-                <div class="review_react_block" id="react_review_<%=company_review.id%>">
-                    <div class="review_like_block">
+                <div class="user_review_cons">
+                    <div class="user_review_cons_label">
+                        <i class="material-icons-outlined checked">clear</i>
+                        <strong><%=t(:cons)%></strong>
+                    </div>
+                    <div class="user_review_cons_content">
+                        <%if company_review.cons.present?%>
+                            <a><%= company_review.cons.html_safe %></a>
+                        <%else%>
+                            <a>---</a>
+                        <%end%>
+                    </div>
+                </div>
+
+                <div class="review_toolbar">
+                    <div class="review_reply_block">
                         <%if user_signed_in?%>
-                            <% like_react = company_review.company_react_reviews.find { |react| (react.user_id == current_user.id) && (react.react_type == 1)} %>
-                            <% if like_react %>  
-                                <%= button_to company_review_company_react_reviews_path(company_review, react_type: -1), method: :post, remote: true, form_class: "like_btn_highlight" do %>
-                                    <i class="material-icons">thumb_up</i> <span><%= company_review.company_react_reviews.where(:react_type => 1).count%></span> <a><%=t(:like)%></a>
+                            <button class="reply_btn" onclick="myFunctionReplyReview(<%=company_review.id%>)"><i class="material-icons-outlined">chat_bubble_outline</i> <span><%= company_review.company_reply_reviews.count%></span> <a><%=t(:reply)%></a> </button>
+                        <%else%>
+                            <button type="button" data-toggle="modal" data-target="#buttonModalLoginCenter" class="reply_btn">
+                                <i class="material-icons-outlined">chat_bubble_outline</i> <span><%= company_review.company_reply_reviews.count%></span> <a><%=t(:reply)%></a>
+                            </button>
+                        <%end%>
+                    </div>
+
+                    <div class="review_react_block" id="react_review_<%=company_review.id%>">
+                        <div class="review_like_block">
+                            <%if user_signed_in?%>
+                                <% like_react = company_review.company_react_reviews.find { |react| (react.user_id == current_user.id) && (react.react_type == 1)} %>
+                                <% if like_react %>  
+                                    <%= button_to company_review_company_react_reviews_path(company_review, react_type: -1), method: :post, remote: true, form_class: "like_btn_highlight" do %>
+                                        <i class="material-icons">thumb_up</i> <span><%= company_review.company_react_reviews.where(:react_type => 1).count%></span> <a><%=t(:like)%></a>
+                                    <%end%>
+                                <%else%>
+                                    <%= button_to company_review_company_react_reviews_path(company_review, react_type: 1), method: :post, remote: true, form_class: "like_btn" do %>
+                                        <i class="material-icons-outlined">thumb_up</i> <span><%= company_review.company_react_reviews.where(:react_type => 1).count%></span> <a><%=t(:like)%></a>
+                                    <%end%>
                                 <%end%>
                             <%else%>
-                                <%= button_to company_review_company_react_reviews_path(company_review, react_type: 1), method: :post, remote: true, form_class: "like_btn" do %>
+                                <button type="button" data-toggle="modal" data-target="#buttonModalLoginCenter" class="like_btn">
                                     <i class="material-icons-outlined">thumb_up</i> <span><%= company_review.company_react_reviews.where(:react_type => 1).count%></span> <a><%=t(:like)%></a>
-                                <%end%>
+                                </button>
                             <%end%>
-                        <%else%>
-                            <button type="button" data-toggle="modal" data-target="#buttonModalLoginCenter" class="like_btn">
-                                <i class="material-icons-outlined">thumb_up</i> <span><%= company_review.company_react_reviews.where(:react_type => 1).count%></span> <a><%=t(:like)%></a>
-                            </button>
-                        <%end%>
-                    </div>
+                        </div>
 
-                    <div class="review_dislike_block">
-                        <%if user_signed_in?%>
-                            <% dislike_react = company_review.company_react_reviews.find { |react| (react.user_id == current_user.id) && (react.react_type == 0)} %>
-                            <% if dislike_react %>  
-                                <%= button_to company_review_company_react_reviews_path(company_review, react_type: -1), method: :post, remote: true, form_class: "dislike_btn_highlight" do %>
-                                    <i class="material-icons">thumb_down</i> <span><%= company_review.company_react_reviews.where(:react_type => 0).count%></span> <a><%=t(:dislike)%></a>
+                        <div class="review_dislike_block">
+                            <%if user_signed_in?%>
+                                <% dislike_react = company_review.company_react_reviews.find { |react| (react.user_id == current_user.id) && (react.react_type == 0)} %>
+                                <% if dislike_react %>  
+                                    <%= button_to company_review_company_react_reviews_path(company_review, react_type: -1), method: :post, remote: true, form_class: "dislike_btn_highlight" do %>
+                                        <i class="material-icons">thumb_down</i> <span><%= company_review.company_react_reviews.where(:react_type => 0).count%></span> <a><%=t(:dislike)%></a>
+                                    <%end%>
+                                <%else%>
+                                    <%= button_to company_review_company_react_reviews_path(company_review, react_type: 0), method: :post, remote: true, form_class: "dislike_btn" do %>
+                                        <i class="material-icons-outlined">thumb_down</i> <span><%= company_review.company_react_reviews.where(:react_type => 0).count%></span> <a><%=t(:dislike)%></a>
+                                    <%end%>
                                 <%end%>
                             <%else%>
-                                <%= button_to company_review_company_react_reviews_path(company_review, react_type: 0), method: :post, remote: true, form_class: "dislike_btn" do %>
+                                <button type="button" data-toggle="modal" data-target="#buttonModalLoginCenter" class="dislike_btn">
                                     <i class="material-icons-outlined">thumb_down</i> <span><%= company_review.company_react_reviews.where(:react_type => 0).count%></span> <a><%=t(:dislike)%></a>
-                                <%end%>
+                                </button>
                             <%end%>
+                        </div>
+                    </div>
+
+                    <div class="review_report_block">
+                        <%if user_signed_in?%>
+                            <button class="report_btn" type="button" class="btn" data-toggle="modal" data-target="#buttonModalReviewCommentIndexCenter">
+                                <i class="material-icons-outlined">flag</i> <a><%=t(:report)%></a>
+                            </button>
                         <%else%>
-                            <button type="button" data-toggle="modal" data-target="#buttonModalLoginCenter" class="dislike_btn">
-                                <i class="material-icons-outlined">thumb_down</i> <span><%= company_review.company_react_reviews.where(:react_type => 0).count%></span> <a><%=t(:dislike)%></a>
+                            <button class="report_btn" type="button" class="btn" data-toggle="modal" data-target="#buttonModalLoginCenter">
+                                <i class="material-icons-outlined">flag</i> <a><%=t(:report)%></a>
                             </button>
                         <%end%>
-                    </div>
-                </div>
-
-                <div class="review_report_block">
-                    <%if user_signed_in?%>
-                        <button class="report_btn" type="button" class="btn" data-toggle="modal" data-target="#buttonModalReviewCommentIndexCenter">
-                            <i class="material-icons-outlined">flag</i> <a><%=t(:report)%></a>
-                        </button>
-                    <%else%>
-                        <button class="report_btn" type="button" class="btn" data-toggle="modal" data-target="#buttonModalLoginCenter">
-                            <i class="material-icons-outlined">flag</i> <a><%=t(:report)%></a>
-                        </button>
-                    <%end%>
-                    <!-- Modal -->
-                    <div class="modal fade" id="buttonModalReviewCommentIndexCenter" tabindex="-1" role="dialog" aria-hidden="true">
-                        <div class="modal-dialog modal-dialog-centered" role="document">
-                            <div class="modal-content">
-                                <%= render :partial => 'reports/form', locals: {target_id: company_review.id, target_type: "CompanyReview"} %>
+                        <!-- Modal -->
+                        <div class="modal fade" id="buttonModalReviewCommentIndexCenter" tabindex="-1" role="dialog" aria-hidden="true">
+                            <div class="modal-dialog modal-dialog-centered" role="document">
+                                <div class="modal-content">
+                                    <%= render :partial => 'reports/form', locals: {target_id: company_review.id, target_type: "CompanyReview"} %>
+                                </div>
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
-    </div>
-    
-    <div class="new_reply_review_form_internal" id ="<%=company_review.id%>">
-        <%= form_for([company_review, CompanyReplyReview.new], remote: true) do |f| %>
-            <div class="new_reply_review_content">
-                <div class="new_reply_review_input_review">                    
-                    <%= f.text_area :reply_content, :class => "tinymce"%>
-                    <%= tinymce :mini %>
+        
+        <div class="new_reply_review_form_internal" id ="<%=company_review.id%>">
+            <%= form_for([company_review, CompanyReplyReview.new], remote: true) do |f| %>
+                <div class="new_reply_review_content">
+                    <div class="new_reply_review_input_review">                    
+                        <%= f.text_area :reply_content, :class => "tinymce"%>
+                        <%= tinymce :mini %>
+                    </div>
                 </div>
-            </div>
 
-            <div class="new_reply_review_submit">
-                <button type="submit" class="new_reply_review_form_submit">
-                    <i class="material-icons">send</i>
-                </button>
-            </div>
-        <%end%>
-    </div>
-    
-    <script>
-        function myFunctionReplyReview(id) {
-            var x = document.getElementById(id);
-            if (x.style.display == "block") 
-            {
-                x.style.display = "none";
-            } 
-            else 
-            {
-                x.style.display = "block";
+                <div class="new_reply_review_submit">
+                    <button type="submit" class="new_reply_review_form_submit">
+                        <i class="material-icons">send</i>
+                    </button>
+                </div>
+            <%end%>
+        </div>
+        
+        <script>
+            function myFunctionReplyReview(id) {
+                var x = document.getElementById(id);
+                if (x.style.display == "block") 
+                {
+                    x.style.display = "none";
+                } 
+                else 
+                {
+                    x.style.display = "block";
+                }
             }
-        }
-    </script>
+        </script>
 
-    <div class="reply_review_content" id="reply_review_<%=company_review.id%>">
-        <%= render company_review.company_reply_reviews %>
+        <div class="reply_review_content" id="reply_review_<%=company_review.id%>">
+            <%= render company_review.company_reply_reviews %>
+        </div>
     </div>
-</div>

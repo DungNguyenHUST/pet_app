@@ -1,4 +1,5 @@
 class CompanyInterviewsController < ApplicationController
+    include CompaniesHelper
     before_action :require_user_login, only: [:edit, :update, :destroy]
 
     def index 
@@ -14,7 +15,6 @@ class CompanyInterviewsController < ApplicationController
 
     def create
         @company = Company.friendly.find(params[:company_id])
-
         @company_interview = @company.company_interviews.build(company_interview_param)
 
         if user_signed_in?
@@ -24,6 +24,7 @@ class CompanyInterviewsController < ApplicationController
 
         if @company_interview.save
             @company_interview.company_interview_questions.build
+            save_action_user(@company)
             redirect_to company_path(@company, tab: 'CompanyInterviewsID')
         else
             flash[:error] = I18n.t(:create_error)

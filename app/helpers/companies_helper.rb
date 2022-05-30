@@ -449,4 +449,26 @@ module CompaniesHelper
             company_job = CompanyJob.where(:company_id => company.id).expire
         end
     end
+
+    def save_action_user(company)
+        if user_signed_in?
+            company.update!(:user_id => current_user.id)
+        else
+            company.update!(:visitor_id => request.remote_ip)
+        end
+    end
+
+    def is_user_unlock_content(company)
+        unlock = false
+        if user_signed_in?
+            if Company.find_by(:user_id => current_user.id)
+                unlock = true
+            end
+        else
+            if Company.find_by(:visitor_id => request.remote_ip)
+                unlock = true
+            end
+        end
+        return unlock
+    end
 end

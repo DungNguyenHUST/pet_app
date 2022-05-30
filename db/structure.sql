@@ -207,7 +207,9 @@ CREATE TABLE public.companies (
     company_type character varying,
     benefit text[] DEFAULT '{}'::text[],
     employer_id integer,
-    tsv tsvector
+    tsv tsvector,
+    user_id integer,
+    visitor_id character varying
 );
 
 
@@ -2632,6 +2634,13 @@ CREATE UNIQUE INDEX index_admins_on_unlock_token ON public.admins USING btree (u
 
 
 --
+-- Name: index_companies_on_created_at_and_user_id_and_visitor_id; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE INDEX index_companies_on_created_at_and_user_id_and_visitor_id ON public.companies USING btree (created_at, user_id, visitor_id);
+
+
+--
 -- Name: index_companies_on_slug; Type: INDEX; Schema: public; Owner: -
 --
 
@@ -3441,6 +3450,8 @@ INSERT INTO "schema_migrations" (version) VALUES
 ('20220520075023'),
 ('20220520075037'),
 ('20220526041506'),
-('20220527064153');
+('20220527064153'),
+('20220527080218'),
+('20220527082156');
 
 

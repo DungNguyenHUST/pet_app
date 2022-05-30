@@ -1,4 +1,5 @@
 class CompanyReviewsController < ApplicationController
+    include CompaniesHelper
     before_action :require_user_login, only: [:edit, :update, :destroy]
 
     def index 
@@ -21,6 +22,7 @@ class CompanyReviewsController < ApplicationController
         end
 
         if @company_review.save
+            save_action_user(@company)
             redirect_to company_path(@company, tab: 'CompanyReviewsID')
         else
             flash[:danger] = I18n.t(:create_error)

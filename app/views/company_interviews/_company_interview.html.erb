@@ -1,4 +1,11 @@
-<div class="company_interview_block">
+<%if is_user_unlock_content(company_interview.company) == false && index > 0%>
+    <div class="company_interview_unlock_block">
+        <div class="company_interview_unlock">
+            <%= render :partial => 'companies/unlock_content', :locals => {:company => company_interview.company}%>
+        </div>
+<%else%>
+    <div class="company_interview_block">
+<%end%>
     <div class="company_interview_container">
         <div class="company_interview_title">
             <a><%= company_interview.position %></a>
