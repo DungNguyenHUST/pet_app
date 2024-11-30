@@ -92,7 +92,7 @@ gem 'friendly_id', '~> 5.4.0'
 
 # gem 'google-cloud-storage'
 
-gem 'carrierwave', '2.0.0'
+gem 'carrierwave', '2.1.1'
 gem 'mini_magick'
 
 # gem "mimemagic"
